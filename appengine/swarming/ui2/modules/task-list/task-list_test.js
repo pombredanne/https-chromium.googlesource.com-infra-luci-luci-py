@@ -2,25 +2,41 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-import 'modules/task-list'
+import 'modules/task-list';
 
 describe('task-list', function() {
   // Instead of using import, we use require. Otherwise,
   // the concatenation trick we do doesn't play well with webpack, which would
   // leak dependencies (e.g. bot-list's 'column' function to task-list) and
   // try to import things multiple times.
-  const { deepCopy } = require('common-sk/modules/object');
-  const { $, $$ } = require('common-sk/modules/dom');
-  const { childrenAsArray, customMatchers, expectNoUnmatchedCalls, getChildItemWithText, mockAppGETs } = require('modules/test_util');
-  const { fetchMock, MATCHED, UNMATCHED } = require('fetch-mock');
+  const {deepCopy} = require('common-sk/modules/object');
+  const {$, $$} = require('common-sk/modules/dom');
+  const {
+    childrenAsArray,
+    customMatchers,
+    expectNoUnmatchedCalls,
+    getChildItemWithText,
+    mockAppGETs,
+  } = require('modules/test_util');
+  const {fetchMock, MATCHED, UNMATCHED} = require('fetch-mock');
 
-  const { column, filterTasks, getColHeader, listQueryParams, processTasks } = require('modules/task-list/task-list-helpers');
-  const { tasks_20 } = require('modules/task-list/test_data');
-  const { fleetDimensions } = require('modules/bot-list/test_data');
+  const {
+    column,
+    filterTasks,
+    getColHeader,
+    listQueryParams,
+    processTasks,
+  } = require('modules/task-list/task-list-helpers');
+  const {tasks_20} = require('modules/task-list/test_data');
+  const {fleetDimensions} = require('modules/bot-list/test_data');
   beforeEach(function() {
     jasmine.addMatchers(customMatchers);
     // Clear out any query params we might have to not mess with our current state.
-    history.pushState(null, '', window.location.origin + window.location.pathname + '?');
+    history.pushState(
+        null,
+        "",
+        window.location.origin + window.location.pathname + '?'
+    );
   });
 
   beforeEach(function() {
@@ -32,7 +48,7 @@ describe('task-list', function() {
 
     fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*', tasks_20);
     fetchMock.get('/_ah/api/swarming/v1/bots/dimensions', fleetDimensions);
-    fetchMock.get('glob:/_ah/api/swarming/v1/tasks/count?*', {'count': 12345});
+    fetchMock.get('glob:/_ah/api/swarming/v1/tasks/count?*', {count: 12345});
 
     // Everything else
     fetchMock.catch(404);
@@ -52,7 +68,7 @@ describe('task-list', function() {
     container.innerHTML = '';
   });
   const now = Date.UTC(2018, 11, 19, 16, 46, 22, 1234);
-  const yesterday = new Date(now-24*60*60*1000);
+  const yesterday = new Date(now - 24 * 60 * 60 * 1000);
   beforeEach(function() {
     // Fix the time so all of our relative dates work.
     // Note, this turns off the default behavior of setTimeout and related.
@@ -82,7 +98,7 @@ describe('task-list', function() {
     ele.addEventListener('busy-end', (e) => {
       if (!ran) {
         ran = true; // prevent multiple runs if the test makes the
-                    // app go busy (e.g. if it calls fetch).
+        // app go busy (e.g. if it calls fetch).
         callback();
       }
     });
@@ -102,7 +118,7 @@ describe('task-list', function() {
     });
   }
 
-//===============TESTS START====================================
+  // ===============TESTS START====================================
 
   describe('html structure', function() {
     it('contains swarming-app as its only child', function(done) {
@@ -118,7 +134,10 @@ describe('task-list', function() {
         createElement((ele) => {
           const loginMessage = $$('swarming-app>main .message', ele);
           expect(loginMessage).toBeTruthy();
-          expect(loginMessage).not.toHaveAttribute('hidden', 'Message should not be hidden');
+          expect(loginMessage).not.toHaveAttribute(
+              "hidden",
+              "Message should not be hidden",
+          );
           expect(loginMessage.textContent).toContain('must sign in');
           done();
         });
@@ -127,27 +146,39 @@ describe('task-list', function() {
         createElement((ele) => {
           const taskTable = $$('.task-table', ele);
           expect(taskTable).toBeTruthy();
-          expect(taskTable).toHaveAttribute('hidden', '.task-table should be hidden');
-          expect($$('.header', ele)).toHaveAttribute('hidden', 'no filters seen');
+          expect(taskTable).toHaveAttribute(
+              "hidden",
+              ".task-table should be hidden",
+          );
+          expect($$('.header', ele)).toHaveAttribute(
+              "hidden",
+              "no filters seen",
+          );
           done();
         });
       });
-    }); //end describe('when not logged in')
+    }); // end describe('when not logged in')
 
     describe('when logged in as unauthorized user', function() {
-
       function notAuthorized() {
         // overwrite the default fetchMock behaviors to have everything return 403.
-        fetchMock.get('/_ah/api/swarming/v1/server/details', 403,
-                      { overwriteRoutes: true });
-        fetchMock.get('/_ah/api/swarming/v1/server/permissions', {},
-                      { overwriteRoutes: true });
-        fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*', 403,
-                      { overwriteRoutes: true });
-        fetchMock.get('/_ah/api/swarming/v1/bots/dimensions', 403,
-                      { overwriteRoutes: true });
-        fetchMock.get('/_ah/api/swarming/v1/tasks/count', 403,
-                      { overwriteRoutes: true });
+        fetchMock.get('/_ah/api/swarming/v1/server/details', 403, {
+          overwriteRoutes: true,
+        });
+        fetchMock.get(
+            "/_ah/api/swarming/v1/server/permissions",
+            {},
+            {overwriteRoutes: true},
+        );
+        fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*', 403, {
+          overwriteRoutes: true,
+        });
+        fetchMock.get('/_ah/api/swarming/v1/bots/dimensions', 403, {
+          overwriteRoutes: true,
+        });
+        fetchMock.get('/_ah/api/swarming/v1/tasks/count', 403, {
+          overwriteRoutes: true,
+        });
       }
 
       beforeEach(notAuthorized);
@@ -156,7 +187,10 @@ describe('task-list', function() {
         loggedInTasklist((ele) => {
           const loginMessage = $$('swarming-app>main .message', ele);
           expect(loginMessage).toBeTruthy();
-          expect(loginMessage).not.toHaveAttribute('hidden', 'Message should not be hidden');
+          expect(loginMessage).not.toHaveAttribute(
+              "hidden",
+              "Message should not be hidden",
+          );
           expect(loginMessage.textContent).toContain('different account');
           done();
         });
@@ -165,15 +199,20 @@ describe('task-list', function() {
         loggedInTasklist((ele) => {
           const taskTable = $$('.task-table', ele);
           expect(taskTable).toBeTruthy();
-          expect(taskTable).toHaveAttribute('hidden', '.task-table should be hidden');
-          expect($$('.header', ele)).toHaveAttribute('hidden', 'no filters seen');
+          expect(taskTable).toHaveAttribute(
+              "hidden",
+              ".task-table should be hidden",
+          );
+          expect($$('.header', ele)).toHaveAttribute(
+              'hidden',
+              "no filters seen",
+          );
           done();
         });
       });
     }); // end describe('when logged in as unauthorized user')
 
     describe('when logged in as user (not admin)', function() {
-
       describe('default landing page', function() {
         it('displays whatever tasks show up', function(done) {
           loggedInTasklist((ele) => {
@@ -212,19 +251,27 @@ describe('task-list', function() {
             expect(cells).toBeTruthy();
             expect(cells.length).toBe(7 * 20, '7 columns * 20 rows');
             // little helper for readability
-            const cell = (r, c) => cells[7*r+c];
+            const cell = (r, c) => cells[7 * r + c];
 
             expect(rows[0]).toHaveClass('failed_task');
             expect(rows[0]).not.toHaveClass('exception');
             expect(rows[0]).not.toHaveClass('pending_task');
             expect(rows[0]).not.toHaveClass('bot_died');
-            expect(cell(0, 0)).toMatchTextContent('Build-Win-Clang-x86_64-Debug-ANGLE');
+            expect(cell(0, 0)).toMatchTextContent(
+                "Build-Win-Clang-x86_64-Debug-ANGLE",
+            );
             expect(cell(0, 0).innerHTML).toContain('<a ', 'has a link');
-            expect(cell(0, 0).innerHTML).toContain('href="/task?id=41e031b2c8b46710"', 'link is correct');
+            expect(cell(0, 0).innerHTML).toContain(
+                'href="/task?id=41e031b2c8b46710"',
+                "link is correct",
+            );
             expect(cell(0, 2)).toMatchTextContent('2.36s'); // pending
             expect(cell(0, 4)).toMatchTextContent('skia-gce-610');
             expect(cell(0, 4).innerHTML).toContain('<a ', 'has a link');
-            expect(cell(0, 4).innerHTML).toContain('href="/bot?id=skia-gce-610"', 'link is correct');
+            expect(cell(0, 4).innerHTML).toContain(
+                'href="/bot?id=skia-gce-610"',
+                "link is correct",
+            );
             expect(cell(0, 5)).toMatchTextContent('Skia');
             expect(cell(0, 6)).toMatchTextContent('COMPLETED (FAILURE)');
 
@@ -260,21 +307,25 @@ describe('task-list', function() {
           const value = new Date(date);
           value.setSeconds(0);
           value.setMilliseconds(0);
-          return value.getTime()/1000;
-        }
+          return value.getTime() / 1000;
+        };
         it('supplies past 24 hours for the time pickers', function(done) {
           loggedInTasklist((ele) => {
             const start = $$('#start_time', ele);
             expect(start).toBeTruthy();
             expect(start.disabled).toBeFalsy();
             expect(TruncateToMinute(start.value)).toBe(
-                TruncateToMinute(yesterday), '(start time is 24 hours ago)');
+                TruncateToMinute(yesterday),
+                "(start time is 24 hours ago)",
+            );
 
             const end = $$('#end_time', ele);
             expect(end).toBeTruthy();
             expect(end.disabled).toBeTruthy();
             expect(TruncateToMinute(end.value)).toBe(
-                TruncateToMinute(now), '(end time is now)');
+                TruncateToMinute(now),
+                "(end time is now)",
+            );
 
             const checkbox = $$('.picker checkbox-sk', ele);
             expect(checkbox).toBeTruthy();
@@ -289,29 +340,36 @@ describe('task-list', function() {
 
             const countRows = $('#query_counts tr', ele);
             expect(countRows).toBeTruthy();
-            expect(countRows.length).toBe(1+7, '(num counts, displayed + 7 states)');
+            expect(countRows.length).toBe(
+                1 + 7,
+                "(num counts, displayed + 7 states)",
+            );
 
             expect(countRows[0]).toMatchTextContent('Displayed: 20');
 
             expect(countRows[3].innerHTML).toContain('<a ', 'contains a link');
             const link = $$('a', countRows[3]);
-            expect(link.href).toContain('/tasklist?at=false&c=name&c=created_ts&c=pending_time&' +
-                  'c=duration&c=bot&c=pool-tag&c=state&d=desc&et=1545237983234&' +
-                  'f=state%3ACOMPLETED_FAILURE&k=&n=true&s=created_ts&st=1545151583000&v=false');
+            expect(link.href).toContain(
+                "/tasklist?at=false&c=name&c=created_ts&c=pending_time&" +
+                'c=duration&c=bot&c=pool-tag&c=state&d=desc&et=1545237983234&' +
+                'f=state%3ACOMPLETED_FAILURE&k=&n=true&s=created_ts&st=1545151583000&v=false'
+            );
 
             // The true on flush waits for res.json() to resolve too
             fetchMock.flush(true).then(() => {
               expect(countRows[5]).toMatchTextContent('Running: 12345');
               done();
             });
-
           });
         });
 
         it('shows aliases on filter chips', function(done) {
           loggedInTasklist((ele) => {
-            ele._filters=['cpu-tag:x86-64-Haswell_GCE', 'gpu-tag:10de:1cb3-415.27',
-                          'device_type-tag:flo']
+            ele._filters = [
+              'cpu-tag:x86-64-Haswell_GCE',
+              'gpu-tag:10de:1cb3-415.27',
+              'device_type-tag:flo',
+            ];
             ele.render();
 
             const chips = $('.chip_container .chip', ele);
@@ -320,14 +378,17 @@ describe('task-list', function() {
 
             // They are displayed in order, so check content
             expect(chips[0]).toMatchTextContent('cpu-tag:x86-64-Haswell_GCE');
-            expect(chips[1]).toMatchTextContent('gpu-tag:NVIDIA Quadro P400 (10de:1cb3-415.27)');
-            expect(chips[2]).toMatchTextContent('device_type-tag:Nexus 7 [2013] (flo)');
+            expect(chips[1]).toMatchTextContent(
+                "gpu-tag:NVIDIA Quadro P400 (10de:1cb3-415.27)",
+            );
+            expect(chips[2]).toMatchTextContent(
+                "device_type-tag:Nexus 7 [2013] (flo)",
+            );
             done();
           });
         });
       }); // end describe('default landing page')
-    });// end describe('when logged in as user')
-
+    }); // end describe('when logged in as user')
   }); // end describe('html structure')
 
   describe('dynamic behavior', function() {
@@ -378,20 +439,54 @@ describe('task-list', function() {
         ele.render();
 
         const actualIDOrder = ele._tasks.map((t) => t.task_id);
-        const actualPoolOrder = ele._tasks.map((t) => column('pool-tag', t, ele));
+        const actualPoolOrder = ele._tasks.map((t) =>
+          column('pool-tag', t, ele),
+        );
 
-        expect(actualIDOrder).toEqual(['41e0284bc3ef4f10', '41e023035ecced10',
-            '41e0222076a33010', '41e020504d0a5110', '41e0204f39d06210',
-            '41e01fe02b981410',     '41dfffb4970ae410', '41e0284bf01aef10',
-            '41e0222290be8110', '41e031b2c8b46710',     '41dfffb8b1414b10',
-            '41dfa79d3bf29010', '41df677202f20310', '41e019d8b7aa2f10',
-            '41e015d550464910', '41e0310fe0b7c410', '41e0182a00fcc110',
-            '41e016dc85735b10',     '41dd3d950bb52710', '41dd3d9564402e10']);
-        expect(actualPoolOrder).toEqual(['Chrome', 'Chrome', 'Chrome',
-            'Chrome', 'Chrome', 'Chrome', 'Chrome', 'Chrome-CrOS-VM', 'Chrome-GPU',
-            'Skia', 'Skia', 'Skia', 'Skia', 'fuchsia.tests', 'fuchsia.tests',
-            'luci.chromium.ci', 'luci.chromium.ci', 'luci.chromium.ci',
-            'luci.fuchsia.try', 'luci.fuchsia.try']);
+        expect(actualIDOrder).toEqual([
+          '41e0284bc3ef4f10',
+          '41e023035ecced10',
+          '41e0222076a33010',
+          '41e020504d0a5110',
+          '41e0204f39d06210',
+          '41e01fe02b981410',
+          '41dfffb4970ae410',
+          '41e0284bf01aef10',
+          '41e0222290be8110',
+          '41e031b2c8b46710',
+          '41dfffb8b1414b10',
+          '41dfa79d3bf29010',
+          '41df677202f20310',
+          '41e019d8b7aa2f10',
+          '41e015d550464910',
+          '41e0310fe0b7c410',
+          '41e0182a00fcc110',
+          '41e016dc85735b10',
+          '41dd3d950bb52710',
+          '41dd3d9564402e10',
+        ]);
+        expect(actualPoolOrder).toEqual([
+          'Chrome',
+          'Chrome',
+          'Chrome',
+          'Chrome',
+          'Chrome',
+          'Chrome',
+          'Chrome',
+          'Chrome-CrOS-VM',
+          'Chrome-GPU',
+          'Skia',
+          'Skia',
+          'Skia',
+          'Skia',
+          'fuchsia.tests',
+          'fuchsia.tests',
+          'luci.chromium.ci',
+          'luci.chromium.ci',
+          'luci.chromium.ci',
+          'luci.fuchsia.try',
+          'luci.fuchsia.try',
+        ]);
         done();
       });
     });
@@ -403,22 +498,64 @@ describe('task-list', function() {
         ele._dir = 'asc';
         ele.render();
 
-        const actualDurationsOrder = ele._tasks.map((t) => t.human_duration.trim());
+        const actualDurationsOrder = ele._tasks.map((t) =>
+          t.human_duration.trim(),
+        );
 
-        expect(actualDurationsOrder).toEqual(['0.62s', '2.90s', '17.84s', '1m 38s',
-            '2m  1s', '2m  1s', '12m 54s*', '12m 55s*', '1h  9m 47s', '2h 16m 15s',
-            '--', '--', '--', '--', '--', '--', '--', '--', '--', '--']);
+        expect(actualDurationsOrder).toEqual([
+          '0.62s',
+          '2.90s',
+          '17.84s',
+          '1m 38s',
+          '2m  1s',
+          '2m  1s',
+          '12m 54s*',
+          '12m 55s*',
+          '1h  9m 47s',
+          '2h 16m 15s',
+          '--',
+          '--',
+          '--',
+          '--',
+          '--',
+          '--',
+          '--',
+          '--',
+          '--',
+          '--',
+        ]);
 
         ele._verbose = false;
         ele._sort = 'pending_time';
         ele._dir = 'asc';
         ele.render();
 
-        const actualPendingOrder = ele._tasks.map((t) => t.human_pending_time.trim());
+        const actualPendingOrder = ele._tasks.map((t) =>
+          t.human_pending_time.trim(),
+        );
 
-        expect(actualPendingOrder).toEqual(['0s', '0s', '0.63s', '0.66s', '0.72s', '2.35s',
-          '2.36s', '2.58s', '5.74s', '8.21s', '24.58s', '1m 11s', '1m 17s', '5m  5s', '5m 36s',
-          '11m 28s', '14m 54s*', '14m 55s*', '--', '--']);
+        expect(actualPendingOrder).toEqual([
+          '0s',
+          '0s',
+          '0.63s',
+          '0.66s',
+          '0.72s',
+          '2.35s',
+          '2.36s',
+          '2.58s',
+          '5.74s',
+          '8.21s',
+          '24.58s',
+          '1m 11s',
+          '1m 17s',
+          '5m  5s',
+          '5m 36s',
+          '11m 28s',
+          '14m 54s*',
+          '14m 55s*',
+          '--',
+          '--',
+        ]);
         done();
       });
     });
@@ -444,7 +581,7 @@ describe('task-list', function() {
           }
         }
         checkbox.click(); // click is synchronous, it returns after
-                          // the clickHandler is run.
+        // the clickHandler is run.
         // Check underlying data
         expect(ele._cols).toContain(keyToClick);
         // check the rendering changed
@@ -452,7 +589,9 @@ describe('task-list', function() {
         expect(colHeaders).toBeTruthy();
         expect(colHeaders.length).toBe(2, '(num colHeaders)');
         const expectedHeader = getColHeader(keyToClick);
-        expect(colHeaders.map((c) => c.textContent.trim())).toContain(expectedHeader);
+        expect(colHeaders.map((c) => c.textContent.trim())).toContain(
+            expectedHeader,
+        );
 
         // We have to find the checkbox again because the order
         // shuffles to keep selected ones on top.
@@ -465,8 +604,10 @@ describe('task-list', function() {
             break;
           }
         }
-        expect(checkbox).toBeTruthy('We expected to find a checkbox with header '+
-                                    getColHeader(keyToClick));
+        expect(checkbox).toBeTruthy(
+            "We expected to find a checkbox with header " +
+            getColHeader(keyToClick),
+        );
 
         // click it again
         checkbox.click();
@@ -477,7 +618,9 @@ describe('task-list', function() {
         colHeaders = $('.task-table thead th');
         expect(colHeaders).toBeTruthy();
         expect(colHeaders.length).toBe(1, '(num colHeaders)');
-        expect(colHeaders.map((c) => c.textContent.trim())).not.toContain(expectedHeader);
+        expect(colHeaders.map((c) => c.textContent.trim())).not.toContain(
+            expectedHeader,
+        );
         done();
       });
     });
@@ -486,7 +629,11 @@ describe('task-list', function() {
       loggedInTasklist((ele) => {
         ele._cols = ['name'];
         ele.render();
-        let row = getChildItemWithText($$('.selector.keys'), 'device_type (tag)', ele);
+        let row = getChildItemWithText(
+            $$('.selector.keys'),
+            'device_type (tag)',
+            ele,
+        );
         expect(row).toBeTruthy();
         row.click();
         expect(row.hasAttribute('selected')).toBeTruthy();
@@ -494,23 +641,33 @@ describe('task-list', function() {
 
         let valueSelector = $$('.selector.values');
         expect(valueSelector).toBeTruthy();
-        let values = childrenAsArray(valueSelector).map((c) => c.textContent.trim());
+        let values = childrenAsArray(valueSelector).map((c) =>
+          c.textContent.trim(),
+        );
         // spot check
         expect(values.length).toBe(15);
         expect(values).toContain('Nexus 9 (flounder)');
         expect(values).toContain('iPhone X');
 
-        let oldRow = row;
-        row = getChildItemWithText($$('.selector.keys'), 'state (of task)', ele);
+        const oldRow = row;
+        row = getChildItemWithText(
+            $$('.selector.keys'),
+            "state (of task)",
+            ele,
+        );
         expect(row).toBeTruthy();
         row.click();
-        expect(row.hasAttribute('selected')).toBeTruthy('new row only one selected');
+        expect(row.hasAttribute('selected')).toBeTruthy(
+            "new row only one selected",
+        );
         expect(oldRow.hasAttribute('selected')).toBeFalsy('old row unselected');
         expect(ele._primaryKey).toBe('state');
 
         valueSelector = $$('.selector.values');
         expect(valueSelector).toBeTruthy();
-        values = childrenAsArray(valueSelector).map((c) => c.textContent.trim());
+        values = childrenAsArray(valueSelector).map((c) =>
+          c.textContent.trim(),
+        );
         // spot check
         expect(values.length).toBe(14);
         expect(values).toContain('RUNNING');
@@ -528,12 +685,19 @@ describe('task-list', function() {
 
         const keySelector = $$('.col_selector');
         expect(keySelector).toBeTruthy();
-        const keys = childrenAsArray(keySelector).map((c) => c.textContent.trim());
+        const keys = childrenAsArray(keySelector).map((c) =>
+          c.textContent.trim(),
+        );
 
         // Skip the first child, which is the input box
-        expect(keys.slice(1, 7)).toEqual(['Task Name', 'Created On', 'Duration',
-                                          'state (of task)', 'Abandoned On',
-                                          'allow_milo (tag)']);
+        expect(keys.slice(1, 7)).toEqual([
+          'Task Name',
+          'Created On',
+          'Duration',
+          'state (of task)',
+          'Abandoned On',
+          'allow_milo (tag)',
+        ]);
 
         done();
       });
@@ -542,11 +706,15 @@ describe('task-list', function() {
     it('adds a filter when the addIcon is clicked', function(done) {
       loggedInTasklist((ele) => {
         ele._cols = ['duration', 'created_ts', 'state', 'name'];
-        ele._primaryKey = 'state';  // set 'os' selected
-        ele._filters = [];  // no filters
+        ele._primaryKey = 'state'; // set 'os' selected
+        ele._filters = []; // no filters
         ele.render();
 
-        const valueRow = getChildItemWithText($$('.selector.values'), 'BOT_DIED', ele);
+        const valueRow = getChildItemWithText(
+            $$('.selector.values'),
+            'BOT_DIED',
+            ele,
+        );
         const addIcon = $$('add-circle-icon-sk', valueRow);
         expect(addIcon).toBeTruthy('there should be an icon for adding');
         addIcon.click();
@@ -555,10 +723,13 @@ describe('task-list', function() {
         expect(ele._filters[0]).toEqual('state:BOT_DIED');
 
         const chipContainer = $$('.chip_container', ele);
-        expect(chipContainer).toBeTruthy('there should be a filter chip container');
+        expect(chipContainer).toBeTruthy(
+            "there should be a filter chip container",
+        );
         expect(chipContainer.children.length).toBe(1);
-        expect(addIcon.hasAttribute('hidden'))
-              .toBeTruthy('addIcon should go away after being clicked');
+        expect(addIcon.hasAttribute('hidden')).toBeTruthy(
+            "addIcon should go away after being clicked",
+        );
         done();
       });
     });
@@ -570,16 +741,25 @@ describe('task-list', function() {
         ele._filters = ['pool-tag:Skia', 'state:BOT_DIED'];
         ele.render();
 
-        const filterChip = getChildItemWithText($$('.chip_container'), 'pool-tag:Skia', ele);
+        const filterChip = getChildItemWithText(
+            $$('.chip_container'),
+            'pool-tag:Skia',
+            ele,
+        );
         const icon = $$('cancel-icon-sk', filterChip);
         expect(icon).toBeTruthy('there should be a icon to remove it');
         icon.click();
 
         expect(ele._filters.length).toBe(1, 'a filter should be removed');
-        expect(ele._filters[0]).toEqual('state:BOT_DIED', 'pool-tag:Skia should be removed');
+        expect(ele._filters[0]).toEqual(
+            "state:BOT_DIED",
+            "pool-tag:Skia should be removed",
+        );
 
         const chipContainer = $$('.chip_container', ele);
-        expect(chipContainer).toBeTruthy('there should be a filter chip container');
+        expect(chipContainer).toBeTruthy(
+            "there should be a filter chip container",
+        );
         expect(chipContainer.children.length).toBe(1);
         done();
       });
@@ -621,11 +801,15 @@ describe('task-list', function() {
         expect(ele._tasks.length).toBe(20, 'All 20 at the start');
 
         let wasCalled = false;
-        fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*', () => {
-          expect(ele._tasks.length).toBe(2, '2 BOT_DIED there now.');
-          wasCalled = true;
-          return '[]'; // pretend no tasks match
-        }, { overwriteRoutes: true });
+        fetchMock.get(
+            "glob:/_ah/api/swarming/v1/tasks/list?*",
+            () => {
+              expect(ele._tasks.length).toBe(2, '2 BOT_DIED there now.');
+              wasCalled = true;
+              return '[]'; // pretend no tasks match
+            },
+            {overwriteRoutes: true},
+        );
 
         ele._addFilter('state:BOT_DIED');
         // The true on flush waits for res.json() to resolve too, which
@@ -646,28 +830,38 @@ describe('task-list', function() {
 
         const filterInput = $$('#filter_search', ele);
         filterInput.value = 'invalid filter';
-        ele._filterSearch({key: 'Enter'});
+        ele._filterSearch({key: 'Enter' });
         expect(ele._filters).toEqual([]);
         // Leave the input to let the user correct their mistake.
         expect(filterInput.value).toEqual('invalid filter');
 
         // Spy on the list call to make sure a request is made with the right filter.
         let calledTimes = 0;
-        fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*', (url, _) => {
-          expect(url).toContain(encodeURIComponent('valid:filter:gpu:can:have:many:colons'));
-          calledTimes++;
-          return '[]'; // pretend no bots match
-        }, {overwriteRoutes: true});
+        fetchMock.get(
+            "glob:/_ah/api/swarming/v1/tasks/list?*",
+            (url, _) => {
+              expect(url).toContain(
+                  encodeURIComponent('valid:filter:gpu:can:have:many:colons'),
+              );
+              calledTimes++;
+              return '[]'; // pretend no bots match
+            },
+            {overwriteRoutes: true},
+        );
 
         filterInput.value = 'valid-tag:filter:gpu:can:have:many:colons';
-        ele._filterSearch({key: 'Enter'});
-        expect(ele._filters).toEqual(['valid-tag:filter:gpu:can:have:many:colons']);
+        ele._filterSearch({key: 'Enter' });
+        expect(ele._filters).toEqual([
+          'valid-tag:filter:gpu:can:have:many:colons',
+        ]);
         // Empty the input for next time.
         expect(filterInput.value).toEqual('');
         filterInput.value = 'valid-tag:filter:gpu:can:have:many:colons';
-        ele._filterSearch({key: 'Enter'});
+        ele._filterSearch({key: 'Enter' });
         // No duplicates
-        expect(ele._filters).toEqual(['valid-tag:filter:gpu:can:have:many:colons']);
+        expect(ele._filters).toEqual([
+          'valid-tag:filter:gpu:can:have:many:colons',
+        ]);
 
         fetchMock.flush(true).then(() => {
           expect(calledTimes).toEqual(1, 'Only request tasks once');
@@ -685,17 +879,17 @@ describe('task-list', function() {
 
         const filterInput = $$('#filter_search', ele);
         filterInput.value = 'state:BOT_DIED';
-        ele._filterSearch({key: 'Enter'});
+        ele._filterSearch({key: 'Enter' });
         expect(ele._filters).toEqual(['state:BOT_DIED']);
 
         filterInput.value = 'gpu-tag:something';
-        ele._filterSearch({key: 'Enter'});
+        ele._filterSearch({key: 'Enter' });
         expect(ele._filters).toContain('gpu-tag:something');
 
         // there are no valid filters that aren't a tag or state, so
         // correct those that don't have a -tag.
         filterInput.value = 'gpu:something-else';
-        ele._filterSearch({key: 'Enter'});
+        ele._filterSearch({key: 'Enter' });
         expect(ele._filters).toContain('gpu-tag:something-else');
 
         done();
@@ -716,10 +910,16 @@ describe('task-list', function() {
 
         let row = getChildItemWithText($$('.selector.keys'), 'cpu (tag)', ele);
         expect(row).toBeFalsy('cpu (tag) should be hiding');
-        row = getChildItemWithText($$('.selector.keys'), 'device_type (tag)', ele);
+        row = getChildItemWithText(
+            $$('.selector.keys'),
+            'device_type (tag)',
+            ele,
+        );
         expect(row).toBeTruthy('device_type (tag) should be there');
         row = getChildItemWithText($$('.selector.keys'), 'stepname (tag)', ele);
-        expect(row).toBeTruthy('stepname (tag) should be there, because some values match');
+        expect(row).toBeTruthy(
+            "stepname (tag) should be there, because some values match",
+        );
 
         filterInput.value = 'pool:Chro';
         ele._refilterPrimaryKeys();
@@ -730,13 +930,23 @@ describe('task-list', function() {
         expect(row).toBeFalsy('stepname (tag) should be hidden');
         row = getChildItemWithText($$('.selector.keys'), 'pool (tag)', ele);
         expect(row).toBeTruthy('pool (tag) should be visible');
-        row = getChildItemWithText($$('.selector.keys'), 'sk_dim_pool (tag)', ele);
+        row = getChildItemWithText(
+            $$('.selector.keys'),
+            "sk_dim_pool (tag)",
+            ele,
+        );
         expect(row).toBeFalsy('sk_dim_pool (tag) is not an exact match');
 
         row = getChildItemWithText($$('.selector.values'), 'Chrome-perf', ele);
         expect(row).toBeTruthy('Chrome-perf should be visible');
-        row = getChildItemWithText($$('.selector.values'), 'AndroidBuilder', ele);
-        expect(row).toBeFalsy('AndroidBuilder should be hidden, does not match Chro');
+        row = getChildItemWithText(
+            $$('.selector.values'),
+            "AndroidBuilder",
+            ele,
+        );
+        expect(row).toBeFalsy(
+            "AndroidBuilder should be hidden, does not match Chro",
+        );
 
         done();
       });
@@ -791,50 +1001,59 @@ describe('task-list', function() {
     });
 
     it('shows and hide the extra state counts', function(done) {
-          loggedInTasklist((ele) => {
-            ele._allStates = false;
-            ele.render();
+      loggedInTasklist((ele) => {
+        ele._allStates = false;
+        ele.render();
 
-            let countRows = $('#query_counts tr', ele);
-            expect(countRows).toBeTruthy();
-            expect(countRows.length).toBe(1+7, '(num counts, displayed + 7 states)');
+        let countRows = $('#query_counts tr', ele);
+        expect(countRows).toBeTruthy();
+        expect(countRows.length).toBe(
+            1 + 7,
+            "(num counts, displayed + 7 states)",
+        );
 
-            let showMore  = $$('.summary expand-more-icon-sk');
-            let showMore2 = $$('.summary more-horiz-icon-sk');
-            let showLess  = $$('.summary expand-less-icon-sk');
-            expect(showMore).toBeTruthy();
-            expect(showMore2).not.toHaveAttribute('hidden');
-            expect(showLess).toBeFalsy();
-            showMore.click();
+        let showMore = $$('.summary expand-more-icon-sk');
+        let showMore2 = $$('.summary more-horiz-icon-sk');
+        let showLess = $$('.summary expand-less-icon-sk');
+        expect(showMore).toBeTruthy();
+        expect(showMore2).not.toHaveAttribute('hidden');
+        expect(showLess).toBeFalsy();
+        showMore.click();
 
-            expect(ele._allStates).toBeTruthy();
-            countRows = $('#query_counts tr', ele);
-            expect(countRows).toBeTruthy();
-            expect(countRows.length).toBe(1+12, '(num counts, displayed + 12 states)');
+        expect(ele._allStates).toBeTruthy();
+        countRows = $('#query_counts tr', ele);
+        expect(countRows).toBeTruthy();
+        expect(countRows.length).toBe(
+            1 + 12,
+            "(num counts, displayed + 12 states)",
+        );
 
-            showMore  = $$('.summary expand-more-icon-sk');
-            showMore2 = $$('.summary more-horiz-icon-sk');
-            showLess  = $$('.summary expand-less-icon-sk');
-            expect(showMore).toBeFalsy();
-            expect(showMore2).toHaveAttribute('hidden');
-            expect(showLess).toBeTruthy();
-            showLess.click();
+        showMore = $$('.summary expand-more-icon-sk');
+        showMore2 = $$('.summary more-horiz-icon-sk');
+        showLess = $$('.summary expand-less-icon-sk');
+        expect(showMore).toBeFalsy();
+        expect(showMore2).toHaveAttribute('hidden');
+        expect(showLess).toBeTruthy();
+        showLess.click();
 
-            expect(ele._allStates).toBeFalsy();
-            countRows = $('#query_counts tr', ele);
-            expect(countRows).toBeTruthy();
-            expect(countRows.length).toBe(1+7, '(num counts, displayed + 7 states)');
+        expect(ele._allStates).toBeFalsy();
+        countRows = $('#query_counts tr', ele);
+        expect(countRows).toBeTruthy();
+        expect(countRows.length).toBe(
+            1 + 7,
+            "(num counts, displayed + 7 states)",
+        );
 
-            showMore  = $$('.summary expand-more-icon-sk');
-            showMore2 = $$('.summary more-horiz-icon-sk');
-            showLess  = $$('.summary expand-less-icon-sk');
-            expect(showMore).toBeTruthy();
-            expect(showMore2).not.toHaveAttribute('hidden');
-            expect(showLess).toBeFalsy();
+        showMore = $$('.summary expand-more-icon-sk');
+        showMore2 = $$('.summary more-horiz-icon-sk');
+        showLess = $$('.summary expand-less-icon-sk');
+        expect(showMore).toBeTruthy();
+        expect(showMore2).not.toHaveAttribute('hidden');
+        expect(showLess).toBeFalsy();
 
-            done();
-          });
-        });
+        done();
+      });
+    });
 
     it('updates the links with filters and other settings', function(done) {
       loggedInTasklist((ele) => {
@@ -849,10 +1068,12 @@ describe('task-list', function() {
 
         expect(countRows[3].innerHTML).toContain('<a ', 'contains a link');
         const link = $$('a', countRows[3]);
-        expect(link.href).toContain('/tasklist?at=false&c=name&c=created_ts&' +
+        expect(link.href).toContain(
+            "/tasklist?at=false&c=name&c=created_ts&" +
             'c=pending_time&c=duration&c=bot&c=pool-tag&c=state&d=desc&et=1545237981000&' +
             'f=pool-tag%3AChrome&f=state%3ACOMPLETED_FAILURE&k=&n=true&s=completed_ts&' +
-            'st=1545151583000&v=false');
+            'st=1545151583000&v=false'
+        );
         done();
       });
     });
@@ -866,8 +1087,10 @@ describe('task-list', function() {
         const link = $$('.options > a', ele);
         expect(link).toBeTruthy();
 
-        expect(link.href).toContain('/botlist?c=id&c=os&c=task&c=status&c=device_type' +
-                                    '&f=device_type%3Anemo');
+        expect(link.href).toContain(
+            '/botlist?c=id&c=os&c=task&c=status&c=device_type' +
+            '&f=device_type%3Anemo'
+        );
         done();
       });
     });
@@ -924,15 +1147,20 @@ describe('task-list', function() {
 
     it('maker auth\'d API calls when a logged in user views landing page', function(done) {
       loggedInTasklist((ele) => {
-        let calls = fetchMock.calls(MATCHED, 'GET');
-        expect(calls.length).toBe(2+2+12, '2 GETs from swarming-app, 2 from task-list (12 counts)');
+        const calls = fetchMock.calls(MATCHED, 'GET');
+        expect(calls.length).toBe(
+            2 + 2 + 12,
+            "2 GETs from swarming-app, 2 from task-list (12 counts)",
+        );
         // calls is an array of 2-length arrays with the first element
         // being the string of the url and the second element being
         // the options that were passed in
         const gets = calls.map((c) => c[0]);
 
         // limit=100 comes from the default limit value.
-        expect(gets).toContainRegex(/\/_ah\/api\/swarming\/v1\/tasks\/list.+limit=100.*/);
+        expect(gets).toContainRegex(
+            /\/_ah\/api\/swarming\/v1\/tasks\/list.+limit=100.*/,
+        );
 
         checkAuthorizationAndNoPosts(calls);
         done();
@@ -946,7 +1174,7 @@ describe('task-list', function() {
         ele._addFilter('state:PENDING_RUNNING');
         fetchMock.flush(true).then(() => {
           const calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(1+12, '1 from task-list and 12 counts');
+          expect(calls.length).toBe(1 + 12, '1 from task-list and 12 counts');
 
           const gets = calls.map((c) => c[0]);
           for (const get of gets) {
@@ -968,7 +1196,7 @@ describe('task-list', function() {
         ele._addFilter('state:PENDING_RUNNING');
         fetchMock.flush(true).then(() => {
           const calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(1+12, '1 from task-list and 12 counts');
+          expect(calls.length).toBe(1 + 12, '1 from task-list and 12 counts');
 
           const gets = calls.map((c) => c[0]);
           for (const get of gets) {
@@ -999,10 +1227,14 @@ describe('task-list', function() {
           expect(calls.length).toBe(2, '2 counts, 1 running, 1 pending');
 
           const gets = calls.map((c) => c[0]);
-          expect(gets).toContain('/_ah/api/swarming/v1/tasks/count?end=1545237983&'+
-                                 'start=1544633183&state=PENDING&tags=pool%3AChrome');
-          expect(gets).toContain('/_ah/api/swarming/v1/tasks/count?end=1545237983&'+
-                                 'start=1544633183&state=RUNNING&tags=pool%3AChrome');
+          expect(gets).toContain(
+              '/_ah/api/swarming/v1/tasks/count?end=1545237983&' +
+              'start=1544633183&state=PENDING&tags=pool%3AChrome'
+          );
+          expect(gets).toContain(
+              "/_ah/api/swarming/v1/tasks/count?end=1545237983&" +
+              'start=1544633183&state=RUNNING&tags=pool%3AChrome'
+          );
           done();
         });
       });
@@ -1010,7 +1242,7 @@ describe('task-list', function() {
 
     it('counts correctly when cancelling', function(done) {
       jasmine.clock().uninstall(); // re-enable setTimeout
-      fetchMock.post('/_ah/api/swarming/v1/tasks/cancel', {'matched': 10});
+      fetchMock.post('/_ah/api/swarming/v1/tasks/cancel', {matched: 10});
       loggedInTasklist((ele) => {
         ele._filters = ['pool-tag:Chrome'];
         ele.permissions.cancel_task = true;
@@ -1040,8 +1272,12 @@ describe('task-list', function() {
               // being the string of the url and the second element being
               // the options that were passed in
               const cancelPost = calls[0];
-              expect(cancelPost[0]).toEqual('/_ah/api/swarming/v1/tasks/cancel');
-              expect(cancelPost[1].body).toEqual('{"limit":100,"tags":["pool:Chrome"]}');
+              expect(cancelPost[0]).toEqual(
+                  "/_ah/api/swarming/v1/tasks/cancel",
+              );
+              expect(cancelPost[1].body).toEqual(
+                  '{"limit":100,"tags":["pool:Chrome"]}',
+              );
 
               done();
             });
@@ -1059,7 +1295,9 @@ describe('task-list', function() {
       const tasks = processTasks([deepCopy(ANDROID_TASK)], {});
       const task = tasks[0];
       expect(task.created_ts).toBeTruthy();
-      expect(task.created_ts instanceof Date).toBeTruthy('Should be a date object');
+      expect(task.created_ts instanceof Date).toBeTruthy(
+          "Should be a date object",
+      );
       expect(task.human_created_ts).toBeTruthy();
       expect(task.pending_time).toBeTruthy();
       expect(task.human_pending_time).toBeTruthy();
@@ -1122,7 +1360,10 @@ describe('task-list', function() {
       expect(filtered.length).toBe(1);
       expect(filtered[0].task_id).toBe('41e031b2c8b46710');
 
-      filtered = filterTasks(['pool-tag:Skia', 'gpu-tag:10de:1cb3-384.59'], tasks);
+      filtered = filterTasks(
+          ['pool-tag:Skia', 'gpu-tag:10de:1cb3-384.59'],
+          tasks,
+      );
       expect(filtered.length).toBe(2);
       actualIds = filtered.map((task) => task.task_id);
       expect(actualIds).toContain('41dfa79d3bf29010');
@@ -1133,32 +1374,37 @@ describe('task-list', function() {
       // We know query.fromObject is used and it puts the query params in
       // a deterministic, sorted order. This means we can compare
       const expectations = [
-        { // basic 'state'
-          'extra': {
-            'limit': 7,
-            'start': 12345678,
-            'end': 456789012,
+        {
+          // basic 'state'
+          extra: {
+            limit: 7,
+            start: 12345678,
+            end: 456789012,
           },
-          'filters': ['state:BOT_DIED'],
-          'output': 'end=456789&limit=7&start=12345&state=BOT_DIED',
+          filters: ['state:BOT_DIED'],
+          output: 'end=456789&limit=7&start=12345&state=BOT_DIED',
         },
-        { // two tags
-          'extra': {
-            'limit': 342,
-            'start': 12345678,
-            'end': 456789012,
+        {
+          // two tags
+          extra: {
+            limit: 342,
+            start: 12345678,
+            end: 456789012,
           },
-          'filters': ['os-tag:Window', 'gpu-tag:10de'],
-          'output': 'end=456789&limit=342&start=12345&tags=os%3AWindow&tags=gpu%3A10de',
+          filters: ['os-tag:Window', 'gpu-tag:10de'],
+          output:
+            'end=456789&limit=342&start=12345&tags=os%3AWindow&tags=gpu%3A10de',
         },
-        { // tags and state
-          'extra': {
-            'limit': 57,
-            'start': 12345678,
-            'end': 456789012,
+        {
+          // tags and state
+          extra: {
+            limit: 57,
+            start: 12345678,
+            end: 456789012,
           },
-          'filters': ['os-tag:Window', 'state:RUNNING', 'gpu-tag:10de'],
-          'output': 'end=456789&limit=57&start=12345&state=RUNNING&tags=os%3AWindow&tags=gpu%3A10de',
+          filters: ['os-tag:Window', 'state:RUNNING', 'gpu-tag:10de'],
+          output:
+            'end=456789&limit=57&start=12345&state=RUNNING&tags=os%3AWindow&tags=gpu%3A10de',
         },
       ];
 
@@ -1170,8 +1416,7 @@ describe('task-list', function() {
       const testcase = expectations[0];
       testcase.extra.cursor = 'mock_cursor12345';
       const qp = listQueryParams(testcase.filters, testcase.extra);
-      expect(qp).toEqual('cursor=mock_cursor12345&'+testcase.output);
+      expect(qp).toEqual('cursor=mock_cursor12345&' + testcase.output);
     });
-
-  }); //end describe('data parsing')
+  }); // end describe('data parsing')
 });

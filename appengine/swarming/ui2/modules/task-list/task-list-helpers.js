@@ -10,14 +10,19 @@
 // it should go inside the element declaration.
 
 // query.fromObject is more readable than just 'fromObject'
-import * as query from 'common-sk/modules/query'
+import * as query from 'common-sk/modules/query';
 
-import { applyAlias } from '../alias'
-import { html } from 'lit-html'
-import naturalSort from 'javascript-natural-sort/naturalSort'
-import { botPageLink, compareWithFixedOrder, humanDuration, sanitizeAndHumanizeTime,
-         taskPageLink } from '../util'
-import { EXCEPTIONAL_STATES, FILTER_STATES, ONGOING_STATES } from '../task'
+import {applyAlias} from '../alias';
+import {html} from 'lit-html';
+import naturalSort from 'javascript-natural-sort/naturalSort';
+import {
+  botPageLink,
+  compareWithFixedOrder,
+  humanDuration,
+  sanitizeAndHumanizeTime,
+  taskPageLink,
+} from '../util';
+import {EXCEPTIONAL_STATES, FILTER_STATES, ONGOING_STATES} from '../task';
 
 const BLACKLIST_DIMENSIONS = ['quarantined', 'error'];
 const EMPTY_VAL = '--';
@@ -69,7 +74,7 @@ export function appendPossibleColumns(possibleColumns, data) {
  */
 export function appendPrimaryMap(primaryMap, data) {
   if (!primaryMap['state']) {
-    primaryMap['state'] = FILTER_STATES
+    primaryMap['state'] = FILTER_STATES;
   }
   if (Array.isArray(data)) {
     // we have a list of dimensions, which are {key: String, value: Array}
@@ -86,10 +91,10 @@ export function appendPrimaryMap(primaryMap, data) {
     // data is a map of tag -> values
     for (const tag in data) {
       let existing = primaryMap[tag + '-tag'];
-        for (const value of data[tag]) {
-          existing = _insertUnique(existing, value);
-        }
-        primaryMap[tag + '-tag'] = existing;
+      for (const value of data[tag]) {
+        existing = _insertUnique(existing, value);
+      }
+      primaryMap[tag + '-tag'] = existing;
     }
   }
 }
@@ -104,7 +109,7 @@ export function appendPrimaryMap(primaryMap, data) {
  * @param {Object} task - The task from which to extract data.
  * @param {Object} ele - The entire task-list object, for context.
  *
- * @returns {String} - The requested column, ready for display.
+ * @return {String} - The requested column, ready for display.
  */
 export function column(col, task, ele) {
   if (!task) {
@@ -155,15 +160,15 @@ export const specialFilters = {
     if (s === 'DEDUPED') {
       return state === 'COMPLETED' && tryNum === '0';
     }
-  }
+  },
 };
 
 /** Filters the tasks like they would be filtered from the server
  * @param {Array<String>} filters - e.g. ['alpha:beta']
  * @param {Array<Object>} tasks: the task objects to filter.
  *
- * @returns {Array<Object>} the tasks that match the filters.
-*/
+ * @return {Array<Object>} the tasks that match the filters.
+ */
 export function filterTasks(filters, tasks) {
   const parsedFilters = [];
   // Preprocess the filters
@@ -185,7 +190,7 @@ export function filterTasks(filters, tasks) {
         key = stripTag(key);
         // it's a tag,  which is *not* aliased, so we can just
         // do an exact match (reminder, aliasing only happens in column)
-        matches &= ((task.tagMap[key] || []).indexOf(value) !== -1);
+        matches &= (task.tagMap[key] || []).indexOf(value) !== -1;
       }
     }
     return matches;
@@ -216,7 +221,7 @@ export function humanizePrimaryKey(key) {
   if (key === 'state') {
     return 'state (of task)';
   }
-  return key
+  return key;
 }
 
 function _insertUnique(arr, value) {
@@ -254,7 +259,7 @@ export function legacyTags(filters) {
     if (idx < 0) {
       return filter;
     }
-    let key = filter.substring(0, idx);
+    const key = filter.substring(0, idx);
     if (key.endsWith('-tag') || key === 'state') {
       // this is fine
       return filter;
@@ -273,7 +278,7 @@ export function listQueryParams(filters, extra) {
   const params = {};
   const tags = [];
   for (const f of filters) {
-    const split = f.split(':', 1)
+    const split = f.split(':', 1);
     let key = split[0];
     const rest = f.substring(key.length + 1);
     // we use the -tag as a UI thing to differentiate tags
@@ -319,7 +324,7 @@ export function processTasks(arr, existingTags) {
     const tagMap = {};
     task.tags = task.tags || [];
     for (const tag of task.tags) {
-      const split = tag.split(':', 1)
+      const split = tag.split(':', 1);
       const key = split[0];
       const rest = tag.substring(key.length + 1);
       // tags are free-form, and could be duplicated
@@ -344,7 +349,7 @@ export function processTasks(arr, existingTags) {
     }
 
     if (task.cost_saved_usd) {
-      task.cost_saved_usd = '-$'+task.cost_saved_usd.toFixed(4);
+      task.cost_saved_usd = '-$' + task.cost_saved_usd.toFixed(4);
     }
 
     for (const time of TASK_TIMES) {
@@ -363,32 +368,45 @@ export function processTasks(arr, existingTags) {
       // Deduplicated tasks usually have tasks that ended before they were
       // created, so we need to account for that.
       const et = task.started_ts || task.abandoned_ts || new Date();
-      const deduped = (task.created_ts && et < task.created_ts);
+      const deduped = task.created_ts && et < task.created_ts;
 
       task.pending_time = undefined;
       if (!deduped && task.created_ts) {
         task.pending_time = (et - task.created_ts) / 1000;
       }
       task.human_pending_time = humanDuration(task.pending_time);
-      if (!deduped && task.created_ts && !task.started_ts && !task.abandoned_ts) {
+      if (
+        !deduped &&
+        task.created_ts &&
+        !task.started_ts &&
+        !task.abandoned_ts
+      ) {
         task.human_pending_time = task.human_pending_time + '*';
       }
-    };
+    }
   }
   return arr;
 }
 
 // This puts the times in a aesthetically pleasing order, roughly in
 // the order everything happened.
-const specialColOrder = ['name', 'created_ts', 'pending_time',
-    'started_ts', 'duration', 'completed_ts', 'abandoned_ts', 'modified_ts'];
+const specialColOrder = [
+  'name',
+  'created_ts',
+  'pending_time',
+  'started_ts',
+  'duration',
+  'completed_ts',
+  'abandoned_ts',
+  'modified_ts',
+];
 const compareColumns = compareWithFixedOrder(specialColOrder);
 
 /** sortColumns sorts the bot-list columns in mostly alphabetical order. Some
  *  columns (name) go first or are sorted in a fixed order (timestamp ones)
  *  to aid reading.
  *  @param {Array<String>} cols - The columns to sort.
-*/
+ */
 export function sortColumns(cols) {
   cols.sort(compareColumns);
 }
@@ -408,21 +426,21 @@ export function sortPossibleColumns(columns, selectedCols) {
   }
 
   columns.sort((a, b) => {
-      // Show selected columns above non selected columns
-      const selA = selected[a];
-      const selB = selected[b];
-      if (selA && !selB) {
-        return -1;
-      }
-      if (selB && !selA) {
-        return 1;
-      }
-      if (selA && selB) {
-        // Both keys are selected, thus we put them in display order.
-        return compareColumns(a, b);
-      }
-      // neither column was selected, fallback to alphabetical sorting.
-      return a.localeCompare(b);
+    // Show selected columns above non selected columns
+    const selA = selected[a];
+    const selB = selected[b];
+    if (selA && !selB) {
+      return -1;
+    }
+    if (selB && !selA) {
+      return 1;
+    }
+    if (selA && selB) {
+      // Both keys are selected, thus we put them in display order.
+      return compareColumns(a, b);
+    }
+    // neither column was selected, fallback to alphabetical sorting.
+    return a.localeCompare(b);
   });
 }
 
@@ -463,19 +481,19 @@ export function tagsOnly(filters) {
  */
 export function taskClass(task) {
   const state = column('state', task);
-    if (EXCEPTIONAL_STATES.has(state)) {
-      return 'exception';
-    }
-    if (state === 'BOT_DIED') {
-      return 'bot_died';
-    }
-    if (state === 'COMPLETED (FAILURE)') {
-      return 'failed_task';
-    }
-    if (ONGOING_STATES.has(state)) {
-      return 'pending_task';
-    }
-    return '';
+  if (EXCEPTIONAL_STATES.has(state)) {
+    return 'exception';
+  }
+  if (state === 'BOT_DIED') {
+    return 'bot_died';
+  }
+  if (state === 'COMPLETED (FAILURE)') {
+    return 'failed_task';
+  }
+  if (ONGOING_STATES.has(state)) {
+    return 'pending_task';
+  }
+  return '';
 }
 
 const naturalSortDims = {
@@ -500,37 +518,53 @@ export function useNaturalSort(key) {
 
 /** colHeaderMap maps keys to their human readable name.*/
 const colHeaderMap = {
-  'abandoned_ts': 'Abandoned On',
-  'completed_ts': 'Completed On',
-  'bot': 'Bot Assigned',
-  'costs_usd': 'Cost (USD)',
-  'created_ts': 'Created On',
-  'duration': 'Duration',
-  'name': 'Task Name',
-  'modified_ts': 'Last Modified',
-  'started_ts': 'Started Working On',
-  'state': 'state (of task)',
-  'user': 'Requesting User',
-  'pending_time': 'Time Spent Pending',
-}
+  abandoned_ts: 'Abandoned On',
+  completed_ts: 'Completed On',
+  bot: 'Bot Assigned',
+  costs_usd: 'Cost (USD)',
+  created_ts: 'Created On',
+  duration: 'Duration',
+  name: 'Task Name',
+  modified_ts: 'Last Modified',
+  started_ts: 'Started Working On',
+  state: 'state (of task)',
+  user: 'Requesting User',
+  pending_time: 'Time Spent Pending',
+};
 
-const TASK_TIMES = ['abandoned_ts', 'completed_ts', 'created_ts', 'modified_ts',
-                    'started_ts'];
+const TASK_TIMES = [
+  'abandoned_ts',
+  'completed_ts',
+  'created_ts',
+  'modified_ts',
+  'started_ts',
+];
 
-const extraKeys = ['name', 'state', 'costs_usd', 'deduped_from', 'duration', 'pending_time',
-  'server_versions', 'bot', 'exit_code', ...TASK_TIMES];
+const extraKeys = [
+  'name',
+  'state',
+  'costs_usd',
+  'deduped_from',
+  'duration',
+  'pending_time',
+  'server_versions',
+  'bot',
+  'exit_code',
+  ...TASK_TIMES,
+];
 
-const STILL_RUNNING_MSG = 'An asterisk indicates the task is still running '+
-                          'and thus the time is dynamic.';
+const STILL_RUNNING_MSG =
+  'An asterisk indicates the task is still running ' +
+  'and thus the time is dynamic.';
 
 const colMap = {
   abandoned_ts: (task) => task.human_abandoned_ts,
   bot: (task) => {
     const id = task.bot_id;
     if (id) {
-      return html`<a target=_blank
-                   rel=noopener
-                   href=${botPageLink(id)}>${id}</a>`;
+      return html`<a target="_blank" rel="noopener" href=${botPageLink(id)}
+        >${id}</a
+      >`;
     }
     return EMPTY_VAL;
   },
@@ -544,7 +578,9 @@ const colMap = {
   created_ts: (task) => task.human_created_ts,
   duration: (task) => {
     if (task.human_duration.indexOf('*')) {
-      return html`<span title=${STILL_RUNNING_MSG}>${task.human_duration}</span>`;
+      return html`<span title=${STILL_RUNNING_MSG}
+        >${task.human_duration}</span
+      >`;
     }
     return task.human_duration;
   },
@@ -555,14 +591,19 @@ const colMap = {
     if (!ele._verbose && task.name.length > 70) {
       name = name.slice(0, 67) + '...';
     }
-    return html`<a target=_blank
-                   rel=noopener
-                   title=${task.name}
-                   href=${taskPageLink(task.task_id)}>${name}</a>`;
+    return html`<a
+      target="_blank"
+      rel="noopener"
+      title=${task.name}
+      href=${taskPageLink(task.task_id)}
+      >${name}</a
+    >`;
   },
   pending_time: (task) => {
     if (task.human_pending_time.indexOf('*')) {
-      return html`<span title=${STILL_RUNNING_MSG}>${task.human_pending_time}</span>`;
+      return html`<span title=${STILL_RUNNING_MSG}
+        >${task.human_pending_time}</span
+      >`;
     }
     return task.human_pending_time;
   },
@@ -584,7 +625,7 @@ const colMap = {
     }
     return state;
   },
-}
+};
 
 /** specialSortMap maps keys to their special sort rules, encapsulated in a
  *  function. The function takes in the current sort direction (1 for ascending)
@@ -592,7 +633,8 @@ const colMap = {
  */
 export const specialSortMap = {
   abandoned_ts: sortableTime('abandoned_ts'),
-  bot: (dir, taskA, taskB) => dir * naturalSort(taskA.bot_id || 'z', taskB.bot_id || 'z'),
+  bot: (dir, taskA, taskB) =>
+    dir * naturalSort(taskA.bot_id || 'z', taskB.bot_id || 'z'),
   completed_ts: sortableTime('completed_ts'),
   created_ts: sortableTime('created_ts'),
   duration: sortableDuration('duration'),
@@ -616,7 +658,7 @@ function sortableTime(attr) {
     const bCol = b[attr] || '9999';
 
     return dir * (aCol - bCol);
-  }
+  };
 }
 
 /** Given a duration attribute like 'pending_time', sortableDuration
@@ -631,5 +673,5 @@ function sortableDuration(attr) {
     const bCol = b[attr] !== undefined ? b[attr] : 1e12;
 
     return dir * (aCol - bCol);
-  }
+  };
 }

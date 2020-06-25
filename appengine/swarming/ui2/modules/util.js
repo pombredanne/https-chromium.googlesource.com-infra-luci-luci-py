@@ -10,9 +10,9 @@
  * </p>
  */
 
-import * as human from 'common-sk/modules/human'
-import * as query from 'common-sk/modules/query'
-import { upgradeProperty } from 'elements-sk/upgradeProperty'
+import * as human from 'common-sk/modules/human';
+import * as query from 'common-sk/modules/query';
+import {upgradeProperty} from 'elements-sk/upgradeProperty';
 
 /** botPageLink creates a URL to a given bot */
 export function botPageLink(bot_id) {
@@ -30,7 +30,7 @@ export function botPageLink(bot_id) {
  *     should be valid filters (e.g. 'foo:bar').
  * @param {Array<String>} columns - the column names that should be shown.
  */
-export function botListLink(filters=[], columns=[]) {
+export function botListLink(filters = [], columns = []) {
   const fArr = [];
   for (const f of filters) {
     if (f.key && f.value) {
@@ -44,11 +44,11 @@ export function botListLink(filters=[], columns=[]) {
     } else {
       fArr.push(f);
     }
-  };
+  }
   const obj = {
     f: fArr,
     c: columns,
-  }
+  };
   return '/botlist?' + query.fromParamSet(obj);
 }
 
@@ -65,11 +65,11 @@ export function compareWithFixedOrder(fixedOrder) {
   return function(a, b) {
     let aSpecial = fixedOrder.indexOf(a);
     if (aSpecial === -1) {
-      aSpecial = fixedOrder.length+1;
+      aSpecial = fixedOrder.length + 1;
     }
     let bSpecial = fixedOrder.indexOf(b);
     if (bSpecial === -1) {
-      bSpecial = fixedOrder.length+1;
+      bSpecial = fixedOrder.length + 1;
     }
     if (aSpecial === bSpecial) {
       // Don't need naturalSort since elements shouldn't
@@ -78,7 +78,7 @@ export function compareWithFixedOrder(fixedOrder) {
     }
     // Lower rank in fixedOrder prevails.
     return aSpecial - bSpecial;
-  }
+  };
 }
 
 /** humanDuration formats a duration to be more human readable.
@@ -108,7 +108,7 @@ export function humanDuration(timeInSecs) {
     return human.strDuration(ptimeInSecs);
   }
   // For times less than a minute, add 10ms resolution.
-  return ptimeInSecs.toFixed(2)+'s';
+  return ptimeInSecs.toFixed(2) + 's';
 }
 
 /** initPropertyFromAttrOrProperty looks to initialize a property from either
@@ -119,8 +119,8 @@ export function humanDuration(timeInSecs) {
  * @param {boolean} removeAttr - If the attribute is found, if it should be
  *            removed to avoid stale data.
  *
-*/
-export function initPropertyFromAttrOrProperty(ele, prop, removeAttr=true) {
+ */
+export function initPropertyFromAttrOrProperty(ele, prop, removeAttr = true) {
   upgradeProperty(ele, prop);
   if (ele[prop] === undefined && ele.hasAttribute(prop)) {
     ele[prop] = ele.getAttribute(prop);
@@ -144,7 +144,7 @@ export function onSmallScreen() {
  *  parseDuration("1h") == 3600
  *  parseDuration("foo") == null
  */
- export function parseDuration(duration) {
+export function parseDuration(duration) {
   let number = duration.slice(0, -1);
   if (!/[1-9][0-9]*/.test(number)) {
     return null;
@@ -175,7 +175,7 @@ export function onSmallScreen() {
  *  human.localeTime.
  */
 export function sanitizeAndHumanizeTime(obj, key) {
-  obj['human_'+key] = '--';
+  obj['human_' + key] = '--';
   if (obj[key]) {
     if (obj[key].endsWith && !obj[key].endsWith('Z')) {
       // Timestamps from the server are missing the 'Z' that specifies Zulu
@@ -192,7 +192,7 @@ export function sanitizeAndHumanizeTime(obj, key) {
     const str = obj[key].toString();
     const timezone = str.substring(str.indexOf('('));
 
-    obj['human_'+key] = obj[key].toLocaleString() + ' ' + timezone;
+    obj['human_' + key] = obj[key].toLocaleString() + ' ' + timezone;
   }
 }
 
@@ -207,7 +207,7 @@ export function sanitizeAndHumanizeTime(obj, key) {
  *  Any trailing args after columns will be assumed to be strings that
  *  should be treated as valid filters.
  */
-export function taskListLink(filters=[], columns=[]) {
+export function taskListLink(filters = [], columns = []) {
   const fArr = [];
   for (const f of filters) {
     if (f.key && f.value) {
@@ -229,7 +229,7 @@ export function taskListLink(filters=[], columns=[]) {
   const obj = {
     f: fArr,
     c: columns,
-  }
+  };
   return '/tasklist?' + query.fromParamSet(obj);
 }
 
@@ -256,7 +256,7 @@ export function taskPageLink(taskId, disableCanonicalID) {
 /** timeDiffApprox returns the approximate difference between now and
  *  the specified date.
  */
-export function timeDiffApprox(date){
+export function timeDiffApprox(date) {
   if (!date) {
     return 'eons';
   }
@@ -274,5 +274,5 @@ export function timeDiffExact(first, second) {
   if (!second) {
     second = new Date();
   }
-  return human.strDuration((second.getTime() - first.getTime())/1000) || '0s';
+  return human.strDuration((second.getTime() - first.getTime()) / 1000) || '0s';
 }

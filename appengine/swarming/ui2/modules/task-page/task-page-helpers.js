@@ -2,11 +2,10 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-import * as human from 'common-sk/modules/human'
+import * as human from 'common-sk/modules/human';
 
-import { humanDuration, sanitizeAndHumanizeTime, timeDiffExact } from '../util'
-import { EXCEPTIONAL_STATES, ONGOING_STATES } from '../task'
-
+import {humanDuration, sanitizeAndHumanizeTime, timeDiffExact} from '../util';
+import {EXCEPTIONAL_STATES, ONGOING_STATES} from '../task';
 
 /** canRetry returns if the given task can be retried.
  *  See https://crbug.com/936530 for one case in which it should not.
@@ -19,7 +18,7 @@ export function canRetry(request) {
  *  and a CIPD server URL.
  */
 export function cipdLink(actualVersion, server) {
-   // actualVersion looks like infra/python/cpython/windows-amd64:1ba7...
+  // actualVersion looks like infra/python/cpython/windows-amd64:1ba7...
   if (!actualVersion || !server) {
     return undefined;
   }
@@ -41,21 +40,24 @@ export function durationChart(result) {
     if (!a) {
       return 0.0;
     }
-    return Math.round(a * 10)/10;
-  }
+    return Math.round(a * 10) / 10;
+  };
   let preOverhead = 0;
   let postOverhead = 0;
   // These are only put in upon task completion.
   if (result.performance_stats) {
-    postOverhead = (result.performance_stats.isolated_upload &&
-                    result.performance_stats.isolated_upload.duration) || 0;
+    postOverhead =
+      (result.performance_stats.isolated_upload &&
+        result.performance_stats.isolated_upload.duration) ||
+      0;
     // We only know the certain timings of isolating. To get
     // close enough (tm) overhead timings, we assume CIPD is the only
     // other source of overhead and all of CIPD's overhead is done pre-task.
     preOverhead = result.performance_stats.bot_overhead - postOverhead;
   }
-  return [result.pending, preOverhead,
-         result.duration, postOverhead].map(oneDecimalPlace);
+  return [result.pending, preOverhead, result.duration, postOverhead].map(
+      oneDecimalPlace,
+  );
 }
 
 /** firstDimension returns the first entry in an array of dimensions for
@@ -94,7 +96,10 @@ export function humanState(result, currentSliceIdx) {
   if (!result || !result.state) {
     return '';
   }
-  if (currentSliceIdx !== undefined && result.current_task_slice !== currentSliceIdx) {
+  if (
+    currentSliceIdx !== undefined &&
+    result.current_task_slice !== currentSliceIdx
+  ) {
     return 'THIS SLICE DID NOT RUN. Select another slice above.';
   }
   const state = result.state;
@@ -114,8 +119,13 @@ export function humanState(result, currentSliceIdx) {
  *  isolate ref object.
  */
 export function isolateLink(ref) {
-  return ref.isolatedserver + '/browse?namespace='+ref.namespace +
-         '&hash=' + ref.isolated;
+  return (
+    ref.isolatedserver +
+    '/browse?namespace=' +
+    ref.namespace +
+    '&hash=' +
+    ref.isolated
+  );
 }
 
 /** isSummaryTask returns true if this task is a summary taskID
@@ -138,7 +148,7 @@ export function parseRequest(request) {
     const key = split[0];
     const rest = tag.substring(key.length + 1);
     request.tagMap[key] = rest;
-  };
+  }
 
   TASK_TIMES.forEach((time) => {
     sanitizeAndHumanizeTime(request, time);
@@ -165,8 +175,12 @@ export function parseResult(result) {
   // Running and bot_died tasks have no duration set, so we can figure it out.
   if (!result.duration && result.state === 'RUNNING' && result.started_ts) {
     result.duration = (now - result.started_ts) / 1000;
-  } else if (!result.duration && result.state === 'BOT_DIED' &&
-              result.started_ts && result.abandoned_ts) {
+  } else if (
+    !result.duration &&
+    result.state === 'BOT_DIED' &&
+    result.started_ts &&
+    result.abandoned_ts
+  ) {
     result.duration = (result.abandoned_ts - result.started_ts) / 1000;
   }
   // Make the duration human readable
@@ -299,9 +313,19 @@ export function wasDeduped(result) {
 /** wasPickedUp returns true iff a task was started.
  */
 export function wasPickedUp(result) {
-  return result && result.state !== 'PENDING' && result.state !== 'NO_RESOURCE' &&
-         result.state !== 'CANCELED' && result.state !== 'EXPIRED';
+  return (
+    result &&
+    result.state !== 'PENDING' &&
+    result.state !== 'NO_RESOURCE' &&
+    result.state !== 'CANCELED' &&
+    result.state !== 'EXPIRED'
+  );
 }
 
-const TASK_TIMES = ['abandoned_ts', 'completed_ts', 'created_ts', 'modified_ts',
-                    'started_ts'];
+const TASK_TIMES = [
+  'abandoned_ts',
+  'completed_ts',
+  'created_ts',
+  'modified_ts',
+  'started_ts',
+];

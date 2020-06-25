@@ -2,25 +2,36 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-import 'modules/bot-page'
+import 'modules/bot-page';
 
 describe('bot-page', function() {
   // Instead of using import, we use require. Otherwise,
   // the concatenation trick we do doesn't play well with webpack, which would
   // leak dependencies (e.g. bot-list's 'column' function to task-list) and
   // try to import things multiple times.
-  const { $, $$ } = require('common-sk/modules/dom');
-  const { customMatchers, expectNoUnmatchedCalls, mockAppGETs } = require('modules/test_util');
-  const { fetchMock, MATCHED, UNMATCHED } = require('fetch-mock');
-  const { botDataMap, eventsMap, tasksMap } = require('modules/bot-page/test_data');
-
+  const {$, $$} = require('common-sk/modules/dom');
+  const {
+    customMatchers,
+    expectNoUnmatchedCalls,
+    mockAppGETs,
+  } = require('modules/test_util');
+  const {fetchMock, MATCHED, UNMATCHED} = require('fetch-mock');
+  const {
+    botDataMap,
+    eventsMap,
+    tasksMap,
+  } = require('modules/bot-page/test_data');
 
   const TEST_BOT_ID = 'example-gce-001';
 
   beforeEach(function() {
     jasmine.addMatchers(customMatchers);
     // Clear out any query params we might have to not mess with our current state.
-    history.pushState(null, '', window.location.origin + window.location.pathname + '?');
+    history.pushState(
+        null,
+        "",
+        window.location.origin + window.location.pathname + '?'
+    );
   });
 
   beforeEach(function() {
@@ -78,7 +89,7 @@ describe('bot-page', function() {
     ele.addEventListener('busy-end', (e) => {
       if (!ran) {
         ran = true; // prevent multiple runs if the test makes the
-                    // app go busy (e.g. if it calls fetch).
+        // app go busy (e.g. if it calls fetch).
         callback();
       }
     });
@@ -108,11 +119,13 @@ describe('bot-page', function() {
 
     fetchMock.get(`/_ah/api/swarming/v1/bot/${TEST_BOT_ID}/get`, data);
     fetchMock.get(`glob:/_ah/api/swarming/v1/bot/${TEST_BOT_ID}/tasks*`, tasks);
-    fetchMock.get(`glob:/_ah/api/swarming/v1/bot/${TEST_BOT_ID}/events*`, events);
+    fetchMock.get(
+        `glob:/_ah/api/swarming/v1/bot/${TEST_BOT_ID}/events*`,
+        events,
+    );
   }
 
-
-//===============TESTS START====================================
+  // ===============TESTS START====================================
 
   describe('html structure', function() {
     it('contains swarming-app as its only child', function(done) {
@@ -128,7 +141,10 @@ describe('bot-page', function() {
         createElement((ele) => {
           const loginMessage = $$('swarming-app>main .message', ele);
           expect(loginMessage).toBeTruthy();
-          expect(loginMessage).not.toHaveAttribute('hidden', 'Message should not be hidden');
+          expect(loginMessage).not.toHaveAttribute(
+              "hidden",
+              "Message should not be hidden",
+          );
           expect(loginMessage.textContent).toContain('must sign in');
           done();
         });
@@ -157,18 +173,22 @@ describe('bot-page', function() {
           done();
         });
       });
-    }); //end describe('when not logged in')
+    }); // end describe('when not logged in')
 
     describe('when logged in as unauthorized user', function() {
-
       function notAuthorized() {
         // overwrite the default fetchMock behaviors to have everything return 403.
-        fetchMock.get('/_ah/api/swarming/v1/server/details', 403,
-                      { overwriteRoutes: true });
-        fetchMock.get('/_ah/api/swarming/v1/server/permissions', {},
-                      { overwriteRoutes: true });
-        fetchMock.get('glob:/_ah/api/swarming/v1/bot/*', 403,
-                      { overwriteRoutes: true });
+        fetchMock.get('/_ah/api/swarming/v1/server/details', 403, {
+          overwriteRoutes: true,
+        });
+        fetchMock.get(
+            "/_ah/api/swarming/v1/server/permissions",
+            {},
+            {overwriteRoutes: true},
+        );
+        fetchMock.get('glob:/_ah/api/swarming/v1/bot/*', 403, {
+          overwriteRoutes: true,
+        });
       }
 
       beforeEach(notAuthorized);
@@ -177,7 +197,10 @@ describe('bot-page', function() {
         loggedInBotPage((ele) => {
           const loginMessage = $$('swarming-app>main .message', ele);
           expect(loginMessage).toBeTruthy();
-          expect(loginMessage).not.toHaveAttribute('hidden', 'Message should not be hidden');
+          expect(loginMessage).not.toHaveAttribute(
+              "hidden",
+              "Message should not be hidden",
+          );
           expect(loginMessage.textContent).toContain('different account');
           done();
         });
@@ -194,7 +217,6 @@ describe('bot-page', function() {
     }); // end describe('when logged in as unauthorized user')
 
     describe('authorized user, but no bot id', function() {
-
       it('tells the user they should enter a bot id', function(done) {
         loggedInBotPage((ele) => {
           const loginMessage = $$('.id_buttons .message', ele);
@@ -242,11 +264,15 @@ describe('bot-page', function() {
           expect(cell(5, 0)).toMatchTextContent('Current Task');
           expect(cell(5, 1)).toMatchTextContent('42fb00e06d95be11');
           expect(cell(5, 1).innerHTML).toContain('<a ', 'has a link');
-          expect(cell(5, 1).innerHTML).toContain('href="/task?id=42fb00e06d95be10"');
+          expect(cell(5, 1).innerHTML).toContain(
+              'href="/task?id=42fb00e06d95be10"',
+          );
           expect(cell(6, 0)).toMatchTextContent('Dimensions');
           expect(cell(11, 0)).toMatchTextContent('gpu');
-          expect(cell(11, 1)).toMatchTextContent('NVIDIA (10de) | ' +
-            'NVIDIA Quadro P400 (10de:1cb3) | NVIDIA Quadro P400 (10de:1cb3-25.21.14.1678)');
+          expect(cell(11, 1)).toMatchTextContent(
+              "NVIDIA (10de) | " +
+              'NVIDIA Quadro P400 (10de:1cb3) | NVIDIA Quadro P400 (10de:1cb3-25.21.14.1678)'
+          );
           expect(cell(23, 0)).toMatchTextContent('Bot Version');
           expect(rows[23]).toHaveClass('old_version');
           done();
@@ -268,9 +294,13 @@ describe('bot-page', function() {
           const cell = (r, c) => rows[r].children[c];
 
           // row 0 is the header
-          expect(cell(1, 0)).toMatchTextContent('Perf-Win10-Clang-Golo-GPU-QuadroP400-x86_64-Debug-All-ANGLE');
+          expect(cell(1, 0)).toMatchTextContent(
+              "Perf-Win10-Clang-Golo-GPU-QuadroP400-x86_64-Debug-All-ANGLE",
+          );
           expect(cell(1, 0).innerHTML).toContain('<a ', 'has a link');
-          expect(cell(1, 0).innerHTML).toContain('href="/task?id=43004cb4fca98110"');
+          expect(cell(1, 0).innerHTML).toContain(
+              'href="/task?id=43004cb4fca98110"',
+          );
           expect(cell(1, 2)).toMatchTextContent('7m 20s');
           expect(cell(1, 3)).toMatchTextContent('RUNNING');
           expect(rows[1]).toHaveClass('pending_task');
@@ -309,12 +339,15 @@ describe('bot-page', function() {
           expect(cell(1, 0)).toMatchTextContent('');
           expect(cell(1, 1)).toMatchTextContent('request_task');
           expect(cell(1, 3).innerHTML).toContain('<a ', 'has a link');
-          expect(cell(1, 3).innerHTML).toContain('href="/task?id=4300ceb85b93e010"');
+          expect(cell(1, 3).innerHTML).toContain(
+              'href="/task?id=4300ceb85b93e010"',
+          );
           expect(cell(1, 4)).toMatchTextContent('abcdoeraym');
           expect(cell(1, 4)).not.toHaveClass('old_version');
 
-          expect(cell(15, 0)).toMatchTextContent('About to restart: ' +
-                'Updating to abcdoeraymeyouandme');
+          expect(cell(15, 0)).toMatchTextContent(
+              "About to restart: " + 'Updating to abcdoeraymeyouandme'
+          );
           expect(cell(15, 1)).toMatchTextContent('bot_shutdown');
           expect(cell(15, 3)).toMatchTextContent('');
           expect(cell(15, 4)).toMatchTextContent('6fda8587d8');
@@ -339,8 +372,9 @@ describe('bot-page', function() {
           const cell = (r, c) => rows[r].children[c];
 
           // row 0 is the header
-          expect(cell(1, 0)).toMatchTextContent('About to restart: ' +
-                'Updating to abcdoeraymeyouandme');
+          expect(cell(1, 0)).toMatchTextContent(
+              "About to restart: " + 'Updating to abcdoeraymeyouandme'
+          );
           expect(cell(1, 1)).toMatchTextContent('bot_shutdown');
           expect(cell(1, 3)).toMatchTextContent('');
           expect(cell(1, 4)).toMatchTextContent('6fda8587d8');
@@ -420,10 +454,12 @@ describe('bot-page', function() {
           const cell = (r, c) => rows[r].children[c];
 
           expect(cell(2, 0)).toMatchTextContent(
-                'Perf-Win10-Clang-Golo-GPU-QuadroP400-x86_64-Rel...');
+              "Perf-Win10-Clang-Golo-GPU-QuadroP400-x86_64-Rel...",
+          );
 
           expect(cell(5, 0)).toMatchTextContent(
-                'Perf-Win10-Clang-Golo-GPU-QuadroP400-x86_64-Deb...');
+              "Perf-Win10-Clang-Golo-GPU-QuadroP400-x86_64-Deb...",
+          );
           expect(cell(5, 1)).toMatchTextContent('2'); // Total
           expect(cell(5, 2)).toMatchTextContent('0'); // Success
           expect(cell(5, 3)).toMatchTextContent('1'); // Failed
@@ -478,7 +514,9 @@ describe('bot-page', function() {
           expect(cell(1, 0)).toMatchTextContent('3BE9F057');
           expect(cell(1, 1)).toMatchTextContent('100');
           expect(cell(1, 2)).toMatchTextContent('???');
-          expect(cell(1, 3)).toMatchTextContent('still booting (sys.boot_completed)');
+          expect(cell(1, 3)).toMatchTextContent(
+              "still booting (sys.boot_completed)",
+          );
 
           done();
         });
@@ -514,10 +552,14 @@ describe('bot-page', function() {
           expect(cell(5, 0)).toMatchTextContent('Died on Task');
           expect(rows[27]).not.toHaveAttribute('hidden');
           expect(cell(27, 0)).toMatchTextContent('Machine Provider Lease ID');
-          expect(cell(27, 1)).toMatchTextContent('f69394d5f68b1f1e6c5f13e82ba4ccf72de7e6a0');
+          expect(cell(27, 1)).toMatchTextContent(
+              "f69394d5f68b1f1e6c5f13e82ba4ccf72de7e6a0",
+          );
           expect(cell(27, 1).innerHTML).toContain('<a ', 'has a link');
-          expect(cell(27, 1).innerHTML).toContain('href="https://example.com/leases/'+
-                                                  'f69394d5f68b1f1e6c5f13e82ba4ccf72de7e6a0"');
+          expect(cell(27, 1).innerHTML).toContain(
+              'href="https://example.com/leases/' +
+              'f69394d5f68b1f1e6c5f13e82ba4ccf72de7e6a0"',
+          );
 
           done();
         });
@@ -544,7 +586,6 @@ describe('bot-page', function() {
         });
       });
     }); // describe('dead machine provider bot')
-
   }); // end describe('html structure')
 
   describe('dynamic behavior', function() {
@@ -606,8 +647,11 @@ describe('bot-page', function() {
     it('makes auth\'d API calls when a logged in user views landing page', function(done) {
       serveBot('running');
       loggedInBotPage((ele) => {
-        let calls = fetchMock.calls(MATCHED, 'GET');
-        expect(calls.length).toBe(2+3, '2 GETs from swarming-app, 3 from bot-page');
+        const calls = fetchMock.calls(MATCHED, 'GET');
+        expect(calls.length).toBe(
+            2 + 3,
+            "2 GETs from swarming-app, 3 from bot-page",
+        );
         // calls is an array of 2-length arrays with the first element
         // being the string of the url and the second element being
         // the options that were passed in
@@ -626,7 +670,9 @@ describe('bot-page', function() {
         ele.render();
         fetchMock.resetHistory();
         // This is the task_id on the 'running' bot.
-        fetchMock.post('/_ah/api/swarming/v1/task/42fb00e06d95be11/cancel', {success: true});
+        fetchMock.post('/_ah/api/swarming/v1/task/42fb00e06d95be11/cancel', {
+          success: true,
+        });
 
         const killBtn = $$('main button.kill', ele);
         expect(killBtn).toBeTruthy();
@@ -666,7 +712,9 @@ describe('bot-page', function() {
         ele.render();
         fetchMock.resetHistory();
         // This is the task_id on the 'running' bot.
-        fetchMock.post(`/_ah/api/swarming/v1/bot/${TEST_BOT_ID}/terminate`, {success: true});
+        fetchMock.post(`/_ah/api/swarming/v1/bot/${TEST_BOT_ID}/terminate`, {
+          success: true,
+        });
 
         const tBtn = $$('main button.shut_down', ele);
         expect(tBtn).toBeTruthy();
@@ -703,7 +751,9 @@ describe('bot-page', function() {
         ele.render();
         fetchMock.resetHistory();
         // This is the task_id on the 'running' bot.
-        fetchMock.post(`/_ah/api/swarming/v1/bot/${TEST_BOT_ID}/delete`, {success: true});
+        fetchMock.post(`/_ah/api/swarming/v1/bot/${TEST_BOT_ID}/delete`, {
+          success: true,
+        });
 
         const deleteBtn = $$('main button.delete', ele);
         expect(deleteBtn).toBeTruthy();
@@ -755,7 +805,7 @@ describe('bot-page', function() {
           // MATCHED calls are calls that we expect and specified in the
           // beforeEach at the top of this file.
           expectNoUnmatchedCalls(fetchMock);
-          let calls = fetchMock.calls(MATCHED, 'GET');
+          const calls = fetchMock.calls(MATCHED, 'GET');
           expect(calls.length).toBe(1);
 
           const url = calls[0][0];
@@ -766,7 +816,10 @@ describe('bot-page', function() {
           // validate cursor
           expect(url).toContain('cursor=myCursor');
           expect(ele._taskCursor).toEqual('newCursor', 'cursor should update');
-          expect(ele._tasks.length).toEqual(30+30, '30 initial tasks, 30 new tasks');
+          expect(ele._tasks.length).toEqual(
+              30 + 30,
+              "30 initial tasks, 30 new tasks",
+          );
 
           done();
         });
@@ -795,7 +848,7 @@ describe('bot-page', function() {
           // MATCHED calls are calls that we expect and specified in the
           // beforeEach at the top of this file.
           expectNoUnmatchedCalls(fetchMock);
-          let calls = fetchMock.calls(MATCHED, 'GET');
+          const calls = fetchMock.calls(MATCHED, 'GET');
           expect(calls.length).toBe(1);
 
           const url = calls[0][0];
@@ -805,8 +858,14 @@ describe('bot-page', function() {
           expect(url).toContain('limit=50');
           // validate cursor
           expect(url).toContain('cursor=myCursor');
-          expect(ele._eventsCursor).toEqual('newCursor', 'cursor should update');
-          expect(ele._events.length).toEqual(50+50, '50 initial tasks, 50 new tasks');
+          expect(ele._eventsCursor).toEqual(
+              "newCursor",
+              "cursor should update",
+          );
+          expect(ele._events.length).toEqual(
+              50 + 50,
+              "50 initial tasks, 50 new tasks",
+          );
 
           done();
         });
@@ -830,13 +889,12 @@ describe('bot-page', function() {
           // MATCHED calls are calls that we expect and specified in the
           // beforeEach at the top of this file.
           expectNoUnmatchedCalls(fetchMock);
-          let calls = fetchMock.calls(MATCHED, 'GET');
+          const calls = fetchMock.calls(MATCHED, 'GET');
           expect(calls.length).toBe(3);
 
           done();
         });
       });
     });
-
   }); // end describe('api calls')
 });

@@ -6,7 +6,7 @@
 // This aliasing should be used for human-displayable only,
 // not, for example, on the filters that are sent to the backend.
 export function applyAlias(value, key) {
-  if (!aliasMap[key] || value === 'none' || !value ) {
+  if (!aliasMap[key] || value === 'none' || !value) {
     return value;
   }
   let alias = aliasMap[key][value];
@@ -30,48 +30,48 @@ export function applyAlias(value, key) {
 }
 
 const DEVICE_TYPE_ALIASES = {
-  'angler': 'Nexus 6p',
-  'athene': 'Moto G4',
-  'blueline': 'Pixel 3',
-  'bullhead': 'Nexus 5X',
-  'crosshatch': 'Pixel 3 XL',
-  'darcy': 'NVIDIA Shield [2017]',
-  'dragon': 'Pixel C',
-  'flame': 'Pixel 4',
-  'flo': 'Nexus 7 [2013]',
-  'flounder': 'Nexus 9',
-  'foster': 'NVIDIA Shield [2015]',
-  'fugu': 'Nexus Player',
-  'gce_x86': 'Android on GCE',
-  'goyawifi': 'Galaxy Tab 3',
-  'grouper': 'Nexus 7 [2012]',
-  'hammerhead': 'Nexus 5',
-  'herolte': 'Galaxy S7 [Global]',
-  'heroqlteatt': 'Galaxy S7 [AT&T]',
+  angler: "Nexus 6p",
+  athene: "Moto G4",
+  blueline: "Pixel 3",
+  bullhead: "Nexus 5X",
+  crosshatch: "Pixel 3 XL",
+  darcy: "NVIDIA Shield [2017]",
+  dragon: "Pixel C",
+  flame: "Pixel 4",
+  flo: "Nexus 7 [2013]",
+  flounder: "Nexus 9",
+  foster: "NVIDIA Shield [2015]",
+  fugu: "Nexus Player",
+  gce_x86: "Android on GCE",
+  goyawifi: "Galaxy Tab 3",
+  grouper: "Nexus 7 [2012]",
+  hammerhead: "Nexus 5",
+  herolte: "Galaxy S7 [Global]",
+  heroqlteatt: "Galaxy S7 [AT&T]",
   'iPad4,1': 'iPad Air',
   'iPad5,1': 'iPad mini 4',
   'iPad6,3': 'iPad Pro [9.7 in]',
   'iPhone7,2': 'iPhone 6',
   'iPhone9,1': 'iPhone 7',
   'iPhone10,1': 'iPhone 8',
-  'j5xnlte': 'Galaxy J5',
-  'm0': 'Galaxy S3',
-  'mako': 'Nexus 4',
-  'manta': 'Nexus 10',
-  'marlin': 'Pixel XL',
-  'sailfish': 'Pixel',
-  'sargo': 'Pixel 3a',
-  'shamu': 'Nexus 6',
-  'sprout': 'Android One',
-  'starlte': 'Galaxy S9',
-  'taimen': 'Pixel 2 XL',
+  j5xnlte: "Galaxy J5",
+  m0: "Galaxy S3",
+  mako: "Nexus 4",
+  manta: "Nexus 10",
+  marlin: "Pixel XL",
+  sailfish: "Pixel",
+  sargo: "Pixel 3a",
+  shamu: "Nexus 6",
+  sprout: "Android One",
+  starlte: "Galaxy S9",
+  taimen: "Pixel 2 XL",
   'TECNO-KB8': 'TECNO Spark 3 Pro',
-  'walleye': 'Pixel 2',
-  'zerofltetmo': 'Galaxy S6',
+  walleye: "Pixel 2",
+  zerofltetmo: "Galaxy S6",
 };
 
 const GPU_ALIASES = {
-  '1002':      'AMD',
+  '1002': 'AMD',
   '1002:6613': 'AMD Radeon R7 240',
   '1002:6646': 'AMD Radeon R9 M280X',
   '1002:6779': 'AMD Radeon HD 6450/7450/8450',
@@ -80,13 +80,13 @@ const GPU_ALIASES = {
   '1002:683d': 'AMD Radeon HD 7770/8760',
   '1002:9830': 'AMD Radeon HD 8400',
   '1002:9874': 'AMD Carrizo',
-  '1a03':      'ASPEED',
+  '1a03': 'ASPEED',
   '1a03:2000': 'ASPEED Graphics Family',
-  '102b':      'Matrox',
+  '102b': 'Matrox',
   '102b:0522': 'Matrox MGA G200e',
   '102b:0532': 'Matrox MGA G200eW',
   '102b:0534': 'Matrox G200eR2',
-  '10de':      'NVIDIA',
+  '10de': 'NVIDIA',
   '10de:08a4': 'NVIDIA GeForce 320M',
   '10de:08aa': 'NVIDIA GeForce 320M',
   '10de:0a65': 'NVIDIA GeForce 210',
@@ -99,7 +99,7 @@ const GPU_ALIASES = {
   '10de:1ba1': 'NVIDIA GeForce GTX 1070',
   '10de:1cb3': 'NVIDIA Quadro P400',
   '10de:2184': 'NVIDIA GeForce GTX 1660',
-  '8086':      'Intel',
+  '8086': 'Intel',
   '8086:0046': 'Intel Ironlake HD Graphics',
   '8086:0102': 'Intel Sandy Bridge HD Graphics 2000',
   '8086:0116': 'Intel Sandy Bridge HD Graphics 3000',
@@ -128,12 +128,12 @@ const GPU_ALIASES = {
 };
 
 const DEVICE_ALIASES = {
-  'iPad4,1':   'iPad Air',
-  'iPad5,1':   'iPad mini 4',
-  'iPad6,3':   'iPad Pro [9.7 in]',
+  'iPad4,1': 'iPad Air',
+  'iPad5,1': 'iPad mini 4',
+  'iPad6,3': 'iPad Pro [9.7 in]',
   'iPhone7,2': 'iPhone 6',
   'iPhone9,1': 'iPhone 7',
-}
+};
 
 /** For Win10, the correspondence between build numbers and versions
  *  is published at
@@ -158,13 +158,13 @@ const OS_ALIASES = {
   'Windows-Server-17763': 'Windows Server 2019 or version 1809',
   'Windows-Server-18362': 'Windows Server version 1903',
   'Windows-Server-18363': 'Windows Server version 1909',
-}
+};
 
 const aliasMap = {
-  'device': DEVICE_ALIASES,
-  'device_type': DEVICE_TYPE_ALIASES,
-  'gpu': GPU_ALIASES,
-  'os': OS_ALIASES,
+  device: DEVICE_ALIASES,
+  device_type: DEVICE_TYPE_ALIASES,
+  gpu: GPU_ALIASES,
+  os: OS_ALIASES,
 };
 
 const oldStyle = /.+\((.+)\)/;
@@ -213,7 +213,7 @@ export function maybeApplyAlias(filter) {
     return filter;
   }
   const key = filter.substring(0, idx);
-  const value = filter.substring(idx+1);
+  const value = filter.substring(idx + 1);
   // remove -tag for tasks if it exists
   const trimmed = key.split('-tag')[0];
   return `${key}:${applyAlias(value, trimmed)}`;

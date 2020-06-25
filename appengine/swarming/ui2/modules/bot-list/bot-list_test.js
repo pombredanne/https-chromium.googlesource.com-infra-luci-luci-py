@@ -2,34 +2,56 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-import 'modules/bot-list'
+import 'modules/bot-list';
 
 describe('bot-list', function() {
   // Instead of using import, we use require. Otherwise,
   // the concatenation trick we do doesn't play well with webpack, which would
   // leak dependencies (e.g. bot-list's 'column' function to task-list) and
   // try to import things multiple times.
-  const { deepCopy } = require('common-sk/modules/object');
-  const { $, $$ } = require('common-sk/modules/dom');
-  const { childrenAsArray, customMatchers, expectNoUnmatchedCalls, getChildItemWithText, mockAppGETs } = require('modules/test_util');
-  const { fetchMock, MATCHED, UNMATCHED } = require('fetch-mock');
+  const {deepCopy} = require('common-sk/modules/object');
+  const {$, $$} = require('common-sk/modules/dom');
+  const {
+    childrenAsArray,
+    customMatchers,
+    expectNoUnmatchedCalls,
+    getChildItemWithText,
+    mockAppGETs,
+  } = require('modules/test_util');
+  const {fetchMock, MATCHED, UNMATCHED} = require('fetch-mock');
 
-  const { handleLegacyFilters } = require('modules/alias');
-  const { column, filterBots, getColHeader, listQueryParams, processBots, makePossibleColumns,
-         processPrimaryMap } = require('modules/bot-list/bot-list-helpers');
-  const { bots_10, fleetCount, fleetDimensions, queryCount } = require('modules/bot-list/test_data');
+  const {handleLegacyFilters} = require('modules/alias');
+  const {
+    column,
+    filterBots,
+    getColHeader,
+    listQueryParams,
+    processBots,
+    makePossibleColumns,
+    processPrimaryMap,
+  } = require('modules/bot-list/bot-list-helpers');
+  const {
+    bots_10,
+    fleetCount,
+    fleetDimensions,
+    queryCount,
+  } = require('modules/bot-list/test_data');
 
   beforeEach(function() {
     jasmine.addMatchers(customMatchers);
     // Clear out any query params we might have to not mess with our current state.
-    history.pushState(null, '', window.location.origin + window.location.pathname + '?');
+    history.pushState(
+        null,
+        '',
+        window.location.origin + window.location.pathname + '?'
+    );
   });
 
   beforeEach(function() {
     // These are the default responses to the expected API calls (aka 'matched').
     // They can be overridden for specific tests, if needed.
     mockAppGETs(fetchMock, {
-      delete_bot: true
+      delete_bot: true,
     });
 
     fetchMock.get('glob:/_ah/api/swarming/v1/bots/list?*', bots_10);
@@ -84,7 +106,7 @@ describe('bot-list', function() {
     ele.addEventListener('busy-end', (e) => {
       if (!ran) {
         ran = true; // prevent multiple runs if the test makes the
-                    // app go busy (e.g. if it calls fetch).
+        // app go busy (e.g. if it calls fetch).
         callback();
       }
     });
@@ -104,7 +126,7 @@ describe('bot-list', function() {
     });
   }
 
-//===============TESTS START====================================
+  // ===============TESTS START====================================
 
   describe('html structure', function() {
     it('contains swarming-app as its only child', function(done) {
@@ -120,7 +142,10 @@ describe('bot-list', function() {
         createElement((ele) => {
           const loginMessage = $$('swarming-app>main .message', ele);
           expect(loginMessage).toBeTruthy();
-          expect(loginMessage).not.toHaveAttribute('hidden', 'Message should not be hidden');
+          expect(loginMessage).not.toHaveAttribute(
+              "hidden",
+              "Message should not be hidden",
+          );
           expect(loginMessage.textContent).toContain('must sign in');
           done();
         });
@@ -129,26 +154,36 @@ describe('bot-list', function() {
         createElement((ele) => {
           const botTable = $$('.bot-table', ele);
           expect(botTable).toBeTruthy();
-          expect(botTable).toHaveAttribute('hidden', '.bot-table should be hidden');
-          expect($$('main button:not([hidden])', ele)).toBeFalsy('no buttons seen');
+          expect(botTable).toHaveAttribute(
+              "hidden",
+              ".bot-table should be hidden",
+          );
+          expect($$('main button:not([hidden])', ele)).toBeFalsy(
+              "no buttons seen",
+          );
           expect($$('.header', ele)).toBeFalsy('no filters seen');
           done();
         });
       });
-    }); //end describe('when not logged in')
+    }); // end describe('when not logged in')
 
     describe('when logged in as unauthorized user', function() {
-
       function notAuthorized() {
         // overwrite the default fetchMock behaviors to have everything return 403.
-        fetchMock.get('/_ah/api/swarming/v1/server/details', 403,
-                      { overwriteRoutes: true });
-        fetchMock.get('/_ah/api/swarming/v1/server/permissions', {},
-                      { overwriteRoutes: true });
-        fetchMock.get('glob:/_ah/api/swarming/v1/bots/list?*', 403,
-                      { overwriteRoutes: true });
-        fetchMock.get('/_ah/api/swarming/v1/bots/dimensions', 403,
-                      { overwriteRoutes: true });
+        fetchMock.get('/_ah/api/swarming/v1/server/details', 403, {
+          overwriteRoutes: true,
+        });
+        fetchMock.get(
+            "/_ah/api/swarming/v1/server/permissions",
+            {},
+            {overwriteRoutes: true},
+        );
+        fetchMock.get('glob:/_ah/api/swarming/v1/bots/list?*', 403, {
+          overwriteRoutes: true,
+        });
+        fetchMock.get('/_ah/api/swarming/v1/bots/dimensions', 403, {
+          overwriteRoutes: true,
+        });
       }
 
       beforeEach(notAuthorized);
@@ -157,7 +192,10 @@ describe('bot-list', function() {
         loggedInBotlist((ele) => {
           const loginMessage = $$('swarming-app>main .message', ele);
           expect(loginMessage).toBeTruthy();
-          expect(loginMessage).not.toHaveAttribute('hidden', 'Message should not be hidden');
+          expect(loginMessage).not.toHaveAttribute(
+              "hidden",
+              "Message should not be hidden",
+          );
           expect(loginMessage.textContent).toContain('different account');
           done();
         });
@@ -166,7 +204,10 @@ describe('bot-list', function() {
         loggedInBotlist((ele) => {
           const botTable = $$('.bot-table', ele);
           expect(botTable).toBeTruthy();
-          expect(botTable).toHaveAttribute('hidden', '.bot-table should be hidden');
+          expect(botTable).toHaveAttribute(
+              "hidden",
+              ".bot-table should be hidden",
+          );
 
           const filters = $$('.filters', ele);
           expect(filters).toBeFalsy('.filters should not be shown');
@@ -176,7 +217,6 @@ describe('bot-list', function() {
     }); // end describe('when logged in as unauthorized user')
 
     describe('when logged in as user (not admin)', function() {
-
       describe('default landing page', function() {
         it('displays whatever bots show up', function(done) {
           loggedInBotlist((ele) => {
@@ -212,7 +252,7 @@ describe('bot-list', function() {
             expect(cells).toBeTruthy();
             expect(cells.length).toBe(4 * 10, '4 columns * 10 rows');
             // little helper for readability
-            const cell = (r, c) => cells[4*r+c];
+            const cell = (r, c) => cells[4 * r + c];
 
             // Check the content of the first few rows (after sorting)
             expect(rows[0]).not.toHaveClass('dead');
@@ -220,7 +260,10 @@ describe('bot-list', function() {
             expect(rows[0]).not.toHaveClass('old_version');
             expect(cell(0, 0)).toMatchTextContent('somebot10-a9');
             expect(cell(0, 0).innerHTML).toContain('<a ', 'has a link');
-            expect(cell(0, 0).innerHTML).toContain('href="/bot?id=somebot10-a9"', 'link is correct');
+            expect(cell(0, 0).innerHTML).toContain(
+                'href="/bot?id=somebot10-a9"',
+                "link is correct",
+            );
             expect(cell(0, 1)).toMatchTextContent('idle');
             expect(cell(0, 1).innerHTML).not.toContain('<a ', 'no link');
             expect(cell(0, 2)).toMatchTextContent('Ubuntu-17.04');
@@ -231,35 +274,48 @@ describe('bot-list', function() {
             expect(cell(1, 1)).toMatchTextContent('idle');
             expect(cell(1, 2)).toMatchTextContent('Android');
             expect(cell(1, 3).textContent).toContain('Quarantined');
-            expect(cell(1, 3).textContent).toContain('[available, too_hot, low_battery]');
+            expect(cell(1, 3).textContent).toContain(
+                "[available, too_hot, low_battery]",
+            );
 
             expect(rows[2]).toHaveClass('dead');
             expect(rows[2]).toHaveClass('old_version');
             expect(cell(2, 0)).toMatchTextContent('somebot12-a9');
             expect(cell(2, 1)).toMatchTextContent('[died on task]');
             expect(cell(2, 1).innerHTML).toContain('<a ', 'has a link');
-            expect(cell(2, 1).innerHTML).toContain('href="/task?id=3e17182091d7ae10"',
-                                      'link is pointing to the cannonical (0 ending) page');
-            expect(cell(2, 1).innerHTML).toContain('title="Bot somebot12-a9 was last seen',
-                                      'Mouseover with explanation');
+            expect(cell(2, 1).innerHTML).toContain(
+                'href="/task?id=3e17182091d7ae10"',
+                "link is pointing to the cannonical (0 ending) page",
+            );
+            expect(cell(2, 1).innerHTML).toContain(
+                'title="Bot somebot12-a9 was last seen',
+                "Mouseover with explanation",
+            );
             expect(cell(2, 2)).toMatchTextContent(
-                'Windows 10 version 1709 (Windows-10-16299.431)');
+                "Windows 10 version 1709 (Windows-10-16299.431)",
+            );
             expect(cell(2, 3).textContent).toContain('Dead');
             expect(cell(2, 3).textContent).toContain('Last seen 1w ago');
 
             expect(rows[3]).toHaveClass('maintenance');
             expect(cell(3, 3).textContent).toContain('Maintenance');
-            expect(cell(3, 3).textContent).toContain('Need to re-format the hard drive.');
+            expect(cell(3, 3).textContent).toContain(
+                "Need to re-format the hard drive.",
+            );
 
             expect(rows[4]).toHaveClass('old_version');
 
             expect(cell(6, 0)).toMatchTextContent('somebot16-a9');
             expect(cell(6, 1)).toMatchTextContent('3e1723e23fd70811');
             expect(cell(6, 1).innerHTML).toContain('<a ', 'has a link');
-            expect(cell(6, 1).innerHTML).toContain('href="/task?id=3e1723e23fd70810"',
-                                      'link is pointing to the cannonical (0 ending) page');
-            expect(cell(6, 1).innerHTML).toContain('title="Perf-Win10-Clang-Golo',
-                                      'Mouseover with task name');
+            expect(cell(6, 1).innerHTML).toContain(
+                'href="/task?id=3e1723e23fd70810"',
+                "link is pointing to the cannonical (0 ending) page",
+            );
+            expect(cell(6, 1).innerHTML).toContain(
+                'title="Perf-Win10-Clang-Golo',
+                "Mouseover with task name",
+            );
             done();
           });
         });
@@ -329,7 +385,9 @@ describe('bot-list', function() {
             expect(tds).toBeTruthy();
             expect(tds.length).toBe(2);
             expect(tds[0]).toMatchTextContent('Alive:');
-            expect(tds[0].innerHTML).toContain(encodeURIComponent('status:alive'));
+            expect(tds[0].innerHTML).toContain(
+                encodeURIComponent('status:alive'),
+            );
             expect(tds[1]).toMatchTextContent('429');
             const link = $$('a', tds[0]);
             expect(link.href).toContain('f=status%3Aalive');
@@ -340,21 +398,26 @@ describe('bot-list', function() {
             expect(tds).toBeTruthy();
             expect(tds.length).toBe(2);
             expect(tds[0]).toMatchTextContent('Maintenance:');
-            expect(tds[0].innerHTML).toContain(encodeURIComponent('status:maintenance'));
+            expect(tds[0].innerHTML).toContain(
+                encodeURIComponent('status:maintenance'),
+            );
             expect(tds[1]).toMatchTextContent('0');
 
             // by default fleet table should be hidden
-            expect(fleetTable.parentElement).toHaveAttribute('hidden', 'fleet table of counts');
-            expect(queryTable).not.toHaveAttribute('hidden', 'query table of counts');
+            expect(fleetTable.parentElement).toHaveAttribute(
+                "hidden",
+                "fleet table of counts",
+            );
+            expect(queryTable).not.toHaveAttribute(
+                "hidden",
+                "query table of counts",
+            );
 
             done();
           });
         });
-
       }); // end describe('default landing page')
-
-    });// end describe('when logged in as user')
-
+    }); // end describe('when logged in as user')
   }); // end describe('html structure')
 
   describe('dynamic behavior', function() {
@@ -375,17 +438,30 @@ describe('bot-list', function() {
         const actualOSOrder = ele._bots.map((b) => column('os', b, ele));
         const actualIDOrder = ele._bots.map((b) => b.bot_id);
 
-        expect(actualOSOrder).toEqual(['Android', 'Ubuntu-17.04', 'Ubuntu-17.04', 'Ubuntu-17.04',
-          'Ubuntu-17.04', 'Ubuntu-17.04',
+        expect(actualOSOrder).toEqual([
+          'Android',
+          'Ubuntu-17.04',
+          'Ubuntu-17.04',
+          'Ubuntu-17.04',
+          'Ubuntu-17.04',
+          'Ubuntu-17.04',
           'Windows 10 version 1709 (Windows-10-16299.309)',
           'Windows 10 version 1709 (Windows-10-16299.309)',
           'Windows 10 version 1709 (Windows-10-16299.431)',
-          'Windows 10 version 1709 (Windows-10-16299.431)']);
+          'Windows 10 version 1709 (Windows-10-16299.431)',
+        ]);
         expect(actualIDOrder).toEqual([
           'somebot11-a9', // Android
-          'somebot77-a3', 'somebot15-a9', 'somebot13-a9', 'somebot13-a2', 'somebot10-a9', // Ubuntu in descending id
-          'somebot17-a9', 'somebot16-a9',   // Win10.309
-          'somebot18-a9', 'somebot12-a9']); // Win10.431
+          'somebot77-a3',
+          'somebot15-a9',
+          'somebot13-a9',
+          'somebot13-a2',
+          'somebot10-a9', // Ubuntu in descending id
+          'somebot17-a9',
+          'somebot16-a9', // Win10.309
+          'somebot18-a9',
+          'somebot12-a9',
+        ]); // Win10.431
         done();
       });
     });
@@ -409,14 +485,26 @@ describe('bot-list', function() {
           'Windows 10 version 1709 (Windows-10-16299.431)',
           'Windows 10 version 1709 (Windows-10-16299.431)',
           'Windows 10 version 1709 (Windows-10-16299.309)',
-          'Windows 10 version 1709 (Windows-10-16299.309)', 'Ubuntu-17.04',
-          'Ubuntu-17.04', 'Ubuntu-17.04', 'Ubuntu-17.04', 'Ubuntu-17.04',
-          'Android']);
+          'Windows 10 version 1709 (Windows-10-16299.309)',
+          'Ubuntu-17.04',
+          'Ubuntu-17.04',
+          'Ubuntu-17.04',
+          'Ubuntu-17.04',
+          'Ubuntu-17.04',
+          'Android',
+        ]);
         expect(actualIDOrder).toEqual([
-          'somebot12-a9', 'somebot18-a9', // Win10.431
-          'somebot16-a9', 'somebot17-a9', // Win10.309
-          'somebot10-a9', 'somebot13-a2', 'somebot13-a9', 'somebot15-a9', 'somebot77-a3',  // Ubuntu in ascending id
-          'somebot11-a9']); // Android
+          'somebot12-a9',
+          'somebot18-a9', // Win10.431
+          'somebot16-a9',
+          'somebot17-a9', // Win10.309
+          'somebot10-a9',
+          'somebot13-a2',
+          'somebot13-a9',
+          'somebot15-a9',
+          'somebot77-a3', // Ubuntu in ascending id
+          'somebot11-a9',
+        ]); // Android
         done();
       });
     });
@@ -431,8 +519,17 @@ describe('bot-list', function() {
         const actualIDOrder = ele._bots.map((b) => b.bot_id);
 
         expect(actualIDOrder).toEqual([
-          'somebot12-a9', 'somebot13-a2', 'somebot17-a9', 'somebot16-a9', 'somebot10-a9',
-          'somebot77-a3', 'somebot15-a9', 'somebot18-a9', 'somebot11-a9', 'somebot13-a9']);
+          'somebot12-a9',
+          'somebot13-a2',
+          'somebot17-a9',
+          'somebot16-a9',
+          'somebot10-a9',
+          'somebot77-a3',
+          'somebot15-a9',
+          'somebot18-a9',
+          'somebot11-a9',
+          'somebot13-a9',
+        ]);
         done();
       });
     });
@@ -460,7 +557,7 @@ describe('bot-list', function() {
           }
         }
         checkbox.click(); // click is synchronous, it returns after
-                          // the clickHandler is run.
+        // the clickHandler is run.
         // Check underlying data
         expect(ele._cols).toContain(keyToClick);
         // check the rendering changed
@@ -468,7 +565,9 @@ describe('bot-list', function() {
         expect(colHeaders).toBeTruthy();
         expect(colHeaders.length).toBe(5, '(num colHeaders)');
         const expectedHeader = getColHeader(keyToClick);
-        expect(colHeaders.map((c) => c.textContent.trim())).toContain(expectedHeader);
+        expect(colHeaders.map((c) => c.textContent.trim())).toContain(
+            expectedHeader,
+        );
 
         // We have to find the checkbox again because the order
         // shuffles to keep selected ones on top.
@@ -491,7 +590,9 @@ describe('bot-list', function() {
         colHeaders = $('.bot-table thead th');
         expect(colHeaders).toBeTruthy();
         expect(colHeaders.length).toBe(4, '(num colHeaders)');
-        expect(colHeaders.map((c) => c.textContent.trim())).not.toContain(expectedHeader);
+        expect(colHeaders.map((c) => c.textContent.trim())).not.toContain(
+            expectedHeader,
+        );
         done();
       });
     });
@@ -526,16 +627,38 @@ describe('bot-list', function() {
 
     it('sorts columns so they are mostly alphabetical', function(done) {
       loggedInBotlist((ele) => {
-        ele._cols = ['status', 'os', 'id', 'xcode_version', 'task', 'android_devices'];
+        ele._cols = [
+          'status',
+          'os',
+          'id',
+          'xcode_version',
+          'task',
+          'android_devices',
+        ];
         ele.render();
 
-        const expectedOrder = ['id', 'task', 'android_devices', 'os', 'status', 'xcode_version'];
+        const expectedOrder = [
+          'id',
+          'task',
+          'android_devices',
+          'os',
+          'status',
+          'xcode_version',
+        ];
         expect(ele._cols).toEqual(expectedOrder);
 
-        const expectedHeaders = ['Bot Id', 'Current Task', 'Android Devices', 'OS',
-                               'Status', 'XCode Version'];
+        const expectedHeaders = [
+          'Bot Id',
+          'Current Task',
+          'Android Devices',
+          'OS',
+          'Status',
+          'XCode Version',
+        ];
         const colHeaders = $('.bot-table thead th');
-        expect(colHeaders.map((c) => c.textContent.trim())).toEqual(expectedHeaders);
+        expect(colHeaders.map((c) => c.textContent.trim())).toEqual(
+            expectedHeaders,
+        );
         done();
       });
     });
@@ -550,7 +673,7 @@ describe('bot-list', function() {
         const checkbox = $$('checkbox-sk', row);
         expect(checkbox.checked).toBeTruthy();
         checkbox.click(); // click is synchronous, it returns after
-                          // the clickHandler is run.
+        // the clickHandler is run.
         // Check underlying data
         expect(ele._cols).toContain('id');
         // check there are still headers.
@@ -573,23 +696,29 @@ describe('bot-list', function() {
 
         let valueSelector = $$('.selector.values');
         expect(valueSelector).toBeTruthy();
-        let values = childrenAsArray(valueSelector).map((c) => c.textContent.trim());
+        let values = childrenAsArray(valueSelector).map((c) =>
+          c.textContent.trim(),
+        );
         // spot check
         expect(values.length).toBe(8);
         expect(values).toContain('arm-32');
         expect(values).toContain('x86-64');
 
-        let oldRow = row;
+        const oldRow = row;
         row = getChildItemWithText($$('.selector.keys'), 'device_os', ele);
         expect(row).toBeTruthy();
         row.click();
-        expect(row.hasAttribute('selected')).toBeTruthy('new row only one selected');
+        expect(row.hasAttribute('selected')).toBeTruthy(
+            "new row only one selected",
+        );
         expect(oldRow.hasAttribute('selected')).toBeFalsy('old row unselected');
         expect(ele._primaryKey).toBe('device_os');
 
         valueSelector = $$('.selector.values');
         expect(valueSelector).toBeTruthy();
-        values = childrenAsArray(valueSelector).map((c) => c.textContent.trim());
+        values = childrenAsArray(valueSelector).map((c) =>
+          c.textContent.trim(),
+        );
         // spot check
         expect(values.length).toBe(19);
         expect(values).toContain('none');
@@ -607,11 +736,19 @@ describe('bot-list', function() {
 
         const keySelector = $$('.col_selector');
         expect(keySelector).toBeTruthy();
-        const keys = childrenAsArray(keySelector).map((c) => c.textContent.trim());
+        const keys = childrenAsArray(keySelector).map((c) =>
+          c.textContent.trim(),
+        );
 
         // Skip the first child, which is the input box
-        expect(keys.slice(1, 7)).toEqual(['id', 'task', 'os', 'status',
-                                          'android_devices', 'battery_health']);
+        expect(keys.slice(1, 7)).toEqual([
+          'id',
+          'task',
+          'os',
+          'status',
+          'android_devices',
+          'battery_health',
+        ]);
 
         done();
       });
@@ -620,11 +757,15 @@ describe('bot-list', function() {
     it('adds a filter when the addIcon is clicked', function(done) {
       loggedInBotlist((ele) => {
         ele._cols = ['id', 'task', 'os', 'status'];
-        ele._primaryKey = 'os';  // set 'os' selected
-        ele._filters = [];  // no filters
+        ele._primaryKey = 'os'; // set 'os' selected
+        ele._filters = []; // no filters
         ele.render();
 
-        const valueRow = getChildItemWithText($$('.selector.values'), 'Android', ele);
+        const valueRow = getChildItemWithText(
+            $$('.selector.values'),
+            'Android',
+            ele,
+        );
         const addIcon = $$('add-circle-icon-sk', valueRow);
         expect(addIcon).toBeTruthy('there should be an icon for adding');
         addIcon.click();
@@ -633,10 +774,13 @@ describe('bot-list', function() {
         expect(ele._filters[0]).toEqual('os:Android');
 
         const chipContainer = $$('.chip_container', ele);
-        expect(chipContainer).toBeTruthy('there should be a filter chip container');
+        expect(chipContainer).toBeTruthy(
+            "there should be a filter chip container",
+        );
         expect(chipContainer.children.length).toBe(1);
-        expect(addIcon.hasAttribute('hidden'))
-              .toBeTruthy('addIcon should go away after being clicked');
+        expect(addIcon.hasAttribute('hidden')).toBeTruthy(
+            "addIcon should go away after being clicked",
+        );
         done();
       });
     });
@@ -648,16 +792,25 @@ describe('bot-list', function() {
         ele._filters = ['device_type:bullhead', 'os:Android'];
         ele.render();
 
-        const filterChip = getChildItemWithText($$('.chip_container'), 'os:Android', ele);
+        const filterChip = getChildItemWithText(
+            $$('.chip_container'),
+            "os:Android",
+            ele,
+        );
         const icon = $$('cancel-icon-sk', filterChip);
         expect(icon).toBeTruthy('there should be a icon to remove it');
         icon.click();
 
         expect(ele._filters.length).toBe(1, 'a filter should be removed');
-        expect(ele._filters[0]).toEqual('device_type:bullhead', 'os:Android should be removed');
+        expect(ele._filters[0]).toEqual(
+            'device_type:bullhead',
+            "os:Android should be removed",
+        );
 
         const chipContainer = $$('.chip_container', ele);
-        expect(chipContainer).toBeTruthy('there should be a filter chip container');
+        expect(chipContainer).toBeTruthy(
+            "there should be a filter chip container",
+        );
         expect(chipContainer.children.length).toBe(1);
         done();
       });
@@ -699,11 +852,15 @@ describe('bot-list', function() {
         expect(ele._bots.length).toBe(10, 'All 10 at the start');
 
         let wasCalled = false;
-        fetchMock.get('glob:/_ah/api/swarming/v1/bots/list?*', () => {
-          expect(ele._bots.length).toBe(5, '5 Linux bots there now.');
-          wasCalled = true;
-          return '[]'; // pretend no bots match
-        }, { overwriteRoutes: true });
+        fetchMock.get(
+            "glob:/_ah/api/swarming/v1/bots/list?*",
+            () => {
+              expect(ele._bots.length).toBe(5, '5 Linux bots there now.');
+              wasCalled = true;
+              return '[]'; // pretend no bots match
+            },
+            {overwriteRoutes: true},
+        );
 
         ele._addFilter('os:Linux');
         // The true on flush waits for res.json() to resolve too, which
@@ -724,26 +881,32 @@ describe('bot-list', function() {
 
         const filterInput = $$('#filter_search', ele);
         filterInput.value = 'invalid filter';
-        ele._filterSearch({key: 'Enter'});
+        ele._filterSearch({key: 'Enter' });
         expect(ele._filters).toEqual([]);
         // Leave the input to let the user correct their mistake.
         expect(filterInput.value).toEqual('invalid filter');
 
         // Spy on the list call to make sure a request is made with the right filter.
         let calledTimes = 0;
-        fetchMock.get('glob:/_ah/api/swarming/v1/bots/list?*', (url, _) => {
-          expect(url).toContain(encodeURIComponent('valid:filter:gpu:can:have:many:colons'));
-          calledTimes++;
-          return '[]'; // pretend no bots match
-        }, {overwriteRoutes: true});
+        fetchMock.get(
+            "glob:/_ah/api/swarming/v1/bots/list?*",
+            (url, _) => {
+              expect(url).toContain(
+                  encodeURIComponent('valid:filter:gpu:can:have:many:colons'),
+              );
+              calledTimes++;
+              return '[]'; // pretend no bots match
+            },
+            {overwriteRoutes: true},
+        );
 
         filterInput.value = 'valid:filter:gpu:can:have:many:colons';
-        ele._filterSearch({key: 'Enter'});
+        ele._filterSearch({key: 'Enter' });
         expect(ele._filters).toEqual(['valid:filter:gpu:can:have:many:colons']);
         // Empty the input for next time.
         expect(filterInput.value).toEqual('');
         filterInput.value = 'valid:filter:gpu:can:have:many:colons';
-        ele._filterSearch({key: 'Enter'});
+        ele._filterSearch({key: 'Enter' });
         // No duplicates
         expect(ele._filters).toEqual(['valid:filter:gpu:can:have:many:colons']);
 
@@ -839,7 +1002,7 @@ describe('bot-list', function() {
         expect(cols).toBeTruthy();
         expect(cols.length).toBe(2 * 10, '2 columns * 10 rows');
         // little helper for readability
-        const cell = (r, c) => cols[2*r+c];
+        const cell = (r, c) => cols[2 * r + c];
 
         // Check the content of the first few rows (after sorting)
         expect(cell(0, 0)).toMatchTextContent('somebot13-a2');
@@ -866,7 +1029,7 @@ describe('bot-list', function() {
         expect(cols).toBeTruthy();
         expect(cols.length).toBe(3 * 10, '3 columns * 10 rows');
         // little helper for readability
-        const cell = (r, c) => cols[3*r+c];
+        const cell = (r, c) => cols[3 * r + c];
 
         // Check the content of the first few rows (after sorting)
         expect(cell(0, 0)).toMatchTextContent('somebot11-a9');
@@ -875,7 +1038,9 @@ describe('bot-list', function() {
 
         expect(cell(1, 0)).toMatchTextContent('somebot10-a9');
         expect(cell(1, 1)).toMatchTextContent('none');
-        expect(cell(1, 2)).toMatchTextContent('NVIDIA Quadro P400 (10de:1cb3-384.59)');
+        expect(cell(1, 2)).toMatchTextContent(
+            "NVIDIA Quadro P400 (10de:1cb3-384.59)",
+        );
         done();
       });
     });
@@ -889,7 +1054,9 @@ describe('bot-list', function() {
         expect(values).toBeTruthy();
         // spot check
         expect(values.children[0]).toMatchTextContent('NVIDIA (10de)');
-        expect(values.children[8]).toMatchTextContent('Matrox MGA G200e (102b:0522)');
+        expect(values.children[8]).toMatchTextContent(
+            "Matrox MGA G200e (102b:0522)",
+        );
 
         // Don't use UNKNOWN for aliasing
         for (const c of values.children) {
@@ -917,7 +1084,6 @@ describe('bot-list', function() {
         done();
       });
     });
-
   }); // end describe('dynamic behavior')
 
   describe('api calls', function() {
@@ -951,18 +1117,23 @@ describe('bot-list', function() {
 
     it('makes auth\'d API calls when a logged in user views landing page', function(done) {
       loggedInBotlist((ele) => {
-        let calls = fetchMock.calls(MATCHED, 'GET');
-        expect(calls.length).toBe(2+4, '2 GETs from swarming-app, 4 from bot-list');
+        const calls = fetchMock.calls(MATCHED, 'GET');
+        expect(calls.length).toBe(
+            2 + 4,
+            "2 GETs from swarming-app, 4 from bot-list",
+        );
         // calls is an array of 2-length arrays with the first element
         // being the string of the url and the second element being
         // the options that were passed in
-        let gets = calls.map((c) => c[0]);
+        const gets = calls.map((c) => c[0]);
 
         // limit=100 comes from the default limit value.
-        expect(gets).toContainRegex(/\/_ah\/api\/swarming\/v1\/bots\/list.+limit=100.*/);
+        expect(gets).toContainRegex(
+            /\/_ah\/api\/swarming\/v1\/bots\/list.+limit=100.*/,
+        );
         expect(gets).toContain('/_ah/api/swarming/v1/bots/count');
 
-        checkAuthorizationAndNoPosts(calls)
+        checkAuthorizationAndNoPosts(calls);
         done();
       });
     });
@@ -979,8 +1150,12 @@ describe('bot-list', function() {
         // the options that were passed in
         let gets = calls.map((c) => c[0]);
 
-        expect(gets).toContainRegex(/\/_ah\/api\/swarming\/v1\/bots\/list.+dimensions=alpha%3Abeta.*/);
-        expect(gets).toContainRegex(/\/_ah\/api\/swarming\/v1\/bots\/count.+dimensions=alpha%3Abeta.*/);
+        expect(gets).toContainRegex(
+            /\/_ah\/api\/swarming\/v1\/bots\/list.+dimensions=alpha%3Abeta.*/,
+        );
+        expect(gets).toContainRegex(
+            /\/_ah\/api\/swarming\/v1\/bots\/count.+dimensions=alpha%3Abeta.*/,
+        );
         checkAuthorizationAndNoPosts(calls);
 
         fetchMock.resetHistory();
@@ -988,8 +1163,12 @@ describe('bot-list', function() {
 
         calls = fetchMock.calls(MATCHED, 'GET');
         gets = calls.map((c) => c[0]);
-        expect(gets).not.toContainRegex(/\/_ah\/api\/swarming\/v1\/bots\/list.+alpha%3Abeta.*/);
-        expect(gets).not.toContainRegex(/\/_ah\/api\/swarming\/v1\/bots\/count.+alpha%3Abeta.*/);
+        expect(gets).not.toContainRegex(
+            /\/_ah\/api\/swarming\/v1\/bots\/list.+alpha%3Abeta.*/,
+        );
+        expect(gets).not.toContainRegex(
+            /\/_ah\/api\/swarming\/v1\/bots\/count.+alpha%3Abeta.*/,
+        );
 
         checkAuthorizationAndNoPosts(calls);
         done();
@@ -1025,13 +1204,16 @@ describe('bot-list', function() {
       const temp = bots[0].state.temp;
       expect(temp).toBeTruthy();
       expect(temp.average).toBe('34.8', 'rounds to one decimal place');
-      expect(temp.zones).toBe('thermal_zone0: 34.5 | thermal_zone1: 35', 'joins with |');
+      expect(temp.zones).toBe(
+          'thermal_zone0: 34.5 | thermal_zone1: 35',
+          "joins with |",
+      );
     });
 
     it('turns the dates into DateObjects', function() {
       // Make a copy of the object because _processBots will modify it in place.
       const bots = processBots([deepCopy(LINUX_BOT)]);
-      const ts = bots[0].first_seen_ts
+      const ts = bots[0].first_seen_ts;
       expect(ts).toBeTruthy();
       expect(ts instanceof Date).toBeTruthy('Should be a date object');
     });
@@ -1061,7 +1243,9 @@ describe('bot-list', function() {
 
     it('turns the dimension map into a list', function() {
       // makePossibleColumns may modify the passed in variable.
-      const possibleCols = makePossibleColumns(deepCopy(fleetDimensions.bots_dimensions));
+      const possibleCols = makePossibleColumns(
+          deepCopy(fleetDimensions.bots_dimensions),
+      );
 
       expect(possibleCols).toBeTruthy();
       expect(possibleCols.length).toBe(32);
@@ -1092,9 +1276,24 @@ describe('bot-list', function() {
 
       expect(pMap).toBeTruthy();
       // Note this list doesn't include the blacklisted keys.
-      const expectedKeys = ['android_devices', 'cores', 'cpu', 'device', 'device_os',
-          'device_type', 'gpu', 'hidpi', 'machine_type', 'os', 'pool',
-          'xcode_version', 'zone', 'id', 'task', 'status'];
+      const expectedKeys = [
+        'android_devices',
+        'cores',
+        'cpu',
+        'device',
+        'device_os',
+        'device_type',
+        'gpu',
+        'hidpi',
+        'machine_type',
+        'os',
+        'pool',
+        'xcode_version',
+        'zone',
+        'id',
+        'task',
+        'status',
+      ];
       const actualKeys = Object.keys(pMap);
       actualKeys.sort();
       expectedKeys.sort();
@@ -1131,7 +1330,12 @@ describe('bot-list', function() {
 
       filtered = filterBots(['task:busy'], bots);
       expect(filtered.length).toBe(4);
-      const expectedIds = ['somebot12-a9', 'somebot16-a9', 'somebot17-a9', 'somebot77-a3'];
+      const expectedIds = [
+        'somebot12-a9',
+        'somebot16-a9',
+        'somebot17-a9',
+        'somebot77-a3',
+      ];
       const actualIds = filtered.map((bot) => bot.bot_id);
       actualIds.sort();
       expect(actualIds).toEqual(expectedIds);
@@ -1145,7 +1349,13 @@ describe('bot-list', function() {
 
       const filtered = filterBots(['os:Ubuntu-17.04', 'gpu:10de:1cb3'], bots);
       expect(filtered.length).toBe(5);
-      const expectedIds = ['somebot10-a9', 'somebot13-a2', 'somebot13-a9', 'somebot15-a9', 'somebot77-a3'];
+      const expectedIds = [
+        'somebot10-a9',
+        'somebot13-a2',
+        'somebot13-a9',
+        'somebot15-a9',
+        'somebot77-a3',
+      ];
       const actualIds = filtered.map((bot) => bot.bot_id);
       actualIds.sort();
       expect(actualIds).toEqual(expectedIds);
@@ -1155,33 +1365,44 @@ describe('bot-list', function() {
       // We know query.fromObject is used and it puts the query params in
       // a deterministic, sorted order. This means we can compare
       const expectations = [
-        { // basic 'alive'
-          'limit': 256,
-          'filters': ['pool:Skia','os:Android', 'status:alive'],
-          'output':  'dimensions=pool%3ASkia&dimensions=os%3AAndroid'+
-                     '&is_dead=FALSE&limit=256',
+        {
+          // basic 'alive'
+          limit: 256,
+          filters: ['pool:Skia', 'os:Android', 'status:alive'],
+          output:
+            'dimensions=pool%3ASkia&dimensions=os%3AAndroid' +
+            '&is_dead=FALSE&limit=256',
         },
-        { // no filters
-          'limit': 123,
-          'filters': [],
-          'output':  'limit=123',
+        {
+          // no filters
+          limit: 123,
+          filters: [],
+          output: 'limit=123',
         },
-        { // dead
-          'limit': 456,
-          'filters': ['status:dead', 'device_type:bullhead'],
-          'output':  'dimensions=device_type%3Abullhead&is_dead=TRUE&limit=456',
+        {
+          // dead
+          limit: 456,
+          filters: ['status:dead', 'device_type:bullhead'],
+          output: 'dimensions=device_type%3Abullhead&is_dead=TRUE&limit=456',
         },
-        { // multiple of a filter
-          'limit': 789,
-          'filters': ['status:maintenance', 'device_type:bullhead', 'device_type:marlin'],
-          'output':  'dimensions=device_type%3Abullhead&dimensions=device_type%3Amarlin'+
-                     '&in_maintenance=TRUE&limit=789',
+        {
+          // multiple of a filter
+          limit: 789,
+          filters: [
+            'status:maintenance',
+            'device_type:bullhead',
+            'device_type:marlin',
+          ],
+          output:
+            'dimensions=device_type%3Abullhead&dimensions=device_type%3Amarlin' +
+            '&in_maintenance=TRUE&limit=789',
         },
-        { // is_busy
-          'limit': 7,
-          'filters': ['task:busy'],
-          'output':  'is_busy=TRUE&limit=7',
-        }
+        {
+          // is_busy
+          limit: 7,
+          filters: ['task:busy'],
+          output: 'is_busy=TRUE&limit=7',
+        },
       ];
 
       for (const testcase of expectations) {
@@ -1190,9 +1411,12 @@ describe('bot-list', function() {
       }
 
       const testcase = expectations[0];
-      const qp = listQueryParams(testcase.filters, testcase.limit, 'mock_cursor12345');
-      expect(qp).toEqual('cursor=mock_cursor12345&'+testcase.output);
-
+      const qp = listQueryParams(
+          testcase.filters,
+          testcase.limit,
+          "mock_cursor12345",
+      );
+      expect(qp).toEqual('cursor=mock_cursor12345&' + testcase.output);
     });
 
     it('remove aliases from legacy filters', function() {
@@ -1201,5 +1425,4 @@ describe('bot-list', function() {
       expect(output).toEqual(['cpu:12354', 'gpu:10de:1cb3-415.27']);
     });
   }); // end describe('data parsing')
-
 });

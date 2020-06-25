@@ -2,7 +2,7 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-import 'modules/sort-toggle'
+import 'modules/sort-toggle';
 
 describe('sort-toggle', function() {
   // A reusable HTML element in which we create our element under test.
@@ -13,7 +13,7 @@ describe('sort-toggle', function() {
     container.innerHTML = '';
   });
 
-//===============TESTS START====================================
+  // ===============TESTS START====================================
 
   // calls the test callback with one element 'ele', a created <sort-toggle>.
   function createElement(test) {
@@ -46,7 +46,9 @@ describe('sort-toggle', function() {
 
       let arrow = ele.querySelector('arrow-drop-down-icon-sk');
       expect(arrow).toBeTruthy();
-      expect(arrow.attributes.hidden).toBeTruthy('We should only display up arrow');
+      expect(arrow.attributes.hidden).toBeTruthy(
+          "We should only display up arrow",
+      );
       arrow = ele.querySelector('arrow-drop-up-icon-sk');
       expect(arrow).toBeTruthy();
       expect(arrow.attributes.hidden).toBeFalsy();
@@ -57,7 +59,9 @@ describe('sort-toggle', function() {
       expect(arrow.attributes.hidden).toBeFalsy();
       arrow = ele.querySelector('arrow-drop-up-icon-sk');
       expect(arrow).toBeTruthy();
-      expect(arrow.attributes.hidden).toBeTruthy('We should only display down arrow');
+      expect(arrow.attributes.hidden).toBeTruthy(
+          "We should only display down arrow",
+      );
 
       done();
     });
@@ -79,7 +83,9 @@ describe('sort-toggle', function() {
         expect(arrow.attributes.hidden).toBeFalsy();
         arrow = ele.querySelector('arrow-drop-up-icon-sk');
         expect(arrow).toBeTruthy();
-        expect(arrow.attributes.hidden).toBeTruthy('We should only display down arrow');
+        expect(arrow.attributes.hidden).toBeTruthy(
+            "We should only display down arrow",
+        );
 
         done();
       });

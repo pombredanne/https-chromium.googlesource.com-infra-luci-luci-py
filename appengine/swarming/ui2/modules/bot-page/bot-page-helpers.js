@@ -2,16 +2,20 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-import { applyAlias } from '../alias'
-import { botListLink, humanDuration, sanitizeAndHumanizeTime, timeDiffExact } from '../util'
-
+import {applyAlias} from '../alias';
+import {
+  botListLink,
+  humanDuration,
+  sanitizeAndHumanizeTime,
+  timeDiffExact,
+} from '../util';
 
 /** mpLink produces a machine provider link for this bot
  *  @param {Object} bot - The bot object
  *  @param {Object} serverDetails - The server details returned via the API.
  */
 export function mpLink(bot, serverDetails) {
-  const template = serverDetails.machine_provider_template
+  const template = serverDetails.machine_provider_template;
   if (!bot.lease_id || !template) {
     return undefined;
   }
@@ -52,7 +56,7 @@ export function parseBotData(bot) {
           count++;
         }
         if (count) {
-          device.averageTemp = (total/count).toFixed(1);
+          device.averageTemp = (total / count).toFixed(1);
         } else {
           device.averageTemp = '???';
         }
@@ -99,12 +103,16 @@ export function parseTasks(tasks) {
       // Task is finished
       task.human_duration = humanDuration(task.duration);
     } else {
-      const end = task.completed_ts || task.abandoned_ts || task.modified_ts || new Date();
+      const end =
+        task.completed_ts ||
+        task.abandoned_ts ||
+        task.modified_ts ||
+        new Date();
       task.human_duration = timeDiffExact(task.started_ts, end);
       task.duration = (end.getTime() - task.started_ts) / 1000;
     }
-    const total_overhead = (task.performance_stats &&
-                            task.performance_stats.bot_overhead) || 0;
+    const total_overhead =
+      (task.performance_stats && task.performance_stats.bot_overhead) || 0;
     // total_duration includes overhead, to give a better sense of the bot
     // being 'busy', e.g. when uploading isolated outputs.
     task.total_duration = task.duration + total_overhead;
@@ -154,7 +162,7 @@ const dimensionsToStrip = ['id', 'caches', 'server_version'];
  */
 export function siblingBotsLink(dimensions) {
   const cols = ['id', 'os', 'task', 'status'];
-   if (!dimensions) {
+  if (!dimensions) {
     return botListLink([], cols);
   }
 
@@ -172,19 +180,26 @@ export function siblingBotsLink(dimensions) {
 }
 
 const BOT_TIMES = ['first_seen_ts', 'last_seen_ts', 'lease_expiration_ts'];
-const TASK_TIMES = ['started_ts', 'completed_ts', 'abandoned_ts', 'modified_ts'];
+const TASK_TIMES = [
+  'started_ts',
+  'completed_ts',
+  'abandoned_ts',
+  'modified_ts',
+];
 
 // These field filters trim down the data we get per task, which
 // may speed up the server time and should speed up the network time.
 export const TASKS_QUERY_PARAMS = [
-    'include_performance_stats=true',
-    'limit=30',
-    'sort=STARTED_TS',
-    encodeURIComponent(
-        'fields=cursor,'+
-            'items(state,bot_version,completed_ts,created_ts,duration,'+
-            'exit_code,failure,internal_failure,modified_ts,name,'+
-            'server_versions,started_ts,task_id)'),
+  'include_performance_stats=true',
+  'limit=30',
+  'sort=STARTED_TS',
+  encodeURIComponent(
+      "fields=cursor," +
+      'items(state,bot_version,completed_ts,created_ts,duration,' +
+      'exit_code,failure,internal_failure,modified_ts,name,' +
+      'server_versions,started_ts,task_id)'
+  ),
 ].join('&');
 
-export const EVENTS_QUERY_PARAMS = 'limit=50&fields=cursor%2Citems(event_type%2Cmaintenance_msg%2Cmessage%2Cquarantined%2Ctask_id%2Cts%2Cversion)';
+export const EVENTS_QUERY_PARAMS =
+  'limit=50&fields=cursor%2Citems(event_type%2Cmaintenance_msg%2Cmessage%2Cquarantined%2Ctask_id%2Cts%2Cversion)';

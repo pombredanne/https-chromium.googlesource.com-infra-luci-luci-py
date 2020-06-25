@@ -11,31 +11,33 @@
  * </p>
  */
 
- import { UNMATCHED } from 'fetch-mock';
+import {UNMATCHED} from 'fetch-mock';
 
 export const customMatchers = {
   // see https://jasmine.github.io/tutorials/custom_matcher
   // for docs on the factory that returns a matcher.
-  'toContainRegex': function(util, customEqualityTesters) {
+  toContainRegex: function(util, customEqualityTesters) {
     return {
-      'compare': function(actual, regex) {
+      compare: function(actual, regex) {
         if (!(regex instanceof RegExp)) {
           throw `toContainRegex expects a regex, got ${JSON.stringify(regex)}`;
         }
-        let result = {};
+        const result = {};
 
         if (!actual || !actual.length) {
           result.pass = false;
-          result.message = `Expected ${actual} to be a non-empty array `+
-                           `containing something matching ${regex}`;
+          result.message =
+            `Expected ${actual} to be a non-empty array ` +
+            `containing something matching ${regex}`;
           return result;
         }
-        for (let s of actual) {
+        for (const s of actual) {
           if (s.match && s.match(regex)) {
             result.pass = true;
             // craft the message for the negated version (i.e. using .not)
-            result.message = `Expected ${actual} not to have anyting `+
-                             `matching ${regex}, but ${s} did`;
+            result.message =
+              `Expected ${actual} not to have anyting ` +
+              `matching ${regex}, but ${s} did`;
             return result;
           }
         }
@@ -46,9 +48,9 @@ export const customMatchers = {
     };
   },
 
-  'toHaveAttribute': function(util, customEqualityTesters) {
+  toHaveAttribute: function(util, customEqualityTesters) {
     return {
-      'compare': function(actual, attribute) {
+      compare: function(actual, attribute) {
         if (!isElement(actual)) {
           throw `${actual} is not a DOM element`;
         }
@@ -60,30 +62,30 @@ export const customMatchers = {
   },
 
   // Trims off whitespace before comparing
-  'toMatchTextContent': function(util, customEqualityTesters) {
+  toMatchTextContent: function(util, customEqualityTesters) {
     return {
-      'compare': function(actual, text) {
+      compare: function(actual, text) {
         if (!isElement(actual)) {
           throw `${actual} is not a DOM element`;
         }
         function normalize(s) {
-          return s.trim()
-            .replace('\t', ' ')
-            .replace(/ {2,}/g, ' ');
+          return s.trim().replace('\t', ' ').replace(/ {2,}/g, ' ');
         }
         text = normalize(text);
-        let actualText = normalize(actual.innerText);
+        const actualText = normalize(actual.innerText);
         if (actualText === text) {
           return {
             // craft the message for the negated version
-            message: `Expected ${actualText} to not equal ${text} `+
-                     `(ignoring whitespace)`,
+            message:
+              `Expected ${actualText} to not equal ${text} ` +
+              `(ignoring whitespace)`,
             pass: true,
           };
         }
         return {
-          message: `Expected ${actualText} to equal ${text} `+
-                   `(ignoring whitespace)`,
+          message:
+            `Expected ${actualText} to equal ${text} ` +
+            `(ignoring whitespace)`,
           pass: false,
         };
       },
@@ -92,7 +94,7 @@ export const customMatchers = {
 };
 
 function isElement(ele) {
-  //https://stackoverflow.com/a/36894871
+  // https://stackoverflow.com/a/36894871
   return ele instanceof Element || ele instanceof HTMLDocument;
 }
 
@@ -104,24 +106,27 @@ export function mockAppGETs(fetchMock, permissions) {
     display_server_url_template: 'https://example.com#id=%s',
   });
 
-
   fetchMock.get('/_ah/api/swarming/v1/server/permissions', permissions);
 }
 
 export function mockAuthdAppGETs(fetchMock, permissions) {
-  fetchMock.get('/_ah/api/swarming/v1/server/details', requireLogin({
-    server_version: '1234-abcdefg',
-    bot_version: 'abcdoeraymeyouandme',
-    machine_provider_template: 'https://example.com/leases/%s',
-    display_server_url_template: 'https://example.com#id=%s',
-  }));
+  fetchMock.get(
+      "/_ah/api/swarming/v1/server/details",
+      requireLogin({
+        server_version: '1234-abcdefg',
+        bot_version: 'abcdoeraymeyouandme',
+        machine_provider_template: 'https://example.com/leases/%s',
+        display_server_url_template: 'https://example.com#id=%s',
+      }),
+  );
 
-
-  fetchMock.get('/_ah/api/swarming/v1/server/permissions',
-                requireLogin(permissions));
+  fetchMock.get(
+      '/_ah/api/swarming/v1/server/permissions',
+      requireLogin(permissions),
+  );
 }
 
-export function requireLogin(logged_in, delay=100) {
+export function requireLogin(logged_in, delay = 100) {
   const original_items = logged_in.items && logged_in.items.slice();
   return function(url, opts) {
     if (opts && opts.headers && opts.headers.authorization) {
@@ -133,11 +138,14 @@ export function requireLogin(logged_in, delay=100) {
           if (!logged_in.cursor) {
             // first page
             logged_in.cursor = 'fake_cursor12345';
-            logged_in.items = original_items.slice(0, original_items.length/2);
+            logged_in.items = original_items.slice(
+                0,
+                original_items.length / 2,
+            );
           } else {
             // second page
             logged_in.cursor = undefined;
-            logged_in.items = original_items.slice(original_items.length/2);
+            logged_in.items = original_items.slice(original_items.length / 2);
           }
         }
         if (logged_in instanceof Function) {
@@ -145,20 +153,20 @@ export function requireLogin(logged_in, delay=100) {
           if (!val) {
             return {
               status: 404,
-              body: JSON.stringify({'error': {'message': 'bot not found.'}}),
-              headers: {'content-type':'application/json'},
+              body: JSON.stringify({error: {message: 'bot not found.' }}),
+              headers: { "content-type": "application/json" },
             };
           }
           return {
             status: 200,
             body: JSON.stringify(val),
-            headers: {'content-type':'application/json'},
+            headers: { "content-type": "application/json" },
           };
         }
         return {
           status: 200,
           body: JSON.stringify(logged_in),
-          headers: {'content-type':'application/json'},
+          headers: { "content-type": "application/json" },
         };
       });
     } else {
@@ -168,7 +176,7 @@ export function requireLogin(logged_in, delay=100) {
         return {
           status: 403,
           body: 'Try logging in',
-          headers: {'content-type':'text/plain'},
+          headers: { "content-type": "text/plain" },
         };
       });
     }
@@ -186,16 +194,16 @@ export function childrenAsArray(ele) {
  *  unexpected (unmatched) calls to fetchMock.
  */
 export function expectNoUnmatchedCalls(fetchMock) {
-    let calls = fetchMock.calls(UNMATCHED, 'GET');
-    expect(calls.length).toBe(0, 'no unmatched (unexpected) GETs');
-    if (calls.length) {
-      console.warn('unmatched GETS', calls);
-    }
-    calls = fetchMock.calls(UNMATCHED, 'POST');
-    expect(calls.length).toBe(0, 'no unmatched (unexpected) POSTs');
-    if (calls.length) {
-      console.warn('unmatched POSTS', calls);
-    }
+  let calls = fetchMock.calls(UNMATCHED, 'GET');
+  expect(calls.length).toBe(0, 'no unmatched (unexpected) GETs');
+  if (calls.length) {
+    console.warn('unmatched GETS', calls);
+  }
+  calls = fetchMock.calls(UNMATCHED, 'POST');
+  expect(calls.length).toBe(0, 'no unmatched (unexpected) POSTs');
+  if (calls.length) {
+    console.warn('unmatched POSTS', calls);
+  }
 }
 
 /** getChildItemWithText looks at the children of the given element
@@ -216,4 +224,3 @@ export function getChildItemWithText(ele, value) {
   // fail(`Could not find child of ${ele} with text value ${value}`);
   return null;
 }
-
