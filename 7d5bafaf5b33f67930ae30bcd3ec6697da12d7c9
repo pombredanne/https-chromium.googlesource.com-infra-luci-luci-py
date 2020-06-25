@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "48c20667_83fe9fee",
+        "filename": "appengine/swarming/ui2/modules/bot-mass-delete/bot-mass-delete.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-25T00:19:24Z",
+      "side": 1,
+      "message": "I don\u0027t know why, but tricium suddenly started complaining this.\nExtracted the changes. https://crrev.com/c/2265612",
+      "parentUuid": "94800231_db03ffcd",
+      "revId": "7d5bafaf5b33f67930ae30bcd3ec6697da12d7c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9a9a138_fcb318f9",
         "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
         "patchSetId": 7
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "01d4af8f_b279c2db",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-25T00:19:24Z",
+      "side": 1,
+      "message": "`query.fromObject(params)` in _fetchPermissions()",
+      "parentUuid": "f9a9a138_fcb318f9",
+      "revId": "7d5bafaf5b33f67930ae30bcd3ec6697da12d7c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "62f671d7_1f9e20f3",
         "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.js",
         "patchSetId": 7
@@ -50,6 +86,24 @@
       "revId": "7d5bafaf5b33f67930ae30bcd3ec6697da12d7c9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2159c5f8_5d90e32c",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-25T00:19:24Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "62f671d7_1f9e20f3",
+      "revId": "7d5bafaf5b33f67930ae30bcd3ec6697da12d7c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
