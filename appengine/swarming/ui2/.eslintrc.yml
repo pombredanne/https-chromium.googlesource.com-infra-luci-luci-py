@@ -1,4 +1,3 @@
-root: true
 env:
   browser: true
   es2020: true
@@ -7,4 +6,8 @@ extends:
 parserOptions:
   ecmaVersion: 11
   sourceType: module
-rules: {}
+rules:
+  # Ideally we want to enable jsdoc lints.
+  # But, it's too noisy with the existing code.
+  require-jsdoc: 0
+  valid-jsdoc: 0
