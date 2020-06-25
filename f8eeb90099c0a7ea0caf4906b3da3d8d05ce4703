@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "f37aa7c2_f14a55c2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-25T03:20:26Z",
+      "side": 1,
+      "message": "\u003e \u003e also will you apply prettier too?\n\u003e Yes, I made https://crrev.com/c/2265618\n\nI think that CL doesn\u0027t use prettier?\nhttps://prettier.io/",
+      "parentUuid": "672d083a_17c5077a",
+      "revId": "f8eeb90099c0a7ea0caf4906b3da3d8d05ce4703",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b530f549_12bad2c4",
         "filename": "appengine/swarming/ui2/.eslintrc.yml",
         "patchSetId": 3
