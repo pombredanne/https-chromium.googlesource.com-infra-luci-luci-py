@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "2216985d_ec0e3777",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-25T03:35:47Z",
+      "side": 1,
+      "message": "I installed prettier, too.\nPlease check .estlintrc.yaml and package.json, again.",
+      "parentUuid": "f37aa7c2_f14a55c2",
+      "revId": "f8eeb90099c0a7ea0caf4906b3da3d8d05ce4703",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b530f549_12bad2c4",
         "filename": "appengine/swarming/ui2/.eslintrc.yml",
         "patchSetId": 3
