@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33ff1413_1ce684bc",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-25T00:22:01Z",
+      "side": 1,
+      "message": "could you sort this?",
+      "revId": "1fecd33f48f9d1fff197ba3a404a67f1280c28e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
