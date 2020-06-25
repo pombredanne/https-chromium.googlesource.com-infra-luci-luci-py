@@ -13,10 +13,13 @@
     "@webcomponents/custom-elements": "^1.2.4",
     "common-sk": "~3.1.0",
     "elements-sk": "~2.4.2",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "flatpickr": "^4.5.7",
     "google-charts": "^2.0.0",
     "javascript-natural-sort": "~0.7.1",
-    "lit-html": "~1.0.0"
+    "lit-html": "~1.0.0",
+    "prettier": "^2.0.5"
   },
   "devDependencies": {
     "babel-core": "~6.26.3",
@@ -27,6 +30,8 @@
     "clean-webpack-plugin": "~0.1.19",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "~0.28.11",
+    "eslint": "^7.3.1",
+    "eslint-config-google": "^0.14.0",
     "extract-text-webpack-plugin": "~v4.0.0-beta.0",
     "fetch-mock": "~7.0.5",
     "file-loader": "~1.1.11",
