@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "10a4a463_5ea5a1ef",
+        "filename": "appengine/swarming/ui2/.eslintrc.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-25T03:17:42Z",
+      "side": 1,
+      "message": "I bit prefer to use 2020 as it clearly shows which year the version is tied to.",
+      "range": {
+        "startLine": 8,
+        "startChar": 15,
+        "endLine": 8,
+        "endChar": 17
+      },
+      "revId": "ae100037fc843286274d92d17bb79e42a17e2a2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
