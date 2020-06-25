@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "8e2304aa_f6d38852",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-25T04:45:48Z",
+      "side": 1,
+      "message": "\u003e Ack\n\nIs prettier mandatory?\nIt failed to compile assets for some reason. (I haven\u0027t looked the root cause, yet)\nhttps://crrev.com/c/2265622",
+      "parentUuid": "a9d849e0_fb4eeec1",
+      "revId": "f8eeb90099c0a7ea0caf4906b3da3d8d05ce4703",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b530f549_12bad2c4",
         "filename": "appengine/swarming/ui2/.eslintrc.yml",
         "patchSetId": 3
