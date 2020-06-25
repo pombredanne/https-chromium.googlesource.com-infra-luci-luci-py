@@ -127,6 +127,24 @@
     },
     {
       "key": {
+        "uuid": "c4faba3d_114761ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-25T07:53:52Z",
+      "side": 1,
+      "message": "Looks some configs get conflicted other than the compile error. so I would have to learn how to use google style and prettier.\nLet me try prettier in another scope.",
+      "parentUuid": "6ce661f5_0073c4f1",
+      "revId": "f8eeb90099c0a7ea0caf4906b3da3d8d05ce4703",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b530f549_12bad2c4",
         "filename": "appengine/swarming/ui2/.eslintrc.yml",
         "patchSetId": 3
