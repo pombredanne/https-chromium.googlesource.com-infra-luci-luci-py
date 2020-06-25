@@ -45,6 +45,30 @@
       "revId": "54d65a29f2486365d1eed56268f6eba14023b6de",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4f3132b_c1cdaec5",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-25T03:26:00Z",
+      "side": 1,
+      "message": "Which \u0027this\u0027?\n\nAnd what is the meaning of \u0027-\u0027?",
+      "parentUuid": "edffbb68_a647a731",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 1
+      },
+      "revId": "54d65a29f2486365d1eed56268f6eba14023b6de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
