@@ -394,7 +394,7 @@ def load_and_run(in_file, swarming_server, is_grpc, cost_usd_hour, start,
       # task runner is always called with a specific versioned URL.
       remote = remote_client.createRemoteClient(
           swarming_server, headers_cb, os_utilities.get_hostname_short(),
-          work_dir, grpc_proxy)
+          work_dir)
       remote.initialize()
       remote.bot_id = task_details.bot_id
 
