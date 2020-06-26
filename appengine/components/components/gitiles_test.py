@@ -378,6 +378,22 @@ class GitilesTestCase(test_case.TestCase):
       gitiles.Location.parse_resolve('http://h/p/+/refs/heads/x/y')
     gitiles.get_refs.assert_called_with('h', 'p', 'refs/heads/x/')
 
+  def test_parse_resolve_branch_head(self):
+    self.mock(gitiles, 'get_refs', mock.Mock())
+    gitiles.get_refs.return_value = {
+      'refs/heads/master': {},
+      'refs/heads/a/b': {},
+    }
+    loc = gitiles.Location.parse_resolve('https://chromium.googlesource.com/chromium/src/+/refs/branch-heads/4183/infra/config/generated')
+    self.assertEqual(loc.treeish, 'refs/branch-heads/4183')
+    self.assertEqual(loc.path, '/infra/config/generated')
+    gitiles.get_refs.assert_called_with('h', 'p', 'refs/heads/a/')
+
+    gitiles.get_refs.return_value = {}
+    with self.assertRaises(gitiles.TreeishResolutionError):
+      gitiles.Location.parse_resolve('http://h/p/+/refs/heads/x/y')
+    gitiles.get_refs.assert_called_with('h', 'p', 'refs/heads/x/')
+
   def test_location_neq(self):
     loc1 = gitiles.Location(
         hostname='localhost', project='project',
