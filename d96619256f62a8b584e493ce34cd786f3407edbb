@@ -45,6 +45,54 @@
       "revId": "d96619256f62a8b584e493ce34cd786f3407edbb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b72e540e_c0b1d303",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1581,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-06-26T08:10:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2381650_74d11e2f",
+      "range": {
+        "startLine": 1581,
+        "startChar": 25,
+        "endLine": 1581,
+        "endChar": 31
+      },
+      "revId": "d96619256f62a8b584e493ce34cd786f3407edbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e68eb4a_2ca93556",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1581,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-06-26T08:10:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebcba3e6_fa20b80e",
+      "range": {
+        "startLine": 1581,
+        "startChar": 16,
+        "endLine": 1581,
+        "endChar": 23
+      },
+      "revId": "d96619256f62a8b584e493ce34cd786f3407edbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
