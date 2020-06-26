@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4da58df_7e953145",
+        "filename": "appengine/components/components/decorators.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-06-26T04:22:06Z",
+      "side": 1,
+      "message": "This doesn\u0027t look right? I think you want\n\n  all(isinstance(q, basestring) for q in queue_names)",
+      "range": {
+        "startLine": 45,
+        "startChar": 9,
+        "endLine": 45,
+        "endChar": 44
+      },
+      "revId": "65c79cdb177b22cd5337891ac69e5d0013e566f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
