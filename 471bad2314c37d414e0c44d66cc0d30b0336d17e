@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0b789f2_f2b39421",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-06-27T07:27:38Z",
+      "side": 1,
+      "message": "ref",
+      "range": {
+        "startLine": 17,
+        "startChar": 66,
+        "endLine": 17,
+        "endChar": 74
+      },
+      "revId": "471bad2314c37d414e0c44d66cc0d30b0336d17e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ae67b11_032b8501",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-06-27T07:27:38Z",
+      "side": 1,
+      "message": "Must not end wit \".git\"\n\n? otherwise the .git example below is not NOT OK",
+      "revId": "471bad2314c37d414e0c44d66cc0d30b0336d17e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6de3f247_ab458fac",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-06-27T07:27:38Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 50,
+        "startChar": 21,
+        "endLine": 50,
+        "endChar": 31
+      },
+      "revId": "471bad2314c37d414e0c44d66cc0d30b0336d17e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f2d86bd_887eac17",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-06-27T07:27:38Z",
+      "side": 1,
+      "message": "put it inside the oneof?",
+      "range": {
+        "startLine": 99,
+        "startChar": 2,
+        "endLine": 101,
+        "endChar": 40
+      },
+      "revId": "471bad2314c37d414e0c44d66cc0d30b0336d17e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
