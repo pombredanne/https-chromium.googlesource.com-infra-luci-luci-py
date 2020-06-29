@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c870cf97_6c8f59b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-29T02:12:47Z",
+      "side": 1,
+      "message": "Can you add a bug?\nhttps://crbug.com/1067403",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 8
+      },
+      "revId": "55e16fa4662ceb96454173924ba4d3efe24f7585",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24a2e62f_8131dcb2",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-29T02:12:47Z",
+      "side": 1,
+      "message": "Do we want to support only the \".../*\" case?\nIf so, please comment before \"if not cross\".\n\nWe also could use fnmatch for richer expression.\nhttps://docs.python.org/2.7/library/fnmatch.html#module-fnmatch",
+      "range": {
+        "startLine": 620,
+        "startChar": 4,
+        "endLine": 624,
+        "endChar": 67
+      },
+      "revId": "55e16fa4662ceb96454173924ba4d3efe24f7585",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
