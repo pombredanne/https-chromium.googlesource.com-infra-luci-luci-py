@@ -41,7 +41,7 @@ for more information about bot_config.py.
 
 from __future__ import print_function
 
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 import argparse
 import base64
@@ -1333,6 +1333,7 @@ def parse_args(args):
   # will print the correct help message.
   parser = create_option_parser()
   options, args = parser.parse_args(args)
+  options.cipd_enabled = True
   return (parser, options, args)
 
 
@@ -1373,7 +1374,7 @@ def main(args):
 
   # TODO(maruel): CIPD caches should be defined at an higher level here too, so
   # they can be cleaned the same way.
-  if use_go_isolated:
+  if use_go_isolated and not options.clean:
     isolate_cache = None
   else:
     isolate_cache = isolateserver.process_cache_options(options, trim=False)

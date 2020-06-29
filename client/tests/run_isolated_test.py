@@ -668,7 +668,6 @@ class RunIsolatedTest(RunIsolatedTestBase):
         '--no-log',
         '--cache',
         os.path.join(self.tempdir, 'isolated_cache'),
-        '--cipd-enabled',
         '--cipd-client-version',
         'git:wowza',
         '--cipd-server',
