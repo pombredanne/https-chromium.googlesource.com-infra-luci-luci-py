@@ -4,6 +4,8 @@
 
 """Prints stack trace on SIGUSR1 and starts interactive console on SIGUSR2."""
 
+from __future__ import unicode_literals
+
 import StringIO
 import logging
 import code
