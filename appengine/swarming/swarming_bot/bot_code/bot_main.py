@@ -687,13 +687,6 @@ def _run_isolated_flags(botobj):
       str(settings['caches']['isolated']['items']),
   ]
 
-  # Get the gRPC proxy from the config, but allow an environment variable to
-  # override.
-  grpc_proxy = get_config().get('isolate_grpc_proxy')
-  grpc_proxy = os.environ.get('ISOLATE_GRPC_PROXY', grpc_proxy)
-  if grpc_proxy:
-    logging.info('Isolate will use gRPC proxy %s', grpc_proxy)
-    args.extend(['--grpc-proxy', grpc_proxy])
   return args
 
 
@@ -796,33 +789,6 @@ def _run_manifest(botobj, manifest, start):
 
   # Get the server info to pass to the task runner so it can provide updates.
   url = botobj.remote.server
-  if not botobj.remote.is_grpc and 'host' in manifest:
-    # The URL in the manifest includes the version - eg not https://chromium-
-    # swarm-dev.appspot.com, but https://<some-version>-dot-chromiium-swarm-
-    # dev.appspot.com. That way, if a new server version becomes the default,
-    # old bots will continue to work with a server version that can manipulate
-    # the old data (the new server will only ever have to read it, which is
-    # much simpler) while new bots won't accidentally contact an old server
-    # which the GAE engine hasn't gotten around to updating yet.
-    #
-    # With a gRPC proxy, we could theoretically run into the same problem
-    # if we change the meaning of some data without changing the protos.
-    # However, if we *do* change the protos, we already need to make the
-    # change in a few steps:
-    #    1. Modify the Swarming server to accept the new data
-    #    2. Modify the protos and the proxy to accept the new data
-    #       in gRPC calls and translate it to "native" Swarming calls.
-    #    3. Update the bots to transmit the new protos.
-    # Throughout all this, the proto format itself irons out minor differences
-    # and additions. But because we deploy in three steps, the odds of a
-    # newer bot contacting an older server is very low.
-    #
-    # None of this applies if we don't actually update the protos but just
-    # change the semantics. If this becomes a significant problem, we could
-    # start transmitting the expected server version using gRPC metadata.
-    #    - aludwin, Nov 2016
-    url = manifest['host']
-
   task_dimensions = manifest['dimensions']
   task_result = {}
 
@@ -899,8 +865,6 @@ def _run_manifest(botobj, manifest, start):
         '--auth-params-file',
         auth_params_file,
     ]
-    if botobj.remote.is_grpc:
-      command.append('--is-grpc')
     # Flags for run_isolated.py are passed through by task_runner.py as-is
     # without interpretation.
     command.append('--')
@@ -1302,13 +1266,6 @@ def _bot_restart(botobj, message, filepath=None):
     return
 
   botobj.post_event('bot_shutdown', 'About to restart: %s' % message)
-
-  # Sleep a bit to make sure new bot process connects to a GAE instance with
-  # the fresh bot group config cache (it gets refreshed each second). This makes
-  # sure the bot doesn't accidentally pick up the old config after restarting
-  # and connecting to an instance with a stale cache.
-  if not botobj.remote.is_grpc:
-    time.sleep(2)
 
   # Don't forget to release the singleton before restarting itself.
   SINGLETON.release()
