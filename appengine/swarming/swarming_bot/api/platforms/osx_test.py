@@ -1,4 +1,4 @@
-#!/usr/bin/env vpython
+#!/usr/bin/env vpython3
 # Copyright 2019 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
@@ -7,6 +7,8 @@ import logging
 import mock
 import sys
 import unittest
+
+import six
 
 import test_env_platforms
 test_env_platforms.setup_test_env()
@@ -40,7 +42,7 @@ class TestOsx(unittest.TestCase):
     </dict>
     </plist>
     """)
-    return '\n'.join(content)
+    return six.b('\n'.join(content).strip())
 
   def mock_disk_info(self, disk_data):
     content = []
@@ -55,7 +57,7 @@ class TestOsx(unittest.TestCase):
     </dict>
     </plist>
     """)
-    return '\n'.join(content)
+    return six.b('\n'.join(content).strip())
 
   @mock.patch('subprocess.check_output')
   def test_get_ssd(self, mock_subprocess):
@@ -101,8 +103,7 @@ class TestOsx(unittest.TestCase):
     # Copied from actual output of 'system_profiler SPDisplaysDataType -xml' on
     # a Macmini8,1 with a Sonnet eGFX Breakaway Puck Radeon RX 560 attached to
     # Thunderbolt. Trimmed out irrelevant elements.
-    mock_subprocess.side_effect = [
-        """
+    plist = """
       <plist>
       <array>
         <dict>
@@ -133,8 +134,10 @@ class TestOsx(unittest.TestCase):
           </array>
         </dict>
       </array>
-      </plist>"""
-    ]
+      </plist>""".strip()
+    plist = six.b(plist)
+
+    mock_subprocess.side_effect = [plist]
 
     gpus = osx.get_gpu()
     self.assertEqual(([u'1002', u'1002:67ef', u'8086', u'8086:3e9b'],
