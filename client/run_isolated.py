@@ -41,7 +41,7 @@ for more information about bot_config.py.
 
 from __future__ import print_function
 
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 import argparse
 import base64
