@@ -2,17 +2,17 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-import 'modules/bot-page'
+import 'modules/bot-page';
 
 describe('bot-page', function() {
   // Instead of using import, we use require. Otherwise,
   // the concatenation trick we do doesn't play well with webpack, which would
   // leak dependencies (e.g. bot-list's 'column' function to task-list) and
   // try to import things multiple times.
-  const { $, $$ } = require('common-sk/modules/dom');
-  const { customMatchers, expectNoUnmatchedCalls, mockAppGETs } = require('modules/test_util');
-  const { fetchMock, MATCHED, UNMATCHED } = require('fetch-mock');
-  const { botDataMap, eventsMap, tasksMap } = require('modules/bot-page/test_data');
+  const {$, $$} = require('common-sk/modules/dom');
+  const {customMatchers, expectNoUnmatchedCalls, mockAppGETs} = require('modules/test_util');
+  const {fetchMock, MATCHED, UNMATCHED} = require('fetch-mock');
+  const {botDataMap, eventsMap, tasksMap} = require('modules/bot-page/test_data');
 
 
   const TEST_BOT_ID = 'example-gce-001';
@@ -78,7 +78,7 @@ describe('bot-page', function() {
     ele.addEventListener('busy-end', (e) => {
       if (!ran) {
         ran = true; // prevent multiple runs if the test makes the
-                    // app go busy (e.g. if it calls fetch).
+        // app go busy (e.g. if it calls fetch).
         callback();
       }
     });
@@ -112,7 +112,7 @@ describe('bot-page', function() {
   }
 
 
-//===============TESTS START====================================
+  // ===============TESTS START====================================
 
   describe('html structure', function() {
     it('contains swarming-app as its only child', function(done) {
@@ -157,18 +157,17 @@ describe('bot-page', function() {
           done();
         });
       });
-    }); //end describe('when not logged in')
+    }); // end describe('when not logged in')
 
     describe('when logged in as unauthorized user', function() {
-
       function notAuthorized() {
         // overwrite the default fetchMock behaviors to have everything return 403.
         fetchMock.get('/_ah/api/swarming/v1/server/details', 403,
-                      { overwriteRoutes: true });
+            {overwriteRoutes: true});
         fetchMock.get('/_ah/api/swarming/v1/server/permissions', {},
-                      { overwriteRoutes: true });
+            {overwriteRoutes: true});
         fetchMock.get('glob:/_ah/api/swarming/v1/bot/*', 403,
-                      { overwriteRoutes: true });
+            {overwriteRoutes: true});
       }
 
       beforeEach(notAuthorized);
@@ -194,7 +193,6 @@ describe('bot-page', function() {
     }); // end describe('when logged in as unauthorized user')
 
     describe('authorized user, but no bot id', function() {
-
       it('tells the user they should enter a bot id', function(done) {
         loggedInBotPage((ele) => {
           const loginMessage = $$('.id_buttons .message', ele);
@@ -420,10 +418,10 @@ describe('bot-page', function() {
           const cell = (r, c) => rows[r].children[c];
 
           expect(cell(2, 0)).toMatchTextContent(
-                'Perf-Win10-Clang-Golo-GPU-QuadroP400-x86_64-Rel...');
+              'Perf-Win10-Clang-Golo-GPU-QuadroP400-x86_64-Rel...');
 
           expect(cell(5, 0)).toMatchTextContent(
-                'Perf-Win10-Clang-Golo-GPU-QuadroP400-x86_64-Deb...');
+              'Perf-Win10-Clang-Golo-GPU-QuadroP400-x86_64-Deb...');
           expect(cell(5, 1)).toMatchTextContent('2'); // Total
           expect(cell(5, 2)).toMatchTextContent('0'); // Success
           expect(cell(5, 3)).toMatchTextContent('1'); // Failed
@@ -544,7 +542,6 @@ describe('bot-page', function() {
         });
       });
     }); // describe('dead machine provider bot')
-
   }); // end describe('html structure')
 
   describe('dynamic behavior', function() {
@@ -597,8 +594,8 @@ describe('bot-page', function() {
         expect(c[1].headers.authorization).toContain('Bearer ');
       });
 
-      calls = fetchMock.calls(MATCHED, 'POST');
-      expect(calls.length).toBe(0, 'no POSTs on bot-page');
+      const postCalls = fetchMock.calls(MATCHED, 'POST');
+      expect(postCalls.length).toBe(0, 'no POSTs on bot-page');
 
       expectNoUnmatchedCalls(fetchMock);
     }
@@ -606,7 +603,7 @@ describe('bot-page', function() {
     it('makes auth\'d API calls when a logged in user views landing page', function(done) {
       serveBot('running');
       loggedInBotPage((ele) => {
-        let calls = fetchMock.calls(MATCHED, 'GET');
+        const calls = fetchMock.calls(MATCHED, 'GET');
         expect(calls.length).toBe(2+3, '2 GETs from swarming-app, 3 from bot-page');
         // calls is an array of 2-length arrays with the first element
         // being the string of the url and the second element being
@@ -755,7 +752,7 @@ describe('bot-page', function() {
           // MATCHED calls are calls that we expect and specified in the
           // beforeEach at the top of this file.
           expectNoUnmatchedCalls(fetchMock);
-          let calls = fetchMock.calls(MATCHED, 'GET');
+          const calls = fetchMock.calls(MATCHED, 'GET');
           expect(calls.length).toBe(1);
 
           const url = calls[0][0];
@@ -795,7 +792,7 @@ describe('bot-page', function() {
           // MATCHED calls are calls that we expect and specified in the
           // beforeEach at the top of this file.
           expectNoUnmatchedCalls(fetchMock);
-          let calls = fetchMock.calls(MATCHED, 'GET');
+          const calls = fetchMock.calls(MATCHED, 'GET');
           expect(calls.length).toBe(1);
 
           const url = calls[0][0];
@@ -830,13 +827,12 @@ describe('bot-page', function() {
           // MATCHED calls are calls that we expect and specified in the
           // beforeEach at the top of this file.
           expectNoUnmatchedCalls(fetchMock);
-          let calls = fetchMock.calls(MATCHED, 'GET');
+          const calls = fetchMock.calls(MATCHED, 'GET');
           expect(calls.length).toBe(3);
 
           done();
         });
       });
     });
-
   }); // end describe('api calls')
 });
