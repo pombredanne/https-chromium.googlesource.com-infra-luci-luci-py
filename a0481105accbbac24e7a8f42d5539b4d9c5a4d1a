@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "932f5bed_05a7fb49",
+        "filename": "appengine/auth_service/PRESUBMIT.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-29T03:41:28Z",
+      "side": 1,
+      "message": "Maybe we want to rename again depends on how DEFAULT_BLACK_LIST is renamed.",
+      "revId": "a0481105accbbac24e7a8f42d5539b4d9c5a4d1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
