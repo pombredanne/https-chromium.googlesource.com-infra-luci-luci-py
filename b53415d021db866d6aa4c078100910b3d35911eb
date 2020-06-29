@@ -16,6 +16,24 @@
       "revId": "b53415d021db866d6aa4c078100910b3d35911eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17411e5e_4ad71346",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-29T03:04:55Z",
+      "side": 1,
+      "message": "I forgot to compile assets. pushed the code.",
+      "parentUuid": "623b8e8f_d6f5f06f",
+      "revId": "b53415d021db866d6aa4c078100910b3d35911eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
