@@ -70,6 +70,30 @@
       "revId": "54d2a35aa51f0a67722c340c04b933449530515e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43b8a795_2d8c2f20",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-29T04:29:04Z",
+      "side": 1,
+      "message": "I meant to say fine to enforce format here.\nor remove dependency to this target",
+      "parentUuid": "b326f1fe_230043b1",
+      "range": {
+        "startLine": 37,
+        "startChar": 61,
+        "endLine": 37,
+        "endChar": 67
+      },
+      "revId": "54d2a35aa51f0a67722c340c04b933449530515e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
