@@ -16,6 +16,24 @@
       "revId": "a0481105accbbac24e7a8f42d5539b4d9c5a4d1a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3009250d_e1304aac",
+        "filename": "appengine/auth_service/PRESUBMIT.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-29T04:23:43Z",
+      "side": 1,
+      "message": "That\u0027s true. will wait the changes on the default list and the RunPylint() arguments, then.",
+      "parentUuid": "932f5bed_05a7fb49",
+      "revId": "a0481105accbbac24e7a8f42d5539b4d9c5a4d1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
