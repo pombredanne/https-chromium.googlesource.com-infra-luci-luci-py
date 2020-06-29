@@ -46,6 +46,30 @@
       "revId": "aec209fd56183081f011f8bff6a3c65a524ec9fc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bde7264d_d5cb00ad",
+        "filename": "appengine/swarming/swarming_bot/signal_trace_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-29T03:17:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6219b73a_c6ff8223",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "aec209fd56183081f011f8bff6a3c65a524ec9fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
