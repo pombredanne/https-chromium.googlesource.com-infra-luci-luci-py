@@ -70,6 +70,30 @@
       "revId": "c00570b2fe0a266d3e99643cf50ad081a715d75f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cd4e9cf_c812a160",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-29T02:36:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09557807_d772c130",
+      "range": {
+        "startLine": 37,
+        "startChar": 1,
+        "endLine": 37,
+        "endChar": 2
+      },
+      "revId": "c00570b2fe0a266d3e99643cf50ad081a715d75f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
