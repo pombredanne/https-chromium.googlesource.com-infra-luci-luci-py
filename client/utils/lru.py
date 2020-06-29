@@ -28,7 +28,7 @@ class LRUDict(object):
 
     Can be substituted in individual LRUDict instances, especially for tests.
     """
-    return round(time.time())
+    return int(round(time.time()))
 
   def __init__(self):
     # Ordered key -> (value, timestamp) mapping,
@@ -68,6 +68,7 @@ class LRUDict(object):
       json_state = None
       with open(state_file, 'r') as f:
         json_state = f.read()
+        print('loaded', json_state)
         state = json.loads(json_state)
     except (IOError, ValueError) as e:
       raise ValueError(
