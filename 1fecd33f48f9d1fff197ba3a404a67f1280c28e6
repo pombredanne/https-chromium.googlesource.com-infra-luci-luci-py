@@ -16,6 +16,24 @@
       "revId": "1fecd33f48f9d1fff197ba3a404a67f1280c28e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a52ad8a2_fe618062",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-29T02:58:23Z",
+      "side": 1,
+      "message": "I sorted the imports using clang-format. (eslint --fix doesn\u0027t sort)\nPlease check if the order is what you expected.\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/2259894/10/appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+      "parentUuid": "33ff1413_1ce684bc",
+      "revId": "1fecd33f48f9d1fff197ba3a404a67f1280c28e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
