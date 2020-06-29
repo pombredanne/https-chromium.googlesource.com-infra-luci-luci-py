@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8f7e547_745f9b71",
+        "filename": "appengine/swarming/swarming_bot/signal_trace_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-29T03:06:59Z",
+      "side": 1,
+      "message": "Is this file already python3 compatible?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "aec209fd56183081f011f8bff6a3c65a524ec9fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
