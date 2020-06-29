@@ -1337,7 +1337,7 @@ def parse_args(args):
 
 
 def _calc_named_cache_hint(named_cache, named_caches):
-  """Returns the expected size of the missing named caches."""
+  """Returns the expected size of the missing named caches ha."""
   present = named_cache.available
   size = 0
   for name, _, hint in named_caches:
