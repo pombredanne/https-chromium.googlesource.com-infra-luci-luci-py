@@ -94,6 +94,30 @@
       "revId": "54d2a35aa51f0a67722c340c04b933449530515e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a759d6b_01b7000c",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-29T05:15:14Z",
+      "side": 1,
+      "message": "\u003e I meant to say fine to enforce format here.\n\nI see.\n\u0027eslint --fix\u0027 doesn\u0027t fix all errors. And It will always fail unless we fix all of them.\n\nI removed the dependency from \u0027make release.",
+      "parentUuid": "43b8a795_2d8c2f20",
+      "range": {
+        "startLine": 37,
+        "startChar": 61,
+        "endLine": 37,
+        "endChar": 67
+      },
+      "revId": "54d2a35aa51f0a67722c340c04b933449530515e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
