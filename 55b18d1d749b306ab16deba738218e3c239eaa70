@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c21130d8_9619b90d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-30T02:17:21Z",
+      "side": 1,
+      "message": "I don\u0027t know why, but \u0027git cl format\u0027 made this indent.",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 24
+      },
+      "revId": "55b18d1d749b306ab16deba738218e3c239eaa70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}

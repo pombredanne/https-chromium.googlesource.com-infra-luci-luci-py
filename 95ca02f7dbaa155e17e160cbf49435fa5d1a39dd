@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "9f2c938b_d01d1756",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-06-30T02:17:21Z",
+      "side": 1,
+      "message": "I see.\nfixed to use encode() to work with textwrap.dedent().",
+      "parentUuid": "77ad7a13_16a103fc",
+      "range": {
+        "startLine": 51,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 16
+      },
+      "revId": "95ca02f7dbaa155e17e160cbf49435fa5d1a39dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "00eca75e_1eb2341e",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
         "patchSetId": 7
