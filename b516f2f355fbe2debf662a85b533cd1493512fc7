@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6d9431a9_4092d7c3",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_auth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-30T12:38:26Z",
+      "side": 1,
+      "message": "sorry, this seems not necessary.\nI only needed to change bot.py.",
+      "parentUuid": "97458fb3_d18c7833",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 42
+      },
+      "revId": "b516f2f355fbe2debf662a85b533cd1493512fc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c2c937c0_7df21140",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 5
