@@ -13,10 +13,10 @@ current version of the swarming bot code.
 """
 
 import hashlib
+import io
 import json
 import logging
 import os
-import StringIO
 import zipfile
 
 
@@ -451,7 +451,7 @@ def get_swarming_bot_zip(
     Tuple(str being the zipped file's content, bot version (SHA256) it
     represents).
   """
-  zip_memory_file = StringIO.StringIO()
+  zip_memory_file = io.BytesIO()
   h = hashlib.sha256()
   with zipfile.ZipFile(zip_memory_file, 'w', zipfile.ZIP_DEFLATED) as zip_file:
     for name, content in yield_swarming_bot_files(
@@ -469,7 +469,6 @@ def get_swarming_bot_zip(
       else:
         zinfo.external_attr = 0o600 << 16     # ?rw-------
       zip_file.writestr(zinfo, content)
-
       h.update(str(len(name)))
       h.update(name)
       h.update(str(len(content)))
