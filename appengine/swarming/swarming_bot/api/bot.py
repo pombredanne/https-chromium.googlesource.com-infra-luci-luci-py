@@ -14,6 +14,8 @@ import sys
 import threading
 import time
 
+sys.path.append(os.path.dirname(__file__))
+
 import os_utilities
 
 # Method could be a function - pylint: disable=R0201

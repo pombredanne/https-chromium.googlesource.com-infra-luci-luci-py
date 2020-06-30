@@ -5,12 +5,16 @@
 import collections
 import contextlib
 import logging
+import os
+import sys
 import threading
 import time
 
 import six
 
 from utils import auth_server
+
+sys.path.append(os.path.dirname(__file__))
 
 import file_reader
 import remote_client
