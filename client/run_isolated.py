@@ -41,7 +41,7 @@ for more information about bot_config.py.
 
 from __future__ import print_function
 
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 import argparse
 import base64
@@ -161,6 +161,9 @@ for more information.
 # 3 weeks
 MAX_AGE_SECS = 21*24*60*60
 
+# run_isolated_test.py has mocked out Popen, making the real CIPD service
+# completely unusable. Very unfortunate workaround.
+_DISABLE_GO_ISOLATED_FOR_TESTS = False
 
 TaskData = collections.namedtuple(
     'TaskData',
@@ -1048,6 +1051,11 @@ def _install_packages(run_dir, cipd_cache_dir, client, packages):
   return package_pins
 
 
+def _install_isolated_cipd_package(isolated_dir, cipd_cache_dir, client):
+  _install_packages(isolated_dir, cipd_cache_dir, client,
+                    [('', ISOLATED_PACKAGE, ISOLATED_REVISION)])
+
+
 @contextlib.contextmanager
 def install_client_and_packages(run_dir, packages, service_url,
                                 client_package_name, client_version, cache_dir,
@@ -1107,8 +1115,9 @@ def install_client_and_packages(run_dir, packages, service_url,
                                        packages)
 
     # Install isolated client to |isolated_dir|.
-    _install_packages(isolated_dir, cipd_cache_dir, client,
-                      [('', ISOLATED_PACKAGE, ISOLATED_REVISION)])
+    _install_isolated_cipd_package(isolated_dir, cipd_cache_dir, client)
+    # _install_packages(isolated_dir, cipd_cache_dir, client,
+    #                   [('', ISOLATED_PACKAGE, ISOLATED_REVISION)])
 
     file_path.make_tree_files_read_only(run_dir)
 
@@ -1333,6 +1342,7 @@ def parse_args(args):
   # will print the correct help message.
   parser = create_option_parser()
   options, args = parser.parse_args(args)
+  options.cipd_enabled = True
   return (parser, options, args)
 
 
@@ -1369,7 +1379,7 @@ def main(args):
     named_cache = process_named_cache_options(parser, options)
 
   # TODO(crbug.com/932396): Remove this.
-  use_go_isolated = options.cipd_enabled
+  use_go_isolated = options.cipd_enabled and not _DISABLE_GO_ISOLATED_FOR_TESTS
 
   # TODO(maruel): CIPD caches should be defined at an higher level here too, so
   # they can be cleaned the same way.

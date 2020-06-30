@@ -249,8 +249,6 @@ class TestTaskRunnerBase(auto_stub.TestCase):
         u'io_timeout': False,
         u'isolated_stats': {
             u'download': {
-                u'initial_number_items': 0,
-                u'initial_size': 0,
             },
         },
         u'output': 'hi\n',
@@ -280,6 +278,15 @@ class TestTaskRunnerBase(auto_stub.TestCase):
         v = actual[u'isolated_stats'][key].pop(u'duration')
         self.assertLessEqual(value.pop(u'duration'), v)
     # Rest is explicit comparison.
+    for k in (
+        u'cipd_pins',
+        u'cipd_stats',
+    ):
+      try:
+        actual.pop(k)
+      except KeyError:
+        pass
+
     self.assertEqual(expected, actual)
     return out
 
@@ -512,10 +519,8 @@ class TestTaskRunner(TestTaskRunnerBase):
         isolated_stats={
             u'download': {
                 u'duration': 0.,
-                u'initial_number_items': 0,
-                u'initial_size': 0,
-                u'items_cold': u'eJzjDmbawggAAvcBFg==',
-                u'items_hot': u'',
+                u'items_cold': u'eJziDmYCBAAA//8AzABh',
+                u'items_hot': None,
             },
             u'upload': {
                 u'duration': 0.,
@@ -708,6 +713,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
   # TODO(maruel): Calculate this value automatically through iteration? This is
   # really bad and prone to flakiness.
   SHORT_TIME_OUT = 1.
+  SHORT_IO_TIME_OUT = 5.
 
   # Here's a simple script that handles signals properly. Sadly SIGBREAK is not
   # defined on posix.
@@ -836,7 +842,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
       sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
   def test_io(self):
     task_details = get_task_details(
-        self.SCRIPT_HANG, io_timeout=self.SHORT_TIME_OUT)
+        self.SCRIPT_HANG, io_timeout=self.SHORT_IO_TIME_OUT)
     # Actually 0xc000013a
     exit_code = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
     expected = {
@@ -871,7 +877,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
       sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
   def test_io_signal(self):
     task_details = get_task_details(
-        self.SCRIPT_SIGNAL, io_timeout=self.SHORT_TIME_OUT)
+        self.SCRIPT_SIGNAL, io_timeout=self.SHORT_IO_TIME_OUT)
     # Returns 0 because the process cleaned up itself.
     expected = {
         u'exit_code': 0,
@@ -911,7 +917,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
   def test_io_no_grace(self):
     task_details = get_task_details(
         self.SCRIPT_HANG,
-        io_timeout=self.SHORT_TIME_OUT,
+        io_timeout=self.SHORT_IO_TIME_OUT,
         grace_period=self.SHORT_TIME_OUT)
     exit_code = -1 if sys.platform == 'win32' else -signal.SIGTERM
     expected = {
@@ -950,7 +956,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
   def test_io_signal_no_grace(self):
     task_details = get_task_details(
         self.SCRIPT_SIGNAL_HANG,
-        io_timeout=self.SHORT_TIME_OUT,
+        io_timeout=self.SHORT_IO_TIME_OUT,
         grace_period=self.SHORT_TIME_OUT)
     exit_code = -1 if sys.platform == 'win32' else -signal.SIGKILL
     expected = {
@@ -1020,7 +1026,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         #
         # This could be achieved by mocking time, and using a text file as a
         # signal.
-        io_timeout=1,
+        io_timeout=self.SHORT_IO_TIME_OUT,
         grace_period=60.)
     # Actually 0xc000013a
     exit_code = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
@@ -1052,10 +1058,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
           pass
     self.assertEqual(expected, actual)
     # This is cheezy, this depends on the compiled isolated file.
-    if sys.platform == 'win32':
-      items_cold = u'eJybwMjWzigOAAUxATc='
-    else:
-      items_cold = u'eJybwMjWzigGAAUwATY='
+    items_cold = u'eJyawMg2lxEQAAD//wQmATY='
     self.expectTask(
         io_timeout=True,
         exit_code=exit_code,
@@ -1063,10 +1066,8 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         isolated_stats={
             u'download': {
                 u'duration': 0.,
-                u'initial_number_items': 0,
-                u'initial_size': 0,
                 u'items_cold': items_cold,
-                u'items_hot': u'',
+                u'items_hot': None,
             },
             u'upload': {
                 u'duration': 0.,
@@ -1162,7 +1163,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         '-cacert.'
         'pem',
         'w',
-        'isolated_cache_party',
         'logs',
         'c',
     }
