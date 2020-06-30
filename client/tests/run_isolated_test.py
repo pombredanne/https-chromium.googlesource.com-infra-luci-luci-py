@@ -137,6 +137,9 @@ class RunIsolatedTestBase(auto_stub.TestCase):
         logging.Logger('unittest'))
 
     self._cipd_server = None  # initialized lazily
+    run_isolated._DISABLE_GO_ISOLATED_FOR_TESTS = True
+    self.mock(run_isolated,
+              '_install_isolated_cipd_package', lambda x, y, z: None)
 
   def tearDown(self):
     # Remove mocks.
@@ -626,7 +629,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     ret = run_isolated.main(cmd)
     self.assertEqual(0, ret)
 
-    self.assertEqual(3, len(self.popen_calls))
+    self.assertEqual(2, len(self.popen_calls))
 
     # Test cipd-ensure command for installing packages.
     cipd_ensure_cmd, _ = self.popen_calls[0]
@@ -654,7 +657,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     self.assertTrue(fs.isfile(client_binary_file))
 
     # Test echo call.
-    echo_cmd, _ = self.popen_calls[2]
+    echo_cmd, _ = self.popen_calls[1]
     self.assertTrue(echo_cmd[0].endswith(
         os.path.sep + 'bin' + os.path.sep + 'echo' + cipd.EXECUTABLE_SUFFIX),
         echo_cmd[0])
@@ -668,7 +671,6 @@ class RunIsolatedTest(RunIsolatedTestBase):
         '--no-log',
         '--cache',
         os.path.join(self.tempdir, 'isolated_cache'),
-        '--cipd-enabled',
         '--cipd-client-version',
         'git:wowza',
         '--cipd-server',
@@ -728,25 +730,22 @@ class RunIsolatedTest(RunIsolatedTestBase):
         os.path.join(cipd_cache, 'bin', 'cipd' + cipd.EXECUTABLE_SUFFIX))
     self.assertTrue(fs.isfile(client_binary_link))
 
-    env = self.popen_calls[1][1].pop('env')
+    env = self.popen_calls[0][1].pop('env')
     exec_path = self.ir_dir(u'a', 'bin', 'echo')
     if sys.platform == 'win32':
       exec_path += '.exe'
-    self.assertEqual(
-        [
-            (
-                [exec_path, 'hello', 'world'],
-                {
-                    'cwd': self.ir_dir('a'),
-                    'detached': True,
-                    'close_fds': True,
-                    'lower_priority': False,
-                    'containment': subprocess42.Containment(),
-                },
-            ),
-        ],
-        # Ignore `cipd ensure` for isolated client here.
-        self.popen_calls[1:])
+    self.assertEqual([
+        (
+            [exec_path, 'hello', 'world'],
+            {
+                'cwd': self.ir_dir('a'),
+                'detached': True,
+                'close_fds': True,
+                'lower_priority': False,
+                'containment': subprocess42.Containment(),
+            },
+        ),
+    ], self.popen_calls[0:])
 
     # Directory with cipd client is in front of PATH.
     path = env['PATH'].split(os.pathsep)
@@ -1478,6 +1477,10 @@ class RunIsolatedJsonTest(RunIsolatedTestBase):
         self2._path = args[-1]
         self2.returncode = None
 
+      def yield_any_line(self2, timeout=None):
+        # self.assertEqual(0.1, timeout)
+        return ()
+
       def wait(self2, timeout=None):
         self.assertEqual(None, timeout)
         self2.returncode = 0
@@ -1580,6 +1583,8 @@ class RunIsolatedJsonTest(RunIsolatedTestBase):
         u'version': 5,
     }
     actual = tools.read_json(out)
+    actual.pop(u'cipd_pins')
+    actual[u'stats'].pop(u'cipd')
     # duration can be exactly 0 due to low timer resolution, especially but not
     # exclusively on Windows.
     self.assertLessEqual(0, actual.pop(u'duration'))
