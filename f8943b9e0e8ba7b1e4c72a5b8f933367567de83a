@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f12f305_41a41c1d",
+        "filename": "appengine/swarming/server/resultdb.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-06-30T05:39:12Z",
+      "side": 0,
+      "message": "the callsite should have been updated too.\ni see task_scheduler.py passes realm unconditionally, but it does not check that realm is initialized.\nit must reject the request with HTTP 400 if someone is trying to create a task with integration enabled, but without realm.\notherwise L38 will fail with an exception",
+      "range": {
+        "startLine": 20,
+        "startChar": 46,
+        "endLine": 20,
+        "endChar": 51
+      },
+      "revId": "f8943b9e0e8ba7b1e4c72a5b8f933367567de83a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
