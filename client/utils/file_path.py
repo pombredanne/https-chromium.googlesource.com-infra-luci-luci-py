@@ -42,9 +42,6 @@ if sys.platform == 'win32':
   import locale
   from ctypes import wintypes  # pylint: disable=ungrouped-imports
   from ctypes.wintypes import windll  # pylint: disable=ungrouped-imports
-elif sys.platform == 'darwin':
-  import Carbon.File
-  import MacOS
 
 
 if sys.platform == 'win32':
@@ -574,6 +571,8 @@ elif sys.platform == 'darwin':
 
   def _native_case(p):
     """Gets the native path case. Warning: this function resolves symlinks."""
+    import Carbon.File
+    import MacOS
     try:
       rel_ref, _ = Carbon.File.FSPathMakeRef(p.encode('utf-8'))
       # The OSX underlying code uses NFD but python strings are in NFC. This
