@@ -14,5 +14,6 @@ BOT_DIR = os.path.dirname(
 def setup_test_env():
   """Sets up the environment for bot tests."""
   sys.path.insert(0, BOT_DIR)
+  sys.path.insert(0, os.path.join(BOT_DIR, 'api'))
   import test_env_bot
   test_env_bot.setup_test_env()
