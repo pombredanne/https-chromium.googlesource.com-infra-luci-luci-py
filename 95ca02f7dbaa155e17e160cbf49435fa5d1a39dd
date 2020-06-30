@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a57b3fb_f722f5f4",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-30T01:32:18Z",
+      "side": 1,
+      "message": "normal b literal doesn\u0027t work?",
+      "range": {
+        "startLine": 51,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 16
+      },
+      "revId": "95ca02f7dbaa155e17e160cbf49435fa5d1a39dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00eca75e_1eb2341e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-30T01:32:18Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "95ca02f7dbaa155e17e160cbf49435fa5d1a39dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e742a57_d31e3818",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-30T01:32:18Z",
+      "side": 1,
+      "message": "use\nhttps://docs.python.org/2.7/library/textwrap.html#textwrap.dedent\n?",
+      "revId": "95ca02f7dbaa155e17e160cbf49435fa5d1a39dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b34826e_470f2d16",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-30T01:32:18Z",
+      "side": 1,
+      "message": "why not use single b prefix?",
+      "range": {
+        "startLine": 141,
+        "startChar": 12,
+        "endLine": 141,
+        "endChar": 17
+      },
+      "revId": "95ca02f7dbaa155e17e160cbf49435fa5d1a39dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
