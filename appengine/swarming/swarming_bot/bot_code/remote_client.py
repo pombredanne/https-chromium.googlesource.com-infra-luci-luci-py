@@ -8,6 +8,7 @@ import datetime
 import hashlib
 import logging
 import os
+import sys
 import threading
 import time
 import traceback
@@ -15,6 +16,8 @@ import traceback
 from six.moves import urllib
 
 from utils import net
+
+sys.path.append(os.path.dirname(__file__))
 
 from remote_client_errors import BotCodeError
 from remote_client_errors import InitializationError
