@@ -93,6 +93,30 @@
       "revId": "aaf522133753e82e69394432889f5aa6c8126d0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "00c7a680_89785385",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-30T01:25:32Z",
+      "side": 1,
+      "message": "Yes, auth_service checks each individual component compiles as a standalone regexp which makes it safe to combine them.",
+      "parentUuid": "bb2ce3cc_0bf41dc8",
+      "range": {
+        "startLine": 454,
+        "startChar": 6,
+        "endLine": 455,
+        "endChar": 63
+      },
+      "revId": "aaf522133753e82e69394432889f5aa6c8126d0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
