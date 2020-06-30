@@ -22,6 +22,30 @@
       "revId": "288803faaecf33eab9695a78e007a9588ebfa9c5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "896e1d1d_1d842ea1",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-30T01:32:23Z",
+      "side": 1,
+      "message": "`internal` is already used for this in protos, configs and go code.",
+      "parentUuid": "176e67e0_8e403c8e",
+      "range": {
+        "startLine": 145,
+        "startChar": 12,
+        "endLine": 145,
+        "endChar": 30
+      },
+      "revId": "288803faaecf33eab9695a78e007a9588ebfa9c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
