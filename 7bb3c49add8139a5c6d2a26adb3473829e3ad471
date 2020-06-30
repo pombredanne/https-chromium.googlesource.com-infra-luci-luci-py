@@ -16,6 +16,24 @@
       "revId": "7bb3c49add8139a5c6d2a26adb3473829e3ad471",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a77b2cad_7ea3d42e",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-06-30T02:27:56Z",
+      "side": 1,
+      "message": "Yes, if the target service is recognized as a part of the same LUCI deployment per e.g. https://chrome-internal.googlesource.com/infradata/config/+/refs/heads/master/configs/chrome-infra-auth/security.cfg",
+      "parentUuid": "a531fd44_fceef250",
+      "revId": "7bb3c49add8139a5c6d2a26adb3473829e3ad471",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
