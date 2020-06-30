@@ -17,7 +17,7 @@ from server import config
 
 
 @ndb.tasklet
-def create_invocation_async(task_run_id, realm=None):
+def create_invocation_async(task_run_id, realm):
   """This is wrapper for CreateInvocation API.
 
   Returns:
@@ -25,10 +25,8 @@ def create_invocation_async(task_run_id, realm=None):
   """
   hostname = app_identity.get_default_version_hostname()
   response_headers = {}
-  if realm:
-    project_id = realm.split(':')[0]
-  else:
-    project_id = None
+  project_id = realm.split(':')[0]
+
   yield _call_resultdb_recorder_api_async(
       'CreateInvocation', {
           'requestId': str(uuid.uuid4()),
