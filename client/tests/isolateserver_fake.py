@@ -144,7 +144,7 @@ class FakeIsolateServerHandler(httpserver.Handler):
         })
         return
 
-      if not self.server.store_hash_instead:
+      if data and not self.server.store_hash_instead:
         data = base64.b64encode(data)
 
       self.send_json({
@@ -205,9 +205,9 @@ class FakeIsolateServer(httpserver.Server):
     self._server.contents.setdefault(namespace, {})[h] = zlib.compress(content)
     return h
 
-  def add_content(self, namespace, content):
+  def add_content(self, namespace, filename, content):
     assert not self._server.store_hash_instead
     h = hash_content(content)
-    logging.info('add_content(%s, %s)', namespace, h)
+    logging.info('add_content(%s, file=%s, hash=%s)', namespace, filename, h)
     self._server.contents.setdefault(namespace, {})[h] = content
     return h

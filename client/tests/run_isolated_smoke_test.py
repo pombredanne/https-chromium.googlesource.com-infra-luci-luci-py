@@ -150,15 +150,6 @@ CONTENTS['manifest1.isolated'] = json.dumps(
     {'files': {'file1.txt': file_meta('file1.txt')}})
 
 
-CONTENTS['manifest2.isolated'] = json.dumps(
-    {
-      'files': {'file2.txt': file_meta('file2.txt')},
-      'includes': [
-        isolateserver_fake.hash_content(CONTENTS['manifest1.isolated']),
-      ],
-    })
-
-
 CONTENTS['tar_archive.isolated'] = json.dumps(
     {
       'command': ['python', 'archive_files.py'],
@@ -194,19 +185,18 @@ CONTENTS['repeated_files.isolated'] = json.dumps(
     })
 
 
-CONTENTS['check_files.isolated'] = json.dumps(
-    {
-      'command': ['python', 'check_files.py'],
-      'files': {
+CONTENTS['check_files.isolated'] = json.dumps({
+    'command': ['python', 'check_files.py'],
+    'files': {
         'check_files.py': file_meta('check_files.py'),
         # Mapping another file.
         'file2.txt': file_meta('file3.txt'),
-      },
-      'includes': [
+    },
+    'includes': [
         isolateserver_fake.hash_content(CONTENTS[i])
-        for i in ('manifest2.isolated', 'repeated_files.isolated')
-      ]
-    })
+        for i in ('repeated_files.isolated',)
+    ]
+})
 
 
 def list_files_tree(directory):
@@ -279,12 +269,13 @@ class RunIsolatedTest(unittest.TestCase):
 
   def _store_isolated(self, data):
     """Stores an isolated file and returns its hash."""
-    return self._isolated_server.add_content(
-        'default', json.dumps(data, sort_keys=True))
+    return self._isolated_server.add_content('default', '<unnamed>',
+                                             json.dumps(data, sort_keys=True))
 
   def _store(self, filename):
     """Stores a test data file in the table and returns its hash."""
-    return self._isolated_server.add_content('default', CONTENTS[filename])
+    return self._isolated_server.add_content('default', filename,
+                                             CONTENTS[filename])
 
   def _cmd_args(self, hash_value):
     """Generates the standard arguments used with |hash_value| as the hash.
@@ -325,7 +316,6 @@ class RunIsolatedTest(unittest.TestCase):
     isolated_hash = self._store('repeated_files.isolated')
     expected = [
       'state.json',
-      isolated_hash,
       self._store('file1.txt'),
       self._store('repeated_files.py'),
     ]
@@ -343,7 +333,6 @@ class RunIsolatedTest(unittest.TestCase):
     isolated_hash = self._store('max_path.isolated')
     expected = [
       'state.json',
-      isolated_hash,
       self._store('file1.txt'),
       self._store('max_path.py'),
     ]
@@ -356,7 +345,7 @@ class RunIsolatedTest(unittest.TestCase):
 
   def test_isolated_fail_empty(self):
     isolated_hash = self._store_isolated({})
-    expected = ['state.json', isolated_hash]
+    expected = []
     out, err, returncode = self._run(self._cmd_args(isolated_hash))
     self.assertEqual('', out)
     self.assertIn(
@@ -375,17 +364,14 @@ class RunIsolatedTest(unittest.TestCase):
     isolated_hash = self._store('check_files.isolated')
     expected = [
       'state.json',
-      isolated_hash,
       self._store('check_files.py'),
       self._store('file1.txt'),
       self._store('file3.txt'),
-      # Maps file1.txt.
-      self._store('manifest1.isolated'),
-      # References manifest1.isolated. Maps file2.txt but it is overridden.
-      self._store('manifest2.isolated'),
       self._store('repeated_files.py'),
-      self._store('repeated_files.isolated'),
     ]
+    # Maps file1.txt.
+    self._store('manifest1.isolated')
+    self._store('repeated_files.isolated')
     out, err, returncode = self._run(self._cmd_args(isolated_hash))
     self.assertEqual('', err)
     self.assertEqual('Success\n', out)
@@ -398,7 +384,6 @@ class RunIsolatedTest(unittest.TestCase):
     isolated_hash = self._store('tar_archive.isolated')
     expected = [
       'state.json',
-      isolated_hash,
       self._store('tar_archive'),
       self._store('archive_files.py'),
     ]
@@ -423,8 +408,7 @@ class RunIsolatedTest(unittest.TestCase):
         # The reason for 0100666 on Windows is that the file node had to be
         # modified to delete the hardlinked node. The read only bit is reset on
         # load.
-        six.text_type(file1_hash): (0o100400, 0o100400, 0o100444),
-        six.text_type(isolated_hash): (0o100400, 0o100400, 0o100444),
+        six.text_type(file1_hash): (0o100644, 0o100644, 0o100444),
     }
     self.assertTreeModes(self._isolated_cache_dir, expected)
 
@@ -438,14 +422,19 @@ class RunIsolatedTest(unittest.TestCase):
     # Ensure that the cache has an invalid file.
     self.assertNotEqual(CONTENTS['file1.txt'], read_content(cached_file_path))
 
+    out, err, returncode = self._run([
+        '--clean',
+        '--cache',
+        self._isolated_cache_dir,
+    ])
+    self.assertEqual(0, returncode, (out, err, returncode))
     # Rerun the test and make sure the cache contains the right file afterwards.
     out, err, returncode = self._run(self._cmd_args(isolated_hash))
     self.assertEqual(0, returncode, (out, err, returncode))
     expected = {
-        u'.': (0o40707, 0o40707, 0o40777),
-        u'state.json': (0o100606, 0o100606, 0o100666),
-        six.text_type(file1_hash): (0o100400, 0o100400, 0o100444),
-        six.text_type(isolated_hash): (0o100400, 0o100400, 0o100444),
+        u'.': (0o40700, 0o40700, 0o40777),
+        u'state.json': (0o100600, 0o100600, 0o100666),
+        six.text_type(file1_hash): (0o100644, 0o100644, 0o100444),
     }
     self.assertTreeModes(self._isolated_cache_dir, expected)
     return cached_file_path
@@ -455,6 +444,10 @@ class RunIsolatedTest(unittest.TestCase):
     # fetched again. This test case also check for file modes.
     cached_file_path = self._test_corruption_common(
         CONTENTS['file1.txt'] + ' now invalid size')
+
+    # import time
+    # while True:
+    #       time.sleep(1)
     self.assertEqual(CONTENTS['file1.txt'], read_content(cached_file_path))
 
   def test_isolated_corrupted_cache_entry_same_size(self):
@@ -462,12 +455,13 @@ class RunIsolatedTest(unittest.TestCase):
     # detected property.
     cached_file_path = self._test_corruption_common(
         CONTENTS['file1.txt'][:-1] + ' ')
-    # TODO(maruel): This corruption is NOT detected.
-    # This needs to be fixed.
-    self.assertNotEqual(CONTENTS['file1.txt'], read_content(cached_file_path))
+    self.assertEqual(CONTENTS['file1.txt'], read_content(cached_file_path))
 
   def test_minimal_lower_priority(self):
-    cmd = ['--lower-priority', '--raw-cmd', '--', sys.executable, '-c']
+    cmd = [
+        '--lower-priority', '--raw-cmd', '--root-dir', self.tempdir, '--',
+        sys.executable, '-c'
+    ]
     if sys.platform == 'win32':
       cmd.append(
           'import ctypes,sys; v=ctypes.windll.kernel32.GetPriorityClass(-1);'
@@ -487,7 +481,7 @@ class RunIsolatedTest(unittest.TestCase):
 
   def test_limit_processes(self):
     # Execution fails because it tries to run a second process.
-    cmd = ['--limit-processes', '1', '--raw-cmd']
+    cmd = ['--limit-processes', '1', '--raw-cmd', '--root-dir', self.tempdir]
     if sys.platform == 'win32':
       cmd.extend(('--containment-type', 'JOB_OBJECT'))
     cmd.extend(('--', sys.executable, '-c'))
@@ -517,12 +511,9 @@ class RunIsolatedTest(unittest.TestCase):
     # means that it could get rounded *down* and match the value of now.
     now = time.time() - 2
     cmd = [
-        '--named-cache-root', self._named_cache_dir,
-        '--named-cache', 'cache1', 'a', '100',
-        '--raw-cmd',
-        '--',
-        sys.executable,
-        '-c',
+        '--named-cache-root', self._named_cache_dir, '--named-cache', 'cache1',
+        'a', '100', '--raw-cmd', '--root-dir', self.tempdir, '--',
+        sys.executable, '-c',
         'open("a/hello","wb").write("world");print("Success")'
     ]
     out, err, returncode = self._run(cmd)
