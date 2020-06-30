@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "93acc46d_8d45f90f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-30T15:38:07Z",
+      "side": 1,
+      "message": "Ah, OK.\nBut leave TODO to remove this?",
+      "parentUuid": "fa80e3ee_4b85dfc6",
+      "revId": "29e11be3c215a905fc4da94e74a41df8454c2f9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f5da7ac9_1b6702bb",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 2
