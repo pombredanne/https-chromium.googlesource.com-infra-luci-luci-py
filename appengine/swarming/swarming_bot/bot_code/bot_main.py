@@ -37,17 +37,19 @@ import traceback
 import types
 import zipfile
 
+import six
+
 # Import _strptime before threaded code. datetime.datetime.strptime is
 # threadsafe except for the initial import of the _strptime module.
 # See https://bugs.python.org/issue7980.
 import _strptime  # pylint: disable=unused-import
 
-import bot_auth
-import common
-import file_refresher
-import remote_client
-import remote_client_errors
-import singleton
+from . import bot_auth
+from . import common
+from . import file_refresher
+from . import remote_client
+from . import remote_client_errors
+from . import singleton
 from api import bot
 from api import os_utilities
 from api import platforms
@@ -75,7 +77,7 @@ _ERROR_HANDLER_WAS_REGISTERED = False
 #
 # Note: this more or less requires the bot to be in a path without non-ASCII
 # characters.
-THIS_FILE = unicode(os.path.abspath(zip_package.get_main_script_path()))
+THIS_FILE = six.ensure_text(os.path.abspath(zip_package.get_main_script_path()))
 THIS_DIR = os.path.dirname(THIS_FILE)
 
 
