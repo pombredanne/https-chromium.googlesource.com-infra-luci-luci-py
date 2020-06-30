@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4fbfb018_10955ff2",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1003211
+      },
+      "writtenOn": "2020-06-30T07:26:28Z",
+      "side": 1,
+      "message": "Prefer logging.warning (as below).",
+      "range": {
+        "startLine": 362,
+        "startChar": 12,
+        "endLine": 362,
+        "endChar": 16
+      },
+      "revId": "e5ee5a1429460c5a9e8525469e48945c5e0a96d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
