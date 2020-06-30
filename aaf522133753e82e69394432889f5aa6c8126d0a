@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a239bc60_3882a6bf",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-06-30T01:22:11Z",
+      "side": 1,
+      "message": "bleh.",
+      "parentUuid": "595f57b7_1c256924",
+      "range": {
+        "startLine": 370,
+        "startChar": 6,
+        "endLine": 370,
+        "endChar": 58
+      },
+      "revId": "aaf522133753e82e69394432889f5aa6c8126d0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fdec26c1_0bf6b237",
         "filename": "appengine/components/components/auth/api.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2020-06-30T01:05:20Z",
       "side": 1,
       "message": "similar to https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/master/server/auth/authdb/internal/seccfg/seccfg.go#47",
+      "range": {
+        "startLine": 454,
+        "startChar": 6,
+        "endLine": 455,
+        "endChar": 63
+      },
+      "revId": "aaf522133753e82e69394432889f5aa6c8126d0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb2ce3cc_0bf41dc8",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-06-30T01:22:11Z",
+      "side": 1,
+      "message": "I assume that internal_service_regexp is guaranteed to only have valid regexes in it (no mismatched parens)?",
+      "parentUuid": "fdec26c1_0bf6b237",
       "range": {
         "startLine": 454,
         "startChar": 6,
