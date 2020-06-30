@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "186b1946_7408dfdf",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-06-30T14:52:45Z",
+      "side": 1,
+      "message": "FYI, I plan to use |_IN_TEST_MODE| here to add more test flags to run_isolated.py",
+      "revId": "02e102d1e869a28dd0bcecbaac3a97718f5d718e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
