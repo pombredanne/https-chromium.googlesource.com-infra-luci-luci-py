@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "6e3746e9_1f9a8292",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-06-30T23:57:45Z",
+      "side": 1,
+      "message": "Yep done.",
+      "parentUuid": "93acc46d_8d45f90f",
+      "revId": "29e11be3c215a905fc4da94e74a41df8454c2f9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f5da7ac9_1b6702bb",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 2
@@ -104,6 +122,24 @@
       "revId": "29e11be3c215a905fc4da94e74a41df8454c2f9e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca34abb4_b75358de",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-06-30T23:57:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f5da7ac9_1b6702bb",
+      "revId": "29e11be3c215a905fc4da94e74a41df8454c2f9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
