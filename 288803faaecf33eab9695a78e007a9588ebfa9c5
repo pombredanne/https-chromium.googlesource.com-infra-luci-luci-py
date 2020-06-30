@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "176e67e0_8e403c8e",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-06-30T01:26:42Z",
+      "side": 1,
+      "message": "maybe \u0027is_trusted_domain\u0027 would be better, now that I see it in context?",
+      "range": {
+        "startLine": 145,
+        "startChar": 12,
+        "endLine": 145,
+        "endChar": 30
+      },
+      "revId": "288803faaecf33eab9695a78e007a9588ebfa9c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
