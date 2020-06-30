@@ -17,7 +17,7 @@ from server import config
 
 
 @ndb.tasklet
-def create_invocation_async(task_run_id):
+def create_invocation_async(task_run_id, realm):
   """This is wrapper for CreateInvocation API.
 
   Returns:
@@ -25,6 +25,7 @@ def create_invocation_async(task_run_id):
   """
   hostname = app_identity.get_default_version_hostname()
   response_headers = {}
+  project_id = realm.split(':')[0]
   yield _call_resultdb_recorder_api_async(
       'CreateInvocation', {
           'requestId': str(uuid.uuid4()),
@@ -33,7 +34,8 @@ def create_invocation_async(task_run_id):
               'producerResource': '//%s/tasks/%s' % (hostname, task_run_id),
           }
       },
-      response_headers=response_headers)
+      response_headers=response_headers,
+      project_id=project_id)
   update_token = response_headers.get('update-token')
   assert update_token, ("response_headers should have valid update-token: %s" %
                         response_headers)
@@ -73,7 +75,8 @@ def _call_resultdb_recorder_api_async(method,
                                       request,
                                       headers=None,
                                       response_headers=None,
-                                      scopes=(net.EMAIL_SCOPE,)):
+                                      scopes=(net.EMAIL_SCOPE,),
+                                      project_id=None):
   cfg = config.settings()
   rdb_url = cfg.resultdb.server
   assert rdb_url, 'ResultDB integration is not configured'
@@ -88,4 +91,5 @@ def _call_resultdb_recorder_api_async(method,
       payload=request,
       scopes=scopes,
       headers=headers,
-      response_headers=response_headers)
+      response_headers=response_headers,
+      project_id=project_id)
