@@ -131,6 +131,9 @@ DEFAULT_SETTINGS = {
 _IGNORED_DIMENSIONS = (
     'android_devices', 'caches', 'id', 'server_version', 'temp_band')
 
+# Flag to decide if bot is running in test mode. This is mostly used by smoke
+# and integration tests.
+_IN_TEST_MODE = False
 
 ### Monitoring
 
@@ -1408,7 +1411,13 @@ def main(argv):
   # quit the process.
   parser = argparse.ArgumentParser(description=sys.modules[__name__].__doc__)
   parser.add_argument('unsupported', nargs='*', help=argparse.SUPPRESS)
+  parser.add_argument('--test-mode', action='store_true')
   args = parser.parse_args(argv)
+
+  global _IN_TEST_MODE
+  _IN_TEST_MODE = args.test_mode
+  if _IN_TEST_MODE:
+    logging.debug('bot_main running in TEST mode')
 
   if sys.platform == 'win32':
     if not file_path.enable_privilege('SeShutdownPrivilege'):
