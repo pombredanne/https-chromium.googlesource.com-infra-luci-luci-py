@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fdc14d2f_78a1e795",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-30T15:25:54Z",
+      "side": 1,
+      "message": "could you explain how will you use this?",
+      "revId": "29e11be3c215a905fc4da94e74a41df8454c2f9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe475722_e69bc918",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-06-30T15:25:54Z",
+      "side": 1,
+      "message": "why this needs to be private global variable?",
+      "revId": "29e11be3c215a905fc4da94e74a41df8454c2f9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
