@@ -48,7 +48,7 @@ class ResultDBTest(test_case.TestCase):
   def test_create_invocation_async(self):
 
     @ndb.tasklet
-    def mock_call_resultdb_recorder_api_async(_method, _request,
+    def mock_call_resultdb_recorder_api_async(_method, _request, _project_id,
                                               response_headers):
       response_headers['update-token'] = 'token'
 
@@ -57,17 +57,21 @@ class ResultDBTest(test_case.TestCase):
         mock.MagicMock(
             side_effect=mock_call_resultdb_recorder_api_async)) as mock_call:
 
-      update_token = resultdb.create_invocation_async('task001').get_result()
+      update_token = resultdb.create_invocation_async(
+          'task001', 'test:pool/default').get_result()
       self.assertEqual(update_token, 'token')
       mock_call.assert_called_once_with(
           'CreateInvocation', {
               'invocation': {
                   'producerResource':
-                      '//test-swarming.appspot.com/tasks/task001'
+                      '//test-swarming.appspot.com/tasks/task001',
+                  'realm':
+                      'test:pool/default',
               },
               'requestId': '00000000-0000-0000-0000-000000000000',
               'invocationId': 'task-test-swarming.appspot.com-task001'
           },
+          'test',
           response_headers=mock.ANY)
 
   def test_create_invocation_async_no_update_token(self):
@@ -76,7 +80,8 @@ class ResultDBTest(test_case.TestCase):
       with self.assertRaisesRegexp(
           AssertionError,
           "^response_headers should have valid update-token: {}$"):
-        resultdb.create_invocation_async('task001').get_result()
+        resultdb.create_invocation_async('task001',
+                                         'test:pool/default').get_result()
 
   def test_finalize_invocation_async_success(self):
 
