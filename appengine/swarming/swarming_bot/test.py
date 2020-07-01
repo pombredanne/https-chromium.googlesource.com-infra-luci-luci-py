@@ -23,6 +23,9 @@ def main():
   import test_env_bot
   test_env_bot.setup_test_env()
 
+  # TODO(jwata): remove
+  sys.argv.extend(['--log', 'debug'])
+
   # append attribute filter option "--attribute '!no_run'"
   # https://nose2.readthedocs.io/en/latest/plugins/attrib.html
   sys.argv.extend(['--attribute', '!no_run'])
