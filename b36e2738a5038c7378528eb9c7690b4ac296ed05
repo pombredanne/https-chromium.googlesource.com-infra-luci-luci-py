@@ -52,6 +52,24 @@
       "revId": "b36e2738a5038c7378528eb9c7690b4ac296ed05",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93ebc722_eadd30b0",
+        "filename": "client/cipd.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T10:29:38Z",
+      "side": 1,
+      "message": "Ah, I see, then fine to be as-is.",
+      "parentUuid": "f00fdc46_28c986f9",
+      "revId": "b36e2738a5038c7378528eb9c7690b4ac296ed05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
