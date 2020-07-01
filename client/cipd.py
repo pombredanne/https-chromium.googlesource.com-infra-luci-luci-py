@@ -53,11 +53,6 @@ class Error(Exception):
 def add_cipd_options(parser):
   group = optparse.OptionGroup(parser, 'CIPD')
   group.add_option(
-      '--cipd-enabled',
-      help='Enable CIPD client bootstrap. Implied by --cipd-package.',
-      action='store_true',
-      default=False)
-  group.add_option(
       '--cipd-server',
       help='URL of the CIPD server. '
       'Only relevant with --cipd-enabled or --cipd-package.',
@@ -98,10 +93,7 @@ def add_cipd_options(parser):
 
 def validate_cipd_options(parser, options):
   """Calls parser.error on first found error among cipd options."""
-  if options.cipd_packages:
-    options.cipd_enabled = True
-
-  if not options.cipd_enabled:
+  if not options.cipd_packages:
     return
 
   for pkg in options.cipd_packages:
