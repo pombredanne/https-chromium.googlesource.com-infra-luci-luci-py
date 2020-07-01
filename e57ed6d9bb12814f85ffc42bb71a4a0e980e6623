@@ -69,6 +69,24 @@
       "revId": "e57ed6d9bb12814f85ffc42bb71a4a0e980e6623",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68e96cf8_27518167",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T05:39:42Z",
+      "side": 1,
+      "message": "can we use\nhttps://docs.python.org/2.7/distutils/apiref.html#distutils.util.strtobool\nwith default\u003dTrue then?",
+      "parentUuid": "95a01a7b_3292c644",
+      "revId": "e57ed6d9bb12814f85ffc42bb71a4a0e980e6623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
