@@ -539,6 +539,7 @@ class IsolateServer(StorageApi):
       return False
     try:
       response.read()
+    # pylint: disable=undefined-variable
     except TimeoutError:
       return False
 
