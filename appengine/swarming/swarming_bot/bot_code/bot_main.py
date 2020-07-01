@@ -693,6 +693,9 @@ def _run_isolated_flags(botobj):
       str(settings['caches']['isolated']['items']),
   ]
 
+  if _IN_TEST_MODE:
+    args.append('--no-cipd-enabled')
+
   return args
 
 
