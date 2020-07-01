@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34f0f6e9_1694c6f4",
+        "filename": "client/tests/on_error_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-01T11:19:37Z",
+      "side": 1,
+      "message": "What was the problem?",
+      "range": {
+        "startLine": 172,
+        "startChar": 27,
+        "endLine": 172,
+        "endChar": 45
+      },
+      "revId": "f303194124db8eef4c2c146c111d773bf4110519",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
