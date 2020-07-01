@@ -54,9 +54,15 @@ def add_cipd_options(parser):
   group = optparse.OptionGroup(parser, 'CIPD')
   group.add_option(
       '--cipd-enabled',
+      dest='cipd_enabled',
       help='Enable CIPD client bootstrap. Implied by --cipd-package.',
-      action='store_true',
-      default=False)
+      action='store_true')
+  group.add_option(
+      '--no-cipd-enabled',
+      dest='cipd_enabled',
+      help='Disable CIPD. This switch exists mostly for testing purpose. '
+      'Cannot be used together with --cipd-package.',
+      action='store_false')
   group.add_option(
       '--cipd-server',
       help='URL of the CIPD server. '
@@ -94,14 +100,14 @@ def add_cipd_options(parser):
       'Default: "%default".',
       default='')
   parser.add_option_group(group)
+  parser.set_defaults(cipd_enabled=True)
 
 
 def validate_cipd_options(parser, options):
   """Calls parser.error on first found error among cipd options."""
-  if options.cipd_packages:
-    options.cipd_enabled = True
-
   if not options.cipd_enabled:
+    if options.cipd_packages:
+      parser.error('Cannot install CIPD packages when --cipd-enable=false')
     return
 
   for pkg in options.cipd_packages:
