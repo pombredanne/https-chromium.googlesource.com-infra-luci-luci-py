@@ -208,6 +208,8 @@ CONTENTS['check_files.isolated'] = json.dumps(
       ]
     })
 
+DISABLE_CIPD_FOR_TESTS = '--disable-cipd-for-tests'
+
 
 def list_files_tree(directory):
   """Returns the list of all the files in a tree."""
@@ -292,10 +294,15 @@ class RunIsolatedTest(unittest.TestCase):
     Returns a list of the required arguments.
     """
     return [
-      '--isolated', hash_value,
-      '--cache', self._isolated_cache_dir,
-      '--isolate-server', self._isolated_server.url,
-      '--namespace', 'default',
+        DISABLE_CIPD_FOR_TESTS,
+        '--isolated',
+        hash_value,
+        '--cache',
+        self._isolated_cache_dir,
+        '--isolate-server',
+        self._isolated_server.url,
+        '--namespace',
+        'default',
     ]
 
   def assertTreeModes(self, root, expected):
@@ -467,7 +474,10 @@ class RunIsolatedTest(unittest.TestCase):
     self.assertNotEqual(CONTENTS['file1.txt'], read_content(cached_file_path))
 
   def test_minimal_lower_priority(self):
-    cmd = ['--lower-priority', '--raw-cmd', '--', sys.executable, '-c']
+    cmd = [
+        DISABLE_CIPD_FOR_TESTS, '--lower-priority', '--raw-cmd', '--',
+        sys.executable, '-c'
+    ]
     if sys.platform == 'win32':
       cmd.append(
           'import ctypes,sys; v=ctypes.windll.kernel32.GetPriorityClass(-1);'
@@ -487,7 +497,7 @@ class RunIsolatedTest(unittest.TestCase):
 
   def test_limit_processes(self):
     # Execution fails because it tries to run a second process.
-    cmd = ['--limit-processes', '1', '--raw-cmd']
+    cmd = [DISABLE_CIPD_FOR_TESTS, '--limit-processes', '1', '--raw-cmd']
     if sys.platform == 'win32':
       cmd.extend(('--containment-type', 'JOB_OBJECT'))
     cmd.extend(('--', sys.executable, '-c'))
@@ -517,12 +527,9 @@ class RunIsolatedTest(unittest.TestCase):
     # means that it could get rounded *down* and match the value of now.
     now = time.time() - 2
     cmd = [
-        '--named-cache-root', self._named_cache_dir,
-        '--named-cache', 'cache1', 'a', '100',
-        '--raw-cmd',
-        '--',
-        sys.executable,
-        '-c',
+        DISABLE_CIPD_FOR_TESTS, '--named-cache-root', self._named_cache_dir,
+        '--named-cache', 'cache1', 'a', '100', '--raw-cmd', '--',
+        sys.executable, '-c',
         'open("a/hello","wb").write("world");print("Success")'
     ]
     out, err, returncode = self._run(cmd)
