@@ -846,10 +846,14 @@ class Test(unittest.TestCase):
   def test_local_cache(self):
     # First task creates the cache, second copy the content to the output
     # directory. Each time it's the exact same script.
-    dimensions = {
-        i['key']: i['value'] for i in self.client.query_bot()['dimensions']}
-    self.assertEqual(set(self.dimensions), set(dimensions))
-    self.assertNotIn(u'cache', set(dimensions))
+    def _assertDimensions():
+      dimensions = {
+          i['key']: i['value'] for i in self.client.query_bot()['dimensions']
+      }
+      self.assertEqual(set(self.dimensions), set(dimensions))
+      self.assertNotIn(u'cache', set(dimensions))
+
+    self.assertWithRetry(_assertDimensions)
     content = {
         HELLO_WORLD + u'.py':
             _script(u"""
@@ -1386,6 +1390,19 @@ class Test(unittest.TestCase):
       for j in (u'items_cold', u'items_hot'):
         actual[k][j] = large.unpack(base64.b64decode(actual[k].get(j, '')))
     self.assertEqual(expected, actual)
+
+  def assertWithRetry(self, assertFunc, retry_limit=3):
+    retry_cnt = 0
+    while True:
+      try:
+        assertFunc()
+        return
+      except AssertionError as e:
+        if retry_cnt > retry_limit:
+          self.fail(e)
+        logging.warning(e)
+        retry_limit += 1
+        time.sleep(1)
 
   def _wait_for_state(self, task_id, current, new):
     """Waits for the task to start on the bot."""
