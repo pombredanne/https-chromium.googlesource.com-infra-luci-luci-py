@@ -1,4 +1,4 @@
-#!/usr/bin/env vpython
+#!/usr/bin/env vpython3
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
@@ -16,6 +16,7 @@ import ssl
 import subprocess
 import sys
 import threading
+import unittest
 
 import six
 from six.moves import BaseHTTPServer
@@ -168,6 +169,7 @@ class OnErrorTest(OnErrorBase):
     self.assertEqual([], self._atexit)
 
 
+@unittest.skipIf(six.PY3, 'crbug.com/1010816')
 class OnErrorServerTest(OnErrorBase):
   def call(self, url, arg, returncode):
     cmd = [sys.executable, '-u', 'main.py', url, arg]
