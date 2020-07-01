@@ -1051,7 +1051,7 @@ def _install_packages(run_dir, cipd_cache_dir, client, packages):
 @contextlib.contextmanager
 def install_client_and_packages(run_dir, packages, service_url,
                                 client_package_name, client_version, cache_dir,
-                                isolated_dir):
+                                isolated_dir, install_go_isolated):
   """Bootstraps CIPD client and installs CIPD packages.
 
   Yields CipdClient, stats, client info and pins (as single CipdInfo object).
@@ -1084,6 +1084,7 @@ def install_client_and_packages(run_dir, packages, service_url,
     client_version (str): Version of CIPD client.
     cache_dir (str): where to keep cache of cipd clients, packages and tags.
     isolated_dir (str): where to download isolated client.
+    install_go_isolated (bool): whether to download the Go isolated client.
   """
   assert cache_dir
 
@@ -1107,8 +1108,9 @@ def install_client_and_packages(run_dir, packages, service_url,
                                        packages)
 
     # Install isolated client to |isolated_dir|.
-    _install_packages(isolated_dir, cipd_cache_dir, client,
-                      [('', ISOLATED_PACKAGE, ISOLATED_REVISION)])
+    if install_go_isolated:
+      _install_packages(isolated_dir, cipd_cache_dir, client,
+                        [('', ISOLATED_PACKAGE, ISOLATED_REVISION)])
 
     file_path.make_tree_files_read_only(run_dir)
 
@@ -1265,6 +1267,16 @@ def create_option_parser():
       help='Deliberately leak isolate\'s temp dir for later examination. '
       'Default: %default')
   group.add_option('--root-dir', help='Use a directory instead of a random one')
+  group.add_option(
+      '--disable-cipd-for-tests',
+      action='store_true',
+      help='Deliberately disable CIPD installation for tests.'
+      'Default: %default')
+  group.add_option(
+      '--disable-go-isolated-for-tests',
+      action='store_true',
+      help='Deliberately disable the usage of Go isolated CLI for tests.'
+      'Default: %default')
   parser.add_option_group(group)
 
   auth.add_auth_options(parser)
@@ -1369,7 +1381,11 @@ def main(args):
     named_cache = process_named_cache_options(parser, options)
 
   # TODO(crbug.com/932396): Remove this.
-  use_go_isolated = options.cipd_enabled
+  cipd_enabled = not options.disable_cipd_for_tests
+  # * When CIPD is disabled, we MUST not use Go isolated.
+  # * When CIPD is enabled, we MIGHT use Go isolated. However, some tests still
+  #   require us to disable the Go isolated CLI.
+  use_go_isolated = not options.disable_go_isolated_for_tests and cipd_enabled
 
   # TODO(maruel): CIPD caches should be defined at an higher level here too, so
   # they can be cleaned the same way.
@@ -1463,7 +1479,7 @@ def main(args):
 
   install_packages_fn = noop_install_packages
   tmp_cipd_cache_dir = None
-  if options.cipd_enabled:
+  if cipd_enabled:
     cache_dir = options.cipd_cache
     if not cache_dir:
       tmp_cipd_cache_dir = six.text_type(tempfile.mkdtemp())
@@ -1476,7 +1492,8 @@ def main(args):
             options.cipd_client_package,
             options.cipd_client_version,
             cache_dir=cache_dir,
-            isolated_dir=isolated_dir))
+            isolated_dir=isolated_dir,
+            install_go_isolated=use_go_isolated))
 
   @contextlib.contextmanager
   def install_named_caches(run_dir):
