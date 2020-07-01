@@ -87,6 +87,24 @@
       "revId": "e57ed6d9bb12814f85ffc42bb71a4a0e980e6623",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2972bf47_0e988701",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-01T06:21:18Z",
+      "side": 1,
+      "message": "What\u0027s the problem with `--no-..` approach?",
+      "parentUuid": "68e96cf8_27518167",
+      "revId": "e57ed6d9bb12814f85ffc42bb71a4a0e980e6623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
