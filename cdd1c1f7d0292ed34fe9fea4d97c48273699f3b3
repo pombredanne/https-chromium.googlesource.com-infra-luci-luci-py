@@ -16,6 +16,24 @@
       "revId": "cdd1c1f7d0292ed34fe9fea4d97c48273699f3b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4de0e192_81e3e4d6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-01T06:53:52Z",
+      "side": 1,
+      "message": "It failed, but the exit code is currently ignored.\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8876002613344674176/+/u/swarming_bot/run_tests_python2/stdout#L3967_0\n\ncrrev.com/c/2275562 will enable exit code check.",
+      "parentUuid": "d311f3d6_15b39619",
+      "revId": "cdd1c1f7d0292ed34fe9fea4d97c48273699f3b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
