@@ -49,6 +49,7 @@ class FakeThreadingEvent(object):
 
 
 class TestBotBase(net_utils.TestCase):
+  no_run = 1
 
   def setUp(self):
     super(TestBotBase, self).setUp()

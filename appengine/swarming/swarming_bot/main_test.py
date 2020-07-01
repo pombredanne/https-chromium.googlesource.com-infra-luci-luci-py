@@ -30,6 +30,7 @@ from bot_code import bot_main
 
 
 class TestCase(auto_stub.TestCase):
+  no_run = 1
 
   def setUp(self):
     super(TestCase, self).setUp()
