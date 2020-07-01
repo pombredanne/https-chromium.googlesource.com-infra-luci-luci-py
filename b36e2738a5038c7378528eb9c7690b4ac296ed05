@@ -34,6 +34,24 @@
       "revId": "b36e2738a5038c7378528eb9c7690b4ac296ed05",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f00fdc46_28c986f9",
+        "filename": "client/cipd.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-01T10:26:17Z",
+      "side": 1,
+      "message": "How about we support it here? https://cs.chromium.org/chromium/infra/luci/client/utils/logging_utils.py?l\u003d243\u0026rcl\u003d7ae77a116b640cb31c65035991724e5aab6335b5",
+      "parentUuid": "0a277f85_86c635ee",
+      "revId": "b36e2738a5038c7378528eb9c7690b4ac296ed05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
