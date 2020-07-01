@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d311f3d6_15b39619",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T06:51:10Z",
+      "side": 1,
+      "message": "do you know why this build didn\u0027t fail with test failure?\nhttps://ci.chromium.org/p/infra/builders/try/luci-py-try-mac10.13-64/b8876002613344674176",
+      "revId": "cdd1c1f7d0292ed34fe9fea4d97c48273699f3b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
