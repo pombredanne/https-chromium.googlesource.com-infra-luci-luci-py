@@ -22,6 +22,9 @@ def make_bot(remote=None):
   }}, 'https://localhost:1', '1234-1a2b3c4-tainted-joe', 'base_dir', None)
 
 
+@unittest.skipIf(sys.platform == 'darwin',
+                 'TODO(crbug.com/1017545): '
+                 'TestTaskRunnerKilled does not work on Mac')
 class TestBot(unittest.TestCase):
   def test_get_pseudo_rand(self):
     # This test assumes little endian.
