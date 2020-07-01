@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "96374a82_3f9527a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-01T05:31:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d91c60e3_afda686d",
+      "revId": "e57ed6d9bb12814f85ffc42bb71a4a0e980e6623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a22735b_1ee90933",
         "filename": "client/run_isolated.py",
         "patchSetId": 9
@@ -30,6 +48,24 @@
       "writtenOn": "2020-07-01T04:39:27Z",
       "side": 1,
       "message": "why not use \u0027--cipd-enabled\u003dfalse\u0027?",
+      "revId": "e57ed6d9bb12814f85ffc42bb71a4a0e980e6623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95a01a7b_3292c644",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-01T05:31:25Z",
+      "side": 1,
+      "message": "Python doesn\u0027t seem to have a very good support for boolean value flags, see https://stackoverflow.com/questions/15008758/parsing-boolean-values-with-argparse. I\u0027ve added a `--no-cipd-enabled` that does a `store_false`. I think this is the canonical way to specify boolean switch flags?",
+      "parentUuid": "2a22735b_1ee90933",
       "revId": "e57ed6d9bb12814f85ffc42bb71a4a0e980e6623",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
