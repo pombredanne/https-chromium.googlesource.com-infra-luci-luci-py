@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "851a1280_b6b8ef9c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_auth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-01T00:49:23Z",
+      "side": 1,
+      "message": "Ack, thank you for confirming that.",
+      "parentUuid": "6d9431a9_4092d7c3",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 42
+      },
+      "revId": "b516f2f355fbe2debf662a85b533cd1493512fc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c2c937c0_7df21140",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 5
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "1832c596_42a5d71c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-01T00:49:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c2c937c0_7df21140",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 42
+      },
+      "revId": "b516f2f355fbe2debf662a85b533cd1493512fc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6cd11353_9e4092ac",
         "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
         "patchSetId": 5
@@ -92,6 +140,30 @@
       "revId": "b516f2f355fbe2debf662a85b533cd1493512fc7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66f67d9f_6359fb82",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-01T00:49:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6cd11353_9e4092ac",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 42
+      },
+      "revId": "b516f2f355fbe2debf662a85b533cd1493512fc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
