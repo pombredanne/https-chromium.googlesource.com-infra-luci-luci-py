@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6baadfcc_e64d76f9",
+        "filename": "client/tests/auth_server_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-01T14:50:28Z",
+      "side": 1,
+      "message": "pylint doesn\u0027t recognize if this statement is above the line.",
+      "range": {
+        "startLine": 341,
+        "startChar": 57,
+        "endLine": 341,
+        "endChar": 93
+      },
+      "revId": "a99dc5a00825190e15c9afd541d8a6be98ad42d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}

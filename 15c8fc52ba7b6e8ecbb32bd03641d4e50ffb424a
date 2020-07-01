@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ffbba51_368d9be6",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-01T14:50:28Z",
+      "side": 1,
+      "message": "tikuta, please check if this should be fixed, or can be ignored.",
+      "range": {
+        "startLine": 543,
+        "startChar": 11,
+        "endLine": 543,
+        "endChar": 23
+      },
+      "revId": "15c8fc52ba7b6e8ecbb32bd03641d4e50ffb424a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

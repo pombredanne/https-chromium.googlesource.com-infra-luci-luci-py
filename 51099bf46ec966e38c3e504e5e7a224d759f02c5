@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dafb1fcd_815f9993",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-01T14:50:28Z",
+      "side": 0,
+      "message": "I don\u0027t know why but, pylint doesn\u0027t recognize this...",
+      "range": {
+        "startLine": 313,
+        "startChar": 8,
+        "endLine": 313,
+        "endChar": 44
+      },
+      "revId": "51099bf46ec966e38c3e504e5e7a224d759f02c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
