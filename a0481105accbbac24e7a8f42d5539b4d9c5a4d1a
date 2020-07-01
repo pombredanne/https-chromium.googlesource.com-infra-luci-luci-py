@@ -34,6 +34,24 @@
       "revId": "a0481105accbbac24e7a8f42d5539b4d9c5a4d1a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8a30e61_a8645b5a",
+        "filename": "appengine/auth_service/PRESUBMIT.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-01T05:49:12Z",
+      "side": 1,
+      "message": "RunPyLint already support block_list and DEFAULT_BLOCK_LIST.",
+      "parentUuid": "3009250d_e1304aac",
+      "revId": "a0481105accbbac24e7a8f42d5539b4d9c5a4d1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
