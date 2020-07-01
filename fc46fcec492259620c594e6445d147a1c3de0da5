@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb0f1dd1_556f9a72",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 856,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-01T08:37:03Z",
+      "side": 1,
+      "message": "Thank you for doing this, and sorry about the nitpicking here! I still feel that it\u0027s strange to retry asserts. Given that the workaround is to wait for some state, can we simply put a sleep here before doing assertions? Maybe also add a comment explaining why the sleep?",
+      "revId": "fc46fcec492259620c594e6445d147a1c3de0da5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
