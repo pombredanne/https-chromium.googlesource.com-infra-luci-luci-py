@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "f23f7420_3e21b400",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-01T08:55:41Z",
+      "side": 1,
+      "message": "I think so. I saw it failed at some patches.\nhttps://ci.chromium.org/p/infra/builders/try/luci-py-try-mac10.13-64/b8876005717178358304?",
+      "parentUuid": "1241a13f_86b94b1a",
+      "revId": "cdd1c1f7d0292ed34fe9fea4d97c48273699f3b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e7b781c_9fae68fa",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
         "patchSetId": 17
@@ -105,6 +123,24 @@
       "revId": "cdd1c1f7d0292ed34fe9fea4d97c48273699f3b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0731fea_9b584405",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-01T08:55:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7b781c_9fae68fa",
+      "revId": "cdd1c1f7d0292ed34fe9fea4d97c48273699f3b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
