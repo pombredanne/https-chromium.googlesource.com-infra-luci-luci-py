@@ -22,6 +22,30 @@
       "revId": "f303194124db8eef4c2c146c111d773bf4110519",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "555d8909_7cd9458b",
+        "filename": "client/tests/on_error_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T11:43:21Z",
+      "side": 1,
+      "message": "json cannot searialize bytes string in python3, which is introduced from env var.\nI fixed that case.",
+      "parentUuid": "34f0f6e9_1694c6f4",
+      "range": {
+        "startLine": 172,
+        "startChar": 27,
+        "endLine": 172,
+        "endChar": 45
+      },
+      "revId": "f303194124db8eef4c2c146c111d773bf4110519",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
