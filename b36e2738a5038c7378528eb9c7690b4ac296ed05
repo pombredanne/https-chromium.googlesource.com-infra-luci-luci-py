@@ -16,6 +16,24 @@
       "revId": "b36e2738a5038c7378528eb9c7690b4ac296ed05",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a277f85_86c635ee",
+        "filename": "client/cipd.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-01T10:07:32Z",
+      "side": 1,
+      "message": "Tried that but didn\u0027t work. Note that this is an optparse, which provided a very limited way to customize type (https://docs.python.org/2/library/optparse.html#optparse-extending-optparse). I even tried that but realized that we are not instantiating a parser here.",
+      "parentUuid": "5f9f1ba9_cf3496a6",
+      "revId": "b36e2738a5038c7378528eb9c7690b4ac296ed05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
