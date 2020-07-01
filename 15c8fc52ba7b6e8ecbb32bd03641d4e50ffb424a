@@ -2,6 +2,74 @@
   "comments": [
     {
       "key": {
+        "uuid": "45ae0b0a_e5159692",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T21:20:03Z",
+      "side": 1,
+      "message": "did you write this pylintrc from scratch?",
+      "revId": "15c8fc52ba7b6e8ecbb32bd03641d4e50ffb424a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f85b590_bdd7f0fe",
+        "filename": "client/.pylintrc",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T21:20:03Z",
+      "side": 1,
+      "message": "better to have one rule per line",
+      "revId": "15c8fc52ba7b6e8ecbb32bd03641d4e50ffb424a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78457847_8aaee7cb",
+        "filename": "client/.pylintrc",
+        "patchSetId": 4
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T21:20:03Z",
+      "side": 1,
+      "message": "remove this space and belows?",
+      "revId": "15c8fc52ba7b6e8ecbb32bd03641d4e50ffb424a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "450518ce_58477341",
+        "filename": "client/PRESUBMIT.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T21:20:03Z",
+      "side": 1,
+      "message": "can we put this in root?",
+      "revId": "15c8fc52ba7b6e8ecbb32bd03641d4e50ffb424a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5ffbba51_368d9be6",
         "filename": "client/isolate_storage.py",
         "patchSetId": 4
@@ -13,6 +81,30 @@
       "writtenOn": "2020-07-01T14:50:28Z",
       "side": 1,
       "message": "tikuta, please check if this should be fixed, or can be ignored.",
+      "range": {
+        "startLine": 543,
+        "startChar": 11,
+        "endLine": 543,
+        "endChar": 23
+      },
+      "revId": "15c8fc52ba7b6e8ecbb32bd03641d4e50ffb424a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b321b8ae_61f8bb5c",
+        "filename": "client/isolate_storage.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T21:20:03Z",
+      "side": 1,
+      "message": "I think this should be net.TimeoutError",
+      "parentUuid": "5ffbba51_368d9be6",
       "range": {
         "startLine": 543,
         "startChar": 11,
