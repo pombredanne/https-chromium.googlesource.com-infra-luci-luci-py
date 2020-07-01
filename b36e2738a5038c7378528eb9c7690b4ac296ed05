@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f9f1ba9_cf3496a6",
+        "filename": "client/cipd.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T10:01:01Z",
+      "side": 1,
+      "message": "use \u0027type\u003ddistutils.util.strtobool\u0027?",
+      "revId": "b36e2738a5038c7378528eb9c7690b4ac296ed05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
