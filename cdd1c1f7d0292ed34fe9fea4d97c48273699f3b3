@@ -70,6 +70,41 @@
       "revId": "cdd1c1f7d0292ed34fe9fea4d97c48273699f3b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1241a13f_86b94b1a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T08:14:11Z",
+      "side": 1,
+      "message": "does that fail with non-zero exit code if other test failed?",
+      "parentUuid": "b1545e87_3e34570f",
+      "revId": "cdd1c1f7d0292ed34fe9fea4d97c48273699f3b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e7b781c_9fae68fa",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T08:14:11Z",
+      "side": 1,
+      "message": "better to keep running some already passed test?",
+      "revId": "cdd1c1f7d0292ed34fe9fea4d97c48273699f3b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
