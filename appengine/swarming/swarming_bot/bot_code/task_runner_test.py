@@ -21,6 +21,7 @@ import time
 import unittest
 
 import mock
+import six
 
 import test_env_bot_code
 test_env_bot_code.setup_test_env()
@@ -702,6 +703,9 @@ class TestTaskRunner(TestTaskRunnerBase):
     self.assertEqual(0, task_runner.main(cmd))
 
 
+@unittest.skipIf(sys.platform == 'darwin',
+                 'TODO(crbug.com/1017545): '
+                 'TestTaskRunnerKilled does not work on Mac')
 class TestTaskRunnerKilled(TestTaskRunnerBase):
   # These test cases run the command for real where the process is killed.
 
