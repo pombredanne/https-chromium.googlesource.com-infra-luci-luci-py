@@ -21,6 +21,7 @@ import time
 import unittest
 
 import mock
+import six
 
 import test_env_bot_code
 test_env_bot_code.setup_test_env()
@@ -157,6 +158,10 @@ class FakeAuthSystem(object):
 
 
 class TestTaskRunnerBase(auto_stub.TestCase):
+  # This test fails when running by nose2 in Mac10.15 python3.
+  # It passes when running this script as an executable.
+  no_run = 1
+
   def setUp(self):
     super(TestTaskRunnerBase, self).setUp()
     self.root_dir = unicode(tempfile.mkdtemp(prefix=u'task_runner'))
@@ -702,6 +707,9 @@ class TestTaskRunner(TestTaskRunnerBase):
     self.assertEqual(0, task_runner.main(cmd))
 
 
+@unittest.skipIf(sys.platform == 'darwin',
+                 'TODO(crbug.com/1017545): '
+                 'TestTaskRunnerKilled does not work on Mac10.15')
 class TestTaskRunnerKilled(TestTaskRunnerBase):
   # These test cases run the command for real where the process is killed.
 
@@ -832,8 +840,8 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.expectTask(hard_timeout=True, exit_code=exit_code)
 
 
-  @unittest.skipIf(
-      sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
+  # @unittest.skipIf(
+  #     sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
   def test_io(self):
     task_details = get_task_details(
         self.SCRIPT_HANG, io_timeout=self.SHORT_TIME_OUT)
@@ -867,8 +875,8 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         hard_timeout=True,
         output='hi\ngot signal %s\nbye\n' % task_runner.SIG_BREAK_OR_TERM)
 
-  @unittest.skipIf(
-      sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
+  # @unittest.skipIf(
+  #     sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
   def test_io_signal(self):
     task_details = get_task_details(
         self.SCRIPT_SIGNAL, io_timeout=self.SHORT_TIME_OUT)
@@ -905,9 +913,9 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(hard_timeout=True, exit_code=exit_code)
 
-  @unittest.skipIf(
-      sys.platform == 'win32',
-      'As run_isolated is killed, the children process leaks')
+  # @unittest.skipIf(
+  #     sys.platform == 'win32',
+  #     'As run_isolated is killed, the children process leaks')
   def test_io_no_grace(self):
     task_details = get_task_details(
         self.SCRIPT_HANG,
@@ -945,8 +953,8 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         exit_code=exit_code,
         output='hi\ngot signal %s\nbye\n' % task_runner.SIG_BREAK_OR_TERM)
 
-  @unittest.skipIf(sys.platform == 'win32',
-                   'As run_isolated is killed, the children process leaks')
+  # @unittest.skipIf(sys.platform == 'win32',
+  #                  'As run_isolated is killed, the children process leaks')
   def test_io_signal_no_grace(self):
     task_details = get_task_details(
         self.SCRIPT_SIGNAL_HANG,
@@ -968,8 +976,8 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         exit_code=exit_code,
         output='hi\ngot signal %s\nbye\n' % task_runner.SIG_BREAK_OR_TERM)
 
-  @unittest.skipIf(sys.platform == 'win32',
-                   'TODO(crbug.com/1017545): KeyError output')
+  # @unittest.skipIf(sys.platform == 'win32',
+  #                  'TODO(crbug.com/1017545): KeyError output')
   def test_isolated_io_signal_grand_children(self):
     """Handles grand-children process hanging and signal management.
 
@@ -1109,8 +1117,8 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.assertEqual(expected, exit_code)
     self.assertEqual('got it\n', p.stdout.readline())
 
-  @unittest.skipIf(sys.platform == 'win32',
-                   'TODO(crbug.com/1017545): it gets stuck at proc.wait()')
+  # @unittest.skipIf(sys.platform == 'win32',
+  #                  'TODO(crbug.com/1017545): it gets stuck at proc.wait()')
   def test_signal(self):
     # Tests when task_runner gets a SIGTERM.
     signal_file = os.path.join(self.work_dir, 'signal')

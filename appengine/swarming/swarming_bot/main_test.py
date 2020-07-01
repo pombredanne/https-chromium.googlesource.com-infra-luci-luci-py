@@ -30,7 +30,6 @@ from bot_code import bot_main
 
 
 class TestCase(auto_stub.TestCase):
-
   def setUp(self):
     super(TestCase, self).setUp()
     tools.clear_cache_all()
