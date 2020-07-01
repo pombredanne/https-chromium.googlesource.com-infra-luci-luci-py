@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d91c60e3_afda686d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T04:39:27Z",
+      "side": 1,
+      "message": "fix CQ?",
+      "revId": "e57ed6d9bb12814f85ffc42bb71a4a0e980e6623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a22735b_1ee90933",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T04:39:27Z",
+      "side": 1,
+      "message": "why not use \u0027--cipd-enabled\u003dfalse\u0027?",
+      "revId": "e57ed6d9bb12814f85ffc42bb71a4a0e980e6623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
