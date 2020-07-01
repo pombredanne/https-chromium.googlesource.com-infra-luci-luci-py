@@ -34,6 +34,24 @@
       "revId": "cdd1c1f7d0292ed34fe9fea4d97c48273699f3b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "919502d6_e270739c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T07:04:16Z",
+      "side": 1,
+      "message": "Then why the step failed on mac10.15?\nhttps://ci.chromium.org/p/infra/builders/try/luci-py-try-mac10.15-64/b8875999708777059248",
+      "parentUuid": "4de0e192_81e3e4d6",
+      "revId": "cdd1c1f7d0292ed34fe9fea4d97c48273699f3b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
