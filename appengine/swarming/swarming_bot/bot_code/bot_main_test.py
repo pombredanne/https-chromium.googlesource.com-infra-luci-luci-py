@@ -49,7 +49,6 @@ class FakeThreadingEvent(object):
 
 
 class TestBotBase(net_utils.TestCase):
-
   def setUp(self):
     super(TestBotBase, self).setUp()
     # Throw away all swarming environ if running the test on Swarming. It may
