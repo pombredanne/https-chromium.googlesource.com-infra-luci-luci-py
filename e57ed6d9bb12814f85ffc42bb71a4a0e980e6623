@@ -105,6 +105,24 @@
       "revId": "e57ed6d9bb12814f85ffc42bb71a4a0e980e6623",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b0512d5_4bc86c53",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-01T06:26:10Z",
+      "side": 1,
+      "message": "having multiple flags for single destination is bit confusing to me.",
+      "parentUuid": "2972bf47_0e988701",
+      "revId": "e57ed6d9bb12814f85ffc42bb71a4a0e980e6623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
