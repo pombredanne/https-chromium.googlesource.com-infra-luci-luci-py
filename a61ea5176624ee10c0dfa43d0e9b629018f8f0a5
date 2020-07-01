@@ -16,6 +16,24 @@
       "revId": "a61ea5176624ee10c0dfa43d0e9b629018f8f0a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cac7f62a_bcd45084",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-01T00:54:18Z",
+      "side": 1,
+      "message": "I think they are swarming bot tests. will fix or skip them in another CL.",
+      "parentUuid": "486e39ab_ccff4875",
+      "revId": "a61ea5176624ee10c0dfa43d0e9b629018f8f0a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
