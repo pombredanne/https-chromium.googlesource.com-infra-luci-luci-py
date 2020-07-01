@@ -52,6 +52,24 @@
       "revId": "cdd1c1f7d0292ed34fe9fea4d97c48273699f3b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1545e87_3e34570f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-01T07:13:40Z",
+      "side": 1,
+      "message": "\u003e It failed, but the exit code is currently ignored.\n\nThis explanation was wrong.\nCurrently it checks exit code for the *Python2* step. (the Python3 step ignores exit code)\nBut the step on Mac10.13 returned exit code 0 for some reason...\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8876002613344674176/+/u/swarming_bot/run_tests_python2/execution_details#L3971_0",
+      "parentUuid": "919502d6_e270739c",
+      "revId": "cdd1c1f7d0292ed34fe9fea4d97c48273699f3b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
