@@ -16,6 +16,24 @@
       "revId": "fc46fcec492259620c594e6445d147a1c3de0da5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04ff4dbe_92d27170",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 856,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-01T08:37:54Z",
+      "side": 1,
+      "message": "Actually i forgot that this wasn\u0027t made ready for review... Anyway, i think it\u0027s fine *not* to make a fix for this. Feel free to ignore what i said..",
+      "parentUuid": "fb0f1dd1_556f9a72",
+      "revId": "fc46fcec492259620c594e6445d147a1c3de0da5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
