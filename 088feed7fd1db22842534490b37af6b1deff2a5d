@@ -22,6 +22,30 @@
       "revId": "088feed7fd1db22842534490b37af6b1deff2a5d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cac306e4_e9337d55",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T14:31:16Z",
+      "side": 1,
+      "message": "looks like `\u003e` is big-endian.",
+      "parentUuid": "028ebfe7_02d49bd4",
+      "range": {
+        "startLine": 283,
+        "startChar": 24,
+        "endLine": 283,
+        "endChar": 25
+      },
+      "revId": "088feed7fd1db22842534490b37af6b1deff2a5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
