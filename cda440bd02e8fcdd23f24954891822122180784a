@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ef624dd_0e32ac64",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T03:53:24Z",
+      "side": 1,
+      "message": "+1",
+      "range": {
+        "startLine": 964,
+        "startChar": 0,
+        "endLine": 964,
+        "endChar": 24
+      },
+      "revId": "cda440bd02e8fcdd23f24954891822122180784a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
