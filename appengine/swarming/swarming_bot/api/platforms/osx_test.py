@@ -5,6 +5,7 @@
 
 import logging
 import mock
+import os
 import sys
 import textwrap
 import unittest
@@ -28,11 +29,78 @@ class TestOsx(unittest.TestCase):
     super(TestOsx, self).setUp()
     self.subprocess_patcher = mock.patch('subprocess.check_output')
     self.mock_subprocess = self.subprocess_patcher.start()
+    self.lisdir_patcher = mock.patch('os.listdir')
+    self.mock_listdir = self.lisdir_patcher.start()
+    self.path_exists_patcher = mock.patch('os.path.exists')
+    self.mock_path_exists = self.path_exists_patcher.start()
 
   def tearDown(self):
     super(TestOsx, self).tearDown()
     self.subprocess_patcher.stop()
+    self.lisdir_patcher.stop()
+    self.path_exists_patcher.stop()
     tools.clear_cache_all()
+
+  def test_get_xcode_state(self):
+    self.mock_subprocess.return_value = textwrap.dedent("""\
+      Xcode 11.5
+      Build version 11E608c
+    """).encode()
+    self.mock_listdir.side_effect = [
+        # os.listdir('/Applications')
+        ['Google Chrome.app', 'Safari.app', 'Xcode.app'],
+        # pylint: disable=line-too-long
+        # os.listdir('/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport')
+        ['1.0', '2.0'],
+    ]
+
+    state = osx.get_xcode_state()
+    version = state['/Applications/Xcode.app']['version']
+    build_version = state['/Applications/Xcode.app']['build version']
+    device_support = state['/Applications/Xcode.app']['device support']
+    self.assertEqual(version, '11.5')
+    self.assertEqual(build_version, '11E608c')
+    self.assertEqual(device_support, ['1.0', '2.0'])
+
+  def test_get_xcode_versions(self):
+    self.mock_subprocess.side_effect = [
+      textwrap.dedent("""\
+        Xcode 11.5
+        Build version abcd
+      """).encode(),
+      textwrap.dedent("""\
+        Xcode 11.4
+        Build version efgh
+      """).encode(),
+    ]
+    self.mock_listdir.side_effect = [
+        # os.listdir('/Applications')
+        ['Xcode11.5.app', 'Xcode11.4.app'],
+    ]
+    self.mock_path_exists.side_effect = [True, False, True, False]
+    versions = osx.get_xcode_versions()
+    self.assertEqual(versions, ['11.4', '11.5'])
+
+  def test_get_current_xcode_version(self):
+    self.mock_subprocess.return_value = textwrap.dedent("""\
+      Xcode 11.5
+      Build version 11E608c
+    """).encode()
+    self.mock_listdir.side_effect = [
+        # os.listdir('/Applications')
+        ['Google Chrome.app', 'Safari.app', 'Xcode.app'],
+        # pylint: disable=line-too-long
+        # os.listdir('/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport')
+        ['1.0', '2.0'],
+    ]
+
+    state = osx.get_xcode_state()
+    version = state['/Applications/Xcode.app']['version']
+    build_version = state['/Applications/Xcode.app']['build version']
+    device_support = state['/Applications/Xcode.app']['device support']
+    self.assertEqual(version, '11.5')
+    self.assertEqual(build_version, '11E608c')
+    self.assertEqual(device_support, ['1.0', '2.0'])
 
   def mock_physical_disks_list(self, disks_data):
     content = []
