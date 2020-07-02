@@ -46,6 +46,30 @@
       "revId": "313c82c82120d5b67a9fccd8ddcf3dfde2bc5c20",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27eb1f35_6293e97e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-02T22:42:12Z",
+      "side": 1,
+      "message": "Ah, I see. Thank you for the explanation.",
+      "parentUuid": "dbc671b4_cc1cdd86",
+      "range": {
+        "startLine": 11,
+        "startChar": 27,
+        "endLine": 11,
+        "endChar": 47
+      },
+      "revId": "313c82c82120d5b67a9fccd8ddcf3dfde2bc5c20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
