@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b9fc1c0_4d9e2bb3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-02T01:28:57Z",
+      "side": 1,
+      "message": "\u0027Bug: 1101207\u0027?",
+      "revId": "2e6c83805dcc0ff4d7578f0966292b0c633b157d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
