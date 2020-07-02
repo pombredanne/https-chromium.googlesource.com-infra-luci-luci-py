@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b164a25f_ff6b5e11",
+        "filename": "pylintrc",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-02T03:54:35Z",
+      "side": 1,
+      "message": "sort?",
+      "revId": "3a40e74de7e0ae6588af9038d5e0153ee470398d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
