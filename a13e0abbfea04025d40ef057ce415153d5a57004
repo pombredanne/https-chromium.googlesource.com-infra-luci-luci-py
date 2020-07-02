@@ -34,6 +34,24 @@
       "revId": "a13e0abbfea04025d40ef057ce415153d5a57004",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ae4978b_f127a374",
+        "filename": "pylintrc",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T04:19:16Z",
+      "side": 1,
+      "message": "I have to add \u0027,\u0027 when I sort.\nNow it\u0027s fixed.",
+      "parentUuid": "e19d9420_5f25bb32",
+      "revId": "a13e0abbfea04025d40ef057ce415153d5a57004",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
