@@ -487,8 +487,9 @@ def get_hardware_model_string():
     A string like Macmini5,3 or MacPro6,1.
   """
   try:
-    return six.text_type(
-        subprocess.check_output(['sysctl', '-n', 'hw.model']).rstrip())
+    return six.u(
+        subprocess.check_output(['sysctl', '-n',
+                                 'hw.model']).rstrip()).decode()
   except (OSError, subprocess.CalledProcessError):
     return None
 
@@ -509,7 +510,7 @@ def get_audio():
   """Returns the audio cards that are "connected"."""
   return [
       card['_name']
-      for card in _get_system_profiler('SPAudioDataType')
+      for card in _get_system_profiler('SPAudioDataType')[0].get('_items', [])
       if card.get('coreaudio_default_audio_output_device') == 'spaudio_yes'
   ]
 
