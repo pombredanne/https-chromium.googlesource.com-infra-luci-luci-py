@@ -52,6 +52,24 @@
       "revId": "8a98bd245b3892b91b7d11abc68733b89f51ff43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e518bcc_658c7216",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-02T04:18:29Z",
+      "side": 1,
+      "message": "That failed test seems to have a funny setup. Their root isolated input is https://isolateserver-dev.appspot.com/browse?namespace\u003ddefault-gzip\u0026hash\u003d36d99009c31dcfe6e941c9741e4438646f86a262. If you look into the include files, most of them have a file `output.txt`. How is this even legit?",
+      "parentUuid": "03b0a0d9_baa8e332",
+      "revId": "8a98bd245b3892b91b7d11abc68733b89f51ff43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
