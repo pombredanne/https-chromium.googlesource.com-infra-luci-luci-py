@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2839c6c_4381ba59",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T03:46:00Z",
+      "side": 1,
+      "message": "nit\nsys.platform.startsWith(\u0027linux\u0027)?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 39
+      },
+      "revId": "688cf7a58215effebe3717e52374183ee7b76464",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
