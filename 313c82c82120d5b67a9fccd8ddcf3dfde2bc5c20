@@ -22,6 +22,30 @@
       "revId": "313c82c82120d5b67a9fccd8ddcf3dfde2bc5c20",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbc671b4_cc1cdd86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1355758
+      },
+      "writtenOn": "2020-07-02T22:36:59Z",
+      "side": 1,
+      "message": "The module `six` is provided to the runtime by the copy in `third_party/six`. Having this import at the top of the file prevents users without a system copy of `six` from ever getting anything working, since getting the `third_party` folder mapped in itself requires `six`, since without `six`, python will attempt to load this file, hit the import, and fail out. By scoping the import inside a function, it is not resolved until that function is actually called; at this point, the location where `utils/tools.py` is imported will already have called the function to map in the `third_party` folder to the module search path.",
+      "parentUuid": "e0da88a7_6bf7308e",
+      "range": {
+        "startLine": 11,
+        "startChar": 27,
+        "endLine": 11,
+        "endChar": 47
+      },
+      "revId": "313c82c82120d5b67a9fccd8ddcf3dfde2bc5c20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
