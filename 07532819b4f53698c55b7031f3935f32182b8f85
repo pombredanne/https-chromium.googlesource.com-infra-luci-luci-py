@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf46b63e_b144ad19",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T07:24:24Z",
+      "side": 1,
+      "message": "reordered the test to keep the consistency with osx.py",
+      "range": {
+        "startLine": 168,
+        "startChar": 6,
+        "endLine": 168,
+        "endChar": 36
+      },
+      "revId": "07532819b4f53698c55b7031f3935f32182b8f85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
