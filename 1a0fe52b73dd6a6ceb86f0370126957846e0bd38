@@ -16,6 +16,24 @@
       "revId": "1a0fe52b73dd6a6ceb86f0370126957846e0bd38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89864fd8_347ec515",
+        "filename": "client/utils/macos.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-02T11:11:30Z",
+      "side": 1,
+      "message": "I thik it is fine to allow importing this in any platform.",
+      "parentUuid": "7f546f5b_d7166f89",
+      "revId": "1a0fe52b73dd6a6ceb86f0370126957846e0bd38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
