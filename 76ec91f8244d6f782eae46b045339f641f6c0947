@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04f2161c_cf055219",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-02T07:51:18Z",
+      "side": 0,
+      "message": "I confirmed that there is existing usage of this in bot_config.py.",
+      "revId": "76ec91f8244d6f782eae46b045339f641f6c0947",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
