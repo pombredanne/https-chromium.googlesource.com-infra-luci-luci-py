@@ -3,7 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-import StringIO
+from __future__ import print_function
+
 import base64
 import contextlib
 import functools
@@ -14,6 +15,7 @@ import os
 import sys
 import tempfile
 
+import mock
 import six
 
 # Mutates sys.path.
@@ -983,63 +985,61 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
       store = isolateserver.get_storage(
           isolate_storage.ServerRef(server.url, 'default-store'))
 
-      self.mock(sys, 'stdout', StringIO.StringIO())
-      data = run_isolated.TaskData(
-          command=[],
-          relative_cwd=None,
-          extra_args=[],
-          isolated_hash=isolated_hash,
-          storage=store,
-          isolate_cache=local_caching.MemoryContentAddressedCache(),
-          outputs=None,
-          install_named_caches=init_named_caches_stub,
-          leak_temp_dir=False,
-          root_dir=None,
-          hard_timeout=60,
-          grace_period=30,
-          bot_file=None,
-          switch_to_account=False,
-          install_packages_fn=run_isolated.noop_install_packages,
-          use_go_isolated=False,
-          go_cache_dir=None,
-          go_cache_policies=None,
-          env={},
-          env_prefix={},
-          lower_priority=False,
-          containment=None)
-      ret = run_isolated.run_tha_test(data, None)
-      self.assertEqual(0, ret)
+      with mock.patch('__builtin__.print') as mocked_print:
+        data = run_isolated.TaskData(
+            command=[],
+            relative_cwd=None,
+            extra_args=[],
+            isolated_hash=isolated_hash,
+            storage=store,
+            isolate_cache=local_caching.MemoryContentAddressedCache(),
+            outputs=None,
+            install_named_caches=init_named_caches_stub,
+            leak_temp_dir=False,
+            root_dir=None,
+            hard_timeout=60,
+            grace_period=30,
+            bot_file=None,
+            switch_to_account=False,
+            install_packages_fn=run_isolated.noop_install_packages,
+            use_go_isolated=False,
+            go_cache_dir=None,
+            go_cache_policies=None,
+            env={},
+            env_prefix={},
+            lower_priority=False,
+            containment=None)
+        ret = run_isolated.run_tha_test(data, None)
+        self.assertEqual(0, ret)
 
-      # It uploaded back. Assert the store has a new item containing foo.
-      hashes = {isolated_hash, script_hash}
-      output_hash = isolateserver_fake.hash_content('bar')
-      hashes.add(output_hash)
-      isolated = {
-          u'algo': u'sha-1',
-          u'files': {
-              u'foo': {
-                  u'h': output_hash,
-                  u'm': 0o600,
-                  u's': 3,
-              },
-          },
-          u'version': isolated_format.ISOLATED_FILE_VERSION,
-      }
-      if sys.platform == 'win32':
-        isolated[u'files'][u'foo'].pop(u'm')
-      uploaded = json_dumps(isolated)
-      uploaded_hash = isolateserver_fake.hash_content(uploaded)
-      hashes.add(uploaded_hash)
-      self.assertEqual(hashes, set(server.contents['default-store']))
+        # It uploaded back. Assert the store has a new item containing foo.
+        hashes = {isolated_hash, script_hash}
+        output_hash = isolateserver_fake.hash_content('bar')
+        hashes.add(output_hash)
+        isolated = {
+            u'algo': u'sha-1',
+            u'files': {
+                u'foo': {
+                    u'h': output_hash,
+                    u'm': 0o600,
+                    u's': 3,
+                },
+            },
+            u'version': isolated_format.ISOLATED_FILE_VERSION,
+        }
+        if sys.platform == 'win32':
+          isolated[u'files'][u'foo'].pop(u'm')
+        uploaded = json_dumps(isolated)
+        uploaded_hash = isolateserver_fake.hash_content(uploaded)
+        hashes.add(uploaded_hash)
+        self.assertEqual(hashes, set(server.contents['default-store']))
 
-      expected = ''.join([
-        '[run_isolated_out_hack]',
-        '{"hash":"%s","namespace":"default-store","storage":%s}' % (
-            uploaded_hash, json.dumps(server.url)),
-        '[/run_isolated_out_hack]'
-      ]) + '\n'
-      # pylint: disable=no-member
-      self.assertEqual(expected, sys.stdout.getvalue())
+        expected = ''.join([
+            '[run_isolated_out_hack]',
+            '{"hash":"%s","namespace":"default-store","storage":%s}' %
+            (uploaded_hash, json.dumps(server.url)), '[/run_isolated_out_hack]'
+        ])
+        mocked_print.assert_called_once_with(expected)
     finally:
       server.close()
 
@@ -1353,84 +1353,82 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
       store = isolateserver.get_storage(
           isolate_storage.ServerRef(server.url, 'default-store'))
 
-      self.mock(sys, 'stdout', StringIO.StringIO())
-      data = run_isolated.TaskData(
-          command=command,
-          relative_cwd=None,
-          extra_args=extra_args,
-          isolated_hash=isolated_hash,
-          storage=store,
-          isolate_cache=local_caching.MemoryContentAddressedCache(),
-          outputs=[
-              'foo1',
-              # They must be in OS native path.
-              os.path.join('foodir', 'foo2_sl'),
-              os.path.join('bardir', ''),
-          ],
-          install_named_caches=init_named_caches_stub,
-          leak_temp_dir=False,
-          root_dir=None,
-          hard_timeout=60,
-          grace_period=30,
-          bot_file=None,
-          switch_to_account=False,
-          install_packages_fn=run_isolated.noop_install_packages,
-          use_go_isolated=False,
-          go_cache_dir=None,
-          go_cache_policies=None,
-          env={},
-          env_prefix={},
-          lower_priority=False,
-          containment=None)
-      ret = run_isolated.run_tha_test(data, None)
-      self.assertEqual(0, ret)
+      with mock.patch('__builtin__.print') as mocked_print:
+        data = run_isolated.TaskData(
+            command=command,
+            relative_cwd=None,
+            extra_args=extra_args,
+            isolated_hash=isolated_hash,
+            storage=store,
+            isolate_cache=local_caching.MemoryContentAddressedCache(),
+            outputs=[
+                'foo1',
+                # They must be in OS native path.
+                os.path.join('foodir', 'foo2_sl'),
+                os.path.join('bardir', ''),
+            ],
+            install_named_caches=init_named_caches_stub,
+            leak_temp_dir=False,
+            root_dir=None,
+            hard_timeout=60,
+            grace_period=30,
+            bot_file=None,
+            switch_to_account=False,
+            install_packages_fn=run_isolated.noop_install_packages,
+            use_go_isolated=False,
+            go_cache_dir=None,
+            go_cache_policies=None,
+            env={},
+            env_prefix={},
+            lower_priority=False,
+            containment=None)
+        ret = run_isolated.run_tha_test(data, None)
+        self.assertEqual(0, ret)
 
-      # It uploaded back. Assert the store has a new item containing foo.
-      hashes = {isolated_hash, script_hash}
-      foo1_output_hash = isolateserver_fake.hash_content('foo1')
-      foo2_output_hash = isolateserver_fake.hash_content('foo2')
-      bar1_output_hash = isolateserver_fake.hash_content('bar1')
-      hashes.add(foo1_output_hash)
-      hashes.add(foo2_output_hash)
-      hashes.add(bar1_output_hash)
-      isolated = {
-          u'algo': u'sha-1',
-          u'files': {
-              u'foo1': {
-                  u'h': foo1_output_hash,
-                  u'm': 0o600,
-                  u's': 4,
-              },
-              os.path.join(u'foodir', 'foo2_sl'): {
-                  u'h': foo2_output_hash,
-                  u'm': 0o600,
-                  u's': 4,
-              },
-              os.path.join(u'bardir', 'bar1'): {
-                  u'h': bar1_output_hash,
-                  u'm': 0o600,
-                  u's': 4,
-              },
-          },
-          u'version': isolated_format.ISOLATED_FILE_VERSION,
-      }
-      if sys.platform == 'win32':
-        isolated['files']['foo1'].pop('m')
-        isolated['files']['foodir\\foo2_sl'].pop('m')
-        isolated['files']['bardir\\bar1'].pop('m')
-      uploaded = json_dumps(isolated)
-      uploaded_hash = isolateserver_fake.hash_content(uploaded)
-      hashes.add(uploaded_hash)
-      self.assertEqual(hashes, set(server.contents['default-store']))
+        # It uploaded back. Assert the store has a new item containing foo.
+        hashes = {isolated_hash, script_hash}
+        foo1_output_hash = isolateserver_fake.hash_content('foo1')
+        foo2_output_hash = isolateserver_fake.hash_content('foo2')
+        bar1_output_hash = isolateserver_fake.hash_content('bar1')
+        hashes.add(foo1_output_hash)
+        hashes.add(foo2_output_hash)
+        hashes.add(bar1_output_hash)
+        isolated = {
+            u'algo': u'sha-1',
+            u'files': {
+                u'foo1': {
+                    u'h': foo1_output_hash,
+                    u'm': 0o600,
+                    u's': 4,
+                },
+                os.path.join(u'foodir', 'foo2_sl'): {
+                    u'h': foo2_output_hash,
+                    u'm': 0o600,
+                    u's': 4,
+                },
+                os.path.join(u'bardir', 'bar1'): {
+                    u'h': bar1_output_hash,
+                    u'm': 0o600,
+                    u's': 4,
+                },
+            },
+            u'version': isolated_format.ISOLATED_FILE_VERSION,
+        }
+        if sys.platform == 'win32':
+          isolated['files']['foo1'].pop('m')
+          isolated['files']['foodir\\foo2_sl'].pop('m')
+          isolated['files']['bardir\\bar1'].pop('m')
+        uploaded = json_dumps(isolated)
+        uploaded_hash = isolateserver_fake.hash_content(uploaded)
+        hashes.add(uploaded_hash)
+        self.assertEqual(hashes, set(server.contents['default-store']))
 
-      expected = ''.join([
-        '[run_isolated_out_hack]',
-        '{"hash":"%s","namespace":"default-store","storage":%s}' % (
-            uploaded_hash, json.dumps(server.url)),
-        '[/run_isolated_out_hack]'
-      ]) + '\n'
-      # pylint: disable=no-member
-      self.assertEqual(expected, sys.stdout.getvalue())
+        expected = ''.join([
+            '[run_isolated_out_hack]',
+            '{"hash":"%s","namespace":"default-store","storage":%s}' %
+            (uploaded_hash, json.dumps(server.url)), '[/run_isolated_out_hack]'
+        ])
+        mocked_print.assert_called_once_with(expected)
     finally:
       server.close()
 
