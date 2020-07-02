@@ -330,6 +330,28 @@ class RunIsolatedTest(RunIsolatedTestBase):
         ],
         self.popen_calls)
 
+  def test_cipd_pins_packages_not_empty(self):
+
+    def fake_ensure(self, site_root, packages, *args, **kwargs):
+      return {subdir: [p for p in pins] for subdir, pins in packages.items()}
+
+    self.mock(cipd.CipdClient, 'ensure', fake_ensure)
+
+    run_dir = self.tempdir
+    cipd_packages = []
+    # Unfortunately we have to talk to a real server in this test
+    cipd_server = 'https://chrome-infra-packages.appspot.com'
+    cipd_client_package_name = 'infra/tools/cipd/${platform}'
+    cipd_client_version = 'latest'
+    cipd_cache_dir = os.path.join(self.tempdir, 'cipd_cache')
+    isolated_dir = os.path.join(self.tempdir, 'isolated')
+
+    with run_isolated.install_client_and_packages(
+        run_dir, cipd_packages, cipd_server, cipd_client_package_name,
+        cipd_client_version, cipd_cache_dir, isolated_dir) as cipd_info:
+      pins = cipd_info.pins
+      self.assertGreater(len(pins['packages']), 0)
+
   def _run_tha_test(
       self, isolated_hash=None, files=None, command=None,
       lower_priority=False):

@@ -1107,8 +1107,9 @@ def install_client_and_packages(run_dir, packages, service_url,
                                        packages)
 
     # Install isolated client to |isolated_dir|.
-    _install_packages(isolated_dir, cipd_cache_dir, client,
-                      [('', ISOLATED_PACKAGE, ISOLATED_REVISION)])
+    package_pins += _install_packages(
+        isolated_dir, cipd_cache_dir, client,
+        [('', ISOLATED_PACKAGE, ISOLATED_REVISION)])
 
     file_path.make_tree_files_read_only(run_dir)
 
