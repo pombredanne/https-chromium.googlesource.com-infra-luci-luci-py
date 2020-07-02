@@ -1510,7 +1510,7 @@ class RunIsolatedJsonTest(RunIsolatedTestBase):
         self.assertEqual(None, timeout)
         self2.returncode = 0
         with open(self2._path, 'wb') as f:
-          f.write('generated data\n')
+          f.write(b'generated data\n')
         return self2.returncode
 
       def kill(self):
