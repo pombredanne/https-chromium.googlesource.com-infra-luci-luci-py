@@ -16,6 +16,24 @@
       "revId": "3a40e74de7e0ae6588af9038d5e0153ee470398d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c0c6462_eac2cc2c",
+        "filename": "pylintrc",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T04:05:44Z",
+      "side": 1,
+      "message": "looks like these are ordered by category?\nI thought it\u0027s ordered by lint number, but maybe not.\n\nI sorted anyway.",
+      "parentUuid": "b164a25f_ff6b5e11",
+      "revId": "3a40e74de7e0ae6588af9038d5e0153ee470398d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
