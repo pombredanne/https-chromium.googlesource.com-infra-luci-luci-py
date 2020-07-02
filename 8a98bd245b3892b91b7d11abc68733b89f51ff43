@@ -34,6 +34,24 @@
       "revId": "8a98bd245b3892b91b7d11abc68733b89f51ff43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03b0a0d9_baa8e332",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-02T04:02:20Z",
+      "side": 1,
+      "message": "Ah, I see.\nThen I don\u0027t think we need this change now.\n\nBut I think there is still strange behavior for the task that doesn\u0027t fetch cipd packages.\ne.g. https://chromium-swarm-dev.appspot.com/task?d\u003dtrue\u0026id\u003d4d22eb5398014c10\u0026o\u003dtrue",
+      "parentUuid": "f2139af8_311ca26f",
+      "revId": "8a98bd245b3892b91b7d11abc68733b89f51ff43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
