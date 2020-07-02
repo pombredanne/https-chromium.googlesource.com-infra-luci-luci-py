@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d7fdebd3_1ce89484",
+        "filename": ".pylintrc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T03:52:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd90b221_6812dca0",
+      "revId": "cb6142cb4ba88822ef2a252f8b94aabd784e5ecf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "adfe0076_17e15617",
         "filename": "client/tests/auth_server_test.py",
         "patchSetId": 6
