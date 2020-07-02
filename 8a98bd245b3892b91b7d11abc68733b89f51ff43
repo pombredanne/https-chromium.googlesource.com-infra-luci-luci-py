@@ -70,6 +70,24 @@
       "revId": "8a98bd245b3892b91b7d11abc68733b89f51ff43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3ca3a61_29a08ac9",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-02T04:24:10Z",
+      "side": 1,
+      "message": "Ah, I see. That happened around the same timing with your CL.",
+      "parentUuid": "4e518bcc_658c7216",
+      "revId": "8a98bd245b3892b91b7d11abc68733b89f51ff43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
