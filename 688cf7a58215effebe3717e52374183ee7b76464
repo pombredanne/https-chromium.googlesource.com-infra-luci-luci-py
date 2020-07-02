@@ -22,6 +22,30 @@
       "revId": "688cf7a58215effebe3717e52374183ee7b76464",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1934ffac_5829d465",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-02T03:53:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2839c6c_4381ba59",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 39
+      },
+      "revId": "688cf7a58215effebe3717e52374183ee7b76464",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
