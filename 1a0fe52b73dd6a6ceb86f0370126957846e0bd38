@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f546f5b_d7166f89",
+        "filename": "client/utils/macos.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-02T10:54:23Z",
+      "side": 1,
+      "message": "Do you think it\u0027s useful to add an `else` to assert False?",
+      "revId": "1a0fe52b73dd6a6ceb86f0370126957846e0bd38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
