@@ -88,6 +88,24 @@
       "revId": "8a98bd245b3892b91b7d11abc68733b89f51ff43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "270a9d87_0777bea6",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-02T04:28:15Z",
+      "side": 1,
+      "message": "Hmm, shall we tell them not to do this?",
+      "parentUuid": "b3ca3a61_29a08ac9",
+      "revId": "8a98bd245b3892b91b7d11abc68733b89f51ff43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
