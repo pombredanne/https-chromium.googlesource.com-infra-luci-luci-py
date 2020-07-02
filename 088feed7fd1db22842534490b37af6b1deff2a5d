@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "028ebfe7_02d49bd4",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-02T13:39:39Z",
+      "side": 1,
+      "message": "I\u0027m wondering whether this is safe for arm cpu which may not use little endian.\nhttps://docs.python.org/3.7/library/struct.html#byte-order-size-and-alignment",
+      "range": {
+        "startLine": 283,
+        "startChar": 24,
+        "endLine": 283,
+        "endChar": 25
+      },
+      "revId": "088feed7fd1db22842534490b37af6b1deff2a5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
