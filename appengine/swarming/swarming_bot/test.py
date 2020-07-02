@@ -31,6 +31,9 @@ def run_tests_parralel():
   # https://nose2.readthedocs.io/en/latest/plugins/attrib.html
   sys.argv.extend(['--attribute', '!no_run'])
 
+  # TODO(jwata): remove after debug
+  sys.argv.extend(['--log', 'debug'])
+
   # enable plugins only on linux
   plugins = []
   if sys.platform.startswith('linux'):
