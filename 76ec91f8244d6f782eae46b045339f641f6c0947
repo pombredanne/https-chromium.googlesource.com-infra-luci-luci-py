@@ -34,6 +34,24 @@
       "revId": "76ec91f8244d6f782eae46b045339f641f6c0947",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15daeea0_52e35296",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T07:55:40Z",
+      "side": 0,
+      "message": "Most functions in osx.py are called in os_utilities.py indirectly.\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_bot/api/os_utilities.py;l\u003d1006?q\u003dget_xcode_versions\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "parentUuid": "327a9326_91b16832",
+      "revId": "76ec91f8244d6f782eae46b045339f641f6c0947",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
