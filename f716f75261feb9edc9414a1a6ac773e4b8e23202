@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "54dd2339_199f5efb",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T07:36:40Z",
+      "side": 1,
+      "message": "Thanks. Done.",
+      "parentUuid": "110acab3_c9e6930c",
+      "range": {
+        "startLine": 490,
+        "startChar": 15,
+        "endLine": 490,
+        "endChar": 16
+      },
+      "revId": "f716f75261feb9edc9414a1a6ac773e4b8e23202",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ab0d051_bf01b65b",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8e4b0bb6_e94f6f0e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T07:36:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ab0d051_bf01b65b",
+      "range": {
+        "startLine": 492,
+        "startChar": 55,
+        "endLine": 492,
+        "endChar": 64
+      },
+      "revId": "f716f75261feb9edc9414a1a6ac773e4b8e23202",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "243fa0f8_686b6eda",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
         "patchSetId": 5
@@ -62,6 +110,24 @@
       "revId": "f716f75261feb9edc9414a1a6ac773e4b8e23202",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10001749_4c81e617",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T07:36:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "243fa0f8_686b6eda",
+      "revId": "f716f75261feb9edc9414a1a6ac773e4b8e23202",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -85,6 +151,30 @@
       "revId": "f716f75261feb9edc9414a1a6ac773e4b8e23202",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd22788f_495d4ac1",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T07:36:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "807244dc_c3ec0517",
+      "range": {
+        "startLine": 31,
+        "startChar": 14,
+        "endLine": 31,
+        "endChar": 24
+      },
+      "revId": "f716f75261feb9edc9414a1a6ac773e4b8e23202",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
