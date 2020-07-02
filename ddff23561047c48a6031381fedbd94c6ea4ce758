@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96225095_1e06a2da",
+        "filename": "client/utils/macos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T12:54:58Z",
+      "side": 1,
+      "message": "Isn\u0027t it better to put \"if six.PY3 else\" inside each function because may have duplicated logic?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 13
+      },
+      "revId": "ddff23561047c48a6031381fedbd94c6ea4ce758",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
