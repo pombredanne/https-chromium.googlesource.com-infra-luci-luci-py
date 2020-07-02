@@ -1,4 +1,4 @@
-#!/usr/bin/env vpython
+#!/usr/bin/env vpython3
 # Copyright 2012 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
@@ -477,7 +477,7 @@ class Isolate(unittest.TestCase):
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         cwd=test_env.CLIENT_DIR)
-    out = p.communicate()[0].splitlines()
+    out = p.communicate()[0].decode().splitlines()
     self.assertEqual(0, p.returncode)
     out = out[out.index('Commands are:') + 1:]
     out = out[:out.index('')]
@@ -499,8 +499,7 @@ class Isolate(unittest.TestCase):
 class IsolateTempdirBase(unittest.TestCase):
   def setUp(self):
     super(IsolateTempdirBase, self).setUp()
-    self.tempdir = file_path.get_native_path_case(
-        six.text_type(tempfile.mkdtemp(prefix=u'isolate_smoke_')))
+    self.tempdir = six.text_type(tempfile.mkdtemp(prefix=u'isolate_smoke_'))
     self.isolated = os.path.join(self.tempdir, 'isolate_smoke_test.isolated')
     self.isolate_dir = os.path.join(self.tempdir, 'isolate')
 
@@ -529,7 +528,7 @@ class IsolateTempdirBase(unittest.TestCase):
     if RELATIVE_CWD[self.case()] == '.':
       root_dir = os.path.join(root_dir, 'tests', 'isolate')
 
-    files = {unicode(f): {} for f in DEPENDENCIES[self.case()][1]}
+    files = {six.ensure_text(f): {} for f in DEPENDENCIES[self.case()][1]}
     for relfile, v in files.items():
       filepath = os.path.join(root_dir, relfile)
       filestats = os.lstat(filepath)
@@ -565,7 +564,7 @@ class IsolateTempdirBase(unittest.TestCase):
     if read_only is not None:
       expected[u'read_only'] = read_only
     if args:
-      expected[u'command'] = [u'python'] + [unicode(x) for x in args]
+      expected[u'command'] = [u'python'] + [six.ensure_text(x) for x in args]
       expected[u'relative_cwd'] = six.text_type(RELATIVE_CWD[self.case()])
     with open(self.isolated, 'r') as f:
       self.assertEqual(expected, json.load(f))
@@ -586,7 +585,8 @@ class IsolateTempdirBase(unittest.TestCase):
             self._gen_files(read_only, empty_file),
         u'isolate_file':
             file_path.safe_relpath(
-                file_path.get_native_path_case(unicode(self.filename())),
+                file_path.get_native_path_case(
+                    six.ensure_text(self.filename())),
                 six.text_type(os.path.dirname(self.isolated))),
         u'path_variables': {},
         u'relative_cwd':
@@ -597,7 +597,7 @@ class IsolateTempdirBase(unittest.TestCase):
             six.text_type(isolate.SavedState.EXPECTED_VERSION),
     }
     if args:
-      expected[u'command'] = [u'python'] + [unicode(x) for x in args]
+      expected[u'command'] = [u'python'] + [six.ensure_text(x) for x in args]
     with open(self.saved_state(), 'r') as f:
       self.assertEqual(expected, json.load(f))
 
@@ -680,7 +680,7 @@ class IsolateTempdirBase(unittest.TestCase):
       self.assertEqual('', e.output)
       out = getattr(e, 'stderr', None)
     self._expect_no_result()
-    root = file_path.get_native_path_case(unicode(self.isolate_dir))
+    root = file_path.get_native_path_case(six.ensure_text(self.isolate_dir))
     expected = (
       'Input directory %s must have a trailing slash' %
           os.path.join(root, 'tests', 'isolate', 'files1')
@@ -695,7 +695,7 @@ class IsolateTempdirBase(unittest.TestCase):
       self.assertEqual('', e.output)
       out = getattr(e, 'stderr', None)
     self._expect_no_result()
-    root = file_path.get_native_path_case(unicode(self.isolate_dir))
+    root = file_path.get_native_path_case(six.ensure_text(self.isolate_dir))
     expected = (
       'Input file %s doesn\'t exist' %
           os.path.join(root, 'tests', 'isolate', 'A_file_that_do_not_exist')
@@ -863,19 +863,24 @@ class Isolate_run(IsolateTempdirBase):
       pass
     self._expect_no_result()
 
+  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_touch_root(self):
     self._execute('run', 'touch_root.isolate', [])
     self._expect_results(['touch_root.py'], None, None, self.isolate_dir)
 
   if sys.platform != 'win32':
+
+    @unittest.skipIf(six.PY3, 'crbug.com/1010816')
     def test_symlink_full(self):
       self._execute('run', 'symlink_full.isolate', [])
       self._expect_results(['symlink_full.py'], None, None, None)
 
+    @unittest.skipIf(six.PY3, 'crbug.com/1010816')
     def test_symlink_partial(self):
       self._execute('run', 'symlink_partial.isolate', [])
       self._expect_results(['symlink_partial.py'], None, None, None)
 
+    @unittest.skipIf(six.PY3, 'crbug.com/1010816')
     def test_symlink_outside_build_root(self):
       self._execute('run', 'symlink_outside_build_root.isolate', [])
       self._expect_results(['symlink_outside_build_root.py'], None, None, None)
@@ -946,6 +951,7 @@ class IsolateNoOutdir(IsolateTempdirBase):
     with self.assertRaises(CalledProcessError):
       self._execute_short('remap', ['--isolate', self.filename()])
 
+  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_run(self):
     self._execute_short('run', ['--isolate', self.filename()])
     files = sorted([
@@ -975,7 +981,7 @@ class IsolateOther(IsolateTempdirBase):
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         cwd=test_env.CLIENT_DIR)
-    stdout = proc.communicate()[0]
+    stdout = proc.communicate()[0].decode()
     self.assertEqual(isolate._VARIABLE_WARNING, stdout)
     self.assertEqual(0, proc.returncode)
     expected = [
@@ -1005,7 +1011,7 @@ class IsolateOther(IsolateTempdirBase):
   def test_empty_and_renamed(self):
     a_isolate = os.path.join(self.tempdir, 'a.isolate')
     with open(a_isolate, 'wb') as f:
-      f.write('{}')
+      f.write(b'{}')
 
     cmd = [
         sys.executable, 'isolate.py', 'check',
