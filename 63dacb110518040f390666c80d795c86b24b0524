@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50db4385_b6f1039d",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1386,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-02T03:40:28Z",
+      "side": 1,
+      "message": "How about calling mock.patch(\u0027__buildin__.print\u0027).start() in setup(), and stop() in tearDown()?\nIt looks tests in this class always call _run_test().\n\ndef setUp(self):\n  self.print_patcher \u003d mock.patch(\u0027__buildin__.print\u0027)\n  self.mocked_print \u003d self.print_patcher.start()\n\ndef tearDown(self):\n  self.print_patcher.stop()\n\ndef test_foo(self):\n  ...\n  self.mocked_print.assert_called_once(...)",
+      "range": {
+        "startLine": 1386,
+        "startChar": 0,
+        "endLine": 1386,
+        "endChar": 59
+      },
+      "revId": "63dacb110518040f390666c80d795c86b24b0524",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
