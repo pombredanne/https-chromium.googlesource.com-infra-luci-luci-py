@@ -16,6 +16,24 @@
       "revId": "8a98bd245b3892b91b7d11abc68733b89f51ff43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2139af8_311ca26f",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-02T03:45:26Z",
+      "side": 1,
+      "message": "This directly caused 1101297, and I thought you mentioned in the meeting that we still need to make a fix.",
+      "parentUuid": "7ab2d782_3e65dacd",
+      "revId": "8a98bd245b3892b91b7d11abc68733b89f51ff43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
