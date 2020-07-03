@@ -16,6 +16,24 @@
       "revId": "44dad6333f63c944a8002ce71af79ab2db0ed87f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72b7e18b_4c7d550f",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-03T06:04:21Z",
+      "side": 1,
+      "message": "\u0027parameterized\u0027 didn\u0027t work with nose2 in Python3...",
+      "parentUuid": "eb1c9376_f5312814",
+      "revId": "44dad6333f63c944a8002ce71af79ab2db0ed87f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
