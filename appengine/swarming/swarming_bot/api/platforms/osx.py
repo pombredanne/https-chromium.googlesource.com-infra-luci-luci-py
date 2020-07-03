@@ -4,7 +4,6 @@
 
 """OSX specific utility functions."""
 
-import cgi
 import ctypes
 import logging
 import os
@@ -744,10 +743,16 @@ def get_disks_model():
 
 def generate_launchd_plist(command, cwd, plistname):
   """Generates a plist content with the corresponding command for launchd."""
+  if six.PY2:
+    import cgi
+    escape_func = cgi.escape
+  else:
+    import html
+    escape_func = html.escape
   # The documentation is available at:
   # https://developer.apple.com/library/mac/documentation/Darwin/Reference/ \
   #    ManPages/man5/launchd.plist.5.html
-  escaped_plist = cgi.escape(plistname)
+  escaped_plist = escape_func(plistname)
   entries = [
       '<key>Label</key><string>%s</string>' % escaped_plist,
       '<key>StandardOutPath</key><string>logs/bot_stdout.log</string>',
@@ -780,15 +785,15 @@ def generate_launchd_plist(command, cwd, plistname):
       '  <false/>',
       '</dict>',
   ]
-  entries.append(
-      '<key>Program</key><string>%s</string>' % cgi.escape(command[0]))
+  entries.append('<key>Program</key><string>%s</string>' %
+                 escape_func(command[0]))
   entries.append('<key>ProgramArguments</key>')
   entries.append('<array>')
   # Command[0] must be passed as an argument.
-  entries.extend('  <string>%s</string>' % cgi.escape(i) for i in command)
+  entries.extend('  <string>%s</string>' % escape_func(i) for i in command)
   entries.append('</array>')
-  entries.append(
-      '<key>WorkingDirectory</key><string>%s</string>' % cgi.escape(cwd))
+  entries.append('<key>WorkingDirectory</key><string>%s</string>' %
+                 escape_func(cwd))
   header = (
       '<?xml version="1.0" encoding="UTF-8"?>\n'
       '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" '
