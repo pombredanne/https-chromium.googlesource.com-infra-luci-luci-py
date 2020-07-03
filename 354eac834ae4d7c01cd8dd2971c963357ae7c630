@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d42d29cf_1c8f0cf7",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-03T10:08:10Z",
+      "side": 1,
+      "message": "why move this function?",
+      "revId": "354eac834ae4d7c01cd8dd2971c963357ae7c630",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
