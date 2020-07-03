@@ -52,6 +52,24 @@
       "revId": "44dad6333f63c944a8002ce71af79ab2db0ed87f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c90037c4_707a8653",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-03T06:07:55Z",
+      "side": 1,
+      "message": "It failed in Linux Python3.\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8875834674747077936/+/u/swarming_bot/run_tests_python3/stdout#L8000_0\n\n---\n ERROR: test_not_found (nose2.loader.LoadTestsFailure)\n ----------------------------------------------------------------------\n Traceback (most recent call last):\n   File \"/b/s/w/ir/cache/vpython/d49360/lib/python3.8/site-packages/parameterized/parameterized.py\", line 518, in standalone_func\n     return func(*(a + p.args), **p.kwargs)\n TypeError: test_get_monitor_hidpi() missing 1 required positional argument: \u0027expected\u0027",
+      "parentUuid": "4e98fb5e_bbb3f2dc",
+      "revId": "44dad6333f63c944a8002ce71af79ab2db0ed87f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
