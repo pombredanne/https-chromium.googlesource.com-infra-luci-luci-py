@@ -70,6 +70,30 @@
       "revId": "088feed7fd1db22842534490b37af6b1deff2a5d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab2d6b17_45c1548b",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-03T05:34:47Z",
+      "side": 1,
+      "message": "I think ARM based Mac won\u0027t have SCM anyway, since it\u0027s for intel-based Mac.\nhttps://support.apple.com/en-us/HT201518",
+      "parentUuid": "48aaadf6_17925ac2",
+      "range": {
+        "startLine": 283,
+        "startChar": 24,
+        "endLine": 283,
+        "endChar": 25
+      },
+      "revId": "088feed7fd1db22842534490b37af6b1deff2a5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
