@@ -22,6 +22,30 @@
       "revId": "ed98078ade06602cac55440dc27f471b6e987c71",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9dc1003_47348456",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-03T06:31:51Z",
+      "side": 1,
+      "message": "FTR: It\u0027s a parameterized bug.\nhttps://github.com/wolever/parameterized/issues/91",
+      "parentUuid": "3d673062_84dd8595",
+      "range": {
+        "startLine": 302,
+        "startChar": 6,
+        "endLine": 302,
+        "endChar": 7
+      },
+      "revId": "ed98078ade06602cac55440dc27f471b6e987c71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

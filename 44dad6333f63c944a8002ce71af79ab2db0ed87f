@@ -88,6 +88,24 @@
       "revId": "44dad6333f63c944a8002ce71af79ab2db0ed87f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bc7c230_6a5b1d71",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-03T06:31:51Z",
+      "side": 1,
+      "message": "Thank you for finding it out.\nI added TODO.",
+      "parentUuid": "0b4fe9f5_69a124df",
+      "revId": "44dad6333f63c944a8002ce71af79ab2db0ed87f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
