@@ -10,7 +10,7 @@ import sys
 import time
 import unittest
 
-from nose2.tools import params
+from parameterized import parameterized
 
 import test_env_platforms
 test_env_platforms.setup_test_env()
@@ -28,11 +28,11 @@ class TestGCE(auto_stub.TestCase):
     super(TestGCE, self).tearDown()
     tools.clear_cache_all()
 
-  @params(
-      ('us-central2-a', ['us', 'us-central', 'us-central2', 'us-central2-a']),
-      ('europe-west1-b',
-       ['europe', 'europe-west', 'europe-west1', 'europe-west1-b']),
-  )
+  @parameterized.expand([
+    ('us-central2-a', ['us', 'us-central', 'us-central2', 'us-central2-a']),
+    ('europe-west1-b',
+     ['europe', 'europe-west', 'europe-west1', 'europe-west1-b']),
+  ])
   def test_get_zones(self, zone, expected):
     self.mock(gce, 'get_zone', lambda: zone)
     self.assertEqual(expected, gce.get_zones())
