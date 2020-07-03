@@ -46,6 +46,30 @@
       "revId": "088feed7fd1db22842534490b37af6b1deff2a5d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48aaadf6_17925ac2",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-03T01:50:22Z",
+      "side": 1,
+      "message": "Oh, then this uses network byteorder rather than explicit big-endian?",
+      "parentUuid": "cac306e4_e9337d55",
+      "range": {
+        "startLine": 283,
+        "startChar": 24,
+        "endLine": 283,
+        "endChar": 25
+      },
+      "revId": "088feed7fd1db22842534490b37af6b1deff2a5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
