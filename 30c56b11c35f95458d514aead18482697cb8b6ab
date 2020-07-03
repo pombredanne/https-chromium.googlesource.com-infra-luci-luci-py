@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e005ca5e_125ee5c5",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-03T06:56:29Z",
+      "side": 1,
+      "message": "This doesn\u0027t work even in Py2.\n\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8875816367788422432/+/u/swarming_bot/run_tests_python2/stdout#L3807_1",
+      "parentUuid": "5d852a39_774e011e",
+      "range": {
+        "startLine": 300,
+        "startChar": 12,
+        "endLine": 300,
+        "endChar": 16
+      },
+      "revId": "30c56b11c35f95458d514aead18482697cb8b6ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a7b55635_f2fdbe21",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2020-07-03T06:44:02Z",
       "side": 1,
       "message": "ditto",
+      "revId": "30c56b11c35f95458d514aead18482697cb8b6ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12d9de75_e622617a",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-03T06:56:29Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "a7b55635_f2fdbe21",
       "revId": "30c56b11c35f95458d514aead18482697cb8b6ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
