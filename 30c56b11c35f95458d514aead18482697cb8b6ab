@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "36cedbd7_3ff46dca",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-03T06:57:37Z",
+      "side": 1,
+      "message": "I think this Foundation.NSBundle is a part of pyobjc.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_bot/api/platforms/osx.py;l\u003d25?q\u003df:osx.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "parentUuid": "e005ca5e_125ee5c5",
+      "range": {
+        "startLine": 300,
+        "startChar": 12,
+        "endLine": 300,
+        "endChar": 16
+      },
+      "revId": "30c56b11c35f95458d514aead18482697cb8b6ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a7b55635_f2fdbe21",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
         "patchSetId": 3
