@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d852a39_774e011e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-03T06:44:02Z",
+      "side": 1,
+      "message": "\u0027skipIf(six.PY3\u0027?",
+      "range": {
+        "startLine": 300,
+        "startChar": 12,
+        "endLine": 300,
+        "endChar": 16
+      },
+      "revId": "30c56b11c35f95458d514aead18482697cb8b6ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7b55635_f2fdbe21",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-03T06:44:02Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "30c56b11c35f95458d514aead18482697cb8b6ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
