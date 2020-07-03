@@ -627,7 +627,7 @@ def get_temperatures():
 
 @tools.cached
 def get_monitor_hidpi():
-  """Returns True if the monitor is hidpi.
+  """Returns '1' if the monitor is hidpi.
 
   On 10.12.3 and earlier, the following could be used to detect an hidpi
   display:
