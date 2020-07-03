@@ -382,6 +382,15 @@ class TestOsx(unittest.TestCase):
     disks_model = osx.get_disks_model()
     self.assertEqual((u'APPLE SSD AP0256M', u'APPLE SSD AP0257M'), disks_model)
 
+  def test_generate_launchd_plist(self):
+    plist_data = osx.generate_launchd_plist(['echo', 'hi'], os.getcwd(),
+                                            'org.swarm.bot.plist')
+    plist = osx._read_plist(plist_data.encode())
+    self.assertEqual(plist['Label'], 'org.swarm.bot.plist')
+    self.assertEqual(plist['Program'], 'echo')
+    self.assertEqual(plist['ProgramArguments'], ['echo', 'hi'])
+
+
 if __name__ == '__main__':
   if '-v' in sys.argv:
     unittest.TestCase.maxDiff = None
