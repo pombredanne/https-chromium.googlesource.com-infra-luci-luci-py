@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "35bc42c0_94494fe3",
+        "filename": "client/tests/isolateserver_fake.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1434885
+      },
+      "writtenOn": "2020-07-03T07:06:18Z",
+      "side": 1,
+      "message": "This was changed in the original CL. |data| could be None, see https://cs.chromium.org/chromium/infra/luci/client/tests/isolateserver_fake.py?l\u003d138\u0026rcl\u003db04477fcb1aa2f4f59a2d4337afa7af4f1e786f2. I changed probably because I discovered this during fixing some tests.",
+      "parentUuid": "2e57221d_ae523815",
+      "revId": "b45b58cef8620c0b4a640aa0c6a99f93703d169d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "404e443b_f3a4d2a5",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "b45b58cef8620c0b4a640aa0c6a99f93703d169d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bccd26e1_398178b0",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1434885
+      },
+      "writtenOn": "2020-07-03T07:06:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "404e443b_f3a4d2a5",
+      "revId": "b45b58cef8620c0b4a640aa0c6a99f93703d169d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
