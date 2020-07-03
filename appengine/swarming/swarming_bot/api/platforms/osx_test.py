@@ -291,21 +291,19 @@ class TestOsx(unittest.TestCase):
   def test_get_monitor_hidpi(self):
     pass
 
-  @unittest.skip('TODO(crbug.com/1100226): add test')
   def test_get_physical_ram(self):
-    pass
+    self.assertGreater(osx.get_physical_ram(), 0)
 
-  @unittest.skip('TODO(crbug.com/1100226): add test')
   def test_get_uptime(self):
-    pass
+    self.assertGreater(osx.get_uptime(), 0)
 
-  @unittest.skip('TODO(crbug.com/1100226): add test')
+  @unittest.skip('TODO(crbug.com/1100226): install pyobjc')
   def test_is_locked(self):
-    pass
+    self.assertIsNotNone(osx.is_locked())
 
-  @unittest.skip('TODO(crbug.com/1100226): add test')
+  @unittest.skip('TODO(crbug.com/1100226): install pyobjc')
   def test_is_beta(self):
-    pass
+    self.assertIsNotNone(osx.is_beta())
 
   @unittest.skip('TODO(crbug.com/1100226): add test')
   def test_generate_launchd_plist(self):
