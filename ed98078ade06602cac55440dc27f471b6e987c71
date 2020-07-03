@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d673062_84dd8595",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-03T06:17:20Z",
+      "side": 1,
+      "message": "maybe need to use touple for parameterized here?",
+      "range": {
+        "startLine": 302,
+        "startChar": 6,
+        "endLine": 302,
+        "endChar": 7
+      },
+      "revId": "ed98078ade06602cac55440dc27f471b6e987c71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
