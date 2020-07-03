@@ -11,14 +11,14 @@ import sys
 import six
 
 if sys.platform == 'cygwin':
+  from api.platforms import posix
   import gce
-  import posix
   import win
   is_gce = lambda: gce.is_gce() # to reuse gce.is_gce mock, if any
 
 if sys.platform == 'darwin':
+  from api.platforms import posix
   import osx
-  import posix
   is_gce = lambda: False
 
 
