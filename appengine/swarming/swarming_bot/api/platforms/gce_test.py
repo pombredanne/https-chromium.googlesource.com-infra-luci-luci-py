@@ -28,6 +28,8 @@ class TestGCE(auto_stub.TestCase):
     super(TestGCE, self).tearDown()
     tools.clear_cache_all()
 
+  print(gce.get_metadata())
+
   @params(
       ('us-central2-a', ['us', 'us-central', 'us-central2', 'us-central2-a']),
       ('europe-west1-b',
@@ -36,6 +38,7 @@ class TestGCE(auto_stub.TestCase):
   def test_get_zones(self, zone, expected):
     self.mock(gce, 'get_zone', lambda: zone)
     self.assertEqual(expected, gce.get_zones())
+
 
 
 class TestSignedMetadataToken(auto_stub.TestCase):
