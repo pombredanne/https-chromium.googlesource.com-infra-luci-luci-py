@@ -7,6 +7,7 @@ import base64
 import json
 import logging
 import sys
+import threading
 import time
 import unittest
 
@@ -161,17 +162,18 @@ class TestGCE(auto_stub.TestCase):
     self.assertEqual(gce.get_tags(), ['tag1', 'tag2'])
 
 
-@unittest.skip('TODO(crbug.com/1100226): add test')
+@unittest.skipUnless(gce.is_gcp(), 'The tests run only on GCE machines')
 class TestMetadata(auto_stub.TestCase):
 
   def test_get_metadata_uncached(self):
-    pass
+    print(gce.get_metadata_uncached())
 
   def test_wait_for_metadata(self):
-    pass
+    quit_bit = threading.Event()
+    print(gce.wait_for_metadata(quit_bit))
 
   def test_get_metadata(self):
-    pass
+    print(gce.get_metadata())
 
 
 @unittest.skip('TODO(crbug.com/1100226): add test')
