@@ -30,4 +30,5 @@ def oauth2_access_token_from_url(url, headers):
   except IOError as e:
     logging.error('Failed to grab OAuth2 access token: %s', e)
     raise
+  print('oauth2_access_token_from_url resp:', resp)
   return resp['access_token'], time.time() + resp['expires_in']

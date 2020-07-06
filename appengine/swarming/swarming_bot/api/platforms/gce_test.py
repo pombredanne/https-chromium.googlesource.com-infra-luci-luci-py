@@ -174,14 +174,14 @@ class TestMetadata(auto_stub.TestCase):
     pass
 
 
-@unittest.skip('TODO(crbug.com/1100226): add test')
+@unittest.skipUnless(gce.is_gce(), 'TestOauth2AccessToken runs only on GCE machines')
 class TestOauth2AccessToken(auto_stub.TestCase):
 
   def test_oauth2_access_token_with_expiration(self):
-    pass
+    print('gce.oauth2_access_token_with_expiration()', gce.oauth2_access_token_with_expiration('default'))
 
   def test_oauth2_access_token(self):
-    pass
+    print('gce.oauth2_access_token()', gce.oauth2_access_token())
 
 
 class TestSignedMetadataToken(auto_stub.TestCase):
