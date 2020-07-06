@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5b7f048_7da28557",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-06T09:45:39Z",
+      "side": 1,
+      "message": "Use six.moves? e.g. from six.moves import builtins\nhttps://six.readthedocs.io/#module-six.moves",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 63
+      },
+      "revId": "15911c5da230160545f5e9c2c620b55804470fa4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68655d64_3d6ff2a9",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-06T09:45:39Z",
+      "side": 1,
+      "message": "Would be better to use if six.PY2 so that we can remove them later easily?\n\ne.g.\n```\nlink \u003d tf.name \nif six.PY2:\n  link \u003d link.decode(sys.getfilesystemencoding())\nfs.unlink(link)\n```",
+      "range": {
+        "startLine": 197,
+        "startChar": 1,
+        "endLine": 200,
+        "endChar": 60
+      },
+      "revId": "15911c5da230160545f5e9c2c620b55804470fa4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8226e942_15d4078e",
+        "filename": "client/tests/isolateserver_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-06T09:45:39Z",
+      "side": 1,
+      "message": "I learned it.",
+      "range": {
+        "startLine": 371,
+        "startChar": 4,
+        "endLine": 371,
+        "endChar": 24
+      },
+      "revId": "15911c5da230160545f5e9c2c620b55804470fa4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
