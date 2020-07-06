@@ -16,6 +16,29 @@
       "revId": "dea1bf34a0f39ed2664b8a5b202a1a5b5e8b2820",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b380e753_96b89849",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-07-06T19:36:48Z",
+      "side": 1,
+      "message": "nit: consider inverting the condition. I think it would be slightly more readable. Consider a case where there are 3 providers. We\u0027d probably want the exception to the in the fourth branch\n\nsame below",
+      "range": {
+        "startLine": 383,
+        "startChar": 7,
+        "endLine": 383,
+        "endChar": 10
+      },
+      "revId": "dea1bf34a0f39ed2664b8a5b202a1a5b5e8b2820",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
