@@ -22,6 +22,30 @@
       "revId": "58723b3372b5de19fe229c5f5a44d5301f68ac4e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc855902_b7d2abbe",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-06T02:52:54Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "46bca7e4_0970010c",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 76
+      },
+      "revId": "58723b3372b5de19fe229c5f5a44d5301f68ac4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
