@@ -39,6 +39,30 @@
       "revId": "dea1bf34a0f39ed2664b8a5b202a1a5b5e8b2820",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a05c7daf_6900d5d7",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-07-06T19:48:26Z",
+      "side": 1,
+      "message": "good point, done!\n\n(I focused all my energy on ease of deletion of the code above)",
+      "parentUuid": "b380e753_96b89849",
+      "range": {
+        "startLine": 383,
+        "startChar": 7,
+        "endLine": 383,
+        "endChar": 10
+      },
+      "revId": "dea1bf34a0f39ed2664b8a5b202a1a5b5e8b2820",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
