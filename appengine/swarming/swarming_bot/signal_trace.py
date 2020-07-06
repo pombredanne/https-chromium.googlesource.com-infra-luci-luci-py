@@ -40,6 +40,9 @@ def _dump(_sig, frame):
   # used. Use logging instead of sys.stderr.write() because stderr could be
   # sink-holed and logging redirected to a file.
   logging.error('\n%s', buf.getvalue())
+  if six.PY3:
+    # python2 exits process by SIGUSR1 signal, but not in python3.
+    sys.exit()
 
 
 def _debug(_sig, frame):
@@ -55,9 +58,12 @@ def _debug(_sig, frame):
     pass
   msg = 'Signal received : entering python shell.\nTraceback:\n%s' % (''.join(
       traceback.format_stack(frame)))
-  symbols = set(frame.f_locals.keys() + frame.f_globals.keys())
+  symbols = set(list(frame.f_locals.keys()) + list(frame.f_globals.keys()))
   msg += 'Symbols:\n%s' % '\n'.join('  ' + x for x in sorted(symbols))
   code.InteractiveConsole(d).interact(msg)
+  if six.PY3:
+    # python2 exits process by SIGUSR2 signal, but not in python3.
+    sys.exit()
 
 
 def register():
