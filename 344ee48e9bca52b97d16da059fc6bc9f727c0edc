@@ -46,6 +46,30 @@
       "revId": "344ee48e9bca52b97d16da059fc6bc9f727c0edc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0e7c49c_76e72764",
+        "filename": "client/tests/on_error_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-06T09:00:53Z",
+      "side": 1,
+      "message": "Ack. It seems specific to this test.",
+      "parentUuid": "5fd885aa_38a2d4b8",
+      "range": {
+        "startLine": 224,
+        "startChar": 43,
+        "endLine": 224,
+        "endChar": 57
+      },
+      "revId": "344ee48e9bca52b97d16da059fc6bc9f727c0edc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
