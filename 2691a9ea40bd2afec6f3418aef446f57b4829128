@@ -33,6 +33,24 @@
       "revId": "2691a9ea40bd2afec6f3418aef446f57b4829128",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7a66325_365fb686",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-07T04:16:18Z",
+      "side": 1,
+      "message": "I was also wondering if this should be checked in the handler.\nmaybe around \nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/handlers_endpoints.py;l\u003d84?q\u003df:handlers_endpoints.py\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F\n\nBut this will prevent callers to get tasks with no pool dimensions, which strangely exist.\nSo I think it\u0027s safer to log task_id here to confirm which tasks they are.",
+      "parentUuid": "a3ce8705_1ce33192",
+      "revId": "2691a9ea40bd2afec6f3418aef446f57b4829128",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
