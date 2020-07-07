@@ -69,6 +69,24 @@
       "revId": "2691a9ea40bd2afec6f3418aef446f57b4829128",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df1d6df4_3cb62fb2",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-07T04:20:37Z",
+      "side": 1,
+      "message": "I\u0027m not sure this is correct fix, commented on the bug.",
+      "parentUuid": "d7a66325_365fb686",
+      "revId": "2691a9ea40bd2afec6f3418aef446f57b4829128",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
