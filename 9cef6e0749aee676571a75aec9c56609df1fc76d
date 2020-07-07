@@ -16,6 +16,24 @@
       "revId": "9cef6e0749aee676571a75aec9c56609df1fc76d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "116de0c5_1c751b03",
+        "filename": "appengine/auth_service/realms/validation.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-07-07T01:14:43Z",
+      "side": 1,
+      "message": "This is a helper class inside guts of LUCI auth implementation, far from public API. I don\u0027t see a reason to be extra careful with public vs internal fields (they are all essentially internal). Skipping \u0027_\u0027 reduces clutter.",
+      "parentUuid": "9e0b5abf_1b506b58",
+      "revId": "9cef6e0749aee676571a75aec9c56609df1fc76d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
