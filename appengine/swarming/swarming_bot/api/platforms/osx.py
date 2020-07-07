@@ -512,9 +512,11 @@ def get_os_version_number():
 @tools.cached
 def get_audio():
   """Returns the audio cards that are "connected"."""
+  items = _get_system_profiler('SPAudioDataType')
+  if not items:
+    return []
   return [
-      card['_name']
-      for card in _get_system_profiler('SPAudioDataType')[0].get('_items', [])
+      card['_name'] for card in items[0].get('_items', [])
       if card.get('coreaudio_default_audio_output_device') == 'spaudio_yes'
   ]
 
