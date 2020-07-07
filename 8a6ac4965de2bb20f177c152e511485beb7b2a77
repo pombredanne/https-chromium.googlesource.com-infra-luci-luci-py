@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97eb416e_73fda1b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-07T05:35:44Z",
+      "side": 1,
+      "message": "I updated the CL to handle terminate tasks.\nPTAL.",
+      "revId": "8a6ac4965de2bb20f177c152e511485beb7b2a77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
