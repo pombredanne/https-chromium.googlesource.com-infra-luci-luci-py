@@ -10,6 +10,10 @@ details on the presubmit API built into gclient.
 
 
 def CommonChecks(input_api, output_api):
+
+  def join(*args):
+    return input_api.os_path.join(input_api.PresubmitLocalPath(), *args)
+
   block_list = list(input_api.DEFAULT_BLOCK_LIST) + [
     r'.*_pb2\.py$',
   ]
@@ -20,7 +24,8 @@ def CommonChecks(input_api, output_api):
       input_api,
       output_api,
       block_list=block_list,
-      disabled_warnings=disabled_warnings)
+      disabled_warnings=disabled_warnings,
+      pylintrc=join('../../', 'pylintrc'))
 
 
 # pylint: disable=unused-argument
