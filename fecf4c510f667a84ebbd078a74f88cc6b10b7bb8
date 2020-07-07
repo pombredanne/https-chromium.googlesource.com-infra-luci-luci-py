@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa87398e_11dce14e",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-07-07T03:38:33Z",
+      "side": 1,
+      "message": "imo don\u0027t use assert since it can be bypassed with an interpreter flag. Will that happen? probably not. However, there\u0027s no interpreter flag to bypass `if`.",
+      "range": {
+        "startLine": 240,
+        "startChar": 2,
+        "endLine": 240,
+        "endChar": 8
+      },
+      "revId": "fecf4c510f667a84ebbd078a74f88cc6b10b7bb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
