@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c391220d_0469f9a4",
+        "filename": "appengine/swarming/PRESUBMIT.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-07T07:38:07Z",
+      "side": 1,
+      "message": "better to write inline if it is used only once?",
+      "range": {
+        "startLine": 30,
+        "startChar": 15,
+        "endLine": 30,
+        "endChar": 19
+      },
+      "revId": "213399a31f27dea4a035e44fb01803deb2de38f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
