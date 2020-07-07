@@ -16,6 +16,23 @@
       "revId": "cbb89e4ee337a9d55a861eb7b6a1883ac3f4a2da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b72308eb_93fb6c87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-07-07T02:32:56Z",
+      "side": 1,
+      "message": "Eh, looks like the test as written is incompatible with nose test loader :( I\u0027ll have to mock config set name somehow differently.",
+      "revId": "cbb89e4ee337a9d55a861eb7b6a1883ac3f4a2da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
