@@ -22,6 +22,30 @@
       "revId": "fecf4c510f667a84ebbd078a74f88cc6b10b7bb8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89c056ab_fc039465",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-07-07T04:12:04Z",
+      "side": 1,
+      "message": "It\u0027s more like an assert on a form of regexp for accepted project IDs in LUCI Config, but fine.",
+      "parentUuid": "fa87398e_11dce14e",
+      "range": {
+        "startLine": 240,
+        "startChar": 2,
+        "endLine": 240,
+        "endChar": 8
+      },
+      "revId": "fecf4c510f667a84ebbd078a74f88cc6b10b7bb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
