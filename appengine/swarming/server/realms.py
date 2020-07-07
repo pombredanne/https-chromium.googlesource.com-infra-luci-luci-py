@@ -351,6 +351,10 @@ def check_task_get_acl(task_request):
   if acl.can_view_task(task_request):
     return
 
+  if not task_request.pool:
+    raise endpoints.BadRequestException(
+        'TaskRequest.pool is missing. task_id: %s' % task_request.task_id)
+
   # check 'swarming.pools.listTasks' permission.
   pool_realm = pools_config.get_pool_config(task_request.pool).realm
   if pool_realm and auth.has_permission(
