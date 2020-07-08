@@ -12,8 +12,10 @@ import fnmatch
 import json
 import logging
 import os
+import random
 import re
 import signal
+import string
 import sys
 import tempfile
 import threading
@@ -49,16 +51,19 @@ import local_caching
 # swarming_bot/
 import swarmingserver_bot_fake
 # bot_code/
-import bot_auth
-import remote_client
-import task_runner
+from bot_code import bot_auth
+from bot_code import remote_client
+from bot_code import task_runner
 
+def gen_task_id():
+   return ''.join([random.choice(string.digits) for _ in range(10)])
 
 def get_manifest(script=None, isolated=None, **kwargs):
   """Returns a task manifest similar to what the server sends back to the bot.
 
   Eventually this should be a proto message.
   """
+
   isolated_input = isolated and isolated.get('input')
   out = {
       'bot_authenticated_as':
@@ -101,7 +106,7 @@ def get_manifest(script=None, isolated=None, **kwargs):
       'service_accounts':
           None,
       'task_id':
-          23,
+          six.text_type(gen_task_id()),
   }
   out.update(kwargs)
   return out
@@ -219,17 +224,17 @@ class TestTaskRunnerBase(auto_stub.TestCase):
       self._isolateserver = isolateserver_fake.FakeIsolateServer()
     return self._isolateserver
 
-  def getTaskResults(self):
+  def getTaskResults(self, task_id):
     """Returns a flattened task result."""
     tasks = self.server.get_tasks()
-    self.assertEqual(['23'], sorted(tasks))
-    actual = swarmingserver_bot_fake.flatten_task_updates(tasks['23'])
+    self.assertEqual([task_id], sorted(tasks))
+    actual = swarmingserver_bot_fake.flatten_task_updates(tasks[task_id])
     # Always decode the output;
     if u'output' in actual:
       actual[u'output'] = base64.b64decode(actual[u'output'])
     return actual
 
-  def expectTask(self, **kwargs):
+  def expectTask(self, task_id, **kwargs):
     """Asserts the task update sent by task_runner to the server.
 
     It doesn't disambiguate individual task_update, so if you care about the
@@ -238,7 +243,7 @@ class TestTaskRunnerBase(auto_stub.TestCase):
     Returns:
       flattened task result as seen on the server, with output decoded.
     """
-    actual = self.getTaskResults()
+    actual = self.getTaskResults(task_id)
     out = actual.copy()
     expected = {
         u'bot_overhead': 0.,
@@ -256,7 +261,7 @@ class TestTaskRunnerBase(auto_stub.TestCase):
         },
         u'output': 'hi\n',
         u'output_chunk_start': 0,
-        u'task_id': 23,
+        u'task_id': task_id,
     }
     for k, v in kwargs.items():
       if v is None:
@@ -321,7 +326,7 @@ class TestTaskRunner(TestTaskRunnerBase):
     }
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
-    self.expectTask()
+    self.expectTask(task_details.task_id)
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_run_command_env_prefix_one(self):
@@ -340,7 +345,9 @@ class TestTaskRunner(TestTaskRunnerBase):
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
     sep = re.escape(os.sep)
-    self.expectTask(output=re.compile('.+%slocal%ssmurf\n$' % (sep, sep)))
+    self.expectTask(
+        task_details.task_id,
+        output=re.compile('.+%slocal%ssmurf\n$' % (sep, sep)))
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_run_command_env_prefix_multiple(self):
@@ -370,7 +377,7 @@ class TestTaskRunner(TestTaskRunnerBase):
                          r'(?P=cwd)%slocal%ssmurf\n'
                          r'(?P=cwd)%sother%sthing\n'
                          r'$') % (sep, sep, sep, sep))
-    self.expectTask(output=output)
+    self.expectTask(task_details.task_id, output=output)
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_run_command_isolated(self):
@@ -419,6 +426,7 @@ class TestTaskRunner(TestTaskRunnerBase):
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(
+        task_details.task_id,
         isolated_stats=None,
         outputs_ref={
             u'isolated': u'123',
@@ -438,7 +446,7 @@ class TestTaskRunner(TestTaskRunnerBase):
     }
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
-    self.expectTask(exit_code=1)
+    self.expectTask(task_details.task_id, exit_code=1)
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   @unittest.skipIf(sys.platform == 'win32',
@@ -465,7 +473,7 @@ class TestTaskRunner(TestTaskRunnerBase):
         r'the command line is too long>\n'
         r'<Check for missing .so/.dll in the .isolate or GN file or length of '
         r'command line args>')
-    out = self.expectTask(exit_code=1, output=output)
+    out = self.expectTask(task_details.task_id, exit_code=1, output=output)
     self.assertGreater(10., out[u'cost_usd'])
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
@@ -516,6 +524,7 @@ class TestTaskRunner(TestTaskRunnerBase):
     }
     self.assertEqual(expected, actual)
     self.expectTask(
+        manifest['task_id'],
         isolated_stats={
             u'download': {
                 u'duration': 0.,
@@ -581,13 +590,16 @@ class TestTaskRunner(TestTaskRunnerBase):
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(
-        bot_overhead=None, isolated_stats=None, output='hi!\n' * 100003)
+        task_details.task_id,
+        bot_overhead=None,
+        isolated_stats=None,
+        output='hi!\n' * 100003)
     # Here, we want to carefully check the packets sent to ensure the internal
     # timer works as expected. There's 3 updates:
     # - initial task startup with no output
     # - buffer filled with the 3 first yield
     # - last yield
-    updates = self.server.get_tasks()[u'23']
+    updates = self.server.get_tasks()[task_details.task_id]
     self.assertEqual(3, len(updates))
     self.assertEqual(None, updates[0].get(u'output'))
     self.assertEqual(base64.b64encode('hi!\n' * 100002), updates[1][u'output'])
@@ -664,7 +676,7 @@ class TestTaskRunner(TestTaskRunnerBase):
     cache.uninstall(dest_dir, 'foo')
     self.assertFalse(os.path.exists(dest_dir))
     # Now look at the updates sent by the bot as seen by the server.
-    self.expectTask()
+    self.expectTask(task_details.task_id)
 
   def test_start_task_runner_fail_on_startup(self):
     def _get_run_isolated():
@@ -774,11 +786,11 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     expected = {
         u'id': u'localhost',
-        u'task_id': 23,
+        u'task_id': task_details.task_id,
         u'canceled': True,
         u'exit_code': -1
     }
-    actual = self.getTaskResults()
+    actual = self.getTaskResults(task_details.task_id)
     self.assertLessEqual(0, actual.pop(u'cost_usd'))
     self.assertEqual(expected, actual)
 
@@ -794,13 +806,16 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # We need to 'prime' the server before starting the thread.
     self.assertTrue(self.server.url)
 
+    task_details = get_task_details(
+        'import sys,time;sys.stdout.write(\'hi\\n\');time.sleep(100)')
+
     # Cheezy but good enough.
     def run():
       # Wait until there's output.
       while True:
         self.server.has_updated_task.wait()
         self.server.has_updated_task.clear()
-        if 'output' in self.getTaskResults():
+        if 'output' in self.getTaskResults(task_details.task_id):
           self.server.must_stop = True
           break
 
@@ -808,8 +823,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     t.daemon = True
     t.start()
 
-    task_details = get_task_details(
-        'import sys,time;sys.stdout.write(\'hi\\n\');time.sleep(100)')
     # Actually 0xc000013a
     exit_code = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
     expected = {
@@ -822,7 +835,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.assertEqual(expected, self._run_command(task_details))
 
     # Now look at the updates sent by the bot as seen by the server.
-    self.expectTask(exit_code=exit_code)
+    self.expectTask(task_details.task_id, exit_code=exit_code)
     t.join()
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
@@ -840,12 +853,11 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     }
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
-    self.expectTask(hard_timeout=True, exit_code=exit_code)
+    self.expectTask(
+        task_details.task_id, hard_timeout=True, exit_code=exit_code)
 
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
-  @unittest.skipIf(sys.platform == 'darwin',
-                   'TODO(crbug.com/1103068): Fails on Mac CQ')
   @unittest.skipIf(
       sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
   def test_io(self):
@@ -860,9 +872,10 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'must_signal_internal_failure': None,
         u'version': task_runner.OUT_VERSION,
     }
-    self.assertEqual(expected, self._run_command(task_details))
+    result = self._run_command(task_details)
+    self.assertEqual(expected, result)
     # Now look at the updates sent by the bot as seen by the server.
-    self.expectTask(io_timeout=True, exit_code=exit_code)
+    self.expectTask(task_details.task_id, io_timeout=True, exit_code=exit_code)
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_hard_signal(self):
@@ -879,12 +892,11 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(
+        task_details.task_id,
         hard_timeout=True,
         output='hi\ngot signal %s\nbye\n' % task_runner.SIG_BREAK_OR_TERM)
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
-  @unittest.skipIf(sys.platform == 'darwin',
-                   'TODO(crbug.com/1103068): Fails on Mac CQ')
   @unittest.skipIf(
       sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
   def test_io_signal(self):
@@ -902,6 +914,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     #    output_re='^hi\ngot signal %d\nbye\n$' % task_runner.SIG_BREAK_OR_TERM)
     self.expectTask(
+        task_details.task_id,
         io_timeout=True,
         output='hi\ngot signal %s\nbye\n' % task_runner.SIG_BREAK_OR_TERM)
 
@@ -922,11 +935,10 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     }
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
-    self.expectTask(hard_timeout=True, exit_code=exit_code)
+    self.expectTask(
+        task_details.task_id, hard_timeout=True, exit_code=exit_code)
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
-  @unittest.skipIf(sys.platform == 'darwin',
-                   'TODO(crbug.com/1103068): Fails on Mac CQ')
   @unittest.skipIf(
       sys.platform == 'win32',
       'As run_isolated is killed, the children process leaks')
@@ -945,7 +957,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     }
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
-    self.expectTask(io_timeout=True, exit_code=exit_code)
+    self.expectTask(task_details.task_id, io_timeout=True, exit_code=exit_code)
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_hard_signal_no_grace(self):
@@ -964,13 +976,12 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     #  output_re='^hi\ngot signal %d\nbye\n$' % task_runner.SIG_BREAK_OR_TERM)
     self.expectTask(
+        task_details.task_id,
         hard_timeout=True,
         exit_code=exit_code,
         output='hi\ngot signal %s\nbye\n' % task_runner.SIG_BREAK_OR_TERM)
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
-  @unittest.skipIf(sys.platform == 'darwin',
-                   'TODO(crbug.com/1103068): Fails on Mac CQ')
   @unittest.skipIf(sys.platform == 'win32',
                    'As run_isolated is killed, the children process leaks')
   def test_io_signal_no_grace(self):
@@ -990,13 +1001,12 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     #  output_re='^hi\ngot signal %d\nbye\n$' % task_runner.SIG_BREAK_OR_TERM)
     self.expectTask(
+        task_details.task_id,
         io_timeout=True,
         exit_code=exit_code,
         output='hi\ngot signal %s\nbye\n' % task_runner.SIG_BREAK_OR_TERM)
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
-  @unittest.skipIf(sys.platform == 'darwin',
-                   'TODO(crbug.com/1103068): Fails on Mac CQ')
   @unittest.skipIf(sys.platform == 'win32',
                    'TODO(crbug.com/1017545): KeyError output')
   def test_isolated_io_signal_grand_children(self):
@@ -1064,7 +1074,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
       # We need to catch the pid of the grand children to be able to kill it. We
       # do so by processing stdout. Do not use expectTask() output, since it can
       # throw.
-      data = self.getTaskResults()['output']
+      data = self.getTaskResults(manifest['task_id'])['output']
       for k in data.splitlines():
         if k in ('children', 'hi', 'parent'):
           continue
@@ -1084,6 +1094,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     else:
       items_cold = u'eJybwMjWzigGAAUwATY='
     self.expectTask(
+        manifest['task_id'],
         io_timeout=True,
         exit_code=exit_code,
         output=re.compile('parent\n\\d+\nchildren\n\\d+\nhi\n'),
@@ -1201,9 +1212,9 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         u'hard_timeout': False,
         u'id': u'localhost',
         u'io_timeout': False,
-        u'task_id': 23,
+        u'task_id': manifest['task_id'],
     }
-    actual = self.getTaskResults()
+    actual = self.getTaskResults(manifest['task_id'])
     self.assertLessEqual(0, actual.pop(u'cost_usd'))
     self.assertEqual(expected, actual)
 
@@ -1223,11 +1234,11 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Also verify the correct error was posted.
     errors = self.server.get_task_errors()
     expected = {
-      '23': [{
+      manifest['task_id']: [{
         u'message':
             u'task_runner received signal %s' % task_runner.SIG_BREAK_OR_TERM,
         u'id': u'localhost',
-        u'task_id': 23,
+        u'task_id': manifest['task_id'],
       }],
     }
     self.assertEqual(expected, errors)
