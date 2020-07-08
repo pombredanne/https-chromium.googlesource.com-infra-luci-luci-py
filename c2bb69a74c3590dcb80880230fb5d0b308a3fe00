@@ -22,6 +22,69 @@
       "revId": "c2bb69a74c3590dcb80880230fb5d0b308a3fe00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf910fbd_de18f366",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-08T10:04:35Z",
+      "side": 1,
+      "message": "using six.ensure_text here, but use bytes in expected is strange?",
+      "range": {
+        "startLine": 276,
+        "startChar": 40,
+        "endLine": 276,
+        "endChar": 55
+      },
+      "revId": "c2bb69a74c3590dcb80880230fb5d0b308a3fe00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd562dc5_d4aa721a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 997,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-08T10:04:35Z",
+      "side": 1,
+      "message": "better to use bytes here?",
+      "revId": "c2bb69a74c3590dcb80880230fb5d0b308a3fe00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de0249c5_8a984324",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-08T10:04:35Z",
+      "side": 1,
+      "message": "better to use bytes here?",
+      "range": {
+        "startLine": 1057,
+        "startChar": 34,
+        "endLine": 1057,
+        "endChar": 59
+      },
+      "revId": "c2bb69a74c3590dcb80880230fb5d0b308a3fe00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
