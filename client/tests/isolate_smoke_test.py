@@ -46,10 +46,10 @@ RELATIVE_CWD = {
 }
 
 DEPENDENCIES = {
-  'all_items_invalid': (
-    {
-      'tests/isolate/all_items_invalid.isolate':
-        """{
+    'all_items_invalid': (
+        {
+            'tests/isolate/all_items_invalid.isolate':
+                """{
           'variables': {
             'command': ['python', 'empty.py'],
             'files': [
@@ -65,14 +65,15 @@ DEPENDENCIES = {
             ],
           },
         }""",
-      'tests/isolate/empty.py': 'import sys; sys.exit(0)',
-    },
-    ['empty.py'],
-  ),
-  'fail': (
-    {
-      'tests/isolate/fail.isolate':
-        """{
+            'tests/isolate/empty.py':
+                'import sys; sys.exit(0)',
+        },
+        ['empty.py'],
+    ),
+    'fail': (
+        {
+            'tests/isolate/fail.isolate':
+                """{
         'conditions': [
           ['(OS=="linux" and chromeos==1) or '
            '((OS=="mac" or OS=="win") and chromeos==0)', {
@@ -83,51 +84,55 @@ DEPENDENCIES = {
           }],
         ],
       }""",
-      'tests/isolate/fail.py': 'import sys\nprint(\'Failing\')\nsys.exit(1)',
-    },
-    ['fail.py'],
-  ),
-  'missing_trailing_slash': (
-    {
-      # Directory missing trailing slash.
-      'tests/isolate/missing_trailing_slash.isolate':
-        "{'variables': {'files': ['files1']}}",
-      'tests/isolate/files1/foo': 'bar',
-    },
-    [],
-  ),
-  'no_run': (
-    {
-      'tests/isolate/files1/subdir/42.txt':
-          'the answer to life the universe and everything\n',
-      'tests/isolate/files1/test_file1.txt': 'Foo\n',
-      'tests/isolate/files1/test_file2.txt': 'Bar\n',
-      'tests/isolate/no_run.isolate':
-        """{
+            'tests/isolate/fail.py':
+                'import sys\nprint(\'Failing\')\nsys.exit(1)',
+        },
+        ['fail.py'],
+    ),
+    'missing_trailing_slash': (
+        {
+            # Directory missing trailing slash.
+            'tests/isolate/missing_trailing_slash.isolate':
+                "{'variables': {'files': ['files1']}}",
+            'tests/isolate/files1/foo':
+                'bar',
+        },
+        [],
+    ),
+    'no_run': (
+        {
+            'tests/isolate/files1/subdir/42.txt':
+                'the answer to life the universe and everything\n',
+            'tests/isolate/files1/test_file1.txt':
+                'Foo\n',
+            'tests/isolate/files1/test_file2.txt':
+                'Bar\n',
+            'tests/isolate/no_run.isolate':
+                """{
             # Includes itself.
           'variables': {'files': ['no_run.isolate', 'files1/']},
         }""",
-    },
-    [
-      'no_run.isolate',
-      os.path.join('files1', 'subdir', '42.txt'),
-      os.path.join('files1', 'test_file1.txt'),
-      os.path.join('files1', 'test_file2.txt'),
-    ],
-  ),
-  'non_existent': (
-    {
-      'tests/isolate/non_existent.isolate':
-        "{'variables': {'files': ['A_file_that_do_not_exist']}}",
-    },
-    [],
-  ),
-  'split': (
-    {
-      'tests/isolate/files1/subdir/42.txt':
-          'the answer to life the universe and everything',
-      'tests/isolate/split.isolate':
-        """{
+        },
+        [
+            'no_run.isolate',
+            os.path.join('files1', 'subdir', '42.txt'),
+            os.path.join('files1', 'test_file1.txt'),
+            os.path.join('files1', 'test_file2.txt'),
+        ],
+    ),
+    'non_existent': (
+        {
+            'tests/isolate/non_existent.isolate':
+                "{'variables': {'files': ['A_file_that_do_not_exist']}}",
+        },
+        [],
+    ),
+    'split': (
+        {
+            'tests/isolate/files1/subdir/42.txt':
+                'the answer to life the universe and everything',
+            'tests/isolate/split.isolate':
+                """{
           'variables': {
             'command': ['python', 'split.py'],
             'files': [
@@ -137,24 +142,29 @@ DEPENDENCIES = {
             ],
           },
         }""",
-      'tests/isolate/split.py': "import sys; sys.exit(1)",
-      'tests/isolate/test/data/foo.txt': 'Split',
-    },
-    [
-      os.path.join('files1', 'subdir', '42.txt'),
-      os.path.join('test', 'data', 'foo.txt'),
-      'split.py',
-    ],
-  ),
-  'symlink_full': (
-    {
-      'tests/isolate/files1/subdir/42.txt':
-          'the answer to life the universe and everything\n',
-      'tests/isolate/files1/test_file1.txt': 'Foo\n',
-      'tests/isolate/files1/test_file2.txt': 'Bar\n',
-      'tests/isolate/files2': test_env.SymLink('files1'),
-      'tests/isolate/symlink_full.isolate':
-        """{
+            'tests/isolate/split.py':
+                "import sys; sys.exit(1)",
+            'tests/isolate/test/data/foo.txt':
+                'Split',
+        },
+        [
+            os.path.join('files1', 'subdir', '42.txt'),
+            os.path.join('test', 'data', 'foo.txt'),
+            'split.py',
+        ],
+    ),
+    'symlink_full': (
+        {
+            'tests/isolate/files1/subdir/42.txt':
+                'the answer to life the universe and everything\n',
+            'tests/isolate/files1/test_file1.txt':
+                'Foo\n',
+            'tests/isolate/files1/test_file2.txt':
+                'Bar\n',
+            'tests/isolate/files2':
+                test_env.SymLink('files1'),
+            'tests/isolate/symlink_full.isolate':
+                """{
           'conditions': [
             ['(OS=="linux" and chromeos==1) or ((OS=="mac" or OS=="win") and '
              'chromeos==0)', {
@@ -165,16 +175,16 @@ DEPENDENCIES = {
             }],
           ],
         }""",
-      'tests/isolate/symlink_full.py':
-        """if __name__ == '__main__':
+            'tests/isolate/symlink_full.py':
+                """if __name__ == '__main__':
         import os, sys
         print('symlink: touches files2/')
         assert len(sys.argv) == 1
         expected = {
           os.path.join('subdir', '42.txt'):
-              'the answer to life the universe and everything\\n',
-          'test_file1.txt': 'Foo\\n',
-          'test_file2.txt': 'Bar\\n',
+              b'the answer to life the universe and everything\\n',
+          'test_file1.txt': b'Foo\\n',
+          'test_file2.txt': b'Bar\\n',
         }
         root = 'files2'
         actual = {}
@@ -190,25 +200,28 @@ DEPENDENCIES = {
           print(expected)
           sys.exit(1)
         """,
-    },
-    [
-      os.path.join('files1', 'subdir', '42.txt'),
-      os.path.join('files1', 'test_file1.txt'),
-      os.path.join('files1', 'test_file2.txt'),
-      # files2 is a symlink to files1.
-      'files2',
-      'symlink_full.py',
-    ],
-  ),
-  'symlink_partial': (
-    {
-      'tests/isolate/files1/subdir/42.txt':
-          'the answer to life the universe and everything\n',
-      'tests/isolate/files1/test_file1.txt': 'Foo\n',
-      'tests/isolate/files1/test_file2.txt': 'Bar\n',
-      'tests/isolate/files2': test_env.SymLink('files1'),
-      'tests/isolate/symlink_partial.isolate':
-        """{
+        },
+        [
+            os.path.join('files1', 'subdir', '42.txt'),
+            os.path.join('files1', 'test_file1.txt'),
+            os.path.join('files1', 'test_file2.txt'),
+            # files2 is a symlink to files1.
+            'files2',
+            'symlink_full.py',
+        ],
+    ),
+    'symlink_partial': (
+        {
+            'tests/isolate/files1/subdir/42.txt':
+                'the answer to life the universe and everything\n',
+            'tests/isolate/files1/test_file1.txt':
+                'Foo\n',
+            'tests/isolate/files1/test_file2.txt':
+                'Bar\n',
+            'tests/isolate/files2':
+                test_env.SymLink('files1'),
+            'tests/isolate/symlink_partial.isolate':
+                """{
           'conditions': [
             ['(OS=="linux" and chromeos==1) or ((OS=="mac" or OS=="win") and '
              'chromeos==0)', {
@@ -219,31 +232,32 @@ DEPENDENCIES = {
             }],
           ],
         }""",
-      'tests/isolate/symlink_partial.py':
-        """if __name__ == '__main__':
+            'tests/isolate/symlink_partial.py':
+                """if __name__ == '__main__':
         import os, sys
         print('symlink: touches files2/test_file2.txt')
         assert len(sys.argv) == 1
         with open(os.path.join('files2', 'test_file2.txt'), 'rb') as f:
-          if 'Bar\\n' != f.read():
+          if b'Bar\\n' != f.read():
             print('Failed')
             sys.exit(1)
         """,
-    },
-    [
-      os.path.join('files1', 'test_file2.txt'),
-      # files2 is a symlink to files1.
-      'files2',
-      'symlink_partial.py',
-    ],
-  ),
-  'symlink_outside_build_root': (
-    {
-      'tests/directory_outside_build_root/test_file3.txt': 'asdf\n',
-      'tests/isolate/link_outside_build_root':
-          test_env.SymLink('../directory_outside_build_root'),
-      'tests/isolate/symlink_outside_build_root.isolate':
-        """{
+        },
+        [
+            os.path.join('files1', 'test_file2.txt'),
+            # files2 is a symlink to files1.
+            'files2',
+            'symlink_partial.py',
+        ],
+    ),
+    'symlink_outside_build_root': (
+        {
+            'tests/directory_outside_build_root/test_file3.txt':
+                'asdf\n',
+            'tests/isolate/link_outside_build_root':
+                test_env.SymLink('../directory_outside_build_root'),
+            'tests/isolate/symlink_outside_build_root.isolate':
+                """{
           'conditions': [
             ['(OS=="linux" and chromeos==1) or ((OS=="mac" or OS=="win") and '
              'chromeos==0)', {
@@ -257,35 +271,34 @@ DEPENDENCIES = {
             }],
           ],
         }""",
-      'tests/isolate/symlink_outside_build_root.py':
-        """if __name__ == '__main__':
+            'tests/isolate/symlink_outside_build_root.py':
+                """if __name__ == '__main__':
         import os, sys
         print('symlink: touches link_outside_build_root/')
         assert len(sys.argv) == 1
         p = os.path.join('link_outside_build_root', 'test_file3.txt')
         with open(p, 'rb') as f:
-          if 'asdf\\n' != f.read():
+          if b'asdf\\n' != f.read():
             print('Failed')
             sys.exit(1)
         """,
-    },
-    [
-      os.path.join('link_outside_build_root', 'test_file3.txt'),
-      'symlink_outside_build_root.py',
-    ],
-  ),
-  'touch_only': (
-    {
-    },
-    [
-      'touch_only.py',
-      os.path.join('files1', 'test_file1.txt'),
-    ],
-  ),
-  'touch_root': (
-    {
-      'tests/isolate/touch_root.isolate':
-        """{
+        },
+        [
+            os.path.join('link_outside_build_root', 'test_file3.txt'),
+            'symlink_outside_build_root.py',
+        ],
+    ),
+    'touch_only': (
+        {},
+        [
+            'touch_only.py',
+            os.path.join('files1', 'test_file1.txt'),
+        ],
+    ),
+    'touch_root': (
+        {
+            'tests/isolate/touch_root.isolate':
+                """{
           'conditions': [
             ['(OS=="linux" and chromeos==1) or ((OS=="mac" or OS=="win") and '
              'chromeos==0)', {
@@ -296,12 +309,12 @@ DEPENDENCIES = {
             }],
           ],
         }""",
-      'tests/isolate/touch_root.py':
-        """if __name__ == '__main__':
+            'tests/isolate/touch_root.py':
+                """if __name__ == '__main__':
         import os, sys
         print('child_touch_root: Verify the relative directories')
         root_dir = os.path.dirname(os.path.abspath(
-            __file__.decode(sys.getfilesystemencoding())))
+            __file__))
         parent_dir, base = os.path.split(root_dir)
         parent_dir, base2 = os.path.split(parent_dir)
         if base != 'isolate' or base2 != 'tests':
@@ -309,21 +322,24 @@ DEPENDENCIES = {
           sys.exit(4)
         content = open(os.path.join(parent_dir, 'at_root'), 'r').read()
         sys.exit(int(content != 'foo'))""",
-      'at_root': 'foo',
-    },
-    [
-      os.path.join('tests', 'isolate', 'touch_root.py'),
-      'at_root',
-    ],
-  ),
-  'with_flag': (
-    {
-      'tests/isolate/files1/subdir/42.txt':
-          'the answer to life the universe and everything\n',
-      'tests/isolate/files1/test_file1.txt': 'Foo\n',
-      'tests/isolate/files1/test_file2.txt': 'Bar\n',
-      'tests/isolate/with_flag.isolate':
-        """{
+            'at_root':
+                'foo',
+        },
+        [
+            os.path.join('tests', 'isolate', 'touch_root.py'),
+            'at_root',
+        ],
+    ),
+    'with_flag': (
+        {
+            'tests/isolate/files1/subdir/42.txt':
+                'the answer to life the universe and everything\n',
+            'tests/isolate/files1/test_file1.txt':
+                'Foo\n',
+            'tests/isolate/files1/test_file2.txt':
+                'Bar\n',
+            'tests/isolate/with_flag.isolate':
+                """{
         'conditions': [
           ['(OS=="linux" and chromeos==1) or ((OS=="mac" or OS=="win") and '
            'chromeos==0)', {
@@ -334,8 +350,8 @@ DEPENDENCIES = {
           }],
         ],
       }""",
-      'tests/isolate/with_flag.py':
-        """if __name__ == '__main__':
+            'tests/isolate/with_flag.py':
+                """if __name__ == '__main__':
         import os, sys
         print('with_flag: Verify the test data files were mapped properly')
         assert len(sys.argv) == 2
@@ -361,7 +377,7 @@ DEPENDENCIES = {
           print(expected)
           sys.exit(1)
         root_dir = os.path.dirname(os.path.abspath(
-            __file__.decode(sys.getfilesystemencoding())))
+            __file__))
         parent_dir, base = os.path.split(root_dir)
         if mode == 'trace':
           # Verify the parent directory.
@@ -375,14 +391,14 @@ DEPENDENCIES = {
             print('mode run: Invalid root dir %s' % root_dir)
             sys.exit(5)
         """,
-    },
-    [
-      'with_flag.py',
-      os.path.join('files1', 'subdir', '42.txt'),
-      os.path.join('files1', 'test_file1.txt'),
-      os.path.join('files1', 'test_file2.txt'),
-    ],
-  ),
+        },
+        [
+            'with_flag.py',
+            os.path.join('files1', 'subdir', '42.txt'),
+            os.path.join('files1', 'test_file1.txt'),
+            os.path.join('files1', 'test_file2.txt'),
+        ],
+    ),
 }
 
 
@@ -868,24 +884,20 @@ class Isolate_run(IsolateTempdirBase):
       pass
     self._expect_no_result()
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_touch_root(self):
     self._execute('run', 'touch_root.isolate', [])
     self._expect_results(['touch_root.py'], None, None, self.isolate_dir)
 
   if sys.platform != 'win32':
 
-    @unittest.skipIf(six.PY3, 'crbug.com/1010816')
     def test_symlink_full(self):
       self._execute('run', 'symlink_full.isolate', [])
       self._expect_results(['symlink_full.py'], None, None, None)
 
-    @unittest.skipIf(six.PY3, 'crbug.com/1010816')
     def test_symlink_partial(self):
       self._execute('run', 'symlink_partial.isolate', [])
       self._expect_results(['symlink_partial.py'], None, None, None)
 
-    @unittest.skipIf(six.PY3, 'crbug.com/1010816')
     def test_symlink_outside_build_root(self):
       self._execute('run', 'symlink_outside_build_root.isolate', [])
       self._expect_results(['symlink_outside_build_root.py'], None, None, None)
@@ -957,7 +969,6 @@ class IsolateNoOutdir(IsolateTempdirBase):
     with self.assertRaises(CalledProcessError):
       self._execute_short('remap', ['--isolate', self.filename()])
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_run(self):
     self._execute_short('run', ['--isolate', self.filename()])
     files = sorted([
