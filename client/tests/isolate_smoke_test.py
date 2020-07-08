@@ -868,24 +868,20 @@ class Isolate_run(IsolateTempdirBase):
       pass
     self._expect_no_result()
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_touch_root(self):
     self._execute('run', 'touch_root.isolate', [])
     self._expect_results(['touch_root.py'], None, None, self.isolate_dir)
 
   if sys.platform != 'win32':
 
-    @unittest.skipIf(six.PY3, 'crbug.com/1010816')
     def test_symlink_full(self):
       self._execute('run', 'symlink_full.isolate', [])
       self._expect_results(['symlink_full.py'], None, None, None)
 
-    @unittest.skipIf(six.PY3, 'crbug.com/1010816')
     def test_symlink_partial(self):
       self._execute('run', 'symlink_partial.isolate', [])
       self._expect_results(['symlink_partial.py'], None, None, None)
 
-    @unittest.skipIf(six.PY3, 'crbug.com/1010816')
     def test_symlink_outside_build_root(self):
       self._execute('run', 'symlink_outside_build_root.isolate', [])
       self._expect_results(['symlink_outside_build_root.py'], None, None, None)
@@ -957,7 +953,6 @@ class IsolateNoOutdir(IsolateTempdirBase):
     with self.assertRaises(CalledProcessError):
       self._execute_short('remap', ['--isolate', self.filename()])
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_run(self):
     self._execute_short('run', ['--isolate', self.filename()])
     files = sorted([
