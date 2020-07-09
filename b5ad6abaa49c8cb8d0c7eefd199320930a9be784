@@ -39,6 +39,30 @@
       "revId": "b5ad6abaa49c8cb8d0c7eefd199320930a9be784",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfc7f3b0_48800dc1",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-09T01:59:25Z",
+      "side": 1,
+      "message": "Ah, now I see what you mean.\nI fixed the regex pattern instead.",
+      "parentUuid": "6423ae81_306715a4",
+      "range": {
+        "startLine": 275,
+        "startChar": 52,
+        "endLine": 275,
+        "endChar": 66
+      },
+      "revId": "b5ad6abaa49c8cb8d0c7eefd199320930a9be784",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
