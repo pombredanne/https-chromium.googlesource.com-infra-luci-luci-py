@@ -35,8 +35,8 @@ from utils import zip_package
 
 from libs import luci_context
 
-import bot_auth
-import remote_client
+from bot_code import bot_auth
+from bot_code import remote_client
 
 
 # Path to this file or the zip containing this file.
@@ -744,8 +744,8 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
         ExitSignal, InternalError, IOError,
         OSError, remote_client.InternalError) as e:
       # Something wrong happened, try to kill the child process.
-      must_signal_internal_failure = str(e.message or 'unknown error')
-      exit_code = kill_and_wait(proc, task_details.grace_period, e.message)
+      must_signal_internal_failure = str(e) or 'unknown error'
+      exit_code = kill_and_wait(proc, task_details.grace_period, str(e))
 
     # This is the very last packet for this command. It if was an isolated task,
     # include the output reference to the archived .isolated file.
@@ -859,7 +859,7 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
     except remote_client.InternalError as e:
       logging.error('Internal error while finishing the task: %s', e)
       if not must_signal_internal_failure:
-        must_signal_internal_failure = str(e.message or 'unknown error')
+        must_signal_internal_failure = str(e) or 'unknown error'
 
     return {
         u'exit_code': exit_code,
