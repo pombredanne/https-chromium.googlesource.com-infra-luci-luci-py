@@ -325,7 +325,6 @@ class TestTaskRunner(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask()
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_run_command_env_prefix_one(self):
     task_details = get_task_details(
         'import os\nprint(os.getenv("PATH").split(os.pathsep)[0])',
@@ -342,9 +341,9 @@ class TestTaskRunner(TestTaskRunnerBase):
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
     sep = re.escape(os.sep)
-    self.expectTask(output=re.compile('.+%slocal%ssmurf\n$' % (sep, sep)))
+    self.expectTask(
+        output=re.compile(('.+%slocal%ssmurf\n$' % (sep, sep)).encode()))
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_run_command_env_prefix_multiple(self):
     task_details = get_task_details(
         '\n'.join([
@@ -367,11 +366,11 @@ class TestTaskRunner(TestTaskRunnerBase):
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
     sep = re.escape(os.sep)
-    output = re.compile((r'^'
-                         r'(?P<cwd>[^\n]*)\n'
-                         r'(?P=cwd)%slocal%ssmurf\n'
-                         r'(?P=cwd)%sother%sthing\n'
-                         r'$') % (sep, sep, sep, sep))
+    output = re.compile(((r'^'
+                          r'(?P<cwd>[^\n]*)\n'
+                          r'(?P=cwd)%slocal%ssmurf\n'
+                          r'(?P=cwd)%sother%sthing\n'
+                          r'$') % (sep, sep, sep, sep)).encode())
     self.expectTask(output=output)
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
@@ -468,7 +467,6 @@ class TestTaskRunner(TestTaskRunnerBase):
     out = self.expectTask(exit_code=1, output=output)
     self.assertGreater(10., out[u'cost_usd'])
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_isolated_grand_children(self):
     """Runs a normal test involving 3 level deep subprocesses.
 
