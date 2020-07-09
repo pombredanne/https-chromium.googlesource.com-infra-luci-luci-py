@@ -7,6 +7,8 @@ import os
 import sys
 import threading
 
+import six
+
 BOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 sys.path.insert(
@@ -51,6 +53,8 @@ class Handler(httpserver.Handler):
   def do_GET(self):
     if self.path == '/swarming/api/v1/bot/server_ping':
       self.send_response(200)
+      if six.PY3:
+        self.end_headers()
       return None
     if self.path == '/auth/api/v1/server/oauth_config':
       return self.send_json({
