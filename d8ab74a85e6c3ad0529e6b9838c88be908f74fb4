@@ -22,6 +22,30 @@
       "revId": "d8ab74a85e6c3ad0529e6b9838c88be908f74fb4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "429a4ea7_8f586d38",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-09T00:01:00Z",
+      "side": 1,
+      "message": "I couldn\u0027t confirm on my linux, but would distro.version(best\u003dTrue) or distro.minor_version() help?\nhttps://distro.readthedocs.io/en/latest/#distro.version",
+      "parentUuid": "6f24a8da_951ac98a",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 56
+      },
+      "revId": "d8ab74a85e6c3ad0529e6b9838c88be908f74fb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
