@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0eea8b49_caa7d2dd",
+        "filename": "appengine/config_service/projects.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-07-09T05:10:04Z",
+      "side": 0,
+      "message": "the type is [] refs, not project_config_pb2.RefsCfg",
+      "range": {
+        "startLine": 161,
+        "startChar": 62,
+        "endLine": 161,
+        "endChar": 66
+      },
+      "revId": "1dde0fd11caceb76392d847fd486227189b44843",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
