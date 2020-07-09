@@ -792,7 +792,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.assertLessEqual(0, actual.pop(u'cost_usd'))
     self.assertEqual(expected, actual)
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_killed_later(self):
     # Case where a task started and a client asks the server to kill the task.
     # In this case the task results in state KILLED.
@@ -836,7 +835,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.expectTask(task_details.task_id, exit_code=exit_code)
     t.join()
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_hard(self):
     task_details = get_task_details(
         self.SCRIPT_HANG, hard_timeout=self.SHORT_TIME_OUT)
@@ -855,7 +853,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         task_details.task_id, hard_timeout=True, exit_code=exit_code)
 
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   @unittest.skipIf(
       sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
   def test_io(self):
@@ -874,7 +871,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(task_details.task_id, io_timeout=True, exit_code=exit_code)
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_hard_signal(self):
     task_details = get_task_details(
         self.SCRIPT_SIGNAL, hard_timeout=self.SHORT_TIME_OUT)
@@ -916,7 +912,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         output=('hi\ngot signal %d\nbye\n' %
                 task_runner.SIG_BREAK_OR_TERM).encode())
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_hard_no_grace(self):
     task_details = get_task_details(
         self.SCRIPT_HANG,
@@ -936,7 +931,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.expectTask(
         task_details.task_id, hard_timeout=True, exit_code=exit_code)
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   @unittest.skipIf(
       sys.platform == 'win32',
       'As run_isolated is killed, the children process leaks')
@@ -1110,7 +1104,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
             },
         })
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_kill_and_wait(self):
     # Test the case where the script swallows the SIGTERM/SIGBREAK signal and
     # hangs.
