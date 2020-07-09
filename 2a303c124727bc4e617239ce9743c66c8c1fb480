@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85e7cb90_70bce198",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-09T03:13:42Z",
+      "side": 1,
+      "message": "I think ensure_str is equivalent for encode around here.",
+      "range": {
+        "startLine": 271,
+        "startChar": 12,
+        "endLine": 271,
+        "endChar": 23
+      },
+      "revId": "2a303c124727bc4e617239ce9743c66c8c1fb480",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
