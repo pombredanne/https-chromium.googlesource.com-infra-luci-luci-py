@@ -442,8 +442,6 @@ class TestTaskRunner(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(task_details.task_id, exit_code=1)
 
-  @unittest.skipIf(sys.platform == 'win32',
-                   'TODO(crbug.com/1017545): fix assertions')
   def test_run_command_os_error(self):
     task_details = get_task_details(
         command=[
@@ -597,9 +595,6 @@ class TestTaskRunner(TestTaskRunnerBase):
         base64.b64encode(b'hi!\n' * 100002), updates[1][u'output'].encode())
     self.assertEqual(base64.b64encode(b'hi!\n'), updates[2][u'output'].encode())
 
-  @unittest.skipIf(
-      sys.platform == 'win32',
-      'TODO(crbug.com/1017545): fix assertions')
   def test_run_command_caches(self):
     # This test puts a file into a named cache, remove it, runs a test that
     # updates the named cache, remaps it and asserts the content was updated.
@@ -846,8 +841,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         task_details.task_id, hard_timeout=True, exit_code=exit_code)
 
 
-  @unittest.skipIf(
-      sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
   def test_io(self):
     task_details = get_task_details(
         self.SCRIPT_HANG, io_timeout=self.SHORT_TIME_OUT)
@@ -883,8 +876,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         output=('hi\ngot signal %d\nbye\n' %
                 task_runner.SIG_BREAK_OR_TERM).encode())
 
-  @unittest.skipIf(
-      sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
   def test_io_signal(self):
     task_details = get_task_details(
         self.SCRIPT_SIGNAL, io_timeout=self.SHORT_TIME_OUT)
@@ -924,9 +915,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.expectTask(
         task_details.task_id, hard_timeout=True, exit_code=exit_code)
 
-  @unittest.skipIf(
-      sys.platform == 'win32',
-      'As run_isolated is killed, the children process leaks')
   def test_io_no_grace(self):
     task_details = get_task_details(
         self.SCRIPT_HANG,
@@ -966,8 +954,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         output=('hi\ngot signal %d\nbye\n' %
                 task_runner.SIG_BREAK_OR_TERM).encode())
 
-  @unittest.skipIf(sys.platform == 'win32',
-                   'As run_isolated is killed, the children process leaks')
   def test_io_signal_no_grace(self):
     task_details = get_task_details(
         self.SCRIPT_SIGNAL_HANG,
@@ -991,8 +977,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         output=('hi\ngot signal %d\nbye\n' %
                 task_runner.SIG_BREAK_OR_TERM).encode())
 
-  @unittest.skipIf(sys.platform == 'win32',
-                   'TODO(crbug.com/1017545): KeyError output')
   def test_isolated_io_signal_grand_children(self):
     """Handles grand-children process hanging and signal management.
 
@@ -1130,8 +1114,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.assertEqual(expected, exit_code)
     self.assertEqual(b'got it\n', p.stdout.readline())
 
-  @unittest.skipIf(sys.platform == 'win32',
-                   'TODO(crbug.com/1017545): it gets stuck at proc.wait()')
   def test_signal(self):
     # Tests when task_runner gets a SIGTERM.
     signal_file = os.path.join(self.work_dir, 'signal')
