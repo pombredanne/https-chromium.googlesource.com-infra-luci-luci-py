@@ -22,6 +22,30 @@
       "revId": "394c393eac668096f5ad1a9ee208f6527c137f83",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daf64d9f_22eea7f9",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-09T02:05:26Z",
+      "side": 1,
+      "message": "Ah, rb\u0027\u0027 didn\u0027t work in Python2. But br\u0027\u0027 works indeed.",
+      "parentUuid": "9a3b3d88_e6a830e7",
+      "range": {
+        "startLine": 461,
+        "startChar": 9,
+        "endLine": 461,
+        "endChar": 10
+      },
+      "revId": "394c393eac668096f5ad1a9ee208f6527c137f83",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
