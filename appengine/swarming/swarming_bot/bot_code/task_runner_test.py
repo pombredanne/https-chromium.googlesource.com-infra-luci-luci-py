@@ -254,7 +254,7 @@ class TestTaskRunnerBase(auto_stub.TestCase):
                 u'initial_size': 0,
             },
         },
-        u'output': 'hi\n',
+        u'output': b'hi\n',
         u'output_chunk_start': 0,
         u'task_id': 23,
     }
@@ -272,7 +272,7 @@ class TestTaskRunnerBase(auto_stub.TestCase):
     # Use regexp if requested.
     if hasattr(expected[u'output'], 'pattern'):
       v = actual.pop(u'output')
-      self.assertTrue(expected.pop(u'output').match(v), repr(v))
+      self.assertTrue(expected.pop(u'output').match(six.ensure_text(v)))
     for key, value in expected.get(u'isolated_stats', {}).items():
       if 'isolated_stats' not in actual:
         # expected but not actual.
@@ -309,7 +309,6 @@ class TestTaskRunner(TestTaskRunnerBase):
     if expected:
       self.fail(expected)
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_run_command_raw(self):
     task_details = get_task_details('print(\'hi\')')
     expected = {
@@ -426,7 +425,6 @@ class TestTaskRunner(TestTaskRunnerBase):
             u'namespace': u'default-gzip',
         })
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_run_command_fail(self):
     task_details = get_task_details('import sys; print(\'hi\'); sys.exit(1)')
     expected = {
@@ -440,7 +438,6 @@ class TestTaskRunner(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(exit_code=1)
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   @unittest.skipIf(sys.platform == 'win32',
                    'TODO(crbug.com/1017545): fix assertions')
   def test_run_command_os_error(self):
@@ -737,23 +734,24 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
                    'print(\'bye\')') % ('SIGBREAK' if sys.platform == 'win32'
                                         else 'SIGTERM')
 
-  SCRIPT_SIGNAL_HANG = ('import signal, sys, time;\n'
-                        'l = [];\n'
-                        'def handler(signum, _):\n'
-                        '  l.append(signum);\n'
-                        '  print(\'got signal %%d\' %% signum);\n'
-                        '  sys.stdout.flush();\n'
-                        'signal.signal(signal.%s, handler);\n'
-                        'print(\'hi\');\n'
-                        'sys.stdout.flush();\n'
-                        'while not l:\n'
-                        '  try:\n'
-                        '    time.sleep(0.01);\n'
-                        '  except IOError:\n'
-                        '    pass;\n'
-                        'print(\'bye\');\n'
-                        'time.sleep(100)') % ('SIGBREAK' if sys.platform ==
-                                              'win32' else 'SIGTERM')
+  SCRIPT_SIGNAL_HANG = (
+      ('import signal, sys, time;\n'
+       'l = [];\n'
+       'def handler(signum, _):\n'
+       '  l.append(signum);\n'
+       '  print(\'got signal %%d\' %% signum);\n'
+       '  sys.stdout.flush();\n'
+       'signal.signal(signal.%s, handler);\n'
+       'print(\'hi\');\n'
+       'sys.stdout.flush();\n'
+       'while not l:\n'
+       '  try:\n'
+       '    time.sleep(0.01);\n'
+       '  except IOError:\n'
+       '    pass;\n'
+       'print(\'bye\');\n'
+       'time.sleep(100)') %
+      ('SIGBREAK' if sys.platform == 'win32' else 'SIGTERM')).encode()
 
   SCRIPT_HANG = 'import time; print(\'hi\'); time.sleep(100)'
 
@@ -878,9 +876,9 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(
         hard_timeout=True,
-        output='hi\ngot signal %s\nbye\n' % task_runner.SIG_BREAK_OR_TERM)
+        output=('hi\ngot signal %d\nbye\n' %
+                task_runner.SIG_BREAK_OR_TERM).encode())
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   @unittest.skipIf(
       sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
   def test_io_signal(self):
@@ -899,7 +897,8 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     #    output_re='^hi\ngot signal %d\nbye\n$' % task_runner.SIG_BREAK_OR_TERM)
     self.expectTask(
         io_timeout=True,
-        output='hi\ngot signal %s\nbye\n' % task_runner.SIG_BREAK_OR_TERM)
+        output=('hi\ngot signal %d\nbye\n' %
+                task_runner.SIG_BREAK_OR_TERM).encode())
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_hard_no_grace(self):
@@ -941,7 +940,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(io_timeout=True, exit_code=exit_code)
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_hard_signal_no_grace(self):
     task_details = get_task_details(
         self.SCRIPT_SIGNAL_HANG, hard_timeout=self.SHORT_TIME_OUT,
@@ -960,9 +958,9 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.expectTask(
         hard_timeout=True,
         exit_code=exit_code,
-        output='hi\ngot signal %s\nbye\n' % task_runner.SIG_BREAK_OR_TERM)
+        output=('hi\ngot signal %d\nbye\n' %
+                task_runner.SIG_BREAK_OR_TERM).encode())
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   @unittest.skipIf(sys.platform == 'win32',
                    'As run_isolated is killed, the children process leaks')
   def test_io_signal_no_grace(self):
@@ -984,9 +982,9 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.expectTask(
         io_timeout=True,
         exit_code=exit_code,
-        output='hi\ngot signal %s\nbye\n' % task_runner.SIG_BREAK_OR_TERM)
+        output=('hi\ngot signal %d\nbye\n' %
+                task_runner.SIG_BREAK_OR_TERM).encode())
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   @unittest.skipIf(sys.platform == 'win32',
                    'TODO(crbug.com/1017545): KeyError output')
   def test_isolated_io_signal_grand_children(self):
@@ -1025,7 +1023,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         },
     })
     isolated_digest = self.isolateserver.add_content_compressed(
-        'default-gzip', isolated)
+        'default-gzip', isolated.encode())
     manifest = get_manifest(
         isolated={
             'input': isolated_digest,
@@ -1056,7 +1054,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
       # throw.
       data = self.getTaskResults()['output']
       for k in data.splitlines():
-        if k in ('children', 'hi', 'parent'):
+        if k in (b'children', b'hi', b'parent'):
           continue
         pid = int(k)
         try:
@@ -1101,17 +1099,16 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
       # The warning signal is received as SIGTERM on posix and SIGBREAK on
       # Windows.
       sig = 'SIGBREAK' if sys.platform == 'win32' else 'SIGTERM'
-      f.write((
-          'import signal, sys, time\n'
-          'def handler(_signum, _frame):\n'
-          '  sys.stdout.write("got it\\n")\n'
-          'signal.signal(signal.%s, handler)\n'
-          'sys.stdout.write("ok\\n")\n'
-          'while True:\n'
-          '  try:\n'
-          '    time.sleep(1)\n'
-          '  except IOError:\n'
-          '    pass\n') % sig)
+      f.write((('import signal, sys, time\n'
+                'def handler(_signum, _frame):\n'
+                '  sys.stdout.write("got it\\n")\n'
+                'signal.signal(signal.%s, handler)\n'
+                'sys.stdout.write("ok\\n")\n'
+                'while True:\n'
+                '  try:\n'
+                '    time.sleep(1)\n'
+                '  except IOError:\n'
+                '    pass\n') % sig).encode())
     cmd = [sys.executable, '-u', script]
     # detached=True is required on Windows for SIGBREAK to propagate properly.
     p = subprocess42.Popen(cmd, detached=True, stdout=subprocess42.PIPE)
@@ -1119,13 +1116,13 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Wait for it to write 'ok', so we know it's handling signals. It's
     # important because otherwise SIGTERM/SIGBREAK could be sent before the
     # signal handler is installed, and this is not what we're testing here.
-    self.assertEqual('ok\n', p.stdout.readline())
+    self.assertEqual(b'ok\n', p.stdout.readline())
 
     # Send a SIGTERM/SIGBREAK, the process ignores it, send a SIGKILL.
     exit_code = task_runner.kill_and_wait(p, 0.1, 'testing purposes')
     expected = 1 if sys.platform == 'win32' else -signal.SIGKILL
     self.assertEqual(expected, exit_code)
-    self.assertEqual('got it\n', p.stdout.readline())
+    self.assertEqual(b'got it\n', p.stdout.readline())
 
   @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   @unittest.skipIf(sys.platform == 'win32',
@@ -1243,7 +1240,6 @@ class TaskRunnerNoServer(auto_stub.TestCase):
     return run_command(
         'http://localhost:1', self.root_dir, task_details, headers_cb)
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_load_and_run_isolated(self):
     self.mock(bot_auth, 'AuthSystem', FakeAuthSystem)
 
@@ -1290,7 +1286,6 @@ class TaskRunnerNoServer(auto_stub.TestCase):
     }
     self.assertEqual(expected, actual)
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   def test_load_and_run_raw(self):
     local_auth_ctx = {
         'accounts': [{
