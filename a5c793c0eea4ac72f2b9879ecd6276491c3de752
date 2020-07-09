@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90086ab9_85d16093",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-09T14:04:18Z",
+      "side": 1,
+      "message": "LGTM, but better to wait yekuang\u0027s review?",
+      "revId": "a5c793c0eea4ac72f2b9879ecd6276491c3de752",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
