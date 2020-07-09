@@ -561,7 +561,7 @@ class _OutputBuffer(object):
     self._last_loop = monotonic_time()
     if data:
       self._last_io = self._last_loop
-      self._stdout += data
+      self._stdout += six.ensure_binary(data)
 
   def pop(self):
     """Pops the buffered data to send it to the server."""
