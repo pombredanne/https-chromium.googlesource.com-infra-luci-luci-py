@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "def41d2e_771a6fbd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-09T00:44:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79f6d0aa_f2c1aa51",
+      "range": {
+        "startLine": 7,
+        "startChar": 38,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "c2bb69a74c3590dcb80880230fb5d0b308a3fe00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bf910fbd_de18f366",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3fc5bbb6_665823dc",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-09T00:44:34Z",
+      "side": 1,
+      "message": "I don\u0027t why repr(v) is set for assertTrue. I removed it.",
+      "parentUuid": "bf910fbd_de18f366",
+      "range": {
+        "startLine": 276,
+        "startChar": 40,
+        "endLine": 276,
+        "endChar": 55
+      },
+      "revId": "c2bb69a74c3590dcb80880230fb5d0b308a3fe00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd562dc5_d4aa721a",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
         "patchSetId": 3
@@ -62,6 +110,24 @@
       "revId": "c2bb69a74c3590dcb80880230fb5d0b308a3fe00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d28b4e87_e40d91af",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 997,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-09T00:44:34Z",
+      "side": 1,
+      "message": "You\u0027re right. this change isn\u0027t necessary. reverted.",
+      "parentUuid": "cd562dc5_d4aa721a",
+      "revId": "c2bb69a74c3590dcb80880230fb5d0b308a3fe00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -85,6 +151,30 @@
       "revId": "c2bb69a74c3590dcb80880230fb5d0b308a3fe00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e0018c4_e6be6214",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-09T00:44:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de0249c5_8a984324",
+      "range": {
+        "startLine": 1057,
+        "startChar": 34,
+        "endLine": 1057,
+        "endChar": 59
+      },
+      "revId": "c2bb69a74c3590dcb80880230fb5d0b308a3fe00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
