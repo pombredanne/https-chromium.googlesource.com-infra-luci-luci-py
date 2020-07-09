@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3b3d88_e6a830e7",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-09T02:01:39Z",
+      "side": 1,
+      "message": "better to use br?",
+      "range": {
+        "startLine": 461,
+        "startChar": 9,
+        "endLine": 461,
+        "endChar": 10
+      },
+      "revId": "394c393eac668096f5ad1a9ee208f6527c137f83",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
