@@ -1144,7 +1144,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.assertEqual(expected, exit_code)
     self.assertEqual(b'got it\n', p.stdout.readline())
 
-  @unittest.skipIf(six.PY3, 'crbug.com/1010816')
   @unittest.skipIf(sys.platform == 'win32',
                    'TODO(crbug.com/1017545): it gets stuck at proc.wait()')
   def test_signal(self):
@@ -1232,7 +1231,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     expected = {
         manifest['task_id']: [{
             u'message':
-                u'task_runner received signal %s' %
+                u'task_runner received signal %d' %
                 task_runner.SIG_BREAK_OR_TERM,
             u'id':
                 u'localhost',
