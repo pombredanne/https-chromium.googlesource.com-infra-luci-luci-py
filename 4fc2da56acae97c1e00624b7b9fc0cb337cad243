@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99b90370_1c715ef1",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-09T08:59:34Z",
+      "side": 1,
+      "message": "better to convert to binary from caller?",
+      "range": {
+        "startLine": 564,
+        "startChar": 26,
+        "endLine": 564,
+        "endChar": 39
+      },
+      "revId": "4fc2da56acae97c1e00624b7b9fc0cb337cad243",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
