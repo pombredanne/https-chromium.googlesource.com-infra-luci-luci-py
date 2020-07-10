@@ -37,12 +37,6 @@ def run_tests_sequential():
   # because they don't pass when running in parallel
   # or run via test runner
   test_files = [
-      # TODO(crbug.com/10569967)
-      # handlers_bot_test.py failing with unknown bot_id errors
-      'handlers_bot_test.py',
-      'handlers_backend_test.py',
-      'handlers_endpoints_test.py',
-      'handlers_prpc_test.py',
       'server/bot_groups_config_test.py',
       'server/resultdb_test.py',
       'local_smoke_test.py',
