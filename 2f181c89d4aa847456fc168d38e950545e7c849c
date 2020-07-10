@@ -34,6 +34,24 @@
       "revId": "2f181c89d4aa847456fc168d38e950545e7c849c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6685eba4_b7d786ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-10T07:05:22Z",
+      "side": 1,
+      "message": "It was \"byte can\u0027t encode\". but can\u0027t reproduce.\nLet me setup local_smoke_test.py at the Python3 step so that we can discuss with logs.",
+      "parentUuid": "efcc95df_e9a651aa",
+      "revId": "2f181c89d4aa847456fc168d38e950545e7c849c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
