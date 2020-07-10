@@ -52,6 +52,24 @@
       "revId": "2f181c89d4aa847456fc168d38e950545e7c849c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f8fd3a1_370e3d34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-10T07:07:29Z",
+      "side": 1,
+      "message": "\u003e It was \"byte can\u0027t encode\". but can\u0027t reproduce.\n\nI reproduced it locally. http://shortn/_eipcjS84cI",
+      "parentUuid": "6685eba4_b7d786ce",
+      "revId": "2f181c89d4aa847456fc168d38e950545e7c849c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
