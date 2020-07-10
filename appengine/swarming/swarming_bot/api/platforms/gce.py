@@ -12,6 +12,8 @@ import socket
 import threading
 import time
 
+import six
+
 from api import oauth
 from utils import tools
 
@@ -232,6 +234,7 @@ def signed_metadata_token(audience):
       logging.error('Metadata server returned invalid JWT (%s):\n%s', exc, jwt)
       return None, None
 
+    jwt = six.ensure_str(jwt)
     _CACHED_METADATA_TOKEN[audience] = {'jwt': jwt, 'exp': exp}
     return jwt, exp
 

@@ -224,8 +224,8 @@ class TestSignedMetadataToken(auto_stub.TestCase):
             'iat': self.now - 600,
             'exp': self.now + 3000,  # 1h after 'iat'
         }).encode('utf-8'))
-    jwt = b'unimportant.' + base64.urlsafe_b64encode(
-        bytes_json) + b'.unimportant'
+    jwt = 'unimportant.' + six.ensure_str(
+        base64.urlsafe_b64encode(bytes_json)) + '.unimportant'
 
     metadata_calls = []
     def mocked_raw_metadata_request(path):
