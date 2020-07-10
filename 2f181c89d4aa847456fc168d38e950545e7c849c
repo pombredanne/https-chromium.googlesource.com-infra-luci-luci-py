@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "793d3fa0_367563b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-10T06:51:30Z",
+      "side": 1,
+      "message": "I found this bug while running local_smoke_test.py with python3 bot.",
+      "revId": "2f181c89d4aa847456fc168d38e950545e7c849c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
