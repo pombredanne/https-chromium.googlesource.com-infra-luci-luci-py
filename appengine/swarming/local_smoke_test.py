@@ -407,9 +407,10 @@ class Test(unittest.TestCase):
         break
 
   def gen_expected(self, **kwargs):
-    dims = [
-      {u'key': k, u'value': v} for k, v in sorted(self.dimensions.items())
-    ]
+    dims = [{
+        u'key': k,
+        u'value': v
+    } for k, v in sorted(self.dimensions.items()) if not k == 'python']
     return gen_expected(bot_dimensions=dims, **kwargs)
 
   def test_raw_bytes_and_dupe_dimensions(self):
@@ -1343,6 +1344,11 @@ class Test(unittest.TestCase):
       self.assertTrue(
           expected_output.match(output),
           '%s does not match %s' % (output, expected_output.pattern))
+
+    # Bot python version may be different.
+    result[u'bot_dimensions'] = [
+        d for d in result[u'bot_dimensions'] if not d['key'] == 'python'
+    ]
 
     self.assertEqual(expected, result)
     return bot_version
