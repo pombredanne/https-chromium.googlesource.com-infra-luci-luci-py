@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb2e7a3c_2ce34d0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-10T09:17:08Z",
+      "side": 1,
+      "message": "I setup to run local_smoke_test.py with python3 bot.\nBut it will take long time to complete CQ because local_smoke_test.py will run twice...\n\nPTAL.",
+      "revId": "a80158f6242f81fdf25743f7f9d69ece2de7c59a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
