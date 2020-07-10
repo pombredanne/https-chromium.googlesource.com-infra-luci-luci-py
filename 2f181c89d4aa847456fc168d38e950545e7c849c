@@ -70,6 +70,24 @@
       "revId": "2f181c89d4aa847456fc168d38e950545e7c849c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25ff368b_8cdd127a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-10T07:11:05Z",
+      "side": 1,
+      "message": "It\u0027s reported, too.\nhttps://chromium-swarm-dev.appspot.com/restricted/ereporter2/errors/5813165714571264",
+      "parentUuid": "1f8fd3a1_370e3d34",
+      "revId": "2f181c89d4aa847456fc168d38e950545e7c849c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
