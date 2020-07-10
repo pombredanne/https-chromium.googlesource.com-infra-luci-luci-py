@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5ef21c9_83d5f458",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1435,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-10T08:03:51Z",
+      "side": 1,
+      "message": "not necessary?",
+      "range": {
+        "startLine": 1435,
+        "startChar": 27,
+        "endLine": 1435,
+        "endChar": 39
+      },
+      "revId": "a5fbe0908e2a3103900dfbfebe4e1841b1b5aaa7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1deb171d_877b607a",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1449,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-10T08:03:51Z",
+      "side": 1,
+      "message": "do you still need to modify this?",
+      "revId": "a5fbe0908e2a3103900dfbfebe4e1841b1b5aaa7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7477f4a_0e6d22b1",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1453,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-10T08:03:51Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "a5fbe0908e2a3103900dfbfebe4e1841b1b5aaa7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
