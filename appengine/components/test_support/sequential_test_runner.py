@@ -7,13 +7,13 @@ import subprocess
 import sys
 
 
-def run_tests(test_files, python3=False):
+def run_tests(test_cmds, python3=False):
   """Run tests sequentially"""
   run_cnt = 0
   skipped_tests = []
   failed_tests = []
-  for test_file in test_files:
-    _exit_code, skipped = _run_test(test_file, python3=python3)
+  for cmd in test_cmds:
+    _exit_code, skipped = _run_test(cmd, python3=python3)
     if skipped:
       skipped_tests.append(test_file)
       continue
@@ -43,7 +43,7 @@ def run_tests(test_files, python3=False):
   return 0
 
 
-def _run_test(test_file, python3=False):
+def _run_test(cmd, python3=False):
   if python3 and not _has_py3_shebang(test_file):
     print('Skipping test in python3: %s' % test_file)
     return 0, True
@@ -53,7 +53,10 @@ def _run_test(test_file, python3=False):
   if python3:
     vpython += '3'
 
-  cmd = [vpython, test_file]
+  if type(cmd) == str:
+    cmd = [cmd]
+  cmd = [vpython] + cmd
+  print(cmd)
   shell = False
   if sys.platform == 'win32':
     shell = True
