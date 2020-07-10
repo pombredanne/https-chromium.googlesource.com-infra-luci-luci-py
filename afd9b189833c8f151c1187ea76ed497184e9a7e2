@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e4140749_3b68234e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-10T07:59:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a9d00c4_bade2fad",
+      "revId": "afd9b189833c8f151c1187ea76ed497184e9a7e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6526b5f2_c31f4336",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2020-07-10T07:50:35Z",
       "side": 1,
       "message": "by the way, could you always add yekuang as reviewer for swarming CLs?",
+      "revId": "afd9b189833c8f151c1187ea76ed497184e9a7e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "171bb7b0_bb63ff40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-10T07:59:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6526b5f2_c31f4336",
       "revId": "afd9b189833c8f151c1187ea76ed497184e9a7e2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
