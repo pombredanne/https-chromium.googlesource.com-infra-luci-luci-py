@@ -34,6 +34,24 @@
       "revId": "2b92831c18a7a1baa89cbb96e0cae9cc6a464d86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d18237c_f4c8c525",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-13T02:34:28Z",
+      "side": 1,
+      "message": "I think we can skip client test too if there is no change under client dir.",
+      "parentUuid": "67ec5f8b_b0b4963b",
+      "revId": "2b92831c18a7a1baa89cbb96e0cae9cc6a464d86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
