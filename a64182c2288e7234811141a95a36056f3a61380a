@@ -46,6 +46,30 @@
       "revId": "a64182c2288e7234811141a95a36056f3a61380a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29816f80_3b444d58",
+        "filename": "appengine/swarming/swarming_bot/bot_code/file_refresher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-13T01:03:14Z",
+      "side": 1,
+      "message": "Ah, I see. I confirmed it locally.",
+      "parentUuid": "17f93111_146210e1",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 20
+      },
+      "revId": "a64182c2288e7234811141a95a36056f3a61380a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
