@@ -16,6 +16,24 @@
       "revId": "76fbd0eb5afc80068349c568578eb2acb63ee187",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd448cec_d40f3201",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-13T00:59:51Z",
+      "side": 1,
+      "message": "no, raw_metadata_request still returns bytes.",
+      "parentUuid": "0e3acb05_971e2ef6",
+      "revId": "76fbd0eb5afc80068349c568578eb2acb63ee187",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
