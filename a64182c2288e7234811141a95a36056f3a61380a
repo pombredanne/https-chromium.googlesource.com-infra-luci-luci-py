@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b09362c9_b81d4fcc",
+        "filename": "appengine/swarming/swarming_bot/bot_code/file_refresher.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-13T00:58:23Z",
+      "side": 1,
+      "message": "Just curious why this is necessary?",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 20
+      },
+      "revId": "a64182c2288e7234811141a95a36056f3a61380a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
