@@ -38,12 +38,6 @@ def run_tests_sequential():
   # or run via test runner
   abs_path = lambda f: os.path.join(SWARMING_DIR, f)
   test_cmds = [
-      # TODO(crbug.com/10569967)
-      # handlers_bot_test.py failing with unknown bot_id errors
-      [abs_path('handlers_bot_test.py')],
-      [abs_path('handlers_backend_test.py')],
-      [abs_path('handlers_endpoints_test.py')],
-      [abs_path('handlers_prpc_test.py')],
       [abs_path('server/bot_groups_config_test.py')],
       [abs_path('server/resultdb_test.py')],
       [abs_path('local_smoke_test.py')],

@@ -43,9 +43,6 @@ def _encode(d):
 
 
 class PRPCTest(test_env_handlers.AppTestBase):
-  # These test fail with 'Unknown bot ID, not in config'
-  # Need to run in test_seq.py
-  no_run = 1
 
   """Tests the pRPC handlers."""
   def setUp(self):
