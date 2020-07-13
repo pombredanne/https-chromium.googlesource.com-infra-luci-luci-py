@@ -16,6 +16,24 @@
       "revId": "2b92831c18a7a1baa89cbb96e0cae9cc6a464d86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "67ec5f8b_b0b4963b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-13T02:17:31Z",
+      "side": 1,
+      "message": "I think an efficient approach would be to parallelize local_smoke_test.py as it\u0027s dominant the test time. It takes 6 mins out of 11 mins.\nhttps://ci.chromium.org/p/infra/builders/try/luci-py-try-xenial-64/b8874930602386925072\n\nYes, The UI test also should be skipped when no changes. But it would be only 1 min reduction.",
+      "parentUuid": "bdb1a14b_e1337359",
+      "revId": "2b92831c18a7a1baa89cbb96e0cae9cc6a464d86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
