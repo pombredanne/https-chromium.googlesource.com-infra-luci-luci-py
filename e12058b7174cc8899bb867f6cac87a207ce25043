@@ -70,6 +70,30 @@
       "revId": "e12058b7174cc8899bb867f6cac87a207ce25043",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "75257894_a37b6635",
+        "filename": "client/tests/isolateserver_fake.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-14T01:36:17Z",
+      "side": 1,
+      "message": "no worries! it is a bit confusing to put the fix here..",
+      "parentUuid": "1b9169d0_f90c1f3a",
+      "range": {
+        "startLine": 147,
+        "startChar": 9,
+        "endLine": 147,
+        "endChar": 17
+      },
+      "revId": "e12058b7174cc8899bb867f6cac87a207ce25043",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
