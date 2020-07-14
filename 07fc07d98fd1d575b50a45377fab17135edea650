@@ -22,6 +22,30 @@
       "revId": "07fc07d98fd1d575b50a45377fab17135edea650",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51c47a0c_8fdf20d2",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-14T04:06:19Z",
+      "side": 1,
+      "message": "to align the type with function in other os.",
+      "parentUuid": "eedfc927_82fc1555",
+      "range": {
+        "startLine": 170,
+        "startChar": 29,
+        "endLine": 170,
+        "endChar": 50
+      },
+      "revId": "07fc07d98fd1d575b50a45377fab17135edea650",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
