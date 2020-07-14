@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8eb2d3b2_f548945c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-07-14T17:10:29Z",
+      "side": 1,
+      "message": "Reviving this very old CL since I never got it in! Better late than never.",
+      "revId": "39fa39006fd230fa440b3892a2b0539815b9f99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
