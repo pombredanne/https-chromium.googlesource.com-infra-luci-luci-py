@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59154f6d_bba40f5d",
+        "filename": "client/tests/isolateserver_fake.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-14T00:22:56Z",
+      "side": 1,
+      "message": "nit: is this change related this CL?",
+      "range": {
+        "startLine": 147,
+        "startChar": 9,
+        "endLine": 147,
+        "endChar": 17
+      },
+      "revId": "e12058b7174cc8899bb867f6cac87a207ce25043",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
