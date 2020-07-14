@@ -22,6 +22,30 @@
       "revId": "e12058b7174cc8899bb867f6cac87a207ce25043",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0021990c_a8e52b76",
+        "filename": "client/tests/isolateserver_fake.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-14T01:26:37Z",
+      "side": 1,
+      "message": "Sort of.. see https://crrev.com/c/2280761/1/client/tests/isolateserver_fake.py#147",
+      "parentUuid": "59154f6d_bba40f5d",
+      "range": {
+        "startLine": 147,
+        "startChar": 9,
+        "endLine": 147,
+        "endChar": 17
+      },
+      "revId": "e12058b7174cc8899bb867f6cac87a207ce25043",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
