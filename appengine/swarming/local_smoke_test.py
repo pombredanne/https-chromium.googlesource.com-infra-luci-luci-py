@@ -579,8 +579,6 @@ class Test(unittest.TestCase):
     self.assertPerformanceStats(expected_performance_stats, performance_stats)
 
   def test_isolated_command(self):
-    if self.bot.python != sys.executable:
-      self.skipTest('crbug.com/1010816')
     # Command is specified in Swarming task, still with isolated file.
     # Confirms that --relative-cwd, --env, --env-prefix and --lower-priority
     # work.
