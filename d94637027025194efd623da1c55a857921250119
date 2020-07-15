@@ -152,6 +152,30 @@
       "revId": "d94637027025194efd623da1c55a857921250119",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dabe8646_e43640ce",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-15T02:52:22Z",
+      "side": 1,
+      "message": "E.g. the first test i ran this, both tests failed. The second time I ran, only test_isolated_corrupted_cache_entry_same_size() failed.",
+      "parentUuid": "6fe30212_32b29dc2",
+      "range": {
+        "startLine": 448,
+        "startChar": 44,
+        "endLine": 448,
+        "endChar": 65
+      },
+      "revId": "d94637027025194efd623da1c55a857921250119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
