@@ -16,6 +16,23 @@
       "revId": "03bc2fda504ab995a6f605ee2913cd932634f2d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "78c6bd15_0b63f550",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-07-15T02:09:43Z",
+      "side": 1,
+      "message": "If you want to update chrome-infra-auth:\n1. Wait until the luci-py commit reaches chrome-infra-auth-dev in https://chrome-internal.googlesource.com/infradata/gae (can take ~15 min since the commit).\n2. Since you are changing permission, once the commit is deployed to -dev, there\u0027ll be a flurry of activity in https://chrome-infra-auth-dev.appspot.com/auth/change_log (REALMS_GLOBALS_CHANGED and REALMS_REEVALUATED events). It means it picked up permission changes and propagated them. I believe it takes ~5 min.\n3. To deploy to prod make a CL similar to https://chrome-internal.googlesource.com/infradata/gae/+/634beaf201cbbecf8e14ce2d97528400f870a33c \n4. Once again wait until https://chrome-infra-auth.appspot.com/auth/change_log has realms-related events. It means the change is propagated to prod now.",
+      "revId": "03bc2fda504ab995a6f605ee2913cd932634f2d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
