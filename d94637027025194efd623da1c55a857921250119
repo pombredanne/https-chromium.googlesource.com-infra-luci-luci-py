@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "530bcb15_9f76e236",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-15T02:22:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74488cc3_9194b646",
+      "range": {
+        "startLine": 233,
+        "startChar": 11,
+        "endLine": 233,
+        "endChar": 15
+      },
+      "revId": "d94637027025194efd623da1c55a857921250119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b7ac241_6d33ce72",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 1
@@ -66,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "99f873c6_a2cfb073",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-15T02:22:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b7ac241_6d33ce72",
+      "revId": "d94637027025194efd623da1c55a857921250119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac783464_75b95460",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 1
@@ -77,6 +119,30 @@
       "writtenOn": "2020-07-15T02:14:53Z",
       "side": 1,
       "message": "How did they fail on 10.13?",
+      "range": {
+        "startLine": 448,
+        "startChar": 44,
+        "endLine": 448,
+        "endChar": 65
+      },
+      "revId": "d94637027025194efd623da1c55a857921250119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fe30212_32b29dc2",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-15T02:22:12Z",
+      "side": 1,
+      "message": "Cache was cleaned in a flaky way.",
+      "parentUuid": "ac783464_75b95460",
       "range": {
         "startLine": 448,
         "startChar": 44,
