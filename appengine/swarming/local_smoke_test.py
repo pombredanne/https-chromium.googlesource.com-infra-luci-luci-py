@@ -475,8 +475,6 @@ class Test(unittest.TestCase):
     self.assertOneTask(args, summary, {})
 
   def test_io_timeout(self):
-    if self.bot.python != sys.executable:
-      self.skipTest('crbug.com/1010816')
     args = [
       # Need to flush to ensure it will be sent to the server.
       '-T', 'io_timeout', '--io-timeout', '1', '--',
