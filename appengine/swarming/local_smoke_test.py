@@ -939,7 +939,6 @@ class Test(unittest.TestCase):
         i['key']: i['value'] for i in self.client.query_bot()['dimensions']}
     self.assertEqual(expected, set(dimensions))
 
-  @unittest.skip('flaky')
   def test_priority(self):
     # Make a test that keeps the bot busy, while all the other tasks are being
     # created with priorities that are out of order. Then it unblocks the bot
@@ -977,6 +976,7 @@ class Test(unittest.TestCase):
     # Collect every tasks.
     for task_name, priority, task_id in tasks:
       actual_summary, actual_files = self.client.task_collect(task_id)
+      print(actual_summary)
       performance_stats = actual_summary['shards'][0].pop('performance_stats')
       self.assertPerformanceStatsEmpty(performance_stats)
       t = tags[:] + [u'priority:%d' % priority]
@@ -1534,3 +1534,4 @@ def main():
 
 if __name__ == '__main__':
   sys.exit(main())
+
