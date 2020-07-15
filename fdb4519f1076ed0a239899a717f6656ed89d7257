@@ -52,6 +52,24 @@
       "revId": "fdb4519f1076ed0a239899a717f6656ed89d7257",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d45050b8_1c10d0a9",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-15T03:03:21Z",
+      "side": 1,
+      "message": "Ah didn\u0027t press enter.",
+      "parentUuid": "3ae42154_9239f4ee",
+      "revId": "fdb4519f1076ed0a239899a717f6656ed89d7257",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
