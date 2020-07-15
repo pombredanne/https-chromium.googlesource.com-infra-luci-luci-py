@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5ac251d_59d394f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1118104
+      },
+      "writtenOn": "2020-07-15T02:03:03Z",
+      "side": 1,
+      "message": "DO NOT Land until https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/2298158 has been deployed to ResultDB production.",
+      "revId": "03bc2fda504ab995a6f605ee2913cd932634f2d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
