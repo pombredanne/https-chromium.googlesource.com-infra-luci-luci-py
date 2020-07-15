@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "74488cc3_9194b646",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-15T02:14:53Z",
+      "side": 1,
+      "message": "I would not define this if we remove the skips soon.",
+      "parentUuid": "291d8ed9_8cb418ba",
+      "range": {
+        "startLine": 233,
+        "startChar": 11,
+        "endLine": 233,
+        "endChar": 15
+      },
+      "revId": "d94637027025194efd623da1c55a857921250119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9b7ac241_6d33ce72",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 1
@@ -36,6 +60,29 @@
       "writtenOn": "2020-07-15T02:11:28Z",
       "side": 1,
       "message": "better to include sys.platform \u003d\u003d \u0027darwin\u0027 too?",
+      "revId": "d94637027025194efd623da1c55a857921250119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac783464_75b95460",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-15T02:14:53Z",
+      "side": 1,
+      "message": "How did they fail on 10.13?",
+      "range": {
+        "startLine": 448,
+        "startChar": 44,
+        "endLine": 448,
+        "endChar": 65
+      },
       "revId": "d94637027025194efd623da1c55a857921250119",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
