@@ -16,6 +16,24 @@
       "revId": "1dc2435a90a5e5a54a8b8dd7559f4fed961ffd8a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "40f2423f_1ab401a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-20T04:19:50Z",
+      "side": 1,
+      "message": "\u003e Hmm, it\u0027s still failing the test.\n\u003e Let me disable the flaky test.\n\u003e https://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8874291621362449904/+/u/swarming/run_tests_python2/stdout#L6535_0\n\ndisabled the flaky test. https://crrev.com/c/2305824\nLet me retry.",
+      "parentUuid": "76be845f_a722b2dc",
+      "revId": "1dc2435a90a5e5a54a8b8dd7559f4fed961ffd8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
