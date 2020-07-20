@@ -22,6 +22,30 @@
       "revId": "f7a958bd728fd74dee62481a856bdeac5b8089b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d6573d7_17231873",
+        "filename": "client/tools/debug_task.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-07-20T18:06:16Z",
+      "side": 1,
+      "message": "Hah, good catch. Removed it.",
+      "parentUuid": "586e16c9_40bc8db1",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 15
+      },
+      "revId": "f7a958bd728fd74dee62481a856bdeac5b8089b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
