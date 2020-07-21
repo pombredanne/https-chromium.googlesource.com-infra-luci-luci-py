@@ -136,18 +136,17 @@ TaskSlice = collections.namedtuple(
 
 
 # See ../appengine/swarming/swarming_rpcs.py.
-NewTaskRequest = collections.namedtuple(
-    'NewTaskRequest',
-    [
-      'name',
-      'parent_task_id',
-      'priority',
-      'task_slices',
-      'service_account',
-      'tags',
-      'user',
-      'pool_task_template',
-    ])
+NewTaskRequest = collections.namedtuple('NewTaskRequest', [
+    'name',
+    'parent_task_id',
+    'pool_task_template',
+    'priority',
+    'realm',
+    'service_account',
+    'tags',
+    'task_slices',
+    'user',
+])
 
 
 def namedtuple_to_dict(value):
@@ -1102,6 +1101,11 @@ def add_trigger_options(parser):
       'this task request expires.')
   group.add_option(
       '--deadline', type='int', dest='expiration', help=optparse.SUPPRESS_HELP)
+  group.add_option(
+      '--realm',
+      dest='realm',
+      metavar='REALM',
+      help='Realm associated with the task.')
   parser.add_option_group(group)
 
 
@@ -1281,7 +1285,8 @@ def process_trigger_options(parser, options, args):
       service_account=options.service_account,
       tags=options.tags,
       user=options.user,
-      pool_task_template=options.pool_task_template)
+      pool_task_template=options.pool_task_template,
+      realm=options.realm)
 
 
 class TaskOutputStdoutOption(optparse.Option):

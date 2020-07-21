@@ -137,24 +137,19 @@ def gen_properties(**kwargs):
 
 def gen_request_data(properties=None, **kwargs):
   out = {
-      'name':
-          'unit_tests',
-      'parent_task_id':
-          '',
-      'pool_task_template':
-          'AUTO',
-      'priority':
-          101,
-      'request_uuid':
-          REQUEST_UUID,
+      'name': 'unit_tests',
+      'parent_task_id': '',
+      'pool_task_template': 'AUTO',
+      'priority': 101,
+      'request_uuid': REQUEST_UUID,
       'task_slices': [{
           'expiration_secs': 3600,
           'properties': gen_properties(**(properties or {})),
           'wait_for_capacity': False,
       },],
       'tags': ['tag:a', 'tag:b'],
-      'user':
-          'joe@localhost',
+      'user': 'joe@localhost',
+      'realm': None,
   }
   out.update(kwargs)
   return out
@@ -393,7 +388,8 @@ class TestSwarmingTrigger(NetTestCase):
         ],
         service_account=None,
         tags=['tag:a', 'tag:b'],
-        user='joe@localhost')
+        user='joe@localhost',
+        realm=None)
 
     request_1 = swarming.task_request_to_raw_request(task_request)
     request_1['name'] = u'unit_tests:0:2'
@@ -495,7 +491,8 @@ class TestSwarmingTrigger(NetTestCase):
         ],
         service_account=None,
         tags=['tag:a', 'tag:b'],
-        user='joe@localhost')
+        user='joe@localhost',
+        realm=None)
 
     request_1 = swarming.task_request_to_raw_request(task_request)
     request_1['name'] = u'unit_tests:2:4'
@@ -570,7 +567,8 @@ class TestSwarmingTrigger(NetTestCase):
         ],
         service_account=None,
         tags=['tag:a', 'tag:b'],
-        user='joe@localhost')
+        user='joe@localhost',
+        realm=None)
 
     request = swarming.task_request_to_raw_request(task_request)
     self.assertEqual('123', request['parent_task_id'])
@@ -648,7 +646,8 @@ class TestSwarmingTrigger(NetTestCase):
         ],
         service_account=None,
         tags=['tag:a', 'tag:b'],
-        user='joe@localhost')
+        user='joe@localhost',
+        realm=None)
 
     request = swarming.task_request_to_raw_request(task_request)
     expected = {
@@ -1075,16 +1074,11 @@ class TestMain(NetTestCase):
   def test_trigger_raw_cmd(self):
     # Minimalist use.
     request = {
-        'name':
-            u'None/pool=default',
-        'parent_task_id':
-            '',
-        'pool_task_template':
-            'AUTO',
-        'priority':
-            200,
-        'request_uuid':
-            REQUEST_UUID,
+        'name': u'None/pool=default',
+        'parent_task_id': '',
+        'pool_task_template': 'AUTO',
+        'priority': 200,
+        'request_uuid': REQUEST_UUID,
         'task_slices': [{
             'expiration_secs':
                 21600,
@@ -1104,8 +1098,8 @@ class TestMain(NetTestCase):
                 False,
         },],
         'tags': [],
-        'user':
-            None,
+        'user': None,
+        'realm': None,
     }
     result = gen_request_response(request)
     self.expected_requests([
@@ -1145,16 +1139,11 @@ class TestMain(NetTestCase):
 
   def test_trigger_raw_cmd_with_optional(self):
     request = {
-        'name':
-            u'None/caches=c1_foo=bar_foo1=bar1_pool=default',
-        'parent_task_id':
-            '',
-        'pool_task_template':
-            'AUTO',
-        'priority':
-            200,
-        'request_uuid':
-            REQUEST_UUID,
+        'name': u'None/caches=c1_foo=bar_foo1=bar1_pool=default',
+        'parent_task_id': '',
+        'pool_task_template': 'AUTO',
+        'priority': 200,
+        'request_uuid': REQUEST_UUID,
         'task_slices': [
             {
                 'expiration_secs':
@@ -1266,8 +1255,8 @@ class TestMain(NetTestCase):
             },
         ],
         'tags': [],
-        'user':
-            None,
+        'user': None,
+        'realm': None,
     }
     result = gen_request_response(request)
     self.expected_requests([
@@ -1332,16 +1321,11 @@ class TestMain(NetTestCase):
 
   def test_trigger_raw_cmd_with_optional_unsorted(self):
     request = {
-        'name':
-            u'None/foo1=bar1_os=Mac-10.12.6_pool=default',
-        'parent_task_id':
-            '',
-        'pool_task_template':
-            'AUTO',
-        'priority':
-            200,
-        'request_uuid':
-            REQUEST_UUID,
+        'name': u'None/foo1=bar1_os=Mac-10.12.6_pool=default',
+        'parent_task_id': '',
+        'pool_task_template': 'AUTO',
+        'priority': 200,
+        'request_uuid': REQUEST_UUID,
         'task_slices': [
             {
                 'expiration_secs':
@@ -1429,8 +1413,8 @@ class TestMain(NetTestCase):
             },
         ],
         'tags': [],
-        'user':
-            None,
+        'user': None,
+        'realm': None,
     }
     result = gen_request_response(request)
     self.expected_requests([
@@ -1484,16 +1468,11 @@ class TestMain(NetTestCase):
 
   def test_trigger_raw_cmd_with_optional_sameexp(self):
     request = {
-        'name':
-            u'None/foo=bar_foo1=bar1_pool=default',
-        'parent_task_id':
-            '',
-        'pool_task_template':
-            'AUTO',
-        'priority':
-            200,
-        'request_uuid':
-            REQUEST_UUID,
+        'name': u'None/foo=bar_foo1=bar1_pool=default',
+        'parent_task_id': '',
+        'pool_task_template': 'AUTO',
+        'priority': 200,
+        'request_uuid': REQUEST_UUID,
         'task_slices': [
             {
                 'expiration_secs':
@@ -1557,8 +1536,8 @@ class TestMain(NetTestCase):
             },
         ],
         'tags': [],
-        'user':
-            None,
+        'user': None,
+        'realm': None,
     }
     result = gen_request_response(request)
     self.expected_requests([
@@ -1613,16 +1592,11 @@ class TestMain(NetTestCase):
   def test_trigger_raw_cmd_isolated(self):
     # Minimalist use.
     request = {
-        'name':
-            u'None/pool=default/' + FILE_HASH,
-        'parent_task_id':
-            '',
-        'pool_task_template':
-            'AUTO',
-        'priority':
-            200,
-        'request_uuid':
-            REQUEST_UUID,
+        'name': u'None/pool=default/' + FILE_HASH,
+        'parent_task_id': '',
+        'pool_task_template': 'AUTO',
+        'priority': 200,
+        'request_uuid': REQUEST_UUID,
         'task_slices': [{
             'expiration_secs':
                 21600,
@@ -1636,20 +1610,17 @@ class TestMain(NetTestCase):
                     execution_timeout_secs=3600,
                     extra_args=None,
                     inputs_ref={
-                        'isolated':
-                            u'1111111111111111111111111111111111111111',
-                        'isolatedserver':
-                            'https://localhost:2',
-                        'namespace':
-                            'default-gzip',
+                        'isolated': u'1111111111111111111111111111111111111111',
+                        'isolatedserver': 'https://localhost:2',
+                        'namespace': 'default-gzip',
                     },
                     io_timeout_secs=1200),
             'wait_for_capacity':
                 False,
         },],
         'tags': [],
-        'user':
-            None,
+        'user': None,
+        'realm': None,
     }
     result = gen_request_response(request)
     self.expected_requests([
@@ -1692,16 +1663,11 @@ class TestMain(NetTestCase):
   def test_trigger_raw_cmd_with_service_account(self):
     # Minimalist use.
     request = {
-        'name':
-            u'None/pool=default',
-        'parent_task_id':
-            '',
-        'pool_task_template':
-            'AUTO',
-        'priority':
-            200,
-        'request_uuid':
-            REQUEST_UUID,
+        'name': u'None/pool=default',
+        'parent_task_id': '',
+        'pool_task_template': 'AUTO',
+        'priority': 200,
+        'request_uuid': REQUEST_UUID,
         'task_slices': [{
             'expiration_secs':
                 21600,
@@ -1719,11 +1685,10 @@ class TestMain(NetTestCase):
             'wait_for_capacity':
                 False,
         },],
-        'service_account':
-            'bot',
+        'service_account': 'bot',
         'tags': [],
-        'user':
-            None,
+        'user': None,
+        'realm': None,
     }
     result = gen_request_response(request)
     self.expected_requests([
@@ -1941,16 +1906,11 @@ class TestMain(NetTestCase):
                     }
                 },
                 'request': {
-                    'name':
-                        'unit_tests',
-                    'parent_task_id':
-                        '',
-                    'pool_task_template':
-                        'AUTO',
-                    'priority':
-                        101,
-                    'request_uuid':
-                        REQUEST_UUID,
+                    'name': 'unit_tests',
+                    'parent_task_id': '',
+                    'pool_task_template': 'AUTO',
+                    'priority': 101,
+                    'request_uuid': REQUEST_UUID,
                     'task_slices': [{
                         'expiration_secs':
                             3600,
@@ -1966,8 +1926,8 @@ class TestMain(NetTestCase):
                             False,
                     },],
                     'tags': ['tag:a', 'tag:b'],
-                    'user':
-                        'joe@localhost',
+                    'user': 'joe@localhost',
+                    'realm': None,
                 },
             },
             True,
@@ -2346,16 +2306,11 @@ class TestMain(NetTestCase):
 
   def test_run(self):
     request = {
-        'name':
-            u'None/pool=default',
-        'parent_task_id':
-            '',
-        'priority':
-            200,
-        'pool_task_template':
-            'AUTO',
-        'request_uuid':
-            REQUEST_UUID,
+        'name': u'None/pool=default',
+        'parent_task_id': '',
+        'priority': 200,
+        'pool_task_template': 'AUTO',
+        'request_uuid': REQUEST_UUID,
         'task_slices': [{
             'expiration_secs':
                 21600,
@@ -2375,8 +2330,8 @@ class TestMain(NetTestCase):
                 False,
         },],
         'tags': [],
-        'user':
-            None,
+        'user': None,
+        'realm': None,
     }
     result = gen_request_response(request)
 
