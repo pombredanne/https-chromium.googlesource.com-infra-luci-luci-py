@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64f061a3_2afbe558",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-07-21T04:12:26Z",
+      "side": 1,
+      "message": "Just declaring it is sufficient, _ndb_to_rpc in message_conversion.task_request_to_rpc magically populates it since there\u0027s `realm` field already in TaskRequest entity.",
+      "range": {
+        "startLine": 568,
+        "startChar": 2,
+        "endLine": 568,
+        "endChar": 7
+      },
+      "revId": "9dc0a01c88e34f6c17be9e5919c55f82988e0f42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
