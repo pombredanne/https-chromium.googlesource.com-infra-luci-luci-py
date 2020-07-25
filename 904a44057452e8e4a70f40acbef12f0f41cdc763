@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d1055514_25d4ba8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-07-25T02:34:57Z",
+      "side": 1,
+      "message": "PTAL.\n\nThis change was prompted by https://luci-milo-dev.appspot.com/p/infra/builders/ci/gsutil-hello-world-xenial-64/7? which is a first attempt to use realm-aware tasks from Buildbucket.\n\nI realized Swarming tries to use legacy ACLs to authenticate calls Buildbucket makes in realms mode. They are no legacy ACLs for this (we never called Swarming in this way before). When the task is in realms-mode (task_request.realm !\u003d None), it must not used legacy ACLs anymore.",
+      "revId": "904a44057452e8e4a70f40acbef12f0f41cdc763",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
