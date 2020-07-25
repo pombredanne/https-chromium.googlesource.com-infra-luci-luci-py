@@ -126,11 +126,9 @@ message Pool {
   // This field will be deprecated after migration.
   repeated RealmPermission enforced_realm_permissions = 11;
 
-  // Realm name that will be used to call
-  // auth.has_permission_dryrun('swarming.tasks.actAs') and
-  // auth.has_permission_dryrun('swarming.tasks.createInRealm')
-  // for task requests without realm field.
-  string dry_run_task_realm = 12;
+  // Realm name to use for tasks if they don't have a realm associated.
+  // This field will be deprecated after migration.
+  string default_task_realm = 12;
 }
 
 
