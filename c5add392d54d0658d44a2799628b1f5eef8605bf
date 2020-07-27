@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "cd1f9002_8659f9f8",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-27T04:26:57Z",
+      "side": 1,
+      "message": "This would be also better to set empty list.",
+      "range": {
+        "startLine": 593,
+        "startChar": 0,
+        "endLine": 593,
+        "endChar": 79
+      },
+      "revId": "c5add392d54d0658d44a2799628b1f5eef8605bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1944696e_e5edfd2b",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 4
