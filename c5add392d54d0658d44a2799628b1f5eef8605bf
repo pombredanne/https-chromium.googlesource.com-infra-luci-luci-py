@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "221abc7a_05f63975",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-27T04:33:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd1f9002_8659f9f8",
+      "range": {
+        "startLine": 593,
+        "startChar": 0,
+        "endLine": 593,
+        "endChar": 79
+      },
+      "revId": "c5add392d54d0658d44a2799628b1f5eef8605bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1944696e_e5edfd2b",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "913d7e77_d9862d62",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-27T04:33:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1944696e_e5edfd2b",
+      "range": {
+        "startLine": 595,
+        "startChar": 0,
+        "endLine": 598,
+        "endChar": 62
+      },
+      "revId": "c5add392d54d0658d44a2799628b1f5eef8605bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75470cfb_070b8182",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 4
@@ -59,6 +107,24 @@
       "writtenOn": "2020-07-27T04:25:34Z",
       "side": 1,
       "message": "The brand_string does exist in the output of `sysctl machdep.cpu`.\nhttps://crbug.com/1103470#c23",
+      "revId": "c5add392d54d0658d44a2799628b1f5eef8605bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b370f1d0_099f2648",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-27T04:33:28Z",
+      "side": 1,
+      "message": "Yes, but I\u0027d like to set Unknown as safe default value.",
+      "parentUuid": "75470cfb_070b8182",
       "revId": "c5add392d54d0658d44a2799628b1f5eef8605bf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
