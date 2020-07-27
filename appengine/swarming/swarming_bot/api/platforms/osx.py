@@ -588,17 +588,19 @@ def get_cpuinfo():
   # http://unix.stackexchange.com/questions/43539/what-do-the-flags-in-proc-cpuinfo-mean
   return {
       u'flags':
-          sorted(i.lower() for i in values[u'machdep.cpu.features'].split()),
+          sorted(
+              i.lower()
+              for i in values.get(u'machdep.cpu.features', 'Unknown').split()),
       u'model': [
-          int(values['machdep.cpu.family']),
-          int(values['machdep.cpu.model']),
-          int(values['machdep.cpu.stepping']),
-          int(values['machdep.cpu.microcode_version']),
+          int(values.get('machdep.cpu.family', 0)),
+          int(values.get('machdep.cpu.model', 0)),
+          int(values.get('machdep.cpu.stepping', 0)),
+          int(values.get('machdep.cpu.microcode_version', 0)),
       ],
       u'name':
-          values[u'machdep.cpu.brand_string'],
+          values.get(u'machdep.cpu.brand_string', 'Unknown'),
       u'vendor':
-          values[u'machdep.cpu.vendor'],
+          values.get(u'machdep.cpu.vendor', 'Unknown'),
   }
 
 
