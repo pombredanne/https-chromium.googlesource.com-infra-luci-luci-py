@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "149350fc_daba076a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-27T09:13:00Z",
+      "side": 1,
+      "message": "LGTM",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 15
+      },
+      "revId": "904a44057452e8e4a70f40acbef12f0f41cdc763",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04863a76_201e5aff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-27T09:13:00Z",
+      "side": 1,
+      "message": "LGTM, too.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 32
+      },
+      "revId": "904a44057452e8e4a70f40acbef12f0f41cdc763",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1055514_25d4ba8e",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -13,6 +59,57 @@
       "writtenOn": "2020-07-25T02:34:57Z",
       "side": 1,
       "message": "PTAL.\n\nThis change was prompted by https://luci-milo-dev.appspot.com/p/infra/builders/ci/gsutil-hello-world-xenial-64/7? which is a first attempt to use realm-aware tasks from Buildbucket.\n\nI realized Swarming tries to use legacy ACLs to authenticate calls Buildbucket makes in realms mode. They are no legacy ACLs for this (we never called Swarming in this way before). When the task is in realms-mode (task_request.realm !\u003d None), it must not used legacy ACLs anymore.",
+      "revId": "904a44057452e8e4a70f40acbef12f0f41cdc763",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c516ba81_5b887cf3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-27T09:13:00Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "904a44057452e8e4a70f40acbef12f0f41cdc763",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0af06c33_28ea1952",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-27T09:13:00Z",
+      "side": 1,
+      "message": "nit: Leave logs \u0027default_task_realm is used\u0027 or something.",
+      "revId": "904a44057452e8e4a70f40acbef12f0f41cdc763",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35398df6_5c70ff3d",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-27T09:13:00Z",
+      "side": 1,
+      "message": "Oh, I didn\u0027t know that. Thank you for this advice.",
       "revId": "904a44057452e8e4a70f40acbef12f0f41cdc763",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
