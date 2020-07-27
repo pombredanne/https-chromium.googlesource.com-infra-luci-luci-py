@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1944696e_e5edfd2b",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-27T04:25:34Z",
+      "side": 1,
+      "message": "Are zeros appropriate as defaults?\nIt would be better not to append them to the model list.",
+      "range": {
+        "startLine": 595,
+        "startChar": 0,
+        "endLine": 598,
+        "endChar": 62
+      },
+      "revId": "c5add392d54d0658d44a2799628b1f5eef8605bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75470cfb_070b8182",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-27T04:25:34Z",
+      "side": 1,
+      "message": "The brand_string does exist in the output of `sysctl machdep.cpu`.\nhttps://crbug.com/1103470#c23",
+      "revId": "c5add392d54d0658d44a2799628b1f5eef8605bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
