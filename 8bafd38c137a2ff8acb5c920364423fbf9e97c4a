@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1cb90567_a2056ffa",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-07-27T23:12:34Z",
+      "side": 1,
+      "message": "this is not a user-friendly error message :(",
+      "range": {
+        "startLine": 1227,
+        "startChar": 26,
+        "endLine": 1227,
+        "endChar": 58
+      },
+      "revId": "8bafd38c137a2ff8acb5c920364423fbf9e97c4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
