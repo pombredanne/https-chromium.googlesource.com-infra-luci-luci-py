@@ -724,6 +724,11 @@ def _upload_with_go(storage, outdir, isolated_client):
         '-dump-stats-json',
         stats_json_path,
     ]
+
+    if platform.system() == 'Windows':
+      # TODO(1099655): Remove, just for debugging file not found on Win.
+      logging.info('Go isolated (%s) exists: %s', isolated_client,
+                   fs.exists(isolated_client))
     _run_go_isolated_and_wait(cmd)
 
     with open(isolated_path) as isol_file:
