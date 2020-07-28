@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "171f42c8_e427a242",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-28T11:47:16Z",
+      "side": 1,
+      "message": "hmm, you need to run this line before Popen",
+      "revId": "e2abff11eea40b229ff1e7acef50732bd40026b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
