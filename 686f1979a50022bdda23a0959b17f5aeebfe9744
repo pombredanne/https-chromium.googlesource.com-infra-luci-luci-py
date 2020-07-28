@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a221d571_8d5d3b11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-28T09:42:56Z",
+      "side": 1,
+      "message": "This seems to cause failure on windows?\nhttps://chromium-swarm-dev.appspot.com/task?id\u003d4dad994901147c11",
+      "revId": "686f1979a50022bdda23a0959b17f5aeebfe9744",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
