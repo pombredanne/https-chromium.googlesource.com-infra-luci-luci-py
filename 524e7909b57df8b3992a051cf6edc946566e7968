@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "cbf76292_3395de17",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-28T06:46:14Z",
+      "side": 1,
+      "message": "As commented in another thread, system call may do unexpected behavior, which would be self recovered afterward.",
+      "parentUuid": "7a1aed85_d7e15d05",
+      "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a36ff469_6860680f",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 3
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "\u003e Are you suggesting to rise an AssertionError and catch in the except?\n\u003e Or let it fail?\n\u003e \n\nI\u0027d like to make unexpected output failure, so that we can notice that.\n\n\u003e It would be better not to fail due to this.\n\u003e The system call may return empty in certain conditions. (I\u0027ve seen similar issue)\n\u003e \n\nReally?",
       "parentUuid": "4192937e_3cb45485",
+      "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "856de729_cabf8faf",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-28T06:46:14Z",
+      "side": 1,
+      "message": "\u003e I\u0027d like to make unexpected output failure, so that we can notice that.\n\nCan we report error without stopping the process?\n\n\u003e\u003e The system call may return empty in certain conditions. (I\u0027ve seen similar issue)\n\u003e Really?\n\nIIRC, `system_profiler` returns empty and caused https://crbug.com/1102673.",
+      "parentUuid": "bbae01fe_1d20a712",
       "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
