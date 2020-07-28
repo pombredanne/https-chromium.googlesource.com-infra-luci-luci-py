@@ -16,6 +16,24 @@
       "revId": "686f1979a50022bdda23a0959b17f5aeebfe9744",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be73af77_b50a7d29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-28T09:52:52Z",
+      "side": 1,
+      "message": "Hmm, let me do a logging in https://crrev.com/c/2322506 before reverting this?",
+      "parentUuid": "a221d571_8d5d3b11",
+      "revId": "686f1979a50022bdda23a0959b17f5aeebfe9744",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
