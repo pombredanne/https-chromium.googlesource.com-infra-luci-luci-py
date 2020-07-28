@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abb3357e_e7b4c250",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2020-07-28T23:49:05Z",
+      "side": 1,
+      "message": "+tikuta@ +jwata@ - ptal. thanks!",
+      "revId": "00fde85565a533a12a7ada630c912ac7a29000bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
