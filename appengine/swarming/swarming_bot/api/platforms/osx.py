@@ -509,6 +509,21 @@ def get_os_version_number():
   return six.text_type(platform.mac_ver()[0])
 
 
+def get_os_build_version():
+  """Returns the OS build version.
+
+  Returns:
+    Build version as a string like '19F101'
+  """
+  try:
+    out = subprocess.check_output(['sw_vers', '-buildVersion']).splitlines()
+    if len(out) != 1:
+      return
+    return six.ensure_text(out[0])
+  except (OSError, subprocess.CalledProcessError):
+    pass
+
+
 def get_audio():
   """Returns the audio cards that are "connected"."""
   items = _get_system_profiler('SPAudioDataType')
