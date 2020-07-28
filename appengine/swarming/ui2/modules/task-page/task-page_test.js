@@ -243,6 +243,29 @@ describe('task-page', function() {
       });
     }); // end describe('authorized user, but no taskid')
 
+    describe('authorized user, but not authorized for counts APIs', function() {
+      function notAuthorized() {
+        // overwrite the default fetchMock behaviors to return 403.
+        fetchMock.get('glob:/_ah/api/swarming/v1/tasks/count*', 403,
+            {overwriteRoutes: true});
+        fetchMock.get('glob:/_ah/api/swarming/v1/bots/count*', 403,
+            {overwriteRoutes: true});
+      }
+      beforeEach(notAuthorized);
+
+      it('does not display fleet capacity and similar load', function(done) {
+        loggedInTaskPage((ele) => {
+          const taskInfo = $$('table.request-info', ele);
+          expect(taskInfo).toBeTruthy();
+          const rows = $('tr', taskInfo);
+          expect(rows.length).toBeTruthy('Has some rows');
+          console.log(rows);
+          done();
+        }, true);
+      });
+    }); // end describe('authorized user, but no taskid')
+
+
     describe('Completed task with 2 slices', function() {
       beforeEach(() => serveTask(1, 'Completed task with 2 slices'));
 

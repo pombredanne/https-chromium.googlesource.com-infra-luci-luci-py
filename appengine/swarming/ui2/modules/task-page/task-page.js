@@ -1390,7 +1390,7 @@ time.sleep(${leaseDuration})`];
             this.render();
             this.app.finishedTask();
           })
-          .catch((e) => this.fetchError(e, 'bots/count slice ' + i));
+          .catch((e) => this.fetchError(e, 'bots/count slice ' + i), true);
 
       let start = new Date();
       start.setSeconds(0);
@@ -1410,7 +1410,7 @@ time.sleep(${leaseDuration})`];
             this.render();
             this.app.finishedTask();
           })
-          .catch((e) => this.fetchError(e, 'tasks/running slice ' + i));
+          .catch((e) => this.fetchError(e, 'tasks/running slice ' + i), true);
 
       tParams.state = ['PENDING'];
       fetch(`/_ah/api/swarming/v1/tasks/count?${query.fromObject(tParams)}`, extra)
@@ -1420,7 +1420,7 @@ time.sleep(${leaseDuration})`];
             this.render();
             this.app.finishedTask();
           })
-          .catch((e) => this.fetchError(e, 'tasks/pending slice ' + i));
+          .catch((e) => this.fetchError(e, 'tasks/pending slice ' + i), true);
     }
   }
 
