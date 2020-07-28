@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "2cf64488_fce944b2",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-28T07:04:40Z",
+      "side": 1,
+      "message": "Removed try/except.",
+      "parentUuid": "cbf76292_3395de17",
+      "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a36ff469_6860680f",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 3
@@ -159,6 +177,24 @@
       "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25590286_5ce900d7",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-28T07:04:40Z",
+      "side": 1,
+      "message": "Ok, I simplified this function.",
+      "parentUuid": "ad0955b6_46475849",
+      "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
