@@ -141,6 +141,24 @@
       "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad0955b6_46475849",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-28T06:54:10Z",
+      "side": 1,
+      "message": "\u003e \u003e I\u0027d like to make unexpected output failure, so that we can notice that.\n\u003e \n\u003e Can we report error without stopping the process?\n\u003e \n\nI think we only can use on_error.report() for that.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/client/utils/on_error.py;l\u003d236;drc\u003d734d4c0af274e7db078b27e1b23eeadc034bacb0?originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F\n\n\u003e \u003e\u003e The system call may return empty in certain conditions. (I\u0027ve seen similar issue)\n\u003e \u003e Really?\n\u003e \n\u003e IIRC, `system_profiler` returns empty and caused https://crbug.com/1102673.\n\nI see, but I still want to make such unexpected behavior more visible. And I think that shouldn\u0027t happen basically too.",
+      "parentUuid": "856de729_cabf8faf",
+      "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
