@@ -16,6 +16,29 @@
       "revId": "9e03958b8b4f1c82147041a0d4a9c8f0cf050e38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "661a69f7_75438417",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1309389
+      },
+      "writtenOn": "2020-07-28T12:53:54Z",
+      "side": 1,
+      "message": "Looking through this file, I see there are also examples of sysctl calls. If you prefer that over running sw_vers, then this sysctl value also works.\n\nkern.osversion\n\n❯ sysctl -n kern.osversion kern.osproductversion\n19F101\n10.15.5\n\nThe format should be text (string/byte array) as opposed to an integer or struct. This also works for all versions of OS X/macOS that we support (we support 10.10+).\n\nchrome-bot@vm55-m1:(Mac 10.10.5):~$ sw_vers -buildVersion\n14F2511\nchrome-bot@vm55-m1:(Mac 10.10.5):~$ sysctl -n kern.osversion\n14F2511\n\nApologies for not mentioning this earlier.",
+      "range": {
+        "startLine": 518,
+        "startChar": 0,
+        "endLine": 518,
+        "endChar": 74
+      },
+      "revId": "9e03958b8b4f1c82147041a0d4a9c8f0cf050e38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
