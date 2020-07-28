@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a5c92497_7591c518",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-28T06:20:18Z",
+      "side": 1,
+      "message": "I think we don\u0027t want to break bots only for a certain dimension due to errors from subprocess, like other subprocess calls in this file.",
+      "parentUuid": "56986729_53e5783a",
+      "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a36ff469_6860680f",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2020-07-28T06:03:23Z",
       "side": 1,
       "message": "could you make this assert?",
+      "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4192937e_3cb45485",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-28T06:20:18Z",
+      "side": 1,
+      "message": "Are you suggesting to rise an AssertionError and catch in the except?\nOr let it fail?\n\nIt would be better not to fail due to this.\nThe system call may return empty in certain conditions. (I\u0027ve seen similar issue)\n\nMaybe better to leave logs, though.",
+      "parentUuid": "a36ff469_6860680f",
       "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
