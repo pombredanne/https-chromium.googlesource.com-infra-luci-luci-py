@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "7a1aed85_d7e15d05",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-28T06:32:12Z",
+      "side": 1,
+      "message": "But I think failure of this command execution makes the bot status unreliable anyway?",
+      "parentUuid": "a5c92497_7591c518",
+      "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a36ff469_6860680f",
         "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
         "patchSetId": 3
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Are you suggesting to rise an AssertionError and catch in the except?\nOr let it fail?\n\nIt would be better not to fail due to this.\nThe system call may return empty in certain conditions. (I\u0027ve seen similar issue)\n\nMaybe better to leave logs, though.",
       "parentUuid": "a36ff469_6860680f",
+      "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbae01fe_1d20a712",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-28T06:32:12Z",
+      "side": 1,
+      "message": "\u003e Are you suggesting to rise an AssertionError and catch in the except?\n\u003e Or let it fail?\n\u003e \n\nI\u0027d like to make unexpected output failure, so that we can notice that.\n\n\u003e It would be better not to fail due to this.\n\u003e The system call may return empty in certain conditions. (I\u0027ve seen similar issue)\n\u003e \n\nReally?",
+      "parentUuid": "4192937e_3cb45485",
       "revId": "524e7909b57df8b3992a051cf6edc946566e7968",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
