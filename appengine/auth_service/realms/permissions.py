@@ -98,11 +98,28 @@ def db():
       include('role/luci.realmServiceAccount'),
       permission('swarming.tasks.actAs'),
   ])
+  role('role/swarming.realmViewer', [
+      permission('swarming.tasks.get'),
+  ])
   role('role/swarming.realmUser', [
+      include('role/swarming.realmViewer'),
       permission('swarming.tasks.createInRealm'),
+      permission('swarming.tasks.cancel'),
+  ])
+  role('role/swarming.poolViewer', [
+      permission('swarming.pools.listBots'),
+      permission('swarming.pools.listTasks'),
   ])
   role('role/swarming.poolUser', [
+      include('role/swarming.poolViewer'),
       permission('swarming.pools.createTask'),
+  ])
+  role('role/swarming.poolOwner', [
+      include('role/swarming.poolUser'),
+      permission('swarming.pools.cancelTask'),
+      permission('swarming.pools.createBot'),
+      permission('swarming.pools.deleteBot'),
+      permission('swarming.pools.terminateBot'),
   ])
 
   # LogDog permissions and roles. Placeholders for now.
