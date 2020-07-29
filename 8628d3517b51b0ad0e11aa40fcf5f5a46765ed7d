@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "08d0ee8a_23253916",
+        "filename": "client/tests/isolateserver_fake.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-29T08:26:28Z",
+      "side": 1,
+      "message": "This is a very subtle thing: i[\u0027size\u0027] from Go was a string (e.g. \"6\"), which caused the fake isolateserver to always pick GCS instead of DS.",
+      "parentUuid": "83756b75_f8d84a7f",
+      "revId": "8628d3517b51b0ad0e11aa40fcf5f5a46765ed7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f975fff_49a4be60",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 6
@@ -39,6 +57,30 @@
       "revId": "8628d3517b51b0ad0e11aa40fcf5f5a46765ed7d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdf482f1_ffd77ac3",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-29T08:26:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f975fff_49a4be60",
+      "range": {
+        "startLine": 204,
+        "startChar": 39,
+        "endLine": 204,
+        "endChar": 40
+      },
+      "revId": "8628d3517b51b0ad0e11aa40fcf5f5a46765ed7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
