@@ -39,6 +39,30 @@
       "revId": "9e03958b8b4f1c82147041a0d4a9c8f0cf050e38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2eaa3a0a_68116245",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-29T00:16:59Z",
+      "side": 1,
+      "message": "Thanks. will use sysctl like others.",
+      "parentUuid": "661a69f7_75438417",
+      "range": {
+        "startLine": 518,
+        "startChar": 0,
+        "endLine": 518,
+        "endChar": 74
+      },
+      "revId": "9e03958b8b4f1c82147041a0d4a9c8f0cf050e38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
