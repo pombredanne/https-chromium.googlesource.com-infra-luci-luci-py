@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9cf3c85b_2fd67ca4",
+        "filename": "appengine/swarming/ui2/modules/SwarmingAppBoilerplate.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-29T11:21:34Z",
+      "side": 1,
+      "message": "The sentence wasn\u0027t clear. updated.",
+      "parentUuid": "7a20fe3c_8f82bdf1",
+      "range": {
+        "startLine": 136,
+        "startChar": 39,
+        "endLine": 136,
+        "endChar": 46
+      },
+      "revId": "7f35cca2d335442166c65eccec1d93b194956225",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7e50051_8aedf441",
         "filename": "appengine/swarming/ui2/modules/SwarmingAppBoilerplate.js",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "7f35cca2d335442166c65eccec1d93b194956225",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c8b3628_167efe64",
+        "filename": "appengine/swarming/ui2/modules/SwarmingAppBoilerplate.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-29T11:21:34Z",
+      "side": 1,
+      "message": "Oops, I meant if (e.status \u003d\u003d\u003d 403 \u0026\u0026 !ignoreAuthError).\nI\u0027m surprised that it works coincidentally.",
+      "parentUuid": "b7e50051_8aedf441",
+      "range": {
+        "startLine": 139,
+        "startChar": 8,
+        "endLine": 139,
+        "endChar": 24
+      },
+      "revId": "7f35cca2d335442166c65eccec1d93b194956225",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
