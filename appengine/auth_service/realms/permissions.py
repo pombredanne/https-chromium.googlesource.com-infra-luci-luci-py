@@ -177,6 +177,14 @@ def db():
   role('role/cq.committer', [])
   role('role/cq.dryRunner', [])
 
+  # Milo permissions and roles.
+  role('role/milo.reader', [
+      # Readers of console pages should also have read permissions to
+      # buildbucket
+      include('role/buildbucket.reader'),
+      permission('milo.console.get'),
+  ])
+
   # This role is implicitly granted to identity "project:X" in all realms of
   # the project X (and only it!). See below. Identity "project:X" is used by
   # RPCs when one LUCI micro-service calls another in a context of some project.
