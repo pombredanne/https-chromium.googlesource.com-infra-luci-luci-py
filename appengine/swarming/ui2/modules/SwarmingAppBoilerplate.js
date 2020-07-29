@@ -133,9 +133,10 @@ export default class SwarmingAppBoilerplate extends HTMLElement {
       @param {Object} e The error given by fetch.
       @param {String} loadingWhat A short string to describe what failed.
                       (e.g. bots/list if the bots/list endpoint was queried)
+      @param {boolean} ignoreAuthError ignores 403 error if it's true.
    */
-  fetchError(e, loadingWhat) {
-    if (e.status === 403) {
+  fetchError(e, loadingWhat, ignoreAuthError) {
+    if (e.status === 403 != ignoreAuthError) {
       this._message = 'User unauthorized - try logging in '+
                       'with a different account';
       this._notAuthorized = true;
