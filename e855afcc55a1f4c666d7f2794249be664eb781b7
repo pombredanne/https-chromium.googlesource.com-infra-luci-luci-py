@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "bf70e749_46d0aa6e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-29T02:38:22Z",
+      "side": 1,
+      "message": "I meant to add test not only for this specific fix, but for the path using go isolated client.",
+      "parentUuid": "c794faec_47fbd981",
+      "revId": "e855afcc55a1f4c666d7f2794249be664eb781b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef5a8239_cd945e18",
         "filename": "client/run_isolated.py",
         "patchSetId": 4
