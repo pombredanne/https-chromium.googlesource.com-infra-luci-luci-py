@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a20fe3c_8f82bdf1",
+        "filename": "appengine/swarming/ui2/modules/SwarmingAppBoilerplate.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-29T08:03:08Z",
+      "side": 1,
+      "message": "Ignores?",
+      "range": {
+        "startLine": 136,
+        "startChar": 39,
+        "endLine": 136,
+        "endChar": 46
+      },
+      "revId": "7f35cca2d335442166c65eccec1d93b194956225",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7e50051_8aedf441",
+        "filename": "appengine/swarming/ui2/modules/SwarmingAppBoilerplate.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-29T08:03:08Z",
+      "side": 1,
+      "message": "use paren?",
+      "range": {
+        "startLine": 139,
+        "startChar": 8,
+        "endLine": 139,
+        "endChar": 24
+      },
+      "revId": "7f35cca2d335442166c65eccec1d93b194956225",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
