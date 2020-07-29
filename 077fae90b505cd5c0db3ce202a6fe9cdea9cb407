@@ -39,6 +39,30 @@
       "revId": "077fae90b505cd5c0db3ce202a6fe9cdea9cb407",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc9a794c_c344dd87",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-29T12:39:08Z",
+      "side": 1,
+      "message": "\u003e I revisited this config during testing on dev.\n\u003e If `poolUser` includes `poolViewer` role, the users can view other users\u0027 tasks.\n\u003e I think we want to avoid that.\n\u003e \n\nI think we don\u0027t have a case where we want to allow task creation, but disallow viewing tasks in a pool?\n\n\u003e Maybe, the poolUser role should only have createTask permission?\n\u003e And they probably have `taskViewer`, `taskTrigger` roles to create/view the tasks only in the realm.\n\u003e \n\u003e Is this understanding correct?",
+      "parentUuid": "ec050b15_764096d6",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 42
+      },
+      "revId": "077fae90b505cd5c0db3ce202a6fe9cdea9cb407",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
