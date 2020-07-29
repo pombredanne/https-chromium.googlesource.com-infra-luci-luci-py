@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e0dbd3a_2f0f79a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-29T02:38:51Z",
+      "side": 1,
+      "message": "The code looks good to me.\nIf it\u0027s easy to write, better to add some tests. (depends on how complicated the tests would be)",
+      "revId": "6ad521e807661afb2934ba393041557f21a54bdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3746c0a_92726f21",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-29T02:38:51Z",
+      "side": 1,
+      "message": "nit: this isn\u0027t necessary anymore?",
+      "range": {
+        "startLine": 961,
+        "startChar": 0,
+        "endLine": 961,
+        "endChar": 22
+      },
+      "revId": "6ad521e807661afb2934ba393041557f21a54bdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
