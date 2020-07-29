@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "edccbe39_69551715",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-29T09:47:40Z",
+      "side": 1,
+      "message": "Could you update status of errors to resolved if this fixed those?\nhttps://pantheon.corp.google.com/errors?time\u003dP1D\u0026order\u003dLAST_SEEN_DESC\u0026resolution\u003dOPEN\u0026resolution\u003dACKNOWLEDGED\u0026project\u003disolateserver-dev\u0026folder\u0026organizationId",
+      "revId": "db29c6026e874024e2f064e0fa63a0f40c5a602f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
