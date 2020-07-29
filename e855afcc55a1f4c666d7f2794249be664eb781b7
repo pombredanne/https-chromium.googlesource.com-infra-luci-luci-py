@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "7205a4cb_552123be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-07-29T08:11:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf70e749_46d0aa6e",
+      "revId": "e855afcc55a1f4c666d7f2794249be664eb781b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef5a8239_cd945e18",
         "filename": "client/run_isolated.py",
         "patchSetId": 4
