@@ -71,6 +71,10 @@ BotGroupConfig = collections.namedtuple(
         # handshake.
         'bot_config_script',
 
+        # Revision of the supplemental bot_config.py to inject to the bot during
+        # handshake.
+        'bot_config_script_rev',
+
         # Content of the supplemental bot_config.py to inject to the bot during
         # handshake.
         'bot_config_script_content',
@@ -386,6 +390,7 @@ def _include_bot_config_scripts(cfg, digest, ctx):
       continue
     rev, content = fetch_script('scripts/' + gr.bot_config_script)
     if content:
+      gr.bot_config_script_rev = rev
       gr.bot_config_script_content = content
       digest.update('BOT_CONFIG_SCRIPT_REV:%d' % idx, rev)
     else:
