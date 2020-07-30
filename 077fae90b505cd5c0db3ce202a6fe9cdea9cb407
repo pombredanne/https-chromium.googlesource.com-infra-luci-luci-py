@@ -87,6 +87,30 @@
       "revId": "077fae90b505cd5c0db3ce202a6fe9cdea9cb407",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db59f341_3f856931",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-30T07:22:16Z",
+      "side": 1,
+      "message": "Re: Takuto\n\u003e I think we don\u0027t have a case where we want to allow task creation, but disallow viewing tasks in a pool?\n\nI think crbug.com/1081682 is for the case.\n\nRe: Vadim\n\n\u003e poolUser will be given to:\n\u003e  * LED users so they can schedule builds via LED bypassing Buildbucket.\n\u003e  * People who like to run isolated tests directly from their workstations (I\u0027m not sure how popular this is).\n\nThis sounds poolUsers don\u0027t need to be able to see list pages. My assumption is they will go to task pages directly with the URLs they get.\n\n\u003e Don\u0027t know, I guess you are right. At least it will be easier to add poolViewer to poolUser later, if necessary, compared to removing it.\n\nOk, let me remove it for now, then.",
+      "parentUuid": "775165d6_e096a757",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 42
+      },
+      "revId": "077fae90b505cd5c0db3ce202a6fe9cdea9cb407",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
