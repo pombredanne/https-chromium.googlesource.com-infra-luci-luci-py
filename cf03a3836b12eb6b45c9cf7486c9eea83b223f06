@@ -22,6 +22,30 @@
       "revId": "cf03a3836b12eb6b45c9cf7486c9eea83b223f06",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "496c79bd_60f9ec0a",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-31T06:34:51Z",
+      "side": 1,
+      "message": "I was thinking to add it to the response.\nBut, changed to `-` for now.",
+      "parentUuid": "64842eec_42d73be7",
+      "range": {
+        "startLine": 319,
+        "startChar": 9,
+        "endLine": 319,
+        "endChar": 13
+      },
+      "revId": "cf03a3836b12eb6b45c9cf7486c9eea83b223f06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
