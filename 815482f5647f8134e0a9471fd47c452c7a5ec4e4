@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28f83343_103c14b2",
+        "filename": "appengine/swarming/proto/config/bots.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-31T04:38:31Z",
+      "side": 1,
+      "message": "swarming",
+      "range": {
+        "startLine": 121,
+        "startChar": 58,
+        "endLine": 121,
+        "endChar": 65
+      },
+      "revId": "815482f5647f8134e0a9471fd47c452c7a5ec4e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a619a119_5c2b4345",
+        "filename": "appengine/swarming/proto/config/bots.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-07-31T04:38:31Z",
+      "side": 1,
+      "message": "filled?",
+      "range": {
+        "startLine": 124,
+        "startChar": 18,
+        "endLine": 124,
+        "endChar": 23
+      },
+      "revId": "815482f5647f8134e0a9471fd47c452c7a5ec4e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
