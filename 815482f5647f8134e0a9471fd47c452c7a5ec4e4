@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4da893ac_d74f417f",
+        "filename": "appengine/swarming/proto/config/bots.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-31T04:53:42Z",
+      "side": 1,
+      "message": "Oops, sorry.",
+      "parentUuid": "28f83343_103c14b2",
+      "range": {
+        "startLine": 121,
+        "startChar": 58,
+        "endLine": 121,
+        "endChar": 65
+      },
+      "revId": "815482f5647f8134e0a9471fd47c452c7a5ec4e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a619a119_5c2b4345",
         "filename": "appengine/swarming/proto/config/bots.proto",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2020-07-31T04:38:31Z",
       "side": 1,
       "message": "filled?",
+      "range": {
+        "startLine": 124,
+        "startChar": 18,
+        "endLine": 124,
+        "endChar": 23
+      },
+      "revId": "815482f5647f8134e0a9471fd47c452c7a5ec4e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "074ec306_1b585a5c",
+        "filename": "appengine/swarming/proto/config/bots.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-31T04:53:42Z",
+      "side": 1,
+      "message": "fixed.\nalso updated the sentence since it wasn\u0027t accurate.",
+      "parentUuid": "a619a119_5c2b4345",
       "range": {
         "startLine": 124,
         "startChar": 18,
