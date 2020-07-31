@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd3cb90b_b1b008de",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-07-31T05:56:07Z",
+      "side": 1,
+      "message": "Should it go to stderr like OUTLIVING_ZOMBIE_MSG?",
+      "revId": "2a2c8fc48d1ceebc53668d8b76ba499af2cd5bdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
