@@ -16,6 +16,24 @@
       "revId": "6189ad444276c6083a380604be346c728a2bd082",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53b6278b_36555bd2",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-03T23:28:32Z",
+      "side": 1,
+      "message": "request_obj.realm is set at line 536, too. \nSo it\u0027s not possible to distinguish the user provided one from the default one.",
+      "parentUuid": "f9cfedd2_6989cacb",
+      "revId": "6189ad444276c6083a380604be346c728a2bd082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
