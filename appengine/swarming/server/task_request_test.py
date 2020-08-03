@@ -563,25 +563,19 @@ class TaskRequestApiTest(TestCase):
         'outputs': [],
     }
     expected_request = {
-        'authenticated':
-            auth_testing.DEFAULT_MOCKED_IDENTITY,
-        'name':
-            u'Request name',
-        'parent_task_id':
-            unicode(parent_id),
-        'priority':
-            50,
-        'pubsub_topic':
-            None,
-        'pubsub_userdata':
-            None,
-        'service_account':
-            u'none',
+        'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
+        'name': u'Request name',
+        'parent_task_id': unicode(parent_id),
+        'priority': 50,
+        'pubsub_topic': None,
+        'pubsub_userdata': None,
+        'service_account': u'none',
         'tags': [
             u'OS:Windows-3.1.1',
             u'hostname:localhost',
             u'pool:default',
             u'priority:50',
+            u'realm:None',
             u'service_account:none',
             u'swarming.pool.template:no_config',
             u'tag:1',
@@ -592,12 +586,9 @@ class TaskRequestApiTest(TestCase):
             'properties': expected_properties,
             'wait_for_capacity': False,
         },],
-        'user':
-            u'Jesus',
-        'realm':
-            None,
-        'bot_ping_tolerance_secs':
-            120,
+        'user': u'Jesus',
+        'realm': None,
+        'bot_ping_tolerance_secs': 120,
     }
     actual = req.to_dict()
     actual.pop('created_ts')
@@ -684,25 +675,19 @@ class TaskRequestApiTest(TestCase):
         'has_secret_bytes': True,
     }
     expected_request = {
-        'authenticated':
-            auth_testing.DEFAULT_MOCKED_IDENTITY,
-        'name':
-            u'Request name',
-        'parent_task_id':
-            unicode(parent_id),
-        'priority':
-            50,
-        'pubsub_topic':
-            None,
-        'pubsub_userdata':
-            None,
-        'service_account':
-            u'none',
+        'authenticated': auth_testing.DEFAULT_MOCKED_IDENTITY,
+        'name': u'Request name',
+        'parent_task_id': unicode(parent_id),
+        'priority': 50,
+        'pubsub_topic': None,
+        'pubsub_userdata': None,
+        'service_account': u'none',
         'tags': [
             u'OS:Windows-3.1.1',
             u'hostname:localhost',
             u'pool:default',
             u'priority:50',
+            u'realm:None',
             u'service_account:none',
             u'swarming.pool.template:no_config',
             u'tag:1',
@@ -713,12 +698,9 @@ class TaskRequestApiTest(TestCase):
             'properties': expected_properties,
             'wait_for_capacity': False,
         },],
-        'user':
-            u'Jesus',
-        'realm':
-            None,
-        'bot_ping_tolerance_secs':
-            120,
+        'user': u'Jesus',
+        'realm': None,
+        'bot_ping_tolerance_secs': 120,
     }
     actual = req.to_dict()
     # expiration_ts - created_ts == scheduling_expiration_secs.
@@ -1056,6 +1038,7 @@ class TaskRequestApiTest(TestCase):
             u'hostname:localhost',
             u'pool:default',
             u'priority:50',
+            u'realm:None',
             u'service_account:foo@gserviceaccount.com',
             u'swarming.pool.template:no_config',
             u'tag:1',
