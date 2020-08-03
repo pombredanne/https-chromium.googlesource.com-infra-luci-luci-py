@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "207b56d3_ddcb2f69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-03T04:37:43Z",
+      "side": 1,
+      "message": "I fixed the html structure, and removed \u0027cursor:pointer\u0027 on hovering the tabs.",
+      "revId": "22afee81e0572c8a1670f230f15debcd8d6c151a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
