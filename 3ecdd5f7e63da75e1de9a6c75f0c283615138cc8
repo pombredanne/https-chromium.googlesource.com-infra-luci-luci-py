@@ -22,6 +22,30 @@
       "revId": "3ecdd5f7e63da75e1de9a6c75f0c283615138cc8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4a4721f_09d9fae2",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-03T08:22:41Z",
+      "side": 1,
+      "message": "I think \u0027service_account:none\u0027 has a special meaning. (maybe it\u0027s set at client or recipe?)\nhttps://source.chromium.org/chromium/infra/infra/+/master:go/src/go.chromium.org/luci/swarming/proto/api/swarming.pb.go;l\u003d2362?q\u003df:go%20f:swarming%20%27none%27\u0026ss\u003dchromium",
+      "parentUuid": "2f455cf5_28792b53",
+      "range": {
+        "startLine": 566,
+        "startChar": 20,
+        "endLine": 566,
+        "endChar": 24
+      },
+      "revId": "3ecdd5f7e63da75e1de9a6c75f0c283615138cc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
