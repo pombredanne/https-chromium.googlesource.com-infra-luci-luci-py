@@ -202,64 +202,42 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
   def _gen_result_summary_pending(self, **kwargs):
     """Returns the dict for a TaskResultSummary for a pending task."""
     expected = {
-        'abandoned_ts':
-            None,
-        'bot_dimensions':
-            None,
-        'bot_id':
-            None,
-        'bot_version':
-            None,
-        'cipd_pins':
-            None,
+        'abandoned_ts': None,
+        'bot_dimensions': None,
+        'bot_id': None,
+        'bot_version': None,
+        'cipd_pins': None,
         'children_task_ids': [],
-        'completed_ts':
-            None,
+        'completed_ts': None,
         'costs_usd': [],
-        'cost_saved_usd':
-            None,
-        'created_ts':
-            self.now,
-        'current_task_slice':
-            0,
-        'deduped_from':
-            None,
-        'duration':
-            None,
-        'exit_code':
-            None,
-        'expiration_delay':
-            None,
-        'failure':
-            False,
-        'internal_failure':
-            False,
-        'modified_ts':
-            self.now,
-        'name':
-            u'yay',
-        'outputs_ref':
-            None,
-        'resultdb_info':
-            None,
+        'cost_saved_usd': None,
+        'created_ts': self.now,
+        'current_task_slice': 0,
+        'deduped_from': None,
+        'duration': None,
+        'exit_code': None,
+        'expiration_delay': None,
+        'failure': False,
+        'internal_failure': False,
+        'modified_ts': self.now,
+        'name': u'yay',
+        'outputs_ref': None,
+        'resultdb_info': None,
         'server_versions': [u'v1a'],
-        'started_ts':
-            None,
-        'state':
-            State.PENDING,
+        'started_ts': None,
+        'state': State.PENDING,
         'tags': [
             u'os:Windows-3.1.1',
             u'pool:default',
             u'priority:50',
+            u'realm:None',
             u'service_account:none',
             u'swarming.pool.template:no_config',
             u'tag:1',
             u'user:Jesus',
         ],
-        'try_number':
-            None,
-        'user':
-            u'Jesus',
+        'try_number': None,
+        'user': u'Jesus',
     }
     expected.update(kwargs)
     return expected

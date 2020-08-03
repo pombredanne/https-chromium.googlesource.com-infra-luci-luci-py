@@ -564,32 +564,25 @@ class AppTestBase(test_case.TestCase):
     # This assumes:
     # self.mock(random, 'getrandbits', lambda _: 0x88)
     out = {
-        u'authenticated':
-            u'user:user@example.com',
-        u'expiration_secs':
-            u'86400',
-        u'task_id':
-            u'5cee488008810',
-        u'name':
-            u'job1',
-        u'priority':
-            u'20',
-        u'service_account':
-            u'none',
+        u'authenticated': u'user:user@example.com',
+        u'expiration_secs': u'86400',
+        u'task_id': u'5cee488008810',
+        u'name': u'job1',
+        u'priority': u'20',
+        u'service_account': u'none',
         u'tags': [
             u'a:tag',
             u'os:Amiga',
             u'pool:default',
             u'priority:20',
+            u'realm:None',
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
             u'user:joe@localhost',
         ],
-        u'user':
-            u'joe@localhost',
-        u'bot_ping_tolerance_secs':
-            u'600',
+        u'user': u'joe@localhost',
+        u'bot_ping_tolerance_secs': u'600',
     }
     out.update((unicode(k), v) for k, v in kwargs.items())
     return out
@@ -649,38 +642,28 @@ class AppTestBase(test_case.TestCase):
                 u'value': [u'default']
             },
         ],
-        u'bot_id':
-            u'bot1',
-        u'bot_version':
-            self.bot_version,
-        u'current_task_slice':
-            u'0',
-        u'failure':
-            False,
-        u'internal_failure':
-            False,
-        u'name':
-            u'job1',
-        u'run_id':
-            u'5cee488008811',
+        u'bot_id': u'bot1',
+        u'bot_version': self.bot_version,
+        u'current_task_slice': u'0',
+        u'failure': False,
+        u'internal_failure': False,
+        u'name': u'job1',
+        u'run_id': u'5cee488008811',
         u'server_versions': [u'v1a'],
-        u'state':
-            u'COMPLETED',
+        u'state': u'COMPLETED',
         u'tags': [
             u'a:tag',
             u'os:Amiga',
             u'pool:default',
             u'priority:20',
+            u'realm:None',
             u'service_account:none',
             u'swarming.pool.template:no_config',
             u'user:joe@localhost',
         ],
-        u'task_id':
-            u'5cee488008810',
-        u'try_number':
-            u'0',
-        u'user':
-            u'joe@localhost',
+        u'task_id': u'5cee488008810',
+        u'try_number': u'0',
+        u'user': u'joe@localhost',
     }
     out.update((unicode(k), v) for k, v in kwargs.items())
     return out
