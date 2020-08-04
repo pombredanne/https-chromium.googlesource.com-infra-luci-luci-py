@@ -69,6 +69,52 @@
       "revId": "6189ad444276c6083a380604be346c728a2bd082",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30e3d902_ad748fb6",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-08-04T00:26:51Z",
+      "side": 1,
+      "message": "I don\u0027t like this message, it is not actionable.\n\nIf the request has `realm`, this will never happen: if enforce_realms_acl is True, all realm checks are enforced. This is verified by unit tests and not related to the configuration at all.\n\nIf the request doesn\u0027t have `realm`, this can happen if any of the below have different values:\n  is_enforced_permission(REALM_PERMISSION_TASKS_CREATE_IN_REALM)\n  is_enforced_permission(REALM_PERMISSION_POOLS_CREATE_TASK)\n  is_enforced_permission(REALM_PERMISSION_TASKS_ACT_AS)\n\nBut this is doesn\u0027t depend the task, only on the pool config. As such, if can be checked in https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/pools_config.py;l\u003d653 where this error is actually actionable.",
+      "range": {
+        "startLine": 590,
+        "startChar": 0,
+        "endLine": 597,
+        "endChar": 56
+      },
+      "revId": "6189ad444276c6083a380604be346c728a2bd082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57d259f9_ae18193c",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-08-04T00:26:51Z",
+      "side": 1,
+      "message": ", indexed\u003dFalse)\n\nunless you plan to run queries that use this field",
+      "range": {
+        "startLine": 1167,
+        "startChar": 52,
+        "endLine": 1167,
+        "endChar": 53
+      },
+      "revId": "6189ad444276c6083a380604be346c728a2bd082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
