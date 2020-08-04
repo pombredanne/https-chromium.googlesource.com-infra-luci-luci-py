@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5464b9_e1375fb3",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-04T02:56:27Z",
+      "side": 1,
+      "message": "have https://source.chromium.org/chromium/infra/infra/+/master:luci/client/isolateserver.py;l\u003d1656;drc\u003df1df72568c324229fc921db483ab74bc3a376078\ntoo",
+      "revId": "3175368cd61f353109ed1c50de1c17e38138e052",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
