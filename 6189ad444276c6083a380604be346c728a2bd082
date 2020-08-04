@@ -95,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "629f0fe0_3b690159",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-04T00:32:49Z",
+      "side": 1,
+      "message": "\u003e But this is doesn\u0027t depend the task, only on the pool config. As such, if can be checked in https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/pools_config.py;l\u003d653 where this error is actually actionable.\n\nThat\u0027s true. Will move the check to pools_config.py",
+      "parentUuid": "30e3d902_ad748fb6",
+      "range": {
+        "startLine": 590,
+        "startChar": 0,
+        "endLine": 597,
+        "endChar": 56
+      },
+      "revId": "6189ad444276c6083a380604be346c728a2bd082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "57d259f9_ae18193c",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 5
@@ -115,6 +139,30 @@
       "revId": "6189ad444276c6083a380604be346c728a2bd082",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4115e145_6c08b3ba",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-04T00:32:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57d259f9_ae18193c",
+      "range": {
+        "startLine": 1167,
+        "startChar": 52,
+        "endLine": 1167,
+        "endChar": 53
+      },
+      "revId": "6189ad444276c6083a380604be346c728a2bd082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
