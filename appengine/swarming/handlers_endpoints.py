@@ -537,14 +537,19 @@ class SwarmingTasksService(remote.Service):
     else:
       logging.info('Not using realms')
 
+    # Check if realms is used in each permnission.
+    used_realms = {}
+
     # Realm permission 'swarming.pools.createInRealm' checks if the
     # caller is allowed to create a task in the task realm.
-    realms.check_tasks_create_in_realm(request_obj.realm, pool_cfg,
-                                       enforce_realms_acl)
+    used_realms['check_tasks_create_in_realm'] = (
+        realms.check_tasks_create_in_realm(request_obj.realm, pool_cfg,
+                                           enforce_realms_acl))
 
     # Realm permission 'swarming.pools.create' checks if the caller is allowed
     # to create a task in the pool.
-    realms.check_pools_create_task(pool_cfg, enforce_realms_acl)
+    used_realms['check_pools_create_task'] = realms.check_pools_create_task(
+        pool_cfg, enforce_realms_acl)
 
     # If the request has a service account email, check if the service account
     # is allowed to run.
@@ -556,8 +561,8 @@ class SwarmingTasksService(remote.Service):
 
       # Realm permission 'swarming.tasks.actAs' checks if the service account is
       # allowed to run in the task realm.
-      used_realms = realms.check_tasks_act_as(request_obj, pool_cfg,
-                                              enforce_realms_acl)
+      used_realms['check_tasks_act_as'] = realms.check_tasks_act_as(
+          request_obj, pool_cfg, enforce_realms_acl)
 
       # If using legacy ACLs for service accounts, use the legacy mechanism to
       # mint oauth token as well. Note that this path will be deprecated after
@@ -567,7 +572,7 @@ class SwarmingTasksService(remote.Service):
       # is allowed by the token server rules at the time the task is posted.
       # This check is also performed later (when running the task), when we get
       # the actual OAuth access token.
-      if not used_realms:
+      if not used_realms['check_tasks_act_as']:
         max_lifetime_secs = request_obj.max_lifetime_secs
         try:
           duration = datetime.timedelta(seconds=max_lifetime_secs)
@@ -581,6 +586,15 @@ class SwarmingTasksService(remote.Service):
           raise endpoints.BadRequestException(exc.message)
         except service_accounts.InternalError as exc:
           raise endpoints.InternalServerErrorException(exc.message)
+
+    # used_realms should be all True or all False.
+    if len(set(used_realms.values())) != 1:
+      logging.error(
+          'Realms enforcements are inconsistent between permissions. %s',
+          used_realms)
+      raise endpoints.InternalServerErrorException(
+          'Invalid Realms configurations were detected.')
+    request_obj.realms_enabled = used_realms.values()[0]
 
     # If the user only wanted to evaluate scheduling the task, but not actually
     # schedule it, return early without a task_id.
