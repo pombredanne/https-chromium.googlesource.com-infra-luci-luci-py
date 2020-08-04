@@ -22,6 +22,30 @@
       "revId": "69c5a363aff7d87762e0bbc0783fd59a968cbfe7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdaa24ab_c7653359",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-04T09:27:11Z",
+      "side": 1,
+      "message": "Yes, the issue is related to this mitigation.",
+      "parentUuid": "a18d77c4_28b929d6",
+      "range": {
+        "startLine": 729,
+        "startChar": 39,
+        "endLine": 729,
+        "endChar": 46
+      },
+      "revId": "69c5a363aff7d87762e0bbc0783fd59a968cbfe7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
