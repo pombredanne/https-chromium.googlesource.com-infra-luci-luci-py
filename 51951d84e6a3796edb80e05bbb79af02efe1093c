@@ -16,6 +16,29 @@
       "revId": "51951d84e6a3796edb80e05bbb79af02efe1093c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "889e70c8_f46ccc88",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-08-04T02:44:27Z",
+      "side": 1,
+      "message": "This is now not necessary. Just use result of realms.check_tasks_create_in_realm\n\n  request_obj.realms_enabled \u003d realms.check_tasks_create_in_realm(...)\n  ...\n  if service_accounts_utils(...):\n    ...\n    if not request_obj.realms_enabled:\n       ...\n\nWill be cleaner.",
+      "range": {
+        "startLine": 541,
+        "startChar": 4,
+        "endLine": 541,
+        "endChar": 15
+      },
+      "revId": "51951d84e6a3796edb80e05bbb79af02efe1093c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
