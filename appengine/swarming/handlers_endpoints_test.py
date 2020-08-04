@@ -2828,7 +2828,7 @@ class BotsApiTest(BaseTest):
     self.set_as_privileged_user()
 
     bot_management.DimensionAggregation(
-        key=bot_management.DimensionAggregation.KEY,
+        key=bot_management.DimensionAggregation.KEY_ALL,
         dimensions=[
             bot_management.DimensionValues(
                 dimension='foo', values=['alpha', 'beta']),
