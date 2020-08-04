@@ -629,8 +629,7 @@ class BotManagementTest(test_case.TestCase):
           bot_management.BotRoot.query().fetch(keys_only=True)])
 
   def test_cron_aggregate_dimensions(self):
-    # TODO(maruel): https://crbug.com/912154
-    self.assertEqual(0, bot_management.cron_aggregate_dimensions())
+    self.assertIsNone(bot_management.cron_aggregate_dimensions())
 
   def test_filter_dimensions(self):
     pass # Tested in handlers_endpoints_test

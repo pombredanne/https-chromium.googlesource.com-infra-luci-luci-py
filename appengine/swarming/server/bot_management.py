@@ -57,6 +57,7 @@
   entities which are generated from data provided by the bot itself.
 """
 
+from collections import defaultdict
 import datetime
 import hashlib
 import logging
@@ -903,27 +904,40 @@ def cron_delete_old_bot():
 
 
 def cron_aggregate_dimensions():
-  """Foo"""
-  seen = {}
+  """Aggregates dimensions for all pools and each pool."""
+
+  def _get_pools_dimension(dims):
+    return [d.replace('pool:', '') for d in dims if d.startswith('pool:')]
+
+  # {
+  #   'all': { 'os': set(...), 'cpu': set(...), ...},
+  #   'pool1': { 'os': set(...), 'cpu': set(...), ...},
+  #   ...
+  # }
+  seen = defaultdict(lambda: defaultdict(set))
   now = utils.utcnow()
+
   for b in BotInfo.query():
+    groups = _get_pools_dimension(b.dimensions_flat)
+    groups.append('all')
     for i in b.dimensions_flat:
       k, v = i.split(':', 1)
-      if k != 'id':
-        seen.setdefault(k, set()).add(v)
-  dims = [
-    DimensionValues(dimension=k, values=sorted(values))
-    for k, values in sorted(seen.items())
-  ]
+      if k == 'id':
+        continue
+      for g in groups:
+        seen[g].add(v)
 
-  # TODO(jwata): aggregate dimensions per pool.
-
-  logging.info('Saw dimensions %s', dims)
-  DimensionAggregation(
-      key=DimensionAggregation.KEY, dimensions=dims, ts=now).put()
-  DimensionAggregation(
-      key=DimensionAggregation.KEY_ALL, dimensions=dims, ts=now).put()
-  return len(dims)
+  for group, dims in seen.items():
+    dims_prop = [
+        DimensionValues(dimension=k, values=sorted(values))
+        for k, values in sorted(dims.items())
+    ]
+    logging.info('Saw dimensions %s in %s', dims_prop, group)
+    # TODO(jwata): remove the 'current' key after switching to the 'all' key.
+    if group == 'all':
+      DimensionAggregation(
+          key=DimensionAggregation.KEY, dimensions=dims_all, ts=now).put()
+    DimensionAggregation(key=group, dimensions=dims_prop, ts=now).put()
 
 
 def task_bq_events(start, end):
