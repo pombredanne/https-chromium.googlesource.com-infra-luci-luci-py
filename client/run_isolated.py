@@ -707,32 +707,48 @@ def _upload_with_go(storage, outdir, isolated_client):
   os.close(isolated_handle)
   os.close(stats_json_handle)
   try:
-    cmd = [
-        isolated_client,
-        'archive',
-        '-isolate-server',
-        server_ref.url,
-        '-namespace',
-        server_ref.namespace,
-        '-dirs',
-        # Format: <working directory>:<relative path to dir>
-        outdir + ':',
+    # Will do exponential backoff, e.g. 10, 20, 40...
+    # This mitigates https://crbug.com/1094369, where there is a data race on
+    # the uploaded files.
+    backoff = 10
+    while True:
+      try:
+        cmd = [
+            isolated_client,
+            'archive',
+            '-isolate-server',
+            server_ref.url,
+            '-namespace',
+            server_ref.namespace,
+            '-dirs',
+            # Format: <working directory>:<relative path to dir>
+            outdir + ':',
 
-        # output
-        '-dump-hash',
-        isolated_path,
-        '-dump-stats-json',
-        stats_json_path,
-        '-quiet',
-    ]
-    _run_go_isolated_and_wait(cmd)
+            # output
+            '-dump-hash',
+            isolated_path,
+            '-dump-stats-json',
+            stats_json_path,
+            '-quiet',
+        ]
+        _run_go_isolated_and_wait(cmd)
 
-    with open(isolated_path) as isol_file:
-      isolated = isol_file.read()
-    with open(stats_json_path) as json_file:
-      stats_json = json.load(json_file)
+        with open(isolated_path) as isol_file:
+          isolated = isol_file.read()
+        with open(stats_json_path) as json_file:
+          stats_json = json.load(json_file)
 
-    return isolated, stats_json['items_cold'], stats_json['items_hot']
+        return isolated, stats_json['items_cold'], stats_json['items_hot']
+      except Exception:
+        if backoff > 100:
+          raise
+
+        logging.exception(
+            'failed to run _upload_with_go, will retry after %d seconds',
+            backoff)
+        time.sleep(backoff)
+        backoff *= 2
+
   finally:
     fs.remove(isolated_path)
     fs.remove(stats_json_path)
