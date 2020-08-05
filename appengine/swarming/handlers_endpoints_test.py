@@ -2827,6 +2827,7 @@ class BotsApiTest(BaseTest):
     """Asserts that BotsDimensions is returned with the right data."""
     self.set_as_privileged_user()
 
+    # all dimensions.
     bot_management.DimensionAggregation(
         key=bot_management.DimensionAggregation.KEY,
         dimensions=[
@@ -2837,7 +2838,16 @@ class BotsApiTest(BaseTest):
         ],
         ts=self.now).put()
 
-    expected = {
+    # dimensions in pool1.
+    bot_management.DimensionAggregation(
+        key=bot_management.get_aggregation_key('pool1'),
+        dimensions=[
+            bot_management.DimensionValues(
+                dimension='foo', values=['alpha', 'beta']),
+        ],
+        ts=self.now).put()
+
+    expected_all = {
         u'bots_dimensions': [
             {
                 u'key': u'foo',
@@ -2850,8 +2860,19 @@ class BotsApiTest(BaseTest):
         ],
         u'ts': unicode(self.now.strftime(DATETIME_NO_MICRO)),
     }
+    self.assertEqual(expected_all, self.call_api('dimensions', body={}).json)
 
-    self.assertEqual(expected, self.call_api('dimensions', body={}).json)
+    expected_pool1 = {
+        u'bots_dimensions': [{
+            u'key': u'foo',
+            u'value': [u'alpha', u'beta'],
+        },],
+        u'ts': unicode(self.now.strftime(DATETIME_NO_MICRO)),
+    }
+    self.assertEqual(expected_pool1,
+                     self.call_api('dimensions', body={
+                         'pool': 'pool1'
+                     }).json)
 
   @parameterized.expand([
       'list',
