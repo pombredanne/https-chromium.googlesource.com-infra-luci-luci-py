@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b08248a_26c8d406",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-08-05T04:32:45Z",
+      "side": 1,
+      "message": "`dimensions`? Or rename the arg?",
+      "range": {
+        "startLine": 743,
+        "startChar": 21,
+        "endLine": 743,
+        "endChar": 36
+      },
+      "revId": "87446c3f501204cb60f3983f716b610ff906d673",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
