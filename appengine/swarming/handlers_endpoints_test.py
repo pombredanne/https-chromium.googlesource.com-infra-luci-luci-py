@@ -2823,7 +2823,7 @@ class BotsApiTest(BaseTest):
         dimensions=['bad'])
     response = self.call_api('count', body=message_to_dict(request), status=400)
 
-  def test_dimensions_ok(self):
+  def test_dimensions_all(self):
     """Asserts that BotsDimensions is returned with the right data."""
     self.set_as_privileged_user()
 
@@ -2850,8 +2850,33 @@ class BotsApiTest(BaseTest):
         ],
         u'ts': unicode(self.now.strftime(DATETIME_NO_MICRO)),
     }
-
     self.assertEqual(expected, self.call_api('dimensions', body={}).json)
+
+  def test_dimensions_pool(self):
+    self.set_as_user()
+    self.mock_auth_db([
+        auth.Permission('swarming.pools.listBots'),
+    ])
+
+    bot_management.DimensionAggregation(
+        key=bot_management.get_aggregation_key('default'),
+        dimensions=[
+            bot_management.DimensionValues(
+                dimension='foo', values=['alpha', 'beta']),
+        ],
+        ts=self.now).put()
+
+    expected = {
+        u'bots_dimensions': [{
+            u'key': u'foo',
+            u'value': [u'alpha', u'beta'],
+        },],
+        u'ts': unicode(self.now.strftime(DATETIME_NO_MICRO)),
+    }
+    self.assertEqual(expected,
+                     self.call_api('dimensions', body={
+                         'pool': 'default'
+                     }).json)
 
   @parameterized.expand([
       'list',
