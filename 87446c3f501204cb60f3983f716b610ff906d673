@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "9cf193fc_19220d8d",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-05T04:38:26Z",
+      "side": 1,
+      "message": "No need to have copy of other functions?\nhttps://source.chromium.org/search?q\u003d%22d.replace(%27pool:%27,%20%27%27)%22\u0026sq\u003d\u0026ss\u003dchromium",
+      "revId": "87446c3f501204cb60f3983f716b610ff906d673",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6b08248a_26c8d406",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 3
