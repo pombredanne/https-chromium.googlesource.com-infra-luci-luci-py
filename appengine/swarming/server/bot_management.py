@@ -739,6 +739,11 @@ def has_capacity(dimensions):
   return False
 
 
+def get_pools_from_dimensions_flat(dimensions):
+  """Gets pools from dimensions_flat."""
+  return [d.replace('pool:', '') for d in dimensions if d.startswith('pool:')]
+
+
 def cron_update_bot_info():
   """Refreshes BotInfo.composite for dead bots."""
   @ndb.tasklet
