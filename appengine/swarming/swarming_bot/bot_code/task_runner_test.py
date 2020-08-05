@@ -55,7 +55,12 @@ def gen_task_id():
   return ''.join([random.choice(string.digits) for _ in range(10)])
 
 
-DISABLE_CIPD_FOR_TESTS = ['--cipd-enabled', 'false']
+DISABLE_CIPD_FOR_TESTS = [
+    '--cipd-enabled',
+    'false',
+    '--use-go-isolated-to-upload',
+    'false',
+]
 
 
 def get_manifest(script=None, isolated=None, **kwargs):

@@ -116,7 +116,9 @@ class RunIsolatedTestBase(auto_stub.TestCase):
   # 'AssertionError: Items in the first set but not the second'
   # Need to run in test_seq.py as an executable
   no_run = 1
-  DISABLE_CIPD_FOR_TESTS = ['--cipd-enabled', False]
+  DISABLE_CIPD_FOR_TESTS = [
+      '--cipd-enabled', False, '--use-go-isolated-to-upload', False
+  ]
 
   @classmethod
   def setUpClass(cls):

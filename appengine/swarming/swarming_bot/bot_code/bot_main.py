@@ -695,7 +695,12 @@ def _run_isolated_flags(botobj):
   ]
 
   if _IN_TEST_MODE:
-    args += ['--cipd-enabled', 'false']
+    args += [
+        '--cipd-enabled',
+        'false',
+        '--use-go-isolated-to-upload',
+        'false',
+    ]
 
   return args
 
