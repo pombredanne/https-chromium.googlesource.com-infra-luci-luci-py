@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8eab65c5_c8c48043",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-05T04:46:24Z",
+      "side": 1,
+      "message": "I already removed the one in realms.py.\nAlso just replaced _get_pools_dimension with this one.",
+      "parentUuid": "9cf193fc_19220d8d",
+      "revId": "87446c3f501204cb60f3983f716b610ff906d673",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6b08248a_26c8d406",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 3
