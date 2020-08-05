@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abf9fccc_e1c1a403",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-05T04:44:43Z",
+      "side": 1,
+      "message": "make this private or function local?",
+      "revId": "51b423a7afae99d4eb2e23a19d75f86bc1c40cb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
