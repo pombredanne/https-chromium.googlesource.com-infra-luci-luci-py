@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f0dc7b7_ee475d24",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1300,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-05T04:43:30Z",
+      "side": 1,
+      "message": "this function works with None?",
+      "range": {
+        "startLine": 1300,
+        "startChar": 67,
+        "endLine": 1300,
+        "endChar": 71
+      },
+      "revId": "d1920a620f73f41c5f75ef2ae8d9e9b0c3451391",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
