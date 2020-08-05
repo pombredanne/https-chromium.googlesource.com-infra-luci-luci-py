@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45d42a98_004cda11",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 2828,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-05T05:12:48Z",
+      "side": 1,
+      "message": "add test for non allowed access?",
+      "revId": "002112a1100ffba695776ee171dac2b78475f09b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
