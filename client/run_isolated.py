@@ -209,8 +209,10 @@ TaskData = collections.namedtuple(
         'switch_to_account',
         # Context manager dir => CipdInfo, see install_client_and_packages.
         'install_packages_fn',
-        # Use go isolated client.
+        # Use go isolated client (to map and run).
         'use_go_isolated',
+        # Use go isolated client (to upload the output).
+        'use_go_isolated_to_upload',
         # Cache directory for go isolated client.
         'go_cache_dir',
         # Parameters passed to go isolated client.
@@ -959,8 +961,10 @@ def map_and_run(data, constant_run_path):
         isolated_stats = result['stats'].setdefault('isolated', {})
         # This could use |go_isolated_client|, so make sure it runs when the
         # CIPD package still exists.
+        # Don't touch |go_isolated_client| itself in case it's used later.
+        go_isol = go_isolated_client if data.use_go_isolated_to_upload else None
         result['outputs_ref'], isolated_stats['upload'] = (
-            upload_out_dir(data.storage, out_dir, go_isolated_client))
+            upload_out_dir(data.storage, out_dir, go_isol))
     # We successfully ran the command, set internal_failure back to
     # None (even if the command failed, it's not an internal error).
     result['internal_failure'] = None
@@ -1356,6 +1360,11 @@ def create_option_parser():
       help='Deliberately leak isolate\'s temp dir for later examination. '
       'Default: %default')
   group.add_option('--root-dir', help='Use a directory instead of a random one')
+  group.add_option(
+      '--use-go-isolated-to-upload',
+      default=True,
+      help='Whether to use the Go CLID to upload the output to isolateserver. '
+      'If true, CIPD must be enabled.')
   parser.add_option_group(group)
 
   auth.add_auth_options(parser)
@@ -1463,6 +1472,11 @@ def main(args):
 
   # TODO(crbug.com/932396): Remove this.
   use_go_isolated = options.cipd_enabled
+  if options.use_go_isolated_to_upload:
+    if not use_go_isolated:
+      parser.error(
+          '--use-go-isolated-to-upload cannot be True when CIPD is disabled')
+
 
   # TODO(maruel): CIPD caches should be defined at an higher level here too, so
   # they can be cleaned the same way.
@@ -1644,6 +1658,7 @@ def main(args):
       switch_to_account=options.switch_to_account,
       install_packages_fn=install_packages_fn,
       use_go_isolated=use_go_isolated,
+      use_go_isolated_to_upload=options.use_go_isolated_to_upload,
       go_cache_dir=options.cache,
       go_cache_policies=local_caching.CachePolicies(
           max_cache_size=options.max_cache_size,

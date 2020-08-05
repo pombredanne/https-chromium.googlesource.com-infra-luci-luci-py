@@ -116,7 +116,12 @@ class RunIsolatedTestBase(auto_stub.TestCase):
   # 'AssertionError: Items in the first set but not the second'
   # Need to run in test_seq.py as an executable
   no_run = 1
-  DISABLE_CIPD_FOR_TESTS = ['--cipd-enabled', False]
+  DISABLE_CIPD_FOR_TESTS = [
+      '--cipd-enabled',
+      False,
+      '--use-go-isolated-to-upload',
+      False,
+  ]
 
   @classmethod
   def setUpClass(cls):
@@ -362,6 +367,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
         switch_to_account=False,
         install_packages_fn=run_isolated.noop_install_packages,
         use_go_isolated=False,
+        use_go_isolated_to_upload=False,
         go_cache_dir=None,
         go_cache_policies=None,
         env={},
@@ -1016,6 +1022,7 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
           switch_to_account=False,
           install_packages_fn=run_isolated.noop_install_packages,
           use_go_isolated=False,
+          use_go_isolated_to_upload=False,
           go_cache_dir=None,
           go_cache_policies=None,
           env={},
@@ -1397,6 +1404,7 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           switch_to_account=False,
           install_packages_fn=run_isolated.noop_install_packages,
           use_go_isolated=False,
+          use_go_isolated_to_upload=False,
           go_cache_dir=None,
           go_cache_policies=None,
           env={},
