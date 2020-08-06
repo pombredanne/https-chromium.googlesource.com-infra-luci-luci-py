@@ -501,7 +501,6 @@ window.customElements.define('task-list', class extends SwarmingAppBoilerplate {
           }];
           appendPossibleColumns(this._possibleColumns, dims);
           appendPrimaryMap(this._primaryMap, dims);
-          delete this._primaryMap['state'];
           this._knownDimensions = ['pool'];
           this._rebuildFilterables();
           this.render();

@@ -141,7 +141,7 @@ describe('task-list', function() {
         fetchMock.get('/_ah/api/swarming/v1/server/details', 403,
             {overwriteRoutes: true});
         fetchMock.get('/_ah/api/swarming/v1/server/permissions', {
-          list_tasks: ['pool1']
+          list_tasks: ['pool1'],
         }, {overwriteRoutes: true});
         fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*', 403,
             {overwriteRoutes: true});
@@ -162,7 +162,7 @@ describe('task-list', function() {
           expect(taskRows.length).toEqual(0);
 
           const keyFilters = $('.filter_box .selector.keys .item', ele);
-          expect(keyFilters.length).toBe(1);
+          expect(keyFilters).toBeTruthy();
           expect(keyFilters[0]).toMatchTextContent('pool (tag)');
 
           // click 'pool' filter.
