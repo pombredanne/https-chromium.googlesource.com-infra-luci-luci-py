@@ -70,6 +70,30 @@
       "revId": "d0af7f333ca83e8ea416733891e7e8fd1934b0ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e34a23bf_289e8e5b",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-06T09:58:07Z",
+      "side": 1,
+      "message": "Ah, I see.\nI made https://crrev.com/c/2340945",
+      "parentUuid": "5056de0f_f5716f13",
+      "range": {
+        "startLine": 413,
+        "startChar": 0,
+        "endLine": 413,
+        "endChar": 49
+      },
+      "revId": "d0af7f333ca83e8ea416733891e7e8fd1934b0ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
