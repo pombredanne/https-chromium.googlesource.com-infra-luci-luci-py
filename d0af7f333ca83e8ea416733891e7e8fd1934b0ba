@@ -46,6 +46,30 @@
       "revId": "d0af7f333ca83e8ea416733891e7e8fd1934b0ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5056de0f_f5716f13",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-06T03:56:30Z",
+      "side": 1,
+      "message": "FWIU, they fail in python2 tests because they can\u0027t import them.\nPython3 tests are fine.",
+      "parentUuid": "732b28f0_470702e1",
+      "range": {
+        "startLine": 413,
+        "startChar": 0,
+        "endLine": 413,
+        "endChar": 49
+      },
+      "revId": "d0af7f333ca83e8ea416733891e7e8fd1934b0ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
