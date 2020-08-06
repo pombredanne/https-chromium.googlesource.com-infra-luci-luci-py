@@ -509,6 +509,26 @@ window.customElements.define('bot-list', class extends SwarmingAppBoilerplate {
       headers: {'authorization': this.auth_header},
       signal: this._fetchController.signal,
     };
+    // Re-checks permissions with tags.
+    const tags = this._filters
+        .filter((f) => f.split(':')[0] != 'state')
+        .map((f) => f.replace('-tag', ''));
+    this.app._fetchPermissions(extra, {tags: tags})
+        .then(() => {
+          // Users can select only pool dimension at this point.
+          const dims = [{
+            'key': 'pool',
+            'value': this.permissions.list_bots || [],
+          }];
+          this._primaryMap = processPrimaryMap(dims);
+          this._possibleColumns = makePossibleColumns(dims);
+          this._filteredPossibleColumns = this._possibleColumns.slice();
+          this._primaryArr = Object.keys(this._primaryMap);
+          this._primaryArr.sort();
+          this._filteredPrimaryArr = this._primaryArr.slice();
+          this._refilterPossibleColumns(); // calls render
+          this.app.finishedTask();
+        });
     // Fetch the bots
     this.app.addBusyTasks(1);
     let queryParams = listQueryParams(this._filters, this._limit);
