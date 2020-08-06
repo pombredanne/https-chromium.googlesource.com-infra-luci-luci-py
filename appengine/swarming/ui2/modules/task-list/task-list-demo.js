@@ -14,7 +14,18 @@ import {requireLogin, mockAuthdAppGETs} from '../test_util';
 // correctly for it, and we get strange errors about 'this' not being defined.
   const fetchMock = require('fetch-mock');
 
-  mockAuthdAppGETs(fetchMock, {cancel_task: true});
+  mockAuthdAppGETs(fetchMock, {
+    cancel_task: true,
+    list_tasks: [
+      'Chrome',
+      'Chrome-CrOS-VM',
+      'Chrome-GPU',
+      'Skia',
+      'fuchsia.tests',
+      'luci.chromium.ci',
+      'luci.fuchsia.try',
+    ],
+  });
 
   fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*',
       requireLogin(tasks_20, 2000));
