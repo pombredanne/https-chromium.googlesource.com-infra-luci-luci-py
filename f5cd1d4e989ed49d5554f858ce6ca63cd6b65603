@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2459add0_594ffc6d",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-06T15:57:59Z",
+      "side": 1,
+      "message": "Jasmine doesn\u0027t have that matcher.\nhttps://jasmine.github.io/api/3.1/matchers.html",
+      "parentUuid": "0d0f05fd_e0e69973",
+      "revId": "f5cd1d4e989ed49d5554f858ce6ca63cd6b65603",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "64451ef3_a9442582",
         "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
         "patchSetId": 8
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "1cc40f6e_c0a3f26d",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-06T15:57:59Z",
+      "side": 1,
+      "message": "ditto\nI changed toBe() to toEqual().",
+      "parentUuid": "64451ef3_a9442582",
+      "revId": "f5cd1d4e989ed49d5554f858ce6ca63cd6b65603",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "edabd376_01b8ca22",
         "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
         "patchSetId": 8
@@ -47,6 +83,24 @@
       "writtenOn": "2020-08-06T07:51:28Z",
       "side": 1,
       "message": "ditto",
+      "revId": "f5cd1d4e989ed49d5554f858ce6ca63cd6b65603",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72e0cfc4_df992cc7",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-06T15:57:59Z",
+      "side": 1,
+      "message": "ditto\nI changed toBe() to toEqual().",
+      "parentUuid": "edabd376_01b8ca22",
       "revId": "f5cd1d4e989ed49d5554f858ce6ca63cd6b65603",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
