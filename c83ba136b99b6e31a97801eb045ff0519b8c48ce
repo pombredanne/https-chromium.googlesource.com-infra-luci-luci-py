@@ -70,6 +70,30 @@
       "revId": "c83ba136b99b6e31a97801eb045ff0519b8c48ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3d06f3a_cc856377",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-06T06:53:42Z",
+      "side": 1,
+      "message": "\u003e maybe \u0027glob:/_ah/api/swarming/v1/server/permissions*\u0027 is enough for test.\n\ndone",
+      "parentUuid": "43503c75_1705093f",
+      "range": {
+        "startLine": 36,
+        "startChar": 59,
+        "endLine": 36,
+        "endChar": 64
+      },
+      "revId": "c83ba136b99b6e31a97801eb045ff0519b8c48ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
