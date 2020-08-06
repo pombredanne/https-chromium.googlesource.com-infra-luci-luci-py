@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "edf26220_2608800f",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-06T22:36:57Z",
+      "side": 1,
+      "message": "Ah, we use jasmine.\n\nCan we use toHaveSize then?\nhttps://jasmine.github.io/api/3.6/matchers",
+      "parentUuid": "2459add0_594ffc6d",
+      "revId": "f5cd1d4e989ed49d5554f858ce6ca63cd6b65603",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "64451ef3_a9442582",
         "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
         "patchSetId": 8
