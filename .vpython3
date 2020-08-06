@@ -65,5 +65,5 @@ wheel: <
 
 wheel: <
  name: "infra/python/wheels/pyobjc/mac-amd64_cp38_cp38"
- version: "version:6.2.2fixed"
+ version: "version:6.2.2"
 >
