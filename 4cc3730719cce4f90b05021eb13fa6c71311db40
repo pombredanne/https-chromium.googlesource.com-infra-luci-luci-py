@@ -16,6 +16,24 @@
       "revId": "4cc3730719cce4f90b05021eb13fa6c71311db40",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "665816fc_2726e396",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-06T07:39:02Z",
+      "side": 1,
+      "message": "Good catch. I simplified the code around here.",
+      "parentUuid": "65333613_64c3789c",
+      "revId": "4cc3730719cce4f90b05021eb13fa6c71311db40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
