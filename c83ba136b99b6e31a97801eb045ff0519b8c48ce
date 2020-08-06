@@ -22,6 +22,30 @@
       "revId": "c83ba136b99b6e31a97801eb045ff0519b8c48ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11a37357_ae31c7c4",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-06T06:49:37Z",
+      "side": 1,
+      "message": "permissions($|\\?.*) is probably what I wanted to do.\nLooks good?",
+      "parentUuid": "2da06c84_1cf05d84",
+      "range": {
+        "startLine": 36,
+        "startChar": 59,
+        "endLine": 36,
+        "endChar": 64
+      },
+      "revId": "c83ba136b99b6e31a97801eb045ff0519b8c48ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
