@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea234603_aff082c0",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-07T05:36:13Z",
+      "side": 1,
+      "message": "can we have flag controlling this?",
+      "revId": "c81bd4b7721d120eb926fc6c85a75f172e40f3c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
