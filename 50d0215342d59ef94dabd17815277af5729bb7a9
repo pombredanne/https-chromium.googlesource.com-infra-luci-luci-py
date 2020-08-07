@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8382bd5_ab4d0b16",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-07T05:20:08Z",
+      "side": 0,
+      "message": "The response of fetch dimensions will be different when a pool is selected.\nIt won\u0027t be a problem to call the API because list/count APIs are much more expensive than the dimensions API which just gets an Datastore entity.",
+      "range": {
+        "startLine": 577,
+        "startChar": 0,
+        "endLine": 582,
+        "endChar": 0
+      },
+      "revId": "50d0215342d59ef94dabd17815277af5729bb7a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "40c4c79f_951e2a6d",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-07T05:20:08Z",
+      "side": 0,
+      "message": "ditto.",
+      "range": {
+        "startLine": 555,
+        "startChar": 0,
+        "endLine": 560,
+        "endChar": 0
+      },
+      "revId": "50d0215342d59ef94dabd17815277af5729bb7a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
