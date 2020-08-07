@@ -109,7 +109,7 @@ describe('bot-list', function() {
   describe('html structure', function() {
     it('contains swarming-app as its only child', function(done) {
       createElement((ele) => {
-        expect(ele.children.length).toBe(1);
+        expect(ele.children).toHaveSize(1);
         expect(ele.children[0].tagName).toBe('swarming-app'.toUpperCase());
         done();
       });
@@ -179,7 +179,7 @@ describe('bot-list', function() {
           loggedInBotlist((ele) => {
             const botRows = $('.bot-table .bot-row', ele);
             expect(botRows).toBeTruthy();
-            expect(botRows.length).toBe(10, '(num botRows)');
+            expect(botRows).toHaveSize(10, '(num botRows)');
             done();
           });
         });
@@ -194,7 +194,7 @@ describe('bot-list', function() {
 
             const colHeaders = $('.bot-table thead th', ele);
             expect(colHeaders).toBeTruthy();
-            expect(colHeaders.length).toBe(4, '(num colHeaders)');
+            expect(colHeaders).toHaveSize(4, '(num colHeaders)');
             expect(colHeaders[0].innerHTML).toContain('<more-vert-icon-sk');
             expect(colHeaders[0]).toMatchTextContent('Bot Id');
             expect(colHeaders[1]).toMatchTextContent('Current Task');
@@ -203,11 +203,11 @@ describe('bot-list', function() {
 
             const rows = $('.bot-table .bot-row', ele);
             expect(rows).toBeTruthy();
-            expect(rows.length).toBe(10, '10 rows');
+            expect(rows).toHaveSize(10, '10 rows');
 
             const cells = $('.bot-table .bot-row td', ele);
             expect(cells).toBeTruthy();
-            expect(cells.length).toBe(4 * 10, '4 columns * 10 rows');
+            expect(cells).toHaveSize(4 * 10, '4 columns * 10 rows');
             // little helper for readability
             const cell = (r, c) => cells[4*r+c];
 
@@ -269,7 +269,7 @@ describe('bot-list', function() {
 
             const sortToggles = $('.bot-table thead sort-toggle', ele);
             expect(sortToggles).toBeTruthy();
-            expect(sortToggles.length).toBe(4, '(num sort-toggles)');
+            expect(sortToggles).toHaveSize(4, '(num sort-toggles)');
 
             expect(sortToggles[0].key).toBe('id');
             expect(sortToggles[0].currentKey).toBe('id');
@@ -298,33 +298,33 @@ describe('bot-list', function() {
           loggedInBotlist((ele) => {
             const summaryTables = $('.summary table', ele);
             expect(summaryTables).toBeTruthy();
-            expect(summaryTables.length).toBe(2, '(num summaryTables');
+            expect(summaryTables).toHaveSize(2, '(num summaryTables');
             const [fleetTable, queryTable] = summaryTables;
             // spot check some values
             let tds = $('tr:first-child td', fleetTable);
             expect(tds).toBeTruthy();
-            expect(tds.length).toBe(2);
+            expect(tds).toHaveSize(2);
             expect(tds[0]).toMatchTextContent('All:');
             expect(tds[0].innerHTML).not.toContain('href');
             expect(tds[1]).toMatchTextContent('11434');
 
             tds = $('tr:nth-child(4) td', fleetTable);
             expect(tds).toBeTruthy();
-            expect(tds.length).toBe(2);
+            expect(tds).toHaveSize(2);
             expect(tds[0]).toMatchTextContent('Idle:');
             expect(tds[0].innerHTML).toContain(encodeURIComponent('task:idle'));
             expect(tds[1]).toMatchTextContent('211');
 
             tds = $('tr:first-child td', queryTable);
             expect(tds).toBeTruthy();
-            expect(tds.length).toBe(2);
+            expect(tds).toHaveSize(2);
             expect(tds[0]).toMatchTextContent('Displayed:');
             expect(tds[0].innerHTML).not.toContain('href');
             expect(tds[1]).toMatchTextContent('10');
 
             tds = $('tr:nth-child(3) td', queryTable);
             expect(tds).toBeTruthy();
-            expect(tds.length).toBe(2);
+            expect(tds).toHaveSize(2);
             expect(tds[0]).toMatchTextContent('Alive:');
             expect(tds[0].innerHTML).toContain(encodeURIComponent('status:alive'));
             expect(tds[1]).toMatchTextContent('429');
@@ -335,7 +335,7 @@ describe('bot-list', function() {
 
             tds = $('tr:nth-child(8) td', queryTable);
             expect(tds).toBeTruthy();
-            expect(tds.length).toBe(2);
+            expect(tds).toHaveSize(2);
             expect(tds[0]).toMatchTextContent('Maintenance:');
             expect(tds[0].innerHTML).toContain(encodeURIComponent('status:maintenance'));
             expect(tds[1]).toMatchTextContent('0');
@@ -460,7 +460,7 @@ describe('bot-list', function() {
         // check the rendering changed
         let colHeaders = $('.bot-table thead th');
         expect(colHeaders).toBeTruthy();
-        expect(colHeaders.length).toBe(5, '(num colHeaders)');
+        expect(colHeaders).toHaveSize(5, '(num colHeaders)');
         const expectedHeader = getColHeader(keyToClick);
         expect(colHeaders.map((c) => c.textContent.trim())).toContain(expectedHeader);
 
@@ -484,7 +484,7 @@ describe('bot-list', function() {
         // check the rendering changed
         colHeaders = $('.bot-table thead th');
         expect(colHeaders).toBeTruthy();
-        expect(colHeaders.length).toBe(4, '(num colHeaders)');
+        expect(colHeaders).toHaveSize(4, '(num colHeaders)');
         expect(colHeaders.map((c) => c.textContent.trim())).not.toContain(expectedHeader);
         done();
       });
@@ -550,7 +550,7 @@ describe('bot-list', function() {
         // check there are still headers.
         const colHeaders = $('.bot-table thead th');
         expect(colHeaders).toBeTruthy();
-        expect(colHeaders.length).toBe(4, '(num colHeaders)');
+        expect(colHeaders).toHaveSize(4, '(num colHeaders)');
         done();
       });
     });
@@ -569,7 +569,7 @@ describe('bot-list', function() {
         expect(valueSelector).toBeTruthy();
         let values = childrenAsArray(valueSelector).map((c) => c.textContent.trim());
         // spot check
-        expect(values.length).toBe(8);
+        expect(values).toHaveSize(8);
         expect(values).toContain('arm-32');
         expect(values).toContain('x86-64');
 
@@ -585,7 +585,7 @@ describe('bot-list', function() {
         expect(valueSelector).toBeTruthy();
         values = childrenAsArray(valueSelector).map((c) => c.textContent.trim());
         // spot check
-        expect(values.length).toBe(19);
+        expect(values).toHaveSize(19);
         expect(values).toContain('none');
         expect(values).toContain('LMY49K.LZC89');
 
@@ -623,12 +623,12 @@ describe('bot-list', function() {
         expect(addIcon).toBeTruthy('there should be an icon for adding');
         addIcon.click();
 
-        expect(ele._filters.length).toBe(1, 'a filter should be added');
+        expect(ele._filters).toHaveSize(1, 'a filter should be added');
         expect(ele._filters[0]).toEqual('os:Android');
 
         const chipContainer = $$('.chip_container', ele);
         expect(chipContainer).toBeTruthy('there should be a filter chip container');
-        expect(chipContainer.children.length).toBe(1);
+        expect(chipContainer.children).toHaveSize(1);
         expect(addIcon.hasAttribute('hidden'))
             .toBeTruthy('addIcon should go away after being clicked');
         done();
@@ -647,12 +647,12 @@ describe('bot-list', function() {
         expect(icon).toBeTruthy('there should be a icon to remove it');
         icon.click();
 
-        expect(ele._filters.length).toBe(1, 'a filter should be removed');
+        expect(ele._filters).toHaveSize(1, 'a filter should be removed');
         expect(ele._filters[0]).toEqual('device_type:bullhead', 'os:Android should be removed');
 
         const chipContainer = $$('.chip_container', ele);
         expect(chipContainer).toBeTruthy('there should be a filter chip container');
-        expect(chipContainer.children.length).toBe(1);
+        expect(chipContainer.children).toHaveSize(1);
         done();
       });
     });
@@ -690,11 +690,11 @@ describe('bot-list', function() {
         ele._filters = [];
         ele.render();
 
-        expect(ele._bots.length).toBe(10, 'All 10 at the start');
+        expect(ele._bots).toHaveSize(10, 'All 10 at the start');
 
         let wasCalled = false;
         fetchMock.get('glob:/_ah/api/swarming/v1/bots/list?*', () => {
-          expect(ele._bots.length).toBe(5, '5 Linux bots there now.');
+          expect(ele._bots).toHaveSize(5, '5 Linux bots there now.');
           wasCalled = true;
           return '[]'; // pretend no bots match
         }, {overwriteRoutes: true});
@@ -704,7 +704,7 @@ describe('bot-list', function() {
         // is when we know the element has updated the _bots.
         fetchMock.flush(true).then(() => {
           expect(wasCalled).toBeTruthy();
-          expect(ele._bots.length).toBe(0, 'none were actually returned');
+          expect(ele._bots).toHaveSize(0, 'none were actually returned');
 
           done();
         });
@@ -783,7 +783,7 @@ describe('bot-list', function() {
         expect(ele._primaryKey).toEqual('cores');
 
         const children = $$('.selector.keys', ele).children;
-        expect(children.length).toEqual(1, 'only cores should show up');
+        expect(children).toHaveSize(1, 'only cores should show up');
         expect(children[0].textContent).toContain('cores');
 
         let row = getChildItemWithText($$('.selector.values'), '16', ele);
@@ -807,7 +807,7 @@ describe('bot-list', function() {
 
         const colSelector = $$('.col_selector', ele);
         expect(colSelector).toBeTruthy();
-        expect(colSelector.children.length).toEqual(6); // 5 hits + the input box
+        expect(colSelector.children).toHaveSize(6); // 5 hits + the input box
 
         let row = getChildItemWithText(colSelector, 'gpu');
         expect(row).toBeFalsy('gpu should be hiding');
@@ -827,11 +827,11 @@ describe('bot-list', function() {
 
         const rows = $('.bot-table .bot-row', ele);
         expect(rows).toBeTruthy();
-        expect(rows.length).toBe(10, '10 rows');
+        expect(rows).toHaveSize(10, '10 rows');
 
         const cols = $('.bot-table .bot-row td', ele);
         expect(cols).toBeTruthy();
-        expect(cols.length).toBe(2 * 10, '2 columns * 10 rows');
+        expect(cols).toHaveSize(2 * 10, '2 columns * 10 rows');
         // little helper for readability
         const cell = (r, c) => cols[2*r+c];
 
@@ -854,11 +854,11 @@ describe('bot-list', function() {
 
         const rows = $('.bot-table .bot-row', ele);
         expect(rows).toBeTruthy();
-        expect(rows.length).toBe(10, '10 rows');
+        expect(rows).toHaveSize(10, '10 rows');
 
         const cols = $('.bot-table .bot-row td', ele);
         expect(cols).toBeTruthy();
-        expect(cols.length).toBe(3 * 10, '3 columns * 10 rows');
+        expect(cols).toHaveSize(3 * 10, '3 columns * 10 rows');
         // little helper for readability
         const cell = (r, c) => cols[3*r+c];
 
@@ -920,9 +920,9 @@ describe('bot-list', function() {
           // MATCHED calls are calls that we expect and specified in the
           // beforeEach at the top of this file.
           let calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(0);
+          expect(calls).toHaveSize(0);
           calls = fetchMock.calls(MATCHED, 'POST');
-          expect(calls.length).toBe(0);
+          expect(calls).toHaveSize(0);
 
           expectNoUnmatchedCalls(fetchMock);
           done();
@@ -937,7 +937,7 @@ describe('bot-list', function() {
         expect(c[1].headers.authorization).toContain('Bearer ');
       });
       calls = fetchMock.calls(MATCHED, 'POST');
-      expect(calls.length).toBe(0, 'no POSTs on bot-list');
+      expect(calls).toHaveSize(0, 'no POSTs on bot-list');
 
       expectNoUnmatchedCalls(fetchMock);
     }
@@ -945,7 +945,7 @@ describe('bot-list', function() {
     it('makes auth\'d API calls when a logged in user views landing page', function(done) {
       loggedInBotlist((ele) => {
         const calls = fetchMock.calls(MATCHED, 'GET');
-        expect(calls.length).toBe(2+4, '2 GETs from swarming-app, 4 from bot-list');
+        expect(calls).toHaveSize(2+4, '2 GETs from swarming-app, 4 from bot-list');
         // calls is an array of 2-length arrays with the first element
         // being the string of the url and the second element being
         // the options that were passed in
@@ -966,7 +966,7 @@ describe('bot-list', function() {
         ele._addFilter('alpha:beta');
 
         let calls = fetchMock.calls(MATCHED, 'GET');
-        expect(calls.length).toBe(2, '1 for the bots, 1 for the count');
+        expect(calls).toHaveSize(2, '1 for the bots, 1 for the count');
         // calls is an array of 2-length arrays with the first element
         // being the string of the url and the second element being
         // the options that were passed in
@@ -998,7 +998,7 @@ describe('bot-list', function() {
       // Make a copy of the object because _processBots will modify it in place.
       const bots = processBots([deepCopy(LINUX_BOT)]);
       expect(bots).toBeTruthy();
-      expect(bots.length).toBe(1);
+      expect(bots).toHaveSize(1);
       expect(typeof bots[0].state).toBe('object');
     });
 
@@ -1007,7 +1007,7 @@ describe('bot-list', function() {
       const bots = processBots([deepCopy(LINUX_BOT)]);
       const disks = bots[0].disks;
       expect(disks).toBeTruthy();
-      expect(disks.length).toBe(2, 'Two disks');
+      expect(disks).toHaveSize(2, 'Two disks');
       expect(disks[0]).toEqual({id: '/', mb: 680751.3}, 'biggest disk first');
       expect(disks[1]).toEqual({id: '/boot', mb: 842.2});
     });
@@ -1034,7 +1034,7 @@ describe('bot-list', function() {
       const bots = processBots([deepCopy(MULTI_ANDROID_BOT)]);
       const devices = bots[0].state.devices;
       expect(devices).toBeTruthy();
-      expect(devices.length).toBe(3, '3 devices attached to this bot');
+      expect(devices).toHaveSize(3, '3 devices attached to this bot');
 
       expect(devices[0].serial).toBe('3456789ABC', 'alphabetical by serial');
       expect(devices[0].okay).toBeTruthy();
@@ -1057,7 +1057,7 @@ describe('bot-list', function() {
       const possibleCols = makePossibleColumns(deepCopy(fleetDimensions.bots_dimensions));
 
       expect(possibleCols).toBeTruthy();
-      expect(possibleCols.length).toBe(32);
+      expect(possibleCols).toHaveSize(32);
       expect(possibleCols).toContain('id');
       expect(possibleCols).toContain('cores');
       expect(possibleCols).toContain('device_type');
@@ -1071,12 +1071,12 @@ describe('bot-list', function() {
       const possibleCols = makePossibleColumns(null);
 
       expect(possibleCols).toBeTruthy();
-      expect(possibleCols.length).toBe(0);
+      expect(possibleCols).toHaveSize(0);
 
       const bots = processBots(null);
 
       expect(bots).toBeTruthy();
-      expect(bots.length).toBe(0);
+      expect(bots).toHaveSize(0);
     });
 
     it('extracts the key->value map', function() {
@@ -1116,14 +1116,14 @@ describe('bot-list', function() {
       const bots = processBots(deepCopy(bots_10.items));
 
       expect(bots).toBeTruthy();
-      expect(bots.length).toBe(10);
+      expect(bots).toHaveSize(10);
 
       let filtered = filterBots(['status:quarantined'], bots);
-      expect(filtered.length).toBe(1);
+      expect(filtered).toHaveSize(1);
       expect(filtered[0].bot_id).toEqual('somebot11-a9');
 
       filtered = filterBots(['task:busy'], bots);
-      expect(filtered.length).toBe(4);
+      expect(filtered).toHaveSize(4);
       const expectedIds = ['somebot12-a9', 'somebot16-a9', 'somebot17-a9', 'somebot77-a3'];
       const actualIds = filtered.map((bot) => bot.bot_id);
       actualIds.sort();
@@ -1134,10 +1134,10 @@ describe('bot-list', function() {
       const bots = processBots(deepCopy(bots_10.items));
 
       expect(bots).toBeTruthy();
-      expect(bots.length).toBe(10);
+      expect(bots).toHaveSize(10);
 
       const filtered = filterBots(['os:Ubuntu-17.04', 'gpu:10de:1cb3'], bots);
-      expect(filtered.length).toBe(5);
+      expect(filtered).toHaveSize(5);
       const expectedIds = ['somebot10-a9', 'somebot13-a2', 'somebot13-a9', 'somebot15-a9', 'somebot77-a3'];
       const actualIds = filtered.map((bot) => bot.bot_id);
       actualIds.sort();
