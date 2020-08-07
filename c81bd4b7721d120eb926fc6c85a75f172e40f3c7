@@ -16,6 +16,24 @@
       "revId": "c81bd4b7721d120eb926fc6c85a75f172e40f3c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cf84e06_0c0a29e0",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-07T05:48:58Z",
+      "side": 1,
+      "message": "I realized that \"webpack --mode\u003ddevelopment\" is what we want. (minimize\u003dtrue only when production mode)\nIt\u0027s defined as \"make default\" task.\n\nI removed this comment.",
+      "parentUuid": "ea234603_aff082c0",
+      "revId": "c81bd4b7721d120eb926fc6c85a75f172e40f3c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
