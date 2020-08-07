@@ -10,6 +10,10 @@ module.exports = (env, argv) => {
   const config = commonBuilder(env, argv, __dirname);
   // Make all CSS/JS files appear at the /newres location.
   config.output.publicPath='/newres/';
+  // Disable minimization when debugging.
+  // config.optimization = {
+  //   minimize: false
+  // };
   config.module.rules.push({
     test: /.js$/,
     use: 'html-template-minifier-webpack',
