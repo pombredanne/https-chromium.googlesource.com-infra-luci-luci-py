@@ -157,7 +157,7 @@ describe('task-page', function() {
   describe('html structure', function() {
     it('contains swarming-app as its only child', function(done) {
       createElement((ele) => {
-        expect(ele.children.length).toBe(1);
+        expect(ele.children).toHaveSize(1);
         expect(ele.children[0].tagName).toBe('swarming-app'.toUpperCase());
         done();
       });
@@ -178,7 +178,7 @@ describe('task-page', function() {
         createElement((ele) => {
           const topDivs = $('main > div', ele);
           expect(topDivs).toBeTruthy();
-          expect(topDivs.length).toBe(2);
+          expect(topDivs).toHaveSize(2);
           expect(topDivs[0]).toHaveAttribute('hidden', 'left side hidden');
           expect(topDivs[1]).toHaveAttribute('hidden', 'right side hidden');
           done();
@@ -213,7 +213,7 @@ describe('task-page', function() {
         loggedInTaskPage((ele) => {
           const topDivs = $('main > div', ele);
           expect(topDivs).toBeTruthy();
-          expect(topDivs.length).toBe(2);
+          expect(topDivs).toHaveSize(2);
           expect(topDivs[0]).toHaveAttribute('hidden', 'left side hidden');
           expect(topDivs[1]).toHaveAttribute('hidden', 'right side hidden');
           done();
@@ -235,7 +235,7 @@ describe('task-page', function() {
         loggedInTaskPage((ele) => {
           const topDivs = $('main > div', ele);
           expect(topDivs).toBeTruthy();
-          expect(topDivs.length).toBe(2);
+          expect(topDivs).toHaveSize(2);
           expect(topDivs[0].children.length).toEqual(2); // only .id_buttons and task not found
           expect(topDivs[1].children.length).toEqual(0); // everything else removed
           done();
@@ -822,9 +822,9 @@ describe('task-page', function() {
           // MATCHED calls are calls that we expect and specified in the
           // beforeEach at the top of this file.
           let calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(0);
+          expect(calls).toHaveSize(0);
           calls = fetchMock.calls(MATCHED, 'POST');
-          expect(calls.length).toBe(0);
+          expect(calls).toHaveSize(0);
 
           expectNoUnmatchedCalls(fetchMock);
           done();
@@ -840,7 +840,7 @@ describe('task-page', function() {
       });
 
       calls = fetchMock.calls(MATCHED, 'POST');
-      expect(calls.length).toBe(0, 'no POSTs on task-page');
+      expect(calls).toHaveSize(0, 'no POSTs on task-page');
 
       expectNoUnmatchedCalls(fetchMock);
     }
@@ -849,7 +849,7 @@ describe('task-page', function() {
       serveTask(0, 'running task on try number 3');
       loggedInTaskPage((ele) => {
         const calls = fetchMock.calls(MATCHED, 'GET');
-        expect(calls.length).toBe(2+4+3+2, '2 GETs from swarming-app, 4 from task-page,' +
+        expect(calls).toHaveSize(2+4+3+2, '2 GETs from swarming-app, 4 from task-page,' +
                                            '3 counts * 1 slice, 2 from extra tries');
         // calls is an array of 2-length arrays with the first element
         // being the string of the url and the second element being
@@ -872,7 +872,7 @@ describe('task-page', function() {
       serveTask(1, 'Completed task with 2 slices');
       loggedInTaskPage((ele) => {
         const calls = fetchMock.calls(MATCHED, 'GET');
-        expect(calls.length).toBe(2+4+6, '2 GETs from swarming-app, 4 from task-page, ' +
+        expect(calls).toHaveSize(2+4+6, '2 GETs from swarming-app, 4 from task-page, ' +
                                          '3 counts * 2 slices');
         // calls is an array of 2-length arrays with the first element
         // being the string of the url and the second element being
@@ -900,7 +900,7 @@ describe('task-page', function() {
       serveTask(2, 'Pending task - 1 slice - no rich logs');
       loggedInTaskPage((ele) => {
         const calls = fetchMock.calls(MATCHED, 'GET');
-        expect(calls.length).toBe(2+4+3, '2 GETs from swarming-app, 4 from task-page, '+
+        expect(calls).toHaveSize(2+4+3, '2 GETs from swarming-app, 4 from task-page, '+
                                          '3 counts * 1 slice');
         // calls is an array of 2-length arrays with the first element
         // being the string of the url and the second element being
@@ -945,9 +945,9 @@ describe('task-page', function() {
           // MATCHED calls are calls that we expect and specified in the
           // beforeEach at the top of this file.
           let calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(0);
+          expect(calls).toHaveSize(0);
           calls = fetchMock.calls(MATCHED, 'POST');
-          expect(calls.length).toBe(1);
+          expect(calls).toHaveSize(1);
 
           expectNoUnmatchedCalls(fetchMock);
           done();
@@ -987,9 +987,9 @@ describe('task-page', function() {
           // MATCHED calls are calls that we expect and specified in the
           // beforeEach at the top of this file.
           let calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(0);
+          expect(calls).toHaveSize(0);
           calls = fetchMock.calls(MATCHED, 'POST');
-          expect(calls.length).toBe(1);
+          expect(calls).toHaveSize(1);
 
           const options = calls[0][1];
           expect(options.headers.authorization).toBeTruthy();
@@ -1042,9 +1042,9 @@ describe('task-page', function() {
           // MATCHED calls are calls that we expect and specified in the
           // beforeEach at the top of this file.
           let calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(0);
+          expect(calls).toHaveSize(0);
           calls = fetchMock.calls(MATCHED, 'POST');
-          expect(calls.length).toBe(1);
+          expect(calls).toHaveSize(1);
           const call = calls[0];
           const options = call[1];
           expect(options.body).toEqual('{}');
@@ -1081,9 +1081,9 @@ describe('task-page', function() {
           // MATCHED calls are calls that we expect and specified in the
           // beforeEach at the top of this file.
           let calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(0);
+          expect(calls).toHaveSize(0);
           calls = fetchMock.calls(MATCHED, 'POST');
-          expect(calls.length).toBe(1);
+          expect(calls).toHaveSize(1);
           const call = calls[0];
           const options = call[1];
           expect(options.body).toEqual('{"kill_running":true}');
