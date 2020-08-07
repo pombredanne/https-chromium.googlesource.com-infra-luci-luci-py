@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "ba850f5c_5d305ab9",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-07T02:35:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edf26220_2608800f",
+      "revId": "f5cd1d4e989ed49d5554f858ce6ca63cd6b65603",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64451ef3_a9442582",
         "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
         "patchSetId": 8
