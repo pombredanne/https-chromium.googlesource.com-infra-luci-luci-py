@@ -118,7 +118,7 @@ describe('bot-page', function() {
   describe('html structure', function() {
     it('contains swarming-app as its only child', function(done) {
       createElement((ele) => {
-        expect(ele.children.length).toBe(1);
+        expect(ele.children).toHaveSize(1);
         expect(ele.children[0].tagName).toBe('swarming-app'.toUpperCase());
         done();
       });
@@ -578,9 +578,9 @@ describe('bot-page', function() {
           // MATCHED calls are calls that we expect and specified in the
           // beforeEach at the top of this file.
           let calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(0);
+          expect(calls).toHaveSize(0);
           calls = fetchMock.calls(MATCHED, 'POST');
-          expect(calls.length).toBe(0);
+          expect(calls).toHaveSize(0);
 
           expectNoUnmatchedCalls(fetchMock);
           done();
@@ -596,7 +596,7 @@ describe('bot-page', function() {
       });
 
       const postCalls = fetchMock.calls(MATCHED, 'POST');
-      expect(postCalls.length).toBe(0, 'no POSTs on bot-page');
+      expect(postCalls).toHaveSize(0, 'no POSTs on bot-page');
 
       expectNoUnmatchedCalls(fetchMock);
     }
@@ -605,7 +605,7 @@ describe('bot-page', function() {
       serveBot('running');
       loggedInBotPage((ele) => {
         const calls = fetchMock.calls(MATCHED, 'GET');
-        expect(calls.length).toBe(2+4, '2 GETs from swarming-app, 4 from bot-page');
+        expect(calls).toHaveSize(2+4, '2 GETs from swarming-app, 4 from bot-page');
         // calls is an array of 2-length arrays with the first element
         // being the string of the url and the second element being
         // the options that were passed in
@@ -645,9 +645,9 @@ describe('bot-page', function() {
           // beforeEach at the top of this file.
           expectNoUnmatchedCalls(fetchMock);
           let calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(0);
+          expect(calls).toHaveSize(0);
           calls = fetchMock.calls(MATCHED, 'POST');
-          expect(calls.length).toBe(1);
+          expect(calls).toHaveSize(1);
           const call = calls[0];
           const options = call[1];
           expect(options.body).toEqual('{"kill_running":true}');
@@ -685,9 +685,9 @@ describe('bot-page', function() {
           // beforeEach at the top of this file.
           expectNoUnmatchedCalls(fetchMock);
           let calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(0);
+          expect(calls).toHaveSize(0);
           calls = fetchMock.calls(MATCHED, 'POST');
-          expect(calls.length).toBe(1);
+          expect(calls).toHaveSize(1);
 
           done();
         });
@@ -722,9 +722,9 @@ describe('bot-page', function() {
           // beforeEach at the top of this file.
           expectNoUnmatchedCalls(fetchMock);
           let calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(0);
+          expect(calls).toHaveSize(0);
           calls = fetchMock.calls(MATCHED, 'POST');
-          expect(calls.length).toBe(1);
+          expect(calls).toHaveSize(1);
 
           done();
         });
@@ -754,7 +754,7 @@ describe('bot-page', function() {
           // beforeEach at the top of this file.
           expectNoUnmatchedCalls(fetchMock);
           const calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(1);
+          expect(calls).toHaveSize(1);
 
           const url = calls[0][0];
           // spot check a few fields
@@ -794,7 +794,7 @@ describe('bot-page', function() {
           // beforeEach at the top of this file.
           expectNoUnmatchedCalls(fetchMock);
           const calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(1);
+          expect(calls).toHaveSize(1);
 
           const url = calls[0][0];
           // spot check a few fields
@@ -829,7 +829,7 @@ describe('bot-page', function() {
           // beforeEach at the top of this file.
           expectNoUnmatchedCalls(fetchMock);
           const calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls.length).toBe(4);
+          expect(calls).toHaveSize(4);
 
           done();
         });
