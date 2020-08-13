@@ -208,8 +208,8 @@ def refetch_from_config_service(ctx=None):
       return
 
     logging.info(
-        'Storing expanded bots.cfg, its size before compression is %d bytes',
-        len(bots_cfg_pb))
+        'Storing expanded bots.cfg, its size before compression is %d bytes.'
+        ' bots.cfg: %s', len(bots_cfg_pb), bots_cfg_pb)
     ndb.put_multi([
         BotsCfgHead(
             key=_bots_cfg_head_key(),
