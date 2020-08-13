@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79653d64_580f0965",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-13T15:03:06Z",
+      "side": 1,
+      "message": "use digest from some real input?",
+      "range": {
+        "startLine": 718,
+        "startChar": 0,
+        "endLine": 719,
+        "endChar": 28
+      },
+      "revId": "178c6e635a768544ebef9b0caad63f2ec30371f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a04e02c_f04016d0",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-13T15:03:06Z",
+      "side": 1,
+      "message": "I\u0027m not sure what does these checks for cas reference input?",
+      "range": {
+        "startLine": 811,
+        "startChar": 0,
+        "endLine": 821,
+        "endChar": 61
+      },
+      "revId": "178c6e635a768544ebef9b0caad63f2ec30371f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
