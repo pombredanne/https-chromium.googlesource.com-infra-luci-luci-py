@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9cd88793_8e677d59",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-14T12:45:33Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "615659d9_f02433e7",
+      "range": {
+        "startLine": 151,
+        "startChar": 43,
+        "endLine": 151,
+        "endChar": 54
+      },
+      "revId": "38a55e01581d5604348c217218391fccc64b2590",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e7cac1c_35c10399",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "c841e933_01818ec6",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-14T12:45:33Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "2e7cac1c_35c10399",
+      "range": {
+        "startLine": 152,
+        "startChar": 42,
+        "endLine": 152,
+        "endChar": 54
+      },
+      "revId": "38a55e01581d5604348c217218391fccc64b2590",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "608994d1_140bbb51",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 6
@@ -68,6 +116,30 @@
       "revId": "38a55e01581d5604348c217218391fccc64b2590",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8f4f700_c5434705",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-14T12:45:33Z",
+      "side": 1,
+      "message": "I thought `validator` automatically appends the value, but it doesn\u0027t.\nAlthough the value is obvious for the user, I added value in the error message.",
+      "parentUuid": "608994d1_140bbb51",
+      "range": {
+        "startLine": 493,
+        "startChar": 48,
+        "endLine": 493,
+        "endChar": 60
+      },
+      "revId": "38a55e01581d5604348c217218391fccc64b2590",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
