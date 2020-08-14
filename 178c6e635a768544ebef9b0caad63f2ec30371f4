@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "80f7b7db_bf89ad73",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-14T00:38:38Z",
+      "side": 1,
+      "message": "The hash was too long (\u003e80). So changed to the dummy values since it didn\u0027t improve the tests.",
+      "parentUuid": "79653d64_580f0965",
+      "range": {
+        "startLine": 718,
+        "startChar": 0,
+        "endLine": 719,
+        "endChar": 28
+      },
+      "revId": "178c6e635a768544ebef9b0caad63f2ec30371f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2a04e02c_f04016d0",
         "filename": "appengine/swarming/server/task_request_test.py",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2020-08-13T15:03:06Z",
       "side": 1,
       "message": "I\u0027m not sure what does these checks for cas reference input?",
+      "range": {
+        "startLine": 811,
+        "startChar": 0,
+        "endLine": 821,
+        "endChar": 61
+      },
+      "revId": "178c6e635a768544ebef9b0caad63f2ec30371f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fa79c68_456db4be",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-14T00:38:38Z",
+      "side": 1,
+      "message": "This test was copied from test_init_new_request_isolated (which was probably a copy of test_init_new_request).\nThe reason why I copied is that we can remove the old test and leave this test after migration.",
+      "parentUuid": "2a04e02c_f04016d0",
       "range": {
         "startLine": 811,
         "startChar": 0,
