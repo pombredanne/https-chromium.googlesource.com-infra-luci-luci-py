@@ -16,6 +16,23 @@
       "revId": "4c6b38ca4a0b7e4611d0256a603fa7c8718c48cf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31ddb533_bb335586",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2020-08-15T05:32:04Z",
+      "side": 1,
+      "message": "Ah, and please pardon my change https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/2358909. I changed the luci-go proto first then realized that\u0027s not the suggested way to change the proto. I\u0027ll update that change then send it out for review when this one is in/",
+      "revId": "4c6b38ca4a0b7e4611d0256a603fa7c8718c48cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
