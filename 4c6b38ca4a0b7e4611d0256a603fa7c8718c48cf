@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "45567338_c15e0f00",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-16T23:39:00Z",
+      "side": 1,
+      "message": "This is used only in swarming BigQuery table. Is it intentional?\n\nAlso you need to update python class to BQ proto convert code like\nhttps://crrev.com/c/2355373",
+      "revId": "4c6b38ca4a0b7e4611d0256a603fa7c8718c48cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f3af4b18_52007f9d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
