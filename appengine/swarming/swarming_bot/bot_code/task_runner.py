@@ -97,6 +97,17 @@ def get_isolated_args(work_dir, task_details, isolated_result,
             '--isolated', isolated_input,
           ])
 
+  # CAS options.
+  if task_details.cas_input_root:
+    input_root = task_details.cas_input_root
+    cmd.extend([
+        '--cas-instance',
+        input_root['cas_instance'],
+        '--digest',
+        '%s/%s' %
+        (input_root['digest']['hash'], input_root['digest']['size_bytes']),
+    ])
+
   # Named caches options.
   # Specify --named-cache-root unconditionally so run_isolated.py never creates
   # "named_caches" dir and always operats in "c" dir.
@@ -659,7 +670,9 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
         u'version': OUT_VERSION,
     }
 
+  # TODO(crbug.com/1117004): rename this file to run_isolated_result.json?
   isolated_result = os.path.join(work_dir, 'isolated_result.json')
+  # TODO(crbug.com/1117004): rename this function to get_run_isolated_args?
   args = get_isolated_args(work_dir, task_details,
                            isolated_result, bot_file, run_isolated_flags)
   # Hard timeout enforcement is deferred to run_isolated. Grace is doubled to
@@ -772,6 +785,8 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
         # mapping time, etc) from run_isolated and push them to the server.
         if run_isolated_result['outputs_ref']:
           params['outputs_ref'] = run_isolated_result['outputs_ref']
+        if run_isolated_result['cas_output_root']:
+          params['cas_output_root'] = run_isolated_result['cas_output_root']
         had_hard_timeout = run_isolated_result['had_hard_timeout']
         if not had_io_timeout and not had_hard_timeout:
           if run_isolated_result['internal_failure']:
