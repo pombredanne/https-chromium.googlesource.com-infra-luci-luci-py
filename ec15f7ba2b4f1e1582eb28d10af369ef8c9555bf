@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3c18c33_fe459aa0",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1498,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-17T04:47:55Z",
+      "side": 1,
+      "message": "nit: define _MIN_ISOLATED_SPACE",
+      "range": {
+        "startLine": 1498,
+        "startChar": 48,
+        "endLine": 1498,
+        "endChar": 71
+      },
+      "revId": "ec15f7ba2b4f1e1582eb28d10af369ef8c9555bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
