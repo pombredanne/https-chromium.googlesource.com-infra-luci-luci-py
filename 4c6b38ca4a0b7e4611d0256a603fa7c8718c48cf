@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "37cdb899_57dd09f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-08-17T20:06:49Z",
+      "side": 1,
+      "message": "\u003e This is used only in swarming BigQuery table. Is it intentional?\n\n`led` also uses these protos internally in order to model raw swarming tasks (and then has code to convert from proto -\u003e rpc when needed).",
+      "parentUuid": "45567338_c15e0f00",
+      "revId": "4c6b38ca4a0b7e4611d0256a603fa7c8718c48cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f3af4b18_52007f9d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
