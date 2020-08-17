@@ -1494,7 +1494,8 @@ def main(args):
     local_caching.trim_caches(
         caches,
         root,
-        min_free_space=options.min_free_space,
+        # 10GB is for isolated cache.
+        min_free_space=options.min_free_space + 10 * 1024 * 1024 * 1024,
         max_age_secs=MAX_AGE_SECS)
     logging.info("free space after trim: %d", file_path.get_free_space(root))
     for c in caches:
@@ -1513,7 +1514,8 @@ def main(args):
     local_caching.trim_caches(
         caches,
         root,
-        min_free_space=options.min_free_space,
+        # 10GB is for isolated cache.
+        min_free_space=options.min_free_space + 10 * 1024 * 1024 * 1024,
         max_age_secs=MAX_AGE_SECS)
 
   if not options.isolated and not args:
