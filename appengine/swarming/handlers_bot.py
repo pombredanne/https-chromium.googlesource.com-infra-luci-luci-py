@@ -752,6 +752,13 @@ class BotPollHandler(_BotBaseHandler):
                 'namespace': props.inputs_ref.namespace,
                 'server': props.inputs_ref.isolatedserver,
             } if props.inputs_ref else None,
+            'cas_input_root': {
+                'cas_instance': props.cas_input_root.cas_instance,
+                'digest': {
+                    'hash': props.cas_input_root.digest.hash,
+                    'size_bytes': props.cas_input_root.digest.size_bytes,
+                },
+            } if props.cas_input_root else None,
             'outputs':
                 props.outputs,
             'realm':
