@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "60181cf3_f2965a9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-08-17T20:07:23Z",
+      "side": 1,
+      "message": "i.e. https://source.chromium.org/chromium/infra/infra/+/master:go/src/go.chromium.org/luci/led/job/job.proto;l\u003d68?q\u003djob.proto\u0026ss\u003dchromium",
+      "parentUuid": "37cdb899_57dd09f8",
+      "revId": "4c6b38ca4a0b7e4611d0256a603fa7c8718c48cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f3af4b18_52007f9d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
