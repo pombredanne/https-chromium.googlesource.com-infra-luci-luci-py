@@ -562,8 +562,8 @@ class Digest(ndb.Model):
   # RBE-CAS.
   # pylint: disable=line-too-long
   # See https://github.com/bazelbuild/remote-apis/blob/77cfb44a88577a7ade5dd2400425f6d50469ec6d/build/bazel/remote/execution/v2/remote_execution.proto#L753-L791
-  hash = ndb.StringProperty(indexed=False)
-  size_bytes = ndb.IntegerProperty(indexed=False)
+  hash = ndb.StringProperty(required=True, indexed=False)
+  size_bytes = ndb.IntegerProperty(required=True, indexed=False)
 
   def to_proto(self, out):
     """Converts self to a swarming_pb2.Digest."""
@@ -575,9 +575,9 @@ class CASReference(ndb.Model):
   # Full name of RBE-CAS instance. `projects/{project_id}/instances/{instance}`.
   # e.g. projects/chromium-swarm/instances/default_instance
   cas_instance = ndb.StringProperty(
-      indexed=False, validator=_validate_cas_instance)
+      required=True, indexed=False, validator=_validate_cas_instance)
   # CAS Digest consists of hash and size bytes.
-  digest = ndb.LocalStructuredProperty(Digest)
+  digest = ndb.LocalStructuredProperty(Digest, required=True)
 
   def to_proto(self, out):
     """Converts self to a swarming_pb2.CASReference."""
@@ -956,6 +956,11 @@ class TaskProperties(ndb.Model):
       raise datastore_errors.BadValueError(
           u'\'execution_timeout_secs\' must be specified')
 
+    # Isolated input and CAS input can't be set at the same time.
+    if self.inputs_ref and self.cas_input_root:
+      raise datastore_errors.BadValueError(
+          'can\'t set both inputs_ref and cas_input_root')
+
     # Isolated input and commands.
     isolated_input = self.inputs_ref and self.inputs_ref.isolated
     if not self.command and not isolated_input:
@@ -977,6 +982,10 @@ class TaskProperties(ndb.Model):
     if len(self.extra_args) > 128:
       raise datastore_errors.BadValueError(
           'extra_args can have up to 128 arguments')
+
+    # CAS input.
+    if self.cas_input_root:
+      self.cas_input_root._pre_put_hook()
 
     # Validate caches.
     if len(self.caches) > 32:
