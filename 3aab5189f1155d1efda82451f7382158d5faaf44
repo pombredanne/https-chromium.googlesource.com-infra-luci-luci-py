@@ -87,6 +87,30 @@
       "revId": "3aab5189f1155d1efda82451f7382158d5faaf44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bc8a041_af6e78bb",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-18T07:52:18Z",
+      "side": 1,
+      "message": "\u003e Yeah, I saw that.\n\u003e \n\u003e I concern the *minimum* retention period that we promise to our users.\n\u003e \n\nHmm, I think we don\u0027t have contract with our customers related to this.\nBut I\u0027m not sure what our customer expected. So if we need to take care this, maybe better to change configuration of alert instead of here.\n\n\u003e \u003e And at least, most of the bot events are kept in BigQuery now.\n\u003e There is an issue that some data isn\u0027t synced properly.\n\u003e https://crbug.com/1067599",
+      "parentUuid": "ed2eff0e_1399a793",
+      "range": {
+        "startLine": 80,
+        "startChar": 50,
+        "endLine": 80,
+        "endChar": 55
+      },
+      "revId": "3aab5189f1155d1efda82451f7382158d5faaf44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
