@@ -84,7 +84,7 @@ MAXIMUM_PRIORITY = 255
 
 # Enum singletons controlling the application of the pool task templates in
 # init_new_request. This is the counterpart of
-# swarming_rpcs.PoolTaskTemplateField
+# swarming_rpcs.PoolTaskTemplateFieldrealm
 class TemplateApplyEnum(str):
   pass
 
@@ -1324,6 +1324,8 @@ class TaskRequest(ndb.Model):
       out.authenticated = self.authenticated.to_bytes()
     if self.realm:
       out.realm = self.realm
+    if self.resultdb_update_token:
+      out.resultdb.enable = True
 
     # Hierarchy and notifications.
     if self.key:
