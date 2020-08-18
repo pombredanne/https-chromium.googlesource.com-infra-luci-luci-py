@@ -94,6 +94,12 @@ def _taskproperties_from_rpc(props):
   inputs_ref = None
   if props.inputs_ref:
     inputs_ref = _rpc_to_ndb(task_request.FilesRef, props.inputs_ref)
+  cas_input_root = None
+  digest = None
+  if props.cas_input_root:
+    digest = _rpc_to_ndb(task_request.Digest, props.cas_input_root.digest)
+    cas_input_root = _rpc_to_ndb(
+        task_request.CASReference, props.cas_input_root, digest=digest)
 
   secret_bytes = None
   if props.secret_bytes:
@@ -115,12 +121,13 @@ def _taskproperties_from_rpc(props):
       command=props.command or [],
       containment=containment,
       has_secret_bytes=secret_bytes is not None,
-      secret_bytes=None, # ignore this, it's handled out of band
-      dimensions=None, # it's named dimensions_data
+      secret_bytes=None,  # ignore this, it's handled out of band
+      dimensions=None,  # it's named dimensions_data
       dimensions_data=dims,
       env={i.key: i.value for i in props.env},
       env_prefixes={i.key: i.value for i in props.env_prefixes},
-      inputs_ref=inputs_ref)
+      inputs_ref=inputs_ref,
+      cas_input_root=cas_input_root)
   return out, secret_bytes
 
 

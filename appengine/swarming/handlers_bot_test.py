@@ -657,6 +657,19 @@ class BotApiTest(test_env_handlers.AppTestBase):
     }
     self.assertEqual(expected, response['manifest']['realm'])
 
+  def test_poll_with_cas_input_root(self):
+    params = self.do_handshake(do_first_poll=True)
+
+    self.mock(auth, 'has_permission', lambda *_args, **_kwargs: True)
+    self.mock(service_accounts, 'has_token_server', lambda: True)
+
+    self.set_as_user()
+    response, _ = self.client_create_task_cas_input_root()
+
+    self.set_as_bot()
+    response = self.post_json('/swarming/api/v1/bot/poll', params)
+    print(response)
+
   def test_poll_conflicting_dimensions(self):
     params = self.do_handshake()
     self.assertEqual(params['dimensions']['pool'], ['default'])
