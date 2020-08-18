@@ -487,6 +487,21 @@ class AppTestBase(test_case.TestCase):
     return self.client_create_task(
         properties=self.create_props(**properties), **kwargs)
 
+  def client_create_task_cas_input_root(self, properties=None, **kwargs):
+    """Creates a TaskRequest using a CAS tree via the Cloud Endpoints API.
+    """
+    properties = (properties or {}).copy()
+    properties[u'cas_input_root'] = {
+        u'cas_instance': u'projects/test/instances/default',
+        u'digest': {
+            u'hash': '12345',
+            u'size_bytes': 1
+        },
+    }
+    print(properties)
+    return self.client_create_task(
+        properties=self.create_props(**properties), **kwargs)
+
   def client_create_task_raw(self, properties=None, **kwargs):
     """Creates a raw command TaskRequest via the Cloud Endpoints API."""
     properties = (properties or {}).copy()
