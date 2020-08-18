@@ -352,6 +352,8 @@ class RunIsolatedTest(RunIsolatedTestBase):
         isolated_hash=isolated_hash,
         storage=StorageFake(files, server_ref),
         isolate_cache=local_caching.MemoryContentAddressedCache(),
+        cas_instance=None,
+        cas_digest=None,
         outputs=None,
         install_named_caches=init_named_caches_stub,
         leak_temp_dir=False,
@@ -1007,6 +1009,8 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
           isolated_hash=isolated_hash,
           storage=store,
           isolate_cache=local_caching.MemoryContentAddressedCache(),
+          cas_instance=None,
+          cas_digest=None,
           outputs=None,
           install_named_caches=init_named_caches_stub,
           leak_temp_dir=False,
@@ -1383,6 +1387,8 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           isolated_hash=isolated_hash,
           storage=store,
           isolate_cache=local_caching.MemoryContentAddressedCache(),
+          cas_instance=None,
+          cas_digest=None,
           outputs=[
               'foo1',
               # They must be in OS native path.
@@ -1587,6 +1593,7 @@ class RunIsolatedJsonTest(RunIsolatedTestBase):
             u'isolatedserver': u'http://localhost:1',
             u'namespace': u'default-gzip',
         },
+        u'cas_output_root': None,
         u'stats': {
             u'isolated': {
                 u'download': {
