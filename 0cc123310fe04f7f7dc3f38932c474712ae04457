@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "6219d135_faf40598",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-18T13:02:03Z",
+      "side": 1,
+      "message": "Could you hold this CL until I found the solution for the current slowness in cas client?",
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "62b9b19b_6b42ade5",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 13
@@ -42,6 +59,76 @@
     },
     {
       "key": {
+        "uuid": "c9238443_f83280e5",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-18T13:02:03Z",
+      "side": 1,
+      "message": "I may need to change cache structure due to performance reason.",
+      "parentUuid": "62b9b19b_6b42ade5",
+      "range": {
+        "startLine": 673,
+        "startChar": 0,
+        "endLine": 673,
+        "endChar": 53
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7671b2e_68a12329",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-18T13:02:03Z",
+      "side": 1,
+      "message": "go prefers single hyphen.",
+      "range": {
+        "startLine": 104,
+        "startChar": 9,
+        "endLine": 104,
+        "endChar": 11
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9529cc7_07a1640e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-18T13:02:03Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 106,
+        "startChar": 9,
+        "endLine": 106,
+        "endChar": 11
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6f02fd8a_cdbe5055",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 13
@@ -53,6 +140,30 @@
       "writtenOn": "2020-08-18T11:24:49Z",
       "side": 1,
       "message": "The names are super confusing to me.\nIdeally I want to rename `run_isolated.py` to something else.\nAny idea?",
+      "range": {
+        "startLine": 675,
+        "startChar": 0,
+        "endLine": 679,
+        "endChar": 73
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ebe7d5a_c84edb32",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-18T13:02:03Z",
+      "side": 1,
+      "message": "Even if we use \u0027cas\u0027 client, I think we are still running \"isolated\" task.\n\nAlso changing the name of run_isolated.py may require change to other place (e.g. log file name for cloud logging sent from GCE). So I think changing run_isolated.py now is not good idea.",
+      "parentUuid": "6f02fd8a_cdbe5055",
       "range": {
         "startLine": 675,
         "startChar": 0,
