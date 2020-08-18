@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "88a61b33_1757c921",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-18T13:26:53Z",
+      "side": 1,
+      "message": "I can do that.\nBut the idea is to merge the TODOs without integrating with `cas`.",
+      "parentUuid": "6219d135_faf40598",
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "62b9b19b_6b42ade5",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 13
@@ -83,6 +101,30 @@
     },
     {
       "key": {
+        "uuid": "85121e14_a362be2e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-18T13:26:53Z",
+      "side": 1,
+      "message": "OK. I think it\u0027s better to wait for the performance experiment and optimizations in `cas` client.",
+      "parentUuid": "c9238443_f83280e5",
+      "range": {
+        "startLine": 673,
+        "startChar": 0,
+        "endLine": 673,
+        "endChar": 53
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7671b2e_68a12329",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 13
@@ -106,6 +148,30 @@
     },
     {
       "key": {
+        "uuid": "bd98fa9b_1c9f93ac",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-18T13:26:53Z",
+      "side": 1,
+      "message": "This is an option for run_isolated.py.",
+      "parentUuid": "d7671b2e_68a12329",
+      "range": {
+        "startLine": 104,
+        "startChar": 9,
+        "endLine": 104,
+        "endChar": 11
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a9529cc7_07a1640e",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 13
@@ -117,6 +183,30 @@
       "writtenOn": "2020-08-18T13:02:03Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 106,
+        "startChar": 9,
+        "endLine": 106,
+        "endChar": 11
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50077c21_6ecfbc69",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-18T13:26:53Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "a9529cc7_07a1640e",
       "range": {
         "startLine": 106,
         "startChar": 9,
@@ -176,6 +266,30 @@
     },
     {
       "key": {
+        "uuid": "87e5f0e6_6dcc574c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-18T13:26:53Z",
+      "side": 1,
+      "message": "\u003e Even if we use \u0027cas\u0027 client, I think we are still running \"isolated\" task.\n\nHmm, I see.\nI don\u0027t used to \"isolated task\", maybe.\n\nI won\u0027t change the names, then.",
+      "parentUuid": "4ebe7d5a_c84edb32",
+      "range": {
+        "startLine": 675,
+        "startChar": 0,
+        "endLine": 679,
+        "endChar": 73
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0f858ca_bf9e10d9",
         "filename": "client/run_isolated.py",
         "patchSetId": 13
@@ -196,6 +310,30 @@
       "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffdc1eb1_77e9bccb",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-18T13:26:53Z",
+      "side": 1,
+      "message": "I will wait for the performance experiment and optimizations in `cas` client.",
+      "parentUuid": "d0f858ca_bf9e10d9",
+      "range": {
+        "startLine": 928,
+        "startChar": 0,
+        "endLine": 930,
+        "endChar": 0
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
