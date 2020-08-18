@@ -39,6 +39,30 @@
       "revId": "3aab5189f1155d1efda82451f7382158d5faaf44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3790b344_09f53a1a",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-18T06:27:42Z",
+      "side": 1,
+      "message": "I think we have 540 days as hard limit e.g. https://crbug.com/1108100.\nBut not other than that.\n\nAnd at least, most of the bot events are kept in BigQuery now.",
+      "parentUuid": "c2c136d1_d9b3e29b",
+      "range": {
+        "startLine": 80,
+        "startChar": 50,
+        "endLine": 80,
+        "endChar": 55
+      },
+      "revId": "3aab5189f1155d1efda82451f7382158d5faaf44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
