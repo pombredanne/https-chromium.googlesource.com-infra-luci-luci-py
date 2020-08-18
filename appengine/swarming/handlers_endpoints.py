@@ -179,6 +179,8 @@ def _apply_isolate_server_defaults(properties, settings, pool_cfg):
     iso_server = pool_cfg.default_isolate.server
     iso_ns = pool_cfg.default_isolate.namespace
 
+  # TODO(crbug.com/1115778): Set the isolate server defaults only when
+  # necessary.
   if iso_server and iso_ns:
     properties.inputs_ref = properties.inputs_ref or task_request.FilesRef()
     properties.inputs_ref.isolatedserver = (
