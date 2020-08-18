@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aed1ce8_c4d593ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-18T11:24:49Z",
+      "side": 1,
+      "message": "This is a preparation for `cas` client integration in run_isolated.py.\nI still have some questions in this CL. Please let me know your thoughts on them.",
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "62b9b19b_6b42ade5",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-18T11:24:49Z",
+      "side": 1,
+      "message": "TODO: check if we use the same cache options with `isolated`.",
+      "range": {
+        "startLine": 673,
+        "startChar": 0,
+        "endLine": 673,
+        "endChar": 53
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f02fd8a_cdbe5055",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-18T11:24:49Z",
+      "side": 1,
+      "message": "The names are super confusing to me.\nIdeally I want to rename `run_isolated.py` to something else.\nAny idea?",
+      "range": {
+        "startLine": 675,
+        "startChar": 0,
+        "endLine": 679,
+        "endChar": 73
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0f858ca_bf9e10d9",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-18T11:24:49Z",
+      "side": 1,
+      "message": "TODO: Resolve the questions before merging this CL.",
+      "range": {
+        "startLine": 928,
+        "startChar": 0,
+        "endLine": 930,
+        "endChar": 0
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
