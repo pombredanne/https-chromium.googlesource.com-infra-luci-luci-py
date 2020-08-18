@@ -63,6 +63,30 @@
       "revId": "3aab5189f1155d1efda82451f7382158d5faaf44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed2eff0e_1399a793",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-18T06:36:51Z",
+      "side": 1,
+      "message": "Yeah, I saw that.\n\nI concern the *minimum* retention period that we promise to our users.\n\n\u003e And at least, most of the bot events are kept in BigQuery now.\nThere is an issue that some data isn\u0027t synced properly.\nhttps://crbug.com/1067599",
+      "parentUuid": "3790b344_09f53a1a",
+      "range": {
+        "startLine": 80,
+        "startChar": 50,
+        "endLine": 80,
+        "endChar": 55
+      },
+      "revId": "3aab5189f1155d1efda82451f7382158d5faaf44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
