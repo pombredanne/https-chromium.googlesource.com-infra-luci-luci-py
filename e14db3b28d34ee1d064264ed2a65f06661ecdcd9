@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92758a24_b360b22e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-19T01:16:26Z",
+      "side": 1,
+      "message": "I updated the CL to return BadRequest error.\nPTAL.",
+      "revId": "e14db3b28d34ee1d064264ed2a65f06661ecdcd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
