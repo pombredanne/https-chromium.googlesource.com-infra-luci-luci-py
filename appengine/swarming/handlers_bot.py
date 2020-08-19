@@ -370,7 +370,7 @@ class _BotBaseHandler(_BotApiHandler):
         state=state,
         dimensions=dimensions,
         bot_group_cfg=bot_group_cfg,
-        maintenance_msg=state.get('maintenance'))
+        maintenance_msg=str(state.get('maintenance')))
 
     # The bot may decide to "self-quarantine" itself. Accept both via
     # dimensions or via state. See bot_management._BotCommon.quarantined for
