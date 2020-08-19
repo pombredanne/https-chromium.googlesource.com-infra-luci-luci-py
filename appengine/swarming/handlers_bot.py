@@ -372,6 +372,10 @@ class _BotBaseHandler(_BotApiHandler):
         bot_group_cfg=bot_group_cfg,
         maintenance_msg=state.get('maintenance'))
 
+    # Convert non-string message to string.
+    if result.maintenance_msg:
+      result.maintenance_msg = str(result.maintenance_msg)
+
     # The bot may decide to "self-quarantine" itself. Accept both via
     # dimensions or via state. See bot_management._BotCommon.quarantined for
     # more details.
