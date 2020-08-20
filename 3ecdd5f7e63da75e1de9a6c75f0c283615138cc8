@@ -70,6 +70,30 @@
       "revId": "3ecdd5f7e63da75e1de9a6c75f0c283615138cc8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2acf9a57_132224cc",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-08-20T22:26:16Z",
+      "side": 1,
+      "message": "I have a weak preference for consistency.\n\nNone feel like an accidental use of str(None) where \u0027none\u0027 is intentional. That\u0027s intentional (pun intended) so that for example rewriting in Go would not surprise the implementer.",
+      "parentUuid": "ca3562f1_1ba440ea",
+      "range": {
+        "startLine": 566,
+        "startChar": 20,
+        "endLine": 566,
+        "endChar": 24
+      },
+      "revId": "3ecdd5f7e63da75e1de9a6c75f0c283615138cc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
