@@ -370,7 +370,7 @@ def gen_expected(**kwargs):
       u'tags': [
           u'pool:default',
           u'priority:200',
-          u'realm:None',
+          u'realm:none',
           u'service_account:none',
           u'swarming.pool.template:none',
           u'swarming.pool.version:pools_cfg_rev',
@@ -478,7 +478,7 @@ class Test(unittest.TestCase):
             u'os:' + self.dimensions['os'][1],
             u'pool:default',
             u'priority:200',
-            u'realm:None',
+            u'realm:none',
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
@@ -1023,7 +1023,7 @@ class Test(unittest.TestCase):
     tasks = []
     tags = [
         u'pool:default',
-        u'realm:None',
+        u'realm:none',
         u'service_account:none',
         u'swarming.pool.template:none',
         u'swarming.pool.version:pools_cfg_rev',
@@ -1183,7 +1183,7 @@ class Test(unittest.TestCase):
         tags=[
             u'pool:default',
             u'priority:40',
-            u'realm:None',
+            u'realm:none',
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
@@ -1250,7 +1250,7 @@ class Test(unittest.TestCase):
             u'invalidkey:invalidvalue',
             u'pool:default',
             u'priority:40',
-            u'realm:None',
+            u'realm:none',
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
@@ -1338,7 +1338,7 @@ class Test(unittest.TestCase):
     tags = [
         u'pool:default',
         u'priority:20',
-        u'realm:None',
+        u'realm:none',
         u'service_account:none',
         u'swarming.pool.template:none',
         u'swarming.pool.version:pools_cfg_rev',
