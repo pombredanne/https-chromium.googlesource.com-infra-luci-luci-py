@@ -63,6 +63,30 @@
       "revId": "e001edbce6c1b8cc1b9a5cf5ebbda3f7d07b2520",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b030c0b4_d1f20161",
+        "filename": "appengine/auth_service/realms/rules.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-08-22T00:23:31Z",
+      "side": 1,
+      "message": "This is reminiscent of Buildbucket mixins and I expect someone will ask \"why are we doing it here instead of explicitly expanding everything in lucicfg\".",
+      "parentUuid": "d69e4705_9878fcbd",
+      "range": {
+        "startLine": 262,
+        "startChar": 2,
+        "endLine": 263,
+        "endChar": 51
+      },
+      "revId": "e001edbce6c1b8cc1b9a5cf5ebbda3f7d07b2520",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
