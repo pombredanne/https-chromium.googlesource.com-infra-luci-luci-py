@@ -39,6 +39,30 @@
       "revId": "e001edbce6c1b8cc1b9a5cf5ebbda3f7d07b2520",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d69e4705_9878fcbd",
+        "filename": "appengine/auth_service/realms/rules.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-08-22T00:14:55Z",
+      "side": 1,
+      "message": "i don\u0027t see a problem or inefficiency here, unless we have loooong chains of inheritance of realms. What am I missing?",
+      "parentUuid": "275b42eb_021fcfc3",
+      "range": {
+        "startLine": 262,
+        "startChar": 2,
+        "endLine": 263,
+        "endChar": 51
+      },
+      "revId": "e001edbce6c1b8cc1b9a5cf5ebbda3f7d07b2520",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
