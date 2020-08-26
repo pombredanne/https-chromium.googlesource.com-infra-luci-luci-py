@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c45a69b7_af54646d",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-08-26T00:40:41Z",
+      "side": 1,
+      "message": "This now crashes if size is None. See bottom of https://chromium-swarm.appspot.com/task?id\u003d4e22403ebb680e10\u0026o\u003dtrue\u0026w\u003dtrue for an example.\n\nI recommend two things:\n- Use %s instead of %d so logging doesn\u0027t write a stack trace when it logs None\n- Keep the previous condition, explicitly checking for None, e.g.\n\nif size is None:\n  # Do not save a named cache that was deleted.\n  return 0",
+      "revId": "8b253a8e2d2d59a12231c86ecc78e13e70dfc072",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
