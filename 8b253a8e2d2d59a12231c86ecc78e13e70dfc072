@@ -16,6 +16,24 @@
       "revId": "8b253a8e2d2d59a12231c86ecc78e13e70dfc072",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1d1a7ca_209df3a7",
+        "filename": "client/local_caching.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-26T01:35:45Z",
+      "side": 1,
+      "message": "made https://crrev.com/c/2376107",
+      "parentUuid": "c45a69b7_af54646d",
+      "revId": "8b253a8e2d2d59a12231c86ecc78e13e70dfc072",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
