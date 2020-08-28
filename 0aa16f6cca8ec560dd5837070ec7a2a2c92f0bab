@@ -22,6 +22,30 @@
       "revId": "0aa16f6cca8ec560dd5837070ec7a2a2c92f0bab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "426de1a8_1714179a",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-28T11:39:05Z",
+      "side": 1,
+      "message": "My conclusion is the both can be used for invalid request parameters. But should be consistent in the service. So 400 is appropriate in the Swarming case.\n\nI decided to learn it to have better understanding around 422.\nLet me share some investigation.\n---\nIf the request has an invalid format(syntax) and the server can\u0027t understand it, we should use 400.\n\u003e 10.4.1 400 Bad Request \n\u003e  The request could not be understood by the server due to malformed syntax. ...\nhttps://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html\n\nThe HTTP extension for WebDAV you just shared say when the syntax is correct, 400 is inappropriate.\n\u003e ... the syntax of the request entity is correct (thus a 400 (Bad Request) status code is inappropriate)...\n\nIt looks Github, Twitter (and Gerrit) use 422. \nhttps://developer.github.com/v3/#client-errors\nhttps://developer.twitter.com/en/docs/response-codes\nhttps://gerrit-review.googlesource.com/Documentation/rest-api.html#_422_unprocessable_entity\n\nbut it doesn\u0027t look GCP use 422 consistantly (sometimes it does)\nhttps://cloud.google.com/storage/docs/json_api/v1/status-codes#400_Bad_Request\nhttps://cloud.google.com/compute/docs/api/how-tos/performance",
+      "parentUuid": "903affb0_e04ce53b",
+      "range": {
+        "startLine": 562,
+        "startChar": 37,
+        "endLine": 562,
+        "endChar": 40
+      },
+      "revId": "0aa16f6cca8ec560dd5837070ec7a2a2c92f0bab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
