@@ -46,6 +46,30 @@
       "revId": "0aa16f6cca8ec560dd5837070ec7a2a2c92f0bab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63b0bcac_01e1ab7c",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-28T11:42:42Z",
+      "side": 1,
+      "message": "I reverted them to 400.",
+      "parentUuid": "426de1a8_1714179a",
+      "range": {
+        "startLine": 562,
+        "startChar": 37,
+        "endLine": 562,
+        "endChar": 40
+      },
+      "revId": "0aa16f6cca8ec560dd5837070ec7a2a2c92f0bab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
