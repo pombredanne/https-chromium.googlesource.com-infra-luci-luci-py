@@ -285,7 +285,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
 
     # with non string maintenance message.
     params['state']['maintenance'] = True
-    self.post_json('/swarming/api/v1/bot/poll', params, status=400)
+    self.post_json('/swarming/api/v1/bot/poll', params, status=422)
 
   def test_poll_bad_bot(self):
     # If bot is not sending required keys but report right version, enforce
@@ -1221,6 +1221,13 @@ class BotApiTest(test_env_handlers.AppTestBase):
     })
 
     self.assertEqual(expected, actual)
+
+  def test_bot_event_invalid_inputs(self):
+    params = self.do_handshake()
+    params['event'] = 'bot_log'
+    params['message'] = 'I have an invalid maintenance message.'
+    params['state']['maintenance'] = True  # non-string maintenance message.
+    self.post_json('/swarming/api/v1/bot/event', params, status=422)
 
   def test_task_complete(self):
     # Runs a task up to completion.
