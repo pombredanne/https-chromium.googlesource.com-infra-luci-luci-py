@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "903affb0_e04ce53b",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-28T04:57:00Z",
+      "side": 1,
+      "message": "I feel 400 is still more appropriate than 422 for type error as I think type error is kind of invalid syntax.\nhttps://tools.ietf.org/html/rfc4918#section-11.2",
+      "range": {
+        "startLine": 562,
+        "startChar": 37,
+        "endLine": 562,
+        "endChar": 40
+      },
+      "revId": "0aa16f6cca8ec560dd5837070ec7a2a2c92f0bab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
