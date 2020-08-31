@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "66b43d9d_83ea7e4c",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1637,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-08-31T06:11:44Z",
+      "side": 1,
+      "message": "In many cases, the batch size work.\nSo I think applying smaller batch size will probably be inefficient.",
+      "parentUuid": "bbf13143_9f020deb",
+      "range": {
+        "startLine": 1637,
+        "startChar": 42,
+        "endLine": 1637,
+        "endChar": 45
+      },
+      "revId": "009fd6c47b2b74d48e1cc818b2bb98815ba42b06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9bb03e9a_3308d241",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 4
