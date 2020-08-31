@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "31efe322_a298c756",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1637,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-31T06:30:12Z",
+      "side": 1,
+      "message": "Then I think it is better to handle such error in send_to_bq\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/bq_state.py;l\u003d217;drc\u003d7fdb6e0d57b57c96e6945c43d10c360095089d2e",
+      "parentUuid": "66b43d9d_83ea7e4c",
+      "range": {
+        "startLine": 1637,
+        "startChar": 42,
+        "endLine": 1637,
+        "endChar": 45
+      },
+      "revId": "009fd6c47b2b74d48e1cc818b2bb98815ba42b06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9bb03e9a_3308d241",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 4
