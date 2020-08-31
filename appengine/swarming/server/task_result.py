@@ -72,6 +72,7 @@ import re
 
 from google.appengine import runtime
 from google.appengine.api import datastore_errors
+from google.appengine.api import urlfetch_errors
 from google.appengine.datastore import datastore_query
 from google.appengine.ext import ndb
 
@@ -1637,7 +1638,7 @@ def task_bq_run(start, end):
     rows = [_convert(e) for e in entities]
     seen.update(e.task_id for e in entities)
     total += len(rows)
-    failed += bq_state.send_to_bq('task_results_run', rows)
+    failed += _send_to_bq('task_results_run', rows)
 
   return total, failed
 
@@ -1674,6 +1675,20 @@ def task_bq_summary(start, end):
     rows = [_convert(e) for e in entities]
     seen.update(e.task_id for e in entities)
     total += len(rows)
-    failed += bq_state.send_to_bq('task_results_summary', rows)
+    failed += _send_to_bq('task_results_summary', rows)
 
   return total, failed
+
+
+def _send_to_bq(table, rows)
+  """Sends rows to BQ.
+
+  When it failed with PayloadTooLargeError, devides the rows.
+  """
+  try:
+    return bq_state.send_to_bq(table, rows)
+  except urlfetch_errors.PayloadTooLargeError:
+    c = len(rows) // 2
+    failed = _send_to_bq(table, rows[:c])
+    failed += _send_to_bq(table, rows[c:])
+    return failed
