@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bbf13143_9f020deb",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1637,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-31T05:59:02Z",
+      "side": 1,
+      "message": "is it better to reduce size here?",
+      "range": {
+        "startLine": 1637,
+        "startChar": 42,
+        "endLine": 1637,
+        "endChar": 45
+      },
+      "revId": "009fd6c47b2b74d48e1cc818b2bb98815ba42b06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bb03e9a_3308d241",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1674,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-08-31T05:59:02Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 1674,
+        "startChar": 42,
+        "endLine": 1674,
+        "endChar": 45
+      },
+      "revId": "009fd6c47b2b74d48e1cc818b2bb98815ba42b06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
