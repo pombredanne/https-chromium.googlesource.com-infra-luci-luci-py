@@ -22,6 +22,30 @@
       "revId": "6dc7fb31be9c1da6be402efdd1d248f4ad911eea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47dcea61_b10af220",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-01T00:55:29Z",
+      "side": 1,
+      "message": "Oops, fixed to call `send_to_bq()` instead of `_send()`.\nI also updated the test.",
+      "parentUuid": "47d0fff5_569983f6",
+      "range": {
+        "startLine": 12,
+        "startChar": 42,
+        "endLine": 12,
+        "endChar": 53
+      },
+      "revId": "6dc7fb31be9c1da6be402efdd1d248f4ad911eea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
