@@ -406,13 +406,13 @@ class _BotBaseHandler(_BotApiHandler):
         if not isinstance(values, list):
           quarantined_msg = "Key %s has non-list value: %s" % (key, values)
           break
-        if len(values) != len(set(values)):
-          quarantined_msg = "Key %s has duplicate values: %s" % (key, values)
-          break
         for value in sorted(values):
           if not config.validate_dimension_value(value):
             quarantined_msg = "Key %s has invalid value: %r" % (key, value)
             break
+        if len(values) != len(set(values)):
+          quarantined_msg = "Key %s has duplicate values: %s" % (key, values)
+          break
         if quarantined_msg:
           break
 
