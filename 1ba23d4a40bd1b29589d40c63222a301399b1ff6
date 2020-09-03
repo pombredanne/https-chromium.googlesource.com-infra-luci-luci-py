@@ -167,6 +167,24 @@
     },
     {
       "key": {
+        "uuid": "d604d3ee_789e4e70",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-03T06:59:42Z",
+      "side": 1,
+      "message": "If it\u0027s a message issue, how about\n\n\"Dimensions \"foo\" has invalid value: ...\"?\n\nWill revise other quarantine messages, too.",
+      "parentUuid": "36709ed0_6937f611",
+      "revId": "1ba23d4a40bd1b29589d40c63222a301399b1ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "26bf0722_ea6e5c27",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 7
