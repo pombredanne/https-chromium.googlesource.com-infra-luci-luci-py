@@ -327,6 +327,71 @@ class BotApiTest(test_env_handlers.AppTestBase):
     }
     self.assertEqual(expected, response)
 
+  def test_poll_bad_dimensions(self):
+    errors = []
+
+    def add_error(request, source, message):
+      self.assertTrue(request)
+      self.assertEqual('bot', source)
+      errors.append(message)
+
+    self.mock(ereporter2, 'log_request', add_error)
+
+    params = self.do_handshake()
+    params['dimensions']['foo'] = [['bar']]  # list is invalid.
+    response = self.post_json('/swarming/api/v1/bot/poll', params)
+    self.assertTrue(response.pop(u'duration'))
+    expected = {
+        u'cmd': u'sleep',
+        u'quarantined': True,
+    }
+    self.assertEqual(expected, response)
+
+    # Quarantine message should be explicit.
+    msg = (u'Quarantined Bot\n'
+           'https://test-swarming.appspot.com/restricted/bot/bot1\n'
+           'Key foo has invalid value: [u\'bar\']')
+    self.assertEqual([msg], errors)
+
+    # Quarantine event should be registered, too.
+    expected_event = {
+        'authenticated_as': u'bot:whitelisted-ip',
+        'dimensions': {
+            u'id': [u'bot1'],
+            u'os': [u'Amiga'],
+            u'pool': [u'default'],
+        },
+        'event_type': u'request_sleep',
+        'external_ip': u'192.168.2.2',
+        'last_seen_ts': None,
+        'lease_expiration_ts': None,
+        'lease_id': None,
+        'leased_indefinitely': None,
+        'machine_lease': None,
+        'machine_type': None,
+        'maintenance_msg': None,
+        'message': u"Key foo has invalid value: [u'bar']",
+        'quarantined': True,
+        'state': {
+            u'bot_group_cfg_version': u'default',
+            u'running_time': 1234.0,
+            u'sleep_streak': 0,
+            u'started_ts': 1410990411.111,
+        },
+        'task_id': None,
+        'ts': self.now,
+        'version': self.bot_version,
+    }
+    events = [
+        e.to_dict() for e in bot_management.get_events_query('bot1', True)
+    ]
+    self.assertEqual(events[0], expected_event)
+
+    # BotInfo should be changed to quarantined state, too.
+    bot_info = bot_management.get_info_key('bot1').get()
+    self.assertTrue(bot_info.quarantined)
+    self.assertEqual(bot_info.dimensions_flat, ['id:bot1', 'os:Amiga', 'pool:default'])
+
   def test_poll_sleep(self):
     # A bot polls, gets nothing.
     params = self.do_handshake()
