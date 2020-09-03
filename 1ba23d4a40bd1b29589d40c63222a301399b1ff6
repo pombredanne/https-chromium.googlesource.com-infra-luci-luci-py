@@ -113,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "e70e7286_30f36c2e",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-03T06:17:28Z",
+      "side": 1,
+      "message": "\u003e \u003e I think we only want to deal dimension which doesn\u0027t cause exception without extra validation check.\n\u003e \n\u003e The thing is this function is expected to tolerate invalid dimensions at this moment, and already handle too long dimension around L920-925.\n\u003e I want this function to behave consistently.\n\u003e \n\nI think this check is not sufficient if we want to have consistency (if dimensions is None, this function throw exception in the first line). Also I feel exception is more safe than getting dimension set not having some values silently.\n\n\u003e \u003e Can we return 400 in that case?\n\u003e I wrote the reason in the description.\n\nI think it is better not to try harder to handle invalid data as long as we leave logs in server. Considering current capacity of us, I\u0027d like to assume that our customer basically have responsibility to send valid request to server.",
+      "parentUuid": "d8d1efaa_841477c5",
+      "revId": "1ba23d4a40bd1b29589d40c63222a301399b1ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "26bf0722_ea6e5c27",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 7
