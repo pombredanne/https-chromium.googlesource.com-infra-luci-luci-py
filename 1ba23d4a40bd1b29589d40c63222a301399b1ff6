@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "6647b9a2_25432837",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-03T09:42:20Z",
+      "side": 1,
+      "message": "I just chatted with Takuto.\n\nWe don\u0027t want to accept invalid dimensions at the core logic `task_queues.py`.\nSo will remove all dimensions at bot handler when there are any invalid dimensions and make bot_management.bot_even() work.  \n\n(Ideally, we reject all invalid inputs at handler layer to reduce Swarming server\u0027s responsibility...)\n",
+      "revId": "1ba23d4a40bd1b29589d40c63222a301399b1ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0c2dd19_11f0afda",
         "filename": "appengine/swarming/server/config.py",
         "patchSetId": 7
@@ -196,6 +213,30 @@
       "writtenOn": "2020-09-03T07:49:21Z",
       "side": 1,
       "message": "Just curious why the validation in https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_request.py;l\u003d227;drc\u003df92b958c8f447dcc49fd533d9d33380454736281 is not enough?",
+      "range": {
+        "startLine": 913,
+        "startChar": 4,
+        "endLine": 913,
+        "endChar": 55
+      },
+      "revId": "1ba23d4a40bd1b29589d40c63222a301399b1ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f9056b05_d9925de7",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-03T09:42:20Z",
+      "side": 1,
+      "message": "I read the code that task dimensions are validated in task_request.py and it rejects invalid ones as expected.\nBut invalid *bots* dimensions are kind of accepted here.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/handlers_bot.py;l\u003d413\n\nI guess that is for convenience.\n(That way, we can see the bots with invalid dimensions on the UI.)\n\nI will tweak the preprocess function.",
+      "parentUuid": "83948353_00e6fb4b",
       "range": {
         "startLine": 913,
         "startChar": 4,
