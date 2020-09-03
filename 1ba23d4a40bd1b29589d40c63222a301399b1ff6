@@ -149,6 +149,24 @@
     },
     {
       "key": {
+        "uuid": "36709ed0_6937f611",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-03T06:49:21Z",
+      "side": 1,
+      "message": "I think showing message like \"Key foo has invalid value: ...\" doesn\u0027t help a lot for such people.",
+      "parentUuid": "52cd58b7_4c19b9d5",
+      "revId": "1ba23d4a40bd1b29589d40c63222a301399b1ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "26bf0722_ea6e5c27",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 7
