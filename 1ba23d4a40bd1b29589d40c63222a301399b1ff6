@@ -131,6 +131,24 @@
     },
     {
       "key": {
+        "uuid": "52cd58b7_4c19b9d5",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-03T06:25:11Z",
+      "side": 1,
+      "message": "FWIU, \"quarantine\" mode is used for the bots in invalid state.\nAnd bot owners can easily see why the bots are unhealthy in the UI with saving BotInfo/BotEvent.\n\nFrom my experience, people outside of Swarming team don\u0027t usually see server logs and file bugs. (Some experts do, but only some...)\nSo I concern it will make us more busy for responding.",
+      "parentUuid": "e70e7286_30f36c2e",
+      "revId": "1ba23d4a40bd1b29589d40c63222a301399b1ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "26bf0722_ea6e5c27",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 7
