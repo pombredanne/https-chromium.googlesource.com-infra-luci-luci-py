@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73442d94_e2c147d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161844
+      },
+      "writtenOn": "2020-09-03T21:27:41Z",
+      "side": 1,
+      "message": "LGTM, but wait for approval from Swarming OWNER",
+      "revId": "29494f858f01cb6bbc109e9539535f16153aa739",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
