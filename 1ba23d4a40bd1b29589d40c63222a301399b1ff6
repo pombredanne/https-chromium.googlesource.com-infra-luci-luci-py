@@ -59,6 +59,24 @@
     },
     {
       "key": {
+        "uuid": "6d402178_ec36d5dd",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-03T04:50:21Z",
+      "side": 1,
+      "message": "The \"values[vi].split\" below fails if it\u0027s not string.  \nThe question I have here is\n- Do we want to deal with only valid dimensions?\n- Or, should we tolerate invalid dimensions? like trimming too long dimension.\n\nNote that dimension validation is already done at _process() in handlers_bot.py. But we need to store BotInfo and BotEvent.",
+      "parentUuid": "8f26edf5_a806f90c",
+      "revId": "1ba23d4a40bd1b29589d40c63222a301399b1ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "26bf0722_ea6e5c27",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 7
