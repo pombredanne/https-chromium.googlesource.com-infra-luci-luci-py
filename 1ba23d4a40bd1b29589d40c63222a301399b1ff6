@@ -16,6 +16,46 @@
       "revId": "1ba23d4a40bd1b29589d40c63222a301399b1ff6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0c2dd19_11f0afda",
+        "filename": "appengine/swarming/server/config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-03T04:45:35Z",
+      "side": 1,
+      "message": "redundant paren?",
+      "range": {
+        "startLine": 93,
+        "startChar": 9,
+        "endLine": 93,
+        "endChar": 10
+      },
+      "revId": "1ba23d4a40bd1b29589d40c63222a301399b1ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f26edf5_a806f90c",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-03T04:45:35Z",
+      "side": 1,
+      "message": "I think doing validation here is not right place.\nIs this necessary?",
+      "revId": "1ba23d4a40bd1b29589d40c63222a301399b1ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
