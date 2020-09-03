@@ -185,6 +185,29 @@
     },
     {
       "key": {
+        "uuid": "83948353_00e6fb4b",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-03T07:49:21Z",
+      "side": 1,
+      "message": "Just curious why the validation in https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_request.py;l\u003d227;drc\u003df92b958c8f447dcc49fd533d9d33380454736281 is not enough?",
+      "range": {
+        "startLine": 913,
+        "startChar": 4,
+        "endLine": 913,
+        "endChar": 55
+      },
+      "revId": "1ba23d4a40bd1b29589d40c63222a301399b1ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26bf0722_ea6e5c27",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 7
