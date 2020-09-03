@@ -910,6 +910,11 @@ def expand_dimensions_to_flats(dimensions, is_bot_dim=False):
       gen(ki + 1, 0)
       return
 
+    if not config.validate_dimension_value(values[vi]):
+      # Skip invalid dimension value.
+      gen(ki, vi + 1)
+      return
+
     for v in values[vi].split(OR_DIM_SEP):
       flat = u'%s:%s' % (key, v)
       if len(flat) > cutoff:
