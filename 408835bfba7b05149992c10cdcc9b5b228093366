@@ -107,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "1447cd68_7043c2ac",
+        "filename": "appengine/swarming/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-09-07T06:08:57Z",
+      "side": 1,
+      "message": "The simple reasoning is that we don\u0027t know if just an rsync will work for every project. We already do know that how projects fetch external dependencies differ.\n\nBy making it something that can be part of the project configuration devs can help out with the procedure.",
+      "parentUuid": "73bf4ef4_7739007c",
+      "range": {
+        "startLine": 24,
+        "startChar": 16,
+        "endLine": 24,
+        "endChar": 22
+      },
+      "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9be5844_69184bc6",
         "filename": "appengine/swarming/Makefile",
         "patchSetId": 3
