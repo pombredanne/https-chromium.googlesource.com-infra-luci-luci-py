@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "0036b062_f5407b6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-09-07T05:39:17Z",
+      "side": 1,
+      "message": "Some more information about the use of the targets: https://g3doc.corp.google.com/company/teams/chrome/ops/devx/prod_tech/releases/deploy_appengine.md#detailed-implementation",
+      "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46b3da56_20e6d26a",
         "filename": "appengine/swarming/Makefile",
         "patchSetId": 3
@@ -42,6 +59,30 @@
     },
     {
       "key": {
+        "uuid": "d9d3bbee_7910fd1a",
+        "filename": "appengine/swarming/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-09-07T05:39:17Z",
+      "side": 1,
+      "message": "It comes from here: https://source.cloud.google.com/chrome-sre-spinnaker/docker_update/+/master:infra-appengine/Dockerfile;l\u003d18\n\nSpinnaker use GCB to build the following artifacts for each deployment: \n- A Docker image containing the full environment used to build the artifact.\n- A tar file with containing the files to deploy to Appengine.\n\nThe Chrome OPS repo, esp. the python end of it use a fair bit of symlinks to get tools and libraries in place. The package_release target is responsible for getting all those links resolved and put into the workspace/package folder.",
+      "parentUuid": "46b3da56_20e6d26a",
+      "range": {
+        "startLine": 24,
+        "startChar": 16,
+        "endLine": 24,
+        "endChar": 22
+      },
+      "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9be5844_69184bc6",
         "filename": "appengine/swarming/Makefile",
         "patchSetId": 3
@@ -56,6 +97,24 @@
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fc097cf_be453bc4",
+        "filename": "appengine/swarming/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-09-07T05:39:17Z",
+      "side": 1,
+      "message": "Some projects have external dependencies that need to be fetched before deploying the applicatoin. \n\nEg. npm / bower runs to fetch packages. \n\nThis target is used by GCB to make sure all of those things are fetched before the Docker image artifact is built. Helps to make the build reproducible.",
+      "parentUuid": "b9be5844_69184bc6",
+      "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
