@@ -186,9 +186,11 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.assertEqual('default', response['bot_group_cfg_version'])
     self.assertEqual(64, len(response['bot_version']))
     self.assertEqual(u'v1a', response['server_version'])
-    msg = (u'Quarantined Bot\n'
-           'https://test-swarming.appspot.com/restricted/bot/id1\n'
-           'Key pool has duplicate values: [u\'default\', u\'default\']')
+    msg = (
+        u'Quarantined Bot\n'
+        'https://test-swarming.appspot.com/restricted/bot/id1\n'
+        'Dimension values include duplication. key: pool, values: [u\'default\', u\'default\']'
+    )
     self.assertEqual([msg], errors)
 
   def test_handshake_long_dimension(self):
@@ -229,7 +231,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(u'v1a', response['server_version'])
     msg = (u'Quarantined Bot\n'
            'https://test-swarming.appspot.com/restricted/bot/id1\n'
-           'Key a has invalid value: u\'%s\'' % ('b' * 1499))
+           'Invalid dimension value. key: a, value: %s' % ('b' * 1499))
     self.assertEqual([msg], errors)
 
   def test_handshake_extra(self):
@@ -252,6 +254,8 @@ class BotApiTest(test_env_handlers.AppTestBase):
         'state': {
             'bar': 2,
             'ip': '127.0.0.1',
+            'running_time': 1234.0,
+            'sleep_streak': 0,
         },
         'version': '123',
     }
