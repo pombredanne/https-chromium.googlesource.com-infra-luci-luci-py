@@ -19,3 +19,8 @@ switch: deploy-check
 
 dev:
 	gae.py devserver -A swarming-local --app-dir . -- --port 9050 --admin_port 8200 --log_level debug
+
+package_release:
+	rsync -aLK . $(TARDIR)/package
+
+external_deps:
