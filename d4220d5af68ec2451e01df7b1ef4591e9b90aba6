@@ -16,6 +16,24 @@
       "revId": "d4220d5af68ec2451e01df7b1ef4591e9b90aba6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d3f20f1_3b8dacb7",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-07T11:39:39Z",
+      "side": 1,
+      "message": "Hmm.\nLet\u0027s not include all dimensions and consider keeping pool if users request.\n\nI noticed that if `dimensions` is empty, last valid dimensions will be kept  at BotInfo and used in BotEvent. So better not to keep the incomplete dimensions.",
+      "parentUuid": "892051f2_16f9566e",
+      "revId": "d4220d5af68ec2451e01df7b1ef4591e9b90aba6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
