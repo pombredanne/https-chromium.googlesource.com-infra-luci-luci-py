@@ -39,6 +39,30 @@
       "revId": "426af63d10731768b7857918f7dc632afcce5310",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3572ec7_d639d8c1",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-07T10:57:48Z",
+      "side": 1,
+      "message": "Looks we don\u0027t need it for quarantined bots.\n\nI remember that we discussed to keep `pool` dimension for pool offline alert and UI etc.\n\nI updated this code.",
+      "parentUuid": "e11b6784_11bc5883",
+      "range": {
+        "startLine": 427,
+        "startChar": 33,
+        "endLine": 427,
+        "endChar": 39
+      },
+      "revId": "426af63d10731768b7857918f7dc632afcce5310",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
