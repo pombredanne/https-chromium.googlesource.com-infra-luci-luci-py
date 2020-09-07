@@ -39,6 +39,23 @@
       "revId": "29494f858f01cb6bbc109e9539535f16153aa739",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee2fa75c_37766f4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-07T00:34:00Z",
+      "side": 1,
+      "message": "Thank you for trying to fix this.\nI\u0027m making a similar change, but noticed that the early validity check would cause another error.\nhttps://crrev.com/c/2392100\n\nLet me make a fix for the 5xx.",
+      "revId": "29494f858f01cb6bbc109e9539535f16153aa739",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
