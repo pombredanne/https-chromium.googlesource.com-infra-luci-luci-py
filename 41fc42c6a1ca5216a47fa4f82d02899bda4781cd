@@ -16,6 +16,23 @@
       "revId": "41fc42c6a1ca5216a47fa4f82d02899bda4781cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2211e4e4_2f2bce06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-07T12:32:41Z",
+      "side": 1,
+      "message": "Add CC from https://crrev.com/c/2393095",
+      "revId": "41fc42c6a1ca5216a47fa4f82d02899bda4781cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
