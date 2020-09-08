@@ -334,6 +334,30 @@
       "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e160562f_2a4aeac2",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-08T00:41:35Z",
+      "side": 1,
+      "message": "cas uses different hash, so better to use different cache dir.",
+      "parentUuid": "ffdc1eb1_77e9bccb",
+      "range": {
+        "startLine": 928,
+        "startChar": 0,
+        "endLine": 930,
+        "endChar": 0
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
