@@ -358,6 +358,30 @@
       "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6a14ef7_992f29b2",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-08T00:45:17Z",
+      "side": 1,
+      "message": "Sure. \nLet\u0027s finish integration first and do optimization incrementally.",
+      "parentUuid": "e160562f_2a4aeac2",
+      "range": {
+        "startLine": 928,
+        "startChar": 0,
+        "endLine": 930,
+        "endChar": 0
+      },
+      "revId": "0cc123310fe04f7f7dc3f38932c474712ae04457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
