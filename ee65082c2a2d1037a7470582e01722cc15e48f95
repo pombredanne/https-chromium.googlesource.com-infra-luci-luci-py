@@ -16,6 +16,24 @@
       "revId": "ee65082c2a2d1037a7470582e01722cc15e48f95",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84918a98_9f82b899",
+        "filename": "appengine/swarming/server/config.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-09T00:45:17Z",
+      "side": 1,
+      "message": "Thanks.\nMade https://crrev.com/c/2398077",
+      "parentUuid": "5c4780ae_763c3975",
+      "revId": "ee65082c2a2d1037a7470582e01722cc15e48f95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
