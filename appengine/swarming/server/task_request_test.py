@@ -1030,7 +1030,7 @@ class TaskRequestApiTest(TestCase):
         request_2.task_slice(0).properties_hash(request_2))
 
   # TODO(crbug.com/1115778): remove after RBE-CAS migration.
-  def test_to_proto(self):
+  def test_to_proto_isolated(self):
     # Try to set as much things as possible to exercise most code paths.
     def getrandbits(i):
       self.assertEqual(i, 16)
@@ -1181,24 +1181,26 @@ class TaskRequestApiTest(TestCase):
     request.to_proto(actual)
     self.assertEqual(unicode(expected), unicode(actual))
 
-  # TODO(crbug.com/1115778): rename to test_to_proto.
-  def test_to_proto_with_cas(self):
+  def test_to_proto(self):
     # Try to set as much things as possible to exercise most code paths.
+    bits = [0x7763]
     def getrandbits(i):
       self.assertEqual(i, 16)
-      return 0x7766
+      bits[0] += 1
+      return bits[0]
 
     self.mock(random, 'getrandbits', getrandbits)
     self.mock_now(task_request._BEGINING_OF_THE_WORLD)
 
-    # Parent entity must have a valid key id and be stored.
+    # Grand parent entity must have a valid key id and be stored.
     # This task uses user:Jesus, which will be inherited automatically.
-    parent = _gen_request()
+    grand_parent = _gen_request()
+    grand_parent.key = task_request.new_request_key()
+    grand_parent.put()
+    # Parent entity must have a valid key id and be stored.
+    parent = _gen_request(parent_task_id=grand_parent.task_id[:-1] + u'1')
     parent.key = task_request.new_request_key()
     parent.put()
-    # The reference is to the TaskRunResult.
-    parent_id = task_pack.pack_request_key(parent.key) + u'0'
-    parent_run_id = task_pack.pack_request_key(parent.key) + u'1'
 
     request_props = _gen_properties(
         inputs_ref=None,
@@ -1239,7 +1241,7 @@ class TaskRequestApiTest(TestCase):
         # The user is ignored; the value is overridden by the parent task's
         # user.
         user=u'Joe',
-        parent_task_id=parent_run_id,
+        parent_task_id=parent.task_id[:-1] + u'1',
         service_account=u'foo@gserviceaccount.com',
         pubsub_topic=u'projects/a/topics/abc',
         pubsub_auth_token=u'sekret',
@@ -1325,8 +1327,10 @@ class TaskRequestApiTest(TestCase):
         user=u'Jesus',
         # Hierarchy.
         task_id=u'776610',
-        parent_task_id=parent_id,
-        parent_run_id=parent_run_id,
+        parent_task_id=parent.task_id,
+        parent_run_id=parent.task_id[:-1] + u'1',
+        root_task_id=grand_parent.task_id,
+        root_run_id=grand_parent.task_id[:-1] + u'1',
         # Notification. auth_token cannot be retrieved.
         pubsub_notification=swarming_pb2.PubSub(
             topic=u'projects/a/topics/abc', userdata=u'obscure_reference'),
