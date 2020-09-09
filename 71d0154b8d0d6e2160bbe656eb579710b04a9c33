@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9feb719_902ca1aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-09T16:59:02Z",
+      "side": 1,
+      "message": "If you approve https://crbug.com/1126488, here\u0027s the implementation of option #1 along a unit test.",
+      "revId": "71d0154b8d0d6e2160bbe656eb579710b04a9c33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
