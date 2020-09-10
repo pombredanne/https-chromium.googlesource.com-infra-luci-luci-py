@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "8b318662_1655c4bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-10T00:58:57Z",
+      "side": 1,
+      "message": "we removed retry, do you still need to use this?",
+      "range": {
+        "startLine": 7,
+        "startChar": 33,
+        "endLine": 7,
+        "endChar": 44
+      },
+      "revId": "71d0154b8d0d6e2160bbe656eb579710b04a9c33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1da2db1a_8f7e2e99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-10T00:58:57Z",
+      "side": 1,
+      "message": "take this issue?",
+      "revId": "71d0154b8d0d6e2160bbe656eb579710b04a9c33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9feb719_902ca1aa",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 5
