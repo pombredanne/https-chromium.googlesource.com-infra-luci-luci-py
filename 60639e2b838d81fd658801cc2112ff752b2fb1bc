@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7de32973_169a29ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-11T08:24:06Z",
+      "side": 1,
+      "message": "Remove?",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d4da152a_7149676f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 5
@@ -16,6 +39,109 @@
       "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6af7d6ea_2596e7cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-11T08:24:06Z",
+      "side": 1,
+      "message": "The logic LGTM, I left a few nits",
+      "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f5744f05_560adfb0",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-11T08:24:06Z",
+      "side": 1,
+      "message": "super nit: I feel like it\u0027s fine to just say \"... go `isolated` or `cas` client\". Right now it sounds a bit like we actually have three clients: go, isolated and cas...",
+      "range": {
+        "startLine": 226,
+        "startChar": 33,
+        "endLine": 226,
+        "endChar": 40
+      },
+      "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bfb354a_25db9684",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-11T08:24:06Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 228,
+        "startChar": 34,
+        "endLine": 228,
+        "endChar": 41
+      },
+      "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c43c7962_149e549c",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-11T08:24:06Z",
+      "side": 1,
+      "message": "a CAS",
+      "range": {
+        "startLine": 557,
+        "startChar": 10,
+        "endLine": 557,
+        "endChar": 16
+      },
+      "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a92e67ac_ccdb5ef5",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-11T08:24:06Z",
+      "side": 1,
+      "message": "nit: rename to _fetch_and_map_with_go_isolated()?",
+      "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
