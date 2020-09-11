@@ -158,10 +158,11 @@ class RunIsolatedTestBase(auto_stub.TestCase):
 
   def fake_make_temp_dir(self, prefix, _root_dir):
     """Predictably returns directory for run_tha_test (one per test case)."""
-    self.assertIn(prefix,
-                  (run_isolated.ISOLATED_OUT_DIR, run_isolated.ISOLATED_RUN_DIR,
-                   run_isolated.ISOLATED_TMP_DIR,
-                   run_isolated.ISOLATED_CLIENT_DIR, 'cipd_site_root'))
+    self.assertIn(
+        prefix,
+        (run_isolated.ISOLATED_OUT_DIR, run_isolated.ISOLATED_RUN_DIR,
+         run_isolated.ISOLATED_TMP_DIR, run_isolated.ISOLATED_CLIENT_DIR,
+         run_isolated.CAS_CLIENT_DIR, 'cipd_site_root'))
     temp_dir = os.path.join(self.tempdir, prefix)
     self.assertFalse(fs.isdir(temp_dir))
     fs.makedirs(temp_dir)
@@ -354,6 +355,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
         isolate_cache=local_caching.MemoryContentAddressedCache(),
         cas_instance=None,
         cas_digest=None,
+        token_server=None,
         outputs=None,
         install_named_caches=init_named_caches_stub,
         leak_temp_dir=False,
@@ -577,6 +579,9 @@ class RunIsolatedTest(RunIsolatedTestBase):
           '': [('infra/tools/luci/isolated/linux-amd64',
                 run_isolated.ISOLATED_REVISION)],
       }
+      yield {
+          '': [('infra/tools/luci/cas/linux-amd64', run_isolated.CAS_REVISION)],
+      }
 
     pins_gen = pins_generator()
 
@@ -632,7 +637,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     ret = run_isolated.main(cmd)
     self.assertEqual(0, ret)
 
-    self.assertEqual(3, len(self.popen_calls))
+    self.assertEqual(4, len(self.popen_calls))
 
     # Test cipd-ensure command for installing packages.
     cipd_ensure_cmd, _ = self.popen_calls[0]
@@ -660,7 +665,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     self.assertTrue(fs.isfile(client_binary_file))
 
     # Test echo call.
-    echo_cmd, _ = self.popen_calls[2]
+    echo_cmd, _ = self.popen_calls[3]
     self.assertTrue(echo_cmd[0].endswith(
         os.path.sep + 'bin' + os.path.sep + 'echo' + cipd.EXECUTABLE_SUFFIX),
         echo_cmd[0])
@@ -733,7 +738,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
         os.path.join(cipd_cache, 'bin', 'cipd' + cipd.EXECUTABLE_SUFFIX))
     self.assertTrue(fs.isfile(client_binary_link))
 
-    env = self.popen_calls[1][1].pop('env')
+    env = self.popen_calls[2][1].pop('env')
     exec_path = self.ir_dir(u'a', 'bin', 'echo')
     if sys.platform == 'win32':
       exec_path += '.exe'
@@ -751,7 +756,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
             ),
         ],
         # Ignore `cipd ensure` for isolated client here.
-        self.popen_calls[1:])
+        self.popen_calls[2:])
 
     # Directory with cipd client is in front of PATH.
     path = env['PATH'].split(os.pathsep)
@@ -1009,6 +1014,7 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
           isolate_cache=local_caching.MemoryContentAddressedCache(),
           cas_instance=None,
           cas_digest=None,
+          token_server=None,
           outputs=None,
           install_named_caches=init_named_caches_stub,
           leak_temp_dir=False,
@@ -1387,6 +1393,7 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           isolate_cache=local_caching.MemoryContentAddressedCache(),
           cas_instance=None,
           cas_digest=None,
+          token_server=None,
           outputs=[
               'foo1',
               # They must be in OS native path.
