@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "c93dc114_a299d979",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-11T04:59:57Z",
+      "side": 1,
+      "message": "do we still need to have this?",
+      "revId": "4a1065b1125bed0d97f07fca389348fb22c8d926",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d7e7018e_5760cfed",
         "filename": "appengine/swarming/server/bot_auth.py",
         "patchSetId": 2
@@ -13,6 +30,30 @@
       "writtenOn": "2020-09-11T04:58:31Z",
       "side": 1,
       "message": "or BadRequestError in handlers_bot.py?",
+      "range": {
+        "startLine": 48,
+        "startChar": 15,
+        "endLine": 48,
+        "endChar": 33
+      },
+      "revId": "4a1065b1125bed0d97f07fca389348fb22c8d926",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dababfa_905e470d",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-11T04:59:57Z",
+      "side": 1,
+      "message": "I think this is fine.",
+      "parentUuid": "d7e7018e_5760cfed",
       "range": {
         "startLine": 48,
         "startChar": 15,
