@@ -63,6 +63,30 @@
       "revId": "4a1065b1125bed0d97f07fca389348fb22c8d926",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecbf4582_56ca6e99",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-11T05:11:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1dababfa_905e470d",
+      "range": {
+        "startLine": 48,
+        "startChar": 15,
+        "endLine": 48,
+        "endChar": 33
+      },
+      "revId": "4a1065b1125bed0d97f07fca389348fb22c8d926",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
