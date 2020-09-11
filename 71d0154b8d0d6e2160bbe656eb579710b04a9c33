@@ -122,6 +122,23 @@
       "revId": "71d0154b8d0d6e2160bbe656eb579710b04a9c33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f945d33_fdf5ffe2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-11T00:39:06Z",
+      "side": 1,
+      "message": "I\u0027ll let you CQ+2 when you are ready because you then need to run the setup BQ script again to update the schema before the code gets pushed.",
+      "revId": "71d0154b8d0d6e2160bbe656eb579710b04a9c33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
