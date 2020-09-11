@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5848a2de_0fdababd",
+        "filename": "appengine/swarming/server/bot_auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-11T05:11:26Z",
+      "side": 1,
+      "message": "looks not necessary. removed it.",
+      "parentUuid": "c93dc114_a299d979",
+      "revId": "4a1065b1125bed0d97f07fca389348fb22c8d926",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7e7018e_5760cfed",
         "filename": "appengine/swarming/server/bot_auth.py",
         "patchSetId": 2
