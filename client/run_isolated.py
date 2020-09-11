@@ -111,6 +111,7 @@ ISOLATED_RUN_DIR = u'ir'
 ISOLATED_OUT_DIR = u'io'
 ISOLATED_TMP_DIR = u'it'
 ISOLATED_CLIENT_DIR = u'ic'
+CAS_CLIENT_DIR = u'cc'
 
 # TODO(tikuta): take these parameter from luci-config?
 # Update tag by `./client/update_isolated.sh`.
@@ -496,12 +497,12 @@ def run_command(
   return exit_code, had_hard_timeout
 
 
-def _run_go_isolated_and_wait(cmd):
+def _run_go_cmd_and_wait(cmd):
   """
-  Runs a Go `isolated` command and wait for its completion.
+  Runs an external Go command, `isolated` or `cas`, and wait for its completion.
 
   While this is a generic function to launch a subprocess, it has logic that
-  is specific to Go `isolated` for waiting and logging.
+  is specific to Go `isolated` and `cas` for waiting and logging.
 
   Returns:
     The subprocess object
@@ -515,7 +516,7 @@ def _run_go_isolated_and_wait(cmd):
     max_checks = 100
     # max timeout = max_checks * check_period_sec = 50 minutes
     for i in range(max_checks):
-      # This is to prevent I/O timeout error during isolated setup.
+      # This is to prevent I/O timeout error during setup.
       try:
         retcode = proc.wait(check_period_sec)
         if retcode != 0:
@@ -523,8 +524,7 @@ def _run_go_isolated_and_wait(cmd):
         exceeded_max_timeout = False
         break
       except subprocess42.TimeoutExpired:
-        print('still running isolated (after %d seconds)' %
-              ((i + 1) * check_period_sec))
+        print('still running (after %d seconds)' % ((i + 1) * check_period_sec))
 
     if exceeded_max_timeout:
       proc.terminate()
@@ -544,6 +544,57 @@ def _run_go_isolated_and_wait(cmd):
   except Exception:
     logging.exception('Failed to run Go cmd %s', cmd_str)
     raise
+
+
+def _fetch_and_map_with_cas(cas_client, digest, instance, token_server,
+                            output_dir, cache_dir, policies):
+  """
+  Fetches an cas tree using cas client, create the tree and returns download
+  stats.
+  """
+
+  start = time.time()
+  server_ref = storage.server_ref
+  result_json_handle, result_json_path = tempfile.mkstemp(
+      prefix=u'fetch-and-map-result-', suffix=u'.json')
+  os.close(result_json_handle)
+  try:
+    cmd = [
+        cas_client,
+        'download',
+        '-digest',
+        digest,
+        '-cas-instance',
+        instance,
+        '-token-server-host',
+        token_server,
+        # flags for cache.
+        '-cache-dir',
+        cache_dir,
+        '-cache-max-items',
+        str(policies.max_items),
+        '-cache-max-size',
+        str(policies.max_cache_size),
+        '-cache-min-free-space',
+        str(policies.min_free_space),
+        # flags for output.
+        '-dir',
+        output_dir,
+        '-dump-stats-json',
+        result_json_path,
+    ]
+    _run_go_cmd_and_wait(cmd)
+
+    with open(result_json_path) as json_file:
+      result_json = json.load(json_file)
+
+    return {
+        'duration': time.time() - start,
+        'items_cold': result_json['items_cold'],
+        'items_hot': result_json['items_hot'],
+    }
+  finally:
+    fs.remove(result_json_path)
 
 
 def _fetch_and_map_with_go(isolated_hash, storage, outdir, go_cache_dir,
@@ -584,7 +635,7 @@ def _fetch_and_map_with_go(isolated_hash, storage, outdir, go_cache_dir,
         '-fetch-and-map-result-json',
         result_json_path,
     ]
-    _run_go_isolated_and_wait(cmd)
+    _run_go_cmd_and_wait(cmd)
 
     with open(result_json_path) as json_file:
       result_json = json.load(json_file)
@@ -738,7 +789,7 @@ def _upload_with_go(storage, outdir, isolated_client):
     started = time.time()
     while True:
       try:
-        _run_go_isolated_and_wait(cmd)
+        _run_go_cmd_and_wait(cmd)
         break
       except Exception:
         if time.time() > started + 60 * 2:
@@ -747,7 +798,7 @@ def _upload_with_go(storage, outdir, isolated_client):
 
         on_error.report('error before %d second backoff' % backoff)
         logging.exception(
-            '_run_go_isolated_and_wait() failed, will retry after %d seconds',
+            '_run_go_cmd_and_wait() failed, will retry after %d seconds',
             backoff)
         time.sleep(backoff)
         backoff *= 2
@@ -886,6 +937,11 @@ def map_and_run(data, constant_run_path):
   if data.use_go_isolated:
     go_isolated_client = os.path.join(isolated_client_dir,
                                       'isolated' + cipd.EXECUTABLE_SUFFIX)
+  cas_client = None
+  if data.cas_digest:
+    cas_client_dir = make_temp_dir(CAS_CLIENT_DIR, data.root_dir)
+    cas_client = os.path.join(cas_client_dir, 'cas' + cipd.EXECUTABLE_SUFFIX)
+
   try:
     with data.install_packages_fn(run_dir, isolated_client_dir) as cipd_info:
       if cipd_info:
@@ -919,18 +975,15 @@ def map_and_run(data, constant_run_path):
             cwd = os.path.normpath(os.path.join(cwd, bundle.relative_cwd))
 
       elif data.cas_digest:
-        # TODO(crbug.com/1117004): download inputs from CAS.
-        # stats = _fetch_and_map_with_cas_client(
-        #     instance=data.cas_instance,
-        #     digest=data.cas_digest,
-        #     out_dir=data.out_dir,
-        #     cas_client=cas_client,
-        #     ...(cache options)...
-        # )
-        #
-        # TODO(crbug.com/1117004): update downlaod stats.
-        # isolated_stats['download'].update(stats)
-        pass
+        stats = _fetch_and_map_with_cas(
+            cas_client=cas_client,
+            digest=data.cas_digest,
+            instance=data.cas_instance,
+            token_server=data.token_server,
+            output_dir=data.out_dir,
+            cache_dir=data.cas_cache_dir,
+            policies=data.cas_cache_policies)
+        isolated_stats['download'].update(stats)
 
       if not command:
         # Handle this as a task failure, not an internal failure.
