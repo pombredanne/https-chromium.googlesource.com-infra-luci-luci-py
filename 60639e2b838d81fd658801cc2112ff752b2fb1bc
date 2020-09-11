@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4da152a_7149676f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-11T07:39:11Z",
+      "side": 1,
+      "message": "This is cas client integration in run_isolated.py \nI still need to add tests. But would like have early feedback.",
+      "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
