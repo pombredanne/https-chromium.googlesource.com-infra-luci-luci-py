@@ -354,6 +354,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
         isolate_cache=local_caching.MemoryContentAddressedCache(),
         cas_instance=None,
         cas_digest=None,
+        token_server=None,
         outputs=None,
         install_named_caches=init_named_caches_stub,
         leak_temp_dir=False,
@@ -1009,6 +1010,7 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
           isolate_cache=local_caching.MemoryContentAddressedCache(),
           cas_instance=None,
           cas_digest=None,
+          token_server=None,
           outputs=None,
           install_named_caches=init_named_caches_stub,
           leak_temp_dir=False,
@@ -1387,6 +1389,7 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           isolate_cache=local_caching.MemoryContentAddressedCache(),
           cas_instance=None,
           cas_digest=None,
+          token_server=None,
           outputs=[
               'foo1',
               # They must be in OS native path.
