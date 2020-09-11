@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "327920f0_b989611d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-11T13:33:57Z",
+      "side": 1,
+      "message": "done. \nBut want to add tests before merging this.",
+      "parentUuid": "7de32973_169a29ba",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4da152a_7149676f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 5
@@ -94,6 +118,24 @@
     },
     {
       "key": {
+        "uuid": "9da2817a_1c879d04",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-11T13:33:57Z",
+      "side": 1,
+      "message": "Thank you.\nAgree to switch token server in cas client. \nI removed token server option.",
+      "parentUuid": "14b8f8e7_5d2c388c",
+      "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f5744f05_560adfb0",
         "filename": "client/run_isolated.py",
         "patchSetId": 5
@@ -114,6 +156,30 @@
       "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93207507_24faee51",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-11T13:33:57Z",
+      "side": 1,
+      "message": "Thank you for your suggestion. \nUpdated.",
+      "parentUuid": "f5744f05_560adfb0",
+      "range": {
+        "startLine": 226,
+        "startChar": 33,
+        "endLine": 226,
+        "endChar": 40
+      },
+      "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +206,30 @@
     },
     {
       "key": {
+        "uuid": "cdffcf44_0f1f12fe",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-11T13:33:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bfb354a_25db9684",
+      "range": {
+        "startLine": 228,
+        "startChar": 34,
+        "endLine": 228,
+        "endChar": 41
+      },
+      "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c43c7962_149e549c",
         "filename": "client/run_isolated.py",
         "patchSetId": 5
@@ -163,6 +253,30 @@
     },
     {
       "key": {
+        "uuid": "5bc1182c_ec6ff16a",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-11T13:33:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c43c7962_149e549c",
+      "range": {
+        "startLine": 557,
+        "startChar": 10,
+        "endLine": 557,
+        "endChar": 16
+      },
+      "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a92e67ac_ccdb5ef5",
         "filename": "client/run_isolated.py",
         "patchSetId": 5
@@ -177,6 +291,24 @@
       "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2fd2e7f_1dbe667a",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-11T13:33:57Z",
+      "side": 1,
+      "message": "agree.",
+      "parentUuid": "a92e67ac_ccdb5ef5",
+      "revId": "60639e2b838d81fd658801cc2112ff752b2fb1bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
