@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97722603_fc5eda98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-09-12T05:57:25Z",
+      "side": 1,
+      "message": "jwata@ and @tikuto,\n\nThis is to add --resultdb so that resultdb is enabled in swarming tasks triggered by the legacy way with swarming.py\n: https://source.chromium.org/chromium/chromium/tools/build/+/master:recipes/recipe_modules/chromium_swarming/api.py;l\u003d973\n\nJFYI, I considered to add a check to ensure that --realm and --resultdb are specified together, as resultdb requires realm enabled.\n\nHowever, I found that realm can be enabled with the default task realm, even if the realm field was omitted in the request.\n: https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/handlers_endpoints.py;l\u003d537-555, realm can be enabled with the default task realm, even if the field was omitted in the request message.\n\nThus, I didn\u0027t add the check, but let me know if I missed something.",
+      "revId": "e249010a6fff556dcff721a8d70dba6802c8c02c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
