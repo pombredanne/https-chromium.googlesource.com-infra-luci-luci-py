@@ -685,9 +685,9 @@ class _TaskResultCommon(ndb.Model):
     out['id'] = self.task_id
     return out
 
-  def to_proto(self, out):
+  def to_proto(self, out, transactional=False):
     """Converts self to a swarming_pb2.TaskResult"""
-    self.request.to_proto(out.request)
+    self.request.to_proto(out.request, transactional=transactional)
     if self.created_ts:
       # Can only be unset in test case.
       out.create_time.FromDatetime(self.created_ts)
@@ -708,6 +708,8 @@ class _TaskResultCommon(ndb.Model):
     if self.try_number is not None:
       out.try_number = self.try_number
     out.current_task_slice = self.current_task_slice
+    del out.bot.dimensions[:]
+    del out.bot.pools[:]
     if self.bot_dimensions:
       # TODO(maruel): Keep a complete snapshot. This is a bit clunky at the
       # moment. https://crbug.com/850560
@@ -719,7 +721,9 @@ class _TaskResultCommon(ndb.Model):
           out.bot.bot_id = values[0]
         elif key == u'pool':
           out.bot.pools.extend(values)
+    del out.server_versions[:]
     out.server_versions.extend(self.server_versions)
+    del out.children_task_ids[:]
     out.children_task_ids.extend(self.children_task_ids)
     if self.deduped_from:
       out.deduped_from = self.deduped_from

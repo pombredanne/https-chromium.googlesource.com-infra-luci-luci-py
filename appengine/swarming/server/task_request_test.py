@@ -1342,6 +1342,10 @@ class TaskRequestApiTest(TestCase):
     actual = swarming_pb2.TaskRequest()
     request.to_proto(actual)
     self.assertEqual(unicode(expected), unicode(actual))
+    # While it tests that transactional flag is accepted, it also ensures that
+    # the method properly overwrites the output for repeated fields.
+    request.to_proto(actual, transactional=True)
+    self.assertEqual(unicode(expected), unicode(actual))
 
   def test_TaskRequest_to_proto_empty(self):
     # Assert that it doesn't throw on empty entity.
