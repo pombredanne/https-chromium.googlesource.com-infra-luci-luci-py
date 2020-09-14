@@ -1927,7 +1927,7 @@ def task_delete_tasks(task_ids):
                  total)
 
 
-def task_bq(start, end):
+def task_bq(start, end, cursor=None):
   """Sends TaskRequest to BigQuery swarming.task_requests table."""
 
   # TODO(maruel): What about shutdown requests.
@@ -1942,11 +1942,9 @@ def task_bq(start, end):
 
   q = TaskRequest.query(TaskRequest.created_ts >= start,
                         TaskRequest.created_ts <= end)
-  cursor = None
-  more = True
-  while more:
-    entities, cursor, more = q.fetch_page(300, start_cursor=cursor)
-    total += len(entities)
-    failed += bq_state.send_to_bq('task_requests',
-                                  [_convert(e) for e in entities])
-  return total, failed
+  entities, next_cursor, _ = q.fetch_page(300, start_cursor=cursor)
+
+  total = len(entities)
+  failed = bq_state.send_to_bq('task_requests', [_convert(e) for e in entities])
+
+  return total, failed, next_cursor
