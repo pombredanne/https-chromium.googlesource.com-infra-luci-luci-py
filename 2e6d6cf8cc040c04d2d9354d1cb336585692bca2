@@ -16,6 +16,23 @@
       "revId": "2e6d6cf8cc040c04d2d9354d1cb336585692bca2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9eebe7de_8a0f6fa0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-09-14T20:10:09Z",
+      "side": 1,
+      "message": "I\u0027ll defer to swarming folks on this; Note that this is mitigated in production so it\u0027s not actively on fire at the moment :)",
+      "revId": "2e6d6cf8cc040c04d2d9354d1cb336585692bca2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
