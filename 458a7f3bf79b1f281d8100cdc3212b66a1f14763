@@ -51,6 +51,24 @@
       "revId": "458a7f3bf79b1f281d8100cdc3212b66a1f14763",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62b2a298_93dbf1f0",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1337,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-14T14:11:15Z",
+      "side": 1,
+      "message": "It would make the query harder without value.\n\nInstead of checking for an empty string, we\u0027d have to check for a condition where task_id \u003d root_task_id.",
+      "parentUuid": "a7deb6ed_e0a874d1",
+      "revId": "458a7f3bf79b1f281d8100cdc3212b66a1f14763",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
