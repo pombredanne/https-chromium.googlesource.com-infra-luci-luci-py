@@ -362,7 +362,20 @@ class TaskMonitoringTasksRequestsBQ(webapp2.RequestHandler):
     ndb.get_context().set_cache_policy(lambda _: False)
     start = datetime.datetime.strptime(timestamp, u'%Y-%m-%dT%H:%M')
     end = start + datetime.timedelta(seconds=60)
-    task_request.task_bq(start, end)
+    payload = json.loads(self.request.body)
+    total, failed, next_cursor = task_request.task_bq(start, end,
+                                                      payload.get('cursor'))
+
+    logging.info('Inserted task requests. total: %s, failed: %s', total, failed)
+
+    # Enqueue next task if there are more tasks.
+    if not cursor:
+      return
+
+    ok = utils.enqueue_task(
+        '/internal/taskqueue/monitoring/bq/tasks/requests/' + timestamp,
+        'monitoring-bq-tasks-requests',
+        payload={'cursor': cursor})
 
 
 class TaskMonitoringTasksResultsRunBQ(webapp2.RequestHandler):
