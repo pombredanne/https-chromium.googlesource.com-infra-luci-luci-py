@@ -66,6 +66,30 @@
     },
     {
       "key": {
+        "uuid": "9b3bf659_f284ba01",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-14T04:29:35Z",
+      "side": 1,
+      "message": "Oh, you\u0027re right.\nI\u0027m confused with request and request_obj.",
+      "parentUuid": "6c4fac52_3f78b0ac",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 13,
+        "endChar": 62
+      },
+      "revId": "bc0c61db04093524e4e7c0634ee856c727758ae0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58f85863_85ffee09",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 1
@@ -125,6 +149,30 @@
       "side": 1,
       "message": "err, enforce_realms_acl is set only if realm was *specified* in the request message.\n\nWhen the request was missing realm, the default task realm is used instead and \n check_pools_create_task() can return true, if the caller has REALM_PERMISSION_POOLS_CREATE_TASK in the default task realm.",
       "parentUuid": "29163355_4f75d6be",
+      "range": {
+        "startLine": 641,
+        "startChar": 33,
+        "endLine": 641,
+        "endChar": 50
+      },
+      "revId": "bc0c61db04093524e4e7c0634ee856c727758ae0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "623b79c2_989d664b",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-14T04:29:35Z",
+      "side": 1,
+      "message": "\u003e Please use the local variable `enforce_realms_acl`.\n\nMy bad. I was confused with request and requset_obj.\nSorry about that.\n\nThere is request_obj.realms_enabled flag which indicates that realm checks are enabled for the specific Swarming task.  \nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/handlers_endpoints.py;l\u003d554;bpv\u003d0;bpt\u003d0\n\n1) If we use request_obj.realms_enabled,\nWe can avoid result DB to be enabled when realms aren\u0027t enabled for the task.\n\n2) If we use request_obj.realm,\nwe can allow result DB to be enabled with the default realm even when realms aren\u0027t enabled for the task.",
+      "parentUuid": "5da64fe9_24a54eb9",
       "range": {
         "startLine": 641,
         "startChar": 33,
