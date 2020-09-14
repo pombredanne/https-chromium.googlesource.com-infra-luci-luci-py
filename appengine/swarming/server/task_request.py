@@ -653,6 +653,7 @@ class CipdInput(ndb.Model):
     """Converts self to a swarming_pb2.CIPDInputs."""
     if self.server:
       out.server = self.server
+    del out.packages[:]
     for c in self.packages:
       dst = out.packages.add()
       c.to_proto(dst)
@@ -900,31 +901,38 @@ class TaskProperties(ndb.Model):
       self.inputs_ref.to_proto(out.cas_inputs)
     if self.cas_input_root:
       self.cas_input_root.to_proto(out.cas_input_root)
+    del out.cipd_inputs[:]
     if self.cipd_input:
       # It's possible for self.cipd_input to be None.
       for c in self.cipd_input.packages:
         dst = out.cipd_inputs.add()
         c.to_proto(dst)
+    del out.named_caches[:]
     for c in self.caches:
       dst = out.named_caches.add()
       c.to_proto(dst)
+    del out.command[:]
     if self.command:
       out.command.extend(self.command)
     if self.containment:
       self.containment.to_proto(out.containment)
     if self.relative_cwd:
       out.relative_cwd = self.relative_cwd
+    del out.extra_args[:]
     if self.extra_args:
       out.extra_args.extend(self.extra_args)
     out.has_secret_bytes = self.has_secret_bytes
+    del out.dimensions[:]
     for key, values in sorted(self.dimensions.items()):
       v = out.dimensions.add()
       v.key = key
       v.values.extend(sorted(values))
+    del out.env[:]
     for key, value in sorted((self.env or {}).items()):
       v = out.env.add()
       v.key = key
       v.value = value
+    del out.env_paths[:]
     for key, values in sorted((self.env_prefixes or {}).items()):
       v = out.env_paths.add()
       v.key = key
@@ -936,6 +944,7 @@ class TaskProperties(ndb.Model):
     if self.grace_period_secs:
       out.grace_period.seconds = self.grace_period_secs
     out.idempotent = self.idempotent
+    del out.outputs[:]
     if self.outputs:
       out.outputs.extend(self.outputs)
 
@@ -1303,9 +1312,14 @@ class TaskRequest(ndb.Model):
       out['task_slices'] = [t.to_dict() for t in self.task_slices]
     return out
 
-  def to_proto(self, out):
-    """Converts self to a swarming_pb2.TaskRequest."""
+  def to_proto(self, out, transactional=False):
+    """Converts self to a swarming_pb2.TaskRequest.
+
+    When transactional is True, do not fill up root_task_id/root_run_id since
+    this implicitly does a cross-transactional transaction.
+    """
     # Scheduling.
+    del out.task_slices[:]
     for task_slice in self.task_slices:
       t = out.task_slices.add()
       task_slice.to_proto(t, self)
@@ -1319,6 +1333,7 @@ class TaskRequest(ndb.Model):
       out.create_time.FromDatetime(self.created_ts)
     if self.name:
       out.name = self.name
+    del out.tags[:]
     out.tags.extend(self.tags)
     if self.user:
       out.user = self.user
@@ -1337,18 +1352,19 @@ class TaskRequest(ndb.Model):
       parent_id = self.parent_task_id
       out.parent_run_id = parent_id
       out.parent_task_id = parent_id[:-1] + '0'
-      while True:
-        run_result_key = task_pack.unpack_run_result_key(parent_id)
-        result_summary_key = task_pack.run_result_key_to_result_summary_key(
-            run_result_key)
-        request_key = task_pack.result_summary_key_to_request_key(
-            result_summary_key)
-        parent = request_key.get()
-        if not parent.parent_task_id:
-          break
-        parent_id = parent.parent_task_id
-      out.root_run_id = parent_id
-      out.root_task_id = parent_id[:-1] + '0'
+      if not transactional:
+        while True:
+          run_result_key = task_pack.unpack_run_result_key(parent_id)
+          result_summary_key = task_pack.run_result_key_to_result_summary_key(
+              run_result_key)
+          request_key = task_pack.result_summary_key_to_request_key(
+              result_summary_key)
+          parent = request_key.get()
+          if not parent.parent_task_id:
+            break
+          parent_id = parent.parent_task_id
+        out.root_run_id = parent_id
+        out.root_task_id = parent_id[:-1] + '0'
     if self.pubsub_topic:
       out.pubsub_notification.topic = self.pubsub_topic
     # self.pubsub_auth_token cannot be retrieved.
