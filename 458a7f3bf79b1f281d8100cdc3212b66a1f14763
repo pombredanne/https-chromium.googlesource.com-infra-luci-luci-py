@@ -34,6 +34,23 @@
       "revId": "458a7f3bf79b1f281d8100cdc3212b66a1f14763",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7deb6ed_e0a874d1",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1337,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-14T13:28:20Z",
+      "side": 1,
+      "message": "maybe you want to set task\u0027s id if the task doesn\u0027t have parent_task_id?",
+      "revId": "458a7f3bf79b1f281d8100cdc3212b66a1f14763",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
