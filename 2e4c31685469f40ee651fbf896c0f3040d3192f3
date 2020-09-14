@@ -34,6 +34,24 @@
       "revId": "2e4c31685469f40ee651fbf896c0f3040d3192f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef80f194_9ec68af6",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1396,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-14T03:44:56Z",
+      "side": 1,
+      "message": "I think it is fine using the same cache dir if task runner can pass cache dir for cas.",
+      "parentUuid": "3eadfc37_d3a2f91a",
+      "revId": "2e4c31685469f40ee651fbf896c0f3040d3192f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
