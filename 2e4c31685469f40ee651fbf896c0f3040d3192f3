@@ -16,6 +16,24 @@
       "revId": "2e4c31685469f40ee651fbf896c0f3040d3192f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3eadfc37_d3a2f91a",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1396,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-14T02:59:32Z",
+      "side": 1,
+      "message": "I was also wondering if run_isolated.py should have other cache options.\nBut, I think the caller can specify a different cache dir to `--cache`. \n\nShould the CAS cache options (directory and policies) be different name explicitly?",
+      "parentUuid": "a5d0ff83_e8a9317a",
+      "revId": "2e4c31685469f40ee651fbf896c0f3040d3192f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
