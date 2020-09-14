@@ -35,14 +35,32 @@ queue:
 # /internal/taskqueue/monitoring/bq/tasks/requests/<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>
 - name: monitoring-bq-tasks-requests
   rate: 10/s
+  # Because the code itself may have a bug, it's better to give up after few
+  # attempts and let bq_state.cron_trigger_tasks() to trigger a backfill job
+  # with new code.
+  retry_parameters:
+    task_retry_limit: 3
+    task_age_limit: 1h
 
 # /internal/taskqueue/monitoring/bq/tasks/results/run/<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>
 - name: monitoring-bq-tasks-results-run
   rate: 10/s
+  # Because the code itself may have a bug, it's better to give up after few
+  # attempts and let bq_state.cron_trigger_tasks() to trigger a backfill job
+  # with new code.
+  retry_parameters:
+    task_retry_limit: 3
+    task_age_limit: 1h
 
 # /internal/taskqueue/monitoring/bq/tasks/results/summary/<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>
 - name: monitoring-bq-tasks-results-summary
   rate: 10/s
+  # Because the code itself may have a bug, it's better to give up after few
+  # attempts and let bq_state.cron_trigger_tasks() to trigger a backfill job
+  # with new code.
+  retry_parameters:
+    task_retry_limit: 3
+    task_age_limit: 1h
 
 # /internal/taskqueue/cleanup/tasks/delete
 # An heavy workload produces 1000 tasks per minute, 10000 tasks per 10 minutes.
@@ -103,6 +121,12 @@ queue:
 # /internal/taskqueue/monitoring/bq/bots/events/<timestamp:\d{4}-\d\d-\d\dT\d\d:\d\d>
 - name: monitoring-bq-bots-events
   rate: 10/s
+  # Because the code itself may have a bug, it's better to give up after few
+  # attempts and let bq_state.cron_trigger_tasks() to trigger a backfill job
+  # with new code.
+  retry_parameters:
+    task_retry_limit: 3
+    task_age_limit: 1h
 
 
 ## General
