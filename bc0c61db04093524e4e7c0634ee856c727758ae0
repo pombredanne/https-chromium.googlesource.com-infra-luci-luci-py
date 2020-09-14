@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "ff3b66c6_87a5fd67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-09-14T10:02:34Z",
+      "side": 1,
+      "message": "added.",
+      "parentUuid": "5c4f6f32_4601c4cf",
+      "revId": "bc0c61db04093524e4e7c0634ee856c727758ae0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58f85863_85ffee09",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 1
@@ -182,6 +200,30 @@
       "revId": "bc0c61db04093524e4e7c0634ee856c727758ae0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3104ff3b_58e42297",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-09-14T10:02:34Z",
+      "side": 1,
+      "message": "Updated to use request_obj.realms_enabled.",
+      "parentUuid": "623b79c2_989d664b",
+      "range": {
+        "startLine": 641,
+        "startChar": 33,
+        "endLine": 641,
+        "endChar": 50
+      },
+      "revId": "bc0c61db04093524e4e7c0634ee856c727758ae0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
