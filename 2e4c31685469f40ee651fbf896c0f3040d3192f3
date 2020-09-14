@@ -52,6 +52,24 @@
       "revId": "2e4c31685469f40ee651fbf896c0f3040d3192f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19127021_b0ccace2",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1396,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-14T04:34:56Z",
+      "side": 1,
+      "message": "Let\u0027s use the same option, then.",
+      "parentUuid": "ef80f194_9ec68af6",
+      "revId": "2e4c31685469f40ee651fbf896c0f3040d3192f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
