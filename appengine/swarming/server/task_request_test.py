@@ -1342,6 +1342,11 @@ class TaskRequestApiTest(TestCase):
     actual = swarming_pb2.TaskRequest()
     request.to_proto(actual)
     self.assertEqual(unicode(expected), unicode(actual))
+    actual = swarming_pb2.TaskRequest()
+    expected.root_task_id = ''
+    expected.root_run_id = ''
+    request.to_proto(actual, transactional=True)
+    self.assertEqual(unicode(expected), unicode(actual))
 
   def test_TaskRequest_to_proto_empty(self):
     # Assert that it doesn't throw on empty entity.
