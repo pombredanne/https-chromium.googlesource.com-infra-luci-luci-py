@@ -16,6 +16,52 @@
       "revId": "bc0c61db04093524e4e7c0634ee856c727758ae0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4eed2633_6ff389c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-14T01:38:31Z",
+      "side": 1,
+      "message": "Do you want to avoid using the default realm for ResultDB?",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 13,
+        "endChar": 62
+      },
+      "revId": "bc0c61db04093524e4e7c0634ee856c727758ae0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58f85863_85ffee09",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-14T01:38:31Z",
+      "side": 1,
+      "message": "Please use the local variable `enforce_realms_acl`.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/handlers_endpoints.py;l\u003d542;bpv\u003d1;bpt\u003d0?q\u003df:handlers_end\u0026ss\u003dchromium%2Finfra%2Finfra",
+      "range": {
+        "startLine": 641,
+        "startChar": 33,
+        "endLine": 641,
+        "endChar": 50
+      },
+      "revId": "bc0c61db04093524e4e7c0634ee856c727758ae0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
