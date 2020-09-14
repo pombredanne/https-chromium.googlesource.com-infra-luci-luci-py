@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a5d0ff83_e8a9317a",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1396,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-14T02:53:59Z",
+      "side": 1,
+      "message": "could you use different cache for cas dir?",
+      "revId": "2e4c31685469f40ee651fbf896c0f3040d3192f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
