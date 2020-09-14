@@ -110,6 +110,30 @@
       "revId": "bc0c61db04093524e4e7c0634ee856c727758ae0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5da64fe9_24a54eb9",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-09-14T03:37:38Z",
+      "side": 1,
+      "message": "err, enforce_realms_acl is set only if realm was *specified* in the request message.\n\nWhen the request was missing realm, the default task realm is used instead and \n check_pools_create_task() can return true, if the caller has REALM_PERMISSION_POOLS_CREATE_TASK in the default task realm.",
+      "parentUuid": "29163355_4f75d6be",
+      "range": {
+        "startLine": 641,
+        "startChar": 33,
+        "endLine": 641,
+        "endChar": 50
+      },
+      "revId": "bc0c61db04093524e4e7c0634ee856c727758ae0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
