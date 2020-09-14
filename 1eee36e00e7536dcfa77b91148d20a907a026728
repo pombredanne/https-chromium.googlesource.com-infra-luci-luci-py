@@ -16,6 +16,24 @@
       "revId": "1eee36e00e7536dcfa77b91148d20a907a026728",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "981e6b68_90a56f0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-14T08:41:52Z",
+      "side": 1,
+      "message": "I randomly picked the number with assumption that this job usually completes without any retry.\nLet me check if there are some metrics.",
+      "parentUuid": "a515c075_95e9f276",
+      "revId": "1eee36e00e7536dcfa77b91148d20a907a026728",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
