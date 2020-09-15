@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "241bf85f_2ffe3f16",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-15T01:03:43Z",
+      "side": 1,
+      "message": "Ah! It actually got caught by my new assert but the ndb unit testing library doesn\u0027t test for it by default. Will upload another patchset shortly",
+      "parentUuid": "981083ac_9da45731",
+      "range": {
+        "startLine": 216,
+        "startChar": 33,
+        "endLine": 216,
+        "endChar": 52
+      },
+      "revId": "fbd07ed659efb71f8ec42dc22e307b0bfc48cda3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa6dc3a4_5e13e1ea",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 4
