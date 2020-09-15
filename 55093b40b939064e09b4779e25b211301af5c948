@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a23c42a_4d0d23cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-15T01:26:40Z",
+      "side": 1,
+      "message": "That should unblock you from pushing to prod. If it still fails revert this one and https://crrev.com/c/2401539 and I\u0027ll cry a little (aka will try to fix tomorrow).",
+      "revId": "55093b40b939064e09b4779e25b211301af5c948",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
