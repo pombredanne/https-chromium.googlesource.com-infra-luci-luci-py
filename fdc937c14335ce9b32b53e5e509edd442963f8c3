@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c5a6068_8536dee6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T02:49:39Z",
+      "side": 1,
+      "message": "Let me revert the root id CL for now.  \nI think we want to avoid appending root IDs for external scheduler.",
+      "revId": "fdc937c14335ce9b32b53e5e509edd442963f8c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
