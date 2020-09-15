@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "66700a55_68df3880",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T02:26:57Z",
+      "side": 1,
+      "message": "I think changing the flag from `transactional` to `append_root_id` would be better.",
+      "parentUuid": "ed5c0370_5069e555",
+      "revId": "67087d540667283ab18d11b93abadcc79655adb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3f77645b_78ab6c6d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -65,6 +83,24 @@
       "writtenOn": "2020-09-15T02:24:49Z",
       "side": 1,
       "message": "you also need to revert change adding root_task_id",
+      "revId": "67087d540667283ab18d11b93abadcc79655adb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "13ba35a7_ddbc7a2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T02:26:57Z",
+      "side": 1,
+      "message": "\u003e The overhead acceptable in BQ export isn\u0027t acceptable in bot API and external scheduler integration which have heavy load.\n\nLet me revert this change for the reason.",
+      "parentUuid": "f352611b_d0ab164d",
       "revId": "67087d540667283ab18d11b93abadcc79655adb8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
