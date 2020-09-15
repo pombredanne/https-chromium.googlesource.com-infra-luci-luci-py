@@ -441,13 +441,21 @@ def load_and_run(in_file, swarming_server, cost_usd_hour, start, out_file,
 
 
 def kill_and_wait(proc, grace_period, reason):
-  logging.warning('SIGTERM finally due to %s', reason)
-  proc.terminate()
-  try:
-    proc.wait(grace_period)
-  except subprocess42.TimeoutExpired:
-    logging.warning('SIGKILL finally due to %s', reason)
-    proc.kill()
+  # See "Graceful termination, aka the SIGTERM and SIGKILL dance" section in
+  # bot/Doc.md for why we do up to two rounds of terminate().
+  for i, wait_for in enumerate([grace_period, grace_period*.2]):
+    logging.warning('SIGTERM(%d) due to %s', i, reason)
+    proc.terminate()
+    try:
+      proc.wait(wait_for)
+    except subprocess42.TimeoutExpired:
+      pass
+
+  # We do .kill always; Even if the parent process returned, we still want to
+  # SIGKILL the process group to minimize the potential for leaks.
+  logging.warning('SIGKILL due to %s', reason)
+  proc.kill()
+
   exit_code = proc.wait()
   logging.info('Process exited with: %d', exit_code)
   return exit_code
@@ -696,6 +704,7 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
     had_io_timeout = False
     must_signal_internal_failure = None
     term_sent = False
+    term2_sent = False
     kill_sent = False
     timed_out = None
     try:
@@ -714,8 +723,8 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
             # Server is telling us to stop. Normally task cancellation.
             if not kill_sent and not term_sent:
               logging.warning('Server induced stop; sending SIGTERM')
-              term_sent = True
               proc.terminate()
+              term_sent = True
               timed_out = monotonic_time()
 
         # Send signal on timeout if necessary. Both are failures, not
@@ -730,11 +739,20 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
                   'I/O timeout is %.3fs; no update for %.3fs sending SIGTERM',
                   task_details.io_timeout, buf.since_last_io)
               proc.terminate()
+              term_sent = True
               timed_out = monotonic_time()
         else:
-          # During grace period.
-          if (not kill_sent and
-              buf.last_loop - timed_out >= task_details.grace_period):
+          # During grace/mercy period.
+          overage = buf.last_loop - timed_out
+
+          if (not term2_sent and overage >= task_details.grace_period):
+            # Send second term.
+            logging.warning(
+                'Grace of %.3fs exhausted at %.3fs; sending second SIGTERM',
+                task_details.grace_period, overage)
+            proc.terminate()
+            term2_sent = True
+          elif (not kill_sent and overage >= (task_details.grace_period*1.2)):
             # Now kill for real. The user can distinguish between the following
             # states:
             # - signal but process exited within grace period,
@@ -742,12 +760,16 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
             #   be script provided.
             # - processed exited late, exit code will be -9 on posix.
             logging.warning(
-                'Grace of %.3fs exhausted at %.3fs; sending SIGKILL',
-                task_details.grace_period, buf.last_loop - timed_out)
+                'Mercy of %.3fs exhausted at %.3fs; sending SIGKILL',
+                task_details.grace_period+5, overage)
             proc.kill()
             kill_sent = True
       logging.info('Waiting for process exit')
       exit_code = proc.wait()
+
+      if not kill_sent:
+        logging.info('Sending final kill to process group/Job')
+        proc.kill()
     except (
         ExitSignal, InternalError, IOError,
         OSError, remote_client.InternalError) as e:
