@@ -102,6 +102,30 @@
     },
     {
       "key": {
+        "uuid": "6f8461cb_396849c5",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T08:29:33Z",
+      "side": 1,
+      "message": "The CIPD downloading part took 4 sec.  \nAnd run_isolated_smoke_test.py took 60 sec. We can probably optimize and avoid spamming CIPD server.\nBut it doesn\u0027t look strong motivation to us at this moment.",
+      "parentUuid": "d6bf17ce_4f5818ad",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 62
+      },
+      "revId": "0260d125c3df14312346af7bdbb5517af62ed3b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "985264f1_76597a9d",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 11
