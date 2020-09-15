@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "2a29138b_f101b966",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-15T01:22:06Z",
+      "side": 1,
+      "message": "Note that it\u0027s not yet supported in the equivalent Go code due to an unfortunate upstream implementation.",
+      "range": {
+        "startLine": 27,
+        "startChar": 31,
+        "endLine": 27,
+        "endChar": 52
+      },
+      "revId": "7c805c5b5b4099eeb8cb5ddee6418dab9177998b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "980af8b5_b2ab982d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 5
@@ -13,6 +36,23 @@
       "writtenOn": "2020-09-15T01:14:16Z",
       "side": 1,
       "message": "note, haven\u0027t brushed up the tests yet, but would appreciate feedback on the overall direction.",
+      "revId": "7c805c5b5b4099eeb8cb5ddee6418dab9177998b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff091670_411737b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-15T01:22:06Z",
+      "side": 1,
+      "message": "I like the idea, thanks!",
       "revId": "7c805c5b5b4099eeb8cb5ddee6418dab9177998b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
