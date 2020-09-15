@@ -52,6 +52,69 @@
       "revId": "0260d125c3df14312346af7bdbb5517af62ed3b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "985264f1_76597a9d",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-15T08:07:21Z",
+      "side": 1,
+      "message": "better to use project name and remove this?\nor use paren?",
+      "revId": "0260d125c3df14312346af7bdbb5517af62ed3b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d77516f_909107a7",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-15T08:07:21Z",
+      "side": 1,
+      "message": "this is not used?",
+      "range": {
+        "startLine": 632,
+        "startChar": 0,
+        "endLine": 633,
+        "endChar": 21
+      },
+      "revId": "0260d125c3df14312346af7bdbb5517af62ed3b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdaeb5ed_5082dfc5",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-15T08:07:21Z",
+      "side": 1,
+      "message": "reverse?",
+      "range": {
+        "startLine": 651,
+        "startChar": 0,
+        "endLine": 652,
+        "endChar": 13
+      },
+      "revId": "0260d125c3df14312346af7bdbb5517af62ed3b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
