@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "fe2bb9bc_f04c5f14",
+        "filename": "client/cipd.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T13:04:39Z",
+      "side": 1,
+      "message": "decided not to remove those options since they are specified in TaskProperties.",
+      "parentUuid": "7f5cf451_413f4d4a",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 60
+      },
+      "revId": "1f71d02a96905fa354d39f8a209d7c1d185c1734",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88ee678d_1dde1bbb",
         "filename": "client/cipd.py",
         "patchSetId": 12
@@ -141,6 +165,30 @@
       "revId": "1f71d02a96905fa354d39f8a209d7c1d185c1734",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47d746b7_0bd5134e",
+        "filename": "client/cipd.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T13:04:39Z",
+      "side": 1,
+      "message": "Done.\n\nI had to change the order of the arguments. PTAL.",
+      "parentUuid": "07a7b1df_11889c82",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "1f71d02a96905fa354d39f8a209d7c1d185c1734",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
