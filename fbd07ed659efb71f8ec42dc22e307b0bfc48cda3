@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "981083ac_9da45731",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-15T00:58:15Z",
+      "side": 1,
+      "message": "Not enough coverage in external_scheduler_test.py?",
+      "parentUuid": "a09f644f_f543f165",
+      "range": {
+        "startLine": 216,
+        "startChar": 33,
+        "endLine": 216,
+        "endChar": 52
+      },
+      "revId": "fbd07ed659efb71f8ec42dc22e307b0bfc48cda3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa6dc3a4_5e13e1ea",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "fbd07ed659efb71f8ec42dc22e307b0bfc48cda3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0ad99f9_d297c9b1",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1306,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-15T00:58:15Z",
+      "side": 1,
+      "message": "That\u0027s an option, but I added an assert instead.",
+      "parentUuid": "fa6dc3a4_5e13e1ea",
+      "range": {
+        "startLine": 1306,
+        "startChar": 26,
+        "endLine": 1306,
+        "endChar": 46
+      },
+      "revId": "fbd07ed659efb71f8ec42dc22e307b0bfc48cda3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,24 @@
       "writtenOn": "2020-09-15T00:45:07Z",
       "side": 1,
       "message": "I see.",
+      "parentUuid": "de5862da_42de884f",
+      "revId": "fbd07ed659efb71f8ec42dc22e307b0bfc48cda3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "886b497c_fa905529",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1344,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-15T00:58:15Z",
+      "side": 1,
+      "message": "Added asserts; now it\u0027s both explicit and verified at runtime.",
       "parentUuid": "de5862da_42de884f",
       "revId": "fbd07ed659efb71f8ec42dc22e307b0bfc48cda3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
