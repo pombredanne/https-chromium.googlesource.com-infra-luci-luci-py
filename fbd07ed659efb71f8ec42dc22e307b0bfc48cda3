@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "a09f644f_f543f165",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T00:45:23Z",
+      "side": 1,
+      "message": "Do you know why the error wasn\u0027t caught by unittest?",
+      "range": {
+        "startLine": 216,
+        "startChar": 33,
+        "endLine": 216,
+        "endChar": 52
+      },
+      "revId": "fbd07ed659efb71f8ec42dc22e307b0bfc48cda3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa6dc3a4_5e13e1ea",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1306,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T00:45:23Z",
+      "side": 1,
+      "message": "Instead of doing this, how about having a helper append_root_task() or something, and call it at BQ exports?",
+      "range": {
+        "startLine": 1306,
+        "startChar": 26,
+        "endLine": 1306,
+        "endChar": 46
+      },
+      "revId": "fbd07ed659efb71f8ec42dc22e307b0bfc48cda3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b9540899_eb840631",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 4
