@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d50e8fa_69ad7d17",
+        "filename": "client/cipd.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-15T08:21:48Z",
+      "side": 1,
+      "message": "I think we don\u0027t need to make this configuable now.\nCould you remove configuability for this first?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 60
+      },
+      "revId": "1f71d02a96905fa354d39f8a209d7c1d185c1734",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
