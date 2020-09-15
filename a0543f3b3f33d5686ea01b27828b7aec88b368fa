@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a19f90a_fd67fba6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-15T01:08:28Z",
+      "side": 1,
+      "message": "Now with external_scheduler_test.py\n\nThis is helpful IMO, this makes the unit test more representative of reality.",
+      "revId": "a0543f3b3f33d5686ea01b27828b7aec88b368fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
