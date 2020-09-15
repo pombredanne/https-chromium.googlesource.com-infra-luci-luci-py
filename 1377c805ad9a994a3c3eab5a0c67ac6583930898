@@ -86,6 +86,30 @@
       "revId": "1377c805ad9a994a3c3eab5a0c67ac6583930898",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a82c143_caaf0f8f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T05:12:37Z",
+      "side": 1,
+      "message": "Ack, thank you for the explanation.",
+      "parentUuid": "0ea03eac_1c611a0f",
+      "range": {
+        "startLine": 770,
+        "startChar": 0,
+        "endLine": 770,
+        "endChar": 23
+      },
+      "revId": "1377c805ad9a994a3c3eab5a0c67ac6583930898",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
