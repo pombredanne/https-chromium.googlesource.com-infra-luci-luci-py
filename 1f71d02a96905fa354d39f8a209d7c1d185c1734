@@ -69,6 +69,30 @@
       "revId": "1f71d02a96905fa354d39f8a209d7c1d185c1734",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26fcca33_e0c06fcc",
+        "filename": "client/cipd.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T08:33:27Z",
+      "side": 1,
+      "message": "will check the usage of CIPD options using BQ data.",
+      "parentUuid": "88ee678d_1dde1bbb",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "1f71d02a96905fa354d39f8a209d7c1d185c1734",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
