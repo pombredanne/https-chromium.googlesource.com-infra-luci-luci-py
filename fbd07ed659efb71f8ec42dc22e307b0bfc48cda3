@@ -16,6 +16,24 @@
       "revId": "fbd07ed659efb71f8ec42dc22e307b0bfc48cda3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de5862da_42de884f",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1344,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-15T00:41:33Z",
+      "side": 1,
+      "message": "I prefer the behavior to be explicit. It makes the system as a whole easier to understand. Otherwise one could be wondering why sometimes the root_task_id value gets set or not, it wouldn\u0027t be obvious. As such I \"recommend against\", but if you prefer I don\u0027t mind.",
+      "parentUuid": "b9540899_eb840631",
+      "revId": "fbd07ed659efb71f8ec42dc22e307b0bfc48cda3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
