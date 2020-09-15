@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f77645b_78ab6c6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T02:15:42Z",
+      "side": 1,
+      "message": "I haven\u0027t deployed the https://crrev.com/c/2410541, so we can discuss whether we take 1) or 2).\nIf we go for 1),  we don\u0027t need to revert this change.",
+      "revId": "67087d540667283ab18d11b93abadcc79655adb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
