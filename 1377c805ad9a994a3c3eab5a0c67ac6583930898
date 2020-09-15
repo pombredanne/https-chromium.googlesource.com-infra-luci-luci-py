@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "1bc3f728_37014746",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-09-15T04:59:02Z",
+      "side": 1,
+      "message": "Will actually refine this and fix tests tomorrow :)",
+      "revId": "1377c805ad9a994a3c3eab5a0c67ac6583930898",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92c8f8bf_0082ead0",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 7
@@ -36,6 +53,30 @@
       "writtenOn": "2020-09-15T01:29:38Z",
       "side": 1,
       "message": "nit: Is this condition new? or just for fallback?",
+      "range": {
+        "startLine": 770,
+        "startChar": 0,
+        "endLine": 770,
+        "endChar": 23
+      },
+      "revId": "1377c805ad9a994a3c3eab5a0c67ac6583930898",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ea03eac_1c611a0f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-09-15T04:59:02Z",
+      "side": 1,
+      "message": "It\u0027s new; this is item 2 in the CL description. \n\nBecause \u0027kill\u0027 actually kills the JobObject or process group, I think we should do it once even if the immediate process exits. After line 768 we know that the immediate process is done, but there could be extra processes in the process group still floating around.\n\nIn the previous version of this code if the immediate process exits \u0027normally\u0027 (no cancelation or timeout) then we don\u0027t kill its process group at all.",
+      "parentUuid": "ab02e816_44140476",
       "range": {
         "startLine": 770,
         "startChar": 0,
