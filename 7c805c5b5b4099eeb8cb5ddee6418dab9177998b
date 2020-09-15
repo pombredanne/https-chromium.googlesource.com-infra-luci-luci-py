@@ -76,6 +76,23 @@
     },
     {
       "key": {
+        "uuid": "7b61ab10_3fe9db67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-15T01:25:25Z",
+      "side": 1,
+      "message": "oh and sorry about the horrible loop in task_runner. It was much worse before but even with refactoring I failed to make it something reasonable.",
+      "revId": "7c805c5b5b4099eeb8cb5ddee6418dab9177998b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "416a4e0b_199ba646",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 5
