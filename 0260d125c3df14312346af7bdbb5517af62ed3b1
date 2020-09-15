@@ -55,6 +55,29 @@
     },
     {
       "key": {
+        "uuid": "6dcf7bdf_d79b4aa7",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T08:12:24Z",
+      "side": 1,
+      "message": "I\u0027m wondering if we should reuse cipd cache dir in tests and run_isolated.py so that we can avoid downloading same packages. \nBut currently each test recreates a new tempdir. So it needs more refactoring.",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 62
+      },
+      "revId": "0260d125c3df14312346af7bdbb5517af62ed3b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "985264f1_76597a9d",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 11
@@ -69,6 +92,24 @@
       "revId": "0260d125c3df14312346af7bdbb5517af62ed3b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "831cf652_1e06c181",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T08:12:24Z",
+      "side": 1,
+      "message": "Ah, I forgot that project name is supported.\nI updated.",
+      "parentUuid": "985264f1_76597a9d",
+      "revId": "0260d125c3df14312346af7bdbb5517af62ed3b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -95,6 +136,30 @@
     },
     {
       "key": {
+        "uuid": "78ccae7a_2d495f3a",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T08:12:24Z",
+      "side": 1,
+      "message": "removed.",
+      "parentUuid": "0d77516f_909107a7",
+      "range": {
+        "startLine": 632,
+        "startChar": 0,
+        "endLine": 633,
+        "endChar": 21
+      },
+      "revId": "0260d125c3df14312346af7bdbb5517af62ed3b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bdaeb5ed_5082dfc5",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 11
@@ -115,6 +180,30 @@
       "revId": "0260d125c3df14312346af7bdbb5517af62ed3b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fdd2a0a_15b32d8d",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T08:12:24Z",
+      "side": 1,
+      "message": "I thought it didn\u0027t work. But it did.\nI updated.",
+      "parentUuid": "bdaeb5ed_5082dfc5",
+      "range": {
+        "startLine": 651,
+        "startChar": 0,
+        "endLine": 652,
+        "endChar": 13
+      },
+      "revId": "0260d125c3df14312346af7bdbb5517af62ed3b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
