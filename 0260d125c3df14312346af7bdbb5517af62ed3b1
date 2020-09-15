@@ -16,6 +16,24 @@
       "revId": "0260d125c3df14312346af7bdbb5517af62ed3b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "504aac94_a24928c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T07:54:39Z",
+      "side": 1,
+      "message": "\u003e I need to fix permission error for CQ.\n\u003e https://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8869109017946791408/+/u/client/run_tests_python2/stdout#L3881_3\n\u003e \ntikuta,\nIs it ok to give read/write permission to infra-try-builder@chops-service-accounts.iam.gserviceaccount.com?",
+      "parentUuid": "f60adfa4_cc594351",
+      "revId": "0260d125c3df14312346af7bdbb5517af62ed3b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
