@@ -93,6 +93,24 @@
     },
     {
       "key": {
+        "uuid": "eea9aff2_37dcf64d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-09-15T01:28:07Z",
+      "side": 1,
+      "message": "Lol :D \n\nI think if I was going to hang out in this code for a while, I would add begin_kill_dance() to subprocess42.Popen and have it take care of this asyncly \nfrom the main output loop.",
+      "parentUuid": "7b61ab10_3fe9db67",
+      "revId": "7c805c5b5b4099eeb8cb5ddee6418dab9177998b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "416a4e0b_199ba646",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 5
