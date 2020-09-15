@@ -56,6 +56,23 @@
       "revId": "7c805c5b5b4099eeb8cb5ddee6418dab9177998b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "67a3966f_9a3644e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T01:23:28Z",
+      "side": 1,
+      "message": "The direction LGTM. Thank you.",
+      "revId": "7c805c5b5b4099eeb8cb5ddee6418dab9177998b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
