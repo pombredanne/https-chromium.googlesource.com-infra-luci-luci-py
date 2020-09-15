@@ -883,21 +883,21 @@ class Popen(subprocess.Popen):
       # on Windows.
       return self._job.kill(-9)
 
-    if self.returncode is not None:
-      # If a return code was recorded, it means there's nothing to kill as there
-      # was no containment.
-      return True
-
     if self.pgid:
       try:
         os.killpg(self.pgid, signal.SIGKILL)
       except OSError:
         return False
-    else:
-      try:
-        super(Popen, self).kill()
-      except OSError:
-        return False
+
+    if self.returncode is not None:
+      # If a return code was recorded, it means there's nothing to kill as there
+      # was no containment.
+      return True
+
+    try:
+      super(Popen, self).kill()
+    except OSError:
+      return False
     return True
 
   def _close(self, which):
