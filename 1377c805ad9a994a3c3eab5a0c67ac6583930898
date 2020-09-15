@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92c8f8bf_0082ead0",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T01:29:38Z",
+      "side": 1,
+      "message": "would be better to define a constant for the mercy rate, and use it here and L755.",
+      "range": {
+        "startLine": 446,
+        "startChar": 59,
+        "endLine": 446,
+        "endChar": 61
+      },
+      "revId": "1377c805ad9a994a3c3eab5a0c67ac6583930898",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab02e816_44140476",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T01:29:38Z",
+      "side": 1,
+      "message": "nit: Is this condition new? or just for fallback?",
+      "range": {
+        "startLine": 770,
+        "startChar": 0,
+        "endLine": 770,
+        "endChar": 23
+      },
+      "revId": "1377c805ad9a994a3c3eab5a0c67ac6583930898",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
