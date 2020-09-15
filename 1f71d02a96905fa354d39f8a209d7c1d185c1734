@@ -117,6 +117,30 @@
       "revId": "1f71d02a96905fa354d39f8a209d7c1d185c1734",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07a7b1df_11889c82",
+        "filename": "client/cipd.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-15T09:12:15Z",
+      "side": 1,
+      "message": "\u003e The CIPD package name and version is specified in TaskProperties.\n\u003e https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_request.py;l\u003d647?q\u003df:task_request.py\u0026ss\u003dchromium\n\u003e \n\nI see.\nThen could you make this private and use as default argument in get_client?",
+      "parentUuid": "d11b8209_909bf7ea",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "1f71d02a96905fa354d39f8a209d7c1d185c1734",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
