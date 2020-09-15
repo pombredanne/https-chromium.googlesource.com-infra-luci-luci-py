@@ -16,6 +16,24 @@
       "revId": "67087d540667283ab18d11b93abadcc79655adb8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f352611b_d0ab164d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T02:22:52Z",
+      "side": 1,
+      "message": "I rather think we should change the flag from `transactional` to `append_root_id` because we don\u0027t want to spend time on appending root IDs for external scheduler integration.\nThe overhead acceptable in BQ export isn\u0027t acceptable in bot API and external scheduler integration which have heavy load.",
+      "parentUuid": "3f77645b_78ab6c6d",
+      "revId": "67087d540667283ab18d11b93abadcc79655adb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
