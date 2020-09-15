@@ -594,11 +594,30 @@ a timeout that expired, the code tries to do an ordered shutdown:
 
 *   A SIGTERM is sent. On Windows, CTRL_BREAK_EVENT is used.
 *   A grace period is given to the child process to clean itself up and shut
-    down. The default is usually 30 seconds but could be configured.
+    down. The default is 30 seconds but configurable with the task's
+    "grace_period".
 *   If the grace period expired and the child process still hasn't exited, a
-    SIGKILL is sent. On Windows, TerminateProcess() is used.
+    second SIGTERM is sent, and the process is given an additional 5 seconds
+    of "mercy" to terminate.
+*   Finally, once the process exits, or the mercy timer exhausts, SIGKILL
+    is sent to the entire process group, unconditionally. This is done as a
+    best-effort way to prevent processes from leaking between tasks.
+    On Windows, TerminateJobObject(-9) is used if the task uses containment,
+    otherwise TerminateProcess() is used.
 *   The parent process waits for the child process to fully die since these
     signals are asynchronous on all OSes w.r.t. process termination.
+
+We do two SIGTERMs to allow tasks to respond correctly to the configurable
+grace_period. Some tasks (like the python recipe engine) are configured to do
+a similiar dance when they recieve SIGTERM, and switch a second (more
+aggressive) cleanup phase on the second SIGTERM.
+
+Typical programs which handle SIGTERM usually have the second SIGTERM quit the
+program and shouldn't behave any differently than if we just jumped from TERM to
+KILL at the 'grace' point.
+
+Programs which don't handle SIGTERM at all will quit immediately on the first
+signal.
 
 
 ### Signal handling
