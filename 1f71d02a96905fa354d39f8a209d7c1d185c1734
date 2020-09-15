@@ -93,6 +93,30 @@
       "revId": "1f71d02a96905fa354d39f8a209d7c1d185c1734",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d11b8209_909bf7ea",
+        "filename": "client/cipd.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-15T08:58:00Z",
+      "side": 1,
+      "message": "The CIPD package name and version is specified in TaskProperties.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_request.py;l\u003d647?q\u003df:task_request.py\u0026ss\u003dchromium\n\nI couldn\u0027t confirm the current usage because the client package name/version aren\u0027t exported to BQ.\n\nDo we want to remove it now? or just keep it as is?",
+      "parentUuid": "26fcca33_e0c06fcc",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "1f71d02a96905fa354d39f8a209d7c1d185c1734",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
