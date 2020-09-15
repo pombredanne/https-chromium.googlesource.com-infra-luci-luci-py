@@ -1,0 +1,76 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "276b2707_005ce15c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-15T01:01:41Z",
+      "side": 1,
+      "message": "\u003e \"implemet\" is a possible misspelling of \"implement\".\n\nPlease fix.",
+      "parentUuid": "ed9282b2_082664a6",
+      "range": {
+        "startLine": 20,
+        "startChar": 12,
+        "endLine": 20,
+        "endChar": 20
+      },
+      "revId": "2d66b97863ca6598b7475327dba1b6fe7d8f50a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54475dfe_f00e9546",
+        "filename": "appengine/swarming/doc/Bot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-15T01:01:41Z",
+      "side": 1,
+      "message": "\u003e \"similiar\" is a possible misspelling of \"similar\".\n\nPlease fix.",
+      "parentUuid": "1d46f9fa_7052e896",
+      "range": {
+        "startLine": 612,
+        "startChar": 2,
+        "endLine": 612,
+        "endChar": 10
+      },
+      "revId": "2d66b97863ca6598b7475327dba1b6fe7d8f50a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1765b0f_11d18a6d",
+        "filename": "appengine/swarming/doc/Bot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-15T01:01:41Z",
+      "side": 1,
+      "message": "\u003e \"recieve\" is a possible misspelling of \"receive\".\n\nPlease fix.",
+      "parentUuid": "a421b688_c45f9e32",
+      "range": {
+        "startLine": 612,
+        "startChar": 27,
+        "endLine": 612,
+        "endChar": 34
+      },
+      "revId": "2d66b97863ca6598b7475327dba1b6fe7d8f50a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
