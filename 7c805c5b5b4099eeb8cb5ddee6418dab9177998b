@@ -73,6 +73,98 @@
       "revId": "7c805c5b5b4099eeb8cb5ddee6418dab9177998b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "416a4e0b_199ba646",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-15T01:23:43Z",
+      "side": 1,
+      "message": "this paren is not necessary?",
+      "range": {
+        "startLine": 748,
+        "startChar": 13,
+        "endLine": 748,
+        "endChar": 14
+      },
+      "revId": "7c805c5b5b4099eeb8cb5ddee6418dab9177998b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66e94e8e_d36091ef",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-15T01:23:43Z",
+      "side": 1,
+      "message": "this paren is not necessary?",
+      "range": {
+        "startLine": 755,
+        "startChar": 45,
+        "endLine": 755,
+        "endChar": 46
+      },
+      "revId": "7c805c5b5b4099eeb8cb5ddee6418dab9177998b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27e375ee_36fa2f28",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-15T01:23:43Z",
+      "side": 1,
+      "message": "this paren is not necessary?",
+      "range": {
+        "startLine": 755,
+        "startChar": 15,
+        "endLine": 755,
+        "endChar": 16
+      },
+      "revId": "7c805c5b5b4099eeb8cb5ddee6418dab9177998b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62aca431_8ff129cc",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-15T01:23:43Z",
+      "side": 1,
+      "message": "*1.2?",
+      "range": {
+        "startLine": 764,
+        "startChar": 41,
+        "endLine": 764,
+        "endChar": 43
+      },
+      "revId": "7c805c5b5b4099eeb8cb5ddee6418dab9177998b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
