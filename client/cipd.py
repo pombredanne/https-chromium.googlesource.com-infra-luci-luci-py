@@ -32,6 +32,11 @@ import local_caching
 # .exe on Windows.
 EXECUTABLE_SUFFIX = '.exe' if sys.platform == 'win32' else ''
 
+DEFAULT_CIPD_SERVER = 'https://chrome-infra-packages.appspot.com'
+
+DEFAULT_CIPD_CLIENT_PACKAGE = 'infra/tools/cipd/${platform}'
+
+DEFAULT_CIPD_CLIENT_VERSION = 'latest'
 
 if sys.platform == 'win32':
 
@@ -61,20 +66,20 @@ def add_cipd_options(parser):
       '--cipd-server',
       help='URL of the CIPD server. '
       'Only relevant with --cipd-enabled or --cipd-package.',
-      default='https://chrome-infra-packages.appspot.com')
+      default=DEFAULT_CIPD_SERVER)
   group.add_option(
       '--cipd-client-package',
       help='Package name of CIPD client with optional parameters described in '
       '--cipd-package help. '
       'Only relevant with --cipd-enabled or --cipd-package. '
       'Default: "%default"',
-      default='infra/tools/cipd/${platform}')
+      default=DEFAULT_CIPD_CLIENT_PACKAGE)
   group.add_option(
       '--cipd-client-version',
       help='Version of CIPD client. '
       'Only relevant with --cipd-enabled or --cipd-package. '
       'Default: "%default"',
-      default='latest')
+      default=DEFAULT_CIPD_CLIENT_VERSION)
   group.add_option(
       '--cipd-package',
       dest='cipd_packages',
