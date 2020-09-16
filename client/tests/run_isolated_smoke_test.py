@@ -3,6 +3,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+import base64
 import ctypes
 import hashlib
 import json
@@ -26,6 +27,7 @@ import isolateserver_fake
 
 import run_isolated
 from utils import file_path
+from utils import large
 
 
 OUTPUT_CONTENT = 'foooo'
@@ -638,6 +640,8 @@ class RunIsolatedTest(unittest.TestCase):
       self.assertEqual(0, returncode)
       self.assertEqual(expected_caches, list_files_tree(self._cas_cache_dir))
 
+    result_json = os.path.join(self.tempdir, 'run_isolated_result.json')
+
     # Runs run_isolated with cas options.
     cmd = [
         '--cas-instance',
@@ -646,6 +650,8 @@ class RunIsolatedTest(unittest.TestCase):
         cas_digest,
         '--cache',
         self._cas_cache_dir,
+        '--json',
+        result_json,
         '--raw-cmd',
         '--',
         'python',
@@ -657,6 +663,14 @@ class RunIsolatedTest(unittest.TestCase):
         'state.json',
     ]
     assertRunIsolated(cmd, expected_caches)
+    with open(result_json) as f:
+      result = json.load(f)
+      items_cold_packed = result['stats']['isolated']['download']['items_cold']
+      items_cold = large.unpack(base64.b64decode(items_cold_packed))
+      self.assertEqual(items_cold, [
+          len(CONTENTS['file1.txt']),
+          len(CONTENTS['repeated_files.py']),
+      ])
 
     # Cleanup all caches.
     _, _, returncode = self._run(
