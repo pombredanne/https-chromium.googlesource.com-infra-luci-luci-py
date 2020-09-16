@@ -22,6 +22,30 @@
       "revId": "c3f26452ef792b9edbc998bd40a5ca7d065172b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86f3943a_03ab0d66",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-16T00:49:27Z",
+      "side": 1,
+      "message": "It\u0027s not necessary, just for consistency with other constants like ISOLATED_XXX above.",
+      "parentUuid": "caad1bb8_48cabdc9",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 23
+      },
+      "revId": "c3f26452ef792b9edbc998bd40a5ca7d065172b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
