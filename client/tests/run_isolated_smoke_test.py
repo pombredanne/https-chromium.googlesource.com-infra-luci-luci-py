@@ -631,6 +631,13 @@ class RunIsolatedTest(unittest.TestCase):
       with open(digest_file) as f:
         cas_digest = f.read()
 
+    def assertRunIsolated(cmd, expected_caches):
+      out, err, returncode = self._run(cmd)
+      self.assertEqual('', err)
+      self.assertEqual('Success\n', out)
+      self.assertEqual(0, returncode)
+      self.assertEqual(expected_caches, list_files_tree(self._cas_cache_dir))
+
     # Runs run_isolated with cas options.
     cmd = [
         '--cas-instance',
@@ -644,16 +651,72 @@ class RunIsolatedTest(unittest.TestCase):
         'python',
         'repeated_files.py',
     ]
-
-    out, err, returncode = self._run(cmd)
-    self.assertEqual('', err)
-    self.assertEqual('Success\n', out, out)
-    self.assertEqual(0, returncode)
-    self.assertEqual([
+    expected_caches = [
         'ebea1137c5ece3f8a58f0e1a0da1411fe0a2648501419d190b3b154f3f191259',
         'f0a8a1a7050bfae60a591d0cb7d74de2ef52963b9913253fc9ec7151aa5d421e',
         'state.json',
-    ], list_files_tree(self._cas_cache_dir))
+    ]
+    assertRunIsolated(cmd, expected_caches)
+
+    # Specify --max-items option.
+    cmd = [
+        '--cas-instance',
+        self._cas_instance,
+        '--cas-digest',
+        cas_digest,
+        '--cache',
+        self._cas_cache_dir,
+        '--max-items',
+        '1',
+        '--raw-cmd',
+        '--',
+        'python',
+        'repeated_files.py',
+    ]
+    expected_caches = [
+        'f0a8a1a7050bfae60a591d0cb7d74de2ef52963b9913253fc9ec7151aa5d421e',
+        'state.json',
+    ]
+    assertRunIsolated(cmd, expected_caches)
+
+    # Specify --max-cache-size option.
+    cmd = [
+        '--cas-instance',
+        self._cas_instance,
+        '--cas-digest',
+        cas_digest,
+        '--cache',
+        self._cas_cache_dir,
+        '--max-cache-size',
+        '1',
+        '--raw-cmd',
+        '--',
+        'python',
+        'repeated_files.py',
+    ]
+    expected_caches = [
+        'state.json',
+    ]
+    assertRunIsolated(cmd, expected_caches)
+
+    # Specify --min-free-space option. This should fail because there are
+    # no required space.
+    cmd = [
+        '--cas-instance',
+        self._cas_instance,
+        '--cas-digest',
+        cas_digest,
+        '--cache',
+        self._cas_cache_dir,
+        '--min-free-space',
+        str(1000**5),
+        '--raw-cmd',
+        '--',
+        'python',
+        'repeated_files.py',
+    ]
+    _, _, returncode = self._run(cmd)
+    self.assertEqual(1, returncode)
 
 
 if __name__ == '__main__':
