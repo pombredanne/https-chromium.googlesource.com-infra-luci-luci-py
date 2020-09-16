@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "261c5261_866e7071",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-16T14:26:40Z",
+      "side": 1,
+      "message": "why not 0?",
+      "range": {
+        "startLine": 663,
+        "startChar": 73,
+        "endLine": 663,
+        "endChar": 74
+      },
+      "revId": "bcf380e7c33f442fd1a50dbf8c99941d6b0e09c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9dffbe76_6de4b8f9",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-16T14:26:40Z",
+      "side": 1,
+      "message": "I think we don\u0027t want to guarantee which file is left in cache in this case.",
+      "revId": "bcf380e7c33f442fd1a50dbf8c99941d6b0e09c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bf1635d_16fd682d",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-16T14:26:40Z",
+      "side": 1,
+      "message": "could you use \u00272**63 - 1\u0027?",
+      "range": {
+        "startLine": 718,
+        "startChar": 12,
+        "endLine": 718,
+        "endChar": 19
+      },
+      "revId": "bcf380e7c33f442fd1a50dbf8c99941d6b0e09c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
