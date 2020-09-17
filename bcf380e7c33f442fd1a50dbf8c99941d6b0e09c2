@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "8143b285_1ed76de5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-17T04:31:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "207c3a32_ef7ae4d0",
+      "revId": "bcf380e7c33f442fd1a50dbf8c99941d6b0e09c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "261c5261_866e7071",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 6
