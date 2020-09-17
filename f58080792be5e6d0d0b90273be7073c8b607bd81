@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abe44f98_2c5c694f",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-17T06:31:20Z",
+      "side": 0,
+      "message": "why remove this?",
+      "revId": "f58080792be5e6d0d0b90273be7073c8b607bd81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
