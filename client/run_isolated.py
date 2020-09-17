@@ -851,6 +851,68 @@ def upload_out_dir(storage, out_dir, go_isolated_client):
   }
   return outputs_ref, stats
 
+def upload_outdir_with_cas(cas_client, instance, outdir)
+  """Uploads the results in |outdir|, if there is any.
+
+  Returns:
+    tuple(root_digest, stats)
+    - root_digest: a digest of the output directory.
+    - stats: uploading stats.
+  """
+  digest_file_handle, digest_path = tempfile.mkstemp(
+      prefix=u'cas-digest', suffix=u'.txt')
+  stats_json_handle, stats_json_path = tempfile.mkstemp(
+      prefix=u'upload-stats', suffix=u'.json')
+  os.close(isolated_handle)
+  os.close(stats_json_handle)
+  try:
+    cmd = [
+        cas_client,
+        'archive',
+        '-cas-instance',
+        cas_instance,
+        '-paths',
+        # Format: <working directory>:<relative path to dir>
+        outdir + ':',
+        # output
+        '-dump-digest',
+        digest_path,
+        '-dump-stats-json',
+        stats_json_path,
+    ]
+    # Will do exponential backoff, e.g. 10, 20, 40...
+    # This mitigates https://crbug.com/1094369, where there is a data race on
+    # the uploaded files.
+    backoff = 10
+    started = time.time()
+    while True:
+      try:
+        _run_go_cmd_and_wait(cmd)
+        break
+      except Exception:
+        if time.time() > started + 60 * 2:
+          # This is to not wait task having leaked process long time.
+          raise
+
+        on_error.report('error before %d second backoff' % backoff)
+        logging.exception(
+            '_run_go_cmd_and_wait() failed, will retry after %d seconds',
+            backoff)
+        time.sleep(backoff)
+        backoff *= 2
+
+    with open(isolated_path) as isol_file:
+      isolated = isol_file.read()
+    with open(stats_json_path) as json_file:
+      stats_json = json.load(json_file)
+
+    return isolated, stats_json['items_cold'], stats_json['items_hot']
+  finally:
+    fs.remove(isolated_path)
+    fs.remove(stats_json_path)
+
+
+
 
 def map_and_run(data, constant_run_path):
   """Runs a command with optional isolated input/output.
@@ -937,9 +999,11 @@ def map_and_run(data, constant_run_path):
   if data.use_go_isolated:
     go_isolated_client = os.path.join(isolated_client_dir,
                                       'isolated' + cipd.EXECUTABLE_SUFFIX)
+
   cas_client = None
   cas_client_dir = make_temp_dir(_CAS_CLIENT_DIR, data.root_dir)
-  if data.cas_digest:
+  use_cas = bool(data.cas_digest)
+  if use_cas:
     cas_client = os.path.join(cas_client_dir, 'cas' + cipd.EXECUTABLE_SUFFIX)
 
   try:
@@ -1033,13 +1097,14 @@ def map_and_run(data, constant_run_path):
         # Try to link files to the output directory, if specified.
         link_outputs_to_outdir(run_dir, out_dir, data.outputs)
         isolated_stats = result['stats'].setdefault('isolated', {})
-        # This could use |go_isolated_client|, so make sure it runs when the
-        # CIPD package still exists.
-        result['outputs_ref'], isolated_stats['upload'] = (
-            upload_out_dir(data.storage, out_dir, go_isolated_client))
-        # TODO(crbug.com/1117004): upload to CAS if the inputs are on CAS.
-        # The `cas_output_root` will be updated instead of `outputs_ref`.
-        result['cas_output_root'] = None
+        if use_cas:
+            result['cas_output_root'], isolated_stats['upload'] = (
+                upload_outdir_with_cas(data.storage, out_dir, cas_client))
+        else:
+            # This could use |go_isolated_client|, so make sure it runs when the
+            # CIPD package still exists.
+            result['outputs_ref'], isolated_stats['upload'] = (
+                upload_out_dir(data.storage, out_dir, go_isolated_client))
     # We successfully ran the command, set internal_failure back to
     # None (even if the command failed, it's not an internal error).
     result['internal_failure'] = None
