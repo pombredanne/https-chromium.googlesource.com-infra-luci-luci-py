@@ -108,6 +108,30 @@
     },
     {
       "key": {
+        "uuid": "1c3962c8_8c5140fd",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-17T03:29:43Z",
+      "side": 1,
+      "message": "Oh, I changed line 8.\n\n\u00270\u0027 doesn\u0027t work with \"--clean\". \nLet me check if it\u0027s ignored.",
+      "parentUuid": "896d6b71_ea261236",
+      "range": {
+        "startLine": 663,
+        "startChar": 73,
+        "endLine": 663,
+        "endChar": 74
+      },
+      "revId": "bcf380e7c33f442fd1a50dbf8c99941d6b0e09c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9dffbe76_6de4b8f9",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 6
