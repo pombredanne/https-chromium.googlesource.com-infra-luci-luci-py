@@ -198,6 +198,30 @@
     },
     {
       "key": {
+        "uuid": "63066f23_46a81a3d",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-17T05:40:27Z",
+      "side": 1,
+      "message": "I want to uncover hidden bugs before CAS integration demo. \nLet me fix it after the demo.\n\nfiled https://crbug.com/1129290.\nalso left a commment.",
+      "parentUuid": "ea932361_fba0b36d",
+      "range": {
+        "startLine": 663,
+        "startChar": 73,
+        "endLine": 663,
+        "endChar": 74
+      },
+      "revId": "bcf380e7c33f442fd1a50dbf8c99941d6b0e09c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9dffbe76_6de4b8f9",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 6
