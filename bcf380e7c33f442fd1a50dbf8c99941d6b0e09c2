@@ -156,6 +156,30 @@
     },
     {
       "key": {
+        "uuid": "ea932361_fba0b36d",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-17T04:18:42Z",
+      "side": 1,
+      "message": "could you change there to \u0027is not None\u0027 then?",
+      "parentUuid": "9d0ab525_0808c6e3",
+      "range": {
+        "startLine": 663,
+        "startChar": 73,
+        "endLine": 663,
+        "endChar": 74
+      },
+      "revId": "bcf380e7c33f442fd1a50dbf8c99941d6b0e09c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9dffbe76_6de4b8f9",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 6
