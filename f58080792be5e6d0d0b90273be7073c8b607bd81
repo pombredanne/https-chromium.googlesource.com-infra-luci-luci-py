@@ -16,6 +16,24 @@
       "revId": "f58080792be5e6d0d0b90273be7073c8b607bd81",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e843099_e6600341",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-17T07:56:07Z",
+      "side": 0,
+      "message": "The patch didn\u0027t rebase the master. But not sure why it was displayed as deletion.",
+      "parentUuid": "abe44f98_2c5c694f",
+      "revId": "f58080792be5e6d0d0b90273be7073c8b607bd81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
