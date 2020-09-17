@@ -3,6 +3,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+import base64
 import ctypes
 import hashlib
 import json
@@ -26,6 +27,7 @@ import isolateserver_fake
 
 import run_isolated
 from utils import file_path
+from utils import large
 
 
 OUTPUT_CONTENT = 'foooo'
@@ -598,9 +600,7 @@ class RunIsolatedTest(unittest.TestCase):
   def test_cas(self):
     # Prepare inputs on the remote CAS instance.
     with cipd.get_client(self._cipd_cache_dir) as cipd_client:
-      packages = [
-        ('', run_isolated._CAS_PACKAGE, run_isolated._CAS_REVISION),
-      ]
+      packages = [('', run_isolated._CAS_PACKAGE, run_isolated._CAS_REVISION)]
       run_isolated._install_packages(self._cas_client_dir,
                                      self._cipd_packages_cache_dir, cipd_client,
                                      packages)
@@ -633,34 +633,44 @@ class RunIsolatedTest(unittest.TestCase):
       with open(digest_file) as f:
         cas_digest = f.read()
 
-    def assertRunIsolatedWithCAS(optional_args, expected_retcode=0):
-      args = optional_args + [
-          '--cas-instance',
-          self._cas_instance,
-          '--cas-digest',
-          cas_digest,
-          '--cache',
-          self._cas_cache_dir,
-          '--cipd-cache',
-          self._cipd_cache_dir,
-          '--raw-cmd',
-          '--',
-          'python',
-          'repeated_files.py',
-      ]
-      out, err, ret = self._run(args)
-      self.assertEqual(expected_retcode, ret)
-      if expected_retcode == 0:
-        self.assertEqual('', err)
-        self.assertEqual('Success\n', out)
+    def assertRunIsolated(cmd, expected_caches):
+      out, err, returncode = self._run(cmd)
+      self.assertEqual('', err)
+      self.assertEqual('Success\n', out)
+      self.assertEqual(0, returncode)
+      self.assertEqual(expected_caches, list_files_tree(self._cas_cache_dir))
+
+    result_json = os.path.join(self.tempdir, 'run_isolated_result.json')
 
     # Runs run_isolated with cas options.
-    assertRunIsolatedWithCAS([])
-    self.assertEqual([
+    cmd = [
+        '--cas-instance',
+        self._cas_instance,
+        '--cas-digest',
+        cas_digest,
+        '--cache',
+        self._cas_cache_dir,
+        '--json',
+        result_json,
+        '--raw-cmd',
+        '--',
+        'python',
+        'repeated_files.py',
+    ]
+    expected_caches = [
         'ebea1137c5ece3f8a58f0e1a0da1411fe0a2648501419d190b3b154f3f191259',
         'f0a8a1a7050bfae60a591d0cb7d74de2ef52963b9913253fc9ec7151aa5d421e',
         'state.json',
-    ], list_files_tree(self._cas_cache_dir))
+    ]
+    assertRunIsolated(cmd, expected_caches)
+    with open(result_json) as f:
+      result = json.load(f)
+      items_cold_packed = result['stats']['isolated']['download']['items_cold']
+      items_cold = large.unpack(base64.b64decode(items_cold_packed))
+      self.assertEqual(items_cold, [
+          len(CONTENTS['file1.txt']),
+          len(CONTENTS['repeated_files.py']),
+      ])
 
     # Cleanup all caches.
     _, _, returncode = self._run(
@@ -669,31 +679,64 @@ class RunIsolatedTest(unittest.TestCase):
     self.assertEqual(['state.json'], list_files_tree(self._cas_cache_dir))
 
     # Specify --max-items option.
-    optional_args = [
+    cmd = [
+        '--cas-instance',
+        self._cas_instance,
+        '--cas-digest',
+        cas_digest,
+        '--cache',
+        self._cas_cache_dir,
         '--max-items',
         '1',
+        '--raw-cmd',
+        '--',
+        'python',
+        'repeated_files.py',
     ]
-    assertRunIsolatedWithCAS(optional_args)
-    # Only state.json + 1 file should be kept.
-    self.assertEqual(2, len(list_files_tree(self._cas_cache_dir)))
+    expected_caches = [
+        'f0a8a1a7050bfae60a591d0cb7d74de2ef52963b9913253fc9ec7151aa5d421e',
+        'state.json',
+    ]
+    assertRunIsolated(cmd, expected_caches)
 
     # Specify --max-cache-size option.
-    optional_args = [
+    cmd = [
+        '--cas-instance',
+        self._cas_instance,
+        '--cas-digest',
+        cas_digest,
+        '--cache',
+        self._cas_cache_dir,
         '--max-cache-size',
-        '0',
+        '1',
+        '--raw-cmd',
+        '--',
+        'python',
+        'repeated_files.py',
     ]
-    assertRunIsolatedWithCAS(optional_args)
-    self.assertEqual([
+    expected_caches = [
         'state.json',
-    ], list_files_tree(self._cas_cache_dir))
+    ]
+    assertRunIsolated(cmd, expected_caches)
 
     # Specify --min-free-space option. This should fail because there are
     # no required space.
-    optional_args = [
+    cmd = [
+        '--cas-instance',
+        self._cas_instance,
+        '--cas-digest',
+        cas_digest,
+        '--cache',
+        self._cas_cache_dir,
         '--min-free-space',
-        str(2**63 - 1),
+        str(1000**5),
+        '--raw-cmd',
+        '--',
+        'python',
+        'repeated_files.py',
     ]
-    assertRunIsolatedWithCAS(optional_args, expected_retcode=1)
+    _, _, returncode = self._run(cmd)
+    self.assertEqual(1, returncode)
 
 
 if __name__ == '__main__':
