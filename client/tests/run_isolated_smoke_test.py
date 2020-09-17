@@ -137,8 +137,12 @@ def file_meta(filename):
   }
 
 
+CMD_REPEATED_FILES = ['python', 'repeated_files.py']
+
+CMD_OUTPUT = ['python', 'output.py', '${ISOLATED_OUTDIR}/foo.txt']
+
 CONTENTS['download.isolated'] = json.dumps({
-    'command': ['python', 'repeated_files.py'],
+    'command': CMD_REPEATED_FILES,
     'files': {
         'file1.txt': file_meta('file1.txt'),
         'file1_symlink.txt': {
@@ -184,7 +188,7 @@ CONTENTS['max_path.isolated'] = json.dumps({
 }).encode()
 
 CONTENTS['repeated_files.isolated'] = json.dumps({
-    'command': ['python', 'repeated_files.py'],
+    'command': CMD_REPEATED_FILES,
     'files': {
         'file1.txt': file_meta('file1.txt'),
         'file1_copy.txt': file_meta('file1.txt'),
@@ -205,7 +209,7 @@ CONTENTS['check_files.isolated'] = json.dumps({
 }).encode()
 
 CONTENTS['output.isolated'] = json.dumps({
-    'command': ['python', 'output.py', '${ISOLATED_OUTDIR}/foo.txt'],
+    'command': CMD_OUTPUT,
     'files': {
         'output.py': file_meta('output.py'),
     },
@@ -255,6 +259,16 @@ def less_than_mac_10_15():
   v = platform.mac_ver()[0]
   major, minor = v.split('.')[:2]
   return int(major) <= 10 and int(minor) < 15
+
+
+def load_isolated_stats(stats_json_path, key):
+  actual = json.loads(read_content(stats_json_path))
+  stats = actual['stats']['isolated'].get(key)
+  for key in ['items_cold', 'items_hot']:
+    if not stats[key]:
+      continue
+    stats[key] = large.unpack(base64.b64decode(stats[key]))
+  return stats
 
 
 class RunIsolatedTest(unittest.TestCase):
@@ -312,6 +326,60 @@ class RunIsolatedTest(unittest.TestCase):
   def _store(self, filename):
     """Stores a test data file in the table and returns its hash."""
     return self._isolated_server.add_content('default', CONTENTS[filename])
+
+  def _upload_to_cas(self, upload_dir):
+    """Uploads a directory to CAS and returns a digest of the root directory."""
+    with cipd.get_client(self._cipd_cache_dir) as cipd_client:
+      digest_file = os.path.join(self.tempdir, 'cas-digest.txt')
+      packages = [
+          ('', run_isolated._CAS_PACKAGE, run_isolated._CAS_REVISION),
+      ]
+      run_isolated._install_packages(self._cas_client_dir,
+                                     self._cipd_packages_cache_dir, cipd_client,
+                                     packages)
+      cmd = [
+          'archive',
+          '-cas-instance',
+          self._cas_instance,
+          '-paths',
+          '%s:' % upload_dir,
+          '-dump-digest',
+          digest_file,
+      ]
+      _, err, returncode = self._run_cas(cmd)
+      self.assertEqual('', err)
+      self.assertEqual(0, returncode)
+
+    with open(digest_file) as f:
+      cas_digest = f.read()
+    os.remove(digest_file)
+
+    return cas_digest
+
+  def _download_from_cas(self, root_digest, dest):
+    """Downloads files from CAS."""
+    with cipd.get_client(self._cipd_cache_dir) as cipd_client:
+      digest_file = os.path.join(self.tempdir, 'cas-digest.txt')
+      packages = [
+          ('', run_isolated._CAS_PACKAGE, run_isolated._CAS_REVISION),
+      ]
+      run_isolated._install_packages(self._cas_client_dir,
+                                     self._cipd_packages_cache_dir, cipd_client,
+                                     packages)
+      cmd = [
+          'download',
+          '-cas-instance',
+          self._cas_instance,
+          '-digest',
+          root_digest,
+          '-cache-dir',
+          self._cas_cache_dir,
+          '-dir',
+          dest,
+      ]
+      _, err, returncode = self._run_cas(cmd)
+      self.assertEqual('', err)
+      self.assertEqual(0, returncode)
 
   def _cmd_args(self, hash_value):
     """Generates the standard arguments used with |hash_value| as the hash.
@@ -599,41 +667,16 @@ class RunIsolatedTest(unittest.TestCase):
 
   def test_cas(self):
     # Prepare inputs on the remote CAS instance.
-    with cipd.get_client(self._cipd_cache_dir) as cipd_client:
-      packages = [
-        ('', run_isolated._CAS_PACKAGE, run_isolated._CAS_REVISION),
-      ]
-      run_isolated._install_packages(self._cas_client_dir,
-                                     self._cipd_packages_cache_dir, cipd_client,
-                                     packages)
-      inputs_dir = os.path.join(self.tempdir, 'cas_inputs')
-      inputs_root = os.path.join(inputs_dir, 'src')
-      os.makedirs(inputs_root)
-      digest_file = os.path.join(inputs_dir, 'input_root.digest')
-      # prepare files under src/ for `repeated_files.py` task.
-      for filename in ['repeated_files.py', 'file1.txt']:
-        with open(os.path.join(inputs_root, filename), "wb") as f:
-          f.write(CONTENTS[filename])
-      # copy file1.txt.
-      shutil.copyfile(
-          os.path.join(inputs_root, 'file1.txt'),
-          os.path.join(inputs_root, 'file1_copy.txt'))
-
-      cmd = [
-          'archive',
-          '-cas-instance',
-          self._cas_instance,
-          '-paths',
-          '%s:' % inputs_root,
-          '-dump-digest',
-          digest_file,
-      ]
-      _, err, returncode = self._run_cas(cmd)
-      self.assertEqual('', err)
-      self.assertEqual(0, returncode)
-
-      with open(digest_file) as f:
-        cas_digest = f.read()
+    inputs_root = os.path.join(self.tempdir, 'cas_inputs')
+    os.makedirs(inputs_root)
+    # prepare files for `repeated_files.py` task.
+    for filename in ['repeated_files.py', 'file1.txt']:
+      write_content(os.path.join(inputs_root, filename), CONTENTS[filename])
+    # copy file1.txt.
+    shutil.copyfile(
+        os.path.join(inputs_root, 'file1.txt'),
+        os.path.join(inputs_root, 'file1_copy.txt'))
+    inputs_root_digest = self._upload_to_cas(inputs_root)
 
     # Path to the result json file.
     result_json = os.path.join(self.tempdir, 'run_isolated_result.json')
@@ -643,7 +686,7 @@ class RunIsolatedTest(unittest.TestCase):
           '--cas-instance',
           self._cas_instance,
           '--cas-digest',
-          cas_digest,
+          inputs_root_digest,
           '--cache',
           self._cas_cache_dir,
           '--cipd-cache',
@@ -652,9 +695,7 @@ class RunIsolatedTest(unittest.TestCase):
           result_json,
           '--raw-cmd',
           '--',
-          'python',
-          'repeated_files.py',
-      ]
+      ] + CMD_REPEATED_FILES
       out, err, ret = self._run(args)
 
       self.assertEqual(expected_retcode, ret)
@@ -662,19 +703,10 @@ class RunIsolatedTest(unittest.TestCase):
         self.assertEqual('', err)
         self.assertEqual('Success\n', out)
 
-    def load_isolated_stats(key):
-      with open(result_json) as f:
-        actual = json.load(f)
-      stats = actual['stats']['isolated'].get(key)
-      stats.pop('duration')
-      for key in ['items_cold', 'items_hot']:
-        if not stats[key]:
-          continue
-        stats[key] = large.unpack(base64.b64decode(stats[key]))
-      return stats
-
     # Runs run_isolated with cas options.
     assertRunIsolatedWithCAS([])
+    download_stats = load_isolated_stats(result_json, 'download')
+    download_stats.pop('duration')
     self.assertEqual(
         {
             'items_cold': [
@@ -682,7 +714,7 @@ class RunIsolatedTest(unittest.TestCase):
                 len(CONTENTS['repeated_files.py']),
             ],
             'items_hot': None
-        }, load_isolated_stats('download'))
+        }, download_stats)
     self.assertEqual([
         'ebea1137c5ece3f8a58f0e1a0da1411fe0a2648501419d190b3b154f3f191259',
         'f0a8a1a7050bfae60a591d0cb7d74de2ef52963b9913253fc9ec7151aa5d421e',
@@ -704,6 +736,8 @@ class RunIsolatedTest(unittest.TestCase):
         '1',
     ]
     assertRunIsolatedWithCAS(optional_args)
+    download_stats = load_isolated_stats(result_json, 'download')
+    download_stats.pop('duration')
     self.assertEqual(
         {
             'items_cold': [
@@ -711,7 +745,7 @@ class RunIsolatedTest(unittest.TestCase):
                 len(CONTENTS['repeated_files.py']),
             ],
             'items_hot': None
-        }, load_isolated_stats('download'))
+        }, download_stats)
     # Only state.json + 1 file should be kept.
     self.assertEqual(2, len(list_files_tree(self._cas_cache_dir)))
 
@@ -721,7 +755,7 @@ class RunIsolatedTest(unittest.TestCase):
         '0',
     ]
     assertRunIsolatedWithCAS(optional_args)
-    download_stats = load_isolated_stats('download')
+    download_stats = load_isolated_stats(result_json, 'download')
     self.assertEqual(1, len(download_stats['items_cold']))
     self.assertEqual(1, len(download_stats['items_hot']))
     self.assertEqual([
@@ -735,6 +769,46 @@ class RunIsolatedTest(unittest.TestCase):
         str(2**63 - 1),
     ]
     assertRunIsolatedWithCAS(optional_args, expected_retcode=1)
+
+  def test_cas_output(self):
+    # Prepare inputs on CAS instance for `output.py` task.
+    inputs_root = os.path.join(self.tempdir, 'cas_inputs')
+    os.makedirs(inputs_root)
+    write_content(os.path.join(inputs_root, 'output.py'), CONTENTS['output.py'])
+    inputs_root_digest = self._upload_to_cas(inputs_root)
+
+    # Path to the result json file.
+    result_json = os.path.join(self.tempdir, 'run_isolated_result.json')
+
+    args = [
+        '--cas-instance',
+        self._cas_instance,
+        '--cas-digest',
+        inputs_root_digest,
+        '--cache',
+        self._cas_cache_dir,
+        '--cipd-cache',
+        self._cipd_cache_dir,
+        '--json',
+        result_json,
+        '--raw-cmd',
+        '--',
+    ] + CMD_OUTPUT
+    _, err, ret = self._run(args)
+
+    self.assertEqual(0, ret)
+    self.assertEqual('', err)
+    upload_stats = load_isolated_stats(result_json, 'upload')
+    # TODO(jwata): Initial uplaods should be in `items_cold`.
+    # But the files are already there since we use the same remote instance.
+    self.assertEqual(len(OUTPUT_CONTENT), upload_stats['items_hot'][0])
+    result = json.loads(read_content(result_json))
+
+    output_dir = os.path.join(self.tempdir, 'out')
+    self._download_from_cas(result['cas_output_root'], output_dir)
+    self.assertEqual(['foo.txt'], list_files_tree(output_dir))
+    self.assertEqual(OUTPUT_CONTENT.encode(),
+                     read_content(os.path.join(output_dir, 'foo.txt')))
 
 
 if __name__ == '__main__':
