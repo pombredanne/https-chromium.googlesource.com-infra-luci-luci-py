@@ -140,6 +140,30 @@
       "revId": "9ce6ea46855877bc7fc5e7d96eb396106a06ff76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25d9d5df_d6bbb5bc",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-18T05:15:13Z",
+      "side": 1,
+      "message": "I fixed to check both cold and hot items. \nIt should work regardless of the state of remote CAS instance.",
+      "parentUuid": "67be4036_f175388c",
+      "range": {
+        "startLine": 800,
+        "startChar": 4,
+        "endLine": 800,
+        "endChar": 73
+      },
+      "revId": "9ce6ea46855877bc7fc5e7d96eb396106a06ff76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
