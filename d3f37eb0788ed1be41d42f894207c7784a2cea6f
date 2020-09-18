@@ -100,6 +100,24 @@
     },
     {
       "key": {
+        "uuid": "555e2741_2215dddb",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1565,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-18T08:32:53Z",
+      "side": 1,
+      "message": "yeah",
+      "parentUuid": "b6895992_1fa30188",
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ea6ad44_96de30f4",
         "filename": "client/run_isolated.py",
         "patchSetId": 3
@@ -278,6 +296,30 @@
       "side": 1,
       "message": "\u003e Can you instantiate DiskContentAddressedCache only in this scope?\n\nThat\u0027s for isolated_cache, right?\nLet me make another CL.",
       "parentUuid": "474e7532_cdf6715e",
+      "range": {
+        "startLine": 1723,
+        "startChar": 0,
+        "endLine": 1726,
+        "endChar": 15
+      },
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f47d42f_d2920711",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-18T08:32:53Z",
+      "side": 1,
+      "message": "I think we need DiskContentAddressedCache both for isolated and cas.\nBut make sure that doesn\u0027t overwrite cache state file updated by go client",
+      "parentUuid": "6c386e71_661f675a",
       "range": {
         "startLine": 1723,
         "startChar": 0,
