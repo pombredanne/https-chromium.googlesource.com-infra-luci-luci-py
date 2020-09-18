@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "f01a3dfa_0c893cdd",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-18T05:36:14Z",
+      "side": 1,
+      "message": "I see. I asked this because both _upload_to_cas() and _download_from_cas() will use this to install cas CIPD, so I\u0027d like to make sure it\u0027s not downloaded repeatedly even within a single test case",
+      "parentUuid": "84aff7b4_dc771492",
+      "range": {
+        "startLine": 338,
+        "startChar": 42,
+        "endLine": 338,
+        "endChar": 66
+      },
+      "revId": "9ce6ea46855877bc7fc5e7d96eb396106a06ff76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d149a95_e51ebecc",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 4

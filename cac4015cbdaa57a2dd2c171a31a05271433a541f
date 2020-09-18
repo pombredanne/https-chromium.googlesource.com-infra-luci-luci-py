@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2cdb373_d23973a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-18T05:36:14Z",
+      "side": 1,
+      "message": "Thanks, i don\u0027t have more comments, might be better to wait for tikuta@ to take a look",
+      "revId": "cac4015cbdaa57a2dd2c171a31a05271433a541f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3bc9b035_19be0c09",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-18T05:36:14Z",
+      "side": 1,
+      "message": "nit: probably don\u0027t need this because it\u0027s under tempdir, but i\u0027m also fine with this",
+      "range": {
+        "startLine": 360,
+        "startChar": 4,
+        "endLine": 360,
+        "endChar": 26
+      },
+      "revId": "cac4015cbdaa57a2dd2c171a31a05271433a541f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
