@@ -65,6 +65,23 @@
     },
     {
       "key": {
+        "uuid": "90e23aba_454f794f",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1565,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-18T07:44:40Z",
+      "side": 1,
+      "message": "Do not instantiate this.\nThis overwrites cache state file written by cas client.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/client/local_caching.py;l\u003d461;drc\u003d7d9336444499c0e696f071dd3b2650ade6d842bc",
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ea6ad44_96de30f4",
         "filename": "client/run_isolated.py",
         "patchSetId": 3
@@ -195,6 +212,30 @@
       "side": 1,
       "message": "Looking at line 1621 of the parent revision, isolated_cache isn\u0027t set when use_go_isolated \u003d True?",
       "parentUuid": "fd0f4636_32cdcb6f",
+      "range": {
+        "startLine": 1723,
+        "startChar": 0,
+        "endLine": 1726,
+        "endChar": 15
+      },
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "474e7532_cdf6715e",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-18T07:44:40Z",
+      "side": 1,
+      "message": "Ah, I see.\nAnd I think that may the reason of https://crbug.com/1115215\n\nCan you instantiate DiskContentAddressedCache only in this scope?",
+      "parentUuid": "e6868504_7337eb3a",
       "range": {
         "startLine": 1723,
         "startChar": 0,
