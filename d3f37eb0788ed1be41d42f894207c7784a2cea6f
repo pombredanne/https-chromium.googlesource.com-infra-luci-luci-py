@@ -353,6 +353,30 @@
       "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fbc4da1_aa474460",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-18T10:25:24Z",
+      "side": 1,
+      "message": "tikuta,\nDo you remember at which step the state json was updated unexpectedly, and caused https://crrev.com/c/1990538?\n\nI concern that trimming isolate_cache here may cause the same issue.",
+      "parentUuid": "70cf593f_08809337",
+      "range": {
+        "startLine": 1723,
+        "startChar": 0,
+        "endLine": 1726,
+        "endChar": 15
+      },
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
