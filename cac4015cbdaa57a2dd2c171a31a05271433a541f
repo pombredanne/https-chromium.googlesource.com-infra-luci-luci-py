@@ -63,6 +63,52 @@
       "revId": "cac4015cbdaa57a2dd2c171a31a05271433a541f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "21c6f026_cbefafd8",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-18T05:51:01Z",
+      "side": 1,
+      "message": "test_cas_input?",
+      "range": {
+        "startLine": 665,
+        "startChar": 6,
+        "endLine": 665,
+        "endChar": 14
+      },
+      "revId": "cac4015cbdaa57a2dd2c171a31a05271433a541f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b82b2d50_2ca27266",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-18T05:51:01Z",
+      "side": 1,
+      "message": "can be \u0027+\u0027?",
+      "range": {
+        "startLine": 803,
+        "startChar": 46,
+        "endLine": 803,
+        "endChar": 48
+      },
+      "revId": "cac4015cbdaa57a2dd2c171a31a05271433a541f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
