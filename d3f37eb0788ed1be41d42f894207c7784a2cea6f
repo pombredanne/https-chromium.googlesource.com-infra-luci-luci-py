@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93b74b2c_e92c602f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-18T06:56:08Z",
+      "side": 1,
+      "message": "Please give early feedback on this CL. \nI\u0027m not confident with cache cleanup part.",
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ea6ad44_96de30f4",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1681,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-18T06:56:08Z",
+      "side": 1,
+      "message": "Please review this part carefully as it caused outage last year.",
+      "range": {
+        "startLine": 1676,
+        "startChar": 0,
+        "endLine": 1681,
+        "endChar": 62
+      },
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "474dfaef_14b96b6b",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-18T06:56:08Z",
+      "side": 1,
+      "message": "When does `cas_cache` need to be included in caches?",
+      "range": {
+        "startLine": 1723,
+        "startChar": 0,
+        "endLine": 1726,
+        "endChar": 15
+      },
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
