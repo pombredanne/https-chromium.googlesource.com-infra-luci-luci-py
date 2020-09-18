@@ -82,6 +82,24 @@
     },
     {
       "key": {
+        "uuid": "b6895992_1fa30188",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1565,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-18T08:29:05Z",
+      "side": 1,
+      "message": "So we need DiskContentAddressedCache to be instantiated only for cleanups and trims?",
+      "parentUuid": "90e23aba_454f794f",
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ea6ad44_96de30f4",
         "filename": "client/run_isolated.py",
         "patchSetId": 3
