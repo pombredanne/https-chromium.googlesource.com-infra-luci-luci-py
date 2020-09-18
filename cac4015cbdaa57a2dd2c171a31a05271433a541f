@@ -39,6 +39,30 @@
       "revId": "cac4015cbdaa57a2dd2c171a31a05271433a541f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e053a3ac_1da02456",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-18T05:50:45Z",
+      "side": 1,
+      "message": "I thought it would fail if _upload_to_cas() is called multiple times in the same test.\nBut it doesn\u0027t. \nremoved the os.remove().",
+      "parentUuid": "3bc9b035_19be0c09",
+      "range": {
+        "startLine": 360,
+        "startChar": 4,
+        "endLine": 360,
+        "endChar": 26
+      },
+      "revId": "cac4015cbdaa57a2dd2c171a31a05271433a541f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

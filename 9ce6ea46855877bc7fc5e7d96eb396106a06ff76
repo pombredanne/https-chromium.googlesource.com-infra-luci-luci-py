@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "dff2d417_5e21e82a",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-18T05:50:45Z",
+      "side": 1,
+      "message": "`cas` should be shared in upload/download in the same test.",
+      "parentUuid": "f01a3dfa_0c893cdd",
+      "range": {
+        "startLine": 338,
+        "startChar": 42,
+        "endLine": 338,
+        "endChar": 66
+      },
+      "revId": "9ce6ea46855877bc7fc5e7d96eb396106a06ff76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d149a95_e51ebecc",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 4
