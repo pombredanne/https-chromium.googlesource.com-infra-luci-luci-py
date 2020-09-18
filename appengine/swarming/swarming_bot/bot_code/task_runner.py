@@ -365,7 +365,16 @@ def load_and_run(in_file, swarming_server, cost_usd_hour, start, out_file,
       # do NOT inherit existing local_auth (if its there). Kick it out by
       # passing None.
       context_edits = {
-        'local_auth': local_auth_context
+        'local_auth': local_auth_context,
+      }
+
+      deadline = monotonic_time() + task_details.hard_timeout
+      context_edits['deadline'] = {
+        'deadline': {
+          'seconds': int(deadline),
+          'nanos': int((deadline) * 1e9),
+        },
+        'grace_period': '%fs' % (task_details.grace_period,),
       }
 
       # Extend existing LUCI_CONTEXT['swarming'], if any.
@@ -385,6 +394,7 @@ def load_and_run(in_file, swarming_server, cost_usd_hour, start, out_file,
         resultdb = luci_context.read('resultdb') or {}
         resultdb.update(task_details.resultdb)
         context_edits['resultdb'] = resultdb
+
 
       # Returns bot authentication headers dict or raises InternalError.
       def headers_cb():
