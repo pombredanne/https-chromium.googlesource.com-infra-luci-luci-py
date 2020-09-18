@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad4cc0ec_2eb1611e",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-18T03:39:05Z",
+      "side": 1,
+      "message": "Could you refactor this to a \"dummier\" way now..? E.g.\n\n```\nout_dir \u003d None\nif data.storage or use_cas:\n  out_dir \u003d ...\n```",
+      "range": {
+        "startLine": 980,
+        "startChar": 2,
+        "endLine": 981,
+        "endChar": 77
+      },
+      "revId": "9ce6ea46855877bc7fc5e7d96eb396106a06ff76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ebb4fc8_1e45ddc4",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-18T03:39:05Z",
+      "side": 1,
+      "message": "To confirm my understanding, since this is set, CIPD won\u0027t be downloaded repeatedly?",
+      "range": {
+        "startLine": 338,
+        "startChar": 42,
+        "endLine": 338,
+        "endChar": 66
+      },
+      "revId": "9ce6ea46855877bc7fc5e7d96eb396106a06ff76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9d149a95_e51ebecc",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-18T03:39:05Z",
+      "side": 1,
+      "message": "Could the file be removed after a certain expiry? If so, the check below is gonna be flaky?",
+      "range": {
+        "startLine": 800,
+        "startChar": 4,
+        "endLine": 800,
+        "endChar": 73
+      },
+      "revId": "9ce6ea46855877bc7fc5e7d96eb396106a06ff76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
