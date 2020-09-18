@@ -329,6 +329,30 @@
       "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70cf593f_08809337",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-18T09:42:56Z",
+      "side": 1,
+      "message": "Yeah, all caches need to be trimmed here, indeed.\nBut I want to make sure that trimming isolated_cache here isn\u0027t harmful.\n\n\u003e And I think that may the reason of https://crbug.com/1115215\nLooks related. But I\u0027m not sure trimming would resolve the bug.",
+      "parentUuid": "3f47d42f_d2920711",
+      "range": {
+        "startLine": 1723,
+        "startChar": 0,
+        "endLine": 1726,
+        "endChar": 15
+      },
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
