@@ -19,6 +19,52 @@
     },
     {
       "key": {
+        "uuid": "4ea2d772_b6e73e4b",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1549,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-18T07:07:06Z",
+      "side": 1,
+      "message": "I prefer not to keep commented out code.",
+      "range": {
+        "startLine": 1543,
+        "startChar": 0,
+        "endLine": 1549,
+        "endChar": 27
+      },
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73f1eea7_a49c18e2",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1553,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-18T07:07:06Z",
+      "side": 1,
+      "message": "no need to have this?",
+      "range": {
+        "startLine": 1553,
+        "startChar": 45,
+        "endLine": 1553,
+        "endChar": 53
+      },
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ea6ad44_96de30f4",
         "filename": "client/run_isolated.py",
         "patchSetId": 3
@@ -53,6 +99,30 @@
       "writtenOn": "2020-09-18T06:56:08Z",
       "side": 1,
       "message": "When does `cas_cache` need to be included in caches?",
+      "range": {
+        "startLine": 1723,
+        "startChar": 0,
+        "endLine": 1726,
+        "endChar": 15
+      },
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb3cd439_25467c50",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-18T07:07:06Z",
+      "side": 1,
+      "message": "this line needs to have both.",
+      "parentUuid": "474dfaef_14b96b6b",
       "range": {
         "startLine": 1723,
         "startChar": 0,
