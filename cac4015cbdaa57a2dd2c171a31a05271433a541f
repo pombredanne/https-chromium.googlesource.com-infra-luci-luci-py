@@ -89,6 +89,30 @@
     },
     {
       "key": {
+        "uuid": "b3341f05_6e953347",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-18T06:13:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21c6f026_cbefafd8",
+      "range": {
+        "startLine": 665,
+        "startChar": 6,
+        "endLine": 665,
+        "endChar": 14
+      },
+      "revId": "cac4015cbdaa57a2dd2c171a31a05271433a541f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b82b2d50_2ca27266",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 7
@@ -100,6 +124,30 @@
       "writtenOn": "2020-09-18T05:51:01Z",
       "side": 1,
       "message": "can be \u0027+\u0027?",
+      "range": {
+        "startLine": 803,
+        "startChar": 46,
+        "endLine": 803,
+        "endChar": 48
+      },
+      "revId": "cac4015cbdaa57a2dd2c171a31a05271433a541f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38b90278_ecc811ec",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-18T06:13:26Z",
+      "side": 1,
+      "message": "No, because they can be None.\n(I wanted to the default to be empty list...)",
+      "parentUuid": "b82b2d50_2ca27266",
       "range": {
         "startLine": 803,
         "startChar": 46,
