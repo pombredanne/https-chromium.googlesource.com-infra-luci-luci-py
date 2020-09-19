@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed021c88_f07c5db3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001921
+      },
+      "writtenOn": "2020-09-19T00:25:54Z",
+      "side": 1,
+      "message": "PTAL.\nI\u0027ve examined several machines in Chrome GPU fleet and they all had the relevant GPU with class id 0300, so hopefully this doesn\u0027t break anything.\n\nbuild115-b1:\n01:00.0 \"VGA compatible controller [0300]\" \"Advanced Micro Devices, Inc. [AMD/ATI] [1002]\" \"Oland PRO [Radeon R7 240/340] [6613]\" \"ASUSTeK Computer Inc. [1043]\" \"Oland PRO [Radeon R7 240/340] [048b]\"\n\nbuild158-b1:\n00:02.0 \"VGA compatible controller [0300]\" \"Intel Corporation [8086]\" \"HD Graphics 530 [1912]\" -r06 \"Dell [1028]\" \"HD Graphics 530 [06b9]\"\n\nbuild22-b1:\n00:02.0 \"VGA compatible controller [0300]\" \"Intel Corporation [8086]\" \"HD Graphics 630 [5912]\" -r04 \"Dell [1028]\" \"HD Graphics 630 [07a1]\"\n\nbuild427-a9:\n00:02.0 \"VGA compatible controller [0300]\" \"Intel Corporation [8086]\" \"UHD Graphics 630 (Desktop) [3e92]\" \"Dell [1028]\" \"UHD Graphics 630 (Desktop) [085a]\"\n\nbuild76-m4:\n01:00.0 \"VGA compatible controller [0300]\" \"NVIDIA Corporation [10de]\" \"GP107GL [Quadro P400] [1cb3]\" -ra1 \"NVIDIA Corporation [10de]\" \"GP107GL [Quadro P400] [11be]\"\n\nbuild34-a9:\n00:02.0 \"VGA compatible controller [0300]\" \"Intel Corporation [8086]\" \"HD Graphics 630 [5912]\" -r04 \"Dell [1028]\" \"HD Graphics 630 [07a1]\"\n\nbuild589-a9 is the config this is going to fix:\n00:02.0 \"Display controller [0380]\" \"Intel Corporation [8086]\" \"Device [3e9a]\" -r02 \"Dell [1028]\" \"Device [0873]\"\n01:00.0 \"VGA compatible controller [0300]\" \"NVIDIA Corporation [10de]\" \"Device [2184]\" -ra1 \"Gigabyte Technology Co., Ltd [1458]\" \"Device [3fc8]\"\n\n",
+      "revId": "ed81cb13856b78f9842ae249d2e2a63515f19041",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
