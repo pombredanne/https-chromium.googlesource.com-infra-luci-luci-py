@@ -261,7 +261,7 @@ def get_gpu():
     if not m:
       continue
     dev_type = m.group(2)
-    if not dev_type or not dev_type.startswith('03'):
+    if not dev_type or not dev_type.startswith('0300'):
       continue
     vendor = re_id.match(line[2])
     device = re_id.match(line[3])
