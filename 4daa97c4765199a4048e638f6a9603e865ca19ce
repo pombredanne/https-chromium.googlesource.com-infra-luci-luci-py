@@ -16,6 +16,23 @@
       "revId": "4daa97c4765199a4048e638f6a9603e865ca19ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c5b08ad_bacfbb8b",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-22T21:47:16Z",
+      "side": 1,
+      "message": "This proto is only used as BigQuery scheme, not http response.\nWe already have the property in\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_rpcs.py;l\u003d753;drc\u003dfc78d20b0d0a3f6281762258e962a77cb37e72e0",
+      "revId": "4daa97c4765199a4048e638f6a9603e865ca19ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
