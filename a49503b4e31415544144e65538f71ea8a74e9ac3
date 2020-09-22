@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6da60ea_9608890d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-09-22T01:40:24Z",
+      "side": 1,
+      "message": "These tests seem flaky :(\n\nI can\u0027t tell if they\u0027re related to my change or not though",
+      "revId": "a49503b4e31415544144e65538f71ea8a74e9ac3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
