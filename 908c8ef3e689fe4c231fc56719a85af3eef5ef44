@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4722792_bb316840",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-22T19:56:36Z",
+      "side": 1,
+      "message": "On one hand it\u0027s python so shrug, on the other hand it\u0027s tricky behavior I think I would have liked a test.",
+      "revId": "908c8ef3e689fe4c231fc56719a85af3eef5ef44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
