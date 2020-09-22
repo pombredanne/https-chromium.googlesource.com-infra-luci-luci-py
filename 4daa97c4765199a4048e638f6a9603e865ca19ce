@@ -33,6 +33,24 @@
       "revId": "4daa97c4765199a4048e638f6a9603e865ca19ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f4decda_fd297ee8",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-22T21:48:40Z",
+      "side": 1,
+      "message": "Ah, sorry. I didn\u0027t understand the issue.\nCould you add test for this?",
+      "parentUuid": "7c5b08ad_bacfbb8b",
+      "revId": "4daa97c4765199a4048e638f6a9603e865ca19ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
