@@ -171,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "1a06bdfa_3b5677a1",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1565,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-23T06:15:17Z",
+      "side": 1,
+      "message": "We discussed to not touch state.json from run_isolated.py and cas client in the same commend.",
+      "parentUuid": "bb843efa_2237e34a",
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ea6ad44_96de30f4",
         "filename": "client/run_isolated.py",
         "patchSetId": 3
@@ -502,6 +520,30 @@
       "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "989241da_5c8c05fc",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-23T06:15:17Z",
+      "side": 1,
+      "message": "Let\u0027s not touch here, then.",
+      "parentUuid": "d4f78d66_2c490d5e",
+      "range": {
+        "startLine": 1723,
+        "startChar": 0,
+        "endLine": 1726,
+        "endChar": 15
+      },
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
