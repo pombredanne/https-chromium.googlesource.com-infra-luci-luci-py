@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3c4bb851_847e43f5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-23T04:07:44Z",
+      "side": 1,
+      "message": "Is there any situations where we don\u0027t want to ignore integrated GPUs?\nAnd also why don\u0027t you specify the GPUs that you need?",
+      "range": {
+        "startLine": 10,
+        "startChar": 18,
+        "endLine": 10,
+        "endChar": 63
+      },
+      "revId": "ed81cb13856b78f9842ae249d2e2a63515f19041",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ed021c88_f07c5db3",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
