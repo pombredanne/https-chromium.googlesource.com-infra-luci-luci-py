@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1782aeff_5e289c54",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-23T01:29:43Z",
+      "side": 1,
+      "message": "we are still using python2",
+      "revId": "2c68b71af3e08bdf6a91577535825908cb171bc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
