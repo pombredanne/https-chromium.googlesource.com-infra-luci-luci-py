@@ -39,6 +39,40 @@
       "revId": "ed81cb13856b78f9842ae249d2e2a63515f19041",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3820bee4_a6b56d3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2020-09-23T19:23:15Z",
+      "side": 1,
+      "message": "I\u0027m concerned about the long-term effectiveness of this patch, in particular as more machine and GPU types are added to the fleet, but lgtm to get the new bots running.\n",
+      "revId": "ed81cb13856b78f9842ae249d2e2a63515f19041",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bbbaea4e_207d5f89",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2020-09-23T19:23:15Z",
+      "side": 1,
+      "message": "Please add the CL description as a multi-line comment above this line. This is subtle, has no tests (is it possible to add any?), and could break a fraction of the fleet if ever changed.",
+      "revId": "ed81cb13856b78f9842ae249d2e2a63515f19041",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
