@@ -1458,7 +1458,9 @@ def create_option_parser():
       '`{hash}/{size_bytes}`.')
   parser.add_option_group(group)
 
+  # Cache options.
   isolateserver.add_cache_options(parser)
+  add_cas_cache_options(parser)
 
   cipd.add_cipd_options(parser)
 
@@ -1514,6 +1516,48 @@ def create_option_parser():
 
   parser.set_defaults(cache='cache')
   return parser
+
+
+def add_cas_cache_options(parser):
+  group = optparse.OptionGroup(parser, 'CAS cache management')
+  group.add_option(
+      '--cas-cache',
+      metavar='DIR',
+      default='cas-cache',
+      help='Directory to keep a local cache of the files. Accelerates download '
+      'by reusing already downloaded files. Default=%default')
+  group.add_option(
+      '--cas-max-cache-size',
+      type='int',
+      metavar='NNN',
+      default=50 * 1024 * 1024 * 1024,
+      help='Trim if the cache gets larger than this value, default=%default')
+  group.add_option(
+      '--cas-min-free-space',
+      type='int',
+      metavar='NNN',
+      default=2 * 1024 * 1024 * 1024,
+      help='Trim if disk free space becomes lower than this value, '
+      'default=%default')
+  parser.add_option_group(group)
+
+
+def process_cas_cache_options(options, trim, **kwargs):
+  if options.cas_cache:
+    policies = local_caching.CachePolicies(
+        max_cache_size=options.cas_max_cache_size,
+        min_free_space=options.cas_min_free_space,
+        # max_items isn't used for CAS cache for now.
+        max_items=None,
+        # 3 weeks.
+        max_age_secs=21 * 24 * 60 * 60)
+
+    # |options.cache| path may not exist until DiskContentAddressedCache()
+    # instance is created.
+    return local_caching.DiskContentAddressedCache(
+        six.text_type(os.path.abspath(options.cas_cache)), policies, trim,
+        **kwargs)
+  return local_caching.MemoryContentAddressedCache()
 
 
 def process_named_cache_options(parser, options, time_fn=None):
@@ -1616,16 +1660,27 @@ def main(args):
   # TODO(crbug.com/932396): Remove this.
   use_go_isolated = options.cipd_enabled
 
+  # True if CAS is used for download/upload.
+  use_cas = bool(options.cas_digest)
+
   # TODO(maruel): CIPD caches should be defined at an higher level here too, so
   # they can be cleaned the same way.
-  if use_go_isolated and not options.clean:
-    isolate_cache = None
-  else:
+  # TODO(crbug.com/1131313):
+  # Modifying stats.json from run_isolated.py and Go isolated/cas clients may
+  # cause unexpected issues. Initialize CachePolicies when not using Go client
+  # or executing --clean.
+  isolate_cache = None
+  if options.clean or not use_go_isolated:
     isolate_cache = isolateserver.process_cache_options(options, trim=False)
+  cas_cache = None
+  if options.clean:
+    cas_cache = process_cas_cache_options(options, trim=False)
 
   caches = []
   if isolate_cache:
     caches.append(isolate_cache)
+  if cas_cache:
+    caches.append(cas_cache)
   if named_cache:
     caches.append(named_cache)
   root = caches[0].cache_dir if caches else six.text_type(os.getcwd())
