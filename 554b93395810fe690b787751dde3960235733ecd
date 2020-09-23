@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2577a5a7_229667db",
+        "filename": "client/LUCI_CONTEXT.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-09-23T20:41:21Z",
+      "side": 1,
+      "message": "this is awkward :( Maybe it should have been int32 (and same for timestamps, 2038 us will deal with it later)",
+      "range": {
+        "startLine": 46,
+        "startChar": 25,
+        "endLine": 46,
+        "endChar": 26
+      },
+      "revId": "554b93395810fe690b787751dde3960235733ecd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
