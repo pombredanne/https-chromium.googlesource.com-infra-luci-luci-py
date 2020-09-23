@@ -136,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "bb843efa_2237e34a",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1565,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-23T02:19:18Z",
+      "side": 1,
+      "message": "I think it is safe as long as we don\u0027t call cache modification api. But better to make scope small.",
+      "parentUuid": "c1c7118c_c8194878",
+      "revId": "d3f37eb0788ed1be41d42f894207c7784a2cea6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ea6ad44_96de30f4",
         "filename": "client/run_isolated.py",
         "patchSetId": 3
