@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "237d26d5_f6d54a96",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1536,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-23T06:43:39Z",
+      "side": 1,
+      "message": "Probably, we can reuse --min-free-space?",
+      "range": {
+        "startLine": 1536,
+        "startChar": 0,
+        "endLine": 1536,
+        "endChar": 29
+      },
+      "revId": "7688d6fb22f26dbbba559bd5ab1b957db958cd3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
