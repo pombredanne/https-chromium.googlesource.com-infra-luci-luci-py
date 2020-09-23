@@ -16,6 +16,24 @@
       "revId": "2c68b71af3e08bdf6a91577535825908cb171bc6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11e404b9_0c2770b8",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-09-23T01:45:43Z",
+      "side": 1,
+      "message": "Yep, I was confused by the shebang; See latest patchset which fixes it for py2.",
+      "parentUuid": "1782aeff_5e289c54",
+      "revId": "2c68b71af3e08bdf6a91577535825908cb171bc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
