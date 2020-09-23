@@ -22,6 +22,30 @@
       "revId": "b03f65a7eb7d4142e56d72e0ae1827349c67a932",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79ca6fc0_5edae017",
+        "filename": "client/LUCI_CONTEXT.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-09-23T17:48:48Z",
+      "side": 1,
+      "message": "Ah, missed this; done.",
+      "parentUuid": "ade66966_83c0132c",
+      "range": {
+        "startLine": 45,
+        "startChar": 16,
+        "endLine": 45,
+        "endChar": 42
+      },
+      "revId": "b03f65a7eb7d4142e56d72e0ae1827349c67a932",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

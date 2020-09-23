@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a17fe0ff_b0bf527f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-09-23T17:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afcdc6b8_60e590a9",
+      "revId": "676cccb8526ff33de56377145ec26563ae6ddcb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "475bea00_233a7e87",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 3
