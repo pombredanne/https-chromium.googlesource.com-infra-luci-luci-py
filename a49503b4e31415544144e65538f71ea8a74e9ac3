@@ -121,6 +121,30 @@
       "revId": "a49503b4e31415544144e65538f71ea8a74e9ac3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5da4775_0eabba19",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2020-09-23T01:46:43Z",
+      "side": 1,
+      "message": "I added a test for subprocess42 directly; do you think I need an additional swarming test?",
+      "parentUuid": "11ad0817_85bdf394",
+      "range": {
+        "startLine": 1066,
+        "startChar": 29,
+        "endLine": 1066,
+        "endChar": 77
+      },
+      "revId": "a49503b4e31415544144e65538f71ea8a74e9ac3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
