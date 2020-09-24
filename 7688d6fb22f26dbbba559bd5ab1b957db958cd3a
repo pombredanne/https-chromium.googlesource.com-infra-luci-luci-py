@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1df5e9f1_d96275c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-24T13:30:37Z",
+      "side": 1,
+      "message": "I fixed run_isolated_smoke_test.py and added a test for --clean in run_isolated_test.py.",
+      "parentUuid": "c932403a_bf0975c7",
+      "revId": "7688d6fb22f26dbbba559bd5ab1b957db958cd3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "237d26d5_f6d54a96",
         "filename": "client/run_isolated.py",
         "patchSetId": 7
@@ -63,6 +81,30 @@
       "revId": "7688d6fb22f26dbbba559bd5ab1b957db958cd3a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc3f40e4_5013854b",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1536,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-24T13:30:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6bf44df_90955f29",
+      "range": {
+        "startLine": 1536,
+        "startChar": 0,
+        "endLine": 1536,
+        "endChar": 29
+      },
+      "revId": "7688d6fb22f26dbbba559bd5ab1b957db958cd3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
