@@ -645,6 +645,41 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertIsNone(to_run_key.get().expiration_ts)
     self.assertEqual(State.EXPIRED, result_summary.key.get().state)
 
+  @ndb.tasklet
+  def nop_async(self, *_args, **_kwargs):
+    pass
+
+  def test_bot_reap_resultdb_task_expired(self):
+    self._register_bot(0, self.bot_dimensions)
+
+    with mock.patch(
+        'server.resultdb.create_invocation_async',
+        mock.Mock(side_effect=self._mock_create_invocation_async)) as mock_call:
+      request = _gen_request_slices(realm='infra:try')
+      result_summary = task_scheduler.schedule_request(request, None, True)
+      mock_call.assert_called_once_with('1d69b9f088008911', 'infra:try')
+
+    # Forwards clock to get past expiration.
+    self.mock_now(result_summary.request_key.get().expiration_ts, 1)
+
+    self.assertEqual(1, self.execute_tasks())
+
+    with mock.patch('server.resultdb.finalize_invocation_async',
+                    mock.Mock(side_effect=self.nop_async)) as mock_call:
+      actual_request, _, run_result = task_scheduler.bot_reap_task(
+          self.bot_dimensions, 'abc')
+      mock_call.assert_called_once()
+
+    # The task is not returned because it's expired.
+    self.assertIsNone(actual_request)
+    self.assertIsNone(run_result)
+    # It's effectively expired.
+    to_run_key = task_to_run.request_to_task_to_run_key(
+        result_summary.request_key.get(), 1, 0)
+    self.assertIsNone(to_run_key.get().queue_number)
+    self.assertIsNone(to_run_key.get().expiration_ts)
+    self.assertEqual(State.EXPIRED, result_summary.key.get().state)
+
   def test_bot_reap_task_6_expired_fifo(self):
     cfg = config.settings()
     cfg.use_lifo = False
