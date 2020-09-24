@@ -278,7 +278,6 @@ class RunIsolatedTest(unittest.TestCase):
     self.tempdir = run_isolated.make_temp_dir(
         u'run_isolated_smoke_test', test_env.CLIENT_DIR)
     logging.debug(self.tempdir)
-    self._root_dir = os.path.join(self.tempdir, 'w')
     # The run_isolated local cache.
     self._isolated_cache_dir = os.path.join(self.tempdir, 'i')
     self._isolated_server = isolateserver_fake.FakeIsolateServer()
@@ -679,13 +678,11 @@ class RunIsolatedTest(unittest.TestCase):
 
     def assertRunIsolatedWithCAS(optional_args, expected_retcode=0):
       args = optional_args + [
-          '--root-dir',
-          self._root_dir,
           '--cas-instance',
           self._cas_instance,
           '--cas-digest',
           inputs_root_digest,
-          '--cas-cache',
+          '--cache',
           self._cas_cache_dir,
           '--cipd-cache',
           self._cipd_cache_dir,
@@ -696,10 +693,10 @@ class RunIsolatedTest(unittest.TestCase):
       ] + CMD_REPEATED_FILES
       out, err, ret = self._run(args)
 
+      self.assertEqual(expected_retcode, ret)
       if expected_retcode == 0:
         self.assertEqual('', err)
         self.assertEqual('Success\n', out)
-      self.assertEqual(expected_retcode, ret)
 
     # Runs run_isolated with cas options.
     assertRunIsolatedWithCAS([])
@@ -724,20 +721,39 @@ class RunIsolatedTest(unittest.TestCase):
     # '--max-cache-size=0' is ignored by local_caching.py unexpectedly.
     # change it to 0 after fixing the bug.
     _, _, returncode = self._run(
-        ['--clean', '--cas-cache', self._cas_cache_dir, '--cas-max-cache-size', '1'])
+        ['--clean', '--cache', self._cas_cache_dir, '--max-cache-size', '1'])
     self.assertEqual(0, returncode)
     self.assertEqual(['state.json'], list_files_tree(self._cas_cache_dir))
 
-    # Specify --cas-max-cache-size option.
+    # Specify --max-items option.
     optional_args = [
-        '--cas-max-cache-size',
+        '--max-items',
+        '1',
+    ]
+    assertRunIsolatedWithCAS(optional_args)
+    download_stats = load_isolated_stats(result_json, 'download')
+    download_stats.pop('duration')
+    self.assertEqual(
+        {
+            'items_cold': [
+                len(CONTENTS['file1.txt']),
+                len(CONTENTS['repeated_files.py']),
+            ],
+            'items_hot': None
+        }, download_stats)
+    # Only state.json + 1 file should be kept.
+    self.assertEqual(2, len(list_files_tree(self._cas_cache_dir)))
+
+    # Specify --max-cache-size option.
+    optional_args = [
+        '--max-cache-size',
         '0',
     ]
     assertRunIsolatedWithCAS(optional_args)
     download_stats = load_isolated_stats(result_json, 'download')
-    self.assertEqual(2, len(download_stats['items_cold']))
+    self.assertEqual(1, len(download_stats['items_cold']))
+    self.assertEqual(1, len(download_stats['items_hot']))
     self.assertEqual([
-        # Only file1.txt shold be cached.
         'state.json',
     ], list_files_tree(self._cas_cache_dir))
 
@@ -760,13 +776,11 @@ class RunIsolatedTest(unittest.TestCase):
     result_json = os.path.join(self.tempdir, 'run_isolated_result.json')
 
     args = [
-        '--root-dir',
-        self._root_dir,
         '--cas-instance',
         self._cas_instance,
         '--cas-digest',
         inputs_root_digest,
-        '--cas-cache',
+        '--cache',
         self._cas_cache_dir,
         '--cipd-cache',
         self._cipd_cache_dir,
