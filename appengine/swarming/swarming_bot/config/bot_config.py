@@ -124,6 +124,14 @@ def get_settings(bot):
               # Maximum number of items in the local isolated cache.
               'items': 50 * 1024,
           },
+          'cas': {
+              # Maximum local cas cache size in bytes.
+              'size': 50 * 1024 * 1024 * 1024,
+              # Maximum number of items in the local cas cache.
+              # We don't know the necessity of max # of items, and an
+              # appropriate number. Do not use the option for now.
+              # 'items': 200 * 1024,
+          },
       },
   }
 
