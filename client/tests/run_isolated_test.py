@@ -367,6 +367,8 @@ class RunIsolatedTest(RunIsolatedTestBase):
         use_go_isolated=False,
         go_cache_dir=None,
         go_cache_policies=None,
+        cas_cache_dir=None,
+        cas_cache_policies=None,
         env={},
         env_prefix={},
         lower_priority=lower_priority,
@@ -381,6 +383,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     files = {isolated_hash: isolated}
     make_tree_call = self._run_tha_test(isolated_hash, files)
     self.assertEqual([
+        'make_tree_deleteable',
         'make_tree_deleteable',
         'make_tree_deleteable',
         'make_tree_deleteable',
@@ -1026,6 +1029,8 @@ class RunIsolatedTestRun(RunIsolatedTestBase):
           use_go_isolated=False,
           go_cache_dir=None,
           go_cache_policies=None,
+          cas_cache_dir=None,
+          cas_cache_policies=None,
           env={},
           env_prefix={},
           lower_priority=False,
@@ -1409,6 +1414,8 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
           use_go_isolated=False,
           go_cache_dir=None,
           go_cache_policies=None,
+          cas_cache_dir=None,
+          cas_cache_policies=None,
           env={},
           env_prefix={},
           lower_priority=False,
