@@ -774,7 +774,7 @@ def collect(swarming, task_ids, timeout, decorate, print_status_updates,
             decorate_shard_output(swarming, index, metadata,
                                   "console" in task_output_stdout).encode(
                                       'utf-8', 'replace'))
-        print(s)
+        print(s.encode('utf-8'))
         if len(seen_shards) < len(task_ids):
           print('')
       else:
