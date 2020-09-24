@@ -1182,6 +1182,10 @@ def schedule_request(request, secret_bytes, enable_resultdb):
   if not dupe_summary:
     # The task has to run.
     index = 0
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     while index < request.num_task_slices:
       # This needs to be extremely fast.
       to_run = task_to_run.new_task_to_run(request, index)
