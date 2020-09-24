@@ -59,6 +59,23 @@
     },
     {
       "key": {
+        "uuid": "80db7f7f_3de9a01f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001921
+      },
+      "writtenOn": "2020-09-24T19:45:52Z",
+      "side": 1,
+      "message": "Labs were able to disable Intel GPU on these bots via udev rule, so this CL is not needed at the moment.\nI\u0027m also concerned about 0300 not covering some future GPU, so I\u0027ll abandon this.",
+      "revId": "ed81cb13856b78f9842ae249d2e2a63515f19041",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bbbaea4e_207d5f89",
         "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
         "patchSetId": 1
