@@ -16,6 +16,69 @@
       "revId": "bcd65e3ae67e3ee63b6f063a086d15b7d605b724",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "465209b8_5d59146b",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1532,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-25T00:00:44Z",
+      "side": 1,
+      "message": "For this, I now think it is fine to use the same value with isolate.",
+      "revId": "bcd65e3ae67e3ee63b6f063a086d15b7d605b724",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38852189_0e8243d8",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1540,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-25T00:00:44Z",
+      "side": 1,
+      "message": "no need to have this now?",
+      "range": {
+        "startLine": 1540,
+        "startChar": 45,
+        "endLine": 1540,
+        "endChar": 53
+      },
+      "revId": "bcd65e3ae67e3ee63b6f063a086d15b7d605b724",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9904d09b_8842565d",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1551,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-25T00:00:44Z",
+      "side": 1,
+      "message": "I think this comment is not necessary.\ncas client creates cache dir if it does not exist too.",
+      "range": {
+        "startLine": 1550,
+        "startChar": 0,
+        "endLine": 1551,
+        "endChar": 26
+      },
+      "revId": "bcd65e3ae67e3ee63b6f063a086d15b7d605b724",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
