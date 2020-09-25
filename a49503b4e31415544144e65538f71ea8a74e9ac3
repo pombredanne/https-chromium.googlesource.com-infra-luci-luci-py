@@ -163,6 +163,30 @@
       "revId": "a49503b4e31415544144e65538f71ea8a74e9ac3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da66fc28_bda5652c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-25T00:11:57Z",
+      "side": 1,
+      "message": "It\u0027s fine.",
+      "parentUuid": "e5da4775_0eabba19",
+      "range": {
+        "startLine": 1066,
+        "startChar": 29,
+        "endLine": 1066,
+        "endChar": 77
+      },
+      "revId": "a49503b4e31415544144e65538f71ea8a74e9ac3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
