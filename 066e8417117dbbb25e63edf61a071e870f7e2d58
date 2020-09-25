@@ -16,6 +16,24 @@
       "revId": "066e8417117dbbb25e63edf61a071e870f7e2d58",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae4f3034_845f1358",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-25T09:54:06Z",
+      "side": 1,
+      "message": "Done in the bug itself.",
+      "parentUuid": "355b7a30_17993bb8",
+      "revId": "066e8417117dbbb25e63edf61a071e870f7e2d58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
