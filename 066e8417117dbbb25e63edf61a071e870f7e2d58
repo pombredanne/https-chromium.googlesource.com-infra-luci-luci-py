@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "355b7a30_17993bb8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-25T09:06:46Z",
+      "side": 1,
+      "message": "could you update the description of the bug to have link to codesearch?",
+      "revId": "066e8417117dbbb25e63edf61a071e870f7e2d58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
