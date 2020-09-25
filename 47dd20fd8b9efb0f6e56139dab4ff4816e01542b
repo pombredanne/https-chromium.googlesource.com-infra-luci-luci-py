@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e1d81be0_654ad49a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-25T00:13:24Z",
+      "side": 1,
+      "message": "Thanks! That\u0027s a nice way of implementing it, I wouldn\u0027t have thought about using a pipie.",
+      "revId": "47dd20fd8b9efb0f6e56139dab4ff4816e01542b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
