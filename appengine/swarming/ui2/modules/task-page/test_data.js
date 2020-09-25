@@ -253,6 +253,13 @@ export const taskResults = [
       'namespace': 'default-gzip',
       'isolated': '9b7e9a85c14f3012e0395ae1d92d1d7339f5f99e',
     },
+    'cas_output_root': {
+      'cas_instance': 'projects/chromium-swarm-dev/instances/default_instance',
+      'digest': {
+        'hash': '1d1e14a2d0da6348f3f37312ef524a2cea1db4ead9ebc6c335f9948ad634cbfd',
+        'size_bytes': 10430,
+      },
+    },
     'server_versions': [
       '3779-c5c026e',
     ],
@@ -495,6 +502,13 @@ export const taskResults = [
       'isolatedserver': 'https://isolateserver.appspot.com',
       'namespace': 'default-gzip',
       'isolated': 'd50a6620dd3d7907be0d8f79d9aab89c4a7d07e7',
+    },
+    'cas_output_root': {
+      'cas_instance': 'projects/chromium-swarm-dev/instances/default_instance',
+      'digest': {
+        'hash': '1d1e14a2d0da6348f3f37312ef524a2cea1db4ead9ebc6c335f9948ad634cbfd',
+        'size_bytes': 10430,
+      },
     },
     'server_versions': [
       '4064-3687a02',
@@ -812,6 +826,13 @@ export const taskRequests = [
             'namespace': 'default-gzip',
             'isolated': 'cdf03f96d6b922b0ef716a69567c7e29014f70d0',
           },
+          'cas_input_root': {
+            'cas_instance': 'projects/chromium-swarm-dev/instances/default_instance',
+            'digest': {
+              'hash': '1d1e14a2d0da6348f3f37312ef524a2cea1db4ead9ebc6c335f9948ad634cbfd',
+              'size_bytes': 10430,
+            },
+          },
           'grace_period_secs': '30',
           'caches': [
             {
@@ -910,6 +931,13 @@ export const taskRequests = [
         'isolatedserver': 'https://isolateserver.appspot.com',
         'namespace': 'default-gzip',
         'isolated': 'cdf03f96d6b922b0ef716a69567c7e29014f70d0',
+      },
+      'cas_input_root': {
+        'cas_instance': 'projects/chromium-swarm-dev/instances/default_instance',
+        'digest': {
+          'hash': '1d1e14a2d0da6348f3f37312ef524a2cea1db4ead9ebc6c335f9948ad634cbfd',
+          'size_bytes': 10430,
+        },
       },
       'grace_period_secs': '30',
       'caches': [
@@ -1698,6 +1726,13 @@ export const taskRequests = [
             'namespace': 'default-gzip',
             'isolated': 'a79744f6cd528bb345b6c79e001523a17e5c83b8',
           },
+          'cas_input_root': {
+            'cas_instance': 'projects/chromium-swarm-dev/instances/default_instance',
+            'digest': {
+              'hash': '1d1e14a2d0da6348f3f37312ef524a2cea1db4ead9ebc6c335f9948ad634cbfd',
+              'size_bytes': 10430,
+            },
+          },
           'grace_period_secs': '30',
           'caches': [
             {
@@ -1789,6 +1824,13 @@ export const taskRequests = [
         'isolatedserver': 'https://isolateserver.appspot.com',
         'namespace': 'default-gzip',
         'isolated': 'a79744f6cd528bb345b6c79e001523a17e5c83b8',
+      },
+      'cas_input_root': {
+        'cas_instance': 'projects/chromium-swarm-dev/instances/default_instance',
+        'digest': {
+          'hash': '1d1e14a2d0da6348f3f37312ef524a2cea1db4ead9ebc6c335f9948ad634cbfd',
+          'size_bytes': 10430,
+        },
       },
       'grace_period_secs': '30',
       'caches': [
@@ -1905,6 +1947,13 @@ export const taskRequests = [
             'namespace': 'default-gzip',
             'isolated': '4d4a0d0e1d2c04e3530d07f190911235e1209e44',
           },
+          'cas_input_root': {
+            'cas_instance': 'projects/chromium-swarm-dev/instances/default_instance',
+            'digest': {
+              'hash': '1d1e14a2d0da6348f3f37312ef524a2cea1db4ead9ebc6c335f9948ad634cbfd',
+              'size_bytes': 10430,
+            },
+          },
           'grace_period_secs': '30',
           'caches': [
             {
@@ -1986,6 +2035,13 @@ export const taskRequests = [
         'isolatedserver': 'https://isolateserver.appspot.com',
         'namespace': 'default-gzip',
         'isolated': '4d4a0d0e1d2c04e3530d07f190911235e1209e44',
+      },
+      'cas_input_root': {
+        'cas_instance': 'projects/chromium-swarm-dev/instances/default_instance',
+        'digest': {
+          'hash': '1d1e14a2d0da6348f3f37312ef524a2cea1db4ead9ebc6c335f9948ad634cbfd',
+          'size_bytes': 10430,
+        },
       },
       'grace_period_secs': '30',
       'caches': [
