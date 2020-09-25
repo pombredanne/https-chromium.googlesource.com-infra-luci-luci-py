@@ -221,14 +221,10 @@ TaskData = collections.namedtuple(
         'install_packages_fn',
         # Use go isolated client.
         'use_go_isolated',
-        # Cache directory for go `isolated` client.
+        # Cache directory for go `isolated` or `cas` client.
         'go_cache_dir',
-        # Parameters passed to go `isolated` client.
+        # Parameters passed to go `isolated` or `cas` client.
         'go_cache_policies',
-        # Cache directory for `cas` client.
-        'cas_cache_dir',
-        # Parameters passed to `cas` client.
-        'cas_cache_policies',
         # Environment variables to set.
         'env',
         # Environment variables to mutate with relative directories.
@@ -575,6 +571,8 @@ def _fetch_and_map_with_cas(cas_client, digest, instance, output_dir, cache_dir,
         # flags for cache.
         '-cache-dir',
         cache_dir,
+        '-cache-max-items',
+        str(policies.max_items),
         '-cache-max-size',
         str(policies.max_cache_size),
         '-cache-min-free-space',
@@ -1037,8 +1035,8 @@ def map_and_run(data, constant_run_path):
             digest=data.cas_digest,
             instance=data.cas_instance,
             output_dir=run_dir,
-            cache_dir=data.cas_cache_dir,
-            policies=data.cas_cache_policies)
+            cache_dir=data.go_cache_dir,
+            policies=data.go_cache_policies)
         isolated_stats['download'].update(stats)
 
       if not command:
@@ -1121,7 +1119,7 @@ def map_and_run(data, constant_run_path):
         # process locks *.exe file). Examine out_dir only after that call
         # completes (since child processes may write to out_dir too and we need
         # to wait for them to finish).
-        dirs_to_remove = [run_dir, tmp_dir, isolated_client_dir, cas_client_dir]
+        dirs_to_remove = [run_dir, tmp_dir, isolated_client_dir]
         if out_dir:
           dirs_to_remove.append(out_dir)
         for directory in dirs_to_remove:
@@ -1528,18 +1526,34 @@ def add_cas_cache_options(parser):
       default='cas-cache',
       help='Directory to keep a local cache of the files. Accelerates download '
       'by reusing already downloaded files. Default=%default')
+  group.add_option(
+      '--cas-max-cache-size',
+      type='int',
+      metavar='NNN',
+      default=50 * 1024 * 1024 * 1024,
+      help='Trim if the cache gets larger than this value, default=%default')
+  group.add_option(
+      '--cas-min-free-space',
+      type='int',
+      metavar='NNN',
+      default=2 * 1024 * 1024 * 1024,
+      help='Trim if disk free space becomes lower than this value, '
+      'default=%default')
   parser.add_option_group(group)
 
 
 def process_cas_cache_options(options, trim, **kwargs):
   if options.cas_cache:
     policies = local_caching.CachePolicies(
-        max_cache_size=options.max_cache_size,
-        min_free_space=options.min_free_space,
+        max_cache_size=options.cas_max_cache_size,
+        min_free_space=options.cas_min_free_space,
         # max_items isn't used for CAS cache for now.
         max_items=None,
-        max_age_secs=MAX_AGE_SECS)
+        # 3 weeks.
+        max_age_secs=21 * 24 * 60 * 60)
 
+    # |options.cache| path may not exist until DiskContentAddressedCache()
+    # instance is created.
     return local_caching.DiskContentAddressedCache(
         six.text_type(os.path.abspath(options.cas_cache)), policies, trim,
         **kwargs)
@@ -1845,13 +1859,6 @@ def main(args):
           max_cache_size=options.max_cache_size,
           min_free_space=options.min_free_space,
           max_items=options.max_items,
-          max_age_secs=None,
-      ),
-      cas_cache_dir=options.cas_cache,
-      cas_cache_policies=local_caching.CachePolicies(
-          max_cache_size=options.max_cache_size,
-          min_free_space=options.min_free_space,
-          max_items=None,
           max_age_secs=None,
       ),
       env=options.env,
