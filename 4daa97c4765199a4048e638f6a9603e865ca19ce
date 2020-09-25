@@ -69,6 +69,24 @@
       "revId": "4daa97c4765199a4048e638f6a9603e865ca19ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "291000cd_38d4b37c",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-25T06:41:29Z",
+      "side": 1,
+      "message": "better to make this comment resolved when you added the test. new patchset doesn\u0027t send any notification to reviewer, and I cannot notice that.",
+      "parentUuid": "7b3571c6_8b7a0277",
+      "revId": "4daa97c4765199a4048e638f6a9603e865ca19ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

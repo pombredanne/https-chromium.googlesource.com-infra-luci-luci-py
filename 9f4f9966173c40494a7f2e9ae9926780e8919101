@@ -16,6 +16,40 @@
       "revId": "9f4f9966173c40494a7f2e9ae9926780e8919101",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e8a5607_9ab5eeb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-25T06:41:29Z",
+      "side": 1,
+      "message": "could you trigger CQ when you upload new patchset with \u0027-d\u0027 to `git cl upload` too?",
+      "revId": "9f4f9966173c40494a7f2e9ae9926780e8919101",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef52b78_d1716c0f",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 922,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-25T06:41:29Z",
+      "side": 1,
+      "message": "update here?",
+      "revId": "9f4f9966173c40494a7f2e9ae9926780e8919101",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
