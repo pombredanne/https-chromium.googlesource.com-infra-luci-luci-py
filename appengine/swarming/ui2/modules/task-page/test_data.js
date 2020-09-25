@@ -23,7 +23,7 @@ const casRef = {
     'hash': '1d1e14a2d0da6348f3f37312ef524a2cea1db4ead9ebc6c335f9948ad634cbfd',
     'size_bytes': 10430,
   },
-}
+};
 
 export const taskResults = [
   {
