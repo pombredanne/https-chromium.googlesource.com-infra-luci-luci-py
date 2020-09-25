@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b6368f5_e28910dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-25T08:49:37Z",
+      "side": 1,
+      "message": "nit: would appreciate if you could link the actual flag definition in the description: https://source.chromium.org/chromium/infra/infra/+/master:luci/client/run_isolated.py;l\u003d1458;drc\u003ddb365119bff592fc9fc72a3af27a096fc2536cc2 ..",
+      "revId": "ce784de567c9d686d6b2c60f3d3a692f0ef46ccf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
