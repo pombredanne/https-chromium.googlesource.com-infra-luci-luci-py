@@ -34,6 +34,24 @@
       "revId": "066e8417117dbbb25e63edf61a071e870f7e2d58",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "93b0103c_232ba959",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-25T10:08:37Z",
+      "side": 1,
+      "message": "I think it is better to include only client dir for the bug.",
+      "parentUuid": "ae4f3034_845f1358",
+      "revId": "066e8417117dbbb25e63edf61a071e870f7e2d58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
