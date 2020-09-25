@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef76ca26_0d39e5a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-25T04:45:09Z",
+      "side": 1,
+      "message": "Removed --cas-max-cache-size. \nPTAL.",
+      "revId": "5a2d664f6c1092847db8a3a6c705e8595937ac06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
