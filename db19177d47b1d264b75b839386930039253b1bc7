@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29bdbc09_dfe6d67d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-28T01:02:00Z",
+      "side": 1,
+      "message": "Block until https://crrev.com/i/3290703 is submitted",
+      "revId": "db19177d47b1d264b75b839386930039253b1bc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
