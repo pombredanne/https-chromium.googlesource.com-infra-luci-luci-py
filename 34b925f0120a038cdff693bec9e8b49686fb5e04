@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87d6b505_fd373478",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-09-28T04:42:48Z",
+      "side": 1,
+      "message": "nit: I\u0027d prefer not to assert on these because they’re irrelevant. Can we do `assertTrue(response[u\u0027quarantined\u0027])`?",
+      "range": {
+        "startLine": 343,
+        "startChar": 8,
+        "endLine": 344,
+        "endChar": 25
+      },
+      "revId": "34b925f0120a038cdff693bec9e8b49686fb5e04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
