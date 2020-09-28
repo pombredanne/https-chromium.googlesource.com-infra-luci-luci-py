@@ -33,6 +33,24 @@
       "revId": "db19177d47b1d264b75b839386930039253b1bc7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a877f83c_f5afc11e",
+        "filename": "appengine/swarming/ui2/modules/task-page/test_data.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-28T01:21:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65e593ba_c6f625f2",
+      "revId": "db19177d47b1d264b75b839386930039253b1bc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
