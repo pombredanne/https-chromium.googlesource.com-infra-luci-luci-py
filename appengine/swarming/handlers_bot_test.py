@@ -29,11 +29,14 @@ import handlers_bot
 from components import auth
 from components import ereporter2
 from components import utils
+from proto.api import plugin_pb2
 from server import bot_archive
 from server import bot_auth
 from server import bot_code
 from server import bot_groups_config
 from server import bot_management
+from server import external_scheduler
+from server import pools_config
 from server import service_accounts
 from server import task_pack
 from server import task_queues
@@ -71,10 +74,14 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.mock_now(self.now)
     self.mock_default_pool_acl([])
 
+  def tearDown(self):
+    super(BotApiTest, self).tearDown()
+    mock.patch.stopall()
+
   @ndb.non_transactional
   def _enqueue_task(self, url, queue_name, **kwargs):
     del kwargs
-    if queue_name in ('cancel-children-tasks', 'pubsub'):
+    if queue_name in ('cancel-children-tasks', 'pubsub', 'es-notify-tasks'):
       return True
     self.fail(url)
 
@@ -896,6 +903,64 @@ class BotApiTest(test_env_handlers.AppTestBase):
     params = self.do_handshake()
     self.assertEqual(u'print("Hi");import sys; sys.exit(1)',
                      params['bot_config'])
+
+  def test_poll_with_external_scheduler(self):
+    # Inject external scheduler config.
+    es_cfg = pools_config.ExternalSchedulerConfig(
+        address='qscheduler-test.example.com',
+        id='all',
+        dimensions=[],
+        all_dimensions=[],
+        any_dimensions=[],
+        enabled=True,
+        allow_es_fallback=False)
+    mock.patch('server.external_scheduler.config_for_bot').start(
+    ).return_value = es_cfg
+    mock.patch('server.external_scheduler.config_for_task').start(
+    ).return_value = es_cfg
+    # Inject prpc client.
+    es_client_mock = mock.Mock()
+    mock.patch('server.external_scheduler._get_client').start(
+    ).return_value = es_client_mock
+
+    # Register bot.
+    params = self.do_handshake()
+
+    # Enqueue a task.
+    self.set_as_user()
+    _, task_id = self.client_create_task_raw()
+    self.set_as_bot()
+
+    bot_dimensions_flat = task_queues.bot_dimensions_to_flat(
+        params['dimensions'])
+
+    # First, no task assigned.
+    es_client_mock.AssignTasks.return_value = plugin_pb2.AssignTasksResponse()
+    response = self.post_json('/swarming/api/v1/bot/poll', params)
+    expected = {
+        'duration': mock.ANY,
+        'cmd': 'sleep',
+        'quarantined': False,
+    }
+    self.assertEqual(expected, response)
+
+    # Assert AssignTasks call.
+    es_client_mock.AssignTasks.assert_called_once()
+    assign_tasks_req = es_client_mock.AssignTasks.call_args[0][0]
+    self.assertEqual(assign_tasks_req.scheduler_id, u'all')
+    self.assertEqual(
+        list(assign_tasks_req.idle_bots),
+        [plugin_pb2.IdleBot(bot_id=u'bot1', dimensions=bot_dimensions_flat)])
+
+    # Second, one task assigned.
+    es_client_mock.AssignTasks.return_value = plugin_pb2.AssignTasksResponse(
+        assignments=[
+            plugin_pb2.TaskAssignment(
+                bot_id=u'bot1', task_id=task_id, slice_number=0),
+        ])
+    es_client_mock.NotifyTasks.return_value = plugin_pb2.NotifyTasksResponse()
+    response = self.post_json('/swarming/api/v1/bot/poll', params)
+    # TODO: assert response.
 
   def test_complete_task_isolated(self):
     # Successfully poll a task.
