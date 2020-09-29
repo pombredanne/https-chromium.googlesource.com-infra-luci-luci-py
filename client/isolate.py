@@ -184,19 +184,19 @@ def chromium_save_isolated(isolated, data, path_variables, algo):
   cost by splitting low-churn files off the master .isolated file. It also
   reduces overall isolateserver memcache consumption.
   """
-  slaves = []
+  agents = []
 
   def extract_into_included_isolated(prefix):
-    new_slave = {
-      'algo': data['algo'],
-      'files': {},
-      'version': data['version'],
+    new_agent = {
+        'algo': data['algo'],
+        'files': {},
+        'version': data['version'],
     }
     for f in list(data['files'].keys()):
       if f.startswith(prefix):
-        new_slave['files'][f] = data['files'].pop(f)
-    if new_slave['files']:
-      slaves.append(new_slave)
+        new_agent['files'][f] = data['files'].pop(f)
+    if new_agent['files']:
+      agents.append(new_agent)
 
   # Split test/data/ in its own .isolated file.
   extract_into_included_isolated(os.path.join('test', 'data', ''))
@@ -206,12 +206,12 @@ def chromium_save_isolated(isolated, data, path_variables, algo):
     extract_into_included_isolated(path_variables['PRODUCT_DIR'])
 
   files = []
-  for index, f in enumerate(slaves):
-    slavepath = isolated[:-len('.isolated')] + '.%d.isolated' % index
-    tools.write_json(slavepath, f, True)
-    data.setdefault('includes', []).append(
-        isolated_format.hash_file(slavepath, algo))
-    files.append(os.path.basename(slavepath))
+  for index, f in enumerate(agents):
+    agent_path = isolated[:-len('.isolated')] + '.%d.isolated' % index
+    tools.write_json(agent_path, f, True)
+    data.setdefault('includes',
+                    []).append(isolated_format.hash_file(agent_path, algo))
+    files.append(os.path.basename(agent_path))
 
   isolated_format.save_isolated(isolated, data)
   return files
@@ -280,7 +280,7 @@ class SavedState(Flattenable):
       # Algorithm used to generate the hash. The only supported value is at the
       # time of writing 'sha-1'.
       'algo',
-      # List of included .isolated files. Used to support/remember 'slave'
+      # List of included .isolated files. Used to support/remember 'agent'
       # .isolated files. Relative path to isolated_basedir.
       'child_isolated_files',
       # Cache of the processed command. This value is saved because .isolated
