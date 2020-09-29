@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97b63a0e_708ceab3",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-29T11:02:48Z",
+      "side": 1,
+      "message": "can be \n```\nreturn get_bool_env_var(\u0027SWARMING_HEADLESS\u0027)\n```\n?",
+      "revId": "93a5b727b2827bff653f41ceb363620733bcb787",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
