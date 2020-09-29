@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b395d5bc_4a1b1576",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-09-29T19:24:41Z",
+      "side": 1,
+      "message": "Thanks both Watanabe-san and Ikuta-san for handling this. I\u0027m really sorry it cost you so much trouble.\n\nWhat I\u0027d propose is to commit the proto file first, then it\u0027s easier to clean up the algorithm and/or revert. I should have done this the first time..",
+      "revId": "916285b6b7aaf8a7be91dae45aa8817bf069d797",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
