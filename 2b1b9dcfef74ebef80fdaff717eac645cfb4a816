@@ -34,6 +34,24 @@
       "revId": "2b1b9dcfef74ebef80fdaff717eac645cfb4a816",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb49ef5c_52b33686",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-29T06:39:14Z",
+      "side": 1,
+      "message": "I see, but could you also make a CL adding `assert ndb.in_transaction()` in `external_scheduler.notify_requests` to align the transactional status in the function between test and prod?",
+      "parentUuid": "9ed62ccb_ee6546b1",
+      "revId": "2b1b9dcfef74ebef80fdaff717eac645cfb4a816",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
