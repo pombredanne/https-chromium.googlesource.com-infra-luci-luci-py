@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "9abd0e8e_044da992",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-29T06:48:01Z",
+      "side": 1,
+      "message": "I couldn\u0027t use mock.ANY in initialization like AssignTasks(). \nI also tried assigning mock.ANY to the time fields, but proto time fields don\u0027t accept mock.ANY.",
+      "parentUuid": "df0a594a_08be8f34",
+      "revId": "7a9514af53366a6954803371fca671f704a893ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c19be093_ab30b6ee",
         "filename": "appengine/swarming/handlers_bot_test.py",
         "patchSetId": 4
