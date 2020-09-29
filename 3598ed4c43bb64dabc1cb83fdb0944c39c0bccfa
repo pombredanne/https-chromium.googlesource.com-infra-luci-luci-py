@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "331f1c91_799c0c24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-29T07:35:36Z",
+      "side": 1,
+      "message": "This isn\u0027t ready for review.\nI\u0027m trying to reproduce the error in tests.",
+      "revId": "3598ed4c43bb64dabc1cb83fdb0944c39c0bccfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
