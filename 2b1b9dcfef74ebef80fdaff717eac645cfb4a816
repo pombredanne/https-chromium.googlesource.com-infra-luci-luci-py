@@ -16,6 +16,24 @@
       "revId": "2b1b9dcfef74ebef80fdaff717eac645cfb4a816",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ed62ccb_ee6546b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-29T06:35:35Z",
+      "side": 1,
+      "message": "This is general tests for qscheduler integration, and they skip some task queue logic.\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/2435032/4/appengine/swarming/handlers_bot_test.py#84\n\nI don\u0027t think these simple tests cover all cases. We need more tests to simulate the bug happened in the notify_requests().",
+      "parentUuid": "22c190c3_c21f87de",
+      "revId": "2b1b9dcfef74ebef80fdaff717eac645cfb4a816",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1d3c2c34_46834aa0",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-29T06:35:35Z",
+      "side": 1,
+      "message": "I think the cmd needs to be checked, too because there are no tasks for the bot, yet.",
+      "parentUuid": "8a4b4da1_ab45997f",
+      "revId": "7a9514af53366a6954803371fca671f704a893ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dc2d9ce0_356acfbf",
         "filename": "appengine/swarming/handlers_bot_test.py",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2020-09-29T06:17:42Z",
       "side": 1,
       "message": "why not use assert_called_once_with?",
+      "revId": "7a9514af53366a6954803371fca671f704a893ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3570c47_b40ef53e",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-29T06:35:35Z",
+      "side": 1,
+      "message": "I had to copy the time from assign_req because it isn\u0027t fixed.",
+      "parentUuid": "dc2d9ce0_356acfbf",
       "revId": "7a9514af53366a6954803371fca671f704a893ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
