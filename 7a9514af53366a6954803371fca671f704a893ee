@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "b6cdcc8b_6f6f9a18",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-29T06:37:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1d3c2c34_46834aa0",
+      "revId": "7a9514af53366a6954803371fca671f704a893ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc2d9ce0_356acfbf",
         "filename": "appengine/swarming/handlers_bot_test.py",
         "patchSetId": 4
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I had to copy the time from assign_req because it isn\u0027t fixed.",
       "parentUuid": "dc2d9ce0_356acfbf",
+      "revId": "7a9514af53366a6954803371fca671f704a893ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df0a594a_08be8f34",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-29T06:37:21Z",
+      "side": 1,
+      "message": "can we use mock.Any there?",
+      "parentUuid": "e3570c47_b40ef53e",
       "revId": "7a9514af53366a6954803371fca671f704a893ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
