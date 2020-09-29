@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b3228006_74b21f31",
+        "filename": "client/isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-29T09:07:32Z",
+      "side": 1,
+      "message": "I feel it is better to use \u0027sub\u0027/\u0027main\u0027 here and corresponding tests.\n\nUsing \u0027client\u0027 is bit confusing as that can be interpreted as something like http/api clinet.",
+      "revId": "654ea3fdeda9db15a7e77b56035d8eae9d1afb46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3f214e3_0d3a94fd",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-29T09:07:32Z",
+      "side": 1,
+      "message": "Could you remove this entirely?\nWe don\u0027t have buildbot anymore.",
+      "range": {
+        "startLine": 399,
+        "startChar": 0,
+        "endLine": 400,
+        "endChar": 24
+      },
+      "revId": "654ea3fdeda9db15a7e77b56035d8eae9d1afb46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
