@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a4b4da1_ab45997f",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-29T06:17:42Z",
+      "side": 1,
+      "message": "only check this?",
+      "revId": "7a9514af53366a6954803371fca671f704a893ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc2d9ce0_356acfbf",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-29T06:17:42Z",
+      "side": 1,
+      "message": "why not use assert_called_once_with?",
+      "revId": "7a9514af53366a6954803371fca671f704a893ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c19be093_ab30b6ee",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-29T06:17:42Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "7a9514af53366a6954803371fca671f704a893ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4156299_d4f7207f",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-29T06:17:42Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "7a9514af53366a6954803371fca671f704a893ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
