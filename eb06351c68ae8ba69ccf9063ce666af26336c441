@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ba1ef08c_2930bd51",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-30T06:49:32Z",
+      "side": 1,
+      "message": "take this issue?",
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0db97715_01391302",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -48,6 +65,24 @@
       "writtenOn": "2020-09-30T06:25:24Z",
       "side": 1,
       "message": "I came up with 2 options to fix the error.\nMy preference is option2.\n\nWDYT?",
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa2fa0e0_c8f142c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-30T06:49:32Z",
+      "side": 1,
+      "message": "I bit prefer option 1 for explicity if notify_requests is not called from many places.",
+      "parentUuid": "19cf0fb5_aeea1c97",
       "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
