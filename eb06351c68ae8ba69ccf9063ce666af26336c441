@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "9394d141_952f7840",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-30T07:32:36Z",
+      "side": 1,
+      "message": "\u003e Hmm, I see your point..\n\u003e \n\u003e But it\u0027s called directly/indirectly in many types of contexts...\n\u003e https://source.chromium.org/search?q\u003dnotify_requests%20f:swarming%20-f:_test.py%20\u0026ss\u003dchromium\n\u003e \n\nDo you say some code path calls notify_request both within transaction and out of transaction?\nIf you don\u0027t have confidence, can we use warning or error instead of assert to verify the argument at first?\n\n\u003e We would need more tests/assertions in task_scheduler_test.py.\n\u003e https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_scheduler_test.py;l\u003d817-868\n\u003e \n\u003e Even if we add tests, I wouldn\u0027t be confident since notify_requests() is mocked there.\n\u003e https://chromium.googlesource.com/infra/luci/luci-py/+/1010d337cf47f72d942571bdf4c994c5c8ffcd29/appengine/swarming/server/task_scheduler_test.py#813\n\nBut we can have `assert ndb.in_transaction() \u003d\u003d transactional` there?",
+      "parentUuid": "1ef033c5_36f1e8b8",
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "39928ed5_d84cd35e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 4
