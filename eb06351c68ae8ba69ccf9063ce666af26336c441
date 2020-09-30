@@ -16,6 +16,24 @@
       "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3e55861_cfdcd5c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-30T06:13:31Z",
+      "side": 1,
+      "message": "\u003e The error matches with the one I saw.\ntest logs go/paste/5220871112228864",
+      "parentUuid": "0db97715_01391302",
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
