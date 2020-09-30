@@ -179,6 +179,24 @@
     },
     {
       "key": {
+        "uuid": "1ad9e791_0e6a36c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-30T12:53:40Z",
+      "side": 1,
+      "message": "This one is called outside transaction.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_scheduler.py;l\u003d1234?q\u003df:task_scheduler.py\u0026ss\u003dchromium",
+      "parentUuid": "adfccb20_bf97b716",
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "39928ed5_d84cd35e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 4
@@ -213,6 +231,30 @@
       "writtenOn": "2020-09-30T07:41:23Z",
       "side": 1,
       "message": "I came up with another option.\n\nOption3) specify `skip_root_task_search` flag rather than transactional.\nThis way we can explicitly control if it appends root IDs or not.\n\n(FWIU, if it\u0027s specified explicitly, cross entity group transaction can be executed?)",
+      "range": {
+        "startLine": 1306,
+        "startChar": 26,
+        "endLine": 1306,
+        "endChar": 45
+      },
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d334912_d96b0d5b",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1306,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-30T12:53:40Z",
+      "side": 1,
+      "message": "I lean to this option now.\n\nThe flag name can be `append_root_task_id` default to False.",
+      "parentUuid": "8aa344de_d4a796fc",
       "range": {
         "startLine": 1306,
         "startChar": 26,
@@ -284,6 +326,30 @@
       "side": 1,
       "message": "I don\u0027t understand your comment about drawback related to latency. Why calling ndb.in_transation() here has difference from calling ndb.in_transation() in assert?",
       "parentUuid": "3419ae7f_4c63d88a",
+      "range": {
+        "startLine": 1347,
+        "startChar": 0,
+        "endLine": 1347,
+        "endChar": 27
+      },
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "787bc7e0_679dcd00",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-30T12:53:40Z",
+      "side": 1,
+      "message": "\u003ehttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_scheduler.py;l\u003d1234?q\u003df:task_scheduler.py\u0026ss\u003dchromium\n\nThis code path is outside of transaction. So it would run the root task search below, which takes some time to access Datastore/Memcache.\n\nI realized that the option2 has the same issue.",
+      "parentUuid": "e28dda59_e7b281ba",
       "range": {
         "startLine": 1347,
         "startChar": 0,
