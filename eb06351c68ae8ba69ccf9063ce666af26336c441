@@ -161,6 +161,24 @@
     },
     {
       "key": {
+        "uuid": "adfccb20_bf97b716",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-30T08:00:00Z",
+      "side": 1,
+      "message": "\u003e \u003e \u003e Hmm, I see your point..\n\u003e \u003e \u003e \n\u003e \u003e \u003e But it\u0027s called directly/indirectly in many types of contexts...\n\u003e \u003e \u003e https://source.chromium.org/search?q\u003dnotify_requests%20f:swarming%20-f:_test.py%20\u0026ss\u003dchromium\n\u003e \u003e \u003e \n\u003e \u003e \n\u003e \u003e Do you say some code path calls notify_request both within transaction and out of transaction?\n\u003e \n\u003e We have both cases inside/outside transaction.\n\u003e \n\nWhich call path for notify_request does that happen?",
+      "parentUuid": "84ecc85e_bfe7902c",
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "39928ed5_d84cd35e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 4
@@ -242,6 +260,30 @@
       "side": 1,
       "message": "A major drawback of this option is that we call notify_requests() at Poll API in a blocking way. So it\u0027s more latency sensitive.\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_scheduler.py;l\u003d1234?q\u003df:task_scheduler.py\u0026ss\u003dchromium",
       "parentUuid": "0eb71880_c3a062db",
+      "range": {
+        "startLine": 1347,
+        "startChar": 0,
+        "endLine": 1347,
+        "endChar": 27
+      },
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e28dda59_e7b281ba",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-09-30T08:00:00Z",
+      "side": 1,
+      "message": "I don\u0027t understand your comment about drawback related to latency. Why calling ndb.in_transation() here has difference from calling ndb.in_transation() in assert?",
+      "parentUuid": "3419ae7f_4c63d88a",
       "range": {
         "startLine": 1347,
         "startChar": 0,
