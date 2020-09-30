@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bca6c88e_ae358d14",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-30T07:13:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba1ef08c_2930bd51",
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0db97715_01391302",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -86,6 +104,24 @@
       "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ef033c5_36f1e8b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-30T07:13:10Z",
+      "side": 1,
+      "message": "Hmm, I see your point..\n\nBut it\u0027s called directly/indirectly in many types of contexts...\nhttps://source.chromium.org/search?q\u003dnotify_requests%20f:swarming%20-f:_test.py%20\u0026ss\u003dchromium\n\nWe would need more tests/assertions in task_scheduler_test.py.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_scheduler_test.py;l\u003d817-868\n\nEven if we add tests, I wouldn\u0027t be confident since notify_requests() is mocked there.\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/1010d337cf47f72d942571bdf4c994c5c8ffcd29/appengine/swarming/server/task_scheduler_test.py#813",
+      "parentUuid": "aa2fa0e0_c8f142c5",
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
