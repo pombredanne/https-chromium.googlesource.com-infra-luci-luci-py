@@ -16,6 +16,24 @@
       "revId": "916285b6b7aaf8a7be91dae45aa8817bf069d797",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83f4d776_3e2e8ea1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-09-30T00:52:57Z",
+      "side": 1,
+      "message": "No worries. \n(I was bad at handling the errors, which spread the trouble..)\n\n\u003e What I\u0027d propose is to commit the proto file first\n\nSure.\nThe scheme change have already been applied to BQ tables.\nSo need to submit the proto change, anyway.\n\nLet me do that first.",
+      "parentUuid": "b395d5bc_4a1b1576",
+      "revId": "916285b6b7aaf8a7be91dae45aa8817bf069d797",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
