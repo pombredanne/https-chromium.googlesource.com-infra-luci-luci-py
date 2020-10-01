@@ -152,10 +152,10 @@ const template = (ele) => html`
 function chromiumNameRules(name) {
   const pieces = name.split('/');
   if (pieces.length === 5) {
-    // this appears to be a buildbot name
-    // piece 0 is tag "name", piece 3 is "buildername"
-    // We throw the rest away (OS, commit hash, build number) so we
-    // can identify the "true name".
+    // This appears to be a legacy buildbot name (although buildbot is not used
+    // anymore so this should not be the case).
+    // Piece 0 is tag "name", piece 3 is "buildername" We throw the rest away
+    // (OS, commit hash, build number) so we can identify the "true name".
     name = pieces[0] + '/' + pieces[3];
   }
   name = name.replace(' (with patch)', '');
