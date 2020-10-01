@@ -233,6 +233,24 @@
     },
     {
       "key": {
+        "uuid": "d0d0cf8a_96d45d31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-01T05:39:04Z",
+      "side": 1,
+      "message": "I want to know whether we cannot use fixed value for transactional argument for notify_requests in\nhttps://source.chromium.org/search?q\u003dnotify_requests%20f:swarming%20-f:_test.py%20\u0026ss\u003dchromium\n\n\u003e But it\u0027s called directly/indirectly in many types of contexts...\n\u003e https://source.chromium.org/search?q\u003dnotify_requests%20f:swarming%20-f:_test.py%20\u0026ss\u003dchromium\n\nIf passing fixed transactional flag as an argument to notify_requests I think 5 call places doesn\u0027t have many types of context?",
+      "parentUuid": "57a99d2f_2929d883",
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "39928ed5_d84cd35e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 4
@@ -422,6 +440,30 @@
     },
     {
       "key": {
+        "uuid": "538a8eb4_3ca5ac84",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-01T05:39:04Z",
+      "side": 1,
+      "message": "\u003e I think that won\u0027t be so large if we stop using while.\n\nforget about this.",
+      "parentUuid": "484ebebe_fa12843d",
+      "range": {
+        "startLine": 1347,
+        "startChar": 0,
+        "endLine": 1347,
+        "endChar": 27
+      },
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "637bdb73_88b5cb0d",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 4
@@ -472,6 +514,24 @@
       "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "722368f5_18ecd926",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1348,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-01T05:39:04Z",
+      "side": 1,
+      "message": "Ah, I see.",
+      "parentUuid": "0dc65c59_84aeb0f2",
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
