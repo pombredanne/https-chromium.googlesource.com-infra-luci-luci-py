@@ -76,15 +76,6 @@ def check_request(
     raise api.AuthenticationError(
         'Delegation tokens and %s cannot be used together' % X_LUCI_PROJECT)
 
-  # Hack to allow pure IP-whitelist based authentication for bots, until they
-  # are switched to use something better.
-  #
-  # TODO(vadimsh): Get rid of this. Blocked on killing IP whitelisted access
-  # from Chrome Buildbot machines.
-  if (use_bots_ip_whitelist and peer_identity.is_anonymous and
-      auth_db.is_in_ip_whitelist(model.bots_ip_whitelist(), peer_ip, False)):
-    peer_identity = model.IP_WHITELISTED_BOT_ID
-
   # Note: populating fields early is useful, since exception handlers may use
   # them for logging.
   ctx.peer_ip = peer_ip
