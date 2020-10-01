@@ -16,6 +16,23 @@
       "revId": "1892a82f669cbcf6f1c394798ad651db8a43d59a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "579cd206_c011e3fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2020-10-01T21:44:10Z",
+      "side": 1,
+      "message": "Vadim, does the deletion in appengine/components/components/auth/check.py look correct?",
+      "revId": "1892a82f669cbcf6f1c394798ad651db8a43d59a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
