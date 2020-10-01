@@ -33,6 +33,24 @@
       "revId": "1892a82f669cbcf6f1c394798ad651db8a43d59a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2451533_998153a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-10-01T21:53:51Z",
+      "side": 1,
+      "message": "No. \"bot:whitelisted-ip\" is still mentioned in pools.cfg configs, so things will likely break.",
+      "parentUuid": "579cd206_c011e3fd",
+      "revId": "1892a82f669cbcf6f1c394798ad651db8a43d59a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
