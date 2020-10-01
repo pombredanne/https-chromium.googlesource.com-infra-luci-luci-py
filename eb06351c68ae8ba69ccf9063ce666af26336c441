@@ -197,6 +197,24 @@
     },
     {
       "key": {
+        "uuid": "e0dc9b3e_ad0ec9b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-01T02:48:06Z",
+      "side": 1,
+      "message": "I meant to ask whether there is a call path of request_notify which is called both from inside/outside transaction. Is that called from inside transaction too?",
+      "parentUuid": "1ad9e791_0e6a36c7",
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "39928ed5_d84cd35e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 4
@@ -356,6 +374,47 @@
         "endLine": 1347,
         "endChar": 27
       },
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "484ebebe_fa12843d",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-01T02:48:06Z",
+      "side": 1,
+      "message": "I think that won\u0027t be so large if we stop using while.",
+      "parentUuid": "787bc7e0_679dcd00",
+      "range": {
+        "startLine": 1347,
+        "startChar": 0,
+        "endLine": 1347,
+        "endChar": 27
+      },
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "637bdb73_88b5cb0d",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1348,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-01T02:48:06Z",
+      "side": 1,
+      "message": "can we use root_run_id/root_task_id of parent task instead of doing path traversal to root?",
       "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
