@@ -215,6 +215,24 @@
     },
     {
       "key": {
+        "uuid": "57a99d2f_2929d883",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-01T04:46:17Z",
+      "side": 1,
+      "message": "I think I didn\u0027t understand the question.\nWhy does that matter?",
+      "parentUuid": "e0dc9b3e_ad0ec9b0",
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "39928ed5_d84cd35e",
         "filename": "appengine/swarming/server/external_scheduler.py",
         "patchSetId": 4
@@ -415,6 +433,24 @@
       "writtenOn": "2020-10-01T02:48:06Z",
       "side": 1,
       "message": "can we use root_run_id/root_task_id of parent task instead of doing path traversal to root?",
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bea5460_932adf9c",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1348,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-01T04:46:17Z",
+      "side": 1,
+      "message": "I don\u0027t think TaskRequest entity has those fields.",
+      "parentUuid": "637bdb73_88b5cb0d",
       "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
