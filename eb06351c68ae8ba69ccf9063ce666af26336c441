@@ -321,6 +321,30 @@
     },
     {
       "key": {
+        "uuid": "1e98ef2d_002e7673",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1306,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-10-01T15:43:20Z",
+      "side": 1,
+      "message": "I\u0027m fine with this too. This was suggested in the initial CL and it\u0027s just simpler.",
+      "parentUuid": "5d334912_d96b0d5b",
+      "range": {
+        "startLine": 1306,
+        "startChar": 26,
+        "endLine": 1306,
+        "endChar": 45
+      },
+      "revId": "eb06351c68ae8ba69ccf9063ce666af26336c441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0eb71880_c3a062db",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 4
