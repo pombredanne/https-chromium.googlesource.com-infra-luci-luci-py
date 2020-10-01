@@ -152,7 +152,7 @@ const template = (ele) => html`
 function chromiumNameRules(name) {
   const pieces = name.split('/');
   if (pieces.length === 5) {
-    // this appears to be a buildbot name
+    // This appears to be a legacy buildbot (RIP) name;
     // piece 0 is tag "name", piece 3 is "buildername"
     // We throw the rest away (OS, commit hash, build number) so we
     // can identify the "true name".
