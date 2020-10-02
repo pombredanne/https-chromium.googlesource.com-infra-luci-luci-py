@@ -16,6 +16,23 @@
       "revId": "199304c6f6743ffafd2d665234fb969ff8a5e838",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "060fb6ef_e134478b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-02T16:22:53Z",
+      "side": 1,
+      "message": "\u003e swarming-ui.ASSETS DIFF DETECTED\nyou have to run \u0027make release\u0027 command at swarming/ui2 directory to compile UI assets.",
+      "revId": "199304c6f6743ffafd2d665234fb969ff8a5e838",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
