@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b33bcf0_d6f80038",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-02T08:00:49Z",
+      "side": 1,
+      "message": "I update the CL.\n\n- Add \"append_root_ids\" to TaskRequest.to_proto() on top of https://crrev.com/c/2401539.\n- Enable the root task search in task_request.task_bq().\n  (Assuming task_bq() isn\u0027t called in transaction.)\n\nPTAL.",
+      "revId": "cf40b97e4efe3eacef0364c3798718527f5a5a2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
