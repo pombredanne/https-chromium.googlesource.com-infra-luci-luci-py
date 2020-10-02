@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6dbe271a_a520325a",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page.scss",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2020-10-02T16:06:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e06eaeb_bf438b01",
+      "revId": "a9402125c4a6df6e49d84f5616383d0a37e78ba6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f3f5e23_6edd84fc",
         "filename": "appengine/swarming/ui2/modules/task-page/task-page.scss",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "a9402125c4a6df6e49d84f5616383d0a37e78ba6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d22b5f4_f7e5613b",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.scss",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2020-10-02T16:06:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f3f5e23_6edd84fc",
+      "revId": "a9402125c4a6df6e49d84f5616383d0a37e78ba6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
