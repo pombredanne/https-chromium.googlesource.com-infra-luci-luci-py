@@ -69,6 +69,24 @@
       "revId": "199304c6f6743ffafd2d665234fb969ff8a5e838",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be572325_2ea07aad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-05T00:56:25Z",
+      "side": 1,
+      "message": "Some UI test also failed maybe due to the deleted code.\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8867323710714711808/+/u/swarming-ui/run_tests/stdout#L9583_0\n\nLet me take a look.",
+      "parentUuid": "dc86d940_514d4329",
+      "revId": "199304c6f6743ffafd2d665234fb969ff8a5e838",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
