@@ -34,6 +34,24 @@
       "revId": "5faa5aef9f3bee532b00dd5c03a33cebd7ba58b8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e56d10a6_1cdbfead",
+        "filename": "client/updaate_go_clients.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-10-05T03:25:05Z",
+      "side": 1,
+      "message": "Currently the file name is updaate_go_client.sh",
+      "parentUuid": "53c0c9a9_3b6372e5",
+      "revId": "5faa5aef9f3bee532b00dd5c03a33cebd7ba58b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
