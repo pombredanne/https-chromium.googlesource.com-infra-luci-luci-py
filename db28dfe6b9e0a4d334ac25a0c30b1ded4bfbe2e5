@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35d2df92_0af9a925",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1313,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-05T02:34:42Z",
+      "side": 1,
+      "message": "\u0027may implicitly do\u0027?\nI think cross-group transaction does not happen always.",
+      "range": {
+        "startLine": 1313,
+        "startChar": 53,
+        "endLine": 1313,
+        "endChar": 69
+      },
+      "revId": "db28dfe6b9e0a4d334ac25a0c30b1ded4bfbe2e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
