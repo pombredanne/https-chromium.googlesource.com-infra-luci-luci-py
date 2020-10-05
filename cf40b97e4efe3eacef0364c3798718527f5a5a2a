@@ -39,6 +39,30 @@
       "revId": "cf40b97e4efe3eacef0364c3798718527f5a5a2a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cc875f1_a06349a6",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1314,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-05T02:24:49Z",
+      "side": 1,
+      "message": "fixed.",
+      "parentUuid": "54da732e_176abd10",
+      "range": {
+        "startLine": 1313,
+        "startChar": 49,
+        "endLine": 1314,
+        "endChar": 38
+      },
+      "revId": "cf40b97e4efe3eacef0364c3798718527f5a5a2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
