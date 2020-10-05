@@ -582,8 +582,8 @@ class RunIsolatedTest(RunIsolatedTestBase):
                 run_isolated.ISOLATED_REVISION)],
       }
       yield {
-          '': [('infra/tools/luci/cas/linux-amd64', run_isolated._CAS_REVISION)
-              ],
+          '': [('infra/tools/luci/cas/linux-amd64',
+                run_isolated._LUCI_GO_REVISION)],
       }
 
     pins_gen = pins_generator()
