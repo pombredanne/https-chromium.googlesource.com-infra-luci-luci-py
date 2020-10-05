@@ -51,6 +51,24 @@
       "revId": "199304c6f6743ffafd2d665234fb969ff8a5e838",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc86d940_514d4329",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-05T00:09:40Z",
+      "side": 1,
+      "message": "it seems due to test flakiness, retry again.",
+      "parentUuid": "ddf29eae_b3b9bf30",
+      "revId": "199304c6f6743ffafd2d665234fb969ff8a5e838",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
