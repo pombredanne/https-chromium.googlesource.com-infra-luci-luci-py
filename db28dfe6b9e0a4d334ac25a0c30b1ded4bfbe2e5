@@ -22,6 +22,30 @@
       "revId": "db28dfe6b9e0a4d334ac25a0c30b1ded4bfbe2e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3addfd81_dd3d18a3",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1313,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-05T02:37:05Z",
+      "side": 1,
+      "message": "If the task has parent task, I think it always happens as child/parent tasks don\u0027t belong to the same entity group.",
+      "parentUuid": "35d2df92_0af9a925",
+      "range": {
+        "startLine": 1313,
+        "startChar": 53,
+        "endLine": 1313,
+        "endChar": 69
+      },
+      "revId": "db28dfe6b9e0a4d334ac25a0c30b1ded4bfbe2e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
