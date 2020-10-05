@@ -87,6 +87,24 @@
       "revId": "199304c6f6743ffafd2d665234fb969ff8a5e838",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b8575923_b3781631",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-05T01:24:05Z",
+      "side": 1,
+      "message": "I deleted tests for the buildbot code.\nhttps://crrev.com/c/2443591/10/appengine/swarming/ui2/modules/bot-page-summary/bot-page-summary_test.js\n\nNow the CQ passes.",
+      "parentUuid": "be572325_2ea07aad",
+      "revId": "199304c6f6743ffafd2d665234fb969ff8a5e838",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
