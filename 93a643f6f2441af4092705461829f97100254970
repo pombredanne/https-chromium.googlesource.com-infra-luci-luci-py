@@ -52,6 +52,24 @@
       "revId": "93a643f6f2441af4092705461829f97100254970",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47259953_b3ff1178",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-06T06:08:50Z",
+      "side": 1,
+      "message": "This is TaskRequest.to_proto() that converts from ndb.Model to a proto message, which isn\u0027t different from swarming_rpcs.py",
+      "parentUuid": "32f08283_9dff02bb",
+      "revId": "93a643f6f2441af4092705461829f97100254970",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
