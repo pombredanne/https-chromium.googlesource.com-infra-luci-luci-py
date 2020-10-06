@@ -127,6 +127,24 @@
     },
     {
       "key": {
+        "uuid": "226c2556_e07eb767",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-06T06:33:02Z",
+      "side": 1,
+      "message": "Hmm, it is strange that we don\u0027t see resultdb_info in result of\nhttps://chromium-swarm.appspot.com/task?d\u003dtrue\u0026id\u003d4f14ff793bf4ed10\nlike\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/handlers_endpoints_test.py;l\u003d1526;drc\u003d08f7e8215fbfcd7c98f498b76196a6d343a154cd",
+      "parentUuid": "9db46817_5a1b0343",
+      "revId": "93a643f6f2441af4092705461829f97100254970",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f8482bbd_388c765d",
         "filename": "appengine/swarming/server/task_request_test.py",
         "patchSetId": 4
