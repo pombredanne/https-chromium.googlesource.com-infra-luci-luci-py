@@ -39,6 +39,30 @@
       "revId": "8cc63172f205dc2c61e97b89733a479b66a3cd1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16080fa2_183d609f",
+        "filename": "client/libs/luci_context/luci_context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-10-06T06:03:52Z",
+      "side": 1,
+      "message": "\u003e This introduces some inconsistency into the API. Presumably if I want to control lifetime of a context file without using contextmanager, I\u0027d do something like:\n\u003e \n\u003e   with luci_context.stage(_leak\u003dTrue, ...) as path:\n\u003e     pass\n\u003e   ... \n\u003e   os.delete(path)\n\u003e \n\u003e But now I don\u0027t know whether it is safe to delete `path`. It may be the original context which should not be deleted.\n\u003e \n\u003e Is it bad to keep returning None and documenting \"if None, then the existing file was reused, get a path to it via os.environ[luci_context.ENV_KEY] if necessary\"?\n\nMake sense! It\u0027s not bad. I didn\u0027t take that use case into consideration when I implement this change. My only concern here is that the behavior change might break some existing stuff as user may not expect receiving None when providing non-empty section_values. However, I only find one usage[1], so we will know very quickly if this change break stuff or not.\n\n[1]: https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_bot/bot_code/task_runner.py;l\u003d421-424;drc\u003d31630425edee2dd7227a045f0ef8864ba48ced85",
+      "parentUuid": "a0e77306_887bee20",
+      "range": {
+        "startLine": 286,
+        "startChar": 4,
+        "endLine": 286,
+        "endChar": 33
+      },
+      "revId": "8cc63172f205dc2c61e97b89733a479b66a3cd1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
