@@ -16,6 +16,23 @@
       "revId": "1c55b79993b2d1c307310eb2d4bde1ee8f0c07e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "814f1618_c8b9bd42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-06T06:28:06Z",
+      "side": 1,
+      "message": "https://source.chromium.org/search?q\u003d%22import%20swarming_load_test_bot%22\u0026sq\u003d\nhttps://source.chromium.org/search?q\u003d%22import%20trace_inputs%22\n\nLooks they are imported?",
+      "revId": "1c55b79993b2d1c307310eb2d4bde1ee8f0c07e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
