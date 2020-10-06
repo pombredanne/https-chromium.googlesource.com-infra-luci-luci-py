@@ -142,15 +142,19 @@ def _read_full():
 
 def _mutate(section_values):
   new_val = read_full()
-  for section, value in section_values.items():
+  mutated = False
+  for section, value in six.iteritems(section_values):
     if value is None:
-      new_val.pop(section, None)
+      if new_val.pop(section, None) is not None:
+        mutated = True
     elif isinstance(value, dict):
+      if new_val.get(section, None) != value:
+        mutated = True
       new_val[section] = value
     else:
       raise ValueError(
         'Bad type for LUCI_CONTEXT[%r]: %s', section, type(value).__name__)
-  return new_val
+  return new_val, mutated
 
 
 def read_full():
@@ -234,12 +238,11 @@ def write(_leak=False, _tmpdir=None, **section_values):
     with write(swarming=None): ...    # deletes 'swarming'
     with write(something={...}): ...  # sets 'something' section to {...}
   """
-  # If there are no edits, just pass-through
-  if not section_values:
+  new_val, mutated = _mutate(section_values)
+  # If new context remain unchanged, just pass-through
+  if not mutated:
     yield
     return
-
-  new_val = _mutate(section_values)
 
   global _CUR_CONTEXT
   got_lock = _WRITE_LOCK.acquire(blocking=False)
@@ -274,11 +277,14 @@ def stage(_leak=False, _tmpdir=None, **section_values):
   environment. In this case, modifying the environment of the current process
   (like 'write' does) may be harmful.
 
-  Calls the body with a path to the new LUCI_CONTEXT file or None if
-  'section_values' is empty (meaning, no changes have been made).
+  Calls the body with a path to the new LUCI_CONTEXT file or the current
+  LUCI_CONTEXT file if no changes have been made (either 'section_values'
+  is empty or have the exact same values in the current context).
   """
-  if not section_values:
-    yield None
+  new_val, mutated = _mutate(section_values)
+  if not mutated and ENV_KEY in os.environ:
+    yield os.environ.get(ENV_KEY)
     return
-  with _tf(_mutate(section_values), leak=_leak, workdir=_tmpdir) as name:
+
+  with _tf(new_val, leak=_leak, workdir=_tmpdir) as name:
     yield name
