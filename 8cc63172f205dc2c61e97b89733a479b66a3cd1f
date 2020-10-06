@@ -63,6 +63,30 @@
       "revId": "8cc63172f205dc2c61e97b89733a479b66a3cd1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eaddda9f_2c9a73cb",
+        "filename": "client/libs/luci_context/luci_context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-10-06T06:05:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16080fa2_183d609f",
+      "range": {
+        "startLine": 286,
+        "startChar": 4,
+        "endLine": 286,
+        "endChar": 33
+      },
+      "revId": "8cc63172f205dc2c61e97b89733a479b66a3cd1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
