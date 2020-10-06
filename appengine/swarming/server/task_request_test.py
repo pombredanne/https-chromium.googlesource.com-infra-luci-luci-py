@@ -503,7 +503,8 @@ class TaskRequestApiTest(TestCase):
     req = _gen_request(
         properties=_gen_properties(
             idempotent=True, relative_cwd=u'deeep', has_secret_bytes=True),
-        parent_task_id=parent_id)
+        parent_task_id=parent_id,
+        resultdb_update_token='token')
     # TaskRequest with secret must have a valid key.
     req.key = task_request.new_request_key()
     # Needed for the get() call below.
@@ -588,6 +589,7 @@ class TaskRequestApiTest(TestCase):
         'realm': None,
         'realms_enabled': False,
         'bot_ping_tolerance_secs': 120,
+        'resultdb': True,
     }
     actual = req.to_dict()
     actual.pop('created_ts')

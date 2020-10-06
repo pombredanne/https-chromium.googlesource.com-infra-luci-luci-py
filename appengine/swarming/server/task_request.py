@@ -1301,6 +1301,8 @@ class TaskRequest(ndb.Model):
       out['properties'] = self.properties_old.to_dict()
     if self.task_slices:
       out['task_slices'] = [t.to_dict() for t in self.task_slices]
+    if self.resultdb_update_token:
+      out['resultdb'] = True
     return out
 
   def to_proto(self, out):
