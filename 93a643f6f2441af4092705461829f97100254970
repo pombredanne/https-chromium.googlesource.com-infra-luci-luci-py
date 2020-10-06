@@ -124,6 +124,29 @@
       "revId": "93a643f6f2441af4092705461829f97100254970",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8482bbd_388c765d",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-06T06:25:24Z",
+      "side": 1,
+      "message": "Do we have tests for ResultDB integration in handlers_endpoints.py and/or local_smoke_test.py?",
+      "range": {
+        "startLine": 592,
+        "startChar": 0,
+        "endLine": 592,
+        "endChar": 25
+      },
+      "revId": "93a643f6f2441af4092705461829f97100254970",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
