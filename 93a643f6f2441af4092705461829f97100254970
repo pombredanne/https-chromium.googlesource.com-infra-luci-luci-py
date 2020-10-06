@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a484147_cca61389",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-10-06T05:53:22Z",
+      "side": 1,
+      "message": "i don\u0027t see \"resultdb\" field in TaskRequest https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_rpcs.py;l\u003d668?q\u003dswarming_rpcs.py\n\nat the same time I do see TaskResult.resultdb_info\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_rpcs.py;l\u003d754?q\u003dswarming_rpcs.py",
+      "revId": "93a643f6f2441af4092705461829f97100254970",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
