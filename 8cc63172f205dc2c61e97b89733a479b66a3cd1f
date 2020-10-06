@@ -16,6 +16,29 @@
       "revId": "8cc63172f205dc2c61e97b89733a479b66a3cd1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a0e77306_887bee20",
+        "filename": "client/libs/luci_context/luci_context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-10-06T03:42:59Z",
+      "side": 1,
+      "message": "This introduces some inconsistency into the API. Presumably if I want to control lifetime of a context file without using contextmanager, I\u0027d do something like:\n\n  with luci_context.stage(_leak\u003dTrue, ...) as path:\n    pass\n  ... \n  os.delete(path)\n\nBut now I don\u0027t know whether it is safe to delete `path`. It may be the original context which should not be deleted.\n\nIs it bad to keep returning None and documenting \"if None, then the existing file was reused, get a path to it via os.environ[luci_context.ENV_KEY] if necessary\"?",
+      "range": {
+        "startLine": 286,
+        "startChar": 4,
+        "endLine": 286,
+        "endChar": 33
+      },
+      "revId": "8cc63172f205dc2c61e97b89733a479b66a3cd1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
