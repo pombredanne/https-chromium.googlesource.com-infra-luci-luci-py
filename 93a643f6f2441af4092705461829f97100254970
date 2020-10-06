@@ -163,6 +163,24 @@
     },
     {
       "key": {
+        "uuid": "c12ed9a9_ac00ea3f",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-06T07:46:22Z",
+      "side": 1,
+      "message": "let me introduce a log to see current behavior\nhttps://crrev.com/c/2451792",
+      "parentUuid": "e0cdcb7f_d9c8df04",
+      "revId": "93a643f6f2441af4092705461829f97100254970",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f8482bbd_388c765d",
         "filename": "appengine/swarming/server/task_request_test.py",
         "patchSetId": 4
