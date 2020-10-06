@@ -145,6 +145,24 @@
     },
     {
       "key": {
+        "uuid": "e0cdcb7f_d9c8df04",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-10-06T07:04:35Z",
+      "side": 1,
+      "message": "i agree that it is strange. That\u0027s what the bug is about.",
+      "parentUuid": "226c2556_e07eb767",
+      "revId": "93a643f6f2441af4092705461829f97100254970",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f8482bbd_388c765d",
         "filename": "appengine/swarming/server/task_request_test.py",
         "patchSetId": 4
