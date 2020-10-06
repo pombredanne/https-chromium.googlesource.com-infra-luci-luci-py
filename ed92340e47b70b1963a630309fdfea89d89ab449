@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8430d4de_aaecd07e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-10-06T21:17:26Z",
+      "side": 1,
+      "message": "PTAL. The go code has this already, I forgot to add it to Python.",
+      "revId": "ed92340e47b70b1963a630309fdfea89d89ab449",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
