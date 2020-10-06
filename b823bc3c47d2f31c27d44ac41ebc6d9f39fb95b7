@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eeb04b2_03540e4b",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1232,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-10-06T07:50:31Z",
+      "side": 1,
+      "message": "I guess logging.debug level isn\u0027t high enough?",
+      "range": {
+        "startLine": 1232,
+        "startChar": 10,
+        "endLine": 1232,
+        "endChar": 14
+      },
+      "revId": "b823bc3c47d2f31c27d44ac41ebc6d9f39fb95b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
