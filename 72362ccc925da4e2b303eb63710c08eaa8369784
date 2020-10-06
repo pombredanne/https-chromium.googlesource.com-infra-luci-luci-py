@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5fe5cb2_50d74863",
+        "filename": "appengine/rbe/main.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-06T05:25:52Z",
+      "side": 1,
+      "message": "Note you can try using the MediaIoBaseDownload helper to download the data in chunks instead of waiting for the whole result to finish:\n\nhttp://googleapis.github.io/google-api-python-client/docs/epy/googleapiclient.http.MediaIoBaseDownload-class.html",
+      "revId": "72362ccc925da4e2b303eb63710c08eaa8369784",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
