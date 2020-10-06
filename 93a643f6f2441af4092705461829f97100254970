@@ -70,6 +70,24 @@
       "revId": "93a643f6f2441af4092705461829f97100254970",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74c51409_18a1efad",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-06T06:10:05Z",
+      "side": 1,
+      "message": "Err...\n\n\u003e which isn\u0027t different from swarming_rpcs.py\nwhich isn\u0027t the same with swarming_rpcs.py",
+      "parentUuid": "47259953_b3ff1178",
+      "revId": "93a643f6f2441af4092705461829f97100254970",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
