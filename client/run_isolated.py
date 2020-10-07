@@ -971,8 +971,10 @@ def map_and_run(data, constant_run_path):
   if data.root_dir:
     file_path.ensure_tree(data.root_dir, 0o700)
   elif data.use_go_isolated:
+    logging.info('go_cache_dir %s', data.go_cache_dir)
     data = data._replace(root_dir=os.path.dirname(data.go_cache_dir))
   elif data.isolate_cache.cache_dir:
+    logging.info('cache_dir %s', data.isolate_cache.cache_dir)
     data = data._replace(
         root_dir=os.path.dirname(data.isolate_cache.cache_dir))
   # See comment for these constants.
@@ -1734,6 +1736,8 @@ def main(args):
 
   if options.root_dir:
     options.root_dir = six.text_type(os.path.abspath(options.root_dir))
+  else:
+    options.root_dir = six.text_type(tempfile.mkdtemp(prefix='root'))
   if options.json:
     options.json = six.text_type(os.path.abspath(options.json))
 
