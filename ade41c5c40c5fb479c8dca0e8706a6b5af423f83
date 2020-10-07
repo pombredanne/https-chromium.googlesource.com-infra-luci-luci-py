@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f7dda0c_d9ddfe97",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-07T04:58:17Z",
+      "side": 1,
+      "message": "Does this test reproduce https://crbug.com/1129219?",
+      "range": {
+        "startLine": 416,
+        "startChar": 0,
+        "endLine": 416,
+        "endChar": 24
+      },
+      "revId": "ade41c5c40c5fb479c8dca0e8706a6b5af423f83",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
