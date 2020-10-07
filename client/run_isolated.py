@@ -1734,6 +1734,8 @@ def main(args):
 
   if options.root_dir:
     options.root_dir = six.text_type(os.path.abspath(options.root_dir))
+  else:
+    options.root_dir = six.text_type(tempfile.mkdtemp(prefix='root'))
   if options.json:
     options.json = six.text_type(os.path.abspath(options.json))
 
