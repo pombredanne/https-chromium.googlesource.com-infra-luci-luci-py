@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7fb3f925_7782d676",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1738,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-10-07T05:00:11Z",
+      "side": 1,
+      "message": "Does this mean we can remove this if branches now? https://source.chromium.org/chromium/infra/infra/+/master:luci/client/run_isolated.py;l\u003d971-977;drc\u003dfa4adf0b6e746fef4dbbfb56b385fe090533e350",
+      "revId": "ade41c5c40c5fb479c8dca0e8706a6b5af423f83",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f7dda0c_d9ddfe97",
         "filename": "client/tests/run_isolated_smoke_test.py",
         "patchSetId": 3
