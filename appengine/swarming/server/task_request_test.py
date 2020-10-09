@@ -1173,6 +1173,8 @@ class TaskRequestApiTest(TestCase):
         task_id=u'7d0776610',
         parent_task_id=parent_id,
         parent_run_id=parent_run_id,
+        root_task_id=parent_id,
+        root_run_id=parent_run_id,
         # Notification. auth_token cannot be retrieved.
         pubsub_notification=swarming_pb2.PubSub(
             topic=u'projects/a/topics/abc', userdata=u'obscure_reference'),
@@ -1337,6 +1339,8 @@ class TaskRequestApiTest(TestCase):
         task_id=u'7d0776610',
         parent_task_id=parent.task_id,
         parent_run_id=parent.task_id[:-1] + u'1',
+        root_task_id=grand_parent.task_id,
+        root_run_id=grand_parent.task_id[:-1] + u'1',
         # Notification. auth_token cannot be retrieved.
         pubsub_notification=swarming_pb2.PubSub(
             topic=u'projects/a/topics/abc', userdata=u'obscure_reference'),
@@ -1344,6 +1348,11 @@ class TaskRequestApiTest(TestCase):
 
     actual = swarming_pb2.TaskRequest()
     request.to_proto(actual)
+    self.assertEqual(unicode(expected), unicode(actual))
+    actual = swarming_pb2.TaskRequest()
+    expected.root_task_id = ''
+    expected.root_run_id = ''
+    ndb.transaction(lambda: request.to_proto(actual, transactional=True))
     self.assertEqual(unicode(expected), unicode(actual))
 
     # With append_root_ids=True.
@@ -1373,6 +1382,16 @@ class TaskRequestApiTest(TestCase):
     expected = swarming_pb2.TaskProperties()
     expected.grace_period.seconds = 30
     self.assertEqual(expected, actual)
+
+  def test_TaskRequest_to_proto_transactional(self):
+    actual = swarming_pb2.TaskRequest()
+    request = _gen_request()
+    request.key = task_request.new_request_key()
+    request.put()
+    with self.assertRaises(AssertionError):
+      ndb.transaction(lambda: request.to_proto(actual))
+    with self.assertRaises(AssertionError):
+      request.to_proto(actual, transactional=True)
 
   def test_request_bad_values(self):
     with self.assertRaises(AttributeError):
