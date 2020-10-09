@@ -1,6 +1,2 @@
 {
-  "base_url": "https://chromium.googlesource.com/infra/luci",
-  "enabled_paths": ["client"],
-  "enabled_refglobs": ["refs/heads/master", "refs/heads/stable"],
-  "path_map_exceptions": {"client": "client-py"}
 }
