@@ -1303,9 +1303,6 @@ class TaskRequest(ndb.Model):
       out['task_slices'] = [t.to_dict() for t in self.task_slices]
     return out
 
-  def to_proto(self, out):
-    """Converts self to a swarming_pb2.TaskRequest."""
-
   def to_proto(self, out, append_root_ids=False):
     """Converts self to a swarming_pb2.TaskRequest.
 
@@ -1313,6 +1310,8 @@ class TaskRequest(ndb.Model):
     This should not be used in transaction since this implicitly does
     a cross-group transaction.
     """
+    assert ndb.in_transaction() >= append_root_ids, (
+        'append_root_ids cannot be used during transaction')
     # Scheduling.
     for task_slice in self.task_slices:
       t = out.task_slices.add()
