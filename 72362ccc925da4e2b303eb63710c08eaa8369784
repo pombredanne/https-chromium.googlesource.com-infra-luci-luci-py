@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": false,
       "key": {
         "uuid": "e5fe5cb2_50d74863",
         "filename": "appengine/rbe/main.py",
@@ -14,8 +15,25 @@
       "side": 1,
       "message": "Note you can try using the MediaIoBaseDownload helper to download the data in chunks instead of waiting for the whole result to finish:\n\nhttp://googleapis.github.io/google-api-python-client/docs/epy/googleapiclient.http.MediaIoBaseDownload-class.html",
       "revId": "72362ccc925da4e2b303eb63710c08eaa8369784",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fb61362_22ab2aa6",
+        "filename": "appengine/rbe/main.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-09T07:30:17Z",
+      "side": 1,
+      "message": "That didn\u0027t work for this api.\n\nhttps://paste.googleplex.com/5715346670485504\nfailed with\n```\n$ python py.py\n\u003cgoogleapiclient.http.HttpRequest object at 0x7f066294eed0\u003e\nTraceback (most recent call last):\n  File \"py.py\", line 49, in \u003cmodule\u003e\n    status, done \u003d downloader.next_chunk()\n  File \"/usr/local/google/home/tikuta/.local/lib/python2.7/site-packages/googleapiclient/_helpers.py\", line 134, in positional_wrapper\n    return wrapped(*args, **kwargs)\n  File \"/usr/local/google/home/tikuta/.local/lib/python2.7/site-packages/googleapiclient/http.py\", line 749, in next_chunk\n    raise HttpError(resp, content, uri\u003dself._uri)\ngoogleapiclient.errors.HttpError: \u003cHttpError 404 when requesting https://remotebuildexecution.googleapis.com/v2/projects/tikuta-experiment/instances/default_instance/blobs:batchUpdate?alt\u003djson returned \"Not Found\"\u003e\n```",
+      "parentUuid": "e5fe5cb2_50d74863",
+      "revId": "72362ccc925da4e2b303eb63710c08eaa8369784",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
