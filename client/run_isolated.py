@@ -565,6 +565,16 @@ def _fetch_and_map_with_cas(cas_client, digest, instance, output_dir, cache_dir,
   stats.
   """
 
+  # TODO(tikuta): remove this after isolate to RBE-CAS migration.
+  # handle empty digest separately.
+  if (digest ==
+      'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855/0'):
+    return {
+        'duration': 0.0,
+        'items_cold': b'',
+        'items_hot': b'',
+    }
+
   start = time.time()
   result_json_handle, result_json_path = tempfile.mkstemp(
       prefix=u'fetch-and-map-result-', suffix=u'.json')
