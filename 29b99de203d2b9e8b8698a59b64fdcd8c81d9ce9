@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c89cd9a_9a79bb83",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-12T01:21:01Z",
+      "side": 1,
+      "message": "Why don\u0027t we pre-upload empty directory so that `cas download` just works?",
+      "range": {
+        "startLine": 9,
+        "startChar": 38,
+        "endLine": 9,
+        "endChar": 69
+      },
+      "revId": "29b99de203d2b9e8b8698a59b64fdcd8c81d9ce9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a5963ce_142c576f",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-12T01:21:01Z",
+      "side": 1,
+      "message": "Add a bug? maybe a tracking bug for the migration.",
+      "range": {
+        "startLine": 568,
+        "startChar": 9,
+        "endLine": 568,
+        "endChar": 15
+      },
+      "revId": "29b99de203d2b9e8b8698a59b64fdcd8c81d9ce9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca758cec_8a11d103",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-12T01:21:01Z",
+      "side": 1,
+      "message": "nit: I slightly prefer defining a constant for readability. e.g. `_CAS_EMPTY_DIR_DIGEST`",
+      "range": {
+        "startLine": 571,
+        "startChar": 7,
+        "endLine": 571,
+        "endChar": 74
+      },
+      "revId": "29b99de203d2b9e8b8698a59b64fdcd8c81d9ce9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
