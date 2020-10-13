@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "1a38b65f_36973868",
         "filename": "/COMMIT_MSG",
@@ -14,10 +15,28 @@
       "side": 1,
       "message": "no issue tied to this CL?",
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd7f8533_d4ab92eb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-10-13T03:54:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a38b65f_36973868",
+      "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
       "key": {
         "uuid": "56d3f385_52ebfed2",
         "filename": "/PATCHSET_LEVEL",
@@ -31,10 +50,10 @@
       "side": 1,
       "message": "Hey Takuto. \n\nAdding in the targets used by Spinnaker to build the Appengine artifacts.",
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "0036b062_f5407b6d",
         "filename": "/PATCHSET_LEVEL",
@@ -48,10 +67,10 @@
       "side": 1,
       "message": "Some more information about the use of the targets: https://g3doc.corp.google.com/company/teams/chrome/ops/devx/prod_tech/releases/deploy_appengine.md#detailed-implementation",
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "1e2b82c7_0bef1c6a",
         "filename": "/PATCHSET_LEVEL",
@@ -65,10 +84,10 @@
       "side": 1,
       "message": "Oops, replied yesterday but forgot to actually send it .. ",
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "46b3da56_20e6d26a",
         "filename": "appengine/swarming/Makefile",
@@ -88,10 +107,10 @@
         "endChar": 22
       },
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "d9d3bbee_7910fd1a",
         "filename": "appengine/swarming/Makefile",
@@ -112,10 +131,10 @@
         "endChar": 22
       },
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "73bf4ef4_7739007c",
         "filename": "appengine/swarming/Makefile",
@@ -136,10 +155,10 @@
         "endChar": 22
       },
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "1447cd68_7043c2ac",
         "filename": "appengine/swarming/Makefile",
@@ -160,10 +179,10 @@
         "endChar": 22
       },
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "3632ffa2_c856ed43",
         "filename": "appengine/swarming/Makefile",
@@ -184,10 +203,10 @@
         "endChar": 22
       },
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "954dc6ba_52e702fb",
         "filename": "appengine/swarming/Makefile",
@@ -208,10 +227,10 @@
         "endChar": 22
       },
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "630d2d28_2ce3dd2a",
         "filename": "appengine/swarming/Makefile",
@@ -232,10 +251,10 @@
         "endChar": 22
       },
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "0f143e8f_69751563",
         "filename": "appengine/swarming/Makefile",
@@ -256,10 +275,34 @@
         "endChar": 22
       },
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d76a7750_0fbadd1e",
+        "filename": "appengine/swarming/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-10-13T03:54:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f143e8f_69751563",
+      "range": {
+        "startLine": 24,
+        "startChar": 16,
+        "endLine": 24,
+        "endChar": 22
+      },
+      "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "b9be5844_69184bc6",
         "filename": "appengine/swarming/Makefile",
@@ -273,10 +316,10 @@
       "side": 1,
       "message": "what is this for?",
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "4fc097cf_be453bc4",
         "filename": "appengine/swarming/Makefile",
@@ -291,8 +334,7 @@
       "message": "Some projects have external dependencies that need to be fetched before deploying the applicatoin. \n\nEg. npm / bower runs to fetch packages. \n\nThis target is used by GCB to make sure all of those things are fetched before the Docker image artifact is built. Helps to make the build reproducible.",
       "parentUuid": "b9be5844_69184bc6",
       "revId": "408835bfba7b05149992c10cdcc9b5b228093366",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
