@@ -22,6 +22,30 @@
       },
       "revId": "65b0b9611bfdfc04655b9f099790ccd68c02011c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7822ea4_edb8c3eb",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-10-13T00:48:10Z",
+      "side": 0,
+      "message": "Ack, maybe \u0027(non-ok) base directory\u0027 instead of \u0027this directory\u0027? (the error message has nothing which \u0027this\u0027 can refer to)",
+      "parentUuid": "fbc23c03_914cce4e",
+      "range": {
+        "startLine": 406,
+        "startChar": 40,
+        "endLine": 406,
+        "endChar": 51
+      },
+      "revId": "65b0b9611bfdfc04655b9f099790ccd68c02011c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

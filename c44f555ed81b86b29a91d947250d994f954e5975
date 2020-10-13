@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1fbeec06_690da869",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-10-13T00:48:10Z",
+      "side": 1,
+      "message": "Yes i think so. Any other suggestion?",
+      "parentUuid": "ef065870_7904ca55",
+      "range": {
+        "startLine": 522,
+        "startChar": 18,
+        "endLine": 522,
+        "endChar": 26
+      },
+      "revId": "c44f555ed81b86b29a91d947250d994f954e5975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d16a527b_6e09c15e",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 1
