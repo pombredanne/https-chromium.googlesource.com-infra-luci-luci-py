@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06a19170_17917597",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-10-13T03:34:05Z",
+      "side": 1,
+      "message": "Hey Takuto. \n\nCould you PTAL, this change is needed for the git version changes to work.",
+      "revId": "71fbf498bc3eaeb40ef9281d9a578811482aaa58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
