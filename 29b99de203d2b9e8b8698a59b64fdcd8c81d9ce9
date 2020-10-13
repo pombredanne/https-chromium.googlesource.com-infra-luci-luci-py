@@ -72,6 +72,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b40513cc_4748dbaa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-13T04:56:49Z",
+      "side": 1,
+      "message": "\u003e Empty dir/file could expire?\n\nI see.",
+      "parentUuid": "17f4f889_e000c5c2",
+      "range": {
+        "startLine": 9,
+        "startChar": 38,
+        "endLine": 9,
+        "endChar": 69
+      },
+      "revId": "29b99de203d2b9e8b8698a59b64fdcd8c81d9ce9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a5963ce_142c576f",
