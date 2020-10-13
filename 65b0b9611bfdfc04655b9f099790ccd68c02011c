@@ -46,6 +46,30 @@
       },
       "revId": "65b0b9611bfdfc04655b9f099790ccd68c02011c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f1702a4_6fc4556e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-13T00:57:24Z",
+      "side": 0,
+      "message": "\"base directory\" sounds good.",
+      "parentUuid": "c7822ea4_edb8c3eb",
+      "range": {
+        "startLine": 406,
+        "startChar": 40,
+        "endLine": 406,
+        "endChar": 51
+      },
+      "revId": "65b0b9611bfdfc04655b9f099790ccd68c02011c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
