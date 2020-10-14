@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbffa1e8_c1cca68a",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list-helpers.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-14T06:04:31Z",
+      "side": 1,
+      "message": "denied?",
+      "range": {
+        "startLine": 299,
+        "startChar": 55,
+        "endLine": 299,
+        "endChar": 62
+      },
+      "revId": "1c3b1e150a2e6fe9bddcb890c850a3f7f7b0c4da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
