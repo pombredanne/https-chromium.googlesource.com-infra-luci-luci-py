@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eda5bcfe_8a0d9747",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-14T06:05:08Z",
+      "side": 1,
+      "message": "These are auth related code. We need to involve Vadim to the discussion. \nAnd agree to keep them for now.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 108
+      },
+      "revId": "1c3b1e150a2e6fe9bddcb890c850a3f7f7b0c4da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cbffa1e8_c1cca68a",
         "filename": "appengine/swarming/ui2/modules/bot-list/bot-list-helpers.js",
         "patchSetId": 4
