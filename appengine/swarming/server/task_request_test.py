@@ -601,6 +601,7 @@ class TaskRequestApiTest(TestCase):
         req.task_slice(0).properties_hash(req).encode('hex'))
 
   # TODO(crbug.com/1115778): remove after RBE-CAS migration.
+  @unittest.SkipTest
   def test_init_new_request_isolated(self):
     parent = _gen_request(
         properties=_gen_properties(
@@ -1444,6 +1445,7 @@ class TaskRequestApiTest(TestCase):
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(properties=_gen_properties(command=[u'python'] * 129)).put()
 
+  @unittest.SkipTest
   def test_request_bad_extra_args(self):
     _gen_request(
         properties=_gen_properties(
