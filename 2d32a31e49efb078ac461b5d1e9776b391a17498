@@ -22,6 +22,30 @@
       },
       "revId": "2d32a31e49efb078ac461b5d1e9776b391a17498",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "149217b2_279253a3",
+        "filename": "appengine/swarming/ui2/modules/task-list/test_data.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-14T10:01:40Z",
+      "side": 1,
+      "message": "Seems we don\u0027t use this tag anymore.\nhttps://chromium-swarm.appspot.com/task?d\u003dtrue\u0026id\u003d4f3f5ecb38071a10",
+      "parentUuid": "33c7bee7_2e9360af",
+      "range": {
+        "startLine": 21,
+        "startChar": 9,
+        "endLine": 21,
+        "endChar": 22
+      },
+      "revId": "2d32a31e49efb078ac461b5d1e9776b391a17498",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
