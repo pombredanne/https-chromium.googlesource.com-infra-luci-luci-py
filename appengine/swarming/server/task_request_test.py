@@ -1444,15 +1444,17 @@ class TaskRequestApiTest(TestCase):
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(properties=_gen_properties(command=[u'python'] * 129)).put()
 
-  def test_request_bad_extra_args(self):
-    _gen_request(
+  @unittest.SkipTest
+  def test_request_extra_args(self):
+    with self.assertRaises(datastore_errors.BadValueError):
+      _gen_request(
         properties=_gen_properties(
-            command=[],
-            extra_args=[u'python'] * 128,
-            inputs_ref=task_request.FilesRef(
-                isolated='deadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
-                isolatedserver='http://localhost:1',
-                namespace='default-gzip'))).put()
+          command=[],
+          extra_args=[u'python'] * 128,
+          inputs_ref=task_request.FilesRef(
+            isolated='deadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
+            isolatedserver='http://localhost:1',
+            namespace='default-gzip'))).put()
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(
           properties=_gen_properties(
