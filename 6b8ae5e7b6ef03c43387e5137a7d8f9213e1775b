@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da0717e4_691ce984",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1395809
+      },
+      "writtenOn": "2020-10-19T18:40:46Z",
+      "side": 1,
+      "message": "\u003e \"Configruation\" is a possible misspelling of \"Configuration\".\n\nPlease fix.",
+      "parentUuid": "a0e38ffb_91f0e4e6",
+      "range": {
+        "startLine": 238,
+        "startChar": 24,
+        "endLine": 238,
+        "endChar": 37
+      },
+      "revId": "6b8ae5e7b6ef03c43387e5137a7d8f9213e1775b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
