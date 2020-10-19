@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9abd39f6_b64c92d2",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-10-19T18:45:14Z",
+      "side": 1,
+      "message": "the convention is to use plural in permissions names (so it would be \"ufs.registrations.get\")",
+      "range": {
+        "startLine": 214,
+        "startChar": 22,
+        "endLine": 214,
+        "endChar": 34
+      },
+      "revId": "2d0000afaae4f71d78c333b85df7f2e9f8713417",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
