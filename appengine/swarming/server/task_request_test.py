@@ -2184,7 +2184,6 @@ class TaskRequestApiTest(TestCase):
     def send_to_bq(table_name, rows):
       self.assertEqual('task_requests', table_name)
       payloads.append(rows)
-      return 0
 
     self.mock(bq_state, 'send_to_bq', send_to_bq)
 

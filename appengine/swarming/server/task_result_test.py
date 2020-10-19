@@ -1127,7 +1127,6 @@ class TaskResultApiTest(TestCase):
       if rows:
         # When rows is empty, send_to_bq() can exit early.
         payloads.append(rows)
-      return 0
 
     self.mock(bq_state, 'send_to_bq', send_to_bq)
     return payloads
