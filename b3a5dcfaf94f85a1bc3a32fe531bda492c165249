@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d677adf_e9a784d8",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-19T04:58:00Z",
+      "side": 1,
+      "message": "Will `failed` be not used any more?",
+      "range": {
+        "startLine": 118,
+        "startChar": 2,
+        "endLine": 118,
+        "endChar": 8
+      },
+      "revId": "b3a5dcfaf94f85a1bc3a32fe531bda492c165249",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
