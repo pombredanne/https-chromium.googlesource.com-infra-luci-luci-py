@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99189091_11b2a28a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-10-19T01:12:16Z",
+      "side": 1,
+      "message": "nit",
+      "revId": "07400c3f4354e228410e56bfdd8237a501cce351",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c902f4b_b914beb7",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1957,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-10-19T01:12:16Z",
+      "side": 1,
+      "message": "nit: can we have a CONST so that we only need to tweak it in one place?",
+      "range": {
+        "startLine": 1957,
+        "startChar": 42,
+        "endLine": 1957,
+        "endChar": 45
+      },
+      "revId": "07400c3f4354e228410e56bfdd8237a501cce351",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
