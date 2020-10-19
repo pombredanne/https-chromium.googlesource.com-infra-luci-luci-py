@@ -22,6 +22,30 @@
       },
       "revId": "b3a5dcfaf94f85a1bc3a32fe531bda492c165249",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f472220_9cff58ca",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-19T06:08:19Z",
+      "side": 1,
+      "message": "made https://crrev.com/c/2484107",
+      "parentUuid": "6d677adf_e9a784d8",
+      "range": {
+        "startLine": 118,
+        "startChar": 2,
+        "endLine": 118,
+        "endChar": 8
+      },
+      "revId": "b3a5dcfaf94f85a1bc3a32fe531bda492c165249",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
