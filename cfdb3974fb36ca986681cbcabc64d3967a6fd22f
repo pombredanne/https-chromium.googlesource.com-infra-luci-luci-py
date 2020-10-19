@@ -22,6 +22,30 @@
       },
       "revId": "cfdb3974fb36ca986681cbcabc64d3967a6fd22f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "226b6be3_aad9b20f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-19T10:27:25Z",
+      "side": 1,
+      "message": "Changed. Ideally, we want to make cas/isolated client evict old entries from namedcache/cas/isolated cache. But that makes client implementation complicated.",
+      "parentUuid": "52decb57_e8745453",
+      "range": {
+        "startLine": 685,
+        "startChar": 5,
+        "endLine": 685,
+        "endChar": 13
+      },
+      "revId": "cfdb3974fb36ca986681cbcabc64d3967a6fd22f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
