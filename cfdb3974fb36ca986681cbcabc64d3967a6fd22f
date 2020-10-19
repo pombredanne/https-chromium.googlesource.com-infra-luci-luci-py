@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52decb57_e8745453",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-10-19T10:17:05Z",
+      "side": 1,
+      "message": "How long do you expect this fix to last around? If it\u0027s not a temporary fix, better make it more generic with something like `additional_free_space`, and `min_free +\u003d additional_free_space`?",
+      "range": {
+        "startLine": 685,
+        "startChar": 5,
+        "endLine": 685,
+        "endChar": 13
+      },
+      "revId": "cfdb3974fb36ca986681cbcabc64d3967a6fd22f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
