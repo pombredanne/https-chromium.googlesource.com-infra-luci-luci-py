@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afe76868_f896e3b0",
+        "filename": "appengine/isolate/doc/Design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-19T02:07:16Z",
+      "side": 1,
+      "message": "could you replace the link with\nhttps://luci-milo-dev.appspot.com/p/chromium/g/chromium.dev/console\ntoo?",
+      "revId": "d16dc32087279a523dc860e0cedc31d077edab6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ddc31c0_84d62dae",
+        "filename": "appengine/isolate/doc/client/Design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-19T02:07:16Z",
+      "side": 1,
+      "message": "could you replace the link with\nhttps://luci-milo-dev.appspot.com/p/chromium/g/chromium.dev/console\ntoo?",
+      "revId": "d16dc32087279a523dc860e0cedc31d077edab6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
