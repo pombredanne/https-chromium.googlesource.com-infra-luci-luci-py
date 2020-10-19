@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9c9b973_2fd10c35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-10-19T19:20:15Z",
+      "side": 1,
+      "message": "lgtm\n\nOnce it lands, it will be deployed to -dev within 15 min. I believe unified-fleet-system-dev is in this dev universe as well. You can add @internal realms for -dev in https://chrome-internal.googlesource.com/infradata/config/+/refs/heads/master/starlark/realms/dev.star.",
+      "revId": "81bd9237412bf6441c7c53f2955c7debf0df8f67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
