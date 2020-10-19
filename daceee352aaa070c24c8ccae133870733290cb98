@@ -22,6 +22,30 @@
       },
       "revId": "daceee352aaa070c24c8ccae133870733290cb98",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e490ecd_49cd2dd7",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-19T07:20:38Z",
+      "side": 1,
+      "message": "removed this comment.",
+      "parentUuid": "34d9ee76_c462b39f",
+      "range": {
+        "startLine": 131,
+        "startChar": 20,
+        "endLine": 131,
+        "endChar": 39
+      },
+      "revId": "daceee352aaa070c24c8ccae133870733290cb98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
