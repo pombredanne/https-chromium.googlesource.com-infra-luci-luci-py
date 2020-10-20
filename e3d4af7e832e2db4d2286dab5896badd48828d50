@@ -46,6 +46,30 @@
       },
       "revId": "e3d4af7e832e2db4d2286dab5896badd48828d50",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e439624b_4ac98eaa",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1729,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-20T08:15:14Z",
+      "side": 1,
+      "message": "\u003e The existing code doesn\u0027t save the state.json until the end of the run_isolated.py?\n\u003e \n\u003e Were you able to reproduce the state.json override?\n\nExisting code seems not save state.json now other than in clean. This is to pass state after trim to go client properly.\n\n\u003e Is there any code in run_isolated.py that save state.json *after* running cas or Go isolated?\n\nSeems not, but I\u0027d like to ensure that python cache instance is None after here.",
+      "parentUuid": "a8f3a496_f9647758",
+      "range": {
+        "startLine": 1723,
+        "startChar": 1,
+        "endLine": 1729,
+        "endChar": 20
+      },
+      "revId": "e3d4af7e832e2db4d2286dab5896badd48828d50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
