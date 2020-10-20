@@ -16,6 +16,24 @@
       "message": "Looks like we need to fix https://crbug.com/1129865 and/or https://crbug.com/1131313 properly",
       "revId": "e647d3c1fe7598ad18fb2e1deaab1338b9692515",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f65b52b7_9e8ad54f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-20T01:12:35Z",
+      "side": 1,
+      "message": "I\u0027m considering to fix https://crbug.com/1131313 partially, e.g. trim cas/isolated cache but not for namedcache to prevent eviction of namedcache entries used for the task.",
+      "parentUuid": "262a428f_d84911b1",
+      "revId": "e647d3c1fe7598ad18fb2e1deaab1338b9692515",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
