@@ -654,7 +654,7 @@ class RunIsolatedTest(unittest.TestCase):
     self.assertEqual('', err)
     self.assertEqual('Success\n', out, out)
     self.assertEqual(0, returncode)
-    self.assertEqual([], list_files_tree(self._isolated_cache_dir))
+    self.assertEqual(['state.json'], list_files_tree(self._isolated_cache_dir))
 
     # Load the state file manually. This assumes internal knowledge in
     # local_caching.py.
@@ -714,6 +714,8 @@ class RunIsolatedTest(unittest.TestCase):
     download_stats.pop('duration')
     self.assertEqual(
         {
+            'initial_number_items': 0,
+            'initial_size': 0,
             'items_cold': [
                 len(CONTENTS['file1.txt']),
                 len(CONTENTS['repeated_files.py']),

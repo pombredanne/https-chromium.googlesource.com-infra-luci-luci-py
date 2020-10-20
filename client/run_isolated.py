@@ -1669,13 +1669,8 @@ def main(args):
 
   # TODO(maruel): CIPD caches should be defined at an higher level here too, so
   # they can be cleaned the same way.
-  # TODO(crbug.com/1131313):
-  # Modifying stats.json from run_isolated.py and Go isolated/cas clients may
-  # cause unexpected issues. Initialize CachePolicies when not using Go client
-  # or executing --clean.
-  isolate_cache = None
-  if options.clean or not use_go_isolated:
-    isolate_cache = isolateserver.process_cache_options(options, trim=False)
+
+  isolate_cache = isolateserver.process_cache_options(options, trim=False)
   cas_cache = None
   if options.clean:
     cas_cache = process_cas_cache_options(options)
@@ -1726,6 +1721,10 @@ def main(args):
         root,
         min_free_space=options.min_free_space,
         max_age_secs=MAX_AGE_SECS)
+
+    # Save state of isolate cache not to overwrite state from go client.
+    isolate_cache.save()
+    isolate_cache = None
 
   if not options.isolated and not args:
     parser.error('--isolated or command to run is required.')
