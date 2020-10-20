@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "262a428f_d84911b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-20T01:08:44Z",
+      "side": 1,
+      "message": "Looks like we need to fix https://crbug.com/1129865 and/or https://crbug.com/1131313 properly",
+      "revId": "e647d3c1fe7598ad18fb2e1deaab1338b9692515",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
