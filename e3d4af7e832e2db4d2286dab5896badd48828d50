@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aa64adb_7384a871",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1729,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-20T08:01:19Z",
+      "side": 1,
+      "message": "Ah, I was guessing this.\nThe existing code doesn\u0027t save the state.json until the end of the run_isolated.py?\n\nWere you able to reproduce the state.json override?",
+      "range": {
+        "startLine": 1723,
+        "startChar": 1,
+        "endLine": 1729,
+        "endChar": 20
+      },
+      "revId": "e3d4af7e832e2db4d2286dab5896badd48828d50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
