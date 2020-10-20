@@ -22,6 +22,30 @@
       },
       "revId": "e3d4af7e832e2db4d2286dab5896badd48828d50",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8f3a496_f9647758",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1729,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-20T08:02:46Z",
+      "side": 1,
+      "message": "Is there any code in run_isolated.py that save state.json *after* running cas or Go isolated?\nThat may cause another override issue.",
+      "parentUuid": "1aa64adb_7384a871",
+      "range": {
+        "startLine": 1723,
+        "startChar": 1,
+        "endLine": 1729,
+        "endChar": 20
+      },
+      "revId": "e3d4af7e832e2db4d2286dab5896badd48828d50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
