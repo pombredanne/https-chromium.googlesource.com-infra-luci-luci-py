@@ -654,7 +654,7 @@ class RunIsolatedTest(unittest.TestCase):
     self.assertEqual('', err)
     self.assertEqual('Success\n', out, out)
     self.assertEqual(0, returncode)
-    self.assertEqual([], list_files_tree(self._isolated_cache_dir))
+    self.assertEqual(['state.json'], list_files_tree(self._isolated_cache_dir))
 
     # Load the state file manually. This assumes internal knowledge in
     # local_caching.py.
