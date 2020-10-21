@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "abb04843_faaa0eb5",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1718,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-21T05:03:04Z",
+      "side": 1,
+      "message": "I\u0027m wondering if there is a use case where a bot doesn\u0027t have 5GB. e.g. containerized android bots, raspi etc.\nIn that case, better to configure this or tweak free_partition setting?\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_bot/config/bot_config.py;l\u003d86?q\u003df:bot_config.py\u0026ss\u003dchromium",
+      "range": {
+        "startLine": 1718,
+        "startChar": 0,
+        "endLine": 1718,
+        "endChar": 39
+      },
+      "revId": "628130afedc1b12f6204ba80083cd0a08f422776",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3788520e_73254e9f",
         "filename": "client/tests/run_isolated_test.py",
         "patchSetId": 9
