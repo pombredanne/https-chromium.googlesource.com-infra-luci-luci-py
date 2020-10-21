@@ -227,7 +227,7 @@ def setup_googletest(env, shards, index):
   return env
 
 
-def trigger_task_shards(swarming, task_request, shards):
+def trigger_task_shards(swarming, task_request):
   """Triggers one or many subtasks of a sharded task.
 
   Returns:
@@ -247,37 +247,31 @@ def trigger_task_shards(swarming, task_request, shards):
     """
     req = task_request_to_raw_request(task_request)
     shard_index = index
-    if shards > 1:
-      for task_slice in req['task_slices']:
-        task_slice['properties']['env'] = setup_googletest(
-            task_slice['properties']['env'], shards, index)
-      req['name'] += ':%s:%s' % (index, shards)
-    else:
-      task_slices = req['task_slices']
 
-      total_shards = 1
-      # Multiple tasks slices might exist if there are optional "slices", e.g.
-      # multiple ways of dispatching the task that should be equivalent. These
-      # should be functionally equivalent but we have cannot guarantee that. If
-      # we see the GTEST_SHARD_INDEX env var, we assume that it applies to all
-      # slices.
-      for task_slice in task_slices:
-        for env_var in task_slice['properties']['env']:
-          if env_var['key'] == 'GTEST_SHARD_INDEX':
-            shard_index = int(env_var['value'])
-          if env_var['key'] == 'GTEST_TOTAL_SHARDS':
-            total_shards = int(env_var['value'])
-      if total_shards > 1:
-        req['name'] += ':%s:%s' % (shard_index, total_shards)
-      if shard_index and total_shards:
-        req['tags'] += [
-            'shard_index:%d' % shard_index,
-            'total_shards:%d' % total_shards,
-        ]
+    task_slices = req['task_slices']
+    total_shards = 1
+    # Multiple tasks slices might exist if there are optional "slices", e.g.
+    # multiple ways of dispatching the task that should be equivalent. These
+    # should be functionally equivalent but we have cannot guarantee that. If
+    # we see the GTEST_SHARD_INDEX env var, we assume that it applies to all
+    # slices.
+    for task_slice in task_slices:
+      for env_var in task_slice['properties']['env']:
+        if env_var['key'] == 'GTEST_SHARD_INDEX':
+          shard_index = int(env_var['value'])
+        if env_var['key'] == 'GTEST_TOTAL_SHARDS':
+          total_shards = int(env_var['value'])
+    if total_shards > 1:
+      req['name'] += ':%s:%s' % (shard_index, total_shards)
+    if shard_index and total_shards:
+      req['tags'] += [
+          'shard_index:%d' % shard_index,
+          'total_shards:%d' % total_shards,
+      ]
 
     return req, shard_index
 
-  requests = [convert(index) for index in range(shards)]
+  requests = [convert(0)]
   tasks = {}
   priority_warning = False
   for request, shard_index in requests:
@@ -942,17 +936,6 @@ def process_filter_options(parser, options):
   for key, value, exp in options.optional_dimensions:
     _validate_filter_option(parser, key, value, exp, 'optional-dimension')
   options.dimensions.sort()
-
-
-def add_sharding_options(parser):
-  parser.sharding_group = optparse.OptionGroup(parser, 'Sharding options')
-  parser.sharding_group.add_option(
-      '--shards',
-      type='int',
-      default=1,
-      metavar='NUMBER',
-      help='Number of shards to trigger and collect.')
-  parser.add_option_group(parser.sharding_group)
 
 
 def add_trigger_options(parser):
@@ -1730,12 +1713,11 @@ def CMDrun(parser, args):
   """
   add_trigger_options(parser)
   add_collect_options(parser)
-  add_sharding_options(parser)
   options, args = parser.parse_args(args)
   process_collect_options(parser, options)
   task_request = process_trigger_options(parser, options, args)
   try:
-    tasks = trigger_task_shards(options.swarming, task_request, options.shards)
+    tasks = trigger_task_shards(options.swarming, task_request)
   except Failure as e:
     on_error.report('Failed to trigger %s(%s): %s' %
                     (task_request.name, args[0], e.args[0]))
@@ -1948,7 +1930,6 @@ def CMDtrigger(parser, args):
   arguments for an isolated command specified in *.isolate file.
   """
   add_trigger_options(parser)
-  add_sharding_options(parser)
   parser.add_option(
       '--dump-json',
       metavar='FILE',
@@ -1956,7 +1937,7 @@ def CMDtrigger(parser, args):
   options, args = parser.parse_args(args)
   task_request = process_trigger_options(parser, options, args)
   try:
-    tasks = trigger_task_shards(options.swarming, task_request, options.shards)
+    tasks = trigger_task_shards(options.swarming, task_request)
     if tasks:
       print('Triggered task: %s' % task_request.name)
       tasks_sorted = sorted(tasks.values(), key=lambda x: x['shard_index'])
