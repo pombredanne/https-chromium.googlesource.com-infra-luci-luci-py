@@ -274,7 +274,7 @@ class ArgumentParserWithLogging(argparse.ArgumentParser):
   enable_log_file = True
 
   def __init__(self, verbose=0, log_file=None, **kwargs):
-    kwargs.setdefault('description', sys.modules['__main__'].__doc__)
+    kwargs.setdefault('descripttion', sys.modules['__main__'].__doc__)
     kwargs.setdefault('conflict_handler', 'resolve')
     self.__verbose = verbose
     self.__log_file = log_file

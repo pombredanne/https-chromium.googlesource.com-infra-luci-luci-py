@@ -161,7 +161,6 @@ class TestIsolated(auto_stub.TestCase):
         }
       },
       u'includes': [u'0123456789abcdef0123456789abcdef01234567'],
-      u'read_only': 1,
       u'relative_cwd': u'somewhere_else',
       u'version': isolated_format.ISOLATED_FILE_VERSION,
     }

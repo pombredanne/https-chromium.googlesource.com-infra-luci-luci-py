@@ -245,48 +245,6 @@ class IsolateTest(IsolateBase):
     for i in blocked:
       self.assertTrue(denylist(i), i)
 
-  def test_read_only(self):
-    isolate_file = os.path.join(self.cwd, 'fake.isolate')
-    isolate_content = {
-      'variables': {
-        'read_only': 0,
-      },
-    }
-    tools.write_json(isolate_file, isolate_content, False)
-    expected = {
-      'algo': 'sha-1',
-      'files': {},
-      'read_only': 0,
-      'version': isolated_format.ISOLATED_FILE_VERSION,
-    }
-    complete_state = isolate.CompleteState(
-        None, isolate.SavedState('sha-1', self.cwd))
-    complete_state.load_isolate(
-        six.text_type(self.cwd), six.text_type(isolate_file), {}, {}, None,
-        False, False)
-    self.assertEqual(expected, complete_state.saved_state.to_isolated())
-
-  if sys.platform == 'darwin':
-    def test_expand_directories_and_symlinks_path_case(self):
-      # Ensures that the resulting path case is fixed on case insensitive file
-      # system. A superset of test_expand_symlinks_path_case.
-      # Create *all* the paths with the wrong path case.
-      basedir = os.path.join(self.cwd, 'baseDir')
-      os.mkdir(basedir.lower())
-      subdir = os.path.join(basedir, 'subDir')
-      os.mkdir(subdir.lower())
-      open(os.path.join(subdir, 'Foo.txt'), 'w').close()
-      os.symlink('subDir', os.path.join(basedir, 'linkdir'))
-      actual = isolate._expand_directories_and_symlinks(
-          self.cwd, [u'baseDir/'], lambda _: None, True, False)
-      expected = [
-        u'basedir/linkdir',
-        u'basedir/subdir/Foo.txt',
-        u'basedir/subdir/Foo.txt',
-      ]
-      self.assertEqual(expected, sorted(actual))
-
-
 class IsolateLoad(IsolateBase):
   def setUp(self):
     super(IsolateLoad, self).setUp()
@@ -385,7 +343,6 @@ class IsolateLoad(IsolateBase):
                 's': self.size('at_root'),
             },
         },
-        'read_only': 1,
         'relative_cwd': os.path.join(u'tests', 'isolate'),
         'version': isolated_format.ISOLATED_FILE_VERSION,
     }
@@ -452,7 +409,6 @@ class IsolateLoad(IsolateBase):
                 's': self.size('tests', 'isolate', 'touch_root.py'),
             },
         },
-        'read_only': 1,
         'relative_cwd': os.path.join(u'tests', 'isolate'),
         'version': isolated_format.ISOLATED_FILE_VERSION,
     }
@@ -519,7 +475,6 @@ class IsolateLoad(IsolateBase):
                 's': self.size('tests', 'isolate', 'touch_root.py'),
             },
         },
-        'read_only': 1,
         'relative_cwd': os.path.join(u'tests', 'isolate'),
         'version': isolated_format.ISOLATED_FILE_VERSION,
     }
@@ -606,7 +561,6 @@ class IsolateLoad(IsolateBase):
                 's': self.size('tests', 'isolate', 'touch_root.py'),
             },
         },
-        'read_only': 1,
         'relative_cwd': os.path.join(u'tests', 'isolate'),
         'version': isolated_format.ISOLATED_FILE_VERSION,
     }
@@ -712,7 +666,6 @@ class IsolateLoad(IsolateBase):
                 's': self.size('tests', 'isolate', 'no_run.isolate'),
             },
         },
-        'read_only': 1,
         'version': isolated_format.ISOLATED_FILE_VERSION,
     }
     self._cleanup_isolated(expected_isolated)
@@ -819,7 +772,6 @@ class IsolateLoad(IsolateBase):
             six.text_type(self.hash_file(self.isolated_dir, 'foo.0.isolated')),
             six.text_type(self.hash_file(self.isolated_dir, 'foo.1.isolated')),
         ],
-        u'read_only': 1,
         u'relative_cwd': u'.',
         u'version': six.text_type(isolated_format.ISOLATED_FILE_VERSION),
     }
@@ -1066,7 +1018,6 @@ class IsolateLoad(IsolateBase):
               six.text_type(f.replace('/', os.path.sep)): {}
               for f in expected_files
           },
-          'read_only': 1,
           'relative_cwd': relative_cwd.replace('/', os.path.sep),
           'version': isolated_format.ISOLATED_FILE_VERSION,
       }
@@ -1264,7 +1215,6 @@ class IsolateLoad(IsolateBase):
               six.text_type(os.path.join(cwd_name, config_os, 'path', f)): {}
               for f in expected_files
           },
-          'read_only': 1,
           'relative_cwd': relative_cwd,
           'version': isolated_format.ISOLATED_FILE_VERSION,
       }
@@ -1512,7 +1462,7 @@ class IsolateCommand(IsolateBase):
       actual_isolated = f.read()
     expected_isolated = (
         '{"algo":"sha-1","command":["foo"],"files":{},'
-        '"read_only":1,"relative_cwd":".","version":"%s"}'
+        '"relative_cwd":".","version":"%s"}'
     ) % isolated_format.ISOLATED_FILE_VERSION
     self.assertEqual(expected_isolated, actual_isolated)
     isolated_data = json.loads(actual_isolated)

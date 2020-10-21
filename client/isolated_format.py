@@ -19,7 +19,7 @@ from utils import fs
 from utils import tools
 
 # Version stored and expected in .isolated files.
-ISOLATED_FILE_VERSION = '1.6'
+ISOLATED_FILE_VERSION = '2.0'
 
 
 # Chunk size to use when doing disk I/O.
@@ -503,10 +503,6 @@ def load_isolated(content, algo):
     elif key == 'os':
       if version >= (1, 4):
         raise IsolatedError('Key \'os\' is not allowed starting version 1.4')
-
-    elif key == 'read_only':
-      if not value in (0, 1, 2):
-        raise IsolatedError('Expected 0, 1 or 2, got %r' % value)
 
     elif key == 'relative_cwd':
       if not isinstance(value, six.string_types):
