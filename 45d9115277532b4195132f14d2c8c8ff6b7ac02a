@@ -16,6 +16,24 @@
       "message": "no need to remove this?",
       "revId": "45d9115277532b4195132f14d2c8c8ff6b7ac02a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df22fc70_201bd46d",
+        "filename": "client/tests/isolate_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-21T02:33:06Z",
+      "side": 0,
+      "message": "Oops. Good catch.\nI thought the if-block is in the test...\n\nI made it back.",
+      "parentUuid": "3eac2058_c91ed79b",
+      "revId": "45d9115277532b4195132f14d2c8c8ff6b7ac02a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
