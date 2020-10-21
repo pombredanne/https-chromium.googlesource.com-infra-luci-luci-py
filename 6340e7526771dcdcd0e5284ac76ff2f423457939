@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4bd81e0_3125722b",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1719,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-10-21T05:17:15Z",
+      "side": 1,
+      "message": "nit: define a constant?",
+      "range": {
+        "startLine": 1719,
+        "startChar": 46,
+        "endLine": 1719,
+        "endChar": 65
+      },
+      "revId": "6340e7526771dcdcd0e5284ac76ff2f423457939",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
