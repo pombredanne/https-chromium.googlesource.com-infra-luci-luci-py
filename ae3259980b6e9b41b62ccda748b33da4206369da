@@ -52,6 +52,24 @@
       "parentUuid": "aadc1ee5_c16587f6",
       "revId": "ae3259980b6e9b41b62ccda748b33da4206369da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6da389ae_5f99e4bb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-10-21T04:48:55Z",
+      "side": 1,
+      "message": "Nvm, it\u0027s already using frsize...",
+      "parentUuid": "fba6d30a_ec45df59",
+      "revId": "ae3259980b6e9b41b62ccda748b33da4206369da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
