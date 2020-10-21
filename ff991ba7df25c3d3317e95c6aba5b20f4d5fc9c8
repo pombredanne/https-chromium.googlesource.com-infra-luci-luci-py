@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56b4ae38_25780780",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-21T09:29:01Z",
+      "side": 1,
+      "message": "no need to be array anymore?",
+      "range": {
+        "startLine": 274,
+        "startChar": 2,
+        "endLine": 274,
+        "endChar": 10
+      },
+      "revId": "ff991ba7df25c3d3317e95c6aba5b20f4d5fc9c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
