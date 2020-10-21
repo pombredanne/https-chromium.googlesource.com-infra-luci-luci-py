@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3788520e_73254e9f",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 804,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-10-21T04:54:38Z",
+      "side": 1,
+      "message": "Update? Or if this is tmp fix, maybe assertGreaterThan(1100)?",
+      "revId": "628130afedc1b12f6204ba80083cd0a08f422776",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
