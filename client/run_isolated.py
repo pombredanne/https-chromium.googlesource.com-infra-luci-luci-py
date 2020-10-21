@@ -1712,13 +1712,12 @@ def main(args):
   # - --min-free-space was increased accordingly, thus trimming is needed
   # Otherwise, this will have no effect, as bot_main calls run_isolated with
   # --clean after each task.
-  if hint:
-    logging.info('Additional trimming of %d bytes', hint)
-    local_caching.trim_caches(
-        caches,
-        root,
-        min_free_space=options.min_free_space,
-        max_age_secs=MAX_AGE_SECS)
+  local_caching.trim_caches(
+      caches,
+      root,
+      # Add 1GB more buffer for Go CLI.
+      min_free_space=options.min_free_space + 1024 * 1024 * 1024,
+      max_age_secs=MAX_AGE_SECS)
 
   # Save state of isolate/cas cache not to overwrite state from go client.
   if use_go_isolated:
