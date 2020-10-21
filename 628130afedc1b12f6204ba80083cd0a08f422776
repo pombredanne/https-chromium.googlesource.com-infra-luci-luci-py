@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0916be04_75ed92c9",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1718,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-21T05:13:57Z",
+      "side": 1,
+      "message": "I\u0027d like to avoid introducing yet another configuration value unless we found it is necessary. But let me start from 1GB buffer instead.",
+      "parentUuid": "abb04843_faaa0eb5",
+      "range": {
+        "startLine": 1718,
+        "startChar": 0,
+        "endLine": 1718,
+        "endChar": 39
+      },
+      "revId": "628130afedc1b12f6204ba80083cd0a08f422776",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3788520e_73254e9f",
         "filename": "client/tests/run_isolated_test.py",
         "patchSetId": 9
@@ -37,6 +61,24 @@
       "writtenOn": "2020-10-21T04:54:38Z",
       "side": 1,
       "message": "Update? Or if this is tmp fix, maybe assertGreaterThan(1100)?",
+      "revId": "628130afedc1b12f6204ba80083cd0a08f422776",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92c2cdf9_0b23c736",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 804,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-21T05:13:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3788520e_73254e9f",
       "revId": "628130afedc1b12f6204ba80083cd0a08f422776",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
