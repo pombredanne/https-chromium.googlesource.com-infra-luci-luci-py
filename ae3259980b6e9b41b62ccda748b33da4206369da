@@ -16,6 +16,24 @@
       "message": "Just so that I understand correctly, Go impl uses unix.Statfs(), while Py uses os.stat*v*fs(). Are these really aligned? (From what I\u0027ve read, statvfs is POSIX-conforming, shouldn\u0027t we change Go\u0027s? https://stackoverflow.com/a/1653168/12003165)",
       "revId": "ae3259980b6e9b41b62ccda748b33da4206369da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aadc1ee5_c16587f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-21T04:43:55Z",
+      "side": 1,
+      "message": "I think this has the same value between statvfs and statfs.\nOne reason that Go uses Statfs is that unix package doesn\u0027t have Statvfs function.\nhttps://godoc.org/golang.org/x/sys/unix",
+      "parentUuid": "818505fc_c7417b10",
+      "revId": "ae3259980b6e9b41b62ccda748b33da4206369da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
