@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "354ee362_509c35ac",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1447,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-26T08:05:21Z",
+      "side": 0,
+      "message": "Because any extra args became bad in this CL.",
+      "parentUuid": "4ad6d484_bdf02b1a",
+      "range": {
+        "startLine": 1447,
+        "startChar": 19,
+        "endLine": 1447,
+        "endChar": 24
+      },
+      "revId": "3ca264d328904f09d4c201971f4d7d37eb0e949e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a8136c1b_c5119905",
         "filename": "appengine/swarming/server/task_request_test.py",
         "patchSetId": 9
@@ -37,6 +61,30 @@
       "writtenOn": "2020-10-26T08:02:09Z",
       "side": 0,
       "message": "What\u0027s wrong with \"* 129\" (invalid extra args)?",
+      "range": {
+        "startLine": 1460,
+        "startChar": 37,
+        "endLine": 1460,
+        "endChar": 42
+      },
+      "revId": "3ca264d328904f09d4c201971f4d7d37eb0e949e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e1a2a3b_88ff6a77",
+        "filename": "appengine/swarming/server/task_request_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1460,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-10-26T08:05:21Z",
+      "side": 0,
+      "message": "There is restriction for the size of extra_args, but this CL doesn\u0027t allow extra_args entirely.",
+      "parentUuid": "a8136c1b_c5119905",
       "range": {
         "startLine": 1460,
         "startChar": 37,
