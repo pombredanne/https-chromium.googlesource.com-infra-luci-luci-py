@@ -82,7 +82,6 @@ def get_manifest(script=None, isolated=None, **kwargs):
       'dimensions': {},
       'env': {},
       'env_prefixes': {},
-      'extra_args': [],
       'grace_period':
           30.,
       'hard_timeout':
@@ -389,8 +388,7 @@ class TestTaskRunner(TestTaskRunnerBase):
             'input': '123',
             'server': 'localhost:1',
             'namespace': 'default-gzip',
-        },
-        extra_args=['foo', 'bar'])
+        })
     # Mock running run_isolated with a script.
     SCRIPT_ISOLATED = ('import json, sys;\n'
                        'args = []\n'
@@ -1300,9 +1298,8 @@ class TaskRunnerNoServer(auto_stub.TestCase):
     self.mock(task_runner, 'run_command', _run_command)
 
     manifest = get_manifest(
-        command=None,
+        command=['hello.exe'],
         env={'d': 'e'},
-        extra_args=['foo', 'bar'],
         isolated={
           'input': '123',
           'server': 'http://localhost:1',
