@@ -69,7 +69,6 @@ DEFAULT_COMMAND = ["python", "-u", "%s.py" % HELLO_WORLD]
 # The default isolated command is to map and run HELLO_WORLD.
 DEFAULT_ISOLATE_HELLO = """{
   "variables": {
-    "command": ["python", "-u", "%(name)s.py"],
     "files": ["%(name)s.py"],
   },
 }""" % {
