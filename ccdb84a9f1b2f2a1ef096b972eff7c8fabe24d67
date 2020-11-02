@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b5a35a4_792d6225",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-11-02T07:09:32Z",
+      "side": 1,
+      "message": "nit: why not just drop `_ \u003d`?",
+      "range": {
+        "startLine": 865,
+        "startChar": 4,
+        "endLine": 865,
+        "endChar": 27
+      },
+      "revId": "ccdb84a9f1b2f2a1ef096b972eff7c8fabe24d67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0184267_4fb1c802",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-11-02T07:09:32Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 883,
+        "startChar": 4,
+        "endLine": 883,
+        "endChar": 27
+      },
+      "revId": "ccdb84a9f1b2f2a1ef096b972eff7c8fabe24d67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
