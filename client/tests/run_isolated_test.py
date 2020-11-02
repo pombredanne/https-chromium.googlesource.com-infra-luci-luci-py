@@ -1027,10 +1027,9 @@ class RunIsolatedTest(RunIsolatedTestBase):
       return 0
 
     self.popen_fakes.append(fake_wait)
-    bundle, stats = run_isolated._fetch_and_map_with_go_isolated(
+    stats = run_isolated._fetch_and_map_with_go_isolated(
         'fake_isolated_hash', storage, 'fake_outdir', 'fake_cache_dir',
         local_caching.CachePolicies(0, 0, 0, 0), 'fake/path/to/isolated')
-    self.assertTrue(bundle)
     self.assertTrue(stats)
 
 
