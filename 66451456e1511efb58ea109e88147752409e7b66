@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61cb5869_125397aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-11-03T12:36:12Z",
+      "side": 1,
+      "message": "We have multiple servers in use in production. Default will be helpful to some but will hurt those who use other servers. So, not lgtm.\n\nBut, I ultimately defer to Takuto.",
+      "revId": "66451456e1511efb58ea109e88147752409e7b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
