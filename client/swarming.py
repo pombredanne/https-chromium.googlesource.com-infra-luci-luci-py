@@ -1965,7 +1965,7 @@ class OptionParserSwarming(logging_utils.OptionParserWithLogging):
         '-S',
         '--swarming',
         metavar='URL',
-        default=os.environ.get('SWARMING_SERVER', ''),
+        default=os.environ.get('SWARMING_SERVER', 'chromium-swarm.appspot.com'),
         help='Swarming server to use')
     self.add_option_group(self.server_group)
     auth.add_auth_options(self)
