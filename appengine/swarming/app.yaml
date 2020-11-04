@@ -113,3 +113,9 @@ skip_files:
 - ui2/modules/.+
 - ui2/nodejs/.+
 - ui2/pages/.+
+
+# Used by the Spinaker deployment system to add Chrome Appengine Version.
+# cl/340614618
+# go/spinnakerget
+env_variables:
+  GIT_VERSION: '${GIT_VERSION}'
