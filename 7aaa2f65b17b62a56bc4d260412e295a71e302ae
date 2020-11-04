@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "facf7054_c2fcdadd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-11-04T21:21:08Z",
+      "side": 1,
+      "message": "In reference to:\n\ngo/spinnakergit\ncl/340614618",
+      "revId": "7aaa2f65b17b62a56bc4d260412e295a71e302ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
