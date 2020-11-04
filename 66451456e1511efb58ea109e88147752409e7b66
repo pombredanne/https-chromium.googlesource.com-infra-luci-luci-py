@@ -34,6 +34,24 @@
       "parentUuid": "61cb5869_125397aa",
       "revId": "66451456e1511efb58ea109e88147752409e7b66",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ac8b106_9db285ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-04T00:37:59Z",
+      "side": 1,
+      "message": "From where did you reach to this client?\n\n\u003e which should tell what value -S flag can take\n\nWhy current \u0027Swarming server to use\u0027 description doesn\u0027t help? I also think this repo is not appropriate place for instance specific knowledge.",
+      "parentUuid": "417850b0_350bda92",
+      "revId": "66451456e1511efb58ea109e88147752409e7b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
