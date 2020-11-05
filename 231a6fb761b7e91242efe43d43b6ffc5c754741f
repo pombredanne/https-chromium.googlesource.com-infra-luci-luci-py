@@ -34,6 +34,24 @@
       "parentUuid": "0b376c02_141535b6",
       "revId": "231a6fb761b7e91242efe43d43b6ffc5c754741f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a70cefb_8a7fca1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-11-05T19:25:17Z",
+      "side": 1,
+      "message": "then my question is why not delete code from here?",
+      "parentUuid": "976ee2a5_030f2d5f",
+      "revId": "231a6fb761b7e91242efe43d43b6ffc5c754741f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
