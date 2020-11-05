@@ -52,6 +52,24 @@
       "parentUuid": "976ee2a5_030f2d5f",
       "revId": "231a6fb761b7e91242efe43d43b6ffc5c754741f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e60c14ba_6c95ef2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-11-05T20:00:59Z",
+      "side": 1,
+      "message": "Ah! I\u0027ve tried actually (i.e. to remove the gevent trace from here and add it only in recipe engine) if you look at https://crrev.com/c/2519357/1 and https://crrev.com/c/2506502/5. Unfortunately, it hit some weird double closing stream bug that in turn failed the unit test and I couldn\u0027t figure it out in ~3 hours. So I take this easy route as it is draining too much time :P I can create a bug to follow up later. Does that SGTU?",
+      "parentUuid": "7a70cefb_8a7fca1e",
+      "revId": "231a6fb761b7e91242efe43d43b6ffc5c754741f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
