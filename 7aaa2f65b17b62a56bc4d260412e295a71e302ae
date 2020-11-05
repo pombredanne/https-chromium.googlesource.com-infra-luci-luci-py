@@ -33,6 +33,24 @@
       "message": "Where is this used?",
       "revId": "7aaa2f65b17b62a56bc4d260412e295a71e302ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d19904f9_a18c6763",
+        "filename": "appengine/swarming/app.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-05T04:28:40Z",
+      "side": 1,
+      "message": "I think it will be used here.\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/2517218",
+      "parentUuid": "8e5aad1a_f8947981",
+      "revId": "7aaa2f65b17b62a56bc4d260412e295a71e302ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
