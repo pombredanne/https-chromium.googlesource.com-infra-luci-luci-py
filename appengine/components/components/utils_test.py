@@ -206,6 +206,10 @@ class UtilsTest(test_case.TestCase):
     self.assertEqual(2, get_me())
     self.assertEqual(2, len(calls))
 
+  def test_get_app_version(self):
+    ver = utils.get_app_version()
+    self.assertEqual('N/A', ver)
+
 
 class FakeNdbContext(object):
   def __init__(self):
