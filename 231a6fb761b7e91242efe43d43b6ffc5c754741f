@@ -70,6 +70,24 @@
       "parentUuid": "7a70cefb_8a7fca1e",
       "revId": "231a6fb761b7e91242efe43d43b6ffc5c754741f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87170114_4447ad57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-11-06T20:58:52Z",
+      "side": 1,
+      "message": "not worth the time. I think the goal should be rm -rf entirely this repo, and short of that remove entire packages if they aren\u0027t used. Removing small chunks isn\u0027t worth the time if we have to spend 3 hours fixing tests.",
+      "parentUuid": "e60c14ba_6c95ef2a",
+      "revId": "231a6fb761b7e91242efe43d43b6ffc5c754741f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
