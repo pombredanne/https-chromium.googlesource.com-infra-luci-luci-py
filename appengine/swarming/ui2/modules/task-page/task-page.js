@@ -232,7 +232,6 @@ const taskInfoTable = (ele, request, result, currentSlice) => {
   ${arrayInTable(currentSlice.properties.outputs,
       'Expected outputs', (output) => output)}
   ${commitBlock(request.tagMap)}
-
   <tr class=details>
     <td>More Details</td>
     <td>
@@ -365,6 +364,10 @@ const requestBlock = (request, result, currentSlice) => html`
 <tr ?hidden=${!request.realm}>
   <td>Realm</td>
   <td>${request.realm}</td>
+</tr>
+<tr ?hidden=${!result.resultdb_info}>
+  <td>ResultDB</td>
+  <td>Enabled</td>
 </tr>
 <tr ?hidden=${!currentSlice.properties.secret_bytes}>
   <td>Has Secret Bytes</td>
