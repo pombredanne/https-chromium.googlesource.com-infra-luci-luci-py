@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b45476a2_33d39431",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-11-06T08:46:42Z",
+      "side": 1,
+      "message": "WDYT that instead of showing this is enabled only when it is, it displays enabled or disabled?",
+      "range": {
+        "startLine": 232,
+        "startChar": 14,
+        "endLine": 232,
+        "endChar": 38
+      },
+      "revId": "c6c20f946209dceb9e9161bc3785286dbd86a410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
