@@ -16,6 +16,29 @@
       "message": "jmpittman,\nI want to test this CL on dev environment before submitting to prod.\nCan you register a quarantined bot to dev when you find it next time? \n",
       "revId": "e18c8dfd364a8be5fa2c715a232a236a6cfc5d69",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc3188ff_5fc17350",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-09T07:44:04Z",
+      "side": 1,
+      "message": "indent is not alinged with other places?",
+      "range": {
+        "startLine": 465,
+        "startChar": 0,
+        "endLine": 468,
+        "endChar": 32
+      },
+      "revId": "e18c8dfd364a8be5fa2c715a232a236a6cfc5d69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
