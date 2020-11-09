@@ -206,6 +206,12 @@ class UtilsTest(test_case.TestCase):
     self.assertEqual(2, get_me())
     self.assertEqual(2, len(calls))
 
+  # @mock.patch.idkc(os.environ, ("GIT_VERSION", "5566-1234567"))
+  def test_get_app_version(self):
+    self.mock.patch.idkc(os.environ, ("GIT_VERSION", "5566-1234567"))
+    ver = utils.get_app_version()
+    self.assertEqual('v1a', ver)
+
 
 class FakeNdbContext(object):
   def __init__(self):
