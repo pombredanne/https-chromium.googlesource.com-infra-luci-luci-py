@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eff266e_d06cc5ee",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 1514,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-09T01:13:08Z",
+      "side": 1,
+      "message": "thanks",
+      "range": {
+        "startLine": 1514,
+        "startChar": 0,
+        "endLine": 1514,
+        "endChar": 33
+      },
+      "revId": "2373ad89188478a96c7d351f770b6df2019382e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
