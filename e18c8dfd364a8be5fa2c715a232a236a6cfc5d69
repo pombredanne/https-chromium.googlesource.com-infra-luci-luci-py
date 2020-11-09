@@ -39,6 +39,30 @@
       },
       "revId": "e18c8dfd364a8be5fa2c715a232a236a6cfc5d69",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bafe7bed_0af674a1",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-09T07:51:10Z",
+      "side": 1,
+      "message": "Thanks for catching this. Fixed.",
+      "parentUuid": "fc3188ff_5fc17350",
+      "range": {
+        "startLine": 465,
+        "startChar": 0,
+        "endLine": 468,
+        "endChar": 32
+      },
+      "revId": "e18c8dfd364a8be5fa2c715a232a236a6cfc5d69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
