@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9e98cc8_f0be5bc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-09T07:40:55Z",
+      "side": 1,
+      "message": "jmpittman,\nI want to test this CL on dev environment before submitting to prod.\nCan you register a quarantined bot to dev when you find it next time? \n",
+      "revId": "e18c8dfd364a8be5fa2c715a232a236a6cfc5d69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

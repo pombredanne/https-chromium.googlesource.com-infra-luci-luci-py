@@ -16,6 +16,24 @@
       "message": "why not use for?",
       "revId": "c0aced2153afd711b7823079ba4d53ab841ffc77",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d628b847_af047b7f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-09T07:40:55Z",
+      "side": 1,
+      "message": "Changed to for-loop.",
+      "parentUuid": "bb15a168_a8f926ad",
+      "revId": "c0aced2153afd711b7823079ba4d53ab841ffc77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
