@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0a712fe_efcbd22e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-09T00:40:57Z",
+      "side": 1,
+      "message": "I submit this, but let me know if you have opinion.",
+      "parentUuid": "da5e5941_790a7a0d",
+      "revId": "c6c20f946209dceb9e9161bc3785286dbd86a410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b45476a2_33d39431",
