@@ -460,11 +460,17 @@ def memcache(*args, **kwargs):
 ## GAE identity
 
 
-@cache
+#@cache
 def get_app_version():
   """Returns currently running version (not necessary a default one)."""
   # Sadly, this causes an RPC and when called too frequently, throws quota
   # errors.
+  spinver = os.getenv('GIT_VERSION')
+  if spinver:
+    print "WAS HERE: " + spinver
+    p = re.compile('\d{4,}-[0-9a-f]{7}')
+    if p.match(spinver):
+      return spinver
   return modules.get_current_version_name() or 'N/A'
 
 
