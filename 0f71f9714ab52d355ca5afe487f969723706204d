@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9374d834_86797b05",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-11-10T04:13:29Z",
+      "side": 1,
+      "message": "After talking to Junji and Takuto we\u0027ve decided to creata a separate function to fetch the Chrome Appengine version. \n\nThis will be safer as no current applications will be affected by the change.\nIt also means that applications deployed with Spinnaker will have to be changed to use the new function if the Chrome Appengine version is needed.",
+      "range": {
+        "startLine": 470,
+        "startChar": 26,
+        "endLine": 470,
+        "endChar": 27
+      },
+      "revId": "0f71f9714ab52d355ca5afe487f969723706204d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
