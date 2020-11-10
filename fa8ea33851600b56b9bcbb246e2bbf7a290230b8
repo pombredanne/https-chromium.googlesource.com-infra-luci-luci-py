@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "329b1355_ec5af8f2",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-10T04:45:37Z",
+      "side": 1,
+      "message": "I\u0027m not sure if my suggestion in Chat was clear.\n\nLet me clarify.\nThe UI can display two versions, app version (e.g. swamring-prod-default-v002 or 5626-39642e9) and Git revision (e.g. 39642e9). And the Git revision links to Git repo.\n\nThe app version can link to https://pantheon.corp.google.com/appengine/versions and/or Spinnaker build page.\n\nWDYT?",
+      "range": {
+        "startLine": 468,
+        "startChar": 1,
+        "endLine": 473,
+        "endChar": 46
+      },
+      "revId": "fa8ea33851600b56b9bcbb246e2bbf7a290230b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "215b3687_f087534e",
         "filename": "appengine/components/components/utils.py",
         "patchSetId": 9
