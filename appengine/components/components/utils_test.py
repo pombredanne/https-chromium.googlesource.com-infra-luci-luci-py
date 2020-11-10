@@ -7,6 +7,7 @@
 # pylint: disable=W0212
 
 import datetime
+import os
 import sys
 import threading
 import unittest
@@ -205,6 +206,16 @@ class UtilsTest(test_case.TestCase):
     utils.clear_cache(get_me)
     self.assertEqual(2, get_me())
     self.assertEqual(2, len(calls))
+
+  def test_get_app_version(self):
+    ver = utils.get_app_version()
+    self.assertEqual('v1a', ver)
+
+  def test_get_app_version_git(self):
+    with mock.patch.dict("os.environ", {"GIT_VERSION": "5566-123abcd"}):
+      print "LE VERSION: " + os.getenv("GIT_VERSION")
+      ver = utils.get_app_version()
+      self.assertEqual('5566-123abcd', ver)
 
 
 class FakeNdbContext(object):
