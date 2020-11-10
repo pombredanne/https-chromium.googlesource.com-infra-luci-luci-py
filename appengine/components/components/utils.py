@@ -462,10 +462,22 @@ def memcache(*args, **kwargs):
 
 @cache
 def get_app_version():
-  """Returns currently running version (not necessary a default one)."""
-  # Sadly, this causes an RPC and when called too frequently, throws quota
-  # errors.
   return modules.get_current_version_name() or 'N/A'
+
+
+# get_chrome_app_version is used to fetch the Chrome Appengine version.
+# For services using Spinnaker for deployments the pantheon version changes
+# to something similare to `swamring-prod-default-v002`.
+# This fucntion can be used if the Chrome Appengine version is needed.
+# Eg. `5626-39642e9`.
+# See go/spinnakergit for further information.
+def get_chrome_app_version():
+  spinver = os.getenv("CHOPS_APP_VERSION")
+  if spinver:
+    p = re.compile('^\d{4,}-[0-9a-f]{7}$')
+    if p.match(spinver):
+      return spinver
+  return get_app_version()
 
 
 @cache
