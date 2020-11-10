@@ -87,6 +87,24 @@
       "parentUuid": "0e387a56_82041f5a",
       "revId": "7aaa2f65b17b62a56bc4d260412e295a71e302ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40999a14_489b8549",
+        "filename": "appengine/swarming/app.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-11-10T04:32:32Z",
+      "side": 1,
+      "message": "Changed the GIT_VERSION to CHOPS_APP_VERSION.",
+      "parentUuid": "35617af0_5936a68b",
+      "revId": "7aaa2f65b17b62a56bc4d260412e295a71e302ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
