@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e369972_3414aab9",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-10T04:18:56Z",
+      "side": 0,
+      "message": "why do you remove this?",
+      "revId": "42c9106a60fbe6b7de609d285d79c3b44fbc4594",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
