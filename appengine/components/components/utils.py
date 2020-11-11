@@ -468,6 +468,17 @@ def get_app_version():
   return modules.get_current_version_name() or 'N/A'
 
 
+# get_chops_git_version is used to fetch the Chops Git version.
+# See go/spinnakergit for further information.
+def get_chops_git_version():
+  spinver = os.getenv("CHOPS_GIT_VERSION")
+  if spinver:
+    p = re.compile('^\d{4,}-[0-9a-f]{7}$')
+    if p.match(spinver):
+      return spinver
+  return get_app_version()
+
+
 @cache
 def get_versioned_hosturl():
   """Returns the url hostname of this instance locked to the currently running
