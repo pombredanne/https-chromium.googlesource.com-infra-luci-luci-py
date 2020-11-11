@@ -680,20 +680,21 @@ class Popen(subprocess.Popen):
     elif six.PY3:
       super(Popen, self).wait(timeout)
     elif self.returncode is None:
-      if sys.platform == 'win32':
-        WAIT_TIMEOUT = 258
-        result = subprocess._subprocess.WaitForSingleObject(
-            self._handle, int(timeout * 1000))
-        if result == WAIT_TIMEOUT:
-          raise TimeoutExpired(self.args, timeout)
-        self.returncode = subprocess._subprocess.GetExitCodeProcess(
-            self._handle)
-      else:
-        # If you think the following code is horrible, it's because it is
-        # inspired by python3's stdlib.
-        end = time.time() + timeout
-        delay = poll_initial_interval
-        while True:
+      # If you think the following code is horrible, it's because it is
+      # inspired by python3's stdlib.
+      end = time.time() + timeout
+      delay = poll_initial_interval
+      WAIT_TIMEOUT = 258
+      is_win = sys.platform == 'win32'
+      while True:
+        if is_win:
+          result = subprocess._subprocess.WaitForSingleObject(
+              self._handle, int(delay * 1000))
+          if result != WAIT_TIMEOUT:
+            self.returncode = subprocess._subprocess.GetExitCodeProcess(
+                self._handle)
+            break
+        else:
           try:
             pid, sts = subprocess._eintr_retry_call(os.waitpid, self.pid,
                                                     os.WNOHANG)
@@ -706,11 +707,11 @@ class Popen(subprocess.Popen):
             # This sets self.returncode.
             self._handle_exitstatus(sts)
             break
-          remaining = end - time.time()
-          if remaining <= 0:
-            raise TimeoutExpired(self.args, timeout)
-          delay = min(delay * 2, remaining, poll_max_interval)
-          time.sleep(delay)
+        remaining = end - time.time()
+        if remaining <= 0:
+          raise TimeoutExpired(self.args, timeout)
+        delay = min(delay * 2, remaining, poll_max_interval)
+        time.sleep(delay)
 
     if not self.end:
       # communicate() uses wait() internally.
