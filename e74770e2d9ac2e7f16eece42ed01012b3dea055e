@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43453c3f_85ad9d7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-11-11T20:26:58Z",
+      "side": 1,
+      "message": "It won\u0027t hurt to land this CL.\n\nI\u0027ll add a check for None status separately. ",
+      "revId": "e74770e2d9ac2e7f16eece42ed01012b3dea055e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
