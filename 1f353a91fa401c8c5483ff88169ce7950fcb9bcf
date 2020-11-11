@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6b38521_e4d3812c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-11T14:30:38Z",
+      "side": 1,
+      "message": "Agreed. This kind of behavior is super subtle, so I agree I\u0027d prefer a test. I know it\u0027s painful, but it really helps.",
+      "parentUuid": "af7e8be3_fa9d5de4",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 70
+      },
+      "revId": "1f353a91fa401c8c5483ff88169ce7950fcb9bcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "71bb4338_d30bf90b",
@@ -77,6 +101,30 @@
       "writtenOn": "2020-11-11T04:55:41Z",
       "side": 1,
       "message": "Could you use 0x00000102?\nhttps://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject#return-value\n\n258 seems like this is used to wait 258 seconds or so.",
+      "range": {
+        "startLine": 687,
+        "startChar": 21,
+        "endLine": 687,
+        "endChar": 24
+      },
+      "revId": "1f353a91fa401c8c5483ff88169ce7950fcb9bcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9fac91f_d136377c",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-11T14:30:38Z",
+      "side": 1,
+      "message": "Maybe 0x102, but not with a ton of zeros.",
+      "parentUuid": "134de2af_a07b5bd4",
       "range": {
         "startLine": 687,
         "startChar": 21,
