@@ -62,6 +62,29 @@
       },
       "revId": "1f353a91fa401c8c5483ff88169ce7950fcb9bcf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "134de2af_a07b5bd4",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-11T04:55:41Z",
+      "side": 1,
+      "message": "Could you use 0x00000102?\nhttps://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject#return-value\n\n258 seems like this is used to wait 258 seconds or so.",
+      "range": {
+        "startLine": 687,
+        "startChar": 21,
+        "endLine": 687,
+        "endChar": 24
+      },
+      "revId": "1f353a91fa401c8c5483ff88169ce7950fcb9bcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
