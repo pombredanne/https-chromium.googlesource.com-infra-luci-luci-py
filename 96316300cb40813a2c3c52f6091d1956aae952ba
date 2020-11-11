@@ -39,6 +39,30 @@
       },
       "revId": "96316300cb40813a2c3c52f6091d1956aae952ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce5e3563_cb2e7a11",
+        "filename": "appengine/components/components/prpc/client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1318707
+      },
+      "writtenOn": "2020-11-11T20:24:34Z",
+      "side": 1,
+      "message": "Done, though if you or someone else on the LUCI side would like to address this issue better, I can drop this CL",
+      "parentUuid": "2a7269f5_d4798be0",
+      "range": {
+        "startLine": 171,
+        "startChar": 35,
+        "endLine": 171,
+        "endChar": 37
+      },
+      "revId": "96316300cb40813a2c3c52f6091d1956aae952ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
