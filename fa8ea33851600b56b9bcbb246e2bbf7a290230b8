@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8db8c8d_ac379ee4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-11-11T04:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "671efddb_f9193215",
+      "range": {
+        "startLine": 7,
+        "startChar": 20,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "fa8ea33851600b56b9bcbb246e2bbf7a290230b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "329b1355_ec5af8f2",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "66c9fd3e_b8f046f3",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-11-11T04:24:05Z",
+      "side": 1,
+      "message": "The pantheon version would still be accessible from the normal get_app_version while this would return the Chops Appengine Version ... \n\nAre you saying we should not have a fallback to get_app_version? \n\nNext step would be to update swarming to use this new function when building teh git link ...",
+      "parentUuid": "329b1355_ec5af8f2",
+      "range": {
+        "startLine": 468,
+        "startChar": 1,
+        "endLine": 473,
+        "endChar": 46
+      },
+      "revId": "fa8ea33851600b56b9bcbb246e2bbf7a290230b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "215b3687_f087534e",
         "filename": "appengine/components/components/utils.py",
         "patchSetId": 9
@@ -60,6 +108,30 @@
       "writtenOn": "2020-11-10T04:18:56Z",
       "side": 1,
       "message": "chops?",
+      "range": {
+        "startLine": 474,
+        "startChar": 8,
+        "endLine": 474,
+        "endChar": 14
+      },
+      "revId": "fa8ea33851600b56b9bcbb246e2bbf7a290230b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8873b313_f9ece5e3",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-11-11T04:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "215b3687_f087534e",
       "range": {
         "startLine": 474,
         "startChar": 8,
