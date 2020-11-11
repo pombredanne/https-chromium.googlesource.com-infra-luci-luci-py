@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "847e7520_8dc05ae6",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-11T04:58:32Z",
+      "side": 1,
+      "message": "follow comment style of other functions?",
+      "revId": "c429f38f3ec3cb08f5bb431daee08704104e957b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
