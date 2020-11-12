@@ -13,6 +13,7 @@ import platform
 import signal
 import sys
 import tempfile
+import textwrap
 import time
 import unittest
 
@@ -873,6 +874,52 @@ time.sleep(60)
     else:
       kwargs['stdout'] = subprocess42.PIPE
     return subprocess42.Popen(cmd, **kwargs)
+
+  def test_wait_can_be_interrupted_in_time(self):
+    wait_time = 5
+    cmd = [
+        sys.executable, '-c',
+        """
+import signal
+import time
+import sys
+sys.path.insert(0, '%s')
+
+from utils import subprocess42
+
+class ExitError(Exception):
+  pass
+def handler(signum, _frame):
+  raise ExitError
+
+proc = subprocess42.Popen(
+    [
+      sys.executable, '-c', '''
+import time
+for _ in range(50):
+  time.sleep(0.2)'''
+    ],
+    detached=True)
+sig = signal.SIGBREAK if sys.platform =='win32' else signal.SIGTERM
+with subprocess42.set_signal_handler([sig], handler):
+  try:
+    proc.wait(%d)
+  except ExitError:
+    sys.stdout.write('wait is interrupted')
+    sys.stdout.flush()
+    proc.kill()
+""" % (test_env.CLIENT_DIR, wait_time)
+    ]
+    proc = subprocess42.Popen(cmd, stdout=subprocess42.PIPE, detached=True)
+    time.sleep(1)
+    proc.terminate()
+    # proc is waiting for 5s and SIGTERM/SIGBREAK is sent at 1s mark.
+    # Expect proc to write to stdout and exit almost immediately (decided
+    # by the poll interval of wait method). We wait for 0.5 second to give
+    # some buffer here.
+    data = proc.recv_out(timeout=0.5)
+    if data != b'wait is interrupted':
+      self.fail('wait is not interrupted')
 
   def test_detached(self):
     self._test_detached(False)
