@@ -427,26 +427,24 @@ class RunIsolatedTest(RunIsolatedTestBase):
         '--root-dir',
         self.tempdir,
         '--',
-        '/bin/echo',
+        os.path.join('bin', 'echo'),
         'hello',
         'world',
     ]
     ret = run_isolated.main(cmd)
     self.assertEqual(1, ret)
-    self.assertEqual(
-        [
-          (
-            ['/bin/echo', 'hello', 'world'],
+    self.assertEqual([
+        (
+            [os.path.join('bin', 'echo'), 'hello', 'world'],
             {
-              'cwd': self.ir_dir(),
-              'detached': True,
-              'close_fds': True,
-              'lower_priority': False,
-              'containment': subprocess42.Containment(),
+                'cwd': self.ir_dir(),
+                'detached': True,
+                'close_fds': True,
+                'lower_priority': False,
+                'containment': subprocess42.Containment(),
             },
-          ),
-        ],
-        self.popen_calls)
+        ),
+    ], self.popen_calls)
 
   def test_main_naked_with_account_switch(self):
     self.capture_luci_ctx = True
@@ -460,7 +458,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
         '--switch-to-account',
         'task',
         '--',
-        '/bin/echo',
+        os.path.join('bin', 'echo'),
         'hello',
         'world',
     ]
@@ -489,7 +487,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
         '--switch-to-account',
         'task',
         '--',
-        '/bin/echo',
+        os.path.join('bin', 'echo'),
         'hello',
         'world',
     ]
@@ -880,7 +878,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
 
   def test_python_cmd_lower_priority(self):
     self._run_tha_test(
-        command=['../out/cmd.py', 'arg'],
+        command=[os.path.join('..', 'out', 'cmd.py'), 'arg'],
         relative_cwd='some',
         lower_priority=True)
     # Injects sys.executable but on macOS, the path may be different than
@@ -900,21 +898,20 @@ class RunIsolatedTest(RunIsolatedTestBase):
     self.assertEqual([os.path.join(u'..', 'out', 'cmd.py'), u'arg'], cmd[1:])
 
   def test_run_tha_test_non_isolated(self):
-    _ = self._run_tha_test(command=[u'/bin/echo', u'hello', u'world'])
-    self.assertEqual(
-        [
-          (
-            [u'/bin/echo', u'hello', u'world'],
+    _ = self._run_tha_test(
+        command=[os.path.join('bin', 'echo'), u'hello', u'world'])
+    self.assertEqual([
+        (
+            [os.path.join('bin', 'echo'), u'hello', u'world'],
             {
-              'cwd': self.ir_dir(),
-              'detached': True,
-              'close_fds': True,
-              'lower_priority': False,
-              'containment': None,
+                'cwd': self.ir_dir(),
+                'detached': True,
+                'close_fds': True,
+                'lower_priority': False,
+                'containment': None,
             },
-          ),
-        ],
-        self.popen_calls)
+        ),
+    ], self.popen_calls)
 
   def test_main_containment(self):
     def fake_wait(args, **kwargs):  # pylint: disable=unused-argument
