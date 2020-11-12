@@ -561,6 +561,7 @@ class RunIsolatedTest(unittest.TestCase):
     return cached_file_path
 
   @unittest.skipIf(less_than_mac_10_15(), 'crbug.com/1099655')
+  @unittest.skipIf(sys.platform == 'win32', 'crbug.com/1148174')
   def test_isolated_corrupted_cache_entry_different_size(self):
     # Test that an entry with an invalid file size properly gets removed and
     # fetched again. This test case also check for file modes.
