@@ -681,6 +681,7 @@ class Popen(subprocess.Popen):
       super(Popen, self).wait(timeout)
     elif self.returncode is None:
       if sys.platform == 'win32':
+        #cool cool cool
         WAIT_TIMEOUT = 258
         result = subprocess._subprocess.WaitForSingleObject(
             self._handle, int(timeout * 1000))
