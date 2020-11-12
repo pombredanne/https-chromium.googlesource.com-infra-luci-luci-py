@@ -22,6 +22,30 @@
       },
       "revId": "5ccfcbe1499077649d5bf67191b0cbd06b821eb4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b6f46ab_3a95799c",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 962,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-12T12:38:17Z",
+      "side": 1,
+      "message": "\u003e the exit code of client test step is ignored on Windows tryjob...\nhttps://crrev.com/c/2532440 will enable exit code check.\n\nPlease rebase after the CL gets submitted.",
+      "parentUuid": "ae21a520_e7344552",
+      "range": {
+        "startLine": 962,
+        "startChar": 6,
+        "endLine": 962,
+        "endChar": 34
+      },
+      "revId": "5ccfcbe1499077649d5bf67191b0cbd06b821eb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
