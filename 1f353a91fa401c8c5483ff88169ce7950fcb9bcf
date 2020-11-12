@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "92e41a12_03978cc7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-11-12T04:21:27Z",
+      "side": 1,
+      "message": "Added. I thought there was no existing test for this module. Just figured that they are all in the `tests` package under its parent directory.",
+      "parentUuid": "f6b38521_e4d3812c",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 70
+      },
+      "revId": "1f353a91fa401c8c5483ff88169ce7950fcb9bcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "71bb4338_d30bf90b",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -78,6 +102,30 @@
       "writtenOn": "2020-11-11T04:44:05Z",
       "side": 1,
       "message": "very nit: I\u0027m wondering if extracting some of the following logics improves readability...\n\ne.g.\n\n```\n...\nwhile True:\n  if is_win:\n    if _wait_windows(...):\n      break\n  else:\n    if _wait(...):\n      break\n  ...\n  \n```",
+      "range": {
+        "startLine": 683,
+        "startChar": 5,
+        "endLine": 683,
+        "endChar": 53
+      },
+      "revId": "1f353a91fa401c8c5483ff88169ce7950fcb9bcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d3a3842_fe8d0bfc",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-11-12T04:21:27Z",
+      "side": 1,
+      "message": "Good idea. I\u0027ve refactored it to make it clear.",
+      "parentUuid": "215f864c_f8087e15",
       "range": {
         "startLine": 683,
         "startChar": 5,
@@ -125,6 +173,30 @@
       "side": 1,
       "message": "Maybe 0x102, but not with a ton of zeros.",
       "parentUuid": "134de2af_a07b5bd4",
+      "range": {
+        "startLine": 687,
+        "startChar": 21,
+        "endLine": 687,
+        "endChar": 24
+      },
+      "revId": "1f353a91fa401c8c5483ff88169ce7950fcb9bcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "355ff290_3a340667",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-11-12T04:21:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9fac91f_d136377c",
       "range": {
         "startLine": 687,
         "startChar": 21,

@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96fb675c_90c886dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-11-12T04:21:27Z",
+      "side": 1,
+      "message": "I think it is a flake. The latest PS slightly changes the behavior. However, I\u0027ve seen similar error in an previous PS https://crrev.com/c/2530538/4 where there\u0027s no change to Mac behavior.",
+      "parentUuid": "984635f0_b066e26f",
+      "revId": "a8a6a0eaae7a41d1c541c2186b583fa211b8154c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1aad9d7_6e349376",
@@ -31,6 +49,30 @@
       "writtenOn": "2020-11-12T01:33:47Z",
       "side": 1,
       "message": "_WINDOWS_WAIT_TIMEOUT to be explicit.",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 15
+      },
+      "revId": "a8a6a0eaae7a41d1c541c2186b583fa211b8154c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26df38b1_6905368c",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-11-12T04:21:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1aad9d7_6e349376",
       "range": {
         "startLine": 66,
         "startChar": 2,
