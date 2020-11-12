@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae21a520_e7344552",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 962,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-12T05:53:28Z",
+      "side": 1,
+      "message": "I just realized (remembered) that the exit code of client test step is ignored on Windows tryjob...\nSo need to check the step logs to see if the test passed.\n\nIt looks failed.\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8863867657296860912/+/u/client/run_tests_python2/stdout#L4844_1",
+      "range": {
+        "startLine": 962,
+        "startChar": 6,
+        "endLine": 962,
+        "endChar": 34
+      },
+      "revId": "5ccfcbe1499077649d5bf67191b0cbd06b821eb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
