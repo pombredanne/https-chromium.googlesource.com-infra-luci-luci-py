@@ -416,6 +416,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
         ],
         self.popen_calls)
 
+  @unittest.skipIf(sys.platform == 'win32', 'crbug.com/1148174')
   def test_main_naked_without_isolated(self):
     self.mock_popen_with_oserr()
     cmd = self.DISABLE_CIPD_FOR_TESTS + [
@@ -448,6 +449,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
         ],
         self.popen_calls)
 
+  @unittest.skipIf(sys.platform == 'win32', 'crbug.com/1148174')
   def test_main_naked_with_account_switch(self):
     self.capture_luci_ctx = True
     self.mock_popen_with_oserr()
@@ -477,6 +479,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     task_ctx['default_account_id'] = 'task'
     self.assertEqual(task_ctx, self.popen_calls[0][1]['luci_ctx']['local_auth'])
 
+  @unittest.skipIf(sys.platform == 'win32', 'crbug.com/1148174')
   def test_main_naked_with_account_pop(self):
     self.capture_luci_ctx = True
     self.mock_popen_with_oserr()
@@ -506,6 +509,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     task_ctx.pop('default_account_id')
     self.assertEqual(task_ctx, self.popen_calls[0][1]['luci_ctx']['local_auth'])
 
+  @unittest.skipIf(sys.platform == 'win32', 'crbug.com/1148174')
   def test_main_naked_leaking(self):
     workdir = tempfile.mkdtemp()
     try:
@@ -899,6 +903,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     self.assertIn('python', cmd[0])
     self.assertEqual([os.path.join(u'..', 'out', 'cmd.py'), u'arg'], cmd[1:])
 
+  @unittest.skipIf(sys.platform == 'win32', 'crbug.com/1148174')
   def test_run_tha_test_non_isolated(self):
     _ = self._run_tha_test(command=[u'/bin/echo', u'hello', u'world'])
     self.assertEqual(
