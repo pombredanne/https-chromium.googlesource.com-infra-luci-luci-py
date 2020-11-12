@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "984635f0_b066e26f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-12T01:33:47Z",
+      "side": 1,
+      "message": "Hmm, task_runner_test failed on Mac... IIUC, the behavior on Mac should be the same?\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8863881687228490064/+/u/swarming_bot/run_tests_python2/stdout#L5412_1\n\nIt might be flaky, though. ",
+      "revId": "a8a6a0eaae7a41d1c541c2186b583fa211b8154c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1aad9d7_6e349376",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-12T01:33:47Z",
+      "side": 1,
+      "message": "_WINDOWS_WAIT_TIMEOUT to be explicit.",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 15
+      },
+      "revId": "a8a6a0eaae7a41d1c541c2186b583fa211b8154c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
