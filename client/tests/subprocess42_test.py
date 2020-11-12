@@ -960,6 +960,61 @@ time.sleep(60)
             ('stdout', b'incomplete last stdout'),
         ])
 
+  def test_wait_can_be_interrupted(self):
+    wait_time = 5
+    cmd = [
+        sys.executable, '-c',
+        """
+import signal
+import time
+import sys
+
+from utils import subprocess42
+
+class ExitError(Exception):
+  pass
+def handler(signum, _frame):
+  raise ExitError
+
+proc = subprocess42.Popen(
+    [
+      sys.executable, '-c', '''
+import time
+for _ in range(50):
+  time.sleep(0.2)'''
+    ],
+    detached=True)
+sig = signal.SIGBREAK if sys.platform =='win32' else signal.SIGTERM
+with subprocess42.set_signal_handler([sig], handler):
+  try:
+    sys.stdout.write('hi\\n')
+    sys.stdout.flush()
+    proc.wait(%d)
+  except ExitError:
+    sys.stdout.write('wait is interrupted')
+    sys.stdout.flush()
+    proc.kill()
+""" % (wait_time,)
+    ]
+    env = dict(ENV)
+    # set PYTHONPATH so that the script can import subprocess42.
+    python_path = env.get('PYTHONPATH')
+    if python_path:
+      python_path = ';'.join((test_env.CLIENT_DIR, python_path))
+    else:
+      python_path = test_env.CLIENT_DIR
+    env['PYTHONPATH'] = python_path
+    proc = subprocess42.Popen(cmd, stdout=subprocess42.PIPE,
+                              env=env, detached=True)
+    self._wait_for_hi(proc, False)
+    time.sleep(0.5)
+    proc.terminate()
+    # proc is waiting for 5s and SIGTERM/SIGBREAK is sent at 0.5s mark.
+    # Expect proc to write to stdout and exit almost immediately (decided
+    # by the poll interval of wait method). We wait for 2 second to give
+    # some buffer here.
+    self.assertEqual(proc.recv_out(timeout=2), b'wait is interrupted')
+
 
 if __name__ == '__main__':
   test_env.main()
