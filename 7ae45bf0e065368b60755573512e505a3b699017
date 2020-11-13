@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4982e216_17379920",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-13T00:33:53Z",
+      "side": 1,
+      "message": "The warning miss this condition. the pool realm is configured, and the default task realm is applied.\n\n- Do you also want to warn this case? \n- Don\u0027t all pools with realm have default_task_realm?",
+      "range": {
+        "startLine": 547,
+        "startChar": 0,
+        "endLine": 550,
+        "endChar": 0
+      },
+      "revId": "7ae45bf0e065368b60755573512e505a3b699017",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
