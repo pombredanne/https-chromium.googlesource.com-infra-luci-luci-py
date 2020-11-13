@@ -1,0 +1,187 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e12dc070_e38f244c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-13T16:12:39Z",
+      "side": 1,
+      "message": "still lgtm",
+      "revId": "0dbebd525eca066e4a9f1f2ad11d1ac8c81f169b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c32f4c64_72442b67",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-13T16:12:39Z",
+      "side": 1,
+      "message": "I think it\u0027d be slightly more readable if each argument was on a line.",
+      "revId": "0dbebd525eca066e4a9f1f2ad11d1ac8c81f169b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13cff195_ba67bca9",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-13T16:12:39Z",
+      "side": 1,
+      "message": "You can use r\"\"\" if you don\u0027t want to double escape the \\n below. It\u0027d be less error prone.",
+      "range": {
+        "startLine": 965,
+        "startChar": 49,
+        "endLine": 965,
+        "endChar": 52
+      },
+      "revId": "0dbebd525eca066e4a9f1f2ad11d1ac8c81f169b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca3d5516_6dbc453b",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-13T16:12:39Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 995,
+        "startChar": 11,
+        "endLine": 995,
+        "endChar": 12
+      },
+      "revId": "0dbebd525eca066e4a9f1f2ad11d1ac8c81f169b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c307f2e_8a1b2b14",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-13T16:12:39Z",
+      "side": 1,
+      "message": "If it\u0027s a constant, why not hard code?",
+      "range": {
+        "startLine": 995,
+        "startChar": 20,
+        "endLine": 995,
+        "endChar": 31
+      },
+      "revId": "0dbebd525eca066e4a9f1f2ad11d1ac8c81f169b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d13ca62_edb0549f",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 997,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-13T16:12:39Z",
+      "side": 1,
+      "message": "Set",
+      "range": {
+        "startLine": 997,
+        "startChar": 6,
+        "endLine": 997,
+        "endChar": 9
+      },
+      "revId": "0dbebd525eca066e4a9f1f2ad11d1ac8c81f169b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e569893_498748d9",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-13T16:12:39Z",
+      "side": 1,
+      "message": "https://docs.microsoft.com/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject\nworks and is 6 characters shorter :)",
+      "revId": "0dbebd525eca066e4a9f1f2ad11d1ac8c81f169b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0de486b_1baccf10",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-13T16:12:39Z",
+      "side": 1,
+      "message": "Junji, all the other windows constants below do not use a prefix. Also I feel not using the exact same name than in the documentation makes it harder to grep.",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 23
+      },
+      "revId": "0dbebd525eca066e4a9f1f2ad11d1ac8c81f169b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad93670d_3ee72d42",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-13T16:12:39Z",
+      "side": 1,
+      "message": "Even shorter:\n\nwhile not (self._wait_win(delay) if is_win else self._wait_non_win(delay)):",
+      "revId": "0dbebd525eca066e4a9f1f2ad11d1ac8c81f169b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
