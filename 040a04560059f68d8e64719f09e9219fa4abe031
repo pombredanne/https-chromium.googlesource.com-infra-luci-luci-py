@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a141f861_efd0e129",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-13T01:00:38Z",
+      "side": 1,
+      "message": "I\u0027d recommend to indent, and indent the inner one too, I think it\u0027d be more readable. Or make these a string at the top.",
+      "revId": "040a04560059f68d8e64719f09e9219fa4abe031",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43d7767d_64f22ae0",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-13T01:00:38Z",
+      "side": 1,
+      "message": "I\u0027d recommend to keep \u0027\u0027\u0027 on its own line, it\u0027d be easier to scan.",
+      "revId": "040a04560059f68d8e64719f09e9219fa4abe031",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9d784b7_15604ccf",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-13T01:00:38Z",
+      "side": 1,
+      "message": "env \u003d ENV.copy()",
+      "revId": "040a04560059f68d8e64719f09e9219fa4abe031",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e2f485e_b9085d34",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2020-11-13T01:00:38Z",
+      "side": 1,
+      "message": "I don\u0027t think this is necessary, run the script with the current directory set to this directory, and then you can just \"import subprocess42\" without the from utils nor the PYTHONPATH hook here..",
+      "revId": "040a04560059f68d8e64719f09e9219fa4abe031",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
