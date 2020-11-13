@@ -123,6 +123,7 @@ def report_memory(app):
   min_delta = 0.5
   old_dispatcher = app.router.dispatch
   def dispatch_and_report(*args, **kwargs):
+    time_before = time_time()
     before = _get_memory_usage()
     deadline = False
     try:
@@ -133,6 +134,11 @@ def report_memory(app):
       deadline = True
       raise
     finally:
+      # Don't try to call any function if the elapsed time is close to the
+      # AppEngine timeout (1 min).
+      # https://cloud.google.com/appengine/docs/standard/python/how-instances-are-managed#timeout
+      if time_time() - time_before > 55:
+        deadline = True
       if not deadline:
         after = _get_memory_usage()
         if before and after and after >= before + min_delta:
