@@ -22,6 +22,30 @@
       },
       "revId": "7ae45bf0e065368b60755573512e505a3b699017",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7754a6e2_3e792a11",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-11-13T00:42:08Z",
+      "side": 1,
+      "message": "This was deliberate. \n\nI expect in the end state we\u0027ll have two kinds of clients/pools: \n1. Clients that are aware of realms and pass `realm` in TaskRequest. They will use pools that don\u0027t have `default_task_realm`. I expect all LUCI stuff to be in this category.\n2. Clients that don\u0027t care about realms at all. They will rely exclusively on `default_task_realm`. I expect cast-swarming and omnibot stuff to be in this category (at least initially).\n\nI want to warn only when client from category (1) \"forget\" to set `realm` in TaskRequest. I don\u0027t want to warn on calls from (2) at all. (To be honest I\u0027m currently mostly 🙈 on cast-swarming and omnibot and will deal with them after migrating LUCI stuff).",
+      "parentUuid": "4982e216_17379920",
+      "range": {
+        "startLine": 547,
+        "startChar": 0,
+        "endLine": 550,
+        "endChar": 0
+      },
+      "revId": "7ae45bf0e065368b60755573512e505a3b699017",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
