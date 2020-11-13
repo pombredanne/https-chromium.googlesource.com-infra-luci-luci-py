@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4928f0d8_785cd534",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-11-13T04:28:51Z",
+      "side": 1,
+      "message": "used textwrap.dedent :)",
+      "parentUuid": "a141f861_efd0e129",
+      "revId": "040a04560059f68d8e64719f09e9219fa4abe031",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e2130a4_fbfe7a1f",
@@ -31,6 +49,30 @@
       "writtenOn": "2020-11-13T04:07:58Z",
       "side": 1,
       "message": "sort import?",
+      "range": {
+        "startLine": 969,
+        "startChar": 0,
+        "endLine": 971,
+        "endChar": 0
+      },
+      "revId": "040a04560059f68d8e64719f09e9219fa4abe031",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e57bbd17_2b019d8c",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-11-13T04:28:51Z",
+      "side": 1,
+      "message": "Oops. fixed",
+      "parentUuid": "7e2130a4_fbfe7a1f",
       "range": {
         "startLine": 969,
         "startChar": 0,
@@ -58,6 +100,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46a63816_68ddf93f",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-11-13T04:28:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43d7767d_64f22ae0",
+      "revId": "040a04560059f68d8e64719f09e9219fa4abe031",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9d784b7_15604ccf",
@@ -75,6 +135,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a8a192e_7818eec4",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-11-13T04:28:51Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "d9d784b7_15604ccf",
+      "revId": "040a04560059f68d8e64719f09e9219fa4abe031",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e2f485e_b9085d34",
@@ -88,6 +166,24 @@
       "writtenOn": "2020-11-13T01:00:38Z",
       "side": 1,
       "message": "I don\u0027t think this is necessary, run the script with the current directory set to this directory, and then you can just \"import subprocess42\" without the from utils nor the PYTHONPATH hook here..",
+      "revId": "040a04560059f68d8e64719f09e9219fa4abe031",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b942049_ece0b6e0",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-11-13T04:28:51Z",
+      "side": 1,
+      "message": "Ah.. I\u0027m over-complicating stuff. how could miss this. Fixed.",
+      "parentUuid": "5e2f485e_b9085d34",
       "revId": "040a04560059f68d8e64719f09e9219fa4abe031",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
