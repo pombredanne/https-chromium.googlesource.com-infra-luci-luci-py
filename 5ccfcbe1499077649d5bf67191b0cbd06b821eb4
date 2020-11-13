@@ -46,6 +46,30 @@
       },
       "revId": "5ccfcbe1499077649d5bf67191b0cbd06b821eb4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d3dd12c_28399179",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 962,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2020-11-13T00:52:58Z",
+      "side": 1,
+      "message": "Awesome! Thanks for catching that. Fixed the failure in the latest PS.",
+      "parentUuid": "3b6f46ab_3a95799c",
+      "range": {
+        "startLine": 962,
+        "startChar": 6,
+        "endLine": 962,
+        "endChar": 34
+      },
+      "revId": "5ccfcbe1499077649d5bf67191b0cbd06b821eb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
