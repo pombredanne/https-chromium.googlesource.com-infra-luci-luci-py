@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18cdbfb1_a5b85316",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-16T03:32:53Z",
+      "side": 1,
+      "message": "have this inside function too?\nhttps://google.github.io/styleguide/pyguide.html#s3.8.3-functions-and-methods",
+      "revId": "3c14cb9d7c33be907f248d9dde5f5d323c531f19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
