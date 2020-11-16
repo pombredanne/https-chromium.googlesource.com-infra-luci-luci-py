@@ -7,6 +7,7 @@
 # pylint: disable=W0212
 
 import datetime
+import os
 import sys
 import threading
 import unittest
@@ -205,6 +206,26 @@ class UtilsTest(test_case.TestCase):
     utils.clear_cache(get_me)
     self.assertEqual(2, get_me())
     self.assertEqual(2, len(calls))
+
+  def test_get_chops_git_version(self):
+    test_cases = [
+        #  val , want
+        ('wrong-format', 'v1a'),
+        ('', 'v1a'),
+        ('5626-39642e9', '5626-39642e9'),
+        # Sequence need to be at least 4 digits.
+        ('626-39642e9', 'v1a'),
+        # Sequence can be longer than 4 digits.
+        ('15626-39642e9', '15626-39642e9'),
+        # Git short hash needs to be 7 hex digits.
+        ('15626-39642e9a', 'v1a'),
+        ('15626-39642e', 'v1a'),
+        ('15626-39642eg', 'v1a'),
+    ]
+
+    for val, want in test_cases:
+      with mock.patch.dict("os.environ", {"CHOPS_GIT_VERSION": val}):
+        self.assertEqual(want, utils.get_chops_git_version())
 
 
 class FakeNdbContext(object):
