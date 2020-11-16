@@ -323,6 +323,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56d552c9_ecaa3edb",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-16T05:41:25Z",
+      "side": 1,
+      "message": "I see. The name looks too generic to me.\nBut I don\u0027t have strong preference.",
+      "parentUuid": "a4fe3b50_25501cba",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 23
+      },
+      "revId": "0dbebd525eca066e4a9f1f2ad11d1ac8c81f169b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad93670d_3ee72d42",
