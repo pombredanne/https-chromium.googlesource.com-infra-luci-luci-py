@@ -15,6 +15,7 @@ from google.appengine.ext import ndb
 
 import gae_ts_mon
 from test_support import test_case
+from components import utils
 
 import ts_mon_metrics
 from server import bot_management
@@ -73,6 +74,7 @@ def _gen_bot_info(key_id, last_seen_ts, **kwargs):
       'state': {},
   }
   args.update(**kwargs)
+  args['state_new'] = utils.encode_to_json(args.pop('state'))
   args['dimensions_flat'] = task_queues.bot_dimensions_to_flat(
       args.pop('dimensions'))
   return bot_management.BotInfo(**args)
@@ -239,8 +241,7 @@ class TestMetrics(test_case.TestCase):
     _gen_bot_info('bot_running', self.now, task_id='deadbeef').put()
     _gen_bot_info('bot_quarantined', self.now, quarantined=True).put()
     _gen_bot_info('bot_dead', self.now - datetime.timedelta(days=365)).put()
-    _gen_bot_info(
-        'bot_maintenance', self.now, state={'maintenance': True}).put()
+    _gen_bot_info('bot_maintenance', self.now, maintenance_msg='yo').put()
     bots_expected = {
         'bot_ready': 'ready',
         'bot_running': 'running',

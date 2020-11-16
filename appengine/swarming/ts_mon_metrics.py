@@ -357,7 +357,7 @@ def _set_executors_metrics(payload):
       status = 'quarantined'
     elif bot_info.is_dead:
       status = 'dead'
-    elif bot_info.state and bot_info.state.get('maintenance', False):
+    elif bot_info.maintenance_msg:
       status = 'maintenance'
 
     target_fields = dict(_TARGET_FIELDS)

@@ -42,7 +42,7 @@ def _bot_event(bot_id, pool, caches, oses):
       external_ip='8.8.4.4',
       authenticated_as=u'bot:%s.domain' % bot_id,
       dimensions=dimensions,
-      state=state or {'ram': 65},
+      state_json=utils.encode_to_json(state or {'ram': 65}),
       version=unicode(hashlib.sha256().hexdigest()),
       quarantined=False,
       maintenance_msg=None,

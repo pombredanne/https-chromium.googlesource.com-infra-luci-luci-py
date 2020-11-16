@@ -175,8 +175,12 @@ def task_update_pool(pool):
     # Some bots do not have 'os' correctly specified. They fall into the
     # 'unknown' OS bucket.
     os = _reduce_oses(bot.dimensions.get('os') or [])
-    state = bot.state
-    if not state or not isinstance(state, dict):
+    state_json = bot.state_json
+    if not state_json:
+      logging.debug('%s has no state', bot.id)
+      continue
+    state = json.loads(state_json)
+    if not isinstance(state, dict):
       logging.debug('%s has no state', bot.id)
       continue
     # TODO(maruel): Use structured data instead of adhoc json.
