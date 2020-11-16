@@ -16,6 +16,23 @@
       "message": "have this inside function too?\nhttps://google.github.io/styleguide/pyguide.html#s3.8.3-functions-and-methods",
       "revId": "3c14cb9d7c33be907f248d9dde5f5d323c531f19",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51f31c65_e6e0dc2f",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-16T04:46:09Z",
+      "side": 1,
+      "message": "I don\u0027t think the fallback is necessary. \nThe caller calls get_chops_git_version() and get_app_version() as it needs.",
+      "revId": "3c14cb9d7c33be907f248d9dde5f5d323c531f19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
