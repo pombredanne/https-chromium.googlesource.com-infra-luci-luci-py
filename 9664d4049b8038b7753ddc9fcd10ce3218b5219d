@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6652a3fb_9b7ce66b",
+        "filename": "appengine/swarming/app.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-17T02:06:09Z",
+      "side": 1,
+      "message": "Why not append this to app.yaml in the pipeline?",
+      "revId": "9664d4049b8038b7753ddc9fcd10ce3218b5219d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
