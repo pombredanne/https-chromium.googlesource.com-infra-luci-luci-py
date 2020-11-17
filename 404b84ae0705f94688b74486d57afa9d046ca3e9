@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17c9f31f_f9291845",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-17T05:19:06Z",
+      "side": 1,
+      "message": "If caller may use value from get_app_version, it is better to return None instaed of \u0027N/A\u0027?",
+      "revId": "404b84ae0705f94688b74486d57afa9d046ca3e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
