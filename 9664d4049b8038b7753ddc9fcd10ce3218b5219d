@@ -34,6 +34,24 @@
       "parentUuid": "6652a3fb_9b7ce66b",
       "revId": "9664d4049b8038b7753ddc9fcd10ce3218b5219d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fd4ecc1_c77b68c4",
+        "filename": "appengine/swarming/app.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-17T05:20:31Z",
+      "side": 1,
+      "message": "I see, but make sure that \u0027${CHOPS_GIT_VERSION}\u0027 is not used in apps.",
+      "parentUuid": "c599605c_3b24e9e2",
+      "revId": "9664d4049b8038b7753ddc9fcd10ce3218b5219d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
