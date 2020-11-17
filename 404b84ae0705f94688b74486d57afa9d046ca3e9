@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5caa717a_3f769695",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-17T05:49:40Z",
+      "side": 1,
+      "message": "This function isn\u0027t relevant to Spinnaker anymore?",
+      "range": {
+        "startLine": 473,
+        "startChar": 2,
+        "endLine": 474,
+        "endChar": 9
+      },
+      "revId": "404b84ae0705f94688b74486d57afa9d046ca3e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "17c9f31f_f9291845",
         "filename": "appengine/components/components/utils.py",
         "patchSetId": 15
@@ -14,6 +37,24 @@
       "writtenOn": "2020-11-17T05:19:06Z",
       "side": 1,
       "message": "If caller may use value from get_app_version, it is better to return None instaed of \u0027N/A\u0027?",
+      "revId": "404b84ae0705f94688b74486d57afa9d046ca3e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d46abaa_9ff8ad23",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-17T05:49:40Z",
+      "side": 1,
+      "message": "+1 for returning None.",
+      "parentUuid": "17c9f31f_f9291845",
       "revId": "404b84ae0705f94688b74486d57afa9d046ca3e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
