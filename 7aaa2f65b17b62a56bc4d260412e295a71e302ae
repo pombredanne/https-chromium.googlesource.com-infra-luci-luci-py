@@ -105,6 +105,24 @@
       "parentUuid": "35617af0_5936a68b",
       "revId": "7aaa2f65b17b62a56bc4d260412e295a71e302ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "463ff957_c6172287",
+        "filename": "appengine/swarming/app.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-11-17T01:57:27Z",
+      "side": 1,
+      "message": "Hey .. Have we addressed this in the document or are there still concerns outstanding?",
+      "parentUuid": "40999a14_489b8549",
+      "revId": "7aaa2f65b17b62a56bc4d260412e295a71e302ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
