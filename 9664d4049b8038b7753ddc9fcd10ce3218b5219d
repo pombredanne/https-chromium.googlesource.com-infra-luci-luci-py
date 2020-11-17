@@ -16,6 +16,24 @@
       "message": "Why not append this to app.yaml in the pipeline?",
       "revId": "9664d4049b8038b7753ddc9fcd10ce3218b5219d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c599605c_3b24e9e2",
+        "filename": "appengine/swarming/app.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-11-17T05:18:17Z",
+      "side": 1,
+      "message": "Did consider that but think it\u0027s better top have it visible in the file. \n\nConsider services using `env_variables` already or a service decide to to start using env_varible. Could potentially mess up the configuration. \n\nI think having it in the file could avoid some surprises , as a bonus there\u0027s also a place to put a comment explaining what the variable is used for.",
+      "parentUuid": "6652a3fb_9b7ce66b",
+      "revId": "9664d4049b8038b7753ddc9fcd10ce3218b5219d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
