@@ -16,6 +16,23 @@
       "message": "I tried _cleanup_purgeable_space() on https://chromium-swarm-dev.appspot.com/bot?a\u003dtrue\u0026e\u003dtrue\u0026id\u003dbuild216-a9 multiple times. I did minor changes for logging, but it looks working.\n\nNote that _cleanup_purgeable_space() may take longer than 10 minutes, which mark the bot as dead because no requests are sent to the server during `dd`ing.\n\nI think this CL is ready for submit.\nbut, there are no quarantined bots on prod at this moment.\nhttps://screenshot.googleplex.com/7BNgLHe4LrsGqvQ\nSo let me submit/deploy this CL when we find those bots next time.",
       "revId": "df5751b25098000bd2eacdeb3a355c8347885657",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8ce7dad_63c58483",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-18T04:11:17Z",
+      "side": 1,
+      "message": "There is one quarantined bot on chrome-swarming.\nhttps://chrome-swarming.appspot.com/bot?id\u003dbuild508-a7\n\nLet me submit this CL\n\njmpittman,\nPlease let me know if something is wrong with this change on prod.\n",
+      "revId": "df5751b25098000bd2eacdeb3a355c8347885657",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
