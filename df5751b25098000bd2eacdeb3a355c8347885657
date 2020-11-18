@@ -33,6 +33,23 @@
       "message": "There is one quarantined bot on chrome-swarming.\nhttps://chrome-swarming.appspot.com/bot?id\u003dbuild508-a7\n\nLet me submit this CL\n\njmpittman,\nPlease let me know if something is wrong with this change on prod.\n",
       "revId": "df5751b25098000bd2eacdeb3a355c8347885657",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdec9475_a218c468",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-18T04:13:42Z",
+      "side": 1,
+      "message": "Let\u0027s wait for https://crbug.com/1142848#c66.",
+      "revId": "df5751b25098000bd2eacdeb3a355c8347885657",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
