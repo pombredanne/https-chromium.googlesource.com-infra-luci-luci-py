@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6bd2cd59_fb7930c8",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-18T00:52:10Z",
+      "side": 1,
+      "message": "I understand that it\u0027s used by Spinnaker.\nBut the environment variable can be used by other systems.\nSo this is just a generic way to set a chops git version.\n\nI agree to leave the reference to the Spinnaker use. But the comment and the variable name `spinber` doesn\u0027t look appropriate now.",
+      "parentUuid": "f99ba3e4_14c058c6",
+      "range": {
+        "startLine": 473,
+        "startChar": 2,
+        "endLine": 474,
+        "endChar": 9
+      },
+      "revId": "404b84ae0705f94688b74486d57afa9d046ca3e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "17c9f31f_f9291845",
         "filename": "appengine/components/components/utils.py",
         "patchSetId": 15
