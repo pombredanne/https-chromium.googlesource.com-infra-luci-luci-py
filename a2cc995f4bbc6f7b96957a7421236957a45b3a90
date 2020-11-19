@@ -22,6 +22,30 @@
       },
       "revId": "a2cc995f4bbc6f7b96957a7421236957a45b3a90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e6e7703_c3e1294e",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-11-19T10:51:40Z",
+      "side": 1,
+      "message": "nvm, i was confusing this with invocation ID...\n\nThat said, i don\u0027t see this in the proto, is that expected? Also, is it possible that we have a non-empty |resultdb_update_token|, but an empty |resultdb|?",
+      "parentUuid": "88f321e9_c6305f9a",
+      "range": {
+        "startLine": 1243,
+        "startChar": 2,
+        "endLine": 1243,
+        "endChar": 23
+      },
+      "revId": "a2cc995f4bbc6f7b96957a7421236957a45b3a90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
