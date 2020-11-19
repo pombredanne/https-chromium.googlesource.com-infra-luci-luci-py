@@ -247,7 +247,8 @@ def task_request_to_rpc(entity):
       # For some amount of time, the properties will be copied into the
       # task_slices and vice-versa, to give time to the clients to update.
       properties=slices[0].properties,
-      task_slices=slices)
+      task_slices=slices,
+      resultdb=_ndb_to_rpc(swarming_rpcs.ResultDBCfg, entity.resultdb))
 
 
 def new_task_request_from_rpc(msg, now):
@@ -311,6 +312,7 @@ def new_task_request_from_rpc(msg, now):
       service_account_token=None,
       realms_enabled=None,
       resultdb_update_token=None,
+      resultdb=_rpc_to_ndb(task_request.ResultDBCfg, msg.resultdb),
       pool_task_template=None)  # handled out of band
 
   return req, secret_bytes, template_apply

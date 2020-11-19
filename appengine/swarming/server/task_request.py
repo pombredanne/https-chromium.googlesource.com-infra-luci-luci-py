@@ -744,6 +744,27 @@ class Containment(ndb.Model):
     out.limit_total_committed_memory = self.limit_total_committed_memory or 0
 
 
+class ResultDBCfg(ndb.Model):
+  """Swarming:ResultDB integration configuration for a task.
+
+  See NewTaskRequest.resultdb for more details.
+  """
+
+  # If True and this task is not deduplicated, create
+  # "task-{swarming_hostname}-{run_id}" invocation for this task,
+  # provide its update token to the task subprocess via LUCI_CONTEXT
+  # and finalize the invocation when the task is done.
+  # If the task is deduplicated, then TaskResult.invocation_name will be the
+  # invocation name of the original task.
+  # Swarming:ResultDB integration is off by default, but it may change in the
+  # future.
+  enable = ndb.BooleanProperty(default=False)
+
+  def to_proto(self, out):
+    """Converts self to a swarming_pb2.ResultDBCfg."""
+    out.enable = self.enable
+
+
 class TaskProperties(ndb.Model):
   """Defines all the properties of a task to be run on the Swarming
   infrastructure.
@@ -1229,6 +1250,9 @@ class TaskRequest(ndb.Model):
   # Use Realm-aware ACLs if True is set.
   realms_enabled = ndb.BooleanProperty(default=False, indexed=False)
 
+  # ResultDB property in task new request.
+  resultdb = ndb.LocalStructuredProperty(ResultDBCfg, compressed=True)
+
   @property
   def num_task_slices(self):
     """Returns the number of TaskSlice, supports old entities."""
@@ -1338,8 +1362,8 @@ class TaskRequest(ndb.Model):
       out.authenticated = self.authenticated.to_bytes()
     if self.realm:
       out.realm = self.realm
-    if self.resultdb_update_token:
-      out.resultdb.enable = True
+    if self.resultdb:
+      self.resultdb.to_proto(out.resultdb)
 
     # Hierarchy and notifications.
     if self.key:
