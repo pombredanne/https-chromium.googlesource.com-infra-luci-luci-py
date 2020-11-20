@@ -236,6 +236,30 @@
       },
       "revId": "a2cc995f4bbc6f7b96957a7421236957a45b3a90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d71a6157_82ac3afd",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-20T05:12:14Z",
+      "side": 1,
+      "message": "yes. resultdb_update_token is populated from response from resultdb, so request doesn\u0027t know about that.",
+      "parentUuid": "5b1b33d3_e8d52a94",
+      "range": {
+        "startLine": 1243,
+        "startChar": 2,
+        "endLine": 1243,
+        "endChar": 23
+      },
+      "revId": "a2cc995f4bbc6f7b96957a7421236957a45b3a90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
