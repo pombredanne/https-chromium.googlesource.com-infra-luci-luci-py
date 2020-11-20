@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26db1c63_77dd3109",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-20T04:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "884b014a_54d4c230",
+      "range": {
+        "startLine": 750,
+        "startChar": 6,
+        "endLine": 750,
+        "endChar": 47
+      },
+      "revId": "a2cc995f4bbc6f7b96957a7421236957a45b3a90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a55305fc_84653bf9",
@@ -37,6 +61,30 @@
       "writtenOn": "2020-11-19T22:01:46Z",
       "side": 1,
       "message": "nit:\nThis comment looks the same with ResultDBCfg in swarming_rpcs.py.\nI don\u0027t think we need to have it on two places.",
+      "range": {
+        "startLine": 753,
+        "startChar": 0,
+        "endLine": 761,
+        "endChar": 0
+      },
+      "revId": "a2cc995f4bbc6f7b96957a7421236957a45b3a90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae6335e4_3cc719d3",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-20T04:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a55305fc_84653bf9",
       "range": {
         "startLine": 753,
         "startChar": 0,
@@ -84,6 +132,30 @@
       "side": 1,
       "message": "nvm, i was confusing this with invocation ID...\n\nThat said, i don\u0027t see this in the proto, is that expected? Also, is it possible that we have a non-empty |resultdb_update_token|, but an empty |resultdb|?",
       "parentUuid": "88f321e9_c6305f9a",
+      "range": {
+        "startLine": 1243,
+        "startChar": 2,
+        "endLine": 1243,
+        "endChar": 23
+      },
+      "revId": "a2cc995f4bbc6f7b96957a7421236957a45b3a90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40c96ac6_b235ff85",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-20T04:14:14Z",
+      "side": 1,
+      "message": "We already have the field in proto.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/proto/api/swarming.proto;l\u003d827;drc\u003dc267084d81176c9aa4f1bf294284ac853071d06b\n\nI think I added that accidentally, but used finally.",
+      "parentUuid": "2e6e7703_c3e1294e",
       "range": {
         "startLine": 1243,
         "startChar": 2,
