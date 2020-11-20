@@ -164,6 +164,30 @@
       },
       "revId": "a2cc995f4bbc6f7b96957a7421236957a45b3a90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d85829a_a8187d54",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2020-11-20T04:47:42Z",
+      "side": 1,
+      "message": "I mean to say this proto: https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_rpcs.py;l\u003d479-563;drc\u003d08f7e8215fbfcd7c98f498b76196a6d343a154cd. I thought the NDB message has a 1:1 mapping to it?",
+      "parentUuid": "40c96ac6_b235ff85",
+      "range": {
+        "startLine": 1243,
+        "startChar": 2,
+        "endLine": 1243,
+        "endChar": 23
+      },
+      "revId": "a2cc995f4bbc6f7b96957a7421236957a45b3a90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
