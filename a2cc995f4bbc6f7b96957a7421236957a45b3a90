@@ -188,6 +188,30 @@
       },
       "revId": "a2cc995f4bbc6f7b96957a7421236957a45b3a90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9a6956d_03b20356",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-11-20T05:01:31Z",
+      "side": 1,
+      "message": "We have that in\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_rpcs.py;l\u003d559;drc\u003d08f7e8215fbfcd7c98f498b76196a6d343a154cd\n\nThat is almost the same, but there are some differences for request / database specific field.",
+      "parentUuid": "4d85829a_a8187d54",
+      "range": {
+        "startLine": 1243,
+        "startChar": 2,
+        "endLine": 1243,
+        "endChar": 23
+      },
+      "revId": "a2cc995f4bbc6f7b96957a7421236957a45b3a90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
