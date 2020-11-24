@@ -57,23 +57,38 @@ spinner_template.innerHTML =`
 </div>
 `;
 
+const pantheonURL = `https://pantheon.corp.google.com/appengine/versions?project=`
+const versionFilterPrefix = `&serviceId=default&pageState=(%22versionsTable%22:(%22f%22:%22%255B%257B_22k_22_3A_22Version_22_2C_22t_22_3A10_2C_22v_22_3A_22_5C_22`;
+const versionFilterPostfix = `_5C_22_22_2C_22s_22_3Atrue_2C_22i_22_3A_22id_22%257D%255D%22))`;
+
 function versionLink(details) {
   if (!details || !details.server_version) {
-    return undefined;
+    return `Whatever}`;
   }
-  const split = details.server_version.split('-');
+  //return details.server_version
+  // return just the version name if chops_git_version is not set.
+  if (!details.chops_git_version) {
+    const split = details.server_version.split('-');
+    if (split.length !== 2) {
+      return html`${details.server_version}`;
+    }
+    return html`<a href=https://chromium.googlesource.com/infra/luci/luci-py/+/${split[1]}>${details.server_version}</a>`;
+  }
+  const split = details.chops_git_version.split('-');
   if (split.length !== 2) {
-    return undefined;
+    return `${details.server_version}`;
   }
-  return `https://chromium.googlesource.com/infra/luci/luci-py/+/${split[1]}`;
+  // return html`<a href=https://pantheon.corp.google.com/appengine/versions?project=${details.project_id}${versionFilterPrefix.concat(details.server_version,versionFilterPostfix)}>${details.server_version}</a>`;
+  // return html`<a href=https://pantheon.corp.google.com/appengine/versions?project=${details.project_id.concat(versionFilterPrefix,details.server_version,versionFilterPostfix)}>${details.server_version}</a>`;
+  // return html`<a href=${details.project_id.concat(versionFilterPrefix,details.server_version,versionFilterPostfix)}>${details.server_version}</a>`;
+  //    <a href=https://chromium.googlesource.com/infra/luci/luci-py/+/${split[1]}> (${details.chops_git_version})</a>`;
+  return html`<a href=${pantheonURL.concat(details.project_id, versionFilterPrefix, versionFilterPostfix)}>${details.server_version}</a> <a href=https://chromium.googlesource.com/infra/luci/luci-py/+/${split[1]}> (${details.chops_git_version})</a>`;
 }
 
 const dynamic_content_template = (ele) => html`
 <div class=server-version>
   Server:
-  <a href=${ifDefined(versionLink(ele._server_details))}>
-    ${ele._server_details.server_version}
-  </a>
+  ${versionLink(ele._server_details)}
 </div>
 <oauth-login client_id=${ele.client_id}
              ?testing_offline=${ele.testing_offline}>
