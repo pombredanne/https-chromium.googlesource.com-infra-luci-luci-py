@@ -3,7 +3,7 @@
 // that can be found in the LICENSE file.
 
 import './index.js';
-import {requireLogin, mockAuthdAppGETs} from '../test_util';
+import {requireLogin, mockAuthdAppGETsGit} from '../test_util';
 
 (function() {
 // Can't use import fetch-mock because the library isn't quite set up
@@ -11,7 +11,7 @@ import {requireLogin, mockAuthdAppGETs} from '../test_util';
   const fetchMock = require('fetch-mock');
 
 
-  mockAuthdAppGETs(fetchMock, {
+  mockAuthdAppGETsGit(fetchMock, {
     get_bootstrap_token: true,
   });
 
