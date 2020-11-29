@@ -20,6 +20,7 @@ import test_env_handlers
 from test_support import test_case
 
 from google.appengine.ext import ndb
+from google.appengine.api import app_identity
 from protorpc.remote import protojson
 import webapp2
 import webtest
@@ -125,9 +126,12 @@ class ServerApiTest(BaseTest):
     """Asserts that server_details returns the correct version."""
     self.mock_default_pool_acl([])
     self.mock(config.config, 'config_service_hostname', lambda: 'a.server')
+    self.monkeypatch.setattr('google.appengine.api','app_identity', {return 'a version'});
 
     response = self.call_api('details')
     expected = {
+        u'project_id':
+            u'',
         u'bot_version':
             unicode(bot_code.get_bot_version('https://testbed.example.com')[0]),
         u'display_server_url_template':
@@ -139,9 +143,9 @@ class ServerApiTest(BaseTest):
         u'default_isolate_namespace':
             u'default-gzip',
         u'server_version':
-            unicode(utils.get_app_version()),
+            u'a version',
         u'cas_viewer_server':
-        u'https://test-cas-viewer-server.com',
+            u'https://test-cas-viewer-server.com',
     }
     self.assertEqual(expected, response.json)
 
