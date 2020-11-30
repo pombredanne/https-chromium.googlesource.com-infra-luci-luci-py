@@ -473,6 +473,12 @@ def get_app_version():
   return modules.get_current_version_name() or 'N/A'
 
 
+@cache
+def get_project_id():
+  """Returns currently running version (not necessary a default one)."""
+  return modules.get_current_version_name() or 'N/A'
+
+
 def get_chops_git_version():
   """Returns the Chops Git version if set."""
   # See go/spinnakergit for further information.
