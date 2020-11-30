@@ -1,6 +1,24 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "390ef783_793c2067",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-11-30T00:34:13Z",
+      "side": 1,
+      "message": "maybe we can close this CL?",
+      "revId": "93a643f6f2441af4092705461829f97100254970",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "3a484147_cca61389",
         "filename": "appengine/swarming/server/task_request.py",
@@ -14,10 +32,10 @@
       "side": 1,
       "message": "i don\u0027t see \"resultdb\" field in TaskRequest https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_rpcs.py;l\u003d668?q\u003dswarming_rpcs.py\n\nat the same time I do see TaskResult.resultdb_info\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_rpcs.py;l\u003d754?q\u003dswarming_rpcs.py",
       "revId": "93a643f6f2441af4092705461829f97100254970",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "32f08283_9dff02bb",
         "filename": "appengine/swarming/server/task_request.py",
@@ -32,10 +50,10 @@
       "message": "I thought we should construct a `resultdb`, which is a dict containing `enable`: https://source.chromium.org/chromium/infra/infra/+/master:go/src/go.chromium.org/luci/common/api/swarming/swarming/v1/swarming-gen.go;l\u003d1001;drc\u003d2f1649efc24fdc893734af9bc3ef1f25a99c089e But then this is under NewTaskRequest..",
       "parentUuid": "3a484147_cca61389",
       "revId": "93a643f6f2441af4092705461829f97100254970",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "85d4356b_18679d57",
         "filename": "appengine/swarming/server/task_request.py",
@@ -50,10 +68,10 @@
       "message": "https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_rpcs.py;l\u003d559;drc\u003d08f7e8215fbfcd7c98f498b76196a6d343a154cd for the Py proto def.",
       "parentUuid": "32f08283_9dff02bb",
       "revId": "93a643f6f2441af4092705461829f97100254970",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "47259953_b3ff1178",
         "filename": "appengine/swarming/server/task_request.py",
@@ -68,10 +86,10 @@
       "message": "This is TaskRequest.to_proto() that converts from ndb.Model to a proto message, which isn\u0027t different from swarming_rpcs.py",
       "parentUuid": "32f08283_9dff02bb",
       "revId": "93a643f6f2441af4092705461829f97100254970",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "74c51409_18a1efad",
         "filename": "appengine/swarming/server/task_request.py",
@@ -86,10 +104,10 @@
       "message": "Err...\n\n\u003e which isn\u0027t different from swarming_rpcs.py\nwhich isn\u0027t the same with swarming_rpcs.py",
       "parentUuid": "47259953_b3ff1178",
       "revId": "93a643f6f2441af4092705461829f97100254970",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "5ad6b193_1b3ac2aa",
         "filename": "appengine/swarming/server/task_request.py",
@@ -104,10 +122,10 @@
       "message": "Ah, sorry I was confused with to_proto() and to_dict().\n\n`resultdb` field accepts ResultDBCfg as Ye commented.",
       "parentUuid": "74c51409_18a1efad",
       "revId": "93a643f6f2441af4092705461829f97100254970",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "9db46817_5a1b0343",
         "filename": "appengine/swarming/server/task_request.py",
@@ -122,10 +140,10 @@
       "message": "Oh, so we don\u0027t have to match between ndb.TaskRequest and swarming_rpcs.py (or swarming-gen.go)?",
       "parentUuid": "74c51409_18a1efad",
       "revId": "93a643f6f2441af4092705461829f97100254970",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "226c2556_e07eb767",
         "filename": "appengine/swarming/server/task_request.py",
@@ -140,10 +158,10 @@
       "message": "Hmm, it is strange that we don\u0027t see resultdb_info in result of\nhttps://chromium-swarm.appspot.com/task?d\u003dtrue\u0026id\u003d4f14ff793bf4ed10\nlike\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/handlers_endpoints_test.py;l\u003d1526;drc\u003d08f7e8215fbfcd7c98f498b76196a6d343a154cd",
       "parentUuid": "9db46817_5a1b0343",
       "revId": "93a643f6f2441af4092705461829f97100254970",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "e0cdcb7f_d9c8df04",
         "filename": "appengine/swarming/server/task_request.py",
@@ -158,10 +176,10 @@
       "message": "i agree that it is strange. That\u0027s what the bug is about.",
       "parentUuid": "226c2556_e07eb767",
       "revId": "93a643f6f2441af4092705461829f97100254970",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "c12ed9a9_ac00ea3f",
         "filename": "appengine/swarming/server/task_request.py",
@@ -176,10 +194,10 @@
       "message": "let me introduce a log to see current behavior\nhttps://crrev.com/c/2451792",
       "parentUuid": "e0cdcb7f_d9c8df04",
       "revId": "93a643f6f2441af4092705461829f97100254970",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "f8482bbd_388c765d",
         "filename": "appengine/swarming/server/task_request_test.py",
@@ -199,8 +217,7 @@
         "endChar": 25
       },
       "revId": "93a643f6f2441af4092705461829f97100254970",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
