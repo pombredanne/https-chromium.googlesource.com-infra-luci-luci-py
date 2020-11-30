@@ -250,6 +250,7 @@ class SwarmingServerService(remote.Service):
 
     return swarming_rpcs.ServerDetails(
         bot_version=bot_code.get_bot_version(host)[0],
+        # Changing something.
         server_version=utils.get_app_version(),
         display_server_url_template=cfg.display_server_url_template,
         luci_config=config.config.config_service_hostname(),
