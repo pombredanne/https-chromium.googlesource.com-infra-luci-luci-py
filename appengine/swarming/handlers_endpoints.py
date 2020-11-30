@@ -13,6 +13,7 @@ import re
 from google.appengine.api import datastore_errors
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
+from google.appengine.api import app_identity
 
 import endpoints
 import gae_ts_mon
