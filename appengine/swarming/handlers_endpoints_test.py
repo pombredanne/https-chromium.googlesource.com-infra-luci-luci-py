@@ -134,6 +134,8 @@ class ServerApiTest(BaseTest):
             u'',
         u'luci_config':
             u'a.server',
+        u'project_id':
+            u'sample-app',
         u'default_isolate_server':
             u'https://pool.config.isolate.example.com',
         u'default_isolate_namespace':
@@ -141,7 +143,7 @@ class ServerApiTest(BaseTest):
         u'server_version':
             unicode(utils.get_app_version()),
         u'cas_viewer_server':
-        u'https://test-cas-viewer-server.com',
+            u'https://test-cas-viewer-server.com',
     }
     self.assertEqual(expected, response.json)
 

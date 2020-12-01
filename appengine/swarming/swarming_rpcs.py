@@ -193,6 +193,7 @@ class ServerDetails(messages.Message):
   default_isolate_server = messages.StringField(6)
   default_isolate_namespace = messages.StringField(7)
   cas_viewer_server = messages.StringField(8)
+  project_id = messages.StringField(9)
 
 
 class BootstrapToken(messages.Message):
