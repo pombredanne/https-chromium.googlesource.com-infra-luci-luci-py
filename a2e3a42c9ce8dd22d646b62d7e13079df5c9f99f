@@ -49,6 +49,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7933de07_7268b296",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-02T22:51:11Z",
+      "side": 1,
+      "message": "It\u0027s to separate the two links.\n\nhttps://screenshot.googleplex.com/Kg5g3yC8rfPke2D\n\nTaking any suggestions on how you think the format of the links should look.",
+      "parentUuid": "360f4fb6_f84480df",
+      "range": {
+        "startLine": 82,
+        "startChar": 108,
+        "endLine": 82,
+        "endChar": 109
+      },
+      "revId": "a2e3a42c9ce8dd22d646b62d7e13079df5c9f99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d21b16c1_6f5aef4e",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-02T22:51:11Z",
+      "side": 1,
+      "message": "They\u0027re there just b/c I thought it looked better. \n\nhttps://screenshot.googleplex.com/Kg5g3yC8rfPke2D\n\nCan put anything in there, happy for any suggestions.",
+      "parentUuid": "0c9948ed_a3e48903",
+      "range": {
+        "startLine": 82,
+        "startChar": 109,
+        "endLine": 82,
+        "endChar": 110
+      },
+      "revId": "a2e3a42c9ce8dd22d646b62d7e13079df5c9f99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f18e7472_e5609230",
         "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
         "patchSetId": 13
@@ -60,6 +108,30 @@
       "writtenOn": "2020-12-02T06:39:47Z",
       "side": 1,
       "message": "nit: remove this space?",
+      "range": {
+        "startLine": 88,
+        "startChar": 106,
+        "endLine": 88,
+        "endChar": 107
+      },
+      "revId": "a2e3a42c9ce8dd22d646b62d7e13079df5c9f99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f213f71_1e28d40f",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-02T22:51:11Z",
+      "side": 1,
+      "message": "There to separate the two links. \n\nhttps://screenshot.googleplex.com/Kg5g3yC8rfPke2D",
+      "parentUuid": "f18e7472_e5609230",
       "range": {
         "startLine": 88,
         "startChar": 106,
