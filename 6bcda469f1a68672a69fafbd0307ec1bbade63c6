@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ad9d6d9_cea20356",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-02T06:14:33Z",
+      "side": 1,
+      "message": "Thanks for having a look Junji. \n\nPTAL",
+      "revId": "6bcda469f1a68672a69fafbd0307ec1bbade63c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
