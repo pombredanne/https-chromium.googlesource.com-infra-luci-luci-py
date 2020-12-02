@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d71f1f9_5f11df6c",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T04:13:05Z",
+      "side": 1,
+      "message": "nit: application id is kind of obvious because it\u0027s a part of host. e.g. chromium-swarm.*",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 53
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fbc8c91_a5a6a150",
+        "filename": "appengine/swarming/ui2/modules/swarming-index/swarming-index_test.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T04:13:05Z",
+      "side": 1,
+      "message": "nit: \nDefining chopsGitVersion looks redundant?\nCan we do `beforeEach(func1); beforeEach(func2);`? then,  I agree.",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 34
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a905c41_e2e05acc",
+        "filename": "appengine/swarming/ui2/modules/test_util.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T04:13:05Z",
+      "side": 1,
+      "message": "I prefer to change the existing `mockAppGETs` and `mockAuthdAppGETs` as we\u0027re changing the details API for all cases.",
+      "range": {
+        "startLine": 125,
+        "startChar": 16,
+        "endLine": 125,
+        "endChar": 30
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47a8a513_7b201107",
+        "filename": "appengine/swarming/ui2/modules/test_util.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T04:13:05Z",
+      "side": 1,
+      "message": "Is this used?",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 140,
+        "endChar": 35
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fa11cdd_8696fd8a",
+        "filename": "appengine/swarming/ui2/package.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T04:13:05Z",
+      "side": 1,
+      "message": "I prefer to change dependencies in a different CL.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
