@@ -24,6 +24,144 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "dde94440_68e959cf",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T04:22:30Z",
+      "side": 1,
+      "message": "It looks other constants are snake case.",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 17
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "364c4116_4a6957eb",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T04:22:30Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 61,
+        "endChar": 25
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fdd11d4_7dd57471",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T04:22:30Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 64,
+        "startChar": 6,
+        "endLine": 64,
+        "endChar": 26
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9cfb597_c6d77306",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T04:22:30Z",
+      "side": 1,
+      "message": "This is already set in the constructor. See line 115.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 60
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee097f57_77e797aa",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T04:22:30Z",
+      "side": 1,
+      "message": "`return undefined` to not change the behavior.",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 25
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3b8904c_89e992fb",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T04:22:30Z",
+      "side": 1,
+      "message": "Shall we display the both versions?\nIt would look like http://screen/5PPWCtkULwUP5aH.\n\nSo you would need to have `gitVersionLink()` and `serverVersionLink()`.",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 93,
+        "endChar": 37
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2fbc8c91_a5a6a150",
