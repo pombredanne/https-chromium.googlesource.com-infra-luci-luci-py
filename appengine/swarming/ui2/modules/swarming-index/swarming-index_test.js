@@ -10,7 +10,8 @@ describe('swarming-index', function() {
   // leak dependencies (e.g. bot-list's 'column' function to task-list) and
   // try to import things multiple times.
   const {fetchMock, MATCHED, UNMATCHED} = require('fetch-mock');
-  const {expectNoUnmatchedCalls, mockAppGETs} = require('modules/test_util');
+  const {expectNoUnmatchedCalls, mockAppGETs, mockAppGETsGit}
+    = require('modules/test_util');
 
   beforeEach(function() {
     // These are the default responses to the expected API calls (aka 'matched')
@@ -151,7 +152,7 @@ describe('swarming-index', function() {
       });
     });
 
-    describe('when logged in as user (no bootstrap_token)', function() {
+    describe('when logged in as user without (no bootstrap_token)', function() {
       it('displays the server version', function(done) {
         createElement((ele) => {
           userLogsIn(ele, () => {
@@ -177,6 +178,39 @@ describe('swarming-index', function() {
           userLogsIn(ele, () => {
             const commandBox = ele.querySelector('swarming-app>main .command');
             expect(commandBox).toBeNull();
+            done();
+          });
+        });
+      });
+    });
+
+    describe('when logged in as user with chops-git-version set', function() {
+      function chopsGitVersion() {
+        mockAppGETsGit(fetchMock, {
+          get_bootstrap_token: false,
+        });
+      };
+
+      beforeEach(chopsGitVersion);
+
+      it('displays the server version and chops-git-version', function(done) {
+        createElement((ele) => {
+          userLogsIn(ele, () => {
+            const serverDiv =
+                ele.querySelector('swarming-app>header .server-version');
+            const serverVersion =
+                ele.querySelector(`swarming-app>header
+                    .server-version>a:nth-child(1)`);
+            const gitVersion =
+                ele.querySelector(`swarming-app>header
+                    .server-version>a:nth-child(2)`);
+            expect(serverVersion).toBeTruthy();
+            expect(gitVersion).toBeTruthy();
+            expect(serverVersion.innerText)
+                .toContain('swarming-staging-default-v024');
+            expect(serverDiv.innerHTML).toContain('chromium-swarm');
+            expect(gitVersion.innerText).toContain('5629-2cfcb6');
+            console.log(serverVersion);
             done();
           });
         });

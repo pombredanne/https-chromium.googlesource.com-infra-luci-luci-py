@@ -122,6 +122,37 @@ export function mockAuthdAppGETs(fetchMock, permissions) {
       requireLogin(permissions));
 }
 
+export function mockAppGETsGit(fetchMock, permissions) {
+  fetchMock.get('/_ah/api/swarming/v1/server/details', {
+    project_id: 'chromium-swarm',
+    server_version: 'swarming-staging-default-v024',
+    chops_git_version: '5629-2cfcb6',
+    bot_version: 'abcdoeraymeyouandme',
+    machine_provider_template: 'https://example.com/leases/%s',
+    display_server_url_template: 'https://example.com#id=%s',
+  } , {overwriteRoutes: true});
+
+
+  fetchMock.get('/_ah/api/swarming/v1/server/permissions',
+      permissions, {overwriteRoutes: true});
+}
+
+export function mockAuthdAppGETsGit(fetchMock, permissions) {
+  fetchMock.get('/_ah/api/swarming/v1/server/details', requireLogin({
+    project_id: 'chromium-swarm',
+    server_version: 'swarming-staging-default-v024',
+    chops_git_version: '5629-2cfcb6',
+    bot_version: 'abcdoeraymeyouandme',
+    machine_provider_template: 'https://example.com/leases/%s',
+    display_server_url_template: 'https://example.com#id=%s',
+    cas_viewer_server: 'https://cas-viewer-dev.appspot.com',
+  }));
+
+
+  fetchMock.get('/_ah/api/swarming/v1/server/permissions',
+      requireLogin(permissions));
+}
+
 export function requireLogin(logged_in, delay=100) {
   const original_items = logged_in.items && logged_in.items.slice();
   return function(url, opts) {
