@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c9948ed_a3e48903",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T06:39:11Z",
+      "side": 1,
+      "message": "The parentheses should not be included in link.",
+      "range": {
+        "startLine": 82,
+        "startChar": 109,
+        "endLine": 82,
+        "endChar": 110
+      },
+      "revId": "a2e3a42c9ce8dd22d646b62d7e13079df5c9f99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

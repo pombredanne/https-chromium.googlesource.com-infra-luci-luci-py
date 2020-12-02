@@ -306,6 +306,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b8012eb_537a3cd6",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T06:39:11Z",
+      "side": 1,
+      "message": "Oh, sorry I overlooked that versionLink() generates two links.\nBut it makes the function complicated, though.\n\nI don\u0027t have a strong preference on design, but it would be simpler if you separate the two functions.\n\n\u003cdiv\u003e\n  Server: ${serverVersionLink(details.server_version)} (${gitVersionLink(details.chops_git_version)})\n\u003c/div\u003e",
+      "parentUuid": "5a552815_40948bf6",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 93,
+        "endChar": 37
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2fbc8c91_a5a6a150",

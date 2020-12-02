@@ -157,6 +157,29 @@
       },
       "revId": "6bcda469f1a68672a69fafbd0307ec1bbade63c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "062069bc_3e660155",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-02T06:39:11Z",
+      "side": 1,
+      "message": "What is `cs`?\nBetter to use the same format for the both with/without spinnaker version.",
+      "range": {
+        "startLine": 82,
+        "startChar": 118,
+        "endLine": 82,
+        "endChar": 120
+      },
+      "revId": "6bcda469f1a68672a69fafbd0307ec1bbade63c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
