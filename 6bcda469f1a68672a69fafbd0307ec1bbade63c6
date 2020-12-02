@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3154439_222e7bd8",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-02T06:35:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b7a1b6f_cc4638d7",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 45
+      },
+      "revId": "6bcda469f1a68672a69fafbd0307ec1bbade63c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0accddd_a550f28a",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43acc062_f869c41e",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-02T06:35:01Z",
+      "side": 1,
+      "message": "Did not know you could do that ..",
+      "parentUuid": "d0accddd_a550f28a",
+      "range": {
+        "startLine": 60,
+        "startChar": 30,
+        "endLine": 60,
+        "endChar": 54
+      },
+      "revId": "6bcda469f1a68672a69fafbd0307ec1bbade63c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "703471df_de3cf452",
@@ -77,6 +125,30 @@
       "writtenOn": "2020-12-02T06:24:26Z",
       "side": 1,
       "message": "this seems strange?",
+      "range": {
+        "startLine": 82,
+        "startChar": 33,
+        "endLine": 82,
+        "endChar": 49
+      },
+      "revId": "6bcda469f1a68672a69fafbd0307ec1bbade63c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fc8e2b8_a85ed872",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-02T06:35:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "703471df_de3cf452",
       "range": {
         "startLine": 82,
         "startChar": 33,
