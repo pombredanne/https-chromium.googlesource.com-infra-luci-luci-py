@@ -13,6 +13,7 @@ import re
 from google.appengine.api import datastore_errors
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
+from google.appengine.api import app_identity
 
 import endpoints
 import gae_ts_mon
@@ -250,7 +251,9 @@ class SwarmingServerService(remote.Service):
 
     return swarming_rpcs.ServerDetails(
         bot_version=bot_code.get_bot_version(host)[0],
+        project_id=app_identity.get_application_id(),
         server_version=utils.get_app_version(),
+        chops_git_version=utils.get_chops_git_version(),
         display_server_url_template=cfg.display_server_url_template,
         luci_config=config.config.config_service_hostname(),
         default_isolate_server=default_isolate_server,
