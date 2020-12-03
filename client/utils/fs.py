@@ -356,7 +356,7 @@ else:
   def extend(path):
     """Path extending is not needed on POSIX."""
     assert os.path.isabs(path), path
-    assert isinstance(path, six.text_type), path
+    assert isinstance(path, six.text_type), "%s, type: %s" % (path, type(path))
     if six.PY2:
       # In python2, default filesystem encoding may be 'ascii'.
       # So does encode here to avoid UnicodeEncodeError.
