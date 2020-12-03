@@ -57,23 +57,68 @@ spinner_template.innerHTML =`
 </div>
 `;
 
+const pantheon_url = `https://console.cloud.google.com/appengine/versions?project=`
+const version_filter_prefix = `&serviceId=default&pageState=(%22versionsTable` +
+    `%22:(%22f%22:%22%255B%257B_22k_22_3A_22Version` +
+    `_22_2C_22t_22_3A10_2C_22v_22_3A_22_5C_22`;
+const version_filter_postfix = `_5C_22_22_2C_22s_22_3Atrue_2C_22i_22_3A_22` +
+    `id_22%257D%255D%22))`;
+const version_default = 'You must log in to see more details';
+
 function versionLink(details) {
+  let versionString = version_default;
   if (!details || !details.server_version) {
-    return undefined;
+    return versionString;
   }
-  const split = details.server_version.split('-');
+  versionString = html`<a href=${pantheon_url.concat(details.project_id,
+        version_filter_prefix, details.server_version, version_filter_postfix)}>
+      ${details.server_version}</a>`;
+  // return just the version name if chops_git_version is not set.
+  if (!details.chops_git_version) {
+    const split = details.server_version.split('-');
+    if (split.length !== 2) {
+      return versionString;
+    }
+    return html`${versionString} <a href=https://chromium.googlesource.com/infra/luci/luci-py/+/${split[1]}> (cs)</a>`;
+  }
+  const split = details.chops_git_version.split('-');
   if (split.length !== 2) {
-    return undefined;
+    return versionString;
   }
-  return `https://chromium.googlesource.com/infra/luci/luci-py/+/${split[1]}`;
+  return html`${versionString} <a href=https://chromium.googlesource.com/infra/luci/luci-py/+/${split[1]}> (${details.chops_git_version})</a>`;
+}
+
+function serverLink(details) {
+  if (!details || !details.server_version) {
+    return version_default;
+  }
+  return html`<a href=${pantheon_url.concat(details.project_id,
+      version_filter_prefix, details.server_version, version_filter_postfix)}>
+      ${details.server_version}</a>`;
+}
+
+function codeSearchLink(details) {
+  if (!details || !details.server_version) {
+    return '';
+  }
+  if (!details.chops_git_version) {
+    const split = details.server_version.split('-');
+    if (split.length !== 2) {
+      return '';
+    }
+    return html`<a href=https://chromium.googlesource.com/infra/luci/luci-py/+/${split[1]}> (cs)</a>`;
+  }
+  const split = details.chops_git_version.split('-');
+  if (split.length !== 2) {
+    return '';
+  }
+  return html`<a href=https://chromium.googlesource.com/infra/luci/luci-py/+/${split[1]}> (${details.chops_git_version})</a>`;
 }
 
 const dynamic_content_template = (ele) => html`
 <div class=server-version>
   Server:
-  <a href=${ifDefined(versionLink(ele._server_details))}>
-    ${ele._server_details.server_version}
-  </a>
+  ${serverLink(ele._server_details)} ${codeSearchLink(ele._server_details)}
 </div>
 <oauth-login client_id=${ele.client_id}
              ?testing_offline=${ele.testing_offline}>
@@ -95,7 +140,7 @@ window.customElements.define('swarming-app', class extends HTMLElement {
     this._auth_header = '';
     this._profile = {};
     this._server_details = {
-      server_version: 'You must log in to see more details',
+      server_version: version_default,
       bot_version: '',
       cas_viewer_server: '',
     };
