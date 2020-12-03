@@ -168,6 +168,8 @@ MAX_AGE_SECS = 21*24*60*60
 # TODO(1099655): Enable this once all prod issues are gone.
 _USE_GO_ISOLATED_TO_UPLOAD = False
 
+_CAS_KVS_CACHE_THRESHOLD = 5 * 1024 * 1024 * 1024  # 5 GiB
+
 TaskData = collections.namedtuple(
     'TaskData',
     [
@@ -1534,6 +1536,10 @@ def add_cas_cache_options(parser):
       default='cas-cache',
       help='Directory to keep a local cache of the files. Accelerates download '
       'by reusing already downloaded files. Default=%default')
+  group.add_option(
+      '--kvs-file',
+      default='kvs-file',
+      help='Cas cache using kvs for small files. Default=%default')
   parser.add_option_group(group)
 
 
@@ -1678,6 +1684,14 @@ def main(args):
       parser.error('Can\t use --cas-instance, --cas-digest with --clean.')
 
     logging.info("initial free space: %d", file_path.get_free_space(root))
+
+    if options.kvs_file and fs.isfile(options.kvs_file):
+      # Remove kvs file if its size exceeds fixed threshold.
+      st = fs.stat(options.kvs_file)
+      if st.st_size >= _CAS_KVS_CACHE_THRESHOLD:
+        logging.info("remove kvs file with size: %d", st.st_size)
+        fs.remove(options.kvs_file)
+
     # Trim first, then clean.
     local_caching.trim_caches(
         caches,
