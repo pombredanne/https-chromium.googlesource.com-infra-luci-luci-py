@@ -16,6 +16,24 @@
       "message": "The code looks good. fix CQ?",
       "revId": "f1d39b5b15c5271f28d31c10bc6d47f484c7d0b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9ff52ac_77695b81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-12-03T08:40:26Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "ece6cb73_17535b0e",
+      "revId": "f1d39b5b15c5271f28d31c10bc6d47f484c7d0b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
