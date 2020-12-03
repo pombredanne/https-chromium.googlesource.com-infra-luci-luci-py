@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "986c10e7_72178b17",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1542,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-12-03T07:42:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb801c14_54a30a9c",
+      "range": {
+        "startLine": 1542,
+        "startChar": 12,
+        "endLine": 1542,
+        "endChar": 15
+      },
+      "revId": "dfdd8c8bf8641d4926cc0e63b888c63b875a4563",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7e01632_94764caa",
@@ -37,6 +61,30 @@
       "writtenOn": "2020-12-03T07:37:03Z",
       "side": 1,
       "message": "nit:\nmain() is already too long...\nConsider extracting `--clean` command just for readability. e.g. _clean_cmd(...)",
+      "range": {
+        "startLine": 1674,
+        "startChar": 0,
+        "endLine": 1705,
+        "endChar": 12
+      },
+      "revId": "dfdd8c8bf8641d4926cc0e63b888c63b875a4563",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e69af54c_babc07a9",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1705,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-12-03T07:42:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7e01632_94764caa",
       "range": {
         "startLine": 1674,
         "startChar": 0,
