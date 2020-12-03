@@ -10,6 +10,7 @@ import logging
 import os
 import re
 
+from google.appengine.api import app_identity
 from google.appengine.api import datastore_errors
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
@@ -248,9 +249,16 @@ class SwarmingServerService(remote.Service):
       default_isolate_server = isolate.server
       default_isolate_namespace = isolate.namespace
 
+    server_version = utils.get_app_version()
+    chops_git_version = server_version
+    if utils.get_chops_git_version() != None:
+      chops_git_version = server_version
+
     return swarming_rpcs.ServerDetails(
         bot_version=bot_code.get_bot_version(host)[0],
-        server_version=utils.get_app_version(),
+        project_id=app_identity.get_application_id(),
+        server_version=server_version,
+        chops_git_version=chops_git_version,
         display_server_url_template=cfg.display_server_url_template,
         luci_config=config.config.config_service_hostname(),
         default_isolate_server=default_isolate_server,
