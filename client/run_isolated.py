@@ -227,6 +227,8 @@ TaskData = collections.namedtuple(
         'cas_cache_dir',
         # Parameters passed to `cas` client.
         'cas_cache_policies',
+        # Parameters for kvs file used by `cas` client.
+        'cas_kvs',
         # Environment variables to set.
         'env',
         # Environment variables to mutate with relative directories.
@@ -559,7 +561,7 @@ def _run_go_cmd_and_wait(cmd):
 
 
 def _fetch_and_map_with_cas(cas_client, digest, instance, output_dir, cache_dir,
-                            policies):
+                            policies, kvs_file):
   """
   Fetches a CAS tree using cas client, create the tree and returns download
   stats.
@@ -601,6 +603,10 @@ def _fetch_and_map_with_cas(cas_client, digest, instance, output_dir, cache_dir,
         '-dump-stats-json',
         result_json_path,
     ]
+
+    if kvs_file:
+      cmd.extend(['-kvs-file', kvs_file])
+
     _run_go_cmd_and_wait(cmd)
 
     with open(result_json_path) as json_file:
@@ -1046,7 +1052,8 @@ def map_and_run(data, constant_run_path):
             instance=data.cas_instance,
             output_dir=run_dir,
             cache_dir=data.cas_cache_dir,
-            policies=data.cas_cache_policies)
+            policies=data.cas_cache_policies,
+            kvs_file=data.cas_kvs)
         isolated_stats['download'].update(stats)
 
       if not command:
@@ -1868,6 +1875,7 @@ def main(args):
           max_items=None,
           max_age_secs=None,
       ),
+      cas_kvs=options.kvs_file,
       env=options.env,
       env_prefix=options.env_prefix,
       lower_priority=bool(options.lower_priority),
