@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ea41d21_92ccd46f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-03T07:59:14Z",
+      "side": 1,
+      "message": "nit: I\u0027ve seen \".db\" is used for boltdb file names. \nhttps://github.com/etcd-io/bbolt",
+      "range": {
+        "startLine": 740,
+        "startChar": 37,
+        "endLine": 740,
+        "endChar": 44
+      },
+      "revId": "90135278c4c8dbd8e599f26b41dc1065d245f3df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
