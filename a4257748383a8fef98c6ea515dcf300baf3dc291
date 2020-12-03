@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05cbf067_daf307e8",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-03T02:56:11Z",
+      "side": 1,
+      "message": "Ah , you reckon it\u0027d be better to just take it from there?",
+      "parentUuid": "8d71f1f9_5f11df6c",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 53
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dde94440_68e959cf",
         "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
         "patchSetId": 9
