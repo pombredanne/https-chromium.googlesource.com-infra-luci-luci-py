@@ -283,6 +283,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a73fb8e_0e1ddccc",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-04T03:48:23Z",
+      "side": 1,
+      "message": "I think the latest patch looks good.",
+      "parentUuid": "d9e2f505_78786c44",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 25
+      },
+      "revId": "a4257748383a8fef98c6ea515dcf300baf3dc291",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3b8904c_89e992fb",

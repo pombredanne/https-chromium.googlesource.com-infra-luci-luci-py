@@ -16,6 +16,98 @@
       "message": "Fixed the failing test.\n\nThis is what it looks like currently: \n\nWith spinnaker server version set: https://screenshot.googleplex.com/BQ95yqp6CWy8p9J\nWith current version set:          https://screenshot.googleplex.com/AcmV4KHiGwm3Pi5\n\nHaving chips-git-version and project-id not set: https://screenshot.googleplex.com/vqmy49jSuPgjfJJ\nThat link will go to pantheon.",
       "revId": "8935f4cad11e543353c8340fc1e245afce57b94a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57a5d4e8_9e34bb7f",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-04T03:48:23Z",
+      "side": 1,
+      "message": "\"if not chops_git_version\"\n\nAnd this should have a comment why we do this.",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 33
+      },
+      "revId": "8935f4cad11e543353c8340fc1e245afce57b94a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28e05338_2941f823",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-04T03:48:23Z",
+      "side": 1,
+      "message": "gitLink()?",
+      "range": {
+        "startLine": 77,
+        "startChar": 9,
+        "endLine": 77,
+        "endChar": 23
+      },
+      "revId": "8935f4cad11e543353c8340fc1e245afce57b94a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ba20887_b7b2e67c",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-04T03:48:23Z",
+      "side": 1,
+      "message": "server_version isn\u0027t required in this function anymore.",
+      "range": {
+        "startLine": 78,
+        "startChar": 27,
+        "endLine": 78,
+        "endChar": 41
+      },
+      "revId": "8935f4cad11e543353c8340fc1e245afce57b94a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62c0b2a8_fdd4f590",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-04T03:48:23Z",
+      "side": 1,
+      "message": "Have you tested with logged-out?\nI think this will skip \"if (!details || !details.server_version)\" at L69.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 38
+      },
+      "revId": "8935f4cad11e543353c8340fc1e245afce57b94a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

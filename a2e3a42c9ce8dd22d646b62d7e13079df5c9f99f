@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "335005f5_41ee1c4f",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-04T03:48:23Z",
+      "side": 1,
+      "message": "\u003e The parentheses should not be included in link.\n\nI meant this comment for other version links, too.\nBetter for () to not being clickable.",
+      "parentUuid": "d21b16c1_6f5aef4e",
+      "range": {
+        "startLine": 82,
+        "startChar": 109,
+        "endLine": 82,
+        "endChar": 110
+      },
+      "revId": "a2e3a42c9ce8dd22d646b62d7e13079df5c9f99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f18e7472_e5609230",
         "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
         "patchSetId": 13
