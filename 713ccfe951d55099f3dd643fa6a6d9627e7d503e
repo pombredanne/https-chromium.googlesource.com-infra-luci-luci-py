@@ -22,6 +22,30 @@
       },
       "revId": "713ccfe951d55099f3dd643fa6a6d9627e7d503e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b72cd861_41cf6c18",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1406,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-12-04T07:34:08Z",
+      "side": 1,
+      "message": "Yes. This is used now instead of relative-cwd property in isolated.",
+      "parentUuid": "c041dc19_58bb1231",
+      "range": {
+        "startLine": 1406,
+        "startChar": 34,
+        "endLine": 1406,
+        "endChar": 46
+      },
+      "revId": "713ccfe951d55099f3dd643fa6a6d9627e7d503e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
