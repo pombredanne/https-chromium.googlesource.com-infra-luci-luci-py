@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e17c140d_1e9d2176",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-12-04T14:11:14Z",
+      "side": 1,
+      "message": "lgtm (Yiwei doesn\u0027t have chromium account)",
+      "revId": "8ec9ba05f7470276f1515995d764fb99a2c3d86c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1673254c_136a8f97",
         "filename": "appengine/components/components/auth/model.py",
         "patchSetId": 1
