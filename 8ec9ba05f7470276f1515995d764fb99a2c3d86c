@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92dc00b8_3ffac477",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-12-04T03:12:01Z",
+      "side": 1,
+      "message": "PTAL\n\nDemo: https://5650-f9a7732-vadims-hide-external-gro-dot-chrome-infra-auth-dev.appspot.com/auth/groups/administrators",
+      "revId": "8ec9ba05f7470276f1515995d764fb99a2c3d86c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1673254c_136a8f97",
+        "filename": "appengine/components/components/auth/model.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-12-04T03:12:01Z",
+      "side": 1,
+      "message": "Incredible performance boost!",
+      "range": {
+        "startLine": 876,
+        "startChar": 9,
+        "endLine": 876,
+        "endChar": 50
+      },
+      "revId": "8ec9ba05f7470276f1515995d764fb99a2c3d86c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e95710ae_4c631684",
+        "filename": "appengine/components/components/auth/ui/rest_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2020-12-04T03:12:01Z",
+      "side": 1,
+      "message": "I didn\u0027t bother because the memcache layer makes this call relatively rare.",
+      "range": {
+        "startLine": 634,
+        "startChar": 7,
+        "endLine": 635,
+        "endChar": 59
+      },
+      "revId": "8ec9ba05f7470276f1515995d764fb99a2c3d86c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
