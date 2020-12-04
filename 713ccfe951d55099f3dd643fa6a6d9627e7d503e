@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c041dc19_58bb1231",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1406,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-04T07:31:24Z",
+      "side": 1,
+      "message": "I\u0027m just curious. Is relative_cwd still used?",
+      "range": {
+        "startLine": 1406,
+        "startChar": 34,
+        "endLine": 1406,
+        "endChar": 46
+      },
+      "revId": "713ccfe951d55099f3dd643fa6a6d9627e7d503e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
