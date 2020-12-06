@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cfc3c47_271e7778",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-06T23:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57a5d4e8_9e34bb7f",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 33
+      },
+      "revId": "8935f4cad11e543353c8340fc1e245afce57b94a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28e05338_2941f823",
@@ -54,6 +78,30 @@
       "writtenOn": "2020-12-04T03:48:23Z",
       "side": 1,
       "message": "gitLink()?",
+      "range": {
+        "startLine": 77,
+        "startChar": 9,
+        "endLine": 77,
+        "endChar": 23
+      },
+      "revId": "8935f4cad11e543353c8340fc1e245afce57b94a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb2eb93e_04827847",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-06T23:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28e05338_2941f823",
       "range": {
         "startLine": 77,
         "startChar": 9,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e547a750_1911a905",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-06T23:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ba20887_b7b2e67c",
+      "range": {
+        "startLine": 78,
+        "startChar": 27,
+        "endLine": 78,
+        "endChar": 41
+      },
+      "revId": "8935f4cad11e543353c8340fc1e245afce57b94a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62c0b2a8_fdd4f590",
@@ -100,6 +172,30 @@
       "writtenOn": "2020-12-04T03:48:23Z",
       "side": 1,
       "message": "Have you tested with logged-out?\nI think this will skip \"if (!details || !details.server_version)\" at L69.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 38
+      },
+      "revId": "8935f4cad11e543353c8340fc1e245afce57b94a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "458c3908_9156a821",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-06T23:56:08Z",
+      "side": 1,
+      "message": "Opted to leave it in as it was part of the original code , figured it was some defensive coding. \n\nWhat I get from the demo is: https://screenshot.googleplex.com/6P6gTtMtwxgNvDK",
+      "parentUuid": "62c0b2a8_fdd4f590",
       "range": {
         "startLine": 114,
         "startChar": 0,
