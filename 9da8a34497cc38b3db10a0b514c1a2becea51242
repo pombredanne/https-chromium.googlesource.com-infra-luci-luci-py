@@ -16,6 +16,24 @@
       "message": "Happy to make the link separation a bit more defined if you like. \n\nCould make it a one line table.",
       "revId": "9da8a34497cc38b3db10a0b514c1a2becea51242",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21efda3b_9a9fb8a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-07T02:35:25Z",
+      "side": 1,
+      "message": "\u003e Happy to make the link separation a bit more defined if you like. \n\nIt\u0027s optional.\nLet\u0027s land this CL first.\n\nI think my previous comments were the last ones from my side.\nhttps://crrev.com/c/2567305/19#message-28ef34ab66c3279f5e5326987f50ddc230d1d8be\n\nI\u0027m afraid that I posted too many comments... and thank you for responding them..",
+      "parentUuid": "c88c4209_3364ceb2",
+      "revId": "9da8a34497cc38b3db10a0b514c1a2becea51242",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
