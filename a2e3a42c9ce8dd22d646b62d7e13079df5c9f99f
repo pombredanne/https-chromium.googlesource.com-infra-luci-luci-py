@@ -143,6 +143,54 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b4e82ce_0111ef15",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-07T01:27:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1426f173_3f9376a5",
+      "range": {
+        "startLine": 82,
+        "startChar": 108,
+        "endLine": 82,
+        "endChar": 109
+      },
+      "revId": "a2e3a42c9ce8dd22d646b62d7e13079df5c9f99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f47adcf_28e83d83",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-07T01:27:44Z",
+      "side": 1,
+      "message": "Ah, got it at long last .. :) \n\nFixed.",
+      "parentUuid": "335005f5_41ee1c4f",
+      "range": {
+        "startLine": 82,
+        "startChar": 109,
+        "endLine": 82,
+        "endChar": 110
+      },
+      "revId": "a2e3a42c9ce8dd22d646b62d7e13079df5c9f99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f18e7472_e5609230",
@@ -180,6 +228,30 @@
       "side": 1,
       "message": "There to separate the two links. \n\nhttps://screenshot.googleplex.com/Kg5g3yC8rfPke2D",
       "parentUuid": "f18e7472_e5609230",
+      "range": {
+        "startLine": 88,
+        "startChar": 106,
+        "endLine": 88,
+        "endChar": 107
+      },
+      "revId": "a2e3a42c9ce8dd22d646b62d7e13079df5c9f99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d98d70e_67766f67",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-07T01:27:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f213f71_1e28d40f",
       "range": {
         "startLine": 88,
         "startChar": 106,

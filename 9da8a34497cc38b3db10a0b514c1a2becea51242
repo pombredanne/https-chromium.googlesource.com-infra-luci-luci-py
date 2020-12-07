@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c88c4209_3364ceb2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-07T01:27:44Z",
+      "side": 1,
+      "message": "Happy to make the link separation a bit more defined if you like. \n\nCould make it a one line table.",
+      "revId": "9da8a34497cc38b3db10a0b514c1a2becea51242",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
