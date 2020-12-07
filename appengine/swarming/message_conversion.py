@@ -126,7 +126,8 @@ def _taskproperties_from_rpc(props):
       env={i.key: i.value for i in props.env},
       env_prefixes={i.key: i.value for i in props.env_prefixes},
       inputs_ref=inputs_ref,
-      cas_input_root=cas_input_root)
+      cas_input_root=cas_input_root,
+      extra_args=None)
   return out, secret_bytes
 
 
