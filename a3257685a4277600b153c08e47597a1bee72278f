@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "578c90d4_9380739d",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-07T01:14:13Z",
+      "side": 1,
+      "message": "nit: wrong indentation",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 5
+      },
+      "revId": "a3257685a4277600b153c08e47597a1bee72278f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4000534e_6cd37c65",
+        "filename": "appengine/swarming/ui2/modules/test_util.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-07T01:14:13Z",
+      "side": 1,
+      "message": "change this utility function, too?",
+      "range": {
+        "startLine": 113,
+        "startChar": 16,
+        "endLine": 113,
+        "endChar": 32
+      },
+      "revId": "a3257685a4277600b153c08e47597a1bee72278f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4ca14d8_a9dd2a1e",
+        "filename": "appengine/swarming/ui2/modules/test_util.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-07T01:14:13Z",
+      "side": 1,
+      "message": "This is used only in \"when logged in as user without chops-git-version\".\nPlease consider moving fetchMock(...) into the before each directly.",
+      "range": {
+        "startLine": 127,
+        "startChar": 16,
+        "endLine": 127,
+        "endChar": 32
+      },
+      "revId": "a3257685a4277600b153c08e47597a1bee72278f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38030afe_f1145b01",
+        "filename": "appengine/swarming/ui2/modules/test_util.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-07T01:14:13Z",
+      "side": 1,
+      "message": "This isn\u0027t used?",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 140,
+        "endChar": 35
+      },
+      "revId": "a3257685a4277600b153c08e47597a1bee72278f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

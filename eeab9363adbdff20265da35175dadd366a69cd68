@@ -140,6 +140,30 @@
       },
       "revId": "eeab9363adbdff20265da35175dadd366a69cd68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "776d5b7c_0a23aadb",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-07T01:14:13Z",
+      "side": 1,
+      "message": "I see.",
+      "parentUuid": "6eb3e6ea_2ccb1af6",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 38
+      },
+      "revId": "eeab9363adbdff20265da35175dadd366a69cd68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
