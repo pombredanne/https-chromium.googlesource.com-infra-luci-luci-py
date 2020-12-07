@@ -34,6 +34,46 @@
       "parentUuid": "c88c4209_3364ceb2",
       "revId": "9da8a34497cc38b3db10a0b514c1a2becea51242",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5204d008_c4967650",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-12-07T02:47:17Z",
+      "side": 1,
+      "message": "if you have space in L92, this is redundant?",
+      "range": {
+        "startLine": 86,
+        "startChar": 14,
+        "endLine": 86,
+        "endChar": 15
+      },
+      "revId": "9da8a34497cc38b3db10a0b514c1a2becea51242",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5de29bc6_aae1b9ee",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2020-12-07T02:47:17Z",
+      "side": 1,
+      "message": "fix indent?",
+      "revId": "9da8a34497cc38b3db10a0b514c1a2becea51242",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
