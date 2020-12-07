@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcc73285_d8913fd0",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-07T00:57:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97fa4536_a123dab8",
+      "range": {
+        "startLine": 77,
+        "startChar": 9,
+        "endLine": 77,
+        "endChar": 23
+      },
+      "revId": "eeab9363adbdff20265da35175dadd366a69cd68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73cbaa29_81beaf3d",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8db2c16d_0856826a",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-07T00:57:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73cbaa29_81beaf3d",
+      "range": {
+        "startLine": 80,
+        "startChar": 2,
+        "endLine": 93,
+        "endChar": 0
+      },
+      "revId": "eeab9363adbdff20265da35175dadd366a69cd68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2656365_ae2a669e",
@@ -60,6 +108,30 @@
       "writtenOn": "2020-12-03T03:50:07Z",
       "side": 1,
       "message": "`server_version: \u0027\u0027` because you use default at L70.",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 38
+      },
+      "revId": "eeab9363adbdff20265da35175dadd366a69cd68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6eb3e6ea_2ccb1af6",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-07T00:57:05Z",
+      "side": 1,
+      "message": "Breaks some test not related to the header to clear this.",
+      "parentUuid": "b2656365_ae2a669e",
       "range": {
         "startLine": 120,
         "startChar": 0,
