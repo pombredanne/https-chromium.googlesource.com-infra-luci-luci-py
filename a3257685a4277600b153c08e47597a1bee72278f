@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40254deb_70517085",
+        "filename": "appengine/swarming/ui2/modules/swarming-app/swarming-app.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-08T00:57:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "578c90d4_9380739d",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 5
+      },
+      "revId": "a3257685a4277600b153c08e47597a1bee72278f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4000534e_6cd37c65",
@@ -37,6 +61,30 @@
       "writtenOn": "2020-12-07T01:14:13Z",
       "side": 1,
       "message": "change this utility function, too?",
+      "range": {
+        "startLine": 113,
+        "startChar": 16,
+        "endLine": 113,
+        "endChar": 32
+      },
+      "revId": "a3257685a4277600b153c08e47597a1bee72278f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b716f184_a3c489f7",
+        "filename": "appengine/swarming/ui2/modules/test_util.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-08T00:57:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4000534e_6cd37c65",
       "range": {
         "startLine": 113,
         "startChar": 16,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3eb5812a_68371bca",
+        "filename": "appengine/swarming/ui2/modules/test_util.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-08T00:57:06Z",
+      "side": 1,
+      "message": "Can you expand a bit what you want changed here?",
+      "parentUuid": "f4ca14d8_a9dd2a1e",
+      "range": {
+        "startLine": 127,
+        "startChar": 16,
+        "endLine": 127,
+        "endChar": 32
+      },
+      "revId": "a3257685a4277600b153c08e47597a1bee72278f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "38030afe_f1145b01",
         "filename": "appengine/swarming/ui2/modules/test_util.js",
         "patchSetId": 18
@@ -83,6 +155,30 @@
       "writtenOn": "2020-12-07T01:14:13Z",
       "side": 1,
       "message": "This isn\u0027t used?",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 140,
+        "endChar": 35
+      },
+      "revId": "a3257685a4277600b153c08e47597a1bee72278f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6c17d0b_cb47d7a6",
+        "filename": "appengine/swarming/ui2/modules/test_util.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-08T00:57:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38030afe_f1145b01",
       "range": {
         "startLine": 140,
         "startChar": 16,
