@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c03956b5_ed6ca02d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1285093
+      },
+      "writtenOn": "2020-12-08T05:11:52Z",
+      "side": 1,
+      "message": "Thx for all the work reviewing Junji. \n\nI\u0027ll hang back for a bit in case Takuto wants to add something.",
+      "revId": "899f8bc852eb4aeabfd0a606f8df29a116018566",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
