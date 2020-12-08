@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a5e0845_06e92970",
+        "filename": "appengine/swarming/ui2/modules/test_util.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2020-12-08T01:13:28Z",
+      "side": 1,
+      "message": "Move the mocking to the specific test because it won\u0027t be used by other tests.\n(FWIU, \"NoGit\" is an irregular case.)\n\ndescribe(\u0027when logged in as user without chops-git-version\u0027, function() {\n  beforeEach(function() {\n    fetchMock.get(\u0027/_ah/api/swarming/v1/server/details\u0027, {\n      project_id: \u0027chromium-swarm\u0027,\n      server_version: \u00271234-abcdefg\u0027,\n      bot_version: \u0027abcdoeraymeyouandme\u0027,\n      machine_provider_template: \u0027https://example.com/leases/%s\u0027,\n      display_server_url_template: \u0027https://example.com#id\u003d%s\u0027,\n    } , {overwriteRoutes: true});\n    fetchMock.get(\u0027/_ah/api/swarming/v1/server/permissions\u0027,\n      {\n        get_bootstrap_token: false,\n      }, {overwriteRoutes: true});\n    });\n  });\n});",
+      "parentUuid": "3eb5812a_68371bca",
+      "range": {
+        "startLine": 127,
+        "startChar": 16,
+        "endLine": 127,
+        "endChar": 32
+      },
+      "revId": "a3257685a4277600b153c08e47597a1bee72278f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "38030afe_f1145b01",
         "filename": "appengine/swarming/ui2/modules/test_util.js",
         "patchSetId": 18
