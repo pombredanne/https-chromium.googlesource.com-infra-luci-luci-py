@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26ee30b4_588ad0e9",
+        "filename": "appengine/auth_service/importer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2020-12-09T00:49:59Z",
+      "side": 1,
+      "message": "tbh, i expected 1s here, but even with 5, we are still consistently making progress.",
+      "revId": "109b9825f1deba749ee91a3bcdb8bf84b94774f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
