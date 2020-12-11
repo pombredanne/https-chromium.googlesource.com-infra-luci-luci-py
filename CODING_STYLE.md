@@ -17,7 +17,7 @@ style](https://github.com/google/styleguide/blob/gh-pages/docguide/style.md).
 
 ## Line breaks
 
-Keep line width under 80 chars. Break a line on a first syntactic structure,
+Keep line width under 80 chars. Brek a line on a first syntactic structure, 
 prefer hanging indent of 4 spaces over vertical alignment. Prefer parentheses
 for line joining over `\`. For JSON-like nested dicts and lists it's acceptable
 to use 2 space indent.
