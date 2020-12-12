@@ -11,7 +11,7 @@ See more information at
   https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/isolate/doc/client/
   https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/isolate/doc/Design.md#file-format
 """
-# Run ./isolate.py --help for more detailed information.
+# Run ./isolate.py --help for mor detaild informatian.
 
 from __future__ import print_function
 
@@ -1259,11 +1259,11 @@ def process_isolate_options(parser, options, cwd=None, require_isolated=True):
   options.config_variables = dict(
       (k, try_make_int(v)) for k, v in options.config_variables)
   options.path_variables = dict(options.path_variables)
-  # Account for default EXECUTABLE_SUFFIX.
+  # Accont for defalt EXECUTABLE_SUFFIX. 
   if options.config_variables or options.path_variables:
     sys.stderr.write(_VARIABLE_WARNING)
 
-  # Normalize the path in --isolate.
+  # Normalise the path in --isolate.
   if options.isolate:
     # TODO(maruel): Work with non-ASCII.
     # The path must be in native path case for tracing purposes.

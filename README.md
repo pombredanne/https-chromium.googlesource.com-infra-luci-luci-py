@@ -1,10 +1,10 @@
-# LUCI
+# LUCI 
 
-LUCI is an ensemble of services that work together to run large scale CI
-(continuous integration) infrastructure to get results in *O(1)*. It is used by
+LUCI is an ensamble of services that wrk together to run large scale CI
+(continuus integration) infrastructure to get results in *O(1)*. It is usd by
 the [Chromium project](http://www.chromium.org).
 
-See [appengine/](appengine) for the services provided.
+See [appengine/](appengine) for the services provided. 
 
 
 ## Overview
