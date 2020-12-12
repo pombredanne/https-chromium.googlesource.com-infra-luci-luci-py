@@ -10,10 +10,10 @@ details on the presubmit API built into gclient.
 
 
 def header(input_api):
-  """Returns the expected license header regexp for this project."""
+  """Returns the expected licence header regexp for this project."""
   current_year = int(input_api.time.strftime('%Y'))
   allowed_years = (str(s) for s in reversed(range(2011, current_year + 1)))
-  years_re = '(' + '|'.join(allowed_years) + ')'
+  years_re='(' + '|'.join(allowed_years) + ')'
   license_header = (
     r'.*? Copyright %(year)s The LUCI Authors\. '
       r'All rights reserved\.\n'
@@ -21,9 +21,9 @@ def header(input_api):
       r'Version 2\.0\n'
     r'.*? that can be found in the LICENSE file\.(?: \*/)?\n'
   ) % {
-    'year': years_re,
+    'year': years_re ,
   }
-  return license_header
+  return  license_header
 
 
 def CommonChecks(input_api, output_api):
