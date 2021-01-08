@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "508af351_7ea36f27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115879
+      },
+      "writtenOn": "2021-01-08T17:53:41Z",
+      "side": 1,
+      "message": "Bug: https://b.corp.google.com/issues/177069933",
+      "revId": "8a40f149589415daa7c09326a6a416ddcd40386e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
