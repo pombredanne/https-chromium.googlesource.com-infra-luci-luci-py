@@ -952,6 +952,9 @@ def get_dimensions():
   if id_override:
     dimensions[u'id'] = [six.ensure_text(id_override)]
 
+  additional_dimensions = json.loads(os.environ.get('SWARMING_DIMENSIONS', '{}'))
+  dimensions.update(additional_dimensions)
+
   caches = get_named_caches_info()
   if caches:
     dimensions[u'caches'] = sorted(caches)

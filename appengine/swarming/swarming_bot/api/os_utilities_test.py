@@ -203,6 +203,16 @@ class TestOsUtilities(auto_stub.TestCase):
     self.assertIsInstance(dimensions[u'id'][0], six.text_type)
     self.assertEqual(dimensions[u'id'][0], u'customid')
 
+  def test_additional_dimensions_via_env(self):
+    mock_env = os.environ.copy()
+    mock_env['SWARMING_DIMENSIONS'] = '{"device": "rpi"}'
+    self.mock(os, 'environ', mock_env)
+    dimensions = os_utilities.get_dimensions()
+    self.assertIsInstance(dimensions[u'device'], list)
+    self.assertEqual(len(dimensions[u'device']), 1)
+    self.assertIsInstance(dimensions[u'device'][0], six.text_type)
+    self.assertEqual(dimensions[u'device'][0], u'rpi')
+
   def test_get_state(self):
     actual = os_utilities.get_state()
     actual.pop('reboot_required', None)
