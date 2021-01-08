@@ -959,17 +959,17 @@ class NamedCache(Cache):
     start = time.time()
     with self._lock:
       try:
-        if not fs.isdir(src):
-          logging.warning(
-              'NamedCache: Directory %r does not exist anymore. Cache lost.',
-              src)
-          return
-
         if name in self._lru:
           # This shouldn't happen but just remove the preexisting one and move
           # on.
           logging.error('- overwriting existing cache!')
           self._remove(name)
+
+        if not fs.isdir(src):
+          logging.warning(
+              'NamedCache: Directory %r does not exist anymore. Cache lost.',
+              src)
+          return
 
         # Calculate the size of the named cache to keep.
         size = _get_recursive_size(src)
