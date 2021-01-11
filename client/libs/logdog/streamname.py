@@ -11,7 +11,9 @@ from six.moves import urllib
 
 
 _ALNUM_CHARS = string.ascii_letters + string.digits
+_VALID_SEG_CHARS = _ALNUM_CHARS + ':_-.'
 _SEGMENT_RE_BASE = r'[a-zA-Z0-9][a-zA-Z0-9:_\-.]*'
+_SEGMENT_RE = re.compile('^' + _SEGMENT_RE_BASE + '$')
 _STREAM_NAME_RE = re.compile('^(' + _SEGMENT_RE_BASE + ')(/' +
                              _SEGMENT_RE_BASE + ')*$')
 _MAX_STREAM_NAME_LENGTH = 4096
@@ -49,6 +51,47 @@ def validate_tag(key, value):
   """
   validate_stream_name(key, maxlen=_MAX_TAG_KEY_LENGTH)
   validate_stream_name(value, maxlen=_MAX_TAG_VALUE_LENGTH)
+
+
+def normalize_segment(seg, prefix=None):
+  """Given a string (str|unicode), mutate it into a valid segment name (str).
+
+  This operates by replacing invalid stream name characters with underscores (_)
+  when encountered.
+
+  A special case is when "seg" begins with an invalid character. In this case,
+  we will replace it with the "prefix", if one is supplied.
+
+  See _VALID_SEG_CHARS for all valid characters for a segment.
+
+  Raises:
+    ValueError: If normalization could not be successfully performed.
+  """
+  if not seg:
+    if prefix is None:
+      raise ValueError('Cannot normalize empty segment with no prefix.')
+    seg = prefix
+  else:
+
+    def replace_if_invalid(ch, first=False):
+      pre = ''
+      if first and ch not in _ALNUM_CHARS:
+        if prefix is None:
+          raise ValueError('Segment has invalid beginning, and no prefix was '
+                           'provided.')
+        pre = prefix
+      return pre + (ch if ch in _VALID_SEG_CHARS else '_')
+
+    seg = ''.join(replace_if_invalid(ch, i == 0) for i, ch in enumerate(seg))
+
+  if _SEGMENT_RE.match(seg) is None:
+    raise ValueError('Invalid segment: %r' % seg)
+
+  # v could be of type unicode. As a valid stream name contains only ascii
+  # characters, it is safe to transcode v to ascii encoding (become str type).
+  if isinstance(seg, unicode):
+    return seg.encode('ascii')
+  return seg
 
 
 def normalize(v, prefix=None):

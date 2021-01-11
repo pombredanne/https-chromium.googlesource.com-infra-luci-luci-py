@@ -47,23 +47,37 @@ class StreamNameTestCase(unittest.TestCase):
         raised = True
       self.assertFalse(raised, "Stream name '%s' raised ValueError" % (name,))
 
-  def testNormalize(self):
+  def _testNormalizeCommon(self, normalize_fn):
     for name, normalized in (
         ('', 'PFX'),
         ('_invalid_start_char', 'PFX_invalid_start_char'),
         ('valid_stream_name.1:2-3', 'valid_stream_name.1:2-3'),
         ('some stream (with stuff)', 'some_stream__with_stuff_'),
-        ('_invalid/st!ream/name entry', 'PFX_invalid/st_ream/name_entry'),
         ('     ', 'PFX_____'),
     ):
-      self.assertEqual(streamname.normalize(name, prefix='PFX'), normalized)
+      self.assertEqual(normalize_fn(name, prefix='PFX'), normalized)
 
     # Assert that an empty stream name with no prefix will raise a ValueError.
-    self.assertRaises(ValueError, streamname.normalize, '')
+    self.assertRaises(ValueError, normalize_fn, '')
 
     # Assert that a stream name with an invalid starting character and no prefix
     # will raise a ValueError.
-    self.assertRaises(ValueError, streamname.normalize, '_invalid_start_char')
+    self.assertRaises(ValueError, normalize_fn, '_invalid_start_char')
+
+  def testNormalize(self):
+    self._testNormalizeCommon(streamname.normalize)
+    self.assertEqual(
+        streamname.normalize('_invalid/st!ream/name entry', prefix='PFX'),
+        'PFX_invalid/st_ream/name_entry')
+
+  def testNormalizeSegment(self):
+    self._testNormalizeCommon(streamname.normalize_segment)
+    # '/' is not considered as a valid character for segment
+    self.assertEqual(
+        streamname.normalize_segment('_invalid/ s!eg', prefix='PFX'),
+        'PFX_invalid__s_eg')
+    self.assertEqual(
+        streamname.normalize_segment('/seg/', prefix='PFX'), 'PFX_seg_')
 
 
 class StreamPathTestCase(unittest.TestCase):
