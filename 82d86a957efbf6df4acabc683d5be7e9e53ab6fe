@@ -33,6 +33,24 @@
       "message": "Do the double quotes work on Linux as well?\n\nIt could also be helpful to make it clear that ${platform} doesn\u0027t indicate something that the user needs to fill in, through a comment before this line.",
       "revId": "82d86a957efbf6df4acabc683d5be7e9e53ab6fe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96a911ad_15993902",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-01-13T00:16:06Z",
+      "side": 1,
+      "message": "\u003e Do the double quotes work on Linux as well?\n\u003e \n\nYes, with escape.\n```\n$ echo \"\\${PATH}\"\n${PATH}\n```\n\n\u003e It could also be helpful to make it clear that ${platform} doesn\u0027t indicate something that the user needs to fill in, through a comment before this line.\n\nAdded a comment.",
+      "parentUuid": "1e3fd23b_9da8ad6b",
+      "revId": "82d86a957efbf6df4acabc683d5be7e9e53ab6fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
