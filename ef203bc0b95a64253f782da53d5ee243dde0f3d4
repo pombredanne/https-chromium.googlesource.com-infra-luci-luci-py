@@ -16,6 +16,46 @@
       "message": "no bug?",
       "revId": "ef203bc0b95a64253f782da53d5ee243dde0f3d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93a61016_99b86a57",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1192,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2021-01-14T09:27:19Z",
+      "side": 1,
+      "message": "according to the original logic , this should be `not errors or not fs.exists(root)`?",
+      "range": {
+        "startLine": 1192,
+        "startChar": 2,
+        "endLine": 1192,
+        "endChar": 40
+      },
+      "revId": "ef203bc0b95a64253f782da53d5ee243dde0f3d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "859a1139_1bcfebb2",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1202,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2021-01-14T09:27:19Z",
+      "side": 1,
+      "message": "`return False`?",
+      "revId": "ef203bc0b95a64253f782da53d5ee243dde0f3d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
