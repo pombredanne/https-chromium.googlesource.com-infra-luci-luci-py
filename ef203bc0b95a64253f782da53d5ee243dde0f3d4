@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1394ca29_6c835955",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-01-14T09:44:32Z",
+      "side": 1,
+      "message": "It\u0027s not directly related to crbug.com/1164137.\nSo no bug on purpose.",
+      "parentUuid": "e70535da_366ff497",
+      "revId": "ef203bc0b95a64253f782da53d5ee243dde0f3d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93a61016_99b86a57",
@@ -41,6 +59,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d6b4db4_98d80e7a",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1192,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-01-14T09:44:32Z",
+      "side": 1,
+      "message": "Ah, good catch... I was bad at copying and pasting..",
+      "parentUuid": "93a61016_99b86a57",
+      "range": {
+        "startLine": 1192,
+        "startChar": 2,
+        "endLine": 1192,
+        "endChar": 40
+      },
+      "revId": "ef203bc0b95a64253f782da53d5ee243dde0f3d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "859a1139_1bcfebb2",
@@ -54,6 +96,24 @@
       "writtenOn": "2021-01-14T09:27:19Z",
       "side": 1,
       "message": "`return False`?",
+      "revId": "ef203bc0b95a64253f782da53d5ee243dde0f3d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1048efa8_01ab486e",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1202,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-01-14T09:44:32Z",
+      "side": 1,
+      "message": "I think it doesn\u0027t reach due to six.reraise(). I fixed the docstring.",
+      "parentUuid": "859a1139_1bcfebb2",
       "revId": "ef203bc0b95a64253f782da53d5ee243dde0f3d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
