@@ -1121,8 +1121,7 @@ def rmtree(root):
   deletion.
 
   Returns:
-    True on normal execution, False if berserk techniques (like killing
-    processes) had to be used.
+    True if it succeeded, raise an exception otherwise.
   """
   logging.info('file_path.rmtree(%s)', root)
   assert isinstance(root,
@@ -1208,16 +1207,17 @@ def rmtree(root):
   fs.rmtree(root, onerror=lambda *args: errors.append(args))
   logging.debug('file_path.rmtree(%s) final try took %d seconds', root,
                 time.time() - start)
-  if errors and fs.exists(root):
-    # There's no hope: the directory was tried to be removed 4 times. Give up
-    # and raise an exception.
-    sys.stderr.write(
-        'Failed to delete %s. The following files remain:\n' % root)
-    # The same path may be listed multiple times.
-    for path in sorted(set(path for _, path, _ in errors)):
-      sys.stderr.write('- %s\n' % path)
-    six.reraise(errors[0][2][0], errors[0][2][1], errors[0][2][2])
-  return False
+  if not errors or not fs.exists(root):
+    sys.stderr.write('Succeeded at final try.\n')
+    return True
+
+  # There's no hope: the directory was tried to be removed 4 times. Give up
+  # and raise an exception.
+  sys.stderr.write('Failed to delete %s. The following files remain:\n' % root)
+  # The same path may be listed multiple times.
+  for path in sorted(set(path for _, path, _ in errors)):
+    sys.stderr.write('- %s\n' % path)
+  six.reraise(errors[0][2][0], errors[0][2][1], errors[0][2][2])
 
 
 ## Private code.
