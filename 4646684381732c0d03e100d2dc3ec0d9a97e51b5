@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13d3e68e_c7165581",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1208,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-01-14T09:27:24Z",
+      "side": 1,
+      "message": "no log after this?",
+      "revId": "4646684381732c0d03e100d2dc3ec0d9a97e51b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
