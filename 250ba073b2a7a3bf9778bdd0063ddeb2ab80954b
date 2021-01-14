@@ -16,6 +16,24 @@
       "message": "current implementation doesn\u0027t follow this?",
       "revId": "250ba073b2a7a3bf9778bdd0063ddeb2ab80954b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "785a13ed_2daecb18",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1124,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-01-14T09:24:05Z",
+      "side": 1,
+      "message": "Good catch.\n\nI made another CL, and changed the doc and left a rational for the change.\nhttps://crrev.com/c/2629007",
+      "parentUuid": "eb92b2ae_29d5f3f3",
+      "revId": "250ba073b2a7a3bf9778bdd0063ddeb2ab80954b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
