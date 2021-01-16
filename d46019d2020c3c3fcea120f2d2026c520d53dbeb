@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d73d63_99b74909",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2021-01-16T00:31:27Z",
+      "side": 1,
+      "message": "i find it counter intuitive. If *allow* cors is false, then it shouldn\u0027t be allowed.\n\nwhy not change the expression below to\n\n  if origin and server.allow_cors and (not server.allowed_origins or origin in server.allowed_origins):",
+      "revId": "d46019d2020c3c3fcea120f2d2026c520d53dbeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
