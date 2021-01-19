@@ -34,6 +34,24 @@
       "parentUuid": "6ea3a152_507f4e3b",
       "revId": "229898233a4fd4a2d1ba527e01e3778bebe3d3ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96cc0c20_bd5e9cf4",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1148,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-01-19T00:09:09Z",
+      "side": 1,
+      "message": "I mean success is not changed here by this statement?",
+      "parentUuid": "155aabbf_35d9f751",
+      "revId": "229898233a4fd4a2d1ba527e01e3778bebe3d3ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
