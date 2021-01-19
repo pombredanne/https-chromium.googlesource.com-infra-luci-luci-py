@@ -22,6 +22,30 @@
       },
       "revId": "be25124bc132d5891f51e002436093bb298b9f88",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34a35d8e_d804fc60",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-01-19T01:26:34Z",
+      "side": 1,
+      "message": "It\u0027s the current state. I elaborated the description.",
+      "parentUuid": "dea4cb93_efbce5d8",
+      "range": {
+        "startLine": 9,
+        "startChar": 19,
+        "endLine": 9,
+        "endChar": 69
+      },
+      "revId": "be25124bc132d5891f51e002436093bb298b9f88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
