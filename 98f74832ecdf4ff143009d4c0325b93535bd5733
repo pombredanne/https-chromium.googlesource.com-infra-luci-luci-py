@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d210a57_ed37f285",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-01-19T18:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "033a24a7_aafaaa2f",
+      "range": {
+        "startLine": 79,
+        "startChar": 3,
+        "endLine": 81,
+        "endChar": 70
+      },
+      "revId": "98f74832ecdf4ff143009d4c0325b93535bd5733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1984461_07538511",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-01-16T04:54:09Z",
       "side": 1,
       "message": "set(allowed_origins or [])\n\nto speed up membership check below",
+      "range": {
+        "startLine": 82,
+        "startChar": 27,
+        "endLine": 82,
+        "endChar": 48
+      },
+      "revId": "98f74832ecdf4ff143009d4c0325b93535bd5733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc2a3eee_46ac94d9",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-01-19T18:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1984461_07538511",
       "range": {
         "startLine": 82,
         "startChar": 27,
