@@ -16,6 +16,24 @@
       "message": "this is nop?",
       "revId": "229898233a4fd4a2d1ba527e01e3778bebe3d3ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "155aabbf_35d9f751",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1148,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-01-19T00:03:27Z",
+      "side": 1,
+      "message": "In regular cases, success is always True.\nIf rmtree() raises an exception, success will become False at L1151. And it will always become False in later iterations.",
+      "parentUuid": "6ea3a152_507f4e3b",
+      "revId": "229898233a4fd4a2d1ba527e01e3778bebe3d3ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
