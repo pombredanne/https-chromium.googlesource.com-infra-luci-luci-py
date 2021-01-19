@@ -52,6 +52,24 @@
       "parentUuid": "155aabbf_35d9f751",
       "revId": "229898233a4fd4a2d1ba527e01e3778bebe3d3ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32d5462e_b93f5bad",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1148,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-01-19T00:18:45Z",
+      "side": 1,
+      "message": "Ah, right. removed.",
+      "parentUuid": "96cc0c20_bd5e9cf4",
+      "revId": "229898233a4fd4a2d1ba527e01e3778bebe3d3ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
