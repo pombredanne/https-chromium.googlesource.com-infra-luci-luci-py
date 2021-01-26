@@ -1285,11 +1285,7 @@ def main(argv):
     print('Execution failure: %s' % e, file=sys.stderr)
     return 1
 
-
 if __name__ == '__main__':
-  subprocess42.inhibit_os_error_reporting()
-  fix_encoding.fix_encoding()
-  tools.disable_buffering()
-  colorama.init()
-  net.set_user_agent('isolate.py/' + __version__)
-  sys.exit(main(sys.argv[1:]))
+  print(
+      "python client is deprecated; use go client instead (crbug.com/894045)",
+      file=sys.stderr)
