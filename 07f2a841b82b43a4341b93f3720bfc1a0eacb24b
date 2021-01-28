@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b0d5981_91351692",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-01-28T23:23:18Z",
+      "side": 1,
+      "message": "could you change default in\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_request.py;l\u003d838;drc\u003dd0eb54429ef8f9e5eaf832b7c001d1e773e19d9a\ninstead?",
+      "revId": "07f2a841b82b43a4341b93f3720bfc1a0eacb24b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
