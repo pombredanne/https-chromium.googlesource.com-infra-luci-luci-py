@@ -679,7 +679,10 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
   # the results back.
   task_details.hard_timeout = 0
   if task_details.grace_period:
-    task_details.grace_period *= 2
+    #TODO(crbug/1127113): Temporarily extend the deadline of run_isolated, because we found some
+    # cancelled builds failed to complete run_isolated, which causes the bot cache was removed
+    # unnecessarily.
+    task_details.grace_period *= 4
 
   try:
     proc = _start_task_runner(args, work_dir, ctx_file)
