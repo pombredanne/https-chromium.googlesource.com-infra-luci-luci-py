@@ -679,7 +679,7 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
   # the results back.
   task_details.hard_timeout = 0
   if task_details.grace_period:
-    task_details.grace_period *= 2
+    task_details.grace_period *= 4
 
   try:
     proc = _start_task_runner(args, work_dir, ctx_file)
