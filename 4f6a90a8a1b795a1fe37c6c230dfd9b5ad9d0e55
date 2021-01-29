@@ -51,6 +51,24 @@
       "parentUuid": "46de418b_8c52b377",
       "revId": "4f6a90a8a1b795a1fe37c6c230dfd9b5ad9d0e55",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ccaf193_292c234c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-01-29T05:19:49Z",
+      "side": 1,
+      "message": "I\u0027m not certain that\u0027s a good assumption (clearly you could have a long running task with minimal grace period generate some very difficult to upload or difficult to clean up things). IIUC that with this change, if someone has explicitly configured the grace period for the task already, then this change will have no effect?\n\nAlso why apply this at the datastore layer instead of at new task request time (i.e. in the rpc handler)?\n\nCould you just change the swarming _bot_ code (which is actually enforcing the timeouts/grace period, IIRC), so that it just doubles (or more) the currently requested grace period?\n\nIf there\u0027s a quick way to size the post-task work, maybe just generate a reasonable timeout based on that at the time it needs to be done?\n\nIf this value really is intended to leak through to the user, maybe just better error messaging is needed? i.e. \"Unable to complete ISOLATED UPLOAD phase; grace period of X was insufficient\"?\n\nI don\u0027t want to block anything here, I\u0027m just a bit skeptical this will have the desired effects :)",
+      "parentUuid": "b747a727_a17a5bef",
+      "revId": "4f6a90a8a1b795a1fe37c6c230dfd9b5ad9d0e55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
