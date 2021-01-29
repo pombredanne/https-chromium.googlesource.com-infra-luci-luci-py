@@ -22,6 +22,30 @@
       },
       "revId": "694c3be8c813b203acb50e4fa76ce3e7bd71184f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54f1fa02_db854c11",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 1336288
+      },
+      "writtenOn": "2021-01-29T02:11:50Z",
+      "side": 1,
+      "message": "Understood. But before we move to permanent, let\u0027s collect some data and check the outcome. My plan is to update this comment, if we see some positive changes on the cancelled builds and ensure 60 is good enough, aka no need to stretch to 90.",
+      "parentUuid": "03c6dfc7_b18b1048",
+      "range": {
+        "startLine": 838,
+        "startChar": 0,
+        "endLine": 840,
+        "endChar": 47
+      },
+      "revId": "694c3be8c813b203acb50e4fa76ce3e7bd71184f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
