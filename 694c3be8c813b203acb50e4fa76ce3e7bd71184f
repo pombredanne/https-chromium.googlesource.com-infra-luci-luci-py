@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03c6dfc7_b18b1048",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-01-29T00:11:41Z",
+      "side": 1,
+      "message": "I think it is fine to keep this permanently",
+      "range": {
+        "startLine": 838,
+        "startChar": 0,
+        "endLine": 840,
+        "endChar": 47
+      },
+      "revId": "694c3be8c813b203acb50e4fa76ce3e7bd71184f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
