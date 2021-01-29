@@ -69,6 +69,23 @@
       "parentUuid": "b747a727_a17a5bef",
       "revId": "4f6a90a8a1b795a1fe37c6c230dfd9b5ad9d0e55",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1f59896_c2dd3967",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-01-29T05:22:58Z",
+      "side": 1,
+      "message": "If we really do want the grace period to leak through to the caller, maybe adding a new field to buildbucket would be better? Then this could be set explicitly on a per-builder basis?",
+      "revId": "4f6a90a8a1b795a1fe37c6c230dfd9b5ad9d0e55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
