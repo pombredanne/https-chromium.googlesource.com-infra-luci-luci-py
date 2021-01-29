@@ -86,6 +86,42 @@
       "message": "If we really do want the grace period to leak through to the caller, maybe adding a new field to buildbucket would be better? Then this could be set explicitly on a per-builder basis?",
       "revId": "4f6a90a8a1b795a1fe37c6c230dfd9b5ad9d0e55",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5db1c83d_aa09a2aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-01-29T06:25:23Z",
+      "side": 1,
+      "message": "I\u0027m fine with that.",
+      "parentUuid": "d1f59896_c2dd3967",
+      "revId": "4f6a90a8a1b795a1fe37c6c230dfd9b5ad9d0e55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c352bb7c_55e1a314",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-01-29T06:25:23Z",
+      "side": 1,
+      "message": "\u003e I\u0027m not certain that\u0027s a good assumption (clearly you could have a long running task with minimal grace period generate some very difficult to upload or difficult to clean up things). IIUC that with this change, if someone has explicitly configured the grace period for the task already, then this change will have no effect?\n\u003e \n\nYes.\n\n\u003e Also why apply this at the datastore layer instead of at new task request time (i.e. in the rpc handler)?\n\u003e \n\nBecause we don\u0027t want to have value in multiple places?\n\n\u003e Could you just change the swarming _bot_ code (which is actually enforcing the timeouts/grace period, IIRC), so that it just doubles (or more) the currently requested grace period?\n\u003e \n\nWe can do, but I don\u0027t think current change has disadvantage compared to that?\n\n\u003e If there\u0027s a quick way to size the post-task work, maybe just generate a reasonable timeout based on that at the time it needs to be done?\n\u003e \n\nI think that is too much or bit difficult. I think we need to know the number of files in namedcache for that, but calculation of such number itself takes some amount of time if there are many.\n\n\u003e If this value really is intended to leak through to the user, maybe just better error messaging is needed? i.e. \"Unable to complete ISOLATED UPLOAD phase; grace period of X was insufficient\"?\n\u003e \n\nYeah, that is better than now.\n\n\u003e I don\u0027t want to block anything here, I\u0027m just a bit skeptical this will have the desired effects :)",
+      "parentUuid": "7ccaf193_292c234c",
+      "revId": "4f6a90a8a1b795a1fe37c6c230dfd9b5ad9d0e55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
