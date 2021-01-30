@@ -63,6 +63,30 @@
       },
       "revId": "5f77a459333b4355abcc9b29c843bf5e882fbb0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d9e22df_9d3b3e89",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-01-30T07:57:50Z",
+      "side": 1,
+      "message": "Sounds fine to me",
+      "parentUuid": "ffa82852_1b343f91",
+      "range": {
+        "startLine": 127,
+        "startChar": 30,
+        "endLine": 127,
+        "endChar": 34
+      },
+      "revId": "5f77a459333b4355abcc9b29c843bf5e882fbb0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
