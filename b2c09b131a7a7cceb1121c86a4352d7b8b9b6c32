@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a2dd9b4_44891648",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-01T04:47:06Z",
+      "side": 1,
+      "message": "Oops, sorry this was an old bug. Please ignore.",
+      "revId": "b2c09b131a7a7cceb1121c86a4352d7b8b9b6c32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
