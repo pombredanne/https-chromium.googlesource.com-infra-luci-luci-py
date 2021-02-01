@@ -57,11 +57,6 @@ class Handler(BaseHTTPServer.BaseHTTPRequestHandler):
       self.server.server.task_update(task_id, data)
       return self._send_json({'ok': True})
 
-    if self.path.startswith('/swarming/api/v1/bot/task_error'):
-      task_id = self.path[len('/swarming/api/v1/bot/task_error/'):]
-      self.server.server.task_error(task_id, data)
-      return self._send_json({'resp': 1})
-
     self.server.testcase.fail(self.path)
     self.send_response(500)
 
@@ -94,7 +89,6 @@ class Server(object):
     self._thread.start()
     self._events = []
     self._tasks = {}
-    self._errors = {}
     self.has_polled = threading.Event()
 
   @property
@@ -110,10 +104,6 @@ class Server(object):
     with self._lock:
       self._tasks.setdefault(task_id, []).append(data)
 
-  def task_error(self, task_id, data):
-    with self._lock:
-      self._errors.setdefault(task_id, []).append(data)
-
   def get_events(self):
     with self._lock:
       return self._events[:]
@@ -121,10 +111,6 @@ class Server(object):
   def get_tasks(self):
     with self._lock:
       return self._tasks.copy()
-
-  def get_errors(self):
-    with self._lock:
-      return self._errors.copy()
 
   def shutdown(self):
     self._httpd.shutdown()
