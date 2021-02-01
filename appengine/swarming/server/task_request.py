@@ -835,7 +835,12 @@ class TaskProperties(ndb.Model):
   # the process. During this time the process should clean up itself as quickly
   # as possible, potentially uploading partial results back.
   grace_period_secs = ndb.IntegerProperty(
-      validator=_validate_grace, default=30, indexed=False)
+      # TODO(crbug/1127113): Temporarily extend the deadline because we found
+      # some cancelled builds failed to complete run_isolated, which causes
+      # the bot cache is removed unnecessarily.
+      validator=_validate_grace,
+      default=60,
+      indexed=False)
 
   # Bot controlled timeout for new bytes from the subprocess. If a subprocess
   # doesn't output new data to stdout for .io_timeout_secs, consider the command

@@ -539,7 +539,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
             },
             u'env': {},
             u'env_prefixes': {},
-            u'grace_period': 30,
+            u'grace_period': 60,
             u'hard_timeout': 3600,
             u'host': u'http://localhost:8080',
             u'isolated': {
@@ -617,7 +617,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
             },
             u'env': {},
             u'env_prefixes': {},
-            u'grace_period': 30,
+            u'grace_period': 60,
             u'hard_timeout': 3600,
             u'host': u'http://localhost:8080',
             u'isolated': {
@@ -696,7 +696,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
             },
             u'env': {},
             u'env_prefixes': {},
-            u'grace_period': 30,
+            u'grace_period': 60,
             u'hard_timeout': 3600,
             u'host': u'http://localhost:8080',
             u'isolated': {
@@ -818,7 +818,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
             },
             u'env': {},
             u'env_prefixes': {},
-            u'grace_period': 30,
+            u'grace_period': 60,
             u'hard_timeout': 3600,
             u'host': u'http://localhost:8080',
             u'isolated': None,
@@ -1108,7 +1108,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
             u'env': {},
             u'env_prefixes': {},
             u'hard_timeout': 3600,
-            u'grace_period': 30,
+            u'grace_period': 60,
             u'host': u'http://localhost:8080',
             u'isolated': {
                 u'input': u'0123456789012345678901234567890123456789',

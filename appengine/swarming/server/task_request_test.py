@@ -1374,7 +1374,7 @@ class TaskRequestApiTest(TestCase):
     actual = swarming_pb2.TaskProperties()
     task_request.TaskProperties().to_proto(actual)
     expected = swarming_pb2.TaskProperties()
-    expected.grace_period.seconds = 30
+    expected.grace_period.seconds = 60
     self.assertEqual(expected, actual)
 
   def test_request_bad_values(self):

@@ -797,7 +797,7 @@ class TaskResultApiTest(TestCase):
     run_result.dead_after_ts = None
     run_result.put()
 
-    props_h = '5c7429e5ab9a21f37ec8c39dcbafbe41127fa67075b92ab0642861bb06578a12'
+    props_h = 'a9243ba237d690943ca6423993fa3826251d3dbf1115c844314347a39d3fcb57'
     expected = swarming_pb2.TaskResult(
         request=swarming_pb2.TaskRequest(
             task_slices=[
@@ -818,7 +818,7 @@ class TaskResultApiTest(TestCase):
                                 key=u'pool', values=[u'default']),
                         ],
                         execution_timeout=duration_pb2.Duration(seconds=86400),
-                        grace_period=duration_pb2.Duration(seconds=30),
+                        grace_period=duration_pb2.Duration(seconds=60),
                     ),
                     expiration=duration_pb2.Duration(seconds=60),
                     properties_hash=props_h,
@@ -964,7 +964,7 @@ class TaskResultApiTest(TestCase):
     run_result.dead_after_ts = None
     run_result.put()
 
-    props_h = '5c7429e5ab9a21f37ec8c39dcbafbe41127fa67075b92ab0642861bb06578a12'
+    props_h = 'a9243ba237d690943ca6423993fa3826251d3dbf1115c844314347a39d3fcb57'
     expected = swarming_pb2.TaskResult(
         request=swarming_pb2.TaskRequest(
             task_slices=[
@@ -985,7 +985,7 @@ class TaskResultApiTest(TestCase):
                                 key=u'pool', values=[u'default']),
                         ],
                         execution_timeout=duration_pb2.Duration(seconds=86400),
-                        grace_period=duration_pb2.Duration(seconds=30),
+                        grace_period=duration_pb2.Duration(seconds=60),
                     ),
                     expiration=duration_pb2.Duration(seconds=60),
                     properties_hash=props_h,
