@@ -16,6 +16,24 @@
       "message": "`must_signal_internal_failure` is used to mark the task as `internal_failure`\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_bot/bot_code/bot_main.py;l\u003d1006;drc\u003df5e39fea37b863fb0b428dd1aa2ad48c3775d8a6\n\nAnd also `internal_failure` is given to a user-defined post task hook.\nThis may break some users\u0027 hook.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_bot/bot_code/bot_main.py;l\u003d1028;drc\u003df5e39fea37b863fb0b428dd1aa2ad48c3775d8a6\n\nAnd, it\u0027s still not clear to me why must_signal_internal_failure needs to be cleared and post_task_error() needs to be posted in task_runner.py.  \nCan we clear exit code in task_runner.py and keep `must_isgnal_internal_failure` to propagate the signal to bot_main.py?",
       "revId": "0b027452e658080df1f174c403946914443d2aa6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2896722_b6ad289b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-01T04:49:48Z",
+      "side": 1,
+      "message": "I realized that this patch is old. Sorry for the noise.",
+      "parentUuid": "bd9072ea_55d70073",
+      "revId": "0b027452e658080df1f174c403946914443d2aa6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
