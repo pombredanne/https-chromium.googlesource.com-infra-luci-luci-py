@@ -94,6 +94,30 @@
       },
       "revId": "987c4053b658d87bad947bb28c93fc75033cbe6b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9833a07f_baefa0c1",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-04T23:55:27Z",
+      "side": 1,
+      "message": "IIUC, you want to use `filter` rather than `map`?\n\n```\n\u003e\u003e len(list(map(bool, [None, 1])))\n2\n\u003e\u003e\u003e len(list(filter(bool, [None, 1])))\n1\n```",
+      "parentUuid": "ef2883f7_7c801f4c",
+      "range": {
+        "startLine": 422,
+        "startChar": 39,
+        "endLine": 422,
+        "endChar": 47
+      },
+      "revId": "987c4053b658d87bad947bb28c93fc75033cbe6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
