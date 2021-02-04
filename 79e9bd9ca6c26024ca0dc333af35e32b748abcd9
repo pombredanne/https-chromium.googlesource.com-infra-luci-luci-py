@@ -16,6 +16,40 @@
       "message": "doesn\u0027t this make datastore operation slower?",
       "revId": "79e9bd9ca6c26024ca0dc333af35e32b748abcd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5302032_633394eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2021-02-04T14:59:40Z",
+      "side": 1,
+      "message": "Sound good. Definitely worth trying if it  thanks!",
+      "revId": "79e9bd9ca6c26024ca0dc333af35e32b748abcd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c20433a_bfe9afff",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2021-02-04T14:59:40Z",
+      "side": 1,
+      "message": "Do you recall why tx_result() is done as a separate loop? I think it should be merged with run, it\u0027d make the function simpler and I don\u0027t see a good rationale to keep them separate.\n\nIn particular this mixes asynchronous code with run() and synchronous code tx_result().\n\nAnother problem with this code is that if the code between when line 759 runs and when line 778 runs, the bot_missing event is never registered, which is causes BigQuery data loss and makes fleet analysis harder.\n\nSo an option is to:\n\n  def run(bot_key):\n    bot \u003d yield bot_key.get_async()\n    if bot and bot.should_be_dead and (bot.is_alive or not bot.is_dead):\n      \u003clines 771-792 converted to async\u003e\n      \u003clines 759-761\u003e\n    raise ndb.Return(None)",
+      "revId": "79e9bd9ca6c26024ca0dc333af35e32b748abcd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
