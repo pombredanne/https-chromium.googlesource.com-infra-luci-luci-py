@@ -22,6 +22,30 @@
       },
       "revId": "987c4053b658d87bad947bb28c93fc75033cbe6b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "194feec2_e18ab9ed",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-04T08:04:51Z",
+      "side": 1,
+      "message": "this is for compatibility with python3 and to supress my linter pyright",
+      "parentUuid": "256fb8e9_a6529a6f",
+      "range": {
+        "startLine": 422,
+        "startChar": 39,
+        "endLine": 422,
+        "endChar": 47
+      },
+      "revId": "987c4053b658d87bad947bb28c93fc75033cbe6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
