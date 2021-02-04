@@ -70,6 +70,30 @@
       },
       "revId": "987c4053b658d87bad947bb28c93fc75033cbe6b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef2883f7_7c801f4c",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-04T09:00:42Z",
+      "side": 1,
+      "message": "Ah, sorry. I missread your first comment.\n\nfuture can be None in L434 if it is not active.\nBut I think futures doesn\u0027t have None in L397.",
+      "parentUuid": "dd4a3ade_2c89e7f0",
+      "range": {
+        "startLine": 422,
+        "startChar": 39,
+        "endLine": 422,
+        "endChar": 47
+      },
+      "revId": "987c4053b658d87bad947bb28c93fc75033cbe6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
