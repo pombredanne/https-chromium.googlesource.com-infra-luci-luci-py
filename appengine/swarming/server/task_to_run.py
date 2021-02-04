@@ -419,7 +419,7 @@ def _yield_potential_tasks(bot_id):
     while any(futures) or items:
       logging.debug(
           '_yield_potential_tasks(%s): yielding %s items and %s futures',
-          bot_id, len(items), len(futures))
+          bot_id, len(items), len(list(map(bool, futures))))
       if items:
         yield items[0]
         items = items[1:]
