@@ -46,6 +46,30 @@
       },
       "revId": "987c4053b658d87bad947bb28c93fc75033cbe6b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd4a3ade_2c89e7f0",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-04T08:49:42Z",
+      "side": 1,
+      "message": "\u003e compatibility with python3\n\nstill don\u0027t understand. I thought len(futures) dosen\u0027t change in Python3.\nMaybe I\u0027m missing something...\n\nYou would also want to fix len(futures) at L397?",
+      "parentUuid": "194feec2_e18ab9ed",
+      "range": {
+        "startLine": 422,
+        "startChar": 39,
+        "endLine": 422,
+        "endChar": 47
+      },
+      "revId": "987c4053b658d87bad947bb28c93fc75033cbe6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
