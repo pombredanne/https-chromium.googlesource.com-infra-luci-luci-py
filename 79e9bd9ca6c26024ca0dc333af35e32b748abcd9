@@ -103,6 +103,24 @@
       "message": "Hm, good point.\n\nhttps://crrev.com/c/1916985\nThe tx_result() initially only did stats[\u0027dead\u0027] +\u003d 1 which was ok to run synchronously. \n\nThanks to my CL description in https://crrev.com/c/1916984, I remember there was a reason why bot_event() is in tx_result().\n\u003e The reason why it\u0027s not in the same transaction is that\n\u003e bot_event internally calls datastore_utils.store_new_version which can\u0027t run in another transactions.\n\nHow about running tx_result() asynchronously? \nI still, though,  want to do that in a separate CL to deploy `keys_only\u003dTrue` first to see if it works (or not).",
       "revId": "79e9bd9ca6c26024ca0dc333af35e32b748abcd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a5a953e_27d615a8",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2021-02-05T23:15:45Z",
+      "side": 1,
+      "message": "Good idea.",
+      "parentUuid": "faa27095_ba838d11",
+      "revId": "79e9bd9ca6c26024ca0dc333af35e32b748abcd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
