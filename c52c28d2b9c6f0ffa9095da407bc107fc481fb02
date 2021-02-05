@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d651b956_e9758258",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2021-02-05T23:44:08Z",
+      "side": 1,
+      "message": "Setting reviewer to Swarming owners.\n\nThe context is that --force/-f used to be a flag but is not anymore. I can\u0027t test locally but I think it was removed a while ago. When I wrote this code we were still using Ubuntu 12.04 (9 years ago).",
+      "revId": "c52c28d2b9c6f0ffa9095da407bc107fc481fb02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
