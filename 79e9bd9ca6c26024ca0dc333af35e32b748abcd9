@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3de30299_26436350",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-05T03:28:41Z",
+      "side": 1,
+      "message": "task_queues.cleanup_after_bot() is currently called outside of transaction as pre-transaction step synchronously.\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/2672986/2/appengine/swarming/server/bot_management.py#b804\n\nIt will still be called outside of transaction in tx_result() which is called after each transaction.\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/2672986/2/appengine/swarming/server/bot_management.py#764",
+      "parentUuid": "96fb2761_7e1bafe4",
+      "revId": "79e9bd9ca6c26024ca0dc333af35e32b748abcd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a5302032_633394eb",
@@ -48,6 +66,23 @@
       "writtenOn": "2021-02-04T14:59:40Z",
       "side": 1,
       "message": "Do you recall why tx_result() is done as a separate loop? I think it should be merged with run, it\u0027d make the function simpler and I don\u0027t see a good rationale to keep them separate.\n\nIn particular this mixes asynchronous code with run() and synchronous code tx_result().\n\nAnother problem with this code is that if the code between when line 759 runs and when line 778 runs, the bot_missing event is never registered, which is causes BigQuery data loss and makes fleet analysis harder.\n\nSo an option is to:\n\n  def run(bot_key):\n    bot \u003d yield bot_key.get_async()\n    if bot and bot.should_be_dead and (bot.is_alive or not bot.is_dead):\n      \u003clines 771-792 converted to async\u003e\n      \u003clines 759-761\u003e\n    raise ndb.Return(None)",
+      "revId": "79e9bd9ca6c26024ca0dc333af35e32b748abcd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faa27095_ba838d11",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-05T03:28:41Z",
+      "side": 1,
+      "message": "Hm, good point.\n\nhttps://crrev.com/c/1916985\nThe tx_result() initially only did stats[\u0027dead\u0027] +\u003d 1 which was ok to run synchronously. \n\nThanks to my CL description in https://crrev.com/c/1916984, I remember there was a reason why bot_event() is in tx_result().\n\u003e The reason why it\u0027s not in the same transaction is that\n\u003e bot_event internally calls datastore_utils.store_new_version which can\u0027t run in another transactions.\n\nHow about running tx_result() asynchronously? \nI still, though,  want to do that in a separate CL to deploy `keys_only\u003dTrue` first to see if it works (or not).",
       "revId": "79e9bd9ca6c26024ca0dc333af35e32b748abcd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
