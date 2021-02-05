@@ -1329,7 +1329,6 @@ def host_reboot_and_return(message=None):
     # remove the call with -f. We also include 'reboot' in case 'shutdown' gives
     # us 'Failed to talk to init daemon'.
     cmds = [
-        ['sudo', '-n', '/sbin/shutdown', '-f', '-r', 'now'],
         ['sudo', '-n', '/sbin/shutdown', '-r', 'now'],
         ['sudo', '-n', '/sbin/reboot', '-f'],
     ]
