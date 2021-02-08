@@ -45,6 +45,30 @@
       },
       "revId": "19e888079988e0a2688f96d53c0760d372da4d78",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45468374_76d8af0b",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1329,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-08T00:59:54Z",
+      "side": 0,
+      "message": "We still have Ubuntu 14.04 bots. But they don\u0027t seem to have -f.\nhttps://chromium-swarm.appspot.com/botlist?c\u003did\u0026c\u003dtask\u0026c\u003dos\u0026c\u003dstatus\u0026d\u003dasc\u0026f\u003dos%3AUbuntu-14\u0026k\u003dos\u0026s\u003did",
+      "parentUuid": "4c8a67a1_ca95c5a7",
+      "range": {
+        "startLine": 1326,
+        "startChar": 0,
+        "endLine": 1329,
+        "endChar": 29
+      },
+      "revId": "19e888079988e0a2688f96d53c0760d372da4d78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
