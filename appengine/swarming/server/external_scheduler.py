@@ -255,7 +255,9 @@ def notify_requests(es_cfg, requests, use_tq, is_callback, batch_mode=False):
       },
       transactional=ndb.in_transaction())
   if not enqueued:
-    raise datastore_utils.CommitError('Failed to enqueue task')
+    # TODO(crbug.com/1175618):
+    # raise datastore_utils.CommitError('Failed to enqueue task')
+    logging.error("failed to enqueue task")
 
 
 def notify_request_now(es_host, proto):
