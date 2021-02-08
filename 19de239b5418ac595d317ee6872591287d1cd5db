@@ -52,6 +52,24 @@
       "parentUuid": "98d171bf_0efa5c12",
       "revId": "19de239b5418ac595d317ee6872591287d1cd5db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05fc6adf_b02f7a78",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-08T06:01:00Z",
+      "side": 1,
+      "message": "I\u0027m also not sure if it guarantees to speed up since I don\u0027t know the internal.\nI can be wrong, but I think it\u0027s worth trying.",
+      "parentUuid": "bf223199_befbd176",
+      "revId": "19de239b5418ac595d317ee6872591287d1cd5db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
