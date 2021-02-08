@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "448c8540_8fdc6746",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-08T03:42:29Z",
+      "side": 1,
+      "message": "Remove Auto-Submit.\nThis CL needs to be tested on dev.",
+      "revId": "3aee1b6ed5884d17607ada972d1241e298b36878",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
