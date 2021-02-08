@@ -34,6 +34,24 @@
       "parentUuid": "c60d1034_26931ea5",
       "revId": "19de239b5418ac595d317ee6872591287d1cd5db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf223199_befbd176",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-08T05:41:03Z",
+      "side": 1,
+      "message": "I think that fetch_page is benefitial when we need to fetch large amount of data in total. But this only fetches key of bot entity.\n\nI rather skeptical that fetch_page actually makes getting first few entries faster.",
+      "parentUuid": "98d171bf_0efa5c12",
+      "revId": "19de239b5418ac595d317ee6872591287d1cd5db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
