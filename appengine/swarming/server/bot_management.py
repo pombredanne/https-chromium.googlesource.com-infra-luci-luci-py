@@ -804,19 +804,24 @@ def cron_update_bot_info():
   }
   try:
     futures = []
-    for k in BotInfo.yield_dead_bot_keys():
-      cron_stats['seen'] += 1
-      # Retry more often than the default 1. We do not want to throw too much
-      # in the logs and there should be plenty of time to do the retries.
-      f = datastore_utils.transaction_async(lambda: run(k), retries=5)
-      futures.append(f)
-      if len(futures) < 5:
-        continue
-      ndb.Future.wait_any(futures)
-      for i in range(len(futures) - 1, -1, -1):
-        if futures[i].done():
-          f = futures.pop(i)
-          tx_result(f, cron_stats)
+    more = True
+    cursor = None
+    q = BotInfo.yield_dead_bot_keys()
+    while more:
+      keys, cursor, more = q.fetch_page(10, start_cursor=cursor)
+      for k in keys:
+        cron_stats['seen'] += 1
+        # Retry more often than the default 1. We do not want to throw too much
+        # in the logs and there should be plenty of time to do the retries.
+        f = datastore_utils.transaction_async(lambda: run(k), retries=5)
+        futures.append(f)
+        if len(futures) < 5:
+          continue
+        ndb.Future.wait_any(futures)
+        for i in range(len(futures) - 1, -1, -1):
+          if futures[i].done():
+            f = futures.pop(i)
+            tx_result(f, cron_stats)
     for f in futures:
       tx_result(f, cron_stats)
   finally:
