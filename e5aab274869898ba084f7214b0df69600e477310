@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2c8f13c_c2d8a5b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-08T02:58:27Z",
+      "side": 1,
+      "message": "I think it\u0027s better to not silence. We already mark the error as acknowledged on ErrorReporting. \n\nIt\u0027s an issue if it\u0027s happening often.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 32
+      },
+      "revId": "e5aab274869898ba084f7214b0df69600e477310",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
