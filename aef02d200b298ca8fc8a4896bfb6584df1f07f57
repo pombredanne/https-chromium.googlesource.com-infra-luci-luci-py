@@ -16,6 +16,63 @@
       "message": "I changed to set deadline.\nPTAL",
       "revId": "aef02d200b298ca8fc8a4896bfb6584df1f07f57",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e201f27_fcfcbb84",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-08T08:16:26Z",
+      "side": 1,
+      "message": "I\u0027m not so sure we really use 5 seconds deadline now.",
+      "range": {
+        "startLine": 308,
+        "startChar": 66,
+        "endLine": 308,
+        "endChar": 68
+      },
+      "revId": "aef02d200b298ca8fc8a4896bfb6584df1f07f57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a184bc0e_12c889e3",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-08T08:16:26Z",
+      "side": 1,
+      "message": "could you show debug log before this loop?",
+      "revId": "aef02d200b298ca8fc8a4896bfb6584df1f07f57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9e73a0c_260e6c0f",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-08T08:16:26Z",
+      "side": 1,
+      "message": "could you show debug level log per 100 bot or so?",
+      "revId": "aef02d200b298ca8fc8a4896bfb6584df1f07f57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
