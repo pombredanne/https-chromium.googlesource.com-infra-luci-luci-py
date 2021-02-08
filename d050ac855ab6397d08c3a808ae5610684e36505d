@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c1179c3_f99cf973",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-08T03:43:27Z",
+      "side": 1,
+      "message": "I fixed my stupid mistake.",
+      "parentUuid": "c6b3fd6d_60f60c4a",
+      "revId": "d050ac855ab6397d08c3a808ae5610684e36505d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9148b5be_13d43db4",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-02-08T03:29:54Z",
       "side": 1,
       "message": "check items?",
+      "revId": "d050ac855ab6397d08c3a808ae5610684e36505d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e056ff00_7c4b3a79",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1774,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-08T03:43:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9148b5be_13d43db4",
       "revId": "d050ac855ab6397d08c3a808ae5610684e36505d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
