@@ -16,6 +16,24 @@
       "message": "Could you verify that using fetch_page is actually faster than get all by calling the datastore api from local?",
       "revId": "19de239b5418ac595d317ee6872591287d1cd5db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98d171bf_0efa5c12",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-08T05:28:57Z",
+      "side": 1,
+      "message": "\u003e faster than get all by calling the datastore api from local\n\nI think the total time is slower as it will have more communications. But it will avoid one big fetch.",
+      "parentUuid": "c60d1034_26931ea5",
+      "revId": "19de239b5418ac595d317ee6872591287d1cd5db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
