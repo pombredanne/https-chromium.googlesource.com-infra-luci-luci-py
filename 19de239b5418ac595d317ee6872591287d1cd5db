@@ -70,6 +70,24 @@
       "parentUuid": "bf223199_befbd176",
       "revId": "19de239b5418ac595d317ee6872591287d1cd5db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbe2c96b_63c340ef",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-08T06:23:24Z",
+      "side": 1,
+      "message": "I mean you can verify that by using datastore library before submitting this.",
+      "parentUuid": "05fc6adf_b02f7a78",
+      "revId": "19de239b5418ac595d317ee6872591287d1cd5db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
