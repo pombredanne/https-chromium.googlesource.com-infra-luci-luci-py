@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff608924_b5153357",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2021-02-08T13:31:36Z",
+      "side": 1,
+      "message": "lgtm + agree with Yiwei\u0027s comments",
+      "revId": "cc8145cf5426f8efb50fc4cb39fe5ea066d906a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db5ee21d_eb6ff6e7",
@@ -37,6 +54,29 @@
       "writtenOn": "2021-02-08T05:31:30Z",
       "side": 1,
       "message": "I think the proto doc should also be updated.\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:go/src/go.chromium.org/luci/lucictx/sections.proto;l\u003d113-139;drc\u003d3ea9d6c48356c4f767620ef20809be77b172121c",
+      "revId": "cc8145cf5426f8efb50fc4cb39fe5ea066d906a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f746ce54_4d9c174a",
+        "filename": "client/LUCI_CONTEXT.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2021-02-08T13:31:36Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 239,
+        "startChar": 5,
+        "endLine": 239,
+        "endChar": 14
+      },
       "revId": "cc8145cf5426f8efb50fc4cb39fe5ea066d906a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
