@@ -58,6 +58,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5fe924d_932d04bb",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-08T08:28:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a184bc0e_12c889e3",
+      "revId": "aef02d200b298ca8fc8a4896bfb6584df1f07f57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9e73a0c_260e6c0f",
@@ -71,6 +89,24 @@
       "writtenOn": "2021-02-08T08:16:26Z",
       "side": 1,
       "message": "could you show debug level log per 100 bot or so?",
+      "revId": "aef02d200b298ca8fc8a4896bfb6584df1f07f57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93211633_df918c7b",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-08T08:28:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9e73a0c_260e6c0f",
       "revId": "aef02d200b298ca8fc8a4896bfb6584df1f07f57",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
