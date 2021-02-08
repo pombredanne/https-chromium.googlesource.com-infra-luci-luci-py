@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5d8ba62_04ea1302",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-08T02:46:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5369bf9_91ca4e63",
+      "revId": "f99e5aa80b56e0dcbe9beb4aedd1d978c836d103",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b72d8899_7274a781",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-02-08T02:35:54Z",
       "side": 1,
       "message": "is this removal with bot code authority?",
+      "revId": "f99e5aa80b56e0dcbe9beb4aedd1d978c836d103",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46fc58b3_6cf81d19",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-08T02:46:40Z",
+      "side": 1,
+      "message": "It seems not. I changed to use \"sudo rm\".",
+      "parentUuid": "b72d8899_7274a781",
       "revId": "f99e5aa80b56e0dcbe9beb4aedd1d978c836d103",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
