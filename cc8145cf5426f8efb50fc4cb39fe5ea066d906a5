@@ -22,6 +22,23 @@
       },
       "revId": "cc8145cf5426f8efb50fc4cb39fe5ea066d906a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef9b43c0_7ec85007",
+        "filename": "client/LUCI_CONTEXT.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-02-08T05:31:30Z",
+      "side": 1,
+      "message": "I think the proto doc should also be updated.\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:go/src/go.chromium.org/luci/lucictx/sections.proto;l\u003d113-139;drc\u003d3ea9d6c48356c4f767620ef20809be77b172121c",
+      "revId": "cc8145cf5426f8efb50fc4cb39fe5ea066d906a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
