@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c07c5568_74626cf9",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-08T02:49:39Z",
+      "side": 1,
+      "message": "nit: show this in log too?",
+      "range": {
+        "startLine": 486,
+        "startChar": 10,
+        "endLine": 486,
+        "endChar": 11
+      },
+      "revId": "6c7ea3398dc6134d9e9bcd966259c60012061bbf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
