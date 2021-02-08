@@ -46,6 +46,30 @@
       },
       "revId": "e5aab274869898ba084f7214b0df69600e477310",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f743a929_9e40965f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-08T03:05:23Z",
+      "side": 1,
+      "message": "Oh, I see. \nI think we should fix the alert setting, then. e.g. ignore the handler or change the threshold etc.\n\nOr fix the error itself.\nAs the error is TaskTooLargeError, we can fix the payload size somehow?",
+      "parentUuid": "661af612_56c8ad40",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 32
+      },
+      "revId": "e5aab274869898ba084f7214b0df69600e477310",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
