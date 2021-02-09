@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f180bb6b_e11d35d6",
+        "filename": "client/LUCI_CONTEXT.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-02-09T05:35:59Z",
+      "side": 1,
+      "message": "This is syntax for gitiles (https://chromium.googlesource.com/infra/luci/luci-py/+/refs/changes/67/2679767/1/client/LUCI_CONTEXT.md)",
+      "parentUuid": "db5ee21d_eb6ff6e7",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 8
+      },
+      "revId": "cc8145cf5426f8efb50fc4cb39fe5ea066d906a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef9b43c0_7ec85007",
@@ -58,6 +82,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74541ed1_c08a928d",
+        "filename": "client/LUCI_CONTEXT.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-02-09T05:35:59Z",
+      "side": 1,
+      "message": "Right! Done in luci-go CL.",
+      "parentUuid": "ef9b43c0_7ec85007",
+      "revId": "cc8145cf5426f8efb50fc4cb39fe5ea066d906a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f746ce54_4d9c174a",
@@ -71,6 +113,30 @@
       "writtenOn": "2021-02-08T13:31:36Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 239,
+        "startChar": 5,
+        "endLine": 239,
+        "endChar": 14
+      },
+      "revId": "cc8145cf5426f8efb50fc4cb39fe5ea066d906a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efb368cc_6583979a",
+        "filename": "client/LUCI_CONTEXT.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-02-09T05:35:59Z",
+      "side": 1,
+      "message": "bah",
+      "parentUuid": "f746ce54_4d9c174a",
       "range": {
         "startLine": 239,
         "startChar": 5,
