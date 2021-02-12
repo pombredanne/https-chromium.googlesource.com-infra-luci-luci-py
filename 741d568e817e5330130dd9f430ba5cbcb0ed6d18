@@ -22,6 +22,30 @@
       },
       "revId": "741d568e817e5330130dd9f430ba5cbcb0ed6d18",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a56e4bd_1870249d",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-12T05:14:19Z",
+      "side": 1,
+      "message": "agree. let\u0027s try step by step.",
+      "parentUuid": "0a747bb2_31b2c41f",
+      "range": {
+        "startLine": 815,
+        "startChar": 64,
+        "endLine": 815,
+        "endChar": 77
+      },
+      "revId": "741d568e817e5330130dd9f430ba5cbcb0ed6d18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
