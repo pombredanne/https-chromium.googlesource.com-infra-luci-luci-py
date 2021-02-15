@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e5f5056_7902e1fc",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-15T05:52:34Z",
+      "side": 1,
+      "message": "Ah, then this needs to iterate all bot root keys for the entities without bot info.\nI\u0027ll use task queue instead.",
+      "parentUuid": "2311fcfa_291c128b",
+      "range": {
+        "startLine": 908,
+        "startChar": 8,
+        "endLine": 908,
+        "endChar": 15
+      },
+      "revId": "815aab30c6a8e16dc88965ff885939b14310774a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44d91662_0adc4908",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 3
