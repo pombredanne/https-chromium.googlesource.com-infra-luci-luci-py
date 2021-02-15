@@ -22,6 +22,30 @@
       },
       "revId": "5a987512e239d9cf6d795e8085733c65ebaa2c83",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f879ff2a_7ffd205f",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-15T03:36:40Z",
+      "side": 1,
+      "message": "We can try.\nBut, I guess there will be no difference as cursor is explicitly specified. \nCan you elaborate why you think it may help?",
+      "parentUuid": "800bc1b9_c2837b8b",
+      "range": {
+        "startLine": 815,
+        "startChar": 27,
+        "endLine": 815,
+        "endChar": 28
+      },
+      "revId": "5a987512e239d9cf6d795e8085733c65ebaa2c83",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
