@@ -25,7 +25,7 @@ import unicodedata
 from utils import fs
 from utils import subprocess42
 from utils import tools
-tools.force_local_third_party()
+# tools.force_local_third_party()
 
 # third_party/
 import six
