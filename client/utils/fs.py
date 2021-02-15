@@ -11,8 +11,8 @@ import shutil
 import subprocess
 import sys
 
-from utils import tools
-tools.force_local_third_party()
+# from utils import tools
+# tools.force_local_third_party()
 
 # third_party/
 import six
