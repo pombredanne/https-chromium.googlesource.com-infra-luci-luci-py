@@ -46,6 +46,30 @@
       },
       "revId": "5a987512e239d9cf6d795e8085733c65ebaa2c83",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de12f2f8_ca40d1f4",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-15T03:40:56Z",
+      "side": 1,
+      "message": "I\u0027m wondering whether q has state around deadline when it is initilized.",
+      "parentUuid": "f879ff2a_7ffd205f",
+      "range": {
+        "startLine": 815,
+        "startChar": 27,
+        "endLine": 815,
+        "endChar": 28
+      },
+      "revId": "5a987512e239d9cf6d795e8085733c65ebaa2c83",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
