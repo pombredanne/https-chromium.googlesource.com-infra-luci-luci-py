@@ -905,8 +905,10 @@ def cron_delete_old_bot():
   skipped = 0
   deleted = []
   try:
-    q = BotRoot.query(default_options=ndb.QueryOptions(keys_only=True))
-    for bot_root_key in q:
+    q = BotInfo.query(default_options=ndb.QueryOptions(keys_only=True)).order(
+        BotInfo.last_seen_ts)
+    for bot_info_key in q:
+      bot_root_key = bot_info_key.parent()
       # Check if it has any BotEvent left. If not, it means that the entity is
       # older than _OLD_BOT_EVENTS_CUF_OFF, so the whole thing can be deleted
       # now.
