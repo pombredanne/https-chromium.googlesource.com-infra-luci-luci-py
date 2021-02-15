@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd8c0308_fe437d05",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-15T05:05:38Z",
+      "side": 1,
+      "message": "If BotInfo entities are already deleted by Bot delete API. This cron won\u0027t be able to delete BotEvents for the deleted bots.",
+      "range": {
+        "startLine": 908,
+        "startChar": 8,
+        "endLine": 908,
+        "endChar": 15
+      },
+      "revId": "815aab30c6a8e16dc88965ff885939b14310774a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44d91662_0adc4908",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-15T05:05:38Z",
+      "side": 1,
+      "message": "This comment needs to be removed if we change the query.",
+      "range": {
+        "startLine": 915,
+        "startChar": 0,
+        "endLine": 917,
+        "endChar": 17
+      },
+      "revId": "815aab30c6a8e16dc88965ff885939b14310774a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
