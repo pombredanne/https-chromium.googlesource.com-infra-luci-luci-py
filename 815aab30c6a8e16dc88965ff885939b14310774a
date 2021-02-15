@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2311fcfa_291c128b",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-15T05:09:49Z",
+      "side": 1,
+      "message": "There is cron_delete_old_bot_events() to delete old BotEvent. \nSo this cron can be used to cleanup old BotInfo + BotRoot.  \n\nMaybe better to clarify the documents as the intention will change from the initial implementation.",
+      "parentUuid": "dd8c0308_fe437d05",
+      "range": {
+        "startLine": 908,
+        "startChar": 8,
+        "endLine": 908,
+        "endChar": 15
+      },
+      "revId": "815aab30c6a8e16dc88965ff885939b14310774a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44d91662_0adc4908",
