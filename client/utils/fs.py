@@ -5,14 +5,15 @@
 """Wraps os, os.path and shutil functions to work around MAX_PATH on Windows."""
 
 import inspect
+import logging
 import os
 import re
 import shutil
 import subprocess
 import sys
 
-from utils import tools
-tools.force_local_third_party()
+# from utils import tools
+# tools.force_local_third_party()
 
 # third_party/
 import six
@@ -432,6 +433,34 @@ def copy2(src, dst):
 
 def rmtree(path, *args, **kwargs):
   return shutil.rmtree(extend(path), *args, **kwargs)
+
+
+# native commands
+
+def rmtree_native_posix(path):
+  cmd = ['rm', '-rf', path]
+  out = subprocess.check_output(cmd)
+  logging.info('fs.rmtree_native_posix: %s. %s', cmd, out)
+
+
+def rmtree_powershell(path):
+  powershell_cmd = 'Remove-Item -LiteralPath %s -Force -Recurse' % path
+  cmd = ['powershell', '-Command', powershell_cmd]
+  out = subprocess.check_output(cmd)
+  logging.info('fs.rmtree_powershell: %s. %s', cmd, out)
+
+
+def rmtree_rmdir(path):
+  cmd = ['rmdir', '/s', '/q', path]
+  out = subprocess.check_output(cmd)
+  logging.info('fs.rmtree_rmdir: %s. %s', cmd, out)
+
+
+def rmtree_del_rmdir(path):
+  cmd = ['del', '/f', '/s', '/q', '>', 'null', path]
+  out = subprocess.check_output(cmd)
+  logging.info('fs.rmtree_del_rmdir: %s. %s', cmd, out)
+  rmtree_rmdir(path)
 
 
 ## The rest
