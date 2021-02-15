@@ -812,7 +812,7 @@ def cron_update_bot_info():
   logging.debug('Updating dead bots...')
   try:
     while more:
-      keys, cursor, more = q.fetch_page(100, start_cursor=cursor)
+      keys, cursor, more = q.fetch_page(100, start_cursor=cursor, deadline=90)
       for k in keys:
         cron_stats['seen'] += 1
         if cron_stats['seen'] % 100 == 0:
