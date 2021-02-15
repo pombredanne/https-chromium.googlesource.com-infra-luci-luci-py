@@ -5,14 +5,15 @@
 """Wraps os, os.path and shutil functions to work around MAX_PATH on Windows."""
 
 import inspect
+import logging
 import os
 import re
 import shutil
 import subprocess
 import sys
 
-from utils import tools
-tools.force_local_third_party()
+# from utils import tools
+# tools.force_local_third_party()
 
 # third_party/
 import six
@@ -432,6 +433,19 @@ def copy2(src, dst):
 
 def rmtree(path, *args, **kwargs):
   return shutil.rmtree(extend(path), *args, **kwargs)
+
+
+# native commands
+
+def rmtree_native(path):
+  if sys.platform == 'win32':
+    powershell_cmd = 'Remove-Item -LiteralPath %s -Force -Recurse' % path
+    cmd = ['powershell', '-Command', powershell_cmd]
+  else:
+    cmd = ['rm', '-rf', path]
+
+  out = subprocess.check_output(cmd)
+  logging.info('fs.rmtree_native: %s. %s', cmd, out)
 
 
 ## The rest
