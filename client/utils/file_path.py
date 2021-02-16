@@ -25,7 +25,7 @@ import unicodedata
 from utils import fs
 from utils import subprocess42
 from utils import tools
-tools.force_local_third_party()
+# tools.force_local_third_party()
 
 # third_party/
 import six
@@ -1127,15 +1127,6 @@ def rmtree(root):
                     six.text_type) or sys.getdefaultencoding() == 'utf-8', (
                         repr(root), sys.getdefaultencoding())
   root = six.text_type(root)
-
-  # Change permissions of the tree.
-  start = time.time()
-  try:
-    make_tree_deleteable(root)
-  except OSError as e:
-    logging.warning('Swallowing make_tree_deleteable() error: %s', e)
-  logging.debug('file_path.make_tree_deleteable(%s) took %d seconds', root,
-                time.time() - start)
 
   # First try the soft way: tries 3 times to delete and sleep a bit in between.
   # Retries help if test subprocesses outlive main process and try to actively
