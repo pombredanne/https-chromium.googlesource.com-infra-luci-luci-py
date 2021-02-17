@@ -22,6 +22,9 @@ import tempfile
 import time
 import unicodedata
 
+if sys.platform == 'win32':
+  import win32security
+
 from utils import fs
 from utils import subprocess42
 from utils import tools
@@ -223,7 +226,6 @@ if sys.platform == 'win32':
     SYNCHRONIZE = 0x100000
     FILE_ALL_ACCESS = STANDARD_RIGHTS_REQUIRED | SYNCHRONIZE | 0x3ff
 
-    import win32security
     user, _domain, _type = win32security.LookupAccountName(
         '', getpass.getuser())
     sd = win32security.SECURITY_DESCRIPTOR()
