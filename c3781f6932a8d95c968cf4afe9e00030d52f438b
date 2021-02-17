@@ -16,6 +16,24 @@
       "message": "hmm, what is shown if you run vpython and see os.environ[\"PATH\"] with this?",
       "revId": "c3781f6932a8d95c968cf4afe9e00030d52f438b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "770a51c6_5bdfd41a",
+        "filename": ".vpython",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-17T06:20:57Z",
+      "side": 1,
+      "message": "There is only one `pywin32_system32` in the \u0027PATH\u0027 at this moment.\n\n```\nPS C:\\chrome_infra\\infra\\luci\u003e vpython -vpython-spec .vpython  -c \"import os; print(os.environ[\u0027PATH\u0027])\"\nC:\\Users\\jwata\\.vpython-root\\de2c63\\Scripts;C:\\Program Files\\OpenSSH;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\ProgramData\\GooGet;C:\\Program Files\n\\Google\\Compute Engine\\metadata_scripts;C:\\Program Files (x86)\\Google\\Cloud SDK\\google-cloud-sdk\\bin;C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Gwindows_Build\\Python37\\lib\\site-packages\\pywin32_syste\nm32;C:\\python_27_amd64\\files;C:\\gnubby\\bin;C:\\ProgramData\\Diagnose_me;C:\\Program Files\\Puppet Labs\\Puppet\\bin;C:\\Program Files\\gWindows-Updater;C:\\Program Files (x86)\\Bit9\\Parity Agent;C:\\Program Files (x86)\\Corp SSH Helper;C:\\Program F\niles (x86)\\Google\\gWindowsInformation;C:\\Program Files\\Google\\hostidentity;C:\\Program Files\\Google\\st_tools;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\Git\\cmd;%GooGetRoot%;C:\\Program Files\\Uplink;C:\\Users\\jwata\\AppData\\\nLocal\\Microsoft\\WindowsApps;C:\\depot_tools;;C:\\Users\\jwata\\.vpython-root\\de2c63\\lib\\site-packages\\pywin32_system32\n```",
+      "parentUuid": "0672ac88_18a3d0f4",
+      "revId": "c3781f6932a8d95c968cf4afe9e00030d52f438b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
