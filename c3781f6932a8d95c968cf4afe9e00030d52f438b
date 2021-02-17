@@ -34,6 +34,24 @@
       "parentUuid": "0672ac88_18a3d0f4",
       "revId": "c3781f6932a8d95c968cf4afe9e00030d52f438b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e2c16c2_8d3e9fa0",
+        "filename": ".vpython",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-17T06:29:58Z",
+      "side": 1,
+      "message": "Hmm, what happen if you run\n\"import os; import win32security; print(os.environ[\u0027PATH\u0027])\"\n?\nand print $PATH from nested subprocess?\n\"\"\"\nsubprocess.call([sys.executable, \u0027-c\u0027, \u0027print($PATH)\u0027])\n\"\"\"\n?",
+      "parentUuid": "770a51c6_5bdfd41a",
+      "revId": "c3781f6932a8d95c968cf4afe9e00030d52f438b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
