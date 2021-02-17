@@ -172,7 +172,10 @@ class OnErrorTest(OnErrorBase):
 
 class OnErrorServerTest(OnErrorBase):
   def call(self, url, arg, returncode):
-    cmd = [sys.executable, '-u', 'main.py', url, arg]
+    vpython = 'vpython'
+    if six.PY3:
+      vpython = 'vpython3'
+    cmd = [vpython, '-u', 'main.py', url, arg]
     logging.info('Running: %s', ' '.join(cmd))
     proc = subprocess.Popen(
         cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, env=os.environ,
