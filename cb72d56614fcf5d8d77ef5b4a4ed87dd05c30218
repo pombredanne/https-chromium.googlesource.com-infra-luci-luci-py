@@ -16,6 +16,24 @@
       "message": "maybe it is better to use vpython here?",
       "revId": "cb72d56614fcf5d8d77ef5b4a4ed87dd05c30218",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edd7bbb6_f734fc9e",
+        "filename": "client/tests/on_error_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-17T05:26:32Z",
+      "side": 1,
+      "message": "hmm, didn\u0027t work\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8855075897041806928/+/u/client/run_tests_python2/stdout\n\nand also caused other failures\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8855075897041806960/+/u/client/run_tests_python3/stdout#L3381_33",
+      "parentUuid": "3028c27b_7ea561c5",
+      "revId": "cb72d56614fcf5d8d77ef5b4a4ed87dd05c30218",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
