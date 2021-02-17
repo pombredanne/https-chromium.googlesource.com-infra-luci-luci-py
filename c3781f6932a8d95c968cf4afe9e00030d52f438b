@@ -52,6 +52,24 @@
       "parentUuid": "770a51c6_5bdfd41a",
       "revId": "c3781f6932a8d95c968cf4afe9e00030d52f438b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb51505d_edcc453a",
+        "filename": ".vpython",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-17T06:45:32Z",
+      "side": 1,
+      "message": "\u003e subprocess.call([\u0027cmd.exe\u0027, \u0027/c\u0027, \u0027echo\u0027, \u0027%PATH%\u0027], env\u003dos.environ)\nThis doesn\u0027t duplicated paths.\n\n\u003e subprocess.call([sys.executable, \u0027-c\u0027, \"import os; print(os.environ[\u0027PATH\u0027])\"])\n\nThere are duplicated win32 paths in PATH. But why?",
+      "parentUuid": "3e2c16c2_8d3e9fa0",
+      "revId": "c3781f6932a8d95c968cf4afe9e00030d52f438b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
