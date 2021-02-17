@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0672ac88_18a3d0f4",
+        "filename": ".vpython",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-17T05:54:37Z",
+      "side": 1,
+      "message": "hmm, what is shown if you run vpython and see os.environ[\"PATH\"] with this?",
+      "revId": "c3781f6932a8d95c968cf4afe9e00030d52f438b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
