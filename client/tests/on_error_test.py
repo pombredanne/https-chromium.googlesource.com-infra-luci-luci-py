@@ -199,6 +199,8 @@ class OnErrorServerTest(OnErrorBase):
     self.assertEqual('', out)
     httpd.stop()
 
+  @unittest.skipIf(sys.platform == 'win32',
+          'pywin32_system32 is repeated in actual PATH')
   def test_shell_out_report(self):
     # Rerun itself, report an error manually, ensure the error was reported.
     httpd = start_server()
@@ -229,6 +231,8 @@ class OnErrorServerTest(OnErrorBase):
     self.assertEqual(expected, actual)
     httpd.stop()
 
+  @unittest.skipIf(sys.platform == 'win32',
+          'pywin32_system32 is repeated in actual PATH')
   def test_shell_out_exception(self):
     # Rerun itself, report an exception manually, ensure the error was reported.
     httpd = start_server()
@@ -264,6 +268,8 @@ class OnErrorServerTest(OnErrorBase):
     self.assertEqual(expected, actual)
     httpd.stop()
 
+  @unittest.skipIf(sys.platform == 'win32',
+          'pywin32_system32 is repeated in actual PATH')
   def test_shell_out_exception_no_msg(self):
     # Rerun itself, report an exception manually, ensure the error was reported.
     httpd = start_server()
@@ -299,6 +305,8 @@ class OnErrorServerTest(OnErrorBase):
     self.assertEqual(expected, actual)
     httpd.stop()
 
+  @unittest.skipIf(sys.platform == 'win32',
+          'pywin32_system32 is repeated in actual PATH')
   def test_shell_out_crash(self):
     # Rerun itself, report an error with a crash, ensure the error was reported.
     httpd = start_server()
