@@ -16,6 +16,24 @@
       "message": "no bug?",
       "revId": "c4be5e5853451a16cddd71957b087aede4bb72ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c5f2f8f_e9e56c69",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-18T06:02:59Z",
+      "side": 1,
+      "message": "This is a preparation for https://crrev.com/c/2696124.\nBut there is no associated bug for this specific change.",
+      "parentUuid": "bfe8c037_c37286da",
+      "revId": "c4be5e5853451a16cddd71957b087aede4bb72ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
