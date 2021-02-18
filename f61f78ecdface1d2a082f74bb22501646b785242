@@ -16,6 +16,29 @@
       "message": "PTAL",
       "revId": "f61f78ecdface1d2a082f74bb22501646b785242",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "980cc2f7_443b6da6",
+        "filename": "client/tests/on_error_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-18T05:34:23Z",
+      "side": 1,
+      "message": "includes?",
+      "range": {
+        "startLine": 195,
+        "startChar": 62,
+        "endLine": 195,
+        "endChar": 69
+      },
+      "revId": "f61f78ecdface1d2a082f74bb22501646b785242",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
