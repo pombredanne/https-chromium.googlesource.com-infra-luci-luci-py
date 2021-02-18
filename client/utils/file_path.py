@@ -1123,14 +1123,14 @@ def rmtree(root):
                         repr(root), sys.getdefaultencoding())
   root = six.text_type(root)
 
-  # Change permissions of the tree.
-  start = time.time()
-  try:
-    make_tree_deleteable(root)
-  except OSError as e:
-    logging.warning('Swallowing make_tree_deleteable() error: %s', e)
-  logging.debug('file_path.make_tree_deleteable(%s) took %d seconds', root,
-                time.time() - start)
+  def change_tree_permission():
+    start = time.time()
+    try:
+      make_tree_deleteable(root)
+    except OSError as e:
+      logging.warning('Swallowing make_tree_deleteable() error: %s', e)
+    logging.debug('file_path.make_tree_deleteable(%s) took %d seconds', root,
+                  time.time() - start)
 
   # First try the soft way: tries 3 times to delete and sleep a bit in between.
   # Retries help if test subprocesses outlive main process and try to actively
@@ -1155,6 +1155,10 @@ def rmtree(root):
           change_acl_for_delete(path)
         except Exception as e:
           logging.error('- %s (failed to update ACL: %s)\n', path, e)
+
+    # change tree permission after the first try failure.
+    if i == 0:
+      change_tree_permission()
 
     if i != max_tries - 1:
       delay = (i+1)*2
