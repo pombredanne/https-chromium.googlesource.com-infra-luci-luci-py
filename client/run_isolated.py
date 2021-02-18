@@ -124,7 +124,7 @@ _LUCI_GO_REVISION = 'git_revision:34b27f20c176c3fb185ceb1e1d5c5dd7f9baa43e'
 # Keep synced with task_request.py
 CACHE_NAME_RE = re.compile(r'^[a-z0-9_]{1,4096}$')
 
-_FREE_SPACE_BUFFER_FOR_GO = 1024 * 1024 * 1024
+_FREE_SPACE_BUFFER_FOR_GO = 2 * 1024 * 1024 * 1024
 
 OUTLIVING_ZOMBIE_MSG = """\
 *** Swarming tried multiple times to delete the %s directory and failed ***
@@ -1729,7 +1729,7 @@ def main(args):
   local_caching.trim_caches(
       caches,
       root,
-      # Add 5+1GB more buffer for Go CLI.
+      # Add some buffer for Go CLI.
       min_free_space=options.min_free_space + additional_buffer,
       max_age_secs=MAX_AGE_SECS)
 
