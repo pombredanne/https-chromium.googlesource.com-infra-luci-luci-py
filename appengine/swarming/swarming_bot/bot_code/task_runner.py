@@ -529,8 +529,8 @@ class _OutputBuffer(object):
   self.should_post_update() is True.
   """
   # To be mocked in tests.
-  _MIN_PACKET_INTERVAL = 10
-  _MAX_PACKET_INTERVAL = 30
+  _MIN_PACKET_INTERVAL = 2
+  _MAX_PACKET_INTERVAL = 10
 
   def __init__(self, task_details, start):
     self._task_details = task_details
