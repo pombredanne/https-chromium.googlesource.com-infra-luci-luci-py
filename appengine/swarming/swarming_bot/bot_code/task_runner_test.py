@@ -751,10 +751,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
                    'print(\'hi\');\n'
                    'sys.stdout.flush();\n'
                    'while not l:\n'
-                   '  try:\n'
-                   '    time.sleep(0.01);\n'
-                   '  except IOError:\n'
-                   '    pass;\n'
+                   '  pass;\n'
                    'print(\'bye\')') % ('SIGBREAK' if sys.platform == 'win32'
                                         else 'SIGTERM')
 
@@ -768,10 +765,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
                         'print(\'hi\');\n'
                         'sys.stdout.flush();\n'
                         'while not l:\n'
-                        '  try:\n'
-                        '    time.sleep(0.01);\n'
-                        '  except IOError:\n'
-                        '    pass;\n'
+                        '  pass;\n'
                         'print(\'bye\');\n'
                         'time.sleep(100)') % ('SIGBREAK' if sys.platform ==
                                               'win32' else 'SIGTERM')
@@ -964,8 +958,8 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
 
   def test_hard_signal_no_grace(self):
     task_details = get_task_details(
-        self.SCRIPT_SIGNAL_HANG, hard_timeout=self.SHORT_TIME_OUT,
-        grace_period=self.SHORT_TIME_OUT)
+        self.SCRIPT_SIGNAL_HANG,
+        hard_timeout=self.SHORT_TIME_OUT, grace_period=self.SHORT_TIME_OUT)
     exit_code = 1 if sys.platform == 'win32' else -signal.SIGKILL
     expected = {
         u'exit_code': exit_code,
@@ -1059,7 +1053,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         #
         # This could be achieved by mocking time, and using a text file as a
         # signal.
-        io_timeout=self.SHORT_TIME_OUT,
+        io_timeout=self.SHORT_TIME_OUT*2,
         grace_period=60.)
     # Actually 0xc000013a
     exit_code = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
@@ -1090,11 +1084,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         except OSError:
           pass
     self.assertEqual(expected, actual)
-    # This is cheezy, this depends on the compiled isolated file.
-    if sys.platform == 'win32':
-      items_cold = u'eJybwMjWzigOAAUxATc='
-    else:
-      items_cold = u'eJybwMgW6wAAA+UBNQ=='
     self.expectTask(
         manifest['task_id'],
         io_timeout=True,
@@ -1105,7 +1094,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
                 u'duration': 0.,
                 u'initial_number_items': 0,
                 u'initial_size': 0,
-                u'items_cold': items_cold,
+                u'items_cold': u'eJybwMgWyw8AA7QBBA==',
                 u'items_hot': u'',
             },
             u'upload': {
