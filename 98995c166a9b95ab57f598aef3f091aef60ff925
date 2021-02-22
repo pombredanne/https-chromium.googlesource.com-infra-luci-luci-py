@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a9703538_1cb9daca",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1163,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-22T05:14:05Z",
+      "side": 1,
+      "message": "I think it\u0027s ok.\nchange_tree_permission() may be sufficient. I intentionally put the `continue` there.",
+      "parentUuid": "af909410_0c6a756a",
+      "range": {
+        "startLine": 1163,
+        "startChar": 4,
+        "endLine": 1163,
+        "endChar": 72
+      },
+      "revId": "98995c166a9b95ab57f598aef3f091aef60ff925",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c82b63ec_437ea2bb",
         "filename": "client/utils/file_path.py",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2021-02-22T04:54:21Z",
       "side": 1,
       "message": "this is always true?",
+      "range": {
+        "startLine": 1171,
+        "startChar": 7,
+        "endLine": 1171,
+        "endChar": 20
+      },
+      "revId": "98995c166a9b95ab57f598aef3f091aef60ff925",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2458d10_f0ef9e34",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1171,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-22T05:14:05Z",
+      "side": 1,
+      "message": "ah, fixed.",
+      "parentUuid": "c82b63ec_437ea2bb",
       "range": {
         "startLine": 1171,
         "startChar": 7,
