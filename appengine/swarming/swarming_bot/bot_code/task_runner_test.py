@@ -751,9 +751,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
                    'print(\'hi\');\n'
                    'sys.stdout.flush();\n'
                    'while not l:\n'
-                   '  try:\n'
-                   '    time.sleep(0.01);\n'
-                   '  except IOError:\n'
                    '    pass;\n'
                    'print(\'bye\')') % ('SIGBREAK' if sys.platform == 'win32'
                                         else 'SIGTERM')
@@ -768,9 +765,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
                         'print(\'hi\');\n'
                         'sys.stdout.flush();\n'
                         'while not l:\n'
-                        '  try:\n'
-                        '    time.sleep(0.01);\n'
-                        '  except IOError:\n'
                         '    pass;\n'
                         'print(\'bye\');\n'
                         'time.sleep(100)') % ('SIGBREAK' if sys.platform ==
