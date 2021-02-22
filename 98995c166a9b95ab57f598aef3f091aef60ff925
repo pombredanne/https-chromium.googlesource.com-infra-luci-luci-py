@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af909410_0c6a756a",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1163,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2021-02-22T04:57:18Z",
+      "side": 1,
+      "message": "This would be called on the second iteration now (because of `continue` in L1160), is that OK? If not, move  change_tree_permission() after change_acl_for_delete()?",
+      "range": {
+        "startLine": 1163,
+        "startChar": 4,
+        "endLine": 1163,
+        "endChar": 72
+      },
+      "revId": "98995c166a9b95ab57f598aef3f091aef60ff925",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c82b63ec_437ea2bb",
         "filename": "client/utils/file_path.py",
         "patchSetId": 5
