@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "646b386d_145dfe1a",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1163,
+      "author": {
+        "id": 1375000
+      },
+      "writtenOn": "2021-02-22T05:25:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a9703538_1cb9daca",
+      "range": {
+        "startLine": 1163,
+        "startChar": 4,
+        "endLine": 1163,
+        "endChar": 72
+      },
+      "revId": "98995c166a9b95ab57f598aef3f091aef60ff925",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c82b63ec_437ea2bb",
