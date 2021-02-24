@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66846613_637984dd",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-24T07:30:50Z",
+      "side": 0,
+      "message": "Isn\u0027t it sufficient to reduce it to 0.001 or something?",
+      "range": {
+        "startLine": 755,
+        "startChar": 34,
+        "endLine": 755,
+        "endChar": 39
+      },
+      "revId": "d3c44743a704fc2be4b8cea5b06b78c935655461",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3690d8f_bc75ea28",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 1097,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-24T07:30:50Z",
+      "side": 0,
+      "message": "I\u0027m curious why this can be unified.",
+      "range": {
+        "startLine": 1093,
+        "startChar": 2,
+        "endLine": 1097,
+        "endChar": 42
+      },
+      "revId": "d3c44743a704fc2be4b8cea5b06b78c935655461",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

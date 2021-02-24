@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea4fea96_d69db03d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-24T07:30:50Z",
+      "side": 1,
+      "message": "As I commented on https://crbug.com/825500#c15, bots can send update more frequently. \nI agree on increasing the frequency further.\n\nI understand that task_runner_test.py is complicated. Thank you for trying to fix it.\nI also don\u0027t know some of the details. So let me ask questions for my learning purpose.\n\nBtw, please always include tikuta@ as a reviewer.\n",
+      "revId": "7890176521ce4589d1875d1aee6c1971c366bef3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e30a33b_ccf0af2e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-24T07:30:50Z",
+      "side": 1,
+      "message": "Do we still need changes other than mocking _MIN_PACKET_INTERVAL?",
+      "range": {
+        "startLine": 1024,
+        "startChar": 0,
+        "endLine": 1024,
+        "endChar": 36
+      },
+      "revId": "7890176521ce4589d1875d1aee6c1971c366bef3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
