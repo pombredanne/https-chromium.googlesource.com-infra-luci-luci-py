@@ -26,6 +26,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad8c1e44_98e4795b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-24T07:36:38Z",
+      "side": 0,
+      "message": "why do you need to remove this?",
+      "revId": "d3c44743a704fc2be4b8cea5b06b78c935655461",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b3690d8f_bc75ea28",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
         "patchSetId": 25
