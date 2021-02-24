@@ -117,6 +117,7 @@ def flush():
 
   rpcs = []
   for proto in _generate_proto():
+    logging.debug('ts_mon: sending metrics')
     rpcs.append(state.global_monitor.send(proto))
   for rpc in rpcs:
     if rpc is not None:
