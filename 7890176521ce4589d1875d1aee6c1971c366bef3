@@ -74,6 +74,30 @@
       },
       "revId": "7890176521ce4589d1875d1aee6c1971c366bef3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "247d96ec_22e845d8",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-02-25T05:23:48Z",
+      "side": 1,
+      "message": "Immediate flush ensures that processes print in the same order on both Windows and Unix targets which lets us remove `if sys.platform \u003d\u003d \u0027win32\u0027` from #1093.",
+      "parentUuid": "7e30a33b_ccf0af2e",
+      "range": {
+        "startLine": 1024,
+        "startChar": 0,
+        "endLine": 1024,
+        "endChar": 36
+      },
+      "revId": "7890176521ce4589d1875d1aee6c1971c366bef3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
