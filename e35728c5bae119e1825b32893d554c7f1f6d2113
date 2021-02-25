@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b03db78_43eaff32",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-25T11:08:13Z",
+      "side": 1,
+      "message": "1) It makes sense to remove these subtractions as the field name `bot_overhead` makes people assume that it includes all overheads.\nWe can change the logic in TaskResult.to_proto() to subtract overheads to calculate `other_overhead`. \n\n2) If you revert this change, we still need to fix the \u0027Total overhead\u0027 to `Other overheads` in the UI.\n\nI\u0027m fine with either.\nWhich do you think is better?",
+      "range": {
+        "startLine": 813,
+        "startChar": 0,
+        "endLine": 819,
+        "endChar": 0
+      },
+      "revId": "e35728c5bae119e1825b32893d554c7f1f6d2113",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
