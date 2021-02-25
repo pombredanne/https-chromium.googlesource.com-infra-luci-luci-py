@@ -16,6 +16,24 @@
       "message": "I suggest keep this logic or modify the subtractions to TaskResult.to_proto().\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_result.py;l\u003d355?q\u003dbot_overhead%20other_overhead\u0026ss\u003dchromium\n\nOtherwise, the `other_overhead` field won\u0027t have the value described in the proto. https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/proto/api/swarming.proto;l\u003d1062?q\u003df:swarming.proto\u0026ss\u003dchromium",
       "revId": "a5b34b379d06ae8a2e642d0d98d9827e66ba720f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42c67d0d_d9b51a8c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-25T10:51:47Z",
+      "side": 0,
+      "message": "Oh, I didn\u0027t notice that too. Let me revert this.",
+      "parentUuid": "a29e0035_bdd0877d",
+      "revId": "a5b34b379d06ae8a2e642d0d98d9827e66ba720f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
