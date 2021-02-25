@@ -1003,8 +1003,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         output=('hi\ngot signal %d\nbye\n' %
                 task_runner.SIG_BREAK_OR_TERM).encode())
 
-  @unittest.skipIf(sys.platform == 'win32',
-                   'TODO(crbug.com/1017545): KeyError output')
   def test_isolated_io_signal_grand_children(self):
     """Handles grand-children process hanging and signal management.
 
@@ -1021,7 +1019,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
             b'print(\'parent\')\n'
             b'p = subprocess.Popen([sys.executable, \'-u\', \'children.py\'])\n'
             b'print(p.pid)\n'
-            b'sys.stdout.flush();\n'
             b'p.wait()\n'
             b'sys.exit(p.returncode)\n'),
         'children.py': (b'import subprocess, sys\n'
@@ -1029,7 +1026,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
                         b'p = subprocess.Popen('
                         b'[sys.executable,\'-u\',\'grand_children.py\'])\n'
                         b'print(p.pid)\n'
-                        b'sys.stdout.flush();\n'
                         b'p.wait()\n'
                         b'sys.exit(p.returncode)\n'),
         'grand_children.py': self.SCRIPT_SIGNAL_HANG.encode(),
@@ -1090,6 +1086,11 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         except OSError:
           pass
     self.assertEqual(expected, actual)
+    # This is cheezy, this depends on the compiled isolated file.
+    if sys.platform == 'win32':
+      items_cold = u'eJybwMgWKwAAA7UBBQ=='
+    else:
+      items_cold = u'eJybwMgWyw8AA7QBBA=='
     self.expectTask(
         manifest['task_id'],
         io_timeout=True,
@@ -1100,7 +1101,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
                 u'duration': 0.,
                 u'initial_number_items': 0,
                 u'initial_size': 0,
-                u'items_cold': u'eJxbwsjmyQ8AA/ABBA==',
+                u'items_cold': items_cold,
                 u'items_hot': u'',
             },
             u'upload': {
