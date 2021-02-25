@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a29e0035_bdd0877d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-25T10:31:40Z",
+      "side": 0,
+      "message": "I suggest keep this logic or modify the subtractions to TaskResult.to_proto().\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/server/task_result.py;l\u003d355?q\u003dbot_overhead%20other_overhead\u0026ss\u003dchromium\n\nOtherwise, the `other_overhead` field won\u0027t have the value described in the proto. https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/proto/api/swarming.proto;l\u003d1062?q\u003df:swarming.proto\u0026ss\u003dchromium",
+      "revId": "a5b34b379d06ae8a2e642d0d98d9827e66ba720f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
