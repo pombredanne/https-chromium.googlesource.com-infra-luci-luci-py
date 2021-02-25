@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7b2461b_cd2ae545",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-02-25T05:11:19Z",
+      "side": 0,
+      "message": "We can wait on this condition in one of two ways:\n * repeatedly yield running thread with `time.sleep(secs)` and have it be woken up by the scheduler after at least `secs`\n * busy wait (similar to spinlocks)\n\nFirst approach has several limitations:\n * thread is not guaranteed to sleep for exactly `secs` - it may in fact sleep for much longer if the host system is under heavy load (Python 3.5+ promises at least `secs` with no upper bound)\n * practical resolution of `time.sleep` is limited to 1-15ms on most non real-time operating systems\n\nBusy wait might consume more CPU if wait times are long.\n\nIn my testing:\n * `time.sleep(0.001)` worked reliability on unloaded and moderately loaded system\n * busy loop worked reliability even when the system was heavily loaded\n\n0.01s \u003d 10ms\n0.001s \u003d 1ms\n\nLet me know if you would like to have this changed to `time.sleep(0.001)`.",
+      "parentUuid": "66846613_637984dd",
+      "range": {
+        "startLine": 755,
+        "startChar": 34,
+        "endLine": 755,
+        "endChar": 39
+      },
+      "revId": "d3c44743a704fc2be4b8cea5b06b78c935655461",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad8c1e44_98e4795b",
@@ -37,6 +61,24 @@
       "writtenOn": "2021-02-24T07:36:38Z",
       "side": 0,
       "message": "why do you need to remove this?",
+      "revId": "d3c44743a704fc2be4b8cea5b06b78c935655461",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ad3b42e_355c288d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-02-25T05:11:19Z",
+      "side": 0,
+      "message": "Tests using programs contained in `SCRIPT_SIGNAL` `SCRIPT_SIGNAL_HANG` check if `output` contains both `hi` and `bye`. With lowering of `min_packet_interval` from 10s to 1s and `max_packet_interval` from 30s to 10s we increased the chances that test program will be terminated while still asleep before `bye` is printed to stdout leading to flakiness on Linux targets. I found busy wait to be more reliable vs sleep.\n\nIt would probably be a good idea to `sys.stdout.flush()` after `bye`.",
+      "parentUuid": "ad8c1e44_98e4795b",
       "revId": "d3c44743a704fc2be4b8cea5b06b78c935655461",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
