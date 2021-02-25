@@ -808,14 +808,6 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
           # Calculate the real task duration as measured by run_isolated and
           # calculate the remaining overhead.
           params['bot_overhead'] = params['duration']
-          params['duration'] = run_isolated_result['duration']
-          params['bot_overhead'] -= params['duration']
-          params['bot_overhead'] -= run_isolated_result.get('download', {}).get(
-              'duration', 0)
-          params['bot_overhead'] -= run_isolated_result.get(
-              'upload', {}).get('duration', 0)
-          params['bot_overhead'] -= run_isolated_result.get(
-              'cipd', {}).get('duration', 0)
           if params['bot_overhead'] < 0:
             params['bot_overhead'] = 0
         isolated_stats = run_isolated_result.get('stats', {}).get('isolated')
