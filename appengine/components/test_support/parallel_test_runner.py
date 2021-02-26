@@ -45,6 +45,7 @@ def hook_args():
   parser = argparse.ArgumentParser(add_help=False)
   parser.add_argument('-v', '--verbose', action='store_true')
   parser.add_argument('--log-level')
+  sys.argv = [six.ensure_text(arg) for arg in sys.argv]
   args, _ = parser.parse_known_args()
 
   if args.verbose:
