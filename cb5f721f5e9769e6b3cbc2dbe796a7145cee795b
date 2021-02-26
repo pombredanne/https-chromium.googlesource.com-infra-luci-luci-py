@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "13c64749_2e41b286",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-26T07:35:20Z",
+      "side": 1,
+      "message": "Add \"in parallel_test_runner.py\" to be more specific.",
+      "range": {
+        "startLine": 7,
+        "startChar": 32,
+        "endLine": 7,
+        "endChar": 33
+      },
+      "revId": "cb5f721f5e9769e6b3cbc2dbe796a7145cee795b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6fb6eee2_8074457a",
         "filename": "appengine/components/test_support/parallel_test_runner.py",
         "patchSetId": 3
@@ -14,6 +37,52 @@
       "writtenOn": "2021-02-26T07:30:09Z",
       "side": 1,
       "message": "Could you use list comprehension for this?\nhttps://docs.python.org/ja/3/tutorial/datastructures.html#list-comprehensions",
+      "revId": "cb5f721f5e9769e6b3cbc2dbe796a7145cee795b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9920ae26_27e4391a",
+        "filename": "appengine/components/test_support/parallel_test_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-26T07:35:20Z",
+      "side": 1,
+      "message": "`i` may be popular.",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 48,
+        "endChar": 9
+      },
+      "revId": "cb5f721f5e9769e6b3cbc2dbe796a7145cee795b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d9cc039_5f2c5263",
+        "filename": "appengine/components/test_support/parallel_test_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-26T07:35:20Z",
+      "side": 1,
+      "message": "In Python, list comprehension is a convenient way to do loop.\nhttps://docs.python.org/3/tutorial/datastructures.html#list-comprehensions\n\n```\nsys.argv \u003d [sis.ensure_text(arg) for arg in sys.argv]\n```",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 48
+      },
       "revId": "cb5f721f5e9769e6b3cbc2dbe796a7145cee795b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
