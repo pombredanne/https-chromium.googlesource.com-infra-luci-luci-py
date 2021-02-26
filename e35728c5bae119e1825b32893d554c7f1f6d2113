@@ -39,6 +39,30 @@
       },
       "revId": "e35728c5bae119e1825b32893d554c7f1f6d2113",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4fac44d_b14fda55",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-26T07:31:56Z",
+      "side": 1,
+      "message": "let me submit this, before investigating https://chat.google.com/room/AAAAKz3_Kuw/LNJlWh6TKgw",
+      "parentUuid": "0b03db78_43eaff32",
+      "range": {
+        "startLine": 813,
+        "startChar": 0,
+        "endLine": 819,
+        "endChar": 0
+      },
+      "revId": "e35728c5bae119e1825b32893d554c7f1f6d2113",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
