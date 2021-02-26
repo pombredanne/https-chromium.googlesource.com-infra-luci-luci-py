@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fb6eee2_8074457a",
+        "filename": "appengine/components/test_support/parallel_test_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-02-26T07:30:09Z",
+      "side": 1,
+      "message": "Could you use list comprehension for this?\nhttps://docs.python.org/ja/3/tutorial/datastructures.html#list-comprehensions",
+      "revId": "cb5f721f5e9769e6b3cbc2dbe796a7145cee795b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
