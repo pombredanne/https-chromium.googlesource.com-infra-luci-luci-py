@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b9403e5_a663ae68",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-26T01:17:37Z",
+      "side": 1,
+      "message": "nit\n%s bytes?",
+      "range": {
+        "startLine": 772,
+        "startChar": 50,
+        "endLine": 772,
+        "endChar": 52
+      },
+      "revId": "91b33e211e282d35b2f17b9cc2a3f70dc192f13a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
