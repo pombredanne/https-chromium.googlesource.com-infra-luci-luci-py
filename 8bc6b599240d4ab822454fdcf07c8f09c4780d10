@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f029d33e_456eb259",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-26T03:00:16Z",
+      "side": 1,
+      "message": "Please add relevant bugs here.\nYou can put multiple bugs like \"Bug: 1017545, 1182016\"",
+      "revId": "8bc6b599240d4ab822454fdcf07c8f09c4780d10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4de5384d_8aee7ec2",
+        "filename": "client/utils/logging_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-26T03:00:16Z",
+      "side": 1,
+      "message": "remove this empty line.",
+      "revId": "8bc6b599240d4ab822454fdcf07c8f09c4780d10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e42ace7d_0754e487",
+        "filename": "client/utils/logging_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-02-26T03:00:16Z",
+      "side": 1,
+      "message": "nit: remove this.",
+      "range": {
+        "startLine": 48,
+        "startChar": 40,
+        "endLine": 48,
+        "endChar": 56
+      },
+      "revId": "8bc6b599240d4ab822454fdcf07c8f09c4780d10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
