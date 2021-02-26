@@ -16,6 +16,24 @@
       "message": "remove this empty line?",
       "revId": "7e77f30b28bbd9da2bc7361c33410c8e19bc50a8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8589e13a_c7a1e4f5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-02-26T05:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce322f2e_1728ce66",
+      "revId": "7e77f30b28bbd9da2bc7361c33410c8e19bc50a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
