@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd78f295_620850f3",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-01T09:19:25Z",
+      "side": 0,
+      "message": "better to keep using this encoding.",
+      "range": {
+        "startLine": 97,
+        "startChar": 15,
+        "endLine": 97,
+        "endChar": 35
+      },
+      "revId": "8e65b544a48c66729f95ed6be6f236fdaf7922d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
