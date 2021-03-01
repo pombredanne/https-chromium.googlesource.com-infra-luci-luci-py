@@ -55,7 +55,7 @@ def hook_args():
 
   if not args.log_level:
     # override default log level
-    logging.basicConfig(level=logging.CRITICAL)
+    logging.basicConfig(level=logging.DEBUG)
 
 
 if __name__ == '__main__':
