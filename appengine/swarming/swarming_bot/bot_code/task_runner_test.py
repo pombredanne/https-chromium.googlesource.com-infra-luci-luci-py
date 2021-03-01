@@ -752,7 +752,8 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
                    'sys.stdout.flush();\n'
                    'while not l:\n'
                    '  pass;\n'
-                   'print(\'bye\')') % ('SIGBREAK' if sys.platform == 'win32'
+                   'print(\'bye\')\n'
+                   'sys.stdout.flush();') % ('SIGBREAK' if sys.platform == 'win32'
                                         else 'SIGTERM')
 
   SCRIPT_SIGNAL_HANG = ('import signal, sys, time;\n'
