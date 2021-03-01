@@ -1011,10 +1011,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     In this case, the I/O timeout is implemented by task_runner. The hard
     timeout is implemented by run_isolated.
     """
-
-    # Mac 10.15-64 needs more time to capture output from all three tasks
-    self.mock(task_runner._OutputBuffer, '_MIN_PACKET_INTERVAL', 3)
-
     files = {
         'parent.py': (
             b'import subprocess, sys\n'
@@ -1076,8 +1072,13 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
       # throw.
       data = self.getTaskResults(manifest['task_id'])['output']
       for k in data.splitlines():
-        if k in (b'children', b'hi', b'parent'):
-          continue
+        if sys.platform == 'win32':
+          if not k.isdigit():
+            continue
+        else:
+          if k in (b'children', b'hi', b'parent'):
+            continue
+
         pid = int(k)
         try:
           if sys.platform == 'win32':
