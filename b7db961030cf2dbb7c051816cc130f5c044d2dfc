@@ -69,6 +69,30 @@
       },
       "revId": "b7db961030cf2dbb7c051816cc130f5c044d2dfc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69dc7643_d0bd2354",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-01T08:03:58Z",
+      "side": 1,
+      "message": "To be precisely, there is no type called \u0027text\u0027 in both Python2 and Python3.\nThere are str/unicode in Python2 and bytes/str in Python3.\n\nAnd if ctypes.FormatError() returns \u0027str\u0027 type in Python3, you don\u0027t need to convert that to \u0027bytes\u0027 type to decode that to \u0027str\u0027 type afterwards.",
+      "parentUuid": "6fe86f6f_9c700e7d",
+      "range": {
+        "startLine": 96,
+        "startChar": 36,
+        "endLine": 96,
+        "endChar": 47
+      },
+      "revId": "b7db961030cf2dbb7c051816cc130f5c044d2dfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
