@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30cf468f_d906792b",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-01T08:39:46Z",
+      "side": 1,
+      "message": "Does this return unicode in Python2?",
+      "revId": "fe60fc88f13cc50584738fd0d289ab66e99d77fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
