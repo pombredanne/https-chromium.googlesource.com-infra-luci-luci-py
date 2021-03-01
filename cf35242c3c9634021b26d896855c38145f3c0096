@@ -188,6 +188,30 @@
       },
       "revId": "cf35242c3c9634021b26d896855c38145f3c0096",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "522f6bce_f9898ea7",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-01T07:11:28Z",
+      "side": 1,
+      "message": "I see. I guess rewriting the whole test is costly if we can workaround with some of parameters like SHORT_TIME_OUT, _MIN_PACKET_INTERVAL.",
+      "parentUuid": "5de814f8_f613b3e9",
+      "range": {
+        "startLine": 753,
+        "startChar": 0,
+        "endLine": 753,
+        "endChar": 48
+      },
+      "revId": "cf35242c3c9634021b26d896855c38145f3c0096",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
