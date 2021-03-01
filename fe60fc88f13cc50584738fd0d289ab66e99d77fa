@@ -34,6 +34,24 @@
       "parentUuid": "30cf468f_d906792b",
       "revId": "fe60fc88f13cc50584738fd0d289ab66e99d77fa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f3b19d6_c1a806be",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-01T09:18:15Z",
+      "side": 1,
+      "message": "I meant to ask whether this returns \u0027str\u0027 type or \u0027unicode\u0027 type in Python2.\nhttps://docs.python.org/2.7/library/functions.html#str\nhttps://docs.python.org/2.7/library/functions.html#unicode\n\nIf you are not sure the type of returned value of this function, you can check type by using type() function.\nhttps://docs.python.org/3/library/functions.html#type\n\nSo can you check returned type of this function both in Python2 and Python3?",
+      "parentUuid": "224a5250_f9004f63",
+      "revId": "fe60fc88f13cc50584738fd0d289ab66e99d77fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
