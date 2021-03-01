@@ -737,7 +737,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
 
   # TODO(maruel): Calculate this value automatically through iteration? This is
   # really bad and prone to flakiness.
-  SHORT_TIME_OUT = 3.
+  SHORT_TIME_OUT = 6.
 
   # Here's a simple script that handles signals properly. Sadly SIGBREAK is not
   # defined on posix.
@@ -1013,7 +1013,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     """
 
     # Mac 10.15-64 needs more time to capture output from all three tasks
-    self.mock(task_runner._OutputBuffer, '_MIN_PACKET_INTERVAL', 3)
+    #self.mock(task_runner._OutputBuffer, '_MIN_PACKET_INTERVAL', 3)
 
     files = {
         'parent.py': (
