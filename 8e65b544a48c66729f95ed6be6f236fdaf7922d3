@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ffa6326_9c41a973",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-01T06:19:01Z",
+      "side": 0,
+      "message": "why remove this?",
+      "revId": "8e65b544a48c66729f95ed6be6f236fdaf7922d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
