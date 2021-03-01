@@ -164,6 +164,30 @@
       },
       "revId": "cf35242c3c9634021b26d896855c38145f3c0096",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5de814f8_f613b3e9",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-03-01T07:01:11Z",
+      "side": 1,
+      "message": "IMHO It\u0027s the same problem as with `while .. time.sleep(t)` - condition variable is set by the signal handler but the thread running `SCRIPT_SIGNAL` (or `SCRIPT_SIGNAL_HANG`) is not be woken up in time to print `bye` before `run_command` terminates it under `io_timeout`. This was less noticeable back when `_MIN_PACKET_INTERVAL` was larger.\n\nAlternatives:\n 1) fiddle with `SHORT_TIME_OUT` - see TODO in task_runner_test.py#738\n 2) rewrite the test and make it more deterministic",
+      "parentUuid": "ae821520_4ab2a1be",
+      "range": {
+        "startLine": 753,
+        "startChar": 0,
+        "endLine": 753,
+        "endChar": 48
+      },
+      "revId": "cf35242c3c9634021b26d896855c38145f3c0096",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
