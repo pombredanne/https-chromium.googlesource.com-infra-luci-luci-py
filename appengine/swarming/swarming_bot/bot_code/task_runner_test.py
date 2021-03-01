@@ -1011,10 +1011,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     In this case, the I/O timeout is implemented by task_runner. The hard
     timeout is implemented by run_isolated.
     """
-
-    # Mac 10.15-64 needs more time to capture output from all three tasks
-    self.mock(task_runner._OutputBuffer, '_MIN_PACKET_INTERVAL', 3)
-
     files = {
         'parent.py': (
             b'import subprocess, sys\n'
@@ -1057,7 +1053,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         #
         # This could be achieved by mocking time, and using a text file as a
         # signal.
-        io_timeout=self.SHORT_TIME_OUT,
+        io_timeout=self.SHORT_TIME_OUT * 2,
         grace_period=60.)
     # Actually 0xc000013a
     exit_code = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
@@ -1076,8 +1072,16 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
       # throw.
       data = self.getTaskResults(manifest['task_id'])['output']
       for k in data.splitlines():
+        # if sys.platform == 'win32':
+        #   if not k.isdigit():
+        #     # TODO(mkiedys): workaround for additional 'got signal 21', 'bye',
+        #     # '6092 2021-03-02 06:08:40.700 E: Failed to delete
+        #     # c:\\b\\s\\w\\ir\\x\\t\\task_runnerlyj_ac\\w\\ir (1 files remaining).'
+        #     continue
+        # else:
         if k in (b'children', b'hi', b'parent'):
           continue
+
         pid = int(k)
         try:
           if sys.platform == 'win32':
