@@ -93,8 +93,7 @@ if sys.platform == 'win32':
   def FormatError(err):
     """Returns a formatted error on Windows in unicode."""
     # We need to take in account the current code page.
-    return ctypes.wintypes.FormatError(err).decode(
-        locale.getpreferredencoding(), 'replace')
+    return ctypes.FormatError(err)
 
 
   def QueryDosDevice(drive_letter):
@@ -120,7 +119,7 @@ if sys.platform == 'win32':
     path = fs.extend(long_path)
     chars = windll.kernel32.GetShortPathNameW(path, None, 0)
     if chars:
-      p = wintypes.create_unicode_buffer(chars)
+      p = ctypes.create_unicode_buffer(chars)
       if windll.kernel32.GetShortPathNameW(path, p, chars):
         return fs.trim(p.value)
 
@@ -138,7 +137,7 @@ if sys.platform == 'win32':
     path = fs.extend(short_path)
     chars = windll.kernel32.GetLongPathNameW(path, None, 0)
     if chars:
-      p = wintypes.create_unicode_buffer(chars)
+      p = ctypes.create_unicode_buffer(chars)
       if windll.kernel32.GetLongPathNameW(path, p, chars):
         return fs.trim(p.value)
 
