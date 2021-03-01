@@ -47,6 +47,54 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d333200_3c4fbabe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-03-01T06:46:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f24181c1_b1352440",
+      "range": {
+        "startLine": 7,
+        "startChar": 33,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "cf35242c3c9634021b26d896855c38145f3c0096",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec448440_2099957a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-03-01T06:46:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24446890_bfaf143b",
+      "range": {
+        "startLine": 7,
+        "startChar": 48,
+        "endLine": 7,
+        "endChar": 49
+      },
+      "revId": "cf35242c3c9634021b26d896855c38145f3c0096",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69ae2e83_07152890",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-03-01T06:03:16Z",
       "side": 1,
       "message": "wait() with timeout is better?\nhttps://docs.python.org/3/library/threading.html#threading.Event.wait",
+      "range": {
+        "startLine": 753,
+        "startChar": 0,
+        "endLine": 753,
+        "endChar": 48
+      },
+      "revId": "cf35242c3c9634021b26d896855c38145f3c0096",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38328203_e9ea7c0a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-03-01T06:46:13Z",
+      "side": 1,
+      "message": "I\u0027ve tried `threading.Event.wait(None)` but it was less reliable compared to simple busy-loop.",
+      "parentUuid": "69ae2e83_07152890",
       "range": {
         "startLine": 753,
         "startChar": 0,

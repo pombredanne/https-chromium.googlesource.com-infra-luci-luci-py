@@ -16,6 +16,24 @@
       "message": "why remove this?",
       "revId": "8e65b544a48c66729f95ed6be6f236fdaf7922d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b45f55a6_a6072ea0",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-03-01T06:46:13Z",
+      "side": 0,
+      "message": "I assumed that we no longer need exponential backoff given that `_MIN_PACKET_INTERVAL` is now at 1s and `_MAX_PACKET_INTERVAL` is 10s.",
+      "parentUuid": "9ffa6326_9c41a973",
+      "revId": "8e65b544a48c66729f95ed6be6f236fdaf7922d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
