@@ -93,6 +93,54 @@
       },
       "revId": "b7db961030cf2dbb7c051816cc130f5c044d2dfc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "638ff3b8_601bf443",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-01T08:32:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69dc7643_d0bd2354",
+      "range": {
+        "startLine": 96,
+        "startChar": 36,
+        "endLine": 96,
+        "endChar": 47
+      },
+      "revId": "b7db961030cf2dbb7c051816cc130f5c044d2dfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bbd1c90_2c00fc7f",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-01T08:32:03Z",
+      "side": 1,
+      "message": "Thank you for the reference.",
+      "parentUuid": "d2935d47_ecd15a1a",
+      "range": {
+        "startLine": 96,
+        "startChar": 54,
+        "endLine": 96,
+        "endChar": 60
+      },
+      "revId": "b7db961030cf2dbb7c051816cc130f5c044d2dfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
