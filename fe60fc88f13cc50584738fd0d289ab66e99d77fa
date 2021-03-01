@@ -16,6 +16,24 @@
       "message": "Does this return unicode in Python2?",
       "revId": "fe60fc88f13cc50584738fd0d289ab66e99d77fa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "224a5250_f9004f63",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-01T09:12:10Z",
+      "side": 1,
+      "message": "Does it return ascii in python2?",
+      "parentUuid": "30cf468f_d906792b",
+      "revId": "fe60fc88f13cc50584738fd0d289ab66e99d77fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
