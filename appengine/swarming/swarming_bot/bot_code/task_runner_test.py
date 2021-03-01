@@ -1013,7 +1013,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     """
 
     # Mac 10.15-64 needs more time to capture output from all three tasks
-    self.mock(task_runner._OutputBuffer, '_MIN_PACKET_INTERVAL', 3)
+    #self.mock(task_runner._OutputBuffer, '_MIN_PACKET_INTERVAL', 3)
 
     files = {
         'parent.py': (
