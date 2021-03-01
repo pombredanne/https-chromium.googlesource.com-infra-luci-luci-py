@@ -70,6 +70,24 @@
       "parentUuid": "4f3b19d6_c1a806be",
       "revId": "fe60fc88f13cc50584738fd0d289ab66e99d77fa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e338830_ecc55069",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-01T10:18:04Z",
+      "side": 1,
+      "message": "OK. If possible, could you write explanation why we need to use ensure_text for FormatError in description?",
+      "parentUuid": "5e668b43_44b97254",
+      "revId": "fe60fc88f13cc50584738fd0d289ab66e99d77fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
