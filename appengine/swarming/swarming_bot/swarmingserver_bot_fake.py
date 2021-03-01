@@ -5,6 +5,7 @@
 import json
 import os
 import sys
+import base64
 import threading
 
 BOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -39,7 +40,9 @@ def flatten_task_updates(updates):
     if out.get('output') and update.get('output'):
       # Accumulate output.
       update = update.copy()
-      out['output'] += update.pop('output')
+      out['output'] = base64.b64encode(
+        base64.b64decode(out['output']) +
+        base64.b64decode(update.pop('output')))
       update.pop('output_chunk_start')
     out.update(update)
   return out
