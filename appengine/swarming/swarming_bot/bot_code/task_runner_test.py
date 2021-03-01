@@ -1,4 +1,4 @@
-#!/usr/bin/env vpython3
+#!/usr/bin/env vpython
 # coding=utf-8
 # Copyright 2013 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
@@ -1013,18 +1013,20 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     """
 
     # Mac 10.15-64 needs more time to capture output from all three tasks
-    self.mock(task_runner._OutputBuffer, '_MIN_PACKET_INTERVAL', 3)
+    #self.mock(task_runner._OutputBuffer, '_MIN_PACKET_INTERVAL', 3)
 
     files = {
         'parent.py': (
             b'import subprocess, sys\n'
             b'print(\'parent\')\n'
+            b'sys.stdout.flush();\n'
             b'p = subprocess.Popen([sys.executable, \'-u\', \'children.py\'])\n'
             b'print(p.pid)\n'
             b'p.wait()\n'
             b'sys.exit(p.returncode)\n'),
         'children.py': (b'import subprocess, sys\n'
                         b'print(\'children\')\n'
+                        b'sys.stdout.flush();\n'
                         b'p = subprocess.Popen('
                         b'[sys.executable,\'-u\',\'grand_children.py\'])\n'
                         b'print(p.pid)\n'
@@ -1092,7 +1094,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     if sys.platform == 'win32':
       items_cold = u'eJybwMgW6w0AA/ABQA=='
     else:
-      items_cold = u'eJybwMgW6wUAA+8BPw=='
+      items_cold = u'eJxbwsjm6QUABCsBPw=='
     self.expectTask(
         manifest['task_id'],
         io_timeout=True,
