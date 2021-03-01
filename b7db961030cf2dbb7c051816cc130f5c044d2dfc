@@ -22,6 +22,29 @@
       },
       "revId": "b7db961030cf2dbb7c051816cc130f5c044d2dfc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b3aef51_12a671f8",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-01T07:45:54Z",
+      "side": 1,
+      "message": "Do you know returned type of this function in Python2 and Python3?",
+      "range": {
+        "startLine": 96,
+        "startChar": 36,
+        "endLine": 96,
+        "endChar": 47
+      },
+      "revId": "b7db961030cf2dbb7c051816cc130f5c044d2dfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
