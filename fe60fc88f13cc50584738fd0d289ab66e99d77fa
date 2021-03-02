@@ -88,6 +88,24 @@
       "parentUuid": "5e668b43_44b97254",
       "revId": "fe60fc88f13cc50584738fd0d289ab66e99d77fa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7168464b_258953cd",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-02T01:03:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e338830_ecc55069",
+      "revId": "fe60fc88f13cc50584738fd0d289ab66e99d77fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
