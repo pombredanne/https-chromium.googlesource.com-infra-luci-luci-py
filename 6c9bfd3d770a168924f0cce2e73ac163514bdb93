@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2da45aff_4ac08ef4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-02T04:08:33Z",
+      "side": 1,
+      "message": "left nit comments.",
+      "revId": "6c9bfd3d770a168924f0cce2e73ac163514bdb93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a5fb951_821efbb9",
+        "filename": "client/utils/lru.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-02T04:08:33Z",
+      "side": 1,
+      "message": "key?",
+      "range": {
+        "startLine": 161,
+        "startChar": 8,
+        "endLine": 161,
+        "endChar": 12
+      },
+      "revId": "6c9bfd3d770a168924f0cce2e73ac163514bdb93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0d67b0f_e0e79d5b",
+        "filename": "client/utils/lru.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-02T04:08:33Z",
+      "side": 1,
+      "message": "leave a comment that self._items.items() is costly.",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 28
+      },
+      "revId": "6c9bfd3d770a168924f0cce2e73ac163514bdb93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7cb4882_0c902c16",
+        "filename": "client/utils/lru.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-02T04:08:33Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 162,
+        "startChar": 14,
+        "endLine": 162,
+        "endChar": 18
+      },
+      "revId": "6c9bfd3d770a168924f0cce2e73ac163514bdb93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
