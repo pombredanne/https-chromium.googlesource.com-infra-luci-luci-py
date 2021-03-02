@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2671d957_1b761e24",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-02T03:19:28Z",
+      "side": 1,
+      "message": "better to have an empty line between main description and labels for better visibility.",
+      "revId": "2a7c0dde89933f184b3fc940e60e7c8254ad57f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "22b16a4d_1af8fe82",
