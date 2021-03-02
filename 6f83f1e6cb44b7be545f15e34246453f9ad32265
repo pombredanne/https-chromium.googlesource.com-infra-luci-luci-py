@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02607136_b2a5c54d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-02T06:14:36Z",
+      "side": 1,
+      "message": "Ohhh, that\u0027s right. Thank you.",
+      "parentUuid": "18b07afe_2a534298",
+      "range": {
+        "startLine": 9,
+        "startChar": 53,
+        "endLine": 9,
+        "endChar": 70
+      },
+      "revId": "6f83f1e6cb44b7be545f15e34246453f9ad32265",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd362056_90461914",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-03-02T05:42:46Z",
       "side": 1,
       "message": "Better to use this bug so that you can search remaining tests with the bug number? https://crbug.com/1182016",
+      "range": {
+        "startLine": 26,
+        "startChar": 55,
+        "endLine": 26,
+        "endChar": 72
+      },
+      "revId": "6f83f1e6cb44b7be545f15e34246453f9ad32265",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29b6cebf_bac35b71",
+        "filename": "client/tests/fs_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-02T06:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd362056_90461914",
       "range": {
         "startLine": 26,
         "startChar": 55,
