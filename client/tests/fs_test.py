@@ -5,8 +5,11 @@
 # that can be found in the LICENSE file.
 
 import os
+import sys
 import tempfile
 import unittest
+
+import six
 
 # Mutates sys.path.
 import test_env
@@ -43,6 +46,7 @@ class FSTest(unittest.TestCase):
       self._tempdir = tempfile.mkdtemp(prefix=u'fs_test')
     return self._tempdir
 
+  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1017545')
   def test_symlink_relative(self):
     # A symlink to a relative path is valid.
     # /dir
@@ -90,6 +94,7 @@ class FSTest(unittest.TestCase):
     ]
     self.assertEqual(expected, actual)
 
+  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1017545')
   def test_symlink_absolute(self):
     # A symlink to an absolute path is valid.
     # /dir
@@ -137,6 +142,7 @@ class FSTest(unittest.TestCase):
     ]
     self.assertEqual(expected, actual)
 
+  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1017545')
   def test_symlink_missing_destination_rel(self):
     # A symlink to a missing destination is valid and can be read back.
     filepath = 'file'
@@ -146,6 +152,7 @@ class FSTest(unittest.TestCase):
     self.assertEqual(True, fs.islink(linkfile))
     self.assertEqual(filepath, fs.readlink(linkfile))
 
+  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1017545')
   def test_symlink_missing_destination_abs(self):
     # A symlink to a missing destination is valid and can be read back.
     filepath = os.path.join(self.tempdir, 'file')
