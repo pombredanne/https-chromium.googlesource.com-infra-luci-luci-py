@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4d1bfbf_e8f9d998",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-02T02:27:42Z",
+      "side": 1,
+      "message": "nit:\nI wonder if you had a chance to check the code of `six.ensure_text()`\nhttps://github.com/benjaminp/six/blob/master/six.py#L943\n\nIn python3, it doesn\u0027t do anything for str -\u003e str. So \"coerce\" may be applied only to Python2.",
+      "range": {
+        "startLine": 10,
+        "startChar": 60,
+        "endLine": 10,
+        "endChar": 81
+      },
+      "revId": "8bd3d6b8536d3e4dea5ce2b30286e69dcbb5d181",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c8a0909_6a5cb4b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-02T02:27:42Z",
+      "side": 1,
+      "message": "left nits for commenting. but LGTM for the code.",
+      "revId": "8bd3d6b8536d3e4dea5ce2b30286e69dcbb5d181",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

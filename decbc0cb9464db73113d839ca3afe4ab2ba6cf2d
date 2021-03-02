@@ -93,6 +93,29 @@
       },
       "revId": "decbc0cb9464db73113d839ca3afe4ab2ba6cf2d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d483ae9c_6bdfc408",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-02T02:27:42Z",
+      "side": 1,
+      "message": "nit: update this comment.",
+      "range": {
+        "startLine": 94,
+        "startChar": 44,
+        "endLine": 94,
+        "endChar": 54
+      },
+      "revId": "decbc0cb9464db73113d839ca3afe4ab2ba6cf2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
