@@ -46,6 +46,30 @@
       },
       "revId": "2109f40de3d63cf5ebeccd56e0ea064d2888e0b9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "178005ba_f676b8ce",
+        "filename": "appengine/swarming/swarming_bot/swarmingserver_bot_fake.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-03T01:31:32Z",
+      "side": 0,
+      "message": "Ack. would be good to have a comment why the code does re-encoding.",
+      "parentUuid": "826ea510_7704c4e2",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 43
+      },
+      "revId": "2109f40de3d63cf5ebeccd56e0ea064d2888e0b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
