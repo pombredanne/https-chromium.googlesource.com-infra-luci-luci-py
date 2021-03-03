@@ -22,6 +22,30 @@
       },
       "revId": "2109f40de3d63cf5ebeccd56e0ea064d2888e0b9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "826ea510_7704c4e2",
+        "filename": "appengine/swarming/swarming_bot/swarmingserver_bot_fake.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-03-03T00:34:49Z",
+      "side": 0,
+      "message": "Python `base64.b64decode` stops decoding at first \u0027\u003d\u0027 or \u0027\u003d\u003d\u0027 and quietly discards remaining contents of the string. We can either re-encode b64 in `flatten_task_updates` (as proposed in this change), introduce some kind of a separator that allows us to distinguish between individual outputs or stop using b64 to represent output.",
+      "parentUuid": "11b1c3db_105c3900",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 43
+      },
+      "revId": "2109f40de3d63cf5ebeccd56e0ea064d2888e0b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

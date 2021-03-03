@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e04b4ed_ee60b1e6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 28
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-03-03T00:34:49Z",
+      "side": 1,
+      "message": "Updated commit message.",
+      "parentUuid": "e6a6720c_e317e65f",
+      "revId": "cc03a23da3d42a9e18eb9905f5c9ed3bdd0369ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ccfd860d_43457ce5",
         "filename": "/COMMIT_MSG",
         "patchSetId": 28
@@ -43,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73185fc6_858c05d1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 28
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-03-03T00:34:49Z",
+      "side": 1,
+      "message": "Method `task_runner_test.getTaskResults` quietly discards all but the first base64 encoded output. This is due to the fact that Python `base64.b64decode` stops decoding b64 when it encounters padding characters like \u003d or \u003d\u003d.\n\nTests that use `getTaskResults` to check for output will miss updates that arrive after `_min_packet_interval`. Tests that receive their output within `_min_packet_interval` may still randomly fail if they receive less CPU time and their output is split across multiple updates.\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_bot/bot_code/task_runner_test.py;l\u003d236",
+      "parentUuid": "ccfd860d_43457ce5",
+      "range": {
+        "startLine": 35,
+        "startChar": 108,
+        "endLine": 35,
+        "endChar": 132
+      },
+      "revId": "cc03a23da3d42a9e18eb9905f5c9ed3bdd0369ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef8c12a9_7a9400e2",
         "filename": "/COMMIT_MSG",
         "patchSetId": 28
@@ -54,6 +96,24 @@
       "writtenOn": "2021-03-02T11:08:31Z",
       "side": 1,
       "message": "why?",
+      "revId": "cc03a23da3d42a9e18eb9905f5c9ed3bdd0369ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88313116_772fd462",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 28
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-03-03T00:34:49Z",
+      "side": 1,
+      "message": "Essentially same problem as described in the comment above:\n 1. Output \u0027hi\\ngot signal 15\\nbye\\n\u0027 is delivered as two updates \u0027hi\\ngot signal 15\\n` and `bye\\n\u0027 \n 2. `task_runner_test.getTaskResults` discards `bye\\n\u0027\n 3. test fails\n\nMost of the time, bot is fast enough to deliver entire output in single update and so we rarely see this test fail.",
+      "parentUuid": "ef8c12a9_7a9400e2",
       "revId": "cc03a23da3d42a9e18eb9905f5c9ed3bdd0369ac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
