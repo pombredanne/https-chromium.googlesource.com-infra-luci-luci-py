@@ -16,6 +16,24 @@
       "message": "where do you see this error?",
       "revId": "b92106c3bd7b82f6b175696bd686f3fe7e5e396f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85735b86_3fc2ecf2",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-03-03T01:07:59Z",
+      "side": 1,
+      "message": "`got signal 21` - https://ci.chromium.org/ui/p/infra/builders/try/luci-py-try-win10-64/b8853883268209122560\n`bye` https://ci.chromium.org/ui/p/infra/builders/try/luci-py-try-win10-64/b8853899856942103472\n`E: Failed to delete` - https://ci.chromium.org/ui/p/infra/builders/try/luci-py-try-win10-64/b8853894572087603488",
+      "parentUuid": "4b93d520_3bfec6a1",
+      "revId": "b92106c3bd7b82f6b175696bd686f3fe7e5e396f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
