@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2de37caa_909052b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 30
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-03T03:20:38Z",
+      "side": 1,
+      "message": "does this fix https://crbug.com/1131283 too?",
+      "revId": "b92106c3bd7b82f6b175696bd686f3fe7e5e396f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b93d520_3bfec6a1",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
         "patchSetId": 30
