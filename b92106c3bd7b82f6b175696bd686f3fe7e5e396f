@@ -87,6 +87,24 @@
       "parentUuid": "e8494212_8f0f4942",
       "revId": "b92106c3bd7b82f6b175696bd686f3fe7e5e396f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a59c728_824e4206",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-03-03T04:00:38Z",
+      "side": 1,
+      "message": "Change: https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/2730234",
+      "parentUuid": "9104b8ad_e6067362",
+      "revId": "b92106c3bd7b82f6b175696bd686f3fe7e5e396f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
