@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "193a10e6_3b624163",
+        "filename": "client/third_party/depot_tools/fix_encoding.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-04T08:47:06Z",
+      "side": 1,
+      "message": "Do you want to avoid using six.PY2? \nIf so, using the same code would be fine.\nhttps://github.com/benjaminp/six/blob/master/six.py#L36",
+      "revId": "0bf9e806cb36ea7654404b4503f3bad12a08b676",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
