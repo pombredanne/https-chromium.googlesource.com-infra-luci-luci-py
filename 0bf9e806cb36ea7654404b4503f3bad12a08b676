@@ -52,6 +52,24 @@
       "parentUuid": "44b99d44_69b4f525",
       "revId": "0bf9e806cb36ea7654404b4503f3bad12a08b676",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e41318e_10eda9eb",
+        "filename": "client/third_party/depot_tools/fix_encoding.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-04T09:03:19Z",
+      "side": 1,
+      "message": "You don\u0027t need to use six, but you need to send change to original repository instead of modifying copied file in this repository.",
+      "parentUuid": "48a49ef8_f2ffb04b",
+      "revId": "0bf9e806cb36ea7654404b4503f3bad12a08b676",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
