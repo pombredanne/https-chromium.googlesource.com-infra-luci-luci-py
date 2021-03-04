@@ -34,6 +34,24 @@
       "parentUuid": "193a10e6_3b624163",
       "revId": "0bf9e806cb36ea7654404b4503f3bad12a08b676",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48a49ef8_f2ffb04b",
+        "filename": "client/third_party/depot_tools/fix_encoding.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-04T08:57:01Z",
+      "side": 1,
+      "message": "Oh, I didn\u0027t intentionally avoid using six.PY2, should I use six.PY2?",
+      "parentUuid": "44b99d44_69b4f525",
+      "revId": "0bf9e806cb36ea7654404b4503f3bad12a08b676",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
