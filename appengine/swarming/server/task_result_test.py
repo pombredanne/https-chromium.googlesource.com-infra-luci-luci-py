@@ -1347,7 +1347,7 @@ class TestOutput(TestCase):
   def test_append_output_partial(self):
     run_result = _gen_run_result()
     ndb.put_multi(run_result.append_output('Foo', 10))
-    expected_output = '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00Foo'
+    expected_output = b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00Foo'
     self.assertEqual(expected_output, run_result.get_output(0, 0))
     self.assertTaskOutputChunk([{'chunk': expected_output, 'gaps': [0, 10]}])
 
@@ -1462,6 +1462,30 @@ class TestOutput(TestCase):
     self.assertEqual(data[12:18], run_result.get_output(12, 6))
     self.assertEqual(data[12:], run_result.get_output(12, 0))
 
+  def test_get_output_utf8(self):
+    self.mock(task_result.TaskOutput, 'CHUNK_SIZE', 4)
+    run_result = _gen_run_result()
+    ndb.put_multi(run_result.append_output('Foo🤠Bar', 0))
+    self.assertEqual('Foo🤠Bar', run_result.get_output(0, 0))
+    self.assertTaskOutputChunk([
+        {
+            'chunk': b'Foo\xf0', b''
+            'gaps': []
+        },
+        {
+            'chunk': b'\x9f\xa4\xa0B',
+            'gaps': []
+        },
+        {
+            'chunk': 'ar',
+            'gaps': []
+        },
+    ])
+
+  def test_get_output_utf8_limit(self):
+    run_result = _gen_run_result()
+    ndb.put_multi(run_result.append_output('Foo🤠Bar', 0))
+    self.assertEqual('Foo🤠', run_result.get_output(0, 7))
 
 if __name__ == '__main__':
   logging.basicConfig(
