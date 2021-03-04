@@ -1309,7 +1309,9 @@ time.sleep(${leaseDuration})`];
               previousState = json.state;
             }
             const s = json.output || '';
-            this._stdoutOffset += s.length;
+            // s.length returns number of code points but we need bytes
+            const sLengthBytes = new Blob([s]).size;
+            this._stdoutOffset += sLengthBytes;
             // Remove carriage returns for easier copy-paste and presentation.
             // https://crbug.com/944974
             const newLogs = s.replace(/\r\n/g, '\n');
@@ -1344,7 +1346,7 @@ time.sleep(${leaseDuration})`];
             }
 
             if (json.state === 'RUNNING' || json.state === 'PENDING') {
-              if (s.length < STDOUT_REQUEST_SIZE) {
+              if (sLengthBytes < STDOUT_REQUEST_SIZE) {
                 // wait for more input because no new input from last fetch
                 setTimeout(fetchNextStdout, this._logFetchPeriod);
               } else {
@@ -1353,7 +1355,7 @@ time.sleep(${leaseDuration})`];
               }
             } else {
               // no more
-              if (s.length < STDOUT_REQUEST_SIZE) {
+              if (sLengthBytes < STDOUT_REQUEST_SIZE) {
                 this.app.finishedTask();
               } else {
                 // fetch right away because we are not at the end of input
