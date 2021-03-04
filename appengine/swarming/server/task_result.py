@@ -796,13 +796,13 @@ class _TaskResultCommon(ndb.Model):
         parts.append(e.chunk)
       else:
         if not void:
-          void = '\x00' * TaskOutput.CHUNK_SIZE
+          void = b'\x00' * TaskOutput.CHUNK_SIZE
         parts.append(void)
 
     # Process the output.
     start_offset = offset % chunk_size
     end_offset = end - (first_chunk * chunk_size)
-    return ''.join(parts)[start_offset:end_offset]
+    return b''.join(parts)[start_offset:end_offset]
 
   def _pre_put_hook(self):
     """Use extra validation that cannot be validated throught 'validator'."""
