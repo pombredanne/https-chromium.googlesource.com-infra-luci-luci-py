@@ -70,6 +70,24 @@
       "parentUuid": "48a49ef8_f2ffb04b",
       "revId": "0bf9e806cb36ea7654404b4503f3bad12a08b676",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af5e318c_bcff0a90",
+        "filename": "client/third_party/depot_tools/fix_encoding.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-04T11:38:10Z",
+      "side": 1,
+      "message": "\u003e should I use six.PY2?\nYou don\u0027t need since I\u0027m not sure all code that import fix_encoding() have six.\nnit: I suggest using the same condition with six.PY2, which is \"sys.version_info[0] \u003d\u003d 2\".",
+      "parentUuid": "8e41318e_10eda9eb",
+      "revId": "0bf9e806cb36ea7654404b4503f3bad12a08b676",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
