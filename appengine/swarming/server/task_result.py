@@ -802,7 +802,7 @@ class _TaskResultCommon(ndb.Model):
     # Process the output.
     start_offset = offset % chunk_size
     end_offset = end - (first_chunk * chunk_size)
-    return ''.join(parts)[start_offset:end_offset]
+    return b''.join(parts)[start_offset:end_offset]
 
   def _pre_put_hook(self):
     """Use extra validation that cannot be validated throught 'validator'."""
