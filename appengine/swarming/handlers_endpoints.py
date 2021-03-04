@@ -457,9 +457,6 @@ class SwarmingTaskService(remote.Service):
       request.length = 16*1000*1024
     _, result = _get_request_and_result(request.task_id, _VIEW, True)
     output = result.get_output(request.offset or 0, request.length)
-    if output:
-      # That was an error, don't do that in pRPC:
-      output = output.decode('utf-8', 'replace')
     return swarming_rpcs.TaskOutput(
         output=output,
         state=swarming_rpcs.TaskState(result.state))
