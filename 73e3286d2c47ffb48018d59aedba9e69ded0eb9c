@@ -22,6 +22,30 @@
       },
       "revId": "73e3286d2c47ffb48018d59aedba9e69ded0eb9c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8007bfdb_ddba980e",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-05T09:25:00Z",
+      "side": 1,
+      "message": "float",
+      "parentUuid": "67bac70e_34b13a70",
+      "range": {
+        "startLine": 319,
+        "startChar": 35,
+        "endLine": 319,
+        "endChar": 38
+      },
+      "revId": "73e3286d2c47ffb48018d59aedba9e69ded0eb9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
