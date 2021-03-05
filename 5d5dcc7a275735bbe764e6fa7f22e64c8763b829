@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66c9feef_e59e9f94",
+        "filename": "client/third_party/depot_tools/fix_encoding.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-05T05:46:42Z",
+      "side": 1,
+      "message": "Oh, I think your change was not necessary.\nIt is fine to submit this CL as-is, but let me revert original CL.",
+      "revId": "5d5dcc7a275735bbe764e6fa7f22e64c8763b829",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
