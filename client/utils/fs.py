@@ -137,7 +137,8 @@ if sys.platform == 'win32':
     # - Win10: Microsoft Windows [Version 10.0.10240]
     # - Win7 or Win2K8R2: Microsoft Windows [Version 6.1.7601]
     try:
-      out = subprocess.check_output(['cmd.exe', '/c', 'ver']).strip()
+      out = six.ensure_text(
+        subprocess.check_output(['cmd.exe', '/c', 'ver']).strip())
       match = re.search(r'\[Version (\d+\.\d+)\.(\d+)\]', out, re.IGNORECASE)
       if match:
         # That's a bit gross but good enough.
@@ -315,7 +316,7 @@ if sys.platform == 'win32':
             path)
       off = actual.PrintNameOffset / 2
       end = off + actual.PrintNameLength / 2
-      return actual.PathBuffer[off:end]
+      return actual.PathBuffer[int(off):int(end)]
     finally:
       windll.kernel32.CloseHandle(handle)
 
