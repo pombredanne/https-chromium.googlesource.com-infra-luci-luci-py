@@ -88,6 +88,24 @@
       "parentUuid": "8e41318e_10eda9eb",
       "revId": "0bf9e806cb36ea7654404b4503f3bad12a08b676",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3dc747d_c5c2ec31",
+        "filename": "client/third_party/depot_tools/fix_encoding.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-05T05:39:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af5e318c_bcff0a90",
+      "revId": "0bf9e806cb36ea7654404b4503f3bad12a08b676",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
