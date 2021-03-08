@@ -52,6 +52,24 @@
       "parentUuid": "60ed1b4d_1fb2c00f",
       "revId": "cc1fe45216e35f8bf86862bc0829ced7037bd8b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80ad6672_09d4b4ba",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 1314,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-03-08T05:14:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6e826f9_9cce5fce",
+      "revId": "cc1fe45216e35f8bf86862bc0829ced7037bd8b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
