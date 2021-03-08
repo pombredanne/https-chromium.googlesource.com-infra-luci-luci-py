@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "931e2a67_c9b7490f",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 1314,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-08T01:22:29Z",
+      "side": 1,
+      "message": "is it possible to add test for this?",
+      "revId": "cc1fe45216e35f8bf86862bc0829ced7037bd8b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
