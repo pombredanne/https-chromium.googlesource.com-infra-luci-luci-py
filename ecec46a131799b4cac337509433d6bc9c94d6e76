@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46148634_417e3edf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-08T05:39:03Z",
+      "side": 1,
+      "message": "better to add https://crbug.com/1124417?",
+      "revId": "ecec46a131799b4cac337509433d6bc9c94d6e76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
