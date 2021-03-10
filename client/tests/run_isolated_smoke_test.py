@@ -253,7 +253,6 @@ def load_isolated_stats(stats_json_path, key):
   return stats
 
 
-@unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1182016')
 class RunIsolatedTest(unittest.TestCase):
   def setUp(self):
     super(RunIsolatedTest, self).setUp()
@@ -741,13 +740,13 @@ class RunIsolatedTest(unittest.TestCase):
     self.assertEqual(2, len(download_stats['items_cold']))
     self.assertEqual(['state.json'], list_files_tree(self._cas_cache_dir))
 
-    # Specify --min-free-space option. This should fail because there are
-    # no required space.
+    # Specify --min-free-space option. This shouldn't fail even if there are no
+    # required space.
     optional_args = [
         '--min-free-space',
         str(2**63 - 1),
     ]
-    assertRunIsolatedWithCAS(optional_args, expected_retcode=1)
+    assertRunIsolatedWithCAS(optional_args)
 
   def test_cas_output(self):
     # Prepare inputs on CAS instance for `output.py` task.
