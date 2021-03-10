@@ -16,6 +16,24 @@
       "message": "This will likely break Swarming tasks running on arm64 OSX, since `cipd` will now resolve ${platform} into \u0027mac-arm64\u0027 and a lot of packages used by Swarming tasks either do not have mac-arm64 variants or they don\u0027t work (most notably, python).",
       "revId": "71c7af4d7f5efc94b8169ca6743ed9fa7693c1ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6425d285_7c0a6cd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-10T08:40:59Z",
+      "side": 1,
+      "message": "Uggh, I see.\nI filed https://crbug.com/1186562 for that, thanks.",
+      "parentUuid": "5542866b_a9ca3443",
+      "revId": "71c7af4d7f5efc94b8169ca6743ed9fa7693c1ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
