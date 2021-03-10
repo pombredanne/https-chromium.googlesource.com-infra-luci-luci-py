@@ -16,6 +16,24 @@
       "message": "Could you move this below to follow\nhttps://google.github.io/styleguide/pyguide.html#s3.13-imports-formatting\n?\nctypes, fcntl is standard library, but six is not.",
       "revId": "8f199243ee0e27b6193cfc89954712b1c2002f68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8596a864_4a108596",
+        "filename": "appengine/swarming/swarming_bot/bot_code/singleton.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-10T07:57:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4554c0fd_717f0ac3",
+      "revId": "8f199243ee0e27b6193cfc89954712b1c2002f68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
