@@ -9,6 +9,7 @@ import logging
 import os
 import sys
 
+import six
 
 if sys.platform == 'win32':
   from ctypes import wintypes
@@ -27,7 +28,7 @@ class Singleton(object):
     self.handle = None
     if sys.platform == 'win32':
       # Use the directory name without '\\'. Enforce lowercase.
-      self.key = u'Global\\' + unicode(rootdir.replace('\\', '_')).lower()
+      self.key = u'Global\\' + six.ensure_text(rootdir.replace('\\', '_')).lower()
     else:
       self.key = os.path.join(rootdir, 'swarming.lck')
 
