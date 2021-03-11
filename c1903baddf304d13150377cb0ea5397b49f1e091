@@ -16,6 +16,24 @@
       "message": "Could you skip only failed tests?\nI think it is useful if we can run some tests on Windows too.",
       "revId": "c1903baddf304d13150377cb0ea5397b49f1e091",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70c1f92a_de287bd4",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-11T02:34:29Z",
+      "side": 1,
+      "message": "Ah, nevermind. linux is necessary in most cases.",
+      "parentUuid": "af23936f_6eb8682e",
+      "revId": "c1903baddf304d13150377cb0ea5397b49f1e091",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
