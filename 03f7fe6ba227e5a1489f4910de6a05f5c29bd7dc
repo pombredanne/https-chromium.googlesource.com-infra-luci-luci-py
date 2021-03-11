@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bcf9620_34121bd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-11T01:26:02Z",
+      "side": 1,
+      "message": "Sorry, I forgot to update the Go client version.",
+      "revId": "03f7fe6ba227e5a1489f4910de6a05f5c29bd7dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
