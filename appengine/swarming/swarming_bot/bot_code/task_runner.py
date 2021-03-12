@@ -802,6 +802,12 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
                 'run_isolated internal failure %d' % exit_code)
             logging.error('%s', must_signal_internal_failure)
         exit_code = run_isolated_result['exit_code']
+        isolated_stats = run_isolated_result.get('stats', {}).get('isolated')
+        if isolated_stats:
+          params['isolated_stats'] = isolated_stats
+        cipd_stats = run_isolated_result.get('stats', {}).get('cipd')
+        if cipd_stats:
+          params['cipd_stats'] = cipd_stats
         params['bot_overhead'] = 0.
         if run_isolated_result.get('duration') is not None:
           # Calculate the real task duration as measured by run_isolated and
@@ -811,18 +817,12 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
           params['bot_overhead'] -= params['duration']
           params['bot_overhead'] -= run_isolated_result.get('download', {}).get(
               'duration', 0)
-          params['bot_overhead'] -= run_isolated_result.get(
-              'upload', {}).get('duration', 0)
-          params['bot_overhead'] -= run_isolated_result.get(
-              'cipd', {}).get('duration', 0)
+          if isolated_stats:
+            params['bot_overhead'] -= isolated_stats.get('duration', 0)
+          if cipd_stats:
+            params['bot_overhead'] -= cipd_stats.get('duration', 0)
           if params['bot_overhead'] < 0:
             params['bot_overhead'] = 0
-        isolated_stats = run_isolated_result.get('stats', {}).get('isolated')
-        if isolated_stats:
-          params['isolated_stats'] = isolated_stats
-        cipd_stats = run_isolated_result.get('stats', {}).get('cipd')
-        if cipd_stats:
-          params['cipd_stats'] = cipd_stats
         cipd_pins = run_isolated_result.get('cipd_pins')
         if cipd_pins:
           params['cipd_pins'] = cipd_pins
