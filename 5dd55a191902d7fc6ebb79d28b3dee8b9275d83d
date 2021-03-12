@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "594e926f_37d292a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-12T03:40:12Z",
+      "side": 1,
+      "message": "PTAL.\n\nBesides unit tests I also tested the luci-go side can interact with this code:\n\n  $ ./auth_server.py\n  INFO:root:Local auth server: http://127.0.0.1:11111\n  ...\n  Copy-paste this into another shell:\n  export LUCI_CONTEXT\u003d/var/....\n\n  $ export LUCI_CONTEXT\u003d/var/....\n  $ ./luci-auth token -use-id-token -audience example.com\n  fake_id_tok_a\n\n  (Observing Log \"generate_id_token(\u0027a\u0027, \u0027example.com\u0027) called\").",
+      "revId": "5dd55a191902d7fc6ebb79d28b3dee8b9275d83d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
