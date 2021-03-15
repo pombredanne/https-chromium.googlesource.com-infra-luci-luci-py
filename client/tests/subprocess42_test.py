@@ -193,7 +193,6 @@ class Subprocess42Test(unittest.TestCase):
       os.close(handle)
     return self._output_script
 
-  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1182016')
   def test_communicate_timeout(self):
     timedout = 1 if sys.platform == 'win32' else -9
     # Format is:
