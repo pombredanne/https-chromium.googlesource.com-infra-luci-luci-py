@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6da62631_e959868e",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-15T02:22:34Z",
+      "side": 1,
+      "message": "better to have a test?",
+      "revId": "9599d34b75baa529c57ce61230ebf3fcddc236a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
