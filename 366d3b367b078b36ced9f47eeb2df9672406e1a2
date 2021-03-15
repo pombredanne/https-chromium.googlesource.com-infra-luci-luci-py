@@ -16,6 +16,24 @@
       "message": "Could you explain why you change the type?",
       "revId": "366d3b367b078b36ced9f47eeb2df9672406e1a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1381231c_fa0fdd4e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-15T05:58:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4df30298_84df7c54",
+      "revId": "366d3b367b078b36ced9f47eeb2df9672406e1a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
