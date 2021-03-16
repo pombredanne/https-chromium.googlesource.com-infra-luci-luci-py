@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1477d47_e38a2910",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-16T00:39:53Z",
+      "side": 1,
+      "message": "I thought we have to fix test cases. But maybe something have changed with https://crrev.com/c/2759322?  \nLet me hear what has changed (or what was wrong) in the meeting.",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 0
+      },
+      "revId": "ff642de7089ffae94f5ea12896b5f2e3f5cf5602",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
