@@ -22,6 +22,30 @@
       },
       "revId": "ff642de7089ffae94f5ea12896b5f2e3f5cf5602",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0cf2419_a27f954e",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-16T03:00:34Z",
+      "side": 1,
+      "message": "Discussed in GVC, the problem was simply subprocee43.communicate() didn\u0027t return `str` on Python3 Windows when timeout is specified. \n\nThe issue is resolved by this CL.",
+      "parentUuid": "d1477d47_e38a2910",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 0
+      },
+      "revId": "ff642de7089ffae94f5ea12896b5f2e3f5cf5602",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
