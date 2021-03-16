@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d63dde9f_e1738f8e",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-16T08:43:21Z",
+      "side": 1,
+      "message": "better to use\nhttps://docs.python.org/ja/3/library/unittest.html#unittest.TestCase.assertRegex\n?",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 44
+      },
+      "revId": "821d0dabfa11901448a0d27e004045864e1163df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32d653c1_2e3c14c4",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-16T08:43:21Z",
+      "side": 1,
+      "message": "better to use\nhttps://docs.python.org/ja/3/library/unittest.html#unittest.TestCase.assertRegex\n?",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 52
+      },
+      "revId": "821d0dabfa11901448a0d27e004045864e1163df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
