@@ -134,6 +134,30 @@
       },
       "revId": "691415a4d298f8ec63a89a918fb729186a70918e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b361700c_f7a99b8a",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-16T06:07:04Z",
+      "side": 1,
+      "message": "Ah, sorry I miss-referenced. I thought I found the recommendation somewhere.  \nWill share if I find it.",
+      "parentUuid": "129c499d_26a15722",
+      "range": {
+        "startLine": 858,
+        "startChar": 34,
+        "endLine": 858,
+        "endChar": 35
+      },
+      "revId": "691415a4d298f8ec63a89a918fb729186a70918e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
