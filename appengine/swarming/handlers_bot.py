@@ -999,7 +999,7 @@ class BotOAuthTokenHandler(_BotApiHandler):
     token = None  # service_accounts.AccessToken
     try:
       if account_id == 'task':
-        account, token = service_accounts.get_task_account_token(
+        account, token = service_accounts.get_task_access_token(
             task_id, bot_id, scopes)
       elif account_id == 'system':
         account, token = service_accounts.get_system_account_token(

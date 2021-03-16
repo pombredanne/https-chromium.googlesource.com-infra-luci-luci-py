@@ -179,7 +179,7 @@ def get_oauth_token_grant(service_account, validity_duration):
   return new_grant
 
 
-def get_task_account_token(task_id, bot_id, scopes):
+def get_task_access_token(task_id, bot_id, scopes):
   """Returns an access token for a service account associated with a task.
 
   Assumes authorization checks have been made already. If the task is not
@@ -261,7 +261,7 @@ def get_task_account_token(task_id, bot_id, scopes):
   return task_request.service_account, token
 
 
-def get_system_account_token(system_service_account, scopes):
+def get_system_access_token(system_service_account, scopes):
   """Returns an access token to use on bots when calling internal services.
 
   "Internal services" are (loosely) everything that is needed for correct

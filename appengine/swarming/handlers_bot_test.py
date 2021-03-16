@@ -1870,7 +1870,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
       calls.append((task_id, bot_id, scopes))
       return 'blah@example.com', service_accounts.AccessToken('blah', 126240504)
 
-    self.mock(service_accounts, 'get_task_account_token', mocked)
+    self.mock(service_accounts, 'get_task_access_token', mocked)
     self.mock_task_service_accounts()
     self.mock_default_pool_acl(['blah@example.com'])
 
@@ -1928,7 +1928,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     def mocked(*_args, **_kwargs):
       raise service_accounts.PermissionError('Fatal error')
 
-    self.mock(service_accounts, 'get_task_account_token', mocked)
+    self.mock(service_accounts, 'get_task_access_token', mocked)
 
     response = self.app.post_json(
         '/swarming/api/v1/bot/oauth_token',
@@ -1946,7 +1946,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     def mocked(*_args, **_kwargs):
       raise service_accounts.InternalError('Transient error')
 
-    self.mock(service_accounts, 'get_task_account_token', mocked)
+    self.mock(service_accounts, 'get_task_access_token', mocked)
 
     response = self.app.post_json(
         '/swarming/api/v1/bot/oauth_token',
@@ -1985,7 +1985,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
       calls.append((account, scopes))
       return account, service_accounts.AccessToken('blah', 126240504)
 
-    self.mock(service_accounts, 'get_system_account_token', mocked)
+    self.mock(service_accounts, 'get_system_access_token', mocked)
 
     response = self.app.post_json(
         '/swarming/api/v1/bot/oauth_token',
@@ -2010,7 +2010,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
       self.assertEqual(['scope_a', 'scope_b'], scopes)
       return 'none', None
 
-    self.mock(service_accounts, 'get_system_account_token', mocked)
+    self.mock(service_accounts, 'get_system_access_token', mocked)
 
     response = self.app.post_json(
         '/swarming/api/v1/bot/oauth_token',

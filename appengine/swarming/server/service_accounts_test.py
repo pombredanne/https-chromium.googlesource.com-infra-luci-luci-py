@@ -219,7 +219,7 @@ class TaskAccountTokenTest(TestBase):
     tok = service_accounts.AccessToken('totally_real_token',
                                        int(utils.time_time() + 3600))
     self.assertEqual(('service-account@example.com', tok),
-                     service_accounts.get_task_account_token(
+                     service_accounts.get_task_access_token(
                          task_id, 'bot-id', ['scope1', 'scope2']))
 
   def test_ok_with_realm(self):
@@ -264,24 +264,24 @@ class TaskAccountTokenTest(TestBase):
                                        int(utils.time_time() + 3600))
     self.assertEqual(
         ('service-account@example.com', tok),
-        service_accounts.get_task_account_token(task_id, 'bot-id',
+        service_accounts.get_task_access_token(task_id, 'bot-id',
                                                 ['scope1', 'scope2']))
 
   def test_malformed_task_id(self):
     with self.assertRaises(service_accounts.MisconfigurationError):
-      service_accounts.get_task_account_token(
+      service_accounts.get_task_access_token(
           'bad-task-id', 'bot-id', ['scope1', 'scope2'])
 
   def test_missing_task_id(self):
     with self.assertRaises(service_accounts.MisconfigurationError):
-      service_accounts.get_task_account_token(
+      service_accounts.get_task_access_token(
           '382b353612985111', 'bot-id', ['scope1', 'scope2'])
 
   def test_task_account_is_bot(self):
     task_id = self.make_task_request(
         service_account='bot',
         service_account_token=None)
-    account, tok = service_accounts.get_task_account_token(
+    account, tok = service_accounts.get_task_access_token(
         task_id, 'bot-id', ['scope1', 'scope2'])
     self.assertEqual('bot', account)
     self.assertIsNone(tok)
@@ -289,7 +289,7 @@ class TaskAccountTokenTest(TestBase):
   def test_task_account_is_none(self):
     task_id = self.make_task_request(
         service_account='none', service_account_token=None)
-    account, tok = service_accounts.get_task_account_token(
+    account, tok = service_accounts.get_task_access_token(
         task_id, 'bot-id', ['scope1', 'scope2'])
     self.assertEqual('none', account)
     self.assertIsNone(tok)
@@ -303,11 +303,11 @@ class SystemAccountTokenTest(test_case.TestCase):
   def test_none(self):
     self.assertEqual(
         ('none', None),
-        service_accounts.get_system_account_token(None, ['scope']))
+        service_accounts.get_system_access_token(None, ['scope']))
 
   def test_bot(self):
     self.assertEqual(('bot', None),
-                     service_accounts.get_system_account_token(
+                     service_accounts.get_system_access_token(
                          'bot', ['scope']))
 
   def test_token(self):
@@ -320,7 +320,7 @@ class SystemAccountTokenTest(test_case.TestCase):
 
     tok = service_accounts.AccessToken('fake-token', utils.time_time() + 3600)
     self.assertEqual(('bot@example.com', tok),
-                     service_accounts.get_system_account_token(
+                     service_accounts.get_system_access_token(
                          'bot@example.com', ['scope']))
 
     self.assertEqual([{
