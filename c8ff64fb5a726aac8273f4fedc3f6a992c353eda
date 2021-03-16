@@ -16,6 +16,29 @@
       "message": "PTAL",
       "revId": "c8ff64fb5a726aac8273f4fedc3f6a992c353eda",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9a99fc1_1d0d2b9c",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-16T23:46:26Z",
+      "side": 1,
+      "message": "As you were trying https://crrev.com/c/2765430, I think having different functions are better in terms of readability/maintainability.\n\nWhy do you think this is better?",
+      "range": {
+        "startLine": 187,
+        "startChar": 44,
+        "endLine": 187,
+        "endChar": 66
+      },
+      "revId": "c8ff64fb5a726aac8273f4fedc3f6a992c353eda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
