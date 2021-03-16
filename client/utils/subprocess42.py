@@ -628,7 +628,7 @@ class Popen(subprocess.Popen):
     if not timeout:
       return super(Popen, self).communicate(input=input)
 
-    if six.PY3:
+    if six.PY3 and not sys.platform == 'win32':
       return super(Popen, self).communicate(  # pylint: disable=unexpected-keyword-arg
           input=input,
           timeout=timeout,
@@ -687,6 +687,11 @@ class Popen(subprocess.Popen):
 
     # Indirectly initialize self.end.
     self.wait()
+    if self.universal_newlines:
+      stdout = stdout.decode() if stdout else ''
+      stderr = stderr.decode() if stderr else ''
+    if not stderr:
+      stderr = None
     return stdout, stderr
 
   def wait(self,
