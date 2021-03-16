@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02bd576c_9227df93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-16T07:24:13Z",
+      "side": 1,
+      "message": "Can we enable some tests? \nIIRC, we saw a test failed with \"No module named \u0027_winreg`...”.",
+      "revId": "9150a1be7c2440985d5e2deb4ca6f24d54802c34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "518b2795_de80b745",
