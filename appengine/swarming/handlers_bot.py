@@ -893,7 +893,116 @@ class BotEventHandler(_BotBaseHandler):
 ### Bot Security API RPC handlers
 
 
-class BotOAuthTokenHandler(_BotApiHandler):
+class _BotTokenHandler(_BotApiHandler):
+  """Base class for BotOAuthTokenHandler and BotIDTokenHandler."""
+
+  ACCEPTED_KEYS = None  # to be set in subclasses
+  REQUIRED_KEYS = None  # to be set in subclasses
+  TOKEN_RESPONSE_KEY = None  # to be set in subclasses
+
+  def get_token_call_params(self, body):
+    """Validates request fields specific to the requested token type.
+
+    Returns:
+      Tuple (token kind, scopes, audience) for get_task_account_token.
+    """
+    raise NotImplementedError()
+
+  @auth.public  # auth happens in bot_auth.validate_bot_id_and_fetch_config()
+  def post(self):
+    body = self.parse_body()
+    logging.debug('Request body: %s', body)
+    msg = log_unexpected_subset_keys(
+        self.ACCEPTED_KEYS, self.REQUIRED_KEYS,
+        body, self.request, 'bot', 'keys')
+    if msg:
+      self.abort_with_error(400, error=msg)
+
+    account_id = body['account_id']
+    # TODO(crbug.com/1015701): take from X-Luci-Swarming-Bot-ID header.
+    bot_id = body['id']
+    task_id = body.get('task_id')
+
+    # Only two flavors of accounts are supported.
+    if account_id not in ('system', 'task'):
+      self.abort_with_error(
+          400, error='Unknown "account_id", expecting "task" or "system"')
+
+    # If using 'task' account, 'task_id' is required. We'll double check the bot
+    # still executes this task (based on data in datastore), and if so, will
+    # use a service account associated with this particular task.
+    if account_id == 'task' and not task_id:
+      self.abort_with_error(
+          400, error='"task_id" is required when using "account_id" == "task"')
+
+    # Validate fields specific to the requested token kind in the subclass.
+    token_kind, scopes, audience = self.get_token_call_params(body)
+
+    # Make sure bot self-reported ID matches the authentication token. Raises
+    # auth.AuthorizationError if not. Also fetches corresponding BotGroupConfig
+    # that contains system service account email for this bot.
+    bot_group_cfg = bot_auth.validate_bot_id_and_fetch_config(bot_id)
+
+    # At this point, the request is valid structurally, and the bot used proper
+    # authentication when making it.
+    if token_kind == service_accounts.TOKEN_KIND_ACCESS_TOKEN:
+      logging.info(
+          'Requesting a "%s" access token with scopes %s', account_id, scopes)
+    elif token_kind == service_accounts.TOKEN_KIND_ID_TOKEN:
+      logging.info(
+          'Requesting a "%s" ID token with audience "%s"', account_id, audience)
+    else:
+      raise AssertionError('Unrecognized token kind %s' % (token_kind,))
+
+    # Check 'task_id' matches the task currently assigned to the bot. This is
+    # mostly a precaution against confused bot processes. We can always just use
+    # 'current_task_id' to look up per-task service account. Datastore is the
+    # source of truth here, not whatever bot reports.
+    if account_id == 'task':
+      # BotInfo contains ID of a task the bot currently executes (to compare
+      # with 'task_id' request parameter).
+      current_task_id = None
+      bot_info = bot_management.get_info_key(bot_id).get()
+      if bot_info:
+        current_task_id = bot_info.task_id
+      if task_id != current_task_id:
+        logging.error(
+            'Bot %s requested "task" token for task %s, but runs %s',
+            bot_id, task_id, current_task_id)
+        self.abort_with_error(
+            400, error='Wrong task_id: the bot is not executing this task')
+
+    account = None  # an email or 'bot' or 'none'
+    token = None  # service_accounts.AccessToken
+    try:
+      if account_id == 'task':
+        account, token = service_accounts.get_task_account_token(
+            task_id, bot_id, token_kind, scopes, audience)
+      elif account_id == 'system':
+        account, token = service_accounts.get_system_account_token(
+            bot_group_cfg.system_service_account, token_kind, scopes, audience)
+      else:
+        raise AssertionError('Impossible, there is a check above')
+    except service_accounts.PermissionError as exc:
+      self.abort_with_error(403, error=exc.message)
+    except service_accounts.MisconfigurationError as exc:
+      self.abort_with_error(400, error=exc.message)
+    except service_accounts.InternalError as exc:
+      self.abort_with_error(500, error=exc.message)
+
+    # Note: the token info is already logged by service_accounts.get_*_token.
+    if token:
+      self.send_response({
+          'service_account': account,
+          self.TOKEN_RESPONSE_KEY: token.access_token,
+          'expiry': token.expiry,
+      })
+    else:
+      assert account in ('bot', 'none'), account
+      self.send_response({'service_account': account})
+
+
+class BotOAuthTokenHandler(_BotTokenHandler):
   """Called when bot wants to get a service account OAuth access token.
 
   There are two flavors of service accounts the bot may use:
@@ -936,97 +1045,53 @@ class BotOAuthTokenHandler(_BotApiHandler):
       u'task_id',  # optional task ID, required if using 'task' account
   }
   REQUIRED_KEYS = {u'account_id', u'id', u'scopes'}
+  TOKEN_RESPONSE_KEY = 'access_token'
 
-  @auth.public  # auth happens in bot_auth.validate_bot_id_and_fetch_config()
-  def post(self):
-    request = self.parse_body()
-    logging.debug('Request body: %s', request)
-    msg = log_unexpected_subset_keys(self.ACCEPTED_KEYS, self.REQUIRED_KEYS,
-                                     request, self.request, 'bot', 'keys')
-    if msg:
-      self.abort_with_error(400, error=msg)
+  def get_token_call_params(self, body):
+    """Validates request fields specific to the requested token type.
 
-    account_id = request['account_id']
-    # TODO(crbug.com/1015701): take from X-Luci-Swarming-Bot-ID header.
-    bot_id = request['id']
-    scopes = request['scopes']
-    task_id = request.get('task_id')
-
-    # Scopes should be a list of strings, always.
+    Returns:
+      Tuple (token kind, scopes, audience) for get_task_account_token.
+    """
+    scopes = body['scopes']
     if (not scopes or not isinstance(scopes, list) or
         not all(isinstance(s, basestring) for s in scopes)):
       self.abort_with_error(400, error='"scopes" must be a list of strings')
+    return service_accounts.TOKEN_KIND_ACCESS_TOKEN, scopes, None
 
-    # Only two flavors of accounts are supported.
-    if account_id not in ('system', 'task'):
-      self.abort_with_error(
-          400, error='Unknown "account_id", expecting "task" or "system"')
 
-    # If using 'task' account, task_id is required. We'll double check the bot
-    # still executes this task (based on data in datastore), and if so, will
-    # use a service account associated with this particular task.
-    if account_id == 'task' and not task_id:
-      self.abort_with_error(
-          400, error='"task_id" is required when using "account_id" == "task"')
+class BotIDTokenHandler(_BotApiHandler):
+  """Called when bot wants to get a service account ID token.
 
-    # BotInfo contains ID of a task the bot currently executes (to compare
-    # with 'task_id' request parameter).
-    current_task_id = None
-    bot_info = bot_management.get_info_key(bot_id).get()
-    if bot_info:
-      current_task_id = bot_info.task_id
+  Similar to BotOAuthTokenHandler, except returns ID tokens instead of OAuth
+  tokens. See BotOAuthTokenHandler doc for details.
 
-    # Make sure bot self-reported ID matches the authentication token. Raises
-    # auth.AuthorizationError if not. Also fetches corresponding BotGroupConfig
-    # that contains system service account email for this bot.
-    bot_group_cfg = bot_auth.validate_bot_id_and_fetch_config(bot_id)
+  The response body on success is a JSON dict:
+    {
+      "service_account": <str email> or "none" or "bot",
+      "id_token": <str with actual token (if account is configured)>,
+      "expiry": <int with unix timestamp in seconds (if account is configured)>
+    }
 
-    # At this point, the request is valid structurally, and the bot used proper
-    # authentication when making it.
-    logging.info('Requesting a "%s" token with scopes %s', account_id, scopes)
+  May also return:
+    HTTP 403 - if the caller is not allowed to use the service account.
+    HTTP 400 - on a bad request or if the service account is misconfigured.
+    HTTP 500 - on retriable transient errors.
+  """
+  ACCEPTED_KEYS = {
+      u'account_id',  # 'system' or 'task'
+      u'id',  # bot ID
+      u'audience',  # the string audience to put into the token
+      u'task_id',  # optional task ID, required if using 'task' account
+  }
+  REQUIRED_KEYS = {u'account_id', u'id', u'audience'}
+  TOKEN_RESPONSE_KEY = 'id_token'
 
-    # This is mostly a precaution against confused bot processes. We can always
-    # just use 'current_task_id' to look up per-task service account. Datastore
-    # is the source of truth here, not whatever bot reports.
-    if account_id == 'task' and task_id != current_task_id:
-      logging.error(
-          'Bot %s requested "task" access token for task %s, but runs %s',
-          bot_id, task_id, current_task_id)
-      self.abort_with_error(
-          400, error='Wrong task_id: the bot is not executing this task')
-
-    account = None  # an email or 'bot' or 'none'
-    token = None  # service_accounts.AccessToken
-    try:
-      if account_id == 'task':
-        account, token = service_accounts.get_task_account_token(
-            task_id, bot_id,
-            service_accounts.TOKEN_KIND_ACCESS_TOKEN,
-            scopes, None)
-      elif account_id == 'system':
-        account, token = service_accounts.get_system_account_token(
-            bot_group_cfg.system_service_account,
-            service_accounts.TOKEN_KIND_ACCESS_TOKEN,
-            scopes, None)
-      else:
-        raise AssertionError('Impossible, there is a check above')
-    except service_accounts.PermissionError as exc:
-      self.abort_with_error(403, error=exc.message)
-    except service_accounts.MisconfigurationError as exc:
-      self.abort_with_error(400, error=exc.message)
-    except service_accounts.InternalError as exc:
-      self.abort_with_error(500, error=exc.message)
-
-    # Note: the token info is already logged by service_accounts.get_*_token.
-    if token:
-      self.send_response({
-          'service_account': account,
-          'access_token': token.access_token,
-          'expiry': token.expiry,
-      })
-    else:
-      assert account in ('bot', 'none'), account
-      self.send_response({'service_account': account})
+  def get_token_call_params(self, body):
+    audience = body['audience']
+    if not audience or not isinstance(audience, basestring):
+      self.abort_with_error(400, error='"audience" must be a string')
+    return service_accounts.TOKEN_KIND_ID_TOKEN, None, audience
 
 
 ### Bot Task API RPC handlers
@@ -1308,6 +1373,7 @@ def get_routes():
 
       # Bot Security API RPC handlers
       ('/swarming/api/v1/bot/oauth_token', BotOAuthTokenHandler),
+      ('/swarming/api/v1/bot/id_token', BotIDTokenHandler),
 
       # Bot Task API RPC handlers
       ('/swarming/api/v1/bot/task_update', BotTaskUpdateHandler),
