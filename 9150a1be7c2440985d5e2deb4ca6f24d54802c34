@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d7c8d09_ea92cd24",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-16T08:40:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "518b2795_de80b745",
+      "revId": "9150a1be7c2440985d5e2deb4ca6f24d54802c34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38832dc3_083334d9",
@@ -48,6 +66,30 @@
       "writtenOn": "2021-03-16T06:41:26Z",
       "side": 1,
       "message": "I think we can use universal_newlines instead.",
+      "range": {
+        "startLine": 140,
+        "startChar": 12,
+        "endLine": 140,
+        "endChar": 23
+      },
+      "revId": "9150a1be7c2440985d5e2deb4ca6f24d54802c34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e93030b5_8386938b",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-16T08:40:37Z",
+      "side": 1,
+      "message": "I attempted using universal_newlines and on windows it succeeds, but on mac and xenial, it fails with\nTypeError: \u003clambda\u003e() got an unexpected keyword argument \u0027universal_newlines\u0027",
+      "parentUuid": "38832dc3_083334d9",
       "range": {
         "startLine": 140,
         "startChar": 12,
