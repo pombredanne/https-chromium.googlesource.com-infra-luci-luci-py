@@ -220,7 +220,9 @@ class TaskAccountTokenTest(TestBase):
                                        int(utils.time_time() + 3600))
     self.assertEqual(('service-account@example.com', tok),
                      service_accounts.get_task_account_token(
-                         task_id, 'bot-id', ['scope1', 'scope2']))
+                         task_id, 'bot-id',
+                         service_accounts.TOKEN_KIND_ACCESS_TOKEN,
+                         ['scope1', 'scope2'], None))
 
   def test_ok_with_realm(self):
     now = datetime.datetime(2010, 1, 2, 3, 4, 5)
@@ -243,6 +245,7 @@ class TaskAccountTokenTest(TestBase):
             'realm':
                 'test:realm',
             'oauthScope': ['scope1', 'scope2'],
+            'idTokenAudience': None,
             'minValidityDuration':
                 300,
             'auditTags': [
@@ -264,25 +267,33 @@ class TaskAccountTokenTest(TestBase):
                                        int(utils.time_time() + 3600))
     self.assertEqual(
         ('service-account@example.com', tok),
-        service_accounts.get_task_account_token(task_id, 'bot-id',
-                                                ['scope1', 'scope2']))
+        service_accounts.get_task_account_token(
+            task_id, 'bot-id',
+            service_accounts.TOKEN_KIND_ACCESS_TOKEN,
+            ['scope1', 'scope2'], None))
 
   def test_malformed_task_id(self):
     with self.assertRaises(service_accounts.MisconfigurationError):
       service_accounts.get_task_account_token(
-          'bad-task-id', 'bot-id', ['scope1', 'scope2'])
+          'bad-task-id', 'bot-id',
+          service_accounts.TOKEN_KIND_ACCESS_TOKEN,
+          ['scope1', 'scope2'], None)
 
   def test_missing_task_id(self):
     with self.assertRaises(service_accounts.MisconfigurationError):
       service_accounts.get_task_account_token(
-          '382b353612985111', 'bot-id', ['scope1', 'scope2'])
+          '382b353612985111', 'bot-id',
+          service_accounts.TOKEN_KIND_ACCESS_TOKEN,
+          ['scope1', 'scope2'], None)
 
   def test_task_account_is_bot(self):
     task_id = self.make_task_request(
         service_account='bot',
         service_account_token=None)
     account, tok = service_accounts.get_task_account_token(
-        task_id, 'bot-id', ['scope1', 'scope2'])
+        task_id, 'bot-id',
+        service_accounts.TOKEN_KIND_ACCESS_TOKEN,
+        ['scope1', 'scope2'], None)
     self.assertEqual('bot', account)
     self.assertIsNone(tok)
 
@@ -290,7 +301,9 @@ class TaskAccountTokenTest(TestBase):
     task_id = self.make_task_request(
         service_account='none', service_account_token=None)
     account, tok = service_accounts.get_task_account_token(
-        task_id, 'bot-id', ['scope1', 'scope2'])
+        task_id, 'bot-id',
+        service_accounts.TOKEN_KIND_ACCESS_TOKEN,
+        ['scope1', 'scope2'], None)
     self.assertEqual('none', account)
     self.assertIsNone(tok)
 
@@ -303,12 +316,15 @@ class SystemAccountTokenTest(test_case.TestCase):
   def test_none(self):
     self.assertEqual(
         ('none', None),
-        service_accounts.get_system_account_token(None, ['scope']))
+        service_accounts.get_system_account_token(
+            None, service_accounts.TOKEN_KIND_ACCESS_TOKEN,
+            ['scope'], None))
 
   def test_bot(self):
     self.assertEqual(('bot', None),
                      service_accounts.get_system_account_token(
-                         'bot', ['scope']))
+                         'bot', service_accounts.TOKEN_KIND_ACCESS_TOKEN,
+                         ['scope'], None))
 
   def test_token(self):
     calls = []
@@ -321,7 +337,9 @@ class SystemAccountTokenTest(test_case.TestCase):
     tok = service_accounts.AccessToken('fake-token', utils.time_time() + 3600)
     self.assertEqual(('bot@example.com', tok),
                      service_accounts.get_system_account_token(
-                         'bot@example.com', ['scope']))
+                         'bot@example.com',
+                         service_accounts.TOKEN_KIND_ACCESS_TOKEN,
+                         ['scope'], None))
 
     self.assertEqual([{
         'act_as': 'bot@example.com',
