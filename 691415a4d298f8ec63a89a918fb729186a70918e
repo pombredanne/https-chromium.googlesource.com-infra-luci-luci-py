@@ -62,6 +62,54 @@
       },
       "revId": "691415a4d298f8ec63a89a918fb729186a70918e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67160bdd_2089cc3b",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-16T05:54:30Z",
+      "side": 1,
+      "message": "changed to use `\u0026\u0026`.",
+      "parentUuid": "7cfb486b_6f3dc220",
+      "range": {
+        "startLine": 858,
+        "startChar": 36,
+        "endLine": 858,
+        "endChar": 37
+      },
+      "revId": "691415a4d298f8ec63a89a918fb729186a70918e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d27739ce_846d342a",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-16T05:54:30Z",
+      "side": 1,
+      "message": "changed to use \u0026\u0026.\n\nBut it seems recommended to have braces for control structures.\nhttps://google.github.io/styleguide/jsguide.html#formatting-braces-all",
+      "parentUuid": "30c201aa_5b3358b4",
+      "range": {
+        "startLine": 858,
+        "startChar": 34,
+        "endLine": 858,
+        "endChar": 35
+      },
+      "revId": "691415a4d298f8ec63a89a918fb729186a70918e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
