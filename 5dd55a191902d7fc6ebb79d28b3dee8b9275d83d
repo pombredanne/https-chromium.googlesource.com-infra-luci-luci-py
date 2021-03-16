@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ae5bc16_25b3718b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_auth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-16T00:54:28Z",
+      "side": 1,
+      "message": "It is just a next unused error code. It doesn\u0027t matter, it will be removed in the next CL.",
+      "parentUuid": "e4d3803c_f2b1a1b9",
+      "range": {
+        "startLine": 454,
+        "startChar": 33,
+        "endLine": 454,
+        "endChar": 34
+      },
+      "revId": "5dd55a191902d7fc6ebb79d28b3dee8b9275d83d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d59a754b_4f4fb914",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-03-16T00:19:39Z",
       "side": 1,
       "message": "better to use paren?",
+      "range": {
+        "startLine": 371,
+        "startChar": 10,
+        "endLine": 371,
+        "endChar": 76
+      },
+      "revId": "5dd55a191902d7fc6ebb79d28b3dee8b9275d83d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "688ffa41_e3d9b5ae",
+        "filename": "client/utils/auth_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-16T00:54:28Z",
+      "side": 1,
+      "message": "Rewrote it to be more readable.",
+      "parentUuid": "d59a754b_4f4fb914",
       "range": {
         "startLine": 371,
         "startChar": 10,
