@@ -39,6 +39,30 @@
       },
       "revId": "c8ff64fb5a726aac8273f4fedc3f6a992c353eda",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a115c3c_00e131d8",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-16T23:57:49Z",
+      "side": 1,
+      "message": "Because different functions result in a lot more code duplication, in particular in the next CL that calls them.\n\nAlso the core of the implementation is MintServiceAccountToken RPC call, which supports both ID and access tokens at the same time.",
+      "parentUuid": "d9a99fc1_1d0d2b9c",
+      "range": {
+        "startLine": 187,
+        "startChar": 44,
+        "endLine": 187,
+        "endChar": 66
+      },
+      "revId": "c8ff64fb5a726aac8273f4fedc3f6a992c353eda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
