@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "518b2795_de80b745",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-16T06:41:26Z",
+      "side": 1,
+      "message": "import this after standard package\nhttps://google.github.io/styleguide/pyguide.html#s3.13-imports-formatting",
+      "revId": "9150a1be7c2440985d5e2deb4ca6f24d54802c34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38832dc3_083334d9",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-16T06:41:26Z",
+      "side": 1,
+      "message": "I think we can use universal_newlines instead.",
+      "range": {
+        "startLine": 140,
+        "startChar": 12,
+        "endLine": 140,
+        "endChar": 23
+      },
+      "revId": "9150a1be7c2440985d5e2deb4ca6f24d54802c34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
