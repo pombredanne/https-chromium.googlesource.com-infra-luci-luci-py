@@ -146,6 +146,30 @@
       },
       "revId": "9150a1be7c2440985d5e2deb4ca6f24d54802c34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9040c5c6_531d8831",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-03-16T09:12:49Z",
+      "side": 1,
+      "message": "\u003eYou need to make mocked function have such keyword argument here too.\nOhh okay thank you.\n\n\u003eOr use decode instead of ensure_text?\nOkay, I\u0027ll do that.",
+      "parentUuid": "e4aed1ec_502f0cf8",
+      "range": {
+        "startLine": 140,
+        "startChar": 12,
+        "endLine": 140,
+        "endChar": 23
+      },
+      "revId": "9150a1be7c2440985d5e2deb4ca6f24d54802c34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
