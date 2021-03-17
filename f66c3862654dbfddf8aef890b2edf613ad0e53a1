@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5db76a23_8b68756f",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-17T02:04:04Z",
+      "side": 1,
+      "message": "patch?",
+      "range": {
+        "startLine": 130,
+        "startChar": 26,
+        "endLine": 130,
+        "endChar": 31
+      },
+      "revId": "f66c3862654dbfddf8aef890b2edf613ad0e53a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdbf32a3_973829e4",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-17T02:04:04Z",
+      "side": 1,
+      "message": "assertNotRegexpMatches is deprecated?",
+      "range": {
+        "startLine": 131,
+        "startChar": 9,
+        "endLine": 131,
+        "endChar": 28
+      },
+      "revId": "f66c3862654dbfddf8aef890b2edf613ad0e53a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d33b2c0_4fb4a1d7",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-17T02:04:04Z",
+      "side": 1,
+      "message": "patch?",
+      "range": {
+        "startLine": 139,
+        "startChar": 26,
+        "endLine": 139,
+        "endChar": 31
+      },
+      "revId": "f66c3862654dbfddf8aef890b2edf613ad0e53a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

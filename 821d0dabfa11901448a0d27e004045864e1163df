@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52a85083_777f6269",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-17T02:04:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fbc3d08e_94df5c7e",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 44
+      },
+      "revId": "821d0dabfa11901448a0d27e004045864e1163df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32d653c1_2e3c14c4",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "We specify Python 3.8 in .vpython3. So the 3, 3.8 should pass.",
       "parentUuid": "32d653c1_2e3c14c4",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 52
+      },
+      "revId": "821d0dabfa11901448a0d27e004045864e1163df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf300dcf_03dfafae",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-17T02:04:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6a85b3cb_b879879a",
       "range": {
         "startLine": 137,
         "startChar": 0,
