@@ -70,6 +70,30 @@
       },
       "revId": "bfdf2ece822f87f4602bab4e7da996d919242de4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ae60b4d_bd5f7802",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-17T00:50:39Z",
+      "side": 1,
+      "message": "I prefer to have different check for python2 and python3 then.",
+      "parentUuid": "bbd47e6c_086092d7",
+      "range": {
+        "startLine": 445,
+        "startChar": 20,
+        "endLine": 445,
+        "endChar": 31
+      },
+      "revId": "bfdf2ece822f87f4602bab4e7da996d919242de4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
