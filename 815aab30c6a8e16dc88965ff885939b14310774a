@@ -72,6 +72,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "678be265_883b22b7",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-17T08:40:25Z",
+      "side": 1,
+      "message": "let me change this to use fetch_page first.",
+      "parentUuid": "3e5f5056_7902e1fc",
+      "range": {
+        "startLine": 908,
+        "startChar": 8,
+        "endLine": 908,
+        "endChar": 15
+      },
+      "revId": "815aab30c6a8e16dc88965ff885939b14310774a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44d91662_0adc4908",
@@ -85,6 +109,30 @@
       "writtenOn": "2021-02-15T05:05:38Z",
       "side": 1,
       "message": "This comment needs to be removed if we change the query.",
+      "range": {
+        "startLine": 915,
+        "startChar": 0,
+        "endLine": 917,
+        "endChar": 17
+      },
+      "revId": "815aab30c6a8e16dc88965ff885939b14310774a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8920ace_4d1b4ca0",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-17T08:40:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "44d91662_0adc4908",
       "range": {
         "startLine": 915,
         "startChar": 0,
