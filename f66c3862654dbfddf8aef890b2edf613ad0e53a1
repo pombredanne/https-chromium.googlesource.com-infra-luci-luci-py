@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b6d49ab_70153cf7",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-17T02:12:15Z",
+      "side": 1,
+      "message": "It seems the third version number is called `micro`. \nhttps://docs.python.org/3/library/sys.html#sys.version_info",
+      "parentUuid": "5db76a23_8b68756f",
+      "range": {
+        "startLine": 130,
+        "startChar": 26,
+        "endLine": 130,
+        "endChar": 31
+      },
+      "revId": "f66c3862654dbfddf8aef890b2edf613ad0e53a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdbf32a3_973829e4",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03007d1d_04beb151",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-17T02:12:15Z",
+      "side": 1,
+      "message": "It\u0027s assertRegexpMatches() in Python2.\nhttps://docs.python.org/2.7/library/unittest.html#unittest.TestCase.assertRegexpMatches\n\nAnd was renamed to assertRegex() in Python3.2.\nhttps://docs.python.org/3/library/unittest.html#unittest.TestCase.assertRegex",
+      "parentUuid": "bdbf32a3_973829e4",
+      "range": {
+        "startLine": 131,
+        "startChar": 9,
+        "endLine": 131,
+        "endChar": 28
+      },
+      "revId": "f66c3862654dbfddf8aef890b2edf613ad0e53a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d33b2c0_4fb4a1d7",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-03-17T02:04:04Z",
       "side": 1,
       "message": "patch?",
+      "range": {
+        "startLine": 139,
+        "startChar": 26,
+        "endLine": 139,
+        "endChar": 31
+      },
+      "revId": "f66c3862654dbfddf8aef890b2edf613ad0e53a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42018548_193a8962",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-17T02:12:15Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "6d33b2c0_4fb4a1d7",
       "range": {
         "startLine": 139,
         "startChar": 26,
