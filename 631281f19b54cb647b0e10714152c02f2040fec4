@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "295f740f_f8ac8fa1",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1269,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2021-03-17T04:27:04Z",
+      "side": 1,
+      "message": "nit and not related to this cl but this code might not be executed?",
+      "range": {
+        "startLine": 1269,
+        "startChar": 4,
+        "endLine": 1269,
+        "endChar": 33
+      },
+      "revId": "631281f19b54cb647b0e10714152c02f2040fec4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
