@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37433af0_f3f2991a",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-17T02:14:00Z",
+      "side": 1,
+      "message": "oh, python is not using semver.",
+      "parentUuid": "4b6d49ab_70153cf7",
+      "range": {
+        "startLine": 130,
+        "startChar": 26,
+        "endLine": 130,
+        "endChar": 31
+      },
+      "revId": "f66c3862654dbfddf8aef890b2edf613ad0e53a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdbf32a3_973829e4",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "It\u0027s assertRegexpMatches() in Python2.\nhttps://docs.python.org/2.7/library/unittest.html#unittest.TestCase.assertRegexpMatches\n\nAnd was renamed to assertRegex() in Python3.2.\nhttps://docs.python.org/3/library/unittest.html#unittest.TestCase.assertRegex",
       "parentUuid": "bdbf32a3_973829e4",
+      "range": {
+        "startLine": 131,
+        "startChar": 9,
+        "endLine": 131,
+        "endChar": 28
+      },
+      "revId": "f66c3862654dbfddf8aef890b2edf613ad0e53a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "710eacef_ba6e3349",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-17T02:14:00Z",
+      "side": 1,
+      "message": "ah, I see.",
+      "parentUuid": "03007d1d_04beb151",
       "range": {
         "startLine": 131,
         "startChar": 9,
