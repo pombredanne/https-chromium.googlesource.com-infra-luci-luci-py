@@ -799,8 +799,8 @@ class RunIsolatedTest(RunIsolatedTestBase):
     isolated_cache_dir = os.path.join(self.tempdir, 'isolated_cache')
     cas_cache_dir = os.path.join(self.tempdir, 'cas_cache')
     named_cache_dir = os.path.join(self.tempdir, 'named_cache')
-    kvs_file = os.path.join(self.tempdir, 'kvs_file')
-    with open(kvs_file, 'w') as f:
+    kvs_dir = os.path.join(self.tempdir, 'kvs_dir')
+    with open(os.path.join(kvs_dir, 'dummy'), 'w') as f:
       f.write('0' * 100)
 
     # override size threshold.
@@ -829,8 +829,8 @@ class RunIsolatedTest(RunIsolatedTestBase):
         # Named cache option.
         '--named-cache-root',
         named_cache_dir,
-        '--kvs-file',
-        kvs_file,
+        '--kvs-dir',
+        kvs_dir,
     ]
 
     def trim_caches_mock(caches, root_dir, min_free_space, max_age_secs):
