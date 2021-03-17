@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fbc3d08e_94df5c7e",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-17T00:51:01Z",
+      "side": 1,
+      "message": "We specify Python 2.7 in .vpython. So the 2, 2.7 should pass. \n\nI thought all bots use the final Python 2.7 version. But it doesn\u0027t seem to be the case.\nhttps://chromium-swarm.appspot.com/botlist?c\u003did\u0026c\u003dtask\u0026c\u003dos\u0026c\u003dstatus\u0026d\u003dasc\u0026f\u003dpython%3A2.7.17\u0026k\u003dpython\u0026s\u003did\n\nUpdated the last assertion.",
+      "parentUuid": "d63dde9f_e1738f8e",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 44
+      },
+      "revId": "821d0dabfa11901448a0d27e004045864e1163df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "32d653c1_2e3c14c4",
         "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2021-03-16T08:43:21Z",
       "side": 1,
       "message": "better to use\nhttps://docs.python.org/ja/3/library/unittest.html#unittest.TestCase.assertRegex\n?",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 52
+      },
+      "revId": "821d0dabfa11901448a0d27e004045864e1163df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a85b3cb_b879879a",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-17T00:51:01Z",
+      "side": 1,
+      "message": "We specify Python 3.8 in .vpython3. So the 3, 3.8 should pass.",
+      "parentUuid": "32d653c1_2e3c14c4",
       "range": {
         "startLine": 137,
         "startChar": 0,
