@@ -63,6 +63,53 @@
       },
       "revId": "c8ff64fb5a726aac8273f4fedc3f6a992c353eda",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5e822f2_3781f7c3",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-17T00:14:51Z",
+      "side": 1,
+      "message": "That\u0027s fair.",
+      "parentUuid": "9a115c3c_00e131d8",
+      "range": {
+        "startLine": 187,
+        "startChar": 44,
+        "endLine": 187,
+        "endChar": 66
+      },
+      "revId": "c8ff64fb5a726aac8273f4fedc3f6a992c353eda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6649d55d_c65019e5",
+        "filename": "appengine/swarming/server/service_accounts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-17T00:14:51Z",
+      "side": 1,
+      "message": "nit:\nHow about using keyword arguments so that you don\u0027t need to specify None for scopes or audience at caller side.",
+      "range": {
+        "startLine": 187,
+        "startChar": 50,
+        "endLine": 187,
+        "endChar": 66
+      },
+      "revId": "c8ff64fb5a726aac8273f4fedc3f6a992c353eda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
