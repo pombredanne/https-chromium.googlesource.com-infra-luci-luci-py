@@ -479,7 +479,6 @@ class TestTaskRunner(TestTaskRunnerBase):
     out = self.expectTask(task_details.task_id, exit_code=1, output=output)
     self.assertGreater(10., out[u'cost_usd'])
 
-  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1182016')
   def test_isolated_grand_children(self):
     """Runs a normal test involving 3 level deep subprocesses.
 
@@ -693,7 +692,6 @@ class TestTaskRunner(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(task_details.task_id)
 
-  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1182016')
   def test_start_task_runner_fail_on_startup(self):
     def _get_run_isolated():
       return ['invalid_commad_that_shouldnt_exist']
