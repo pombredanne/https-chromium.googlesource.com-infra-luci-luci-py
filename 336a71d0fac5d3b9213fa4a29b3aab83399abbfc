@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b0b127b_5b24f0da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-18T22:37:17Z",
+      "side": 1,
+      "message": "PTAL. It is the last one! Thanks for quick reviews.\n\nHere\u0027s the end-to-end test: https://chromium-swarm-dev.appspot.com/task?d\u003dtrue\u0026id\u003d52604c1834ba9e10\n\nIt runs \"luci-auth info -use-id-token -audience example.com\" inside the Swarming task and correctly receives the ID token.",
+      "revId": "336a71d0fac5d3b9213fa4a29b3aab83399abbfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
