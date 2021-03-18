@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18e6d02b_d0573032",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-18T02:07:33Z",
+      "side": 1,
+      "message": "PTAL",
+      "revId": "5730ddea82d21f7cc5b08e539335328cc3ae19a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de0a71be_1c4a7590",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-18T02:07:33Z",
+      "side": 1,
+      "message": "Unfortunately Gerrit is confused. \n\nThis class is almost identical to what used to be BotOAuthTokenHandler. I\u0027ll highlight the differences.",
+      "range": {
+        "startLine": 896,
+        "startChar": 6,
+        "endLine": 896,
+        "endChar": 22
+      },
+      "revId": "5730ddea82d21f7cc5b08e539335328cc3ae19a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60042db2_14328a2c",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-18T02:07:33Z",
+      "side": 1,
+      "message": "this is new, generalizes `scopes` validation",
+      "range": {
+        "startLine": 942,
+        "startChar": 4,
+        "endLine": 944,
+        "endChar": 0
+      },
+      "revId": "5730ddea82d21f7cc5b08e539335328cc3ae19a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b88a062_264f53ce",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-18T02:07:33Z",
+      "side": 1,
+      "message": "this is new, logs token kind",
+      "range": {
+        "startLine": 952,
+        "startChar": 4,
+        "endLine": 959,
+        "endChar": 72
+      },
+      "revId": "5730ddea82d21f7cc5b08e539335328cc3ae19a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e37d6ea6_9129d261",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-18T02:07:33Z",
+      "side": 1,
+      "message": "this is new",
+      "range": {
+        "startLine": 983,
+        "startChar": 12,
+        "endLine": 984,
+        "endChar": 44
+      },
+      "revId": "5730ddea82d21f7cc5b08e539335328cc3ae19a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f096f13_2d71ab65",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1003,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-18T02:07:33Z",
+      "side": 1,
+      "message": "this is new",
+      "range": {
+        "startLine": 1003,
+        "startChar": 10,
+        "endLine": 1003,
+        "endChar": 33
+      },
+      "revId": "5730ddea82d21f7cc5b08e539335328cc3ae19a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
