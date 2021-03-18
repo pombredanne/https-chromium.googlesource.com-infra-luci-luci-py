@@ -104,6 +104,24 @@
       "parentUuid": "c676fe04_70aa8951",
       "revId": "4640b3650f5317aa38db05892ea3b96c47e494c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7500d60_77ae4102",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-18T03:48:01Z",
+      "side": 1,
+      "message": "I vaguely remember that nose2 + parameterized might have an issue.\nI had to use nose2\u0027s parameterized like decorator.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_bot/api/platforms/osx_test.py;l\u003d14?q\u003df:luci%20%22@params%22\u0026ss\u003dchromium\n\nCan you try to run ./test.py to see if it reproduces locally?",
+      "parentUuid": "38670604_ed2ea6ab",
+      "revId": "4640b3650f5317aa38db05892ea3b96c47e494c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
