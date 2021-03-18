@@ -112,6 +112,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a1187de1_192c83cf",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-18T02:34:41Z",
+      "side": 1,
+      "message": "No, it is a defense against \n\n  \u003e\u003e\u003e s \u003d (1, 2, 3)\n  \u003e\u003e\u003e \"%s\" % s\n  Traceback (most recent call last):\n    File \"\u003cstdin\u003e\", line 1, in \u003cmodule\u003e\n  TypeError: not all arguments converted during string formatting\n\n(for cases when the printed variable may have unexpected tuple type)\n\nBut it is probably unnecessary here. Also there\u0027s another bug, token_kind is not defined at all. It should be self.TOKEN_KIND",
+      "parentUuid": "b45e5d8e_c7b3f545",
+      "range": {
+        "startLine": 959,
+        "startChar": 58,
+        "endLine": 959,
+        "endChar": 59
+      },
+      "revId": "5730ddea82d21f7cc5b08e539335328cc3ae19a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e37d6ea6_9129d261",
         "filename": "appengine/swarming/handlers_bot.py",
         "patchSetId": 5
@@ -169,6 +193,30 @@
       "writtenOn": "2021-03-18T02:22:43Z",
       "side": 1,
       "message": "nit: sort by status code?",
+      "range": {
+        "startLine": 1080,
+        "startChar": 0,
+        "endLine": 1081,
+        "endChar": 75
+      },
+      "revId": "5730ddea82d21f7cc5b08e539335328cc3ae19a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48121517_80938ed5",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1081,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-18T02:34:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "081246d8_d49a7905",
       "range": {
         "startLine": 1080,
         "startChar": 0,
