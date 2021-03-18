@@ -13,6 +13,8 @@ import unittest
 import test_env_bot_code
 test_env_bot_code.setup_test_env()
 
+from parameterized import parameterized
+
 from depot_tools import auto_stub
 
 import remote_client
@@ -130,7 +132,36 @@ class TestRemoteClient(auto_stub.TestCase):
     resp = c.mint_oauth_token('task_id', 'account_id', ['a', 'b'])
     self.assertEqual(fake_resp, resp)
 
-  def test_mint_oauth_token_transient_err(self):
+  def test_mint_id_token_ok(self):
+    fake_resp = {
+        'service_account': 'blah@example.com',
+        'id_token': 'abc',
+        'expiry': 12345,
+    }
+
+    c = remote_client.RemoteClientNative('http://localhost:1', None,
+                                         'localhost', '/')
+    c.bot_id = 'bot_id'
+
+    def mocked_call(url_path, data):
+      self.assertEqual('/swarming/api/v1/bot/id_token', url_path)
+      self.assertEqual({
+          'account_id': 'account_id',
+          'audience': 'https://example.com',
+          'id': 'bot_id',
+          'task_id': 'task_id',
+      }, data)
+      return fake_resp
+    self.mock(c, '_url_read_json', mocked_call)
+
+    resp = c.mint_id_token('task_id', 'account_id', 'https://example.com')
+    self.assertEqual(fake_resp, resp)
+
+  @parameterized.expand([
+      ('mint_oauth_token', ['scope-a', 'scope-b']),
+      ('mint_id_token', 'https://audience.example.com'),
+  ])
+  def test_mint_token_transient_err(self, method, param):
     c = remote_client.RemoteClientNative('http://localhost:1', None,
                                          'localhost', '/')
 
@@ -138,9 +169,13 @@ class TestRemoteClient(auto_stub.TestCase):
       return None  # that's how net.url_read_json indicates HTTP 500 :-/
     self.mock(c, '_url_read_json', mocked_call)
     with self.assertRaises(remote_client.InternalError):
-      c.mint_oauth_token('task_id', 'account_id', ['a', 'b'])
+      getattr(c, method)('task_id', 'account_id', param)
 
-  def test_mint_oauth_token_fatal_err(self):
+  @parameterized.expand([
+      ('mint_oauth_token', ['scope-a', 'scope-b']),
+      ('mint_id_token', 'https://audience.example.com'),
+  ])
+  def test_mint_token_fatal_err(self, method, param):
     c = remote_client.RemoteClientNative('http://localhost:1', None,
                                          'localhost', '/')
 
@@ -148,8 +183,8 @@ class TestRemoteClient(auto_stub.TestCase):
       return {'error': 'blah'}
 
     self.mock(c, '_url_read_json', mocked_call)
-    with self.assertRaises(remote_client.MintOAuthTokenError):
-      c.mint_oauth_token('task_id', 'account_id', ['a', 'b'])
+    with self.assertRaises(remote_client.MintTokenError):
+      getattr(c, method)('task_id', 'account_id', param)
 
 
 if __name__ == '__main__':
