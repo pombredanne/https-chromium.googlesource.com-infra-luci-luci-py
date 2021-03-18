@@ -33,6 +33,24 @@
       "message": "fix CQ?",
       "revId": "4640b3650f5317aa38db05892ea3b96c47e494c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7dff9d7_4d7a55ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-18T03:14:45Z",
+      "side": 1,
+      "message": "Yeah, except I have no idea why it is failing. It passes locally for me. Looks like some python 3 issue. I\u0027ll try to reproduce locally using python3.",
+      "parentUuid": "400d9a3f_9a93b88d",
+      "revId": "4640b3650f5317aa38db05892ea3b96c47e494c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
