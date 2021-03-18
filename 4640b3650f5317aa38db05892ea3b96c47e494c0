@@ -51,6 +51,41 @@
       "parentUuid": "400d9a3f_9a93b88d",
       "revId": "4640b3650f5317aa38db05892ea3b96c47e494c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c676fe04_70aa8951",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-18T03:14:58Z",
+      "side": 1,
+      "message": "looks like parameterized errors.\n\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8852456121359202656/+/u/swarming_bot/run_tests_python3/stdout\n\u003e TypeError: test_mint_token_transient_err() missing 1 required positional argument: \u0027arg\u0027",
+      "parentUuid": "400d9a3f_9a93b88d",
+      "revId": "4640b3650f5317aa38db05892ea3b96c47e494c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3ee72ef_0393af83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-18T03:14:58Z",
+      "side": 1,
+      "message": "the code looks good.",
+      "revId": "4640b3650f5317aa38db05892ea3b96c47e494c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
