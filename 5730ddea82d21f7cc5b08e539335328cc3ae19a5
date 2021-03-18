@@ -87,6 +87,29 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b45e5d8e_c7b3f545",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-18T02:22:43Z",
+      "side": 1,
+      "message": "nit: redundant paren?",
+      "range": {
+        "startLine": 959,
+        "startChar": 58,
+        "endLine": 959,
+        "endChar": 59
+      },
+      "revId": "5730ddea82d21f7cc5b08e539335328cc3ae19a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e37d6ea6_9129d261",
@@ -128,6 +151,29 @@
         "startChar": 10,
         "endLine": 1003,
         "endChar": 33
+      },
+      "revId": "5730ddea82d21f7cc5b08e539335328cc3ae19a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "081246d8_d49a7905",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1081,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-18T02:22:43Z",
+      "side": 1,
+      "message": "nit: sort by status code?",
+      "range": {
+        "startLine": 1080,
+        "startChar": 0,
+        "endLine": 1081,
+        "endChar": 75
       },
       "revId": "5730ddea82d21f7cc5b08e539335328cc3ae19a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
