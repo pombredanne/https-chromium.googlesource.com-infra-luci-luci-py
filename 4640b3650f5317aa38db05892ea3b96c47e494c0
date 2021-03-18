@@ -86,6 +86,24 @@
       "message": "the code looks good.",
       "revId": "4640b3650f5317aa38db05892ea3b96c47e494c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38670604_ed2ea6ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-18T03:23:38Z",
+      "side": 1,
+      "message": "Hm, this test uses python3 by default even when I run it locally. And it still passes for me.",
+      "parentUuid": "c676fe04_70aa8951",
+      "revId": "4640b3650f5317aa38db05892ea3b96c47e494c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
