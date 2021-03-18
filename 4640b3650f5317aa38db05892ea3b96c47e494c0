@@ -122,6 +122,24 @@
       "parentUuid": "38670604_ed2ea6ab",
       "revId": "4640b3650f5317aa38db05892ea3b96c47e494c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b9de87b_d5e5e196",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-18T03:53:07Z",
+      "side": 1,
+      "message": "I tried ./test.py inside vpython env and it passed locally. I\u0027ll nose2 params next. The bug seems to indicate it is related to parallel processes :(",
+      "parentUuid": "d7500d60_77ae4102",
+      "revId": "4640b3650f5317aa38db05892ea3b96c47e494c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
