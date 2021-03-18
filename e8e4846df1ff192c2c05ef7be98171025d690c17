@@ -16,6 +16,29 @@
       "message": "PTAL, pure refactoring.",
       "revId": "e8e4846df1ff192c2c05ef7be98171025d690c17",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79d2abee_44498ff2",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-18T21:57:17Z",
+      "side": 1,
+      "message": "Was this needed for tests?",
+      "range": {
+        "startLine": 579,
+        "startChar": 22,
+        "endLine": 579,
+        "endChar": 26
+      },
+      "revId": "e8e4846df1ff192c2c05ef7be98171025d690c17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
