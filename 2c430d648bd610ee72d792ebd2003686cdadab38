@@ -16,6 +16,23 @@
       "message": "PTAL\n\nHere\u0027s how HTTP 400s from /id_token look like now:\nhttps://chromium-swarm-dev.appspot.com/task?id\u003d52608e491a248b10\n\nAs you can see, there\u0027s no actual error information there. The root cause is that net.py is very bad library that ignores bodies of non-200 responses.\n\nI believe this CL should fix that. I\u0027ll verify once chromium-swarm-dev is free of Spinnaker experimentation.",
       "revId": "2c430d648bd610ee72d792ebd2003686cdadab38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a4b5c1d_7a996656",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-19T00:35:57Z",
+      "side": 1,
+      "message": "Here\u0027s how the error looks with this CL, much better!\n\nhttps://chromium-swarm-dev.appspot.com/task?id\u003d5260b8f14a963c10",
+      "revId": "2c430d648bd610ee72d792ebd2003686cdadab38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
