@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c62a3c72_d4a76c17",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-19T08:33:34Z",
+      "side": 1,
+      "message": "\"fix test_containment_auto_limit_memory in subprocess42_test.py\" would be more specific?",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 50
+      },
+      "revId": "622acb4a7f1737c50eb22efae78cc629fd751234",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
