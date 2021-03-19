@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b74c26e4_8337b446",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-19T07:26:53Z",
+      "side": 1,
+      "message": "Are you sure that we have all CIPD packages used in Swarming tasks have mac-arm64 binary?",
+      "revId": "7e1032b5f953b868398bae25f4f316eec6d9fc34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
