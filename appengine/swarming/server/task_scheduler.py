@@ -397,7 +397,7 @@ def _handle_dead_bot(run_result_key):
       run_result = _set_fallbacks_to_exit_code_and_duration(run_result, now)
     else:
       run_result.state = task_result.State.BOT_DIED
-    run_result.internal_failure = True
+      run_result.internal_failure = True
     run_result.abandoned_ts = now
     run_result.completed_ts = now
     result_summary.set_from_run_result(run_result, request)
