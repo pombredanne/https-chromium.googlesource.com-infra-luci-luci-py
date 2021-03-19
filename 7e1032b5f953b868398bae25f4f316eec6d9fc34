@@ -16,6 +16,24 @@
       "message": "Are you sure that we have all CIPD packages used in Swarming tasks have mac-arm64 binary?",
       "revId": "7e1032b5f953b868398bae25f4f316eec6d9fc34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffd22f07_13ab14e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115868
+      },
+      "writtenOn": "2021-03-19T07:29:54Z",
+      "side": 1,
+      "message": "Not yet. I\u0027m trying to get those packages built, so it\u0027s a bootstrapping problem.\n\nAre there tasks running on arm64 Swarming bots today that are relying on the x86-64 packages?",
+      "parentUuid": "b74c26e4_8337b446",
+      "revId": "7e1032b5f953b868398bae25f4f316eec6d9fc34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
