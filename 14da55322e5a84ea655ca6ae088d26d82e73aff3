@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6f0a7f9_e5bde7d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-19T09:39:03Z",
+      "side": 1,
+      "message": "PTAL.  \nWill test it on dev before merging it.",
+      "revId": "14da55322e5a84ea655ca6ae088d26d82e73aff3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
