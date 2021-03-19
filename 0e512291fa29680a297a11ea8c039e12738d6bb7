@@ -39,6 +39,30 @@
       },
       "revId": "0e512291fa29680a297a11ea8c039e12738d6bb7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5df25615_d63a045b",
+        "filename": "client/utils/net.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-19T01:25:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50c66468_5a0b38f7",
+      "range": {
+        "startLine": 480,
+        "startChar": 4,
+        "endLine": 482,
+        "endChar": 8
+      },
+      "revId": "0e512291fa29680a297a11ea8c039e12738d6bb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
