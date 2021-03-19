@@ -34,6 +34,24 @@
       "parentUuid": "b74c26e4_8337b446",
       "revId": "7e1032b5f953b868398bae25f4f316eec6d9fc34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea7e023c_d9ced65c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-19T07:35:34Z",
+      "side": 1,
+      "message": "Every Swarming tasks running on mac-arm64 bots are relying on amd64 packages currently.\ne.g. see resolved packages in\nhttps://chromium-swarm.appspot.com/task?d\u003dtrue\u0026id\u003d52622f92a72be210",
+      "parentUuid": "ffd22f07_13ab14e0",
+      "revId": "7e1032b5f953b868398bae25f4f316eec6d9fc34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
