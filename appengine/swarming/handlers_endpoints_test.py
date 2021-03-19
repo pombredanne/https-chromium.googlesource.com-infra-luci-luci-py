@@ -2901,7 +2901,22 @@ class BotsApiTest(BaseTest):
         quarantined=swarming_rpcs.ThreeStateBool.TRUE)
     response = self.call_api('list', body=message_to_dict(request))
     self.assertEqual(expected, response.json)
-    # A bad request returns 400
+    # is_dead:true can be paired with other non-existing dimensions and
+    # still work
+    request = handlers_endpoints.BotsRequest.combined_message_class(
+        is_dead=swarming_rpcs.ThreeStateBool.TRUE, dimensions=['not:existing'])
+    response = self.call_api('list', body=message_to_dict(request))
+    self.assertEqual(expected, response.json)
+    # OR dimension finds bot1 and bot2
+    expected[u'items'] = [bot1, bot2]
+    request = handlers_endpoints.BotsRequest.combined_message_class(
+        dimensions=['id:id1|id2'])
+    response = self.call_api('list', body=message_to_dict(request))
+    self.assertEqual(expected, response.json)
+
+  def test_list_bad_request(self):
+    self.set_as_privileged_user()
+
     request = handlers_endpoints.BotsRequest.combined_message_class(
         dimensions=['bad'])
     self.call_api('list', body=message_to_dict(request), status=400)
