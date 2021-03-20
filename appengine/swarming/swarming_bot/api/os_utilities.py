@@ -956,6 +956,7 @@ def get_dimensions():
       u'cores': [six.ensure_text(str(get_num_processors()))],
       u'cpu': get_cpu_dimensions(),
       u'gpu': get_gpu()[0],
+      u'hostname': [get_hostname()],
       u'id': [get_hostname_short()],
       u'os': get_os_values(),
       # This value is frequently overridden by bots.cfg via luci-config.
