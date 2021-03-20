@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e4f5b12_ccec29db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-20T00:35:37Z",
+      "side": 1,
+      "message": "PTAL\n\ngae_ts_mon imports (in particular __init__.py) is an epic pile of crap. I have no confidence it isn\u0027t broken now. I\u0027ve deployed this to isolateserver-dev to verify it still works. Looks like it at least starts. I\u0027ll keep an eye on https://viceroy.corp.google.com/chrome_infra/Appengine/isolateserver_dev to verify metrics are still uploaded.",
+      "revId": "c6c593a1bd58c699ff653aff0d46ee8c5c681e44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
