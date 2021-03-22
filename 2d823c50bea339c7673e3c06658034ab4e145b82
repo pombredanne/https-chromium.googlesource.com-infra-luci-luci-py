@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7400ccf2_addafb7a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-22T00:27:47Z",
+      "side": 1,
+      "message": "Could you elaboreate more why you need to know hostname?",
+      "revId": "2d823c50bea339c7673e3c06658034ab4e145b82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
