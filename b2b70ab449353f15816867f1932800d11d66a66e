@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e01ddb9_a52db474",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-22T08:03:02Z",
+      "side": 1,
+      "message": "I think that is intentional behavior?\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_rpcs.py;l\u003d550-552;drc\u003d76946843c79ab49a61b501cf8b3c89d075fbe9e5",
+      "revId": "b2b70ab449353f15816867f1932800d11d66a66e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
