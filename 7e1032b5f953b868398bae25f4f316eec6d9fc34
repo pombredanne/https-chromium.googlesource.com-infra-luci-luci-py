@@ -52,6 +52,24 @@
       "parentUuid": "ffd22f07_13ab14e0",
       "revId": "7e1032b5f953b868398bae25f4f316eec6d9fc34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51905bda_bd464248",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115868
+      },
+      "writtenOn": "2021-03-22T04:43:43Z",
+      "side": 1,
+      "message": "Interesting, thanks. Certainly I don\u0027t want to break these tasks. I\u0027m exploring some alternate ways of bootstrapping things right now, I will follow up if I still think we need to adjust this logic.",
+      "parentUuid": "ea7e023c_d9ced65c",
+      "revId": "7e1032b5f953b868398bae25f4f316eec6d9fc34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
