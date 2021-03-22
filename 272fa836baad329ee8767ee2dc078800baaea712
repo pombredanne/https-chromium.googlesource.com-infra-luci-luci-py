@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f6d31a1_ef4f1bbf",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1659,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-22T00:17:10Z",
+      "side": 1,
+      "message": "Use temp var `kvs_dir \u003d six.text_type(options.kvs_dir)` to avoid repeating six.text_type()?\n\nOr, do it in file_path.rmtree() if it\u0027s better.",
+      "range": {
+        "startLine": 1654,
+        "startChar": 0,
+        "endLine": 1659,
+        "endChar": 53
+      },
+      "revId": "272fa836baad329ee8767ee2dc078800baaea712",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
