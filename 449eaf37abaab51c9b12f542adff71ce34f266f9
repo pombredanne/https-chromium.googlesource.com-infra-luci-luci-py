@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "669e115c_ac289612",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2021-03-23T07:59:53Z",
+      "side": 1,
+      "message": "Will you explain more on why using kvm cause OOM on 1 core bot?  I can easily understand small memory bot but it does not have clear link on 1 core and OOM.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 73
+      },
+      "revId": "449eaf37abaab51c9b12f542adff71ce34f266f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
