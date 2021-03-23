@@ -46,6 +46,47 @@
       },
       "revId": "449eaf37abaab51c9b12f542adff71ce34f266f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdf686b4_2c20a998",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2021-03-23T08:20:44Z",
+      "side": 1,
+      "message": "Do you have a confidence that the bot with 1 core cpu does not handle large number of small files?",
+      "parentUuid": "0fd4d668_414f93b5",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 73
+      },
+      "revId": "449eaf37abaab51c9b12f542adff71ce34f266f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3be1992_540a052c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2021-03-23T08:20:44Z",
+      "side": 1,
+      "message": "I am fine to give a shot, but I just wondered we are trying too much ad-hoc approaches.",
+      "revId": "449eaf37abaab51c9b12f542adff71ce34f266f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
