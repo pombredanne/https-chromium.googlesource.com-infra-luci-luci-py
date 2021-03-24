@@ -94,6 +94,30 @@
       },
       "revId": "8e44ffacb90a371da8cf8c942a28af972b68fad0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30db559f_83e384c7",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-24T03:38:49Z",
+      "side": 1,
+      "message": "thanks, made https://crrev.com/c/2783824",
+      "parentUuid": "075b41bb_496e02e8",
+      "range": {
+        "startLine": 747,
+        "startChar": 0,
+        "endLine": 749,
+        "endChar": 0
+      },
+      "revId": "8e44ffacb90a371da8cf8c942a28af972b68fad0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
