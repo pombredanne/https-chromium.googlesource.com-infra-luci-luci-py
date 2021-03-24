@@ -22,6 +22,121 @@
       },
       "revId": "1bc983b623e0ef0c6ed450ede39146b314ff40f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5e555b0_5394c52f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-24T01:30:11Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 842,
+        "startChar": 0,
+        "endLine": 842,
+        "endChar": 25
+      },
+      "revId": "1bc983b623e0ef0c6ed450ede39146b314ff40f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85d52195_aca3ed12",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 867,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-24T01:30:11Z",
+      "side": 1,
+      "message": "This comment should also be moved, or merged into your comment.",
+      "range": {
+        "startLine": 867,
+        "startChar": 0,
+        "endLine": 867,
+        "endChar": 25
+      },
+      "revId": "1bc983b623e0ef0c6ed450ede39146b314ff40f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cddde747_e3fd04b6",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-24T01:30:11Z",
+      "side": 1,
+      "message": "I think you can extract this as a function or a constant to reduce the duplicated code.",
+      "range": {
+        "startLine": 868,
+        "startChar": 0,
+        "endLine": 875,
+        "endChar": 33
+      },
+      "revId": "1bc983b623e0ef0c6ed450ede39146b314ff40f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80340a24_ca03c99e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-24T01:30:11Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 891,
+        "startChar": 0,
+        "endLine": 891,
+        "endChar": 25
+      },
+      "revId": "1bc983b623e0ef0c6ed450ede39146b314ff40f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88fd6c12_0c31e5e5",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-24T01:30:11Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 955,
+        "startChar": 0,
+        "endLine": 955,
+        "endChar": 25
+      },
+      "revId": "1bc983b623e0ef0c6ed450ede39146b314ff40f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
