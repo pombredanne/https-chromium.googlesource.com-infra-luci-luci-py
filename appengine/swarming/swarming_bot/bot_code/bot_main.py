@@ -744,8 +744,9 @@ def _run_isolated_flags(botobj):
       os.path.join(botobj.base_dir, 'c'),
   ]
 
-  if 2048 <= os_utilities.get_physical_ram():
-    # bot with small memory causes out of memory.
+  if (2048 <= os_utilities.get_physical_ram() and
+      _get_dimensions(botobj).get('inside_docker') == ['0']):
+    # bot with small memory or inside docker causes out of memory.
     args += [
         '--kvs-dir',
         os.path.join(botobj.base_dir, _CAS_KVS_CACHE_DB),
