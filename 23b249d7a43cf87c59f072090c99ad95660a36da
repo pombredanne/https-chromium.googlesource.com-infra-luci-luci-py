@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "052b6b12_f5734e88",
+        "filename": "appengine/swarming/swarming_bot/api/bot.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-24T09:20:22Z",
+      "side": 1,
+      "message": "can be `get(..., {})`?",
+      "range": {
+        "startLine": 325,
+        "startChar": 42,
+        "endLine": 325,
+        "endChar": 61
+      },
+      "revId": "23b249d7a43cf87c59f072090c99ad95660a36da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
