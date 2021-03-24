@@ -1188,6 +1188,7 @@ def schedule_request(request, secret_bytes, enable_resultdb):
     while index < request.num_task_slices:
       # This needs to be extremely fast.
       to_run = task_to_run.new_task_to_run(request, index)
+      logging.debug('TODO(crbug.com/1186759): expiration_ts %s', to_run.expiration_ts)
       #  Make sure there's capacity if desired.
       t = request.task_slice(index)
       if (t.wait_for_capacity or
