@@ -265,9 +265,6 @@ class TestTaskRunnerBase(auto_stub.TestCase):
         u'output_chunk_start': 0,
         u'task_id': task_id,
     }
-    if six.PY3 and sys.platform == 'win32':
-      expected[u'output'] = expected[u'output'].replace(
-        b'\n', b'\r\n')
     for k, v in kwargs.items():
       if v is None:
         expected.pop(k)
@@ -293,6 +290,9 @@ class TestTaskRunnerBase(auto_stub.TestCase):
       if u'duration' in value:
         v = actual[u'isolated_stats'][key].pop(u'duration')
         self.assertLessEqual(value.pop(u'duration'), v)
+    if six.PY3 and sys.platform == 'win32':
+      expected[u'output'] = expected[u'output'].replace(
+        b'\n', b'\r\n')
     # Rest is explicit comparison.
     self.assertEqual(expected, actual)
     return out
@@ -564,6 +564,8 @@ class TestTaskRunner(TestTaskRunnerBase):
             b'hi!\n' * 100000,
             b'hi!\n',
         ]
+        if six.PY3 and sys.platform == 'win32':
+          self2._out = [out.replace(b'\n', b'\r\n') for out in self2._out]
 
       def yield_any(self2, maxsize, timeout):
         self.assertLess(0, maxsize())
@@ -602,11 +604,16 @@ class TestTaskRunner(TestTaskRunnerBase):
     # - buffer filled with the 3 first yield
     # - last yield
     updates = self.server.get_tasks()[task_details.task_id]
+    if six.PY3 and sys.platform == 'win32':
+      expect_out = b'hi!\r\n'
+    else:
+      expect_out = b'hi!\n'
     self.assertEqual(3, len(updates))
     self.assertEqual(None, updates[0].get(u'output'))
     self.assertEqual(
-        base64.b64encode(b'hi!\n' * 100002), updates[1][u'output'].encode())
-    self.assertEqual(base64.b64encode(b'hi!\n'), updates[2][u'output'].encode())
+      base64.b64encode(expect_out * 100002), updates[1][u'output'].encode())
+    self.assertEqual(
+      base64.b64encode(expect_out), updates[2][u'output'].encode())
 
   @unittest.skipIf(
       sys.platform == 'win32',
@@ -804,7 +811,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.assertLessEqual(0, actual.pop(u'cost_usd'))
     self.assertEqual(expected, actual)
 
-  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1182016')
   def test_killed_later(self):
     # Case where a task started and a client asks the server to kill the task.
     # In this case the task results in state KILLED.
@@ -834,7 +840,14 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     t.start()
 
     # Actually 0xc000013a
-    exit_code = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
+    if sys.platform == 'win32':
+      # exit_code is unsigned in python3 on windows
+      if six.PY3:
+        exit_code = 3221225786
+      else:
+        exit_code = -1073741510
+    else:
+      exit_code = -signal.SIGTERM
     expected = {
       u'exit_code': exit_code,
       u'hard_timeout': False,
@@ -848,12 +861,18 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.expectTask(task_details.task_id, exit_code=exit_code)
     t.join()
 
-  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1182016')
   def test_hard(self):
     task_details = get_task_details(
         self.SCRIPT_HANG, hard_timeout=self.SHORT_TIME_OUT)
     # Actually 0xc000013a
-    exit_code = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
+    if sys.platform == 'win32':
+      # exit_code is unsigned in python3 on windows
+      if six.PY3:
+        exit_code = 3221225786
+      else:
+        exit_code = -1073741510
+    else:
+      exit_code = -signal.SIGTERM
     expected = {
       u'exit_code': exit_code,
       u'hard_timeout': True,
@@ -866,14 +885,18 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.expectTask(
         task_details.task_id, hard_timeout=True, exit_code=exit_code)
 
-
-  @unittest.skipIf(
-      sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
   def test_io(self):
     task_details = get_task_details(
         self.SCRIPT_HANG, io_timeout=self.SHORT_TIME_OUT)
     # Actually 0xc000013a
-    exit_code = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
+    if sys.platform == 'win32':
+      # exit_code is unsigned in python3 on windows
+      if six.PY3:
+        exit_code = 3221225786
+      else:
+        exit_code = -1073741510
+    else:
+      exit_code = -signal.SIGTERM
     expected = {
         u'exit_code': exit_code,
         u'hard_timeout': False,
@@ -885,7 +908,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(task_details.task_id, io_timeout=True, exit_code=exit_code)
 
-  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1182016')
   def test_hard_signal(self):
     task_details = get_task_details(
         self.SCRIPT_SIGNAL, hard_timeout=self.SHORT_TIME_OUT)
@@ -905,8 +927,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         output=('hi\ngot signal %d\nbye\n' %
                 task_runner.SIG_BREAK_OR_TERM).encode())
 
-  @unittest.skipIf(
-      sys.platform == 'win32', 'TODO(crbug.com/1017545): fix assertions')
   def test_io_signal(self):
     task_details = get_task_details(
         self.SCRIPT_SIGNAL, io_timeout=self.SHORT_TIME_OUT)
@@ -927,14 +947,20 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         output=('hi\ngot signal %d\nbye\n' %
                 task_runner.SIG_BREAK_OR_TERM).encode())
 
-  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1182016')
   def test_hard_no_grace(self):
     task_details = get_task_details(
         self.SCRIPT_HANG,
         hard_timeout=self.SHORT_TIME_OUT,
         grace_period=self.SHORT_TIME_OUT)
     # Actually 0xc000013a
-    exit_code = -1073741510 if sys.platform == 'win32' else -signal.SIGTERM
+    if sys.platform == 'win32':
+      # exit_code is unsigned in python3 on windows
+      if six.PY3:
+        exit_code = 3221225786
+      else:
+        exit_code = -1073741510
+    else:
+      exit_code = -signal.SIGTERM
     expected = {
       u'exit_code': exit_code,
       u'hard_timeout': True,
@@ -967,7 +993,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(task_details.task_id, io_timeout=True, exit_code=exit_code)
 
-  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1182016')
   def test_hard_signal_no_grace(self):
     task_details = get_task_details(
         self.SCRIPT_SIGNAL_HANG, hard_timeout=self.SHORT_TIME_OUT,
