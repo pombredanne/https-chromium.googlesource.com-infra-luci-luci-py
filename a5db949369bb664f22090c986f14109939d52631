@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9302584a_cceb763c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-24T09:08:30Z",
+      "side": 1,
+      "message": "\u003e \"defualt\" is a possible misspelling of \"default\".\n\nPlease fix.",
+      "parentUuid": "3504a572_67678db5",
+      "range": {
+        "startLine": 7,
+        "startChar": 40,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "a5db949369bb664f22090c986f14109939d52631",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
