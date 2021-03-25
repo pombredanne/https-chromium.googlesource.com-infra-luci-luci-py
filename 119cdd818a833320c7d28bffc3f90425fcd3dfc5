@@ -16,6 +16,29 @@
       "message": "Hi Scott, \n\nWe are adding a monitoring alert for gce bots and swarming tasks scheduling, and we need a gce field tag on the swarming tasks side. \n\nThanks!",
       "revId": "119cdd818a833320c7d28bffc3f90425fcd3dfc5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cf9976f_e8fffbc8",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2021-03-25T22:37:52Z",
+      "side": 1,
+      "message": "can you give me some explanation of what this field is for?\nAlso, this CL misses the logic of populating the value of this field?",
+      "range": {
+        "startLine": 176,
+        "startChar": 8,
+        "endLine": 176,
+        "endChar": 38
+      },
+      "revId": "119cdd818a833320c7d28bffc3f90425fcd3dfc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
