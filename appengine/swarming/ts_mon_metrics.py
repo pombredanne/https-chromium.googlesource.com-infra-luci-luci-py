@@ -166,6 +166,7 @@ _jobs_running = gae_ts_mon.BooleanMetric(
 # - pool: e.g. 'Chrome'.
 # - spec_name: name of a job specification.
 # - status: 'pending' or 'running'.
+# - gce: 1 or 0.
 _jobs_active = gae_ts_mon.GaugeMetric(
     'jobs/active', 'Number of running, pending or otherwise active jobs.', [
         gae_ts_mon.StringField('spec_name'),
@@ -173,6 +174,7 @@ _jobs_active = gae_ts_mon.GaugeMetric(
         gae_ts_mon.StringField('subproject_id'),
         gae_ts_mon.StringField('pool'),
         gae_ts_mon.StringField('status'),
+        gae_ts_mon.StringField('gce'),
     ])
 
 
@@ -442,6 +444,7 @@ def _extract_job_fields(tags_dict):
       'project_id': tags_dict.get('project', ''),
       'subproject_id': tags_dict.get('subproject', ''),
       'pool': tags_dict.get('pool', ''),
+      'gce': tags_dict.get('gce', ''),
       'spec_name': spec_name,
   }
   return fields
