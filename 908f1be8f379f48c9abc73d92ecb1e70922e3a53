@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6606de5_668b5559",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-25T03:20:38Z",
+      "side": 0,
+      "message": "I missed this at the review. But this should be \"2048 \u003e  os_utilities.get_physical_ram()\"?",
+      "range": {
+        "startLine": 747,
+        "startChar": 6,
+        "endLine": 747,
+        "endChar": 45
+      },
+      "revId": "908f1be8f379f48c9abc73d92ecb1e70922e3a53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

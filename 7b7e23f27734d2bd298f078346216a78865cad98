@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88fb0db0_136c1009",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-25T03:20:38Z",
+      "side": 1,
+      "message": "nit: this doesn\u0027t need to be a function.\n\n```\nuse_kvs \u003d True\nif ...:\n  use_kvs \u003d False\nelif ...:\n  use_kvs \u003d False\n```",
+      "range": {
+        "startLine": 747,
+        "startChar": 0,
+        "endLine": 747,
+        "endChar": 16
+      },
+      "revId": "7b7e23f27734d2bd298f078346216a78865cad98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d93b4a4f_c81e80c8",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-25T03:20:38Z",
+      "side": 1,
+      "message": "Should this be `\u003c\u003d`?",
+      "range": {
+        "startLine": 749,
+        "startChar": 12,
+        "endLine": 749,
+        "endChar": 13
+      },
+      "revId": "7b7e23f27734d2bd298f078346216a78865cad98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
