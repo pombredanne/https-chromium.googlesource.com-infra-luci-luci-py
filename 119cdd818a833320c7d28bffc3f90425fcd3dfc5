@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7043c39_d99d1505",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2021-03-25T23:47:18Z",
+      "side": 1,
+      "message": "Do you have an associated bug? you can use:\n\n  Bug: fuchsia:123",
+      "revId": "119cdd818a833320c7d28bffc3f90425fcd3dfc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c82188f3_ce933f46",
@@ -14,6 +31,23 @@
       "writtenOn": "2021-03-25T21:49:07Z",
       "side": 1,
       "message": "Hi Scott, \n\nWe are adding a monitoring alert for gce bots and swarming tasks scheduling, and we need a gce field tag on the swarming tasks side. \n\nThanks!",
+      "revId": "119cdd818a833320c7d28bffc3f90425fcd3dfc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9084183c_dcb0b8b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2021-03-25T23:47:18Z",
+      "side": 1,
+      "message": "It\u0027s news to me that we specify gce:1 to our tasks, that\u0027s cool. e.g.\nhttps://chromium-swarm.appspot.com/tasklist?c\u003dname\u0026c\u003dcreated_ts\u0026c\u003dpending_time\u0026c\u003dduration\u0026c\u003dbot\u0026c\u003dpool-tag\u0026c\u003dstate\u0026d\u003ddesc\u0026et\u003d1616715996427\u0026f\u003dgce-tag%3A1\u0026s\u003dcreated_ts\u0026st\u003d1616629596000",
       "revId": "119cdd818a833320c7d28bffc3f90425fcd3dfc5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
