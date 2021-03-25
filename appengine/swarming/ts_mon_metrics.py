@@ -173,6 +173,7 @@ _jobs_active = gae_ts_mon.GaugeMetric(
         gae_ts_mon.StringField('subproject_id'),
         gae_ts_mon.StringField('pool'),
         gae_ts_mon.StringField('status'),
+        gae_ts_mon.StringField('gce'),
     ])
 
 
