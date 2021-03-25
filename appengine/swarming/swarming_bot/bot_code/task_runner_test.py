@@ -50,6 +50,12 @@ import isolateserver_fake
 import local_caching
 import swarmingserver_bot_fake
 
+def to_native_eol(string):
+  if string is None:
+    return string
+  if six.PY3 and sys.platform == 'win32':
+    return string.replace('\n', '\r\n')
+  return string
 
 def gen_task_id():
   return ''.join([random.choice(string.digits) for _ in range(10)])
@@ -272,15 +278,15 @@ class TestTaskRunnerBase(auto_stub.TestCase):
         u'output_chunk_start': 0,
         u'task_id': task_id,
     }
+    if six.PY3 and sys.platform == 'win32':
+      expected[u'output'] = expected[u'output'].replace(
+        b'\n', b'\r\n')
     for k, v in kwargs.items():
       if v is None:
         expected.pop(k)
       else:
         expected[six.ensure_text(k)] = v
 
-    if six.PY3 and sys.platform == 'win32':
-      expected[u'output'] = expected[u'output'].replace(
-        b'\n', b'\r\n')
     # Use explicit <= verification for these.
     for k in (u'bot_overhead', u'cost_usd', u'duration'):
       # Actual values must be equal or larger than the expected values.
@@ -290,6 +296,8 @@ class TestTaskRunnerBase(auto_stub.TestCase):
     if hasattr(expected[u'output'], 'pattern'):
       v = actual.pop(u'output')
       r = expected.pop(u'output')
+      if six.PY3 and sys.platform == 'win32':
+        r = re.compile(r.pattern.replace(br'\n', br'\r\n'))
       self.assertTrue(
           r.match(v),
           "failed to match output. pattern: %s, actual: %s" % (r.pattern, v))
@@ -342,7 +350,6 @@ class TestTaskRunner(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(task_details.task_id)
 
-  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1182016')
   def test_run_command_env_prefix_one(self):
     task_details = get_task_details(
         'import os\nprint(os.getenv("PATH").split(os.pathsep)[0])',
@@ -361,9 +368,9 @@ class TestTaskRunner(TestTaskRunnerBase):
     sep = re.escape(os.sep)
     self.expectTask(
         task_details.task_id,
-        output=re.compile(('.+%slocal%ssmurf\n$' % (sep, sep)).encode()))
+        output=re.compile(
+          (to_native_eol('.+%slocal%ssmurf\n$') % (sep, sep)).encode()))
 
-  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1182016')
   def test_run_command_env_prefix_multiple(self):
     task_details = get_task_details(
         '\n'.join([
@@ -604,23 +611,19 @@ class TestTaskRunner(TestTaskRunnerBase):
         task_details.task_id,
         bot_overhead=None,
         isolated_stats=None,
-        output=b'hi!\n' * 100003)
+        output=to_native_eol('hi!\n' * 100003).encode())
     # Here, we want to carefully check the packets sent to ensure the internal
     # timer works as expected. There's 3 updates:
     # - initial task startup with no output
     # - buffer filled with the 3 first yield
     # - last yield
     updates = self.server.get_tasks()[task_details.task_id]
-    if six.PY3 and sys.platform == 'win32':
-      expected_out = b'hi!\r\n'
-    else:
-      expected_out = b'hi!\n'
     self.assertEqual(3, len(updates))
     self.assertEqual(None, updates[0].get(u'output'))
-    self.assertEqual(
-      base64.b64encode(expected_out * 100002), updates[1][u'output'].encode())
-    self.assertEqual(
-      base64.b64encode(expected_out), updates[2][u'output'].encode())
+    self.assertEqual(base64.b64encode(
+      to_native_eol('hi!\n' * 100002).encode()), updates[1][u'output'].encode())
+    self.assertEqual(base64.b64encode(
+      to_native_eol('hi!\n').encode()), updates[2][u'output'].encode())
 
   @unittest.skipIf(
       sys.platform == 'win32',
@@ -905,7 +908,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.expectTask(
         task_details.task_id,
         hard_timeout=True,
-        output=('hi\ngot signal %d\nbye\n' %
+        output=(to_native_eol('hi\ngot signal %d\nbye\n') %
                 task_runner.SIG_BREAK_OR_TERM).encode())
 
   def test_io_signal(self):
@@ -925,7 +928,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.expectTask(
         task_details.task_id,
         io_timeout=True,
-        output=('hi\ngot signal %d\nbye\n' %
+        output=(to_native_eol('hi\ngot signal %d\nbye\n') %
                 task_runner.SIG_BREAK_OR_TERM).encode())
 
   def test_hard_no_grace(self):
@@ -984,7 +987,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         task_details.task_id,
         hard_timeout=True,
         exit_code=exit_code,
-        output=('hi\ngot signal %d\nbye\n' %
+        output=(to_native_eol('hi\ngot signal %d\nbye\n') %
                 task_runner.SIG_BREAK_OR_TERM).encode())
 
   @unittest.skipIf(sys.platform == 'win32',
@@ -1009,7 +1012,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         task_details.task_id,
         io_timeout=True,
         exit_code=exit_code,
-        output=('hi\ngot signal %d\nbye\n' %
+        output=(to_native_eol('hi\ngot signal %d\nbye\n') %
                 task_runner.SIG_BREAK_OR_TERM).encode())
 
   @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1182016')
