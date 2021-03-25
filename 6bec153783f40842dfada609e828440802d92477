@@ -68,6 +68,29 @@
       },
       "revId": "6bec153783f40842dfada609e828440802d92477",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c3d42f4_fc2fab23",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-25T03:42:58Z",
+      "side": 1,
+      "message": "Better to do this replacement on test case side?",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 301,
+        "endChar": 0
+      },
+      "revId": "6bec153783f40842dfada609e828440802d92477",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
