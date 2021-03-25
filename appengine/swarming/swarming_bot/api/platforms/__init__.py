@@ -23,6 +23,7 @@ if sys.platform == 'darwin':
 
 
 if sys.platform == 'win32':
+  from api.platforms import android
   from api.platforms import gce
   from api.platforms import win
   is_gce = lambda: gce.is_gce() # to reuse gce.is_gce mock, if any

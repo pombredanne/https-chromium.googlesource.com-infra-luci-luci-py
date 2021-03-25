@@ -10,7 +10,7 @@ import unittest
 import test_env_platforms
 test_env_platforms.setup_test_env()
 
-if sys.platform.startswith('linux'):
+if sys.platform.startswith('linux') or sys.platform == 'win32':
   import android
 
 
