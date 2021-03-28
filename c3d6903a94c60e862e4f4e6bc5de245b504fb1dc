@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da60f226_34e6239a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2021-03-28T01:03:09Z",
+      "side": 1,
+      "message": "Last time I tried this I caused an outage. :( This CL is simplified and doesn\u0027t try to be fancy so hopefully it\u0027s safe. It will be super useful for no-brainer usage analysis.",
+      "revId": "c3d6903a94c60e862e4f4e6bc5de245b504fb1dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d679b47_cd2b7981",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2021-03-28T01:03:09Z",
+      "side": 1,
+      "message": "This is the important part of the test. With this, we now have access to the root task id from any task, which will greatly simplify BigQuery data analysis.",
+      "revId": "c3d6903a94c60e862e4f4e6bc5de245b504fb1dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
