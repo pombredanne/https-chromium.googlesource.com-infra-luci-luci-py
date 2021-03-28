@@ -741,7 +741,7 @@ class TaskResultApiTest(TestCase):
     # https://crbug.com/916557: RESOURCE_EXHAUSTED
 
   # TODO(crbug.com/1115778): remove after RBE-CAS migration.
-  def test_to_proto(self):
+  def test_TaskRunResult_to_proto_isolated(self):
     cipd_client_pkg = task_request.CipdPackage(
         package_name=u'infra/tools/cipd/${platform}',
         version=u'git_revision:deadbeef')
@@ -906,12 +906,24 @@ class TaskResultApiTest(TestCase):
     run_result.to_proto(actual)
     self.assertEqual(unicode(expected), unicode(actual))
 
-  # TODO(crbug.com/1115778): rename to test_to_proto.
-  def test_to_proto_with_cas(self):
+  def test_TaskRunResult_to_proto(self):
     cipd_client_pkg = task_request.CipdPackage(
         package_name=u'infra/tools/cipd/${platform}',
         version=u'git_revision:deadbeef')
+    # Grand parent entity must have a valid key id and be stored.
+    # This task uses user:Jesus, which will be inherited automatically.
+    grand_parent = _gen_request()
+    grand_parent.key = task_request.new_request_key()
+    grand_parent.put()
+    # Parent entity must have a valid key id and be stored.
+    self.mock_now(task_request._BEGINING_OF_THE_WORLD, 1)
+    parent = _gen_request(parent_task_id=grand_parent.task_id[:-1] + u'1')
+    parent.key = task_request.new_request_key()
+    parent.put()
+    self.mock_now(task_request._BEGINING_OF_THE_WORLD, 2)
+
     run_result = _gen_run_result(
+        parent_run_id=parent.run_id,
         properties=_gen_properties(
             cipd_input={
                 u'client_package': cipd_client_pkg,
@@ -922,7 +934,8 @@ class TaskResultApiTest(TestCase):
                 u'server': u'http://localhost:2'
             },
             containment=task_request.Containment(lower_priority=True),
-        ),)
+        ),
+    )
     run_result.started_ts = self.now + datetime.timedelta(seconds=20)
     run_result.abandoned_ts = self.now + datetime.timedelta(seconds=30)
     run_result.completed_ts = self.now + datetime.timedelta(seconds=40)
@@ -1073,6 +1086,9 @@ class TaskResultApiTest(TestCase):
 
     actual = swarming_pb2.TaskResult()
     run_result.to_proto(actual)
+    self.assertEqual(unicode(expected), unicode(actual))
+    actual = swarming_pb2.TaskResult()
+    run_result.to_proto(actual, append_root_ids=True)
     self.assertEqual(unicode(expected), unicode(actual))
 
   def test_TaskResultSummary_to_proto_empty(self):
