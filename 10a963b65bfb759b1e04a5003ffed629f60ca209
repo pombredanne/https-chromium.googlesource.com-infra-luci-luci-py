@@ -37,6 +37,47 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "423bb644_8794941e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-03-29T23:42:30Z",
+      "side": 1,
+      "message": "\u003e We can update it directly in the datastore, but I fear ndb memcache shenanigans.\nimo this is reasonable; update manually, flush memcache, call it a day",
+      "parentUuid": "bcd4fe31_5e5b4ec8",
+      "revId": "10a963b65bfb759b1e04a5003ffed629f60ca209",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0c00c8b_7a97c279",
+        "filename": "appengine/components/components/config/remote.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-03-29T23:42:30Z",
+      "side": 1,
+      "message": "stampede",
+      "range": {
+        "startLine": 38,
+        "startChar": 37,
+        "endLine": 38,
+        "endChar": 44
+      },
+      "revId": "10a963b65bfb759b1e04a5003ffed629f60ca209",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a6f6a1f5_fac45040",
         "filename": "appengine/components/components/config/remote.py",
         "patchSetId": 1
