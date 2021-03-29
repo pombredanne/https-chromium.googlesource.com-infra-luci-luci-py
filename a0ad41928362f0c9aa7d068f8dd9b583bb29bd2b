@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2596aa6_91644545",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-29T07:58:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a13e955f_16f8073a",
+      "range": {
+        "startLine": 431,
+        "startChar": 11,
+        "endLine": 431,
+        "endChar": 73
+      },
+      "revId": "a0ad41928362f0c9aa7d068f8dd9b583bb29bd2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0519036f_c5dd383e",
@@ -78,6 +102,30 @@
       "side": 1,
       "message": "s/True/False/",
       "parentUuid": "0519036f_c5dd383e",
+      "range": {
+        "startLine": 432,
+        "startChar": 9,
+        "endLine": 432,
+        "endChar": 18
+      },
+      "revId": "a0ad41928362f0c9aa7d068f8dd9b583bb29bd2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6a73e6b_27545057",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-29T07:58:27Z",
+      "side": 1,
+      "message": "I think `state` can be empty (None or []?).\nI moved the any(...) into the if condition. (I incorrectly fixed too-long line lint error.)",
+      "parentUuid": "6341f88a_4fc3ce86",
       "range": {
         "startLine": 432,
         "startChar": 9,
