@@ -29,7 +29,7 @@ from . import validation
 MEMCACHE_PREFIX = 'components.config/v2/'
 # Delete LastGoodConfig if it was not accessed for more than a week.
 CONFIG_MAX_TIME_SINCE_LAST_ACCESS = datetime.timedelta(days=7)
-# Update LastGoodConfig.last_access_ts if it will be deleted next day.
+# Update LastGoodConfig.last_access_ts if it will be deleted soon.
 UPDATE_LAST_ACCESS_TIME_FREQUENCY = datetime.timedelta(days=1)
 
 
