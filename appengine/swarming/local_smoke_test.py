@@ -398,8 +398,9 @@ class Test(unittest.TestCase):
   def setUp(self):
     super(Test, self).setUp()
     self.dimensions = os_utilities.get_dimensions()
-    # The bot forcibly adds server_version.
+    # The bot forcibly adds server_version, and bot_config.
     self.dimensions[u'server_version'] = [u'N/A']
+    self.dimensions[u'bot_config'] = [u'bot_config.py']
     # Reset the bot's isolated cache at the start of each task, so that the
     # cache reuse data becomes deterministic. Only restart the bot when it had a
     # named cache because it takes multiple seconds to to restart the bot. :(
