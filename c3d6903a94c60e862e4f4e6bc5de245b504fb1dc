@@ -56,6 +56,30 @@
       },
       "revId": "c3d6903a94c60e862e4f4e6bc5de245b504fb1dc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a83aff4d_924438d0",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2021-03-29T13:53:09Z",
+      "side": 1,
+      "message": "I want to hard-code the expectation here. I added more asserts to make this even clearer.",
+      "parentUuid": "ffe9ba70_03f56d0b",
+      "range": {
+        "startLine": 1096,
+        "startChar": 38,
+        "endLine": 1096,
+        "endChar": 54
+      },
+      "revId": "c3d6903a94c60e862e4f4e6bc5de245b504fb1dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
