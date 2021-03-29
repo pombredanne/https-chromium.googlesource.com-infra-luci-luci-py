@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fecf351_d5a8547f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-29T07:30:02Z",
+      "side": 1,
+      "message": "fixed local_smoke_test.py. PTAL.",
+      "revId": "a0ad41928362f0c9aa7d068f8dd9b583bb29bd2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
