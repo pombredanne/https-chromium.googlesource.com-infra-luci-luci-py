@@ -33,6 +33,29 @@
       "message": "This is the important part of the test. With this, we now have access to the root task id from any task, which will greatly simplify BigQuery data analysis.",
       "revId": "c3d6903a94c60e862e4f4e6bc5de245b504fb1dc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffe9ba70_03f56d0b",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-29T00:07:24Z",
+      "side": 1,
+      "message": "Why don\u0027t you get the root id from `grand_parent`?\nsame for other ids in expectations.",
+      "range": {
+        "startLine": 1096,
+        "startChar": 38,
+        "endLine": 1096,
+        "endChar": 54
+      },
+      "revId": "c3d6903a94c60e862e4f4e6bc5de245b504fb1dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
