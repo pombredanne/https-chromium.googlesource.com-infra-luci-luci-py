@@ -16,6 +16,52 @@
       "message": "fixed local_smoke_test.py. PTAL.",
       "revId": "a0ad41928362f0c9aa7d068f8dd9b583bb29bd2b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a13e955f_16f8073a",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-29T07:47:45Z",
+      "side": 1,
+      "message": "`d[\u0027key\u0027] \u003d\u003d \u0027server_version\u0027 for d in state[\u0027dimensions\u0027]`?",
+      "range": {
+        "startLine": 431,
+        "startChar": 11,
+        "endLine": 431,
+        "endChar": 73
+      },
+      "revId": "a0ad41928362f0c9aa7d068f8dd9b583bb29bd2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0519036f_c5dd383e",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-03-29T07:47:45Z",
+      "side": 1,
+      "message": "this is always True here?",
+      "range": {
+        "startLine": 432,
+        "startChar": 9,
+        "endLine": 432,
+        "endChar": 18
+      },
+      "revId": "a0ad41928362f0c9aa7d068f8dd9b583bb29bd2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
