@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53612e4d_dbd1a7a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-29T22:45:43Z",
+      "side": 1,
+      "message": "PTAL\n\nMath, how does it work?",
+      "revId": "10a963b65bfb759b1e04a5003ffed629f60ca209",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6f6a1f5_fac45040",
+        "filename": "appengine/components/components/config/remote.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-03-29T22:45:43Z",
+      "side": 1,
+      "message": "The default recommendation is the article is \"take time it takes to update the cache entry\" (so like 100ms). I did an experiment: given a `ttl` value, calcualte how many dice rolls it takes to get \"it is stale\" answer. For 100ms value the answer is ~\u003dinf for almost all ttl values except ones very close to 0 (naturally).\n\nI don\u0027t think we need to cut it so close. \n\nHere\u0027s the result of the experiment for `delta*beta\u003d\u003d5min`, each line is \"\u003cTTL in minutes\u003e: how many dice rolls it took to get \u003cstale\u003e\": https://paste.googleplex.com/5841492988919808 (1000000 is \"too many, gave up\")\n\nSo I think with this value we\u0027ll be getting a refresh on average somewhere around 2h ttl mark. It can be calculated rigorously given QPS to _get_last_good_async, but I\u0027m not a math major...",
+      "range": {
+        "startLine": 391,
+        "startChar": 4,
+        "endLine": 391,
+        "endChar": 61
+      },
+      "revId": "10a963b65bfb759b1e04a5003ffed629f60ca209",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
