@@ -45,6 +45,30 @@
       },
       "revId": "e5539f87a2e38f51cb20777aa73c73659555b866",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "394436d5_6abe218b",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1496407
+      },
+      "writtenOn": "2021-03-30T19:27:40Z",
+      "side": 1,
+      "message": "We might want to differentiate cases where gce fields exist and cases where they dont? in case someone uses to filter by gce \u003d 0 but actually the data do not exist.",
+      "parentUuid": "16e6d75c_201c42bf",
+      "range": {
+        "startLine": 447,
+        "startChar": 34,
+        "endLine": 447,
+        "endChar": 36
+      },
+      "revId": "e5539f87a2e38f51cb20777aa73c73659555b866",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
