@@ -16,6 +16,24 @@
       "message": "Could you elaboreate more why you need to know hostname?",
       "revId": "2d823c50bea339c7673e3c06658034ab4e145b82",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "458da5ca_9f6e0b3e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1115879
+      },
+      "writtenOn": "2021-03-30T22:37:56Z",
+      "side": 1,
+      "message": "Sorry email got lost.  This is more useful in multi-swarming bot environment, where a host machine spawns more than one Swarming bot for better use of resources, and we need to identify the hostname the bot belongs to.",
+      "parentUuid": "7400ccf2_addafb7a",
+      "revId": "2d823c50bea339c7673e3c06658034ab4e145b82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
