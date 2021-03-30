@@ -69,6 +69,30 @@
       },
       "revId": "e5539f87a2e38f51cb20777aa73c73659555b866",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb1a4df1_af5ba84c",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2021-03-30T20:36:12Z",
+      "side": 1,
+      "message": "It\u0027s always the best practice to specify values in metric fields. If a metric field is omitted, then the default value of the type, such as an empty string for string type fields, is assigned.\n\nBy specifying a specific value, like \"UNSPECIFIED\" or something else, we can easily distinguish metric streams that were reported w/ or w/o the metric field. For example, the past streams before this CL will have an empty value in this metric field, whereas the new streams reported w/ this field will have \"UNSPECIFIED\", if it was explicitly recognized that the monitored task was missing GCE dimension.\n\nThis will also make the graphs more readable. If your Mash query groups by [\u0027metric:gce\u0027], then the graph will draw 3 lines and each of the values will be labeled as a graph legend, like \"1\", \"0\", \"unspecified\". The graph will look more intuitive than \"1\", \"0\", \"\".\n\nHaving said, I see that the other fields between L444-L446 are also populating empty values for missing dimensions. To keep this convention, you can the current change, but the doc string of the metric should clearly describe the meaning of empty values.",
+      "parentUuid": "394436d5_6abe218b",
+      "range": {
+        "startLine": 447,
+        "startChar": 34,
+        "endLine": 447,
+        "endChar": 36
+      },
+      "revId": "e5539f87a2e38f51cb20777aa73c73659555b866",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
