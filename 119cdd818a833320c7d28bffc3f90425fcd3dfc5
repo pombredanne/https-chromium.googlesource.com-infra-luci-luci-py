@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9d4bd064_48ee9ed3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1496407
+      },
+      "writtenOn": "2021-03-30T16:47:22Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "b7043c39_d99d1505",
+      "revId": "119cdd818a833320c7d28bffc3f90425fcd3dfc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c82188f3_ce933f46",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -65,6 +83,30 @@
       "writtenOn": "2021-03-25T22:37:52Z",
       "side": 1,
       "message": "can you give me some explanation of what this field is for?\nAlso, this CL misses the logic of populating the value of this field?",
+      "range": {
+        "startLine": 176,
+        "startChar": 8,
+        "endLine": 176,
+        "endChar": 38
+      },
+      "revId": "119cdd818a833320c7d28bffc3f90425fcd3dfc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c28751f7_967cf1db",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1496407
+      },
+      "writtenOn": "2021-03-30T16:47:22Z",
+      "side": 1,
+      "message": "We needed this tag to create an alert for matching pending tasks and ready gce bots.",
+      "parentUuid": "0cf9976f_e8fffbc8",
       "range": {
         "startLine": 176,
         "startChar": 8,
