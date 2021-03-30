@@ -39,7 +39,7 @@ _CACHED_METADATA_TOKEN_LOCK = threading.Lock()
 def _padded_b64_decode(data):
   mod = len(data) % 4
   if mod:
-    data += '=' * (4 - mod)
+    data += b'=' * (4 - mod)
   return base64.urlsafe_b64decode(data)
 
 
@@ -231,7 +231,6 @@ def signed_metadata_token(audience):
     except (IndexError, KeyError, TypeError, ValueError) as exc:
       logging.error('Metadata server returned invalid JWT (%s):\n%s', exc, jwt)
       return None, None
-
     jwt = six.ensure_str(jwt)
     _CACHED_METADATA_TOKEN[audience] = {'jwt': jwt, 'exp': exp}
     return jwt, exp
