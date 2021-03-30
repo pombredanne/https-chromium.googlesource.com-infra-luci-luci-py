@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "593cb7a8_38644452",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2021-03-30T17:21:31Z",
+      "side": 1,
+      "message": "\u00271\u0027 or \u00270\u0027.\nThe metric field is a string field.",
+      "range": {
+        "startLine": 169,
+        "startChar": 9,
+        "endLine": 169,
+        "endChar": 16
+      },
+      "revId": "e5539f87a2e38f51cb20777aa73c73659555b866",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16e6d75c_201c42bf",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2021-03-30T17:21:31Z",
+      "side": 1,
+      "message": "L169 shows 1 or 0. Shouldn\u0027t the default value be 0?",
+      "range": {
+        "startLine": 447,
+        "startChar": 34,
+        "endLine": 447,
+        "endChar": 36
+      },
+      "revId": "e5539f87a2e38f51cb20777aa73c73659555b866",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

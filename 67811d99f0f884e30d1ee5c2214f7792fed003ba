@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ecc19d6_b283481d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2021-03-30T17:21:31Z",
+      "side": 1,
+      "message": "+tikuta@ jwata@\n\nLGTM, but I\u0027d suggest getting a stamp from chops-td.",
+      "revId": "67811d99f0f884e30d1ee5c2214f7792fed003ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
