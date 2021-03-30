@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46d52444_6f8e43c6",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2021-03-30T23:30:46Z",
+      "side": 1,
+      "message": "I didn\u0027t realize that this was being used by all other metrics.\nFor example, L460 and L479 use the returned dict of this function to _jobs_requested and _jobs_completed, but this CL doesn\u0027t add metric:gce into the metrics.\n\nDid you intend to add the new metric field to all the job metrics?",
+      "range": {
+        "startLine": 431,
+        "startChar": 4,
+        "endLine": 431,
+        "endChar": 23
+      },
+      "revId": "67da95399ce9e7b987e2cd8969cfe79d6513b99c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
