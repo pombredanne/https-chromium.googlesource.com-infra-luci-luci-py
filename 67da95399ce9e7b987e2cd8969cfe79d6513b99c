@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01a6823b_28a65290",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-30T23:57:46Z",
+      "side": 1,
+      "message": "Can you make it a link? I want to understand the issue.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "67da95399ce9e7b987e2cd8969cfe79d6513b99c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1231f81a_8fc99a5d",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-30T23:57:46Z",
+      "side": 1,
+      "message": "I\u0027m not sure if we should add individual fields for dimensions.\nIs there any repeated field to expose arbitral string list?",
+      "range": {
+        "startLine": 169,
+        "startChar": 4,
+        "endLine": 169,
+        "endChar": 7
+      },
+      "revId": "67da95399ce9e7b987e2cd8969cfe79d6513b99c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46d52444_6f8e43c6",
         "filename": "appengine/swarming/ts_mon_metrics.py",
         "patchSetId": 6
@@ -19,6 +65,29 @@
         "startChar": 4,
         "endLine": 431,
         "endChar": 23
+      },
+      "revId": "67da95399ce9e7b987e2cd8969cfe79d6513b99c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39cb4123_0bb3708b",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-30T23:57:46Z",
+      "side": 1,
+      "message": "At a glance, only fuchsia tasks have `gce` tag.\nhttps://chromium-swarm.appspot.com/tasklist?c\u003dname\u0026c\u003dcreated_ts\u0026c\u003dpending_time\u0026c\u003dduration\u0026c\u003dbot\u0026c\u003dpool-tag\u0026c\u003dstate\u0026d\u003ddesc\u0026et\u003d1617147619608\u0026f\u003dstate%3ARUNNING\u0026f\u003dgce-tag%3A1\u0026k\u003dgce-tag\u0026s\u003dcreated_ts\u0026st\u003d1617061161000\n\nThis is because tags are copied from task dimensions, and other tasks don\u0027t specify `gce` dimension explicitly.",
+      "range": {
+        "startLine": 447,
+        "startChar": 13,
+        "endLine": 447,
+        "endChar": 37
       },
       "revId": "67da95399ce9e7b987e2cd8969cfe79d6513b99c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
