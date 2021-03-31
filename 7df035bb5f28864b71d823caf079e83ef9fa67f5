@@ -70,6 +70,24 @@
       "parentUuid": "630ca292_32ce821f",
       "revId": "7df035bb5f28864b71d823caf079e83ef9fa67f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca9a0329_185dc944",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-31T14:11:55Z",
+      "side": 1,
+      "message": "\u003e if isinstance(digest, binary_type):\n\nErr \"if isinstance(digest, bytes)\".",
+      "parentUuid": "617298a4_903c15de",
+      "revId": "7df035bb5f28864b71d823caf079e83ef9fa67f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
