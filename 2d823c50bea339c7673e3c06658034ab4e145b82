@@ -52,6 +52,24 @@
       "parentUuid": "458da5ca_9f6e0b3e",
       "revId": "2d823c50bea339c7673e3c06658034ab4e145b82",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c0323a3_56e1fbe8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1115879
+      },
+      "writtenOn": "2021-03-31T19:48:12Z",
+      "side": 1,
+      "message": "The hosts are physical machines.  It\u0027d be nice to know which bot connected which machine.  Here\u0027s example of a bot on a multi-bot machine, the \"id\" dimension is now the bot\u0027s ID:\n\nhttps://omnibot-swarming-server.appspot.com/bot?id\u003dcoral-bot-00a3e501",
+      "parentUuid": "85b7645f_9e99f33d",
+      "revId": "2d823c50bea339c7673e3c06658034ab4e145b82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
