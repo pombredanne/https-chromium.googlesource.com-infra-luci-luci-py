@@ -318,10 +318,6 @@ class MemoryContentAddressedCache(ContentAddressedCache):
     # This is not thread-safe.
     return self._lru.__iter__()
 
-  def __contains__(self, digest):
-    with self._lock:
-      return digest in self._lru
-
   @property
   def total_size(self):
     with self._lock:
@@ -355,6 +351,7 @@ class MemoryContentAddressedCache(ContentAddressedCache):
   # ContentAddressedCache interface implementation.
 
   def __contains__(self, digest):
+    digest = six.ensure_text(digest)
     with self._lock:
       return digest in self._lru
 
@@ -367,6 +364,7 @@ class MemoryContentAddressedCache(ContentAddressedCache):
       return True
 
   def getfileobj(self, digest):
+    digest = six.ensure_text(digest)
     with self._lock:
       try:
         d = self._lru[digest]
@@ -377,6 +375,7 @@ class MemoryContentAddressedCache(ContentAddressedCache):
     return io.BytesIO(d)
 
   def write(self, digest, content):
+    digest = six.ensure_text(digest)
     # Assemble whole stream before taking the lock.
     data = six.b('').join(content)
     with self._lock:
@@ -430,10 +429,6 @@ class DiskContentAddressedCache(ContentAddressedCache):
   def __iter__(self):
     # This is not thread-safe.
     return self._lru.__iter__()
-
-  def __contains__(self, digest):
-    with self._lock:
-      return digest in self._lru
 
   @property
   def total_size(self):
@@ -526,6 +521,7 @@ class DiskContentAddressedCache(ContentAddressedCache):
   # ContentAddressedCache interface implementation.
 
   def __contains__(self, digest):
+    digest = six.ensure_text(digest)
     with self._lock:
       return digest in self._lru
 
@@ -557,6 +553,7 @@ class DiskContentAddressedCache(ContentAddressedCache):
     return True
 
   def getfileobj(self, digest):
+    digest = six.ensure_text(digest)
     try:
       f = fs.open(self._path(digest), 'rb')
     except IOError:
@@ -574,6 +571,7 @@ class DiskContentAddressedCache(ContentAddressedCache):
 
   def write(self, digest, content):
     assert content is not None
+    digest = six.ensure_text(digest)
     with self._lock:
       self._protected = self._protected or digest
     path = self._path(digest)
