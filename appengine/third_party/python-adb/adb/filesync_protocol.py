@@ -17,6 +17,7 @@ Implements the ADB protocol as seen in android's adb/adbd binaries, but only the
 host side.
 """
 
+from __future__ import absolute_import
 import collections
 import stat
 import struct
@@ -26,6 +27,7 @@ import libusb1
 
 from adb import adb_protocol
 from adb import usb_exceptions
+import six
 
 
 class PushFailedError(usb_exceptions.AdbCommandFailureException):
@@ -48,7 +50,7 @@ class FilesyncProtocol(object):
 
   @staticmethod
   def Stat(connection, filename):
-    if isinstance(filename, unicode):
+    if isinstance(filename, six.text_type):
       filename = filename.encode('utf-8')
     cnxn = FileSyncConnection(connection, '<4I')
     cnxn.Send('STAT', filename)
@@ -61,7 +63,7 @@ class FilesyncProtocol(object):
 
   @classmethod
   def List(cls, connection, path):
-    if isinstance(path, unicode):
+    if isinstance(path, six.text_type):
       path = path.encode('utf-8')
     cnxn = FileSyncConnection(connection, '<5I')
     cnxn.Send('LIST', path)
@@ -76,7 +78,7 @@ class FilesyncProtocol(object):
   @classmethod
   def Pull(cls, connection, filename, dest_file):
     """Pull a file from the device into the file-like dest_file."""
-    if isinstance(filename, unicode):
+    if isinstance(filename, six.text_type):
       filename = filename.encode('utf-8')
     cnxn = FileSyncConnection(connection, '<2I')
     cnxn.Send('RECV', filename)
@@ -100,7 +102,7 @@ class FilesyncProtocol(object):
     Raises:
       PushFailedError: Raised on push failure.
     """
-    if isinstance(filename, unicode):
+    if isinstance(filename, six.text_type):
       filename = filename.encode('utf-8')
     fileinfo = '%s,%s' % (filename, st_mode)
     assert len(filename) <= 1024, 'Name too long: %s' % filename
