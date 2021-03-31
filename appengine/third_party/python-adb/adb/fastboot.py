@@ -13,6 +13,7 @@
 # limitations under the License.
 """A libusb1-based fastboot implementation."""
 
+from __future__ import absolute_import
 import binascii
 import collections
 import cStringIO
@@ -22,6 +23,7 @@ import struct
 
 from adb import common
 from adb import usb_exceptions
+import six
 
 # The size of packets to write to usb, this is set to 4 for legacy reasons.
 # We've had success with 1MB DRASTICALLY decreasing flashing times.
@@ -190,7 +192,7 @@ class FastbootProtocol(object):
     """Sends the data to the device, tracking progress with the callback."""
     if progress_callback:
       progress = self._HandleProgress(length, progress_callback)
-      progress.next()
+      next(progress)
     while length:
       tmp = data.read(FASTBOOT_WRITE_CHUNK_SIZE_KB * 1024)
       length -= len(tmp)
@@ -279,7 +281,7 @@ class FastbootCommands(object):
     Returns:
       Response to a download request, normally nothing.
     """
-    if isinstance(source_file, basestring):
+    if isinstance(source_file, six.string_types):
       source_len = os.stat(source_file).st_size
       source_file = open(source_file)
 

@@ -17,13 +17,17 @@ Implements the ADB protocol as seen in android's adb/adbd binaries, but only the
 host side.
 """
 
+from __future__ import absolute_import
 import collections
 import inspect
 import logging
-import Queue
 import struct
+import sys
 import threading
 import time
+
+import six
+Queue = six.moves.queue.Queue
 
 from adb import usb_exceptions
 
@@ -375,7 +379,7 @@ class _AdbConnection(object):
       if yielder is None:
         raise InvalidResponseError('Never got \'%s\'' % finish_command, '<N/A>')
       while True:
-        message = yielder.next()
+        message = next(yielder)
         if message.header.command_name == finish_command:
           return message
     except StopIteration:
@@ -469,7 +473,7 @@ class AdbConnectionManager(object):
   def Close(self):
     """Also closes the usb handle."""
     with self._lock:
-      conns = self._connections.values()
+      conns = list(self._connections.values())
     for conn in conns:
       conn._HasClosed()
     with self._lock:
@@ -598,7 +602,7 @@ class AdbConnectionManager(object):
     _LOG.debug(
         '%s._HandleCNXN(): max packet size: %d',
         self.port_path, self.max_packet_size)
-    for conn in self._connections.itervalues():
+    for conn in six.itervalues(self._connections):
       conn._HasClosed()
     self._connections = {}
 
