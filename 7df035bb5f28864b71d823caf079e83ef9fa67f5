@@ -52,6 +52,24 @@
       "parentUuid": "605a6786_7f950ce8",
       "revId": "7df035bb5f28864b71d823caf079e83ef9fa67f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "617298a4_903c15de",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-31T14:09:00Z",
+      "side": 1,
+      "message": "\u003e If we use six.ensure_*, then it makes difficult to find which type are used there. \n\nI agree that it would be confusing if six.ensure_* is used in a ad-hoc manner. \n\nBut the code protects the inside of ContentAddressedCache by ensuring the digest is in text type at public APIs. `defensive programming` may be a similar concept.\ngo/dbc-course-defensive\n\nIf it\u0027s only for Python3, I would write like\n```\nif isinstance(digest, binary_type):\n  digest \u003d digest.decode()\n```\n\nI understand that this isn\u0027t ideal. but I think it\u0027s efficient in this situation.\n\n\u003e And six is temporal solution, we anyway want to use only str or bytes there to remove six usage.\n\nI don\u0027t know if it\u0027s worth cleaning six, though. The next big change would be migration to foundry bot code (or other Go based code).\n\n\u003e digest is not needed to be bytes in the function.\n\nI agree this. That\u0027s why I added six.ensure_text there.",
+      "parentUuid": "630ca292_32ce821f",
+      "revId": "7df035bb5f28864b71d823caf079e83ef9fa67f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
