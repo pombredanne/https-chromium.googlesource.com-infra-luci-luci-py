@@ -16,6 +16,24 @@
       "message": "I think it is better to fix caller to use text type everywhere.",
       "revId": "7df035bb5f28864b71d823caf079e83ef9fa67f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "605a6786_7f950ce8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-03-31T08:17:29Z",
+      "side": 1,
+      "message": "I think this is safer as it can prevent unexpected issues, too.\nCan you elaborate the pros of the approach?",
+      "parentUuid": "c531e7f6_a1693e1d",
+      "revId": "7df035bb5f28864b71d823caf079e83ef9fa67f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
