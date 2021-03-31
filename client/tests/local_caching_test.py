@@ -233,7 +233,11 @@ class ContentAddressedCacheTestMixin(CacheTestMixin):
   def test_getfileobj(self):
     cache = self.get_cache(_get_policies())
     h = self._add_one_item(cache, 1)
-    with cache.getfileobj(h) as f:
+    with cache.getfileobj(six.ensure_text(h)) as f:
+      self.assertEqual(b'0', f.read())
+    with cache.getfileobj(six.ensure_str(h)) as f:
+      self.assertEqual(b'0', f.read())
+    with cache.getfileobj(six.ensure_binary(h)) as f:
       self.assertEqual(b'0', f.read())
 
   def test_getfileobj_complete_miss(self):
@@ -249,6 +253,26 @@ class ContentAddressedCacheTestMixin(CacheTestMixin):
     cache = self.get_cache(_get_policies())
     with self.assertRaises(local_caching.CacheMiss):
       cache.getfileobj(h)
+
+  def test_write(self):
+    cache = self.get_cache(_get_policies())
+    cache.write('foo', [b'bar'])
+    cache.write(b'foo', [b'bar'])
+    h = cache.write(u'foo', [b'bar'])
+
+    # there should be only 1 cache.
+    expected = [six.text_type('foo')]
+    self.assertEqual(expected, [c for c in cache])
+    with cache.getfileobj(h) as f:
+      self.assertEqual(b'bar', f.read())
+
+  def test_contains(self):
+    cache = self.get_cache(_get_policies())
+    h = self._add_one_item(cache, 1)
+
+    self.assertTrue(six.ensure_text(h) in cache)
+    self.assertTrue(six.ensure_str(h) in cache)
+    self.assertTrue(six.ensure_binary(h) in cache)
 
 
 class MemoryContentAddressedCacheTest(TestCase, ContentAddressedCacheTestMixin):
