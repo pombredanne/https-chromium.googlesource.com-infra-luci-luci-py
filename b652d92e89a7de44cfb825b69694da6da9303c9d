@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42c104e8_f294268a",
+        "filename": "client/cipd.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-01T08:26:27Z",
+      "side": 1,
+      "message": "why we cannot avoid ensure_str here?",
+      "range": {
+        "startLine": 430,
+        "startChar": 31,
+        "endLine": 430,
+        "endChar": 42
+      },
+      "revId": "b652d92e89a7de44cfb825b69694da6da9303c9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
