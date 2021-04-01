@@ -88,6 +88,24 @@
       "parentUuid": "617298a4_903c15de",
       "revId": "7df035bb5f28864b71d823caf079e83ef9fa67f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c037937_1a9d87a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-01T06:05:47Z",
+      "side": 1,
+      "message": "I still think using six.ensure_* here is not good.\nIf we need to be defensive and avoid fixing type, we need to use six.ensure_* everywhere eventually.\n\nBut I rather want to fix from root cause. I also want to keep codebase cleaner even if we know that this will be thrown away as that won\u0027t happen soon.",
+      "parentUuid": "ca9a0329_185dc944",
+      "revId": "7df035bb5f28864b71d823caf079e83ef9fa67f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
