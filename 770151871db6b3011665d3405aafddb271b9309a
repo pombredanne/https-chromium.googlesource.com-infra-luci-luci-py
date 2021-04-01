@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1d3ad63_565f9d61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-01T11:27:01Z",
+      "side": 1,
+      "message": "Sorry for the late review. I left nits.",
+      "revId": "770151871db6b3011665d3405aafddb271b9309a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44083fb9_282e02fe",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-01T11:27:01Z",
+      "side": 1,
+      "message": "This is necessary only in the else block.",
+      "range": {
+        "startLine": 1125,
+        "startChar": 0,
+        "endLine": 1125,
+        "endChar": 64
+      },
+      "revId": "770151871db6b3011665d3405aafddb271b9309a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b960342_b7cdfeff",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-01T11:27:01Z",
+      "side": 1,
+      "message": "A short comment would help to understand why we need to this.",
+      "range": {
+        "startLine": 1126,
+        "startChar": 0,
+        "endLine": 1126,
+        "endChar": 45
+      },
+      "revId": "770151871db6b3011665d3405aafddb271b9309a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
