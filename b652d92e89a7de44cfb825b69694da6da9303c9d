@@ -22,6 +22,30 @@
       },
       "revId": "b652d92e89a7de44cfb825b69694da6da9303c9d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74d98641_9e24634d",
+        "filename": "client/cipd.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-01T08:42:22Z",
+      "side": 1,
+      "message": "It\u0027s just not clear from which path `instance_id` comes.",
+      "parentUuid": "42c104e8_f294268a",
+      "range": {
+        "startLine": 430,
+        "startChar": 31,
+        "endLine": 430,
+        "endChar": 42
+      },
+      "revId": "b652d92e89a7de44cfb825b69694da6da9303c9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
