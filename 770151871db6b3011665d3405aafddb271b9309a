@@ -62,6 +62,29 @@
       },
       "revId": "770151871db6b3011665d3405aafddb271b9309a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd5921ac_100d7f6a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1136,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-01T11:31:29Z",
+      "side": 1,
+      "message": "I think you can use r\"\"\"...\"\"\".",
+      "range": {
+        "startLine": 1136,
+        "startChar": 28,
+        "endLine": 1136,
+        "endChar": 31
+      },
+      "revId": "770151871db6b3011665d3405aafddb271b9309a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
