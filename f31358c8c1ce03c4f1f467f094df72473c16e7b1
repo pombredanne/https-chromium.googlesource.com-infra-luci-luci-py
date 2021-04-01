@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c312dcae_863b079b",
+        "filename": "client/cipd.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-01T09:00:41Z",
+      "side": 1,
+      "message": "f.read() returns str in Python2, byte string in Python3.\ninstance_id is expected to be str in both Python2/Python3.\ndecode() would make it unicode in Python2. So I use six.ensure_str() here.",
+      "range": {
+        "startLine": 421,
+        "startChar": 37,
+        "endLine": 421,
+        "endChar": 45
+      },
+      "revId": "f31358c8c1ce03c4f1f467f094df72473c16e7b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
