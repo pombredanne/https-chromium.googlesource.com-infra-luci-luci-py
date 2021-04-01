@@ -427,6 +427,7 @@ def get_client(cache_dir,
   else:  # it's a ref, hit the backend
     instance_id = resolve_version(
         service_url, package_name, version, timeout=timeoutfn())
+  instance_id = six.ensure_str(instance_id)
 
   # instance_cache is {instance_id -> client binary} mapping.
   # It is bounded by 5 client versions.
