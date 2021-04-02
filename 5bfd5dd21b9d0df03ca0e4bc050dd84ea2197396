@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14f1d882_b0a3cf96",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-02T08:03:50Z",
+      "side": 1,
+      "message": "\u003e \"hander\" is a possible misspelling of \"handler\".\n\nPlease fix.",
+      "parentUuid": "55186ef8_13185bce",
+      "range": {
+        "startLine": 12,
+        "startChar": 146,
+        "endLine": 12,
+        "endChar": 152
+      },
+      "revId": "5bfd5dd21b9d0df03ca0e4bc050dd84ea2197396",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
