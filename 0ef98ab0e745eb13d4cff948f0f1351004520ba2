@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cac77da7_206ab51d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-04-02T08:36:32Z",
+      "side": 1,
+      "message": "It\u0027s actually by using decode().",
+      "range": {
+        "startLine": 10,
+        "startChar": 58,
+        "endLine": 10,
+        "endChar": 76
+      },
+      "revId": "0ef98ab0e745eb13d4cff948f0f1351004520ba2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
