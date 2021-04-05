@@ -34,6 +34,24 @@
       "parentUuid": "caf44f0b_2a2bb356",
       "revId": "f28fdd0c700bc1d4c1b65343823343b71cd3af55",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33f161dd_3574a59b",
+        "filename": "appengine/third_party/python-adb/README.swarming",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-05T06:14:36Z",
+      "side": 1,
+      "message": "I think commit hash is changed when it is submitted like\nhttps://chromium-review.googlesource.com/c/infra/luci/python-adb/+/1852386/2..3",
+      "parentUuid": "3ad43f1d_a9855649",
+      "revId": "f28fdd0c700bc1d4c1b65343823343b71cd3af55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
