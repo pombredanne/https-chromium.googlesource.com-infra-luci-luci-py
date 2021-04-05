@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65f208c2_80efacd9",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-05T05:09:18Z",
+      "side": 1,
+      "message": "Py2 str -\u003e unicode\nPy3 str -\u003e str",
+      "range": {
+        "startLine": 1119,
+        "startChar": 39,
+        "endLine": 1119,
+        "endChar": 76
+      },
+      "revId": "165df46c3c323a95841ca5c0a82fe6693aef4f28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
