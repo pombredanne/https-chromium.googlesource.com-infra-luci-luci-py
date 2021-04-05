@@ -1010,7 +1010,6 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         output=(to_native_eol('hi\ngot signal %d\nbye\n') %
                 task_runner.SIG_BREAK_OR_TERM).encode())
 
-  @unittest.skipIf(sys.platform == 'win32' and six.PY3, 'crbug.com/1182016')
   def test_isolated_io_signal_grand_children(self):
     """Handles grand-children process hanging and signal management.
 
