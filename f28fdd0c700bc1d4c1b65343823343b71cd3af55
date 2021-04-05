@@ -16,6 +16,24 @@
       "message": "Could you leave TODO to update this after merging the CL?",
       "revId": "f28fdd0c700bc1d4c1b65343823343b71cd3af55",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ad43f1d_a9855649",
+        "filename": "appengine/third_party/python-adb/README.swarming",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-05T06:09:45Z",
+      "side": 1,
+      "message": "I think the hash is still the same.\n\nFor example,\nThe previous CL https://crrev.com/c/1852386.\nThis commit hash is the revision. https://chromium.googlesource.com/infra/luci/python-adb/+/adb84eb05066227df1a74bd566e2d846a09b17fd\n\nI realized I should use commit hash instead of tree hash. \nhttps://chromium.googlesource.com/infra/luci/python-adb/+/1d5037ef6d609aab1cab720896f33b48ae1c57cf\n\nUpdated it. PTAL.",
+      "parentUuid": "caf44f0b_2a2bb356",
+      "revId": "f28fdd0c700bc1d4c1b65343823343b71cd3af55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
