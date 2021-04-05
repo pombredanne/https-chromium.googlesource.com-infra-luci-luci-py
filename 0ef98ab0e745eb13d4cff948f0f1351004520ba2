@@ -22,6 +22,57 @@
       },
       "revId": "0ef98ab0e745eb13d4cff948f0f1351004520ba2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f05d758a_ba0429ad",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-05T01:23:58Z",
+      "side": 1,
+      "message": "It\u0027s simper with `six.moves`\nhttps://six.readthedocs.io/#module-six.moves\n`from six.moves import winreg`",
+      "revId": "0ef98ab0e745eb13d4cff948f0f1351004520ba2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5395e1f_7908f7a5",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-05T01:23:58Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "0ef98ab0e745eb13d4cff948f0f1351004520ba2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "819f9d05_0dc70616",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-05T01:23:58Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "0ef98ab0e745eb13d4cff948f0f1351004520ba2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
