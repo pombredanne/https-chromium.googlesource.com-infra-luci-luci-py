@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caf44f0b_2a2bb356",
+        "filename": "appengine/third_party/python-adb/README.swarming",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-05T05:05:14Z",
+      "side": 1,
+      "message": "Could you leave TODO to update this after merging the CL?",
+      "revId": "f28fdd0c700bc1d4c1b65343823343b71cd3af55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
