@@ -495,14 +495,14 @@ class TestTaskRunner(TestTaskRunnerBase):
     this is the succeeding version.
     """
     files = {
-        'parent.py':
-            (b'import subprocess, sys\n'
-             b'res = subprocess.call([sys.executable,\'-u\',\'children.py\'])\n'
-             b'sys.exit(res)\n'),
-        'children.py': (b'import subprocess, sys\n'
-                        b'sys.exit(subprocess.call('
-                        b'[sys.executable, \'-u\', \'grand_children.py\']))\n'),
-        'grand_children.py': b'print(\'hi\')',
+        'parent.py': b'print(\'hi\')',
+        #     (b'import subprocess, sys\n'
+        #      b'res = subprocess.call([sys.executable,\'-u\',\'children.py\'])\n'
+        #      b'sys.exit(res)\n'),
+        # 'children.py': (b'import subprocess, sys\n'
+        #                 b'sys.exit(subprocess.call('
+        #                 b'[sys.executable, \'-u\', \'grand_children.py\']))\n'),
+        # 'grand_children.py': b'print(\'hi\')',
     }
 
     isolated = json.dumps({
