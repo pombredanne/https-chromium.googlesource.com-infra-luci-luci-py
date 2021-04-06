@@ -272,7 +272,7 @@ class TestTaskRunnerBase(auto_stub.TestCase):
                 u'initial_size': 0,
             },
         },
-        u'output': to_native_eol('hi\n').encode(),
+        u'output': 'hi\n'.encode(),
         u'output_chunk_start': 0,
         u'task_id': task_id,
     }
