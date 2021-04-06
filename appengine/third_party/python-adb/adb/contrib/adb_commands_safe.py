@@ -131,7 +131,7 @@ class AdbCommandsSafe(object):
     assert isinstance(banner, str), banner
     assert on_error is None or callable(on_error), on_error
     assert handle is None or isinstance(handle, common.Handle), handle
-    assert all('\n' not in r.GetPublicKey() for r in rsa_keys), rsa_keys
+    assert all(b'\n' not in r.GetPublicKey() for r in rsa_keys), rsa_keys
 
     port_path = handle.port_path if handle else port_path
 
