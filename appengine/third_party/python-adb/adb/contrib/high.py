@@ -270,9 +270,9 @@ def Initialize(pub_key, priv_key):
     # Try to add local adb keys if available.
     path = os.path.expanduser('~/.android/adbkey')
     if os.path.isfile(path) and os.path.isfile(path + '.pub'):
-      with open(path + '.pub', 'rb') as f:
+      with open(path + '.pub') as f:
         pub_key = f.read().strip()
-      with open(path, 'rb') as f:
+      with open(path) as f:
         priv_key = f.read().strip()
       _ADB_KEYS.append(sign_pythonrsa.PythonRSASigner(pub_key, priv_key))
       _ADB_KEYS_PUB.add(pub_key)
