@@ -610,15 +610,14 @@ def _fetch_and_map_with_cas(cas_client, digest, instance, output_dir, cache_dir,
     if kvs_dir:
       cmd.extend(['-kvs-dir', kvs_dir])
 
-    start = time.time()
     _run_go_cmd_and_wait(cmd, tmp_dir)
-    if time.time() - start >= 120:
-      # If downloading takes long time, upload profile for later performance
-      # analysis.
-      subprocess42.check_call([
-          cas_client, 'archive', '-cas-instance', instance, '-paths',
-          profile_dir + ':.'
-      ])
+
+    # If downloading takes long time, uploaded profile is used for later
+    # performance analysis.
+    subprocess42.check_call([
+        cas_client, 'archive', '-cas-instance', instance, '-paths',
+        profile_dir + ':.'
+    ])
 
     with open(result_json_path) as json_file:
       result_json = json.load(json_file)
