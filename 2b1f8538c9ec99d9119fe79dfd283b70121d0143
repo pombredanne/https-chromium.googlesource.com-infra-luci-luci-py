@@ -128,6 +128,30 @@
       },
       "revId": "2b1f8538c9ec99d9119fe79dfd283b70121d0143",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6742903f_5ad32f86",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-07T08:10:36Z",
+      "side": 1,
+      "message": "Oh, it\u0027s displayed in Swarming task page. Ack.",
+      "parentUuid": "377e652b_3161bc77",
+      "range": {
+        "startLine": 618,
+        "startChar": 0,
+        "endLine": 618,
+        "endChar": 31
+      },
+      "revId": "2b1f8538c9ec99d9119fe79dfd283b70121d0143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
