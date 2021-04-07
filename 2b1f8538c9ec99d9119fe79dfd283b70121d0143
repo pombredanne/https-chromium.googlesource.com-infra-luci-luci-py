@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d40411da_23c64393",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-07T07:49:29Z",
+      "side": 1,
+      "message": "made https://crrev.com/c/2810065",
+      "parentUuid": "ffb18832_c4511fbd",
+      "revId": "2b1f8538c9ec99d9119fe79dfd283b70121d0143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c840d6e_09432a16",
@@ -41,6 +59,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2406892_35efbdef",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-07T07:49:29Z",
+      "side": 1,
+      "message": "made https://crrev.com/c/2810065 for smaller threshold",
+      "parentUuid": "8c840d6e_09432a16",
+      "range": {
+        "startLine": 615,
+        "startChar": 0,
+        "endLine": 615,
+        "endChar": 34
+      },
+      "revId": "2b1f8538c9ec99d9119fe79dfd283b70121d0143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1e17532_cadb5c62",
@@ -54,6 +96,30 @@
       "writtenOn": "2021-04-07T06:10:52Z",
       "side": 1,
       "message": "how do you find the digest of uploaded profiles?",
+      "range": {
+        "startLine": 618,
+        "startChar": 0,
+        "endLine": 618,
+        "endChar": 31
+      },
+      "revId": "2b1f8538c9ec99d9119fe79dfd283b70121d0143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "377e652b_3161bc77",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-07T07:49:29Z",
+      "side": 1,
+      "message": "cas has log like\n```\nuploaded digest is d7144b321ad7abf459e21dc2e020d5a8ab602e00b0f0dfcf20bbfef4d16f48a9/1937\n```",
+      "parentUuid": "f1e17532_cadb5c62",
       "range": {
         "startLine": 618,
         "startChar": 0,
