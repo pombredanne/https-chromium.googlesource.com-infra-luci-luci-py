@@ -22,9 +22,13 @@ subprocess and a network socket.
 All timeouts are in milliseconds.
 """
 
-import cStringIO
+from __future__ import absolute_import
+
+import io
 import os
 import socket
+
+import six
 
 from adb import adb_protocol
 from adb import common
@@ -40,7 +44,7 @@ DeviceIsAvailable = common.InterfaceMatcher(CLASS, SUBCLASS, PROTOCOL)
 
 try:
   # Imported locally to keep compatibility with previous code.
-  from sign_m2crypto import M2CryptoSigner
+  from .sign_m2crypto import M2CryptoSigner
 except ImportError:
   # Ignore this error when M2Crypto is not installed, there are other options.
   pass
@@ -131,7 +135,7 @@ class AdbCommands(object):
     """
     connection = self.conn.Open(
         destination='sync:', timeout_ms=timeout_ms)
-    if isinstance(source_file, basestring):
+    if isinstance(source_file, six.string_types):
       source_file = open(source_file)
     filesync_protocol.FilesyncProtocol.Push(
         connection, source_file, device_filename, mtime=int(mtime))
@@ -148,18 +152,16 @@ class AdbCommands(object):
     Returns:
       The file data if dest_file is not set.
     """
-    if isinstance(dest_file, basestring):
+    if isinstance(dest_file, six.string_types):
       dest_file = open(dest_file, 'w')
     elif not dest_file:
-      dest_file = cStringIO.StringIO()
+      dest_file = io.StringIO()
     connection = self.conn.Open(
         destination='sync:', timeout_ms=timeout_ms)
     filesync_protocol.FilesyncProtocol.Pull(
         connection, device_filename, dest_file)
     connection.Close()
-    # An empty call to cStringIO.StringIO returns an instance of
-    # cStringIO.OutputType.
-    if isinstance(dest_file, cStringIO.OutputType):
+    if isinstance(dest_file, io.StringIO):
       return dest_file.getvalue()
 
   def Stat(self, device_filename):

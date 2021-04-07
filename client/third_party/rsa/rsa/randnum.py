@@ -88,7 +88,7 @@ def randint(maxvalue):
         if value <= maxvalue:
             break
 
-        if tries % 10 == 0 and tries:
+        if tries and tries % 10 == 0:
             # After a lot of tries to get the right number of bits but still
             # smaller than maxvalue, decrease the number of bits by 1. That'll
             # dramatically increase the chances to get a large enough number.
