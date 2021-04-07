@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffb18832_c4511fbd",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-07T06:10:52Z",
+      "side": 1,
+      "message": "start \u003d time.time() is already declared at L576.",
+      "revId": "2b1f8538c9ec99d9119fe79dfd283b70121d0143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c840d6e_09432a16",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-07T06:10:52Z",
+      "side": 1,
+      "message": "I don\u0027t know how large the files are. But we can upload more or all traces during experimentation?",
+      "range": {
+        "startLine": 615,
+        "startChar": 0,
+        "endLine": 615,
+        "endChar": 34
+      },
+      "revId": "2b1f8538c9ec99d9119fe79dfd283b70121d0143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1e17532_cadb5c62",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-07T06:10:52Z",
+      "side": 1,
+      "message": "how do you find the digest of uploaded profiles?",
+      "range": {
+        "startLine": 618,
+        "startChar": 0,
+        "endLine": 618,
+        "endChar": 31
+      },
+      "revId": "2b1f8538c9ec99d9119fe79dfd283b70121d0143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
