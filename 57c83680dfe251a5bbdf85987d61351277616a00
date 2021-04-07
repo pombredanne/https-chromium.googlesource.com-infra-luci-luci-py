@@ -16,6 +16,24 @@
       "message": "why?",
       "revId": "57c83680dfe251a5bbdf85987d61351277616a00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f4eab00_7fec96a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-07T03:33:05Z",
+      "side": 1,
+      "message": "because we don\u0027t need to revert python3 compatible fix in android.py.",
+      "parentUuid": "146e25ac_3057c6a4",
+      "revId": "57c83680dfe251a5bbdf85987d61351277616a00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
