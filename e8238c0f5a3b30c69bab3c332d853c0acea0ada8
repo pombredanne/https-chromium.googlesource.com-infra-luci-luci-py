@@ -16,6 +16,24 @@
       "message": "update this?",
       "revId": "e8238c0f5a3b30c69bab3c332d853c0acea0ada8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffcbd9d6_c71662b8",
+        "filename": "client/third_party/rsa/README.swarming",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-09T07:33:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41f52d0c_5ee91b46",
+      "revId": "e8238c0f5a3b30c69bab3c332d853c0acea0ada8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
