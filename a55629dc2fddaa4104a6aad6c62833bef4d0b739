@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab2c3ae7_95251823",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2021-04-09T21:44:25Z",
+      "side": 1,
+      "message": "Similar to the luci-go change, https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/2806156, I\u0027ve updated this existing CL to remove everything else in addition to the tricium config, please PTAL again",
+      "revId": "a55629dc2fddaa4104a6aad6c62833bef4d0b739",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
