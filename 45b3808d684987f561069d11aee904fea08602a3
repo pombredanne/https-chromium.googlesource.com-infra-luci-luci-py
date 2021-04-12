@@ -16,6 +16,24 @@
       "message": "do you have issue having relevant context?",
       "revId": "45b3808d684987f561069d11aee904fea08602a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f034bcfc_e7a194ae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1115879
+      },
+      "writtenOn": "2021-04-12T16:57:47Z",
+      "side": 1,
+      "message": "Yes, we have a dozen of devices that requires long running stress tests.  Right now, swarming server will kill our tests at 3 days.  We need to run these test suites for up to 7 days.\n\nOur relevant bugs: b/160612402, b/181725088",
+      "parentUuid": "b0fd6851_beaa52a1",
+      "revId": "45b3808d684987f561069d11aee904fea08602a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
