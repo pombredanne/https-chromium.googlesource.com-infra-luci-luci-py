@@ -34,6 +34,24 @@
       "parentUuid": "b0fd6851_beaa52a1",
       "revId": "45b3808d684987f561069d11aee904fea08602a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cd626b9_1473f14a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-13T06:39:34Z",
+      "side": 1,
+      "message": "could you add \n```\nBug: b/160612402, b/181725088\n```\nthen?",
+      "parentUuid": "f034bcfc_e7a194ae",
+      "revId": "45b3808d684987f561069d11aee904fea08602a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
