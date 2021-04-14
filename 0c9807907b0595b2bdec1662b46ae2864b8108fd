@@ -33,6 +33,42 @@
       "message": "call this in setUp method.\nhttps://docs.python.org/3/library/unittest.html#unittest.TestCase.setUp",
       "revId": "0c9807907b0595b2bdec1662b46ae2864b8108fd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c081a63_5947edb4",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-04-14T09:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a85500c8_97778ddc",
+      "revId": "0c9807907b0595b2bdec1662b46ae2864b8108fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2296d5b4_4b59a55c",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-04-14T09:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "641399b5_fb0b3760",
+      "revId": "0c9807907b0595b2bdec1662b46ae2864b8108fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
