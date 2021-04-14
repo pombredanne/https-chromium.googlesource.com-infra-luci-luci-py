@@ -25,7 +25,7 @@
 ## Requirements
 
 *   All platforms
-    *   `python` is in `PATH`.
+    *   `python3` is in `PATH`.
     *   HTTPS access to *.appspot.com and Cloud Storage (GCS).
     *   Unique bot ID across the fleet. The bot ID uses the base hostname (not
         FQDN) by default so by default, hostnames should be unique. You may
@@ -103,7 +103,7 @@ Do the following modification to /etc/rc.local:
       printf "My IP address is %s\n" "$_IP"
     fi
 
-    +sudo -i -u swarming python /path/to/swarming_bot.zip start_bot &
+    +sudo -i -u swarming python3 /path/to/swarming_bot.zip start_bot &
     +
     exit 0
 
@@ -126,7 +126,7 @@ As root (sudo -i) run the following:
     User=swarming
     Restart=always
     RestartSec=10
-    ExecStart=/usr/bin/env python /path/to/swarming_bot.zip start_bot
+    ExecStart=/usr/bin/env python3 /path/to/swarming_bot.zip start_bot
 
     [Install]
     WantedBy=default.target
