@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f579d177_5f9e1d23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2021-04-14T04:38:33Z",
+      "side": 1,
+      "message": "Yeah, I missed \"Exception\" coming after \"Command\" X(",
+      "revId": "8509493c1c966e79211755964b51150590ff1960",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
