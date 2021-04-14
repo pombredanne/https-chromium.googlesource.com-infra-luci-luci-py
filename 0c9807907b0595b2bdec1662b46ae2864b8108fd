@@ -16,6 +16,23 @@
       "message": "nit: can this be called in setUp()/tearDown() to make sure all caches are cleared before/after tests?",
       "revId": "0c9807907b0595b2bdec1662b46ae2864b8108fd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a85500c8_97778ddc",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-14T09:11:56Z",
+      "side": 1,
+      "message": "call this in setUp method.\nhttps://docs.python.org/3/library/unittest.html#unittest.TestCase.setUp",
+      "revId": "0c9807907b0595b2bdec1662b46ae2864b8108fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
