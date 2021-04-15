@@ -461,8 +461,6 @@ class TestTaskRunner(TestTaskRunnerBase):
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(task_details.task_id, exit_code=1)
 
-  @unittest.skipIf(sys.platform == 'win32',
-                   'TODO(crbug.com/1017545): fix assertions')
   def test_run_command_os_error(self):
     task_details = get_task_details(
         command=[
@@ -485,6 +483,8 @@ class TestTaskRunner(TestTaskRunnerBase):
         br'the command line is too long>\n'
         br'<Check for missing .so/.dll in the .isolate or GN file or length of '
         br'command line args>')
+    if sys.platform == 'win32':
+      output = re.compile(output.pattern.replace(br'\n', br'\r\n'))
     out = self.expectTask(task_details.task_id, exit_code=1, output=output)
     self.assertGreater(10., out[u'cost_usd'])
 
