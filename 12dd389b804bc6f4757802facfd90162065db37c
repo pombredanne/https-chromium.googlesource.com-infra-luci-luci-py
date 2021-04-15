@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "337acd50_ccc7b18c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-15T05:23:18Z",
+      "side": 1,
+      "message": "better to call re.compile once by replacing patter first.",
+      "revId": "12dd389b804bc6f4757802facfd90162065db37c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
