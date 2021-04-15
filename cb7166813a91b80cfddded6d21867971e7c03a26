@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aef40fc0_fc968c9a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-15T04:51:41Z",
+      "side": 1,
+      "message": "Why do we need to skip in python2?",
+      "range": {
+        "startLine": 7,
+        "startChar": 61,
+        "endLine": 7,
+        "endChar": 68
+      },
+      "revId": "cb7166813a91b80cfddded6d21867971e7c03a26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
