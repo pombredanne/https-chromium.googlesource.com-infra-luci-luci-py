@@ -22,6 +22,30 @@
       },
       "revId": "cb7166813a91b80cfddded6d21867971e7c03a26",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a303e66_29461e8e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-04-15T07:18:39Z",
+      "side": 1,
+      "message": "I added the reason in description.",
+      "parentUuid": "aef40fc0_fc968c9a",
+      "range": {
+        "startLine": 7,
+        "startChar": 61,
+        "endLine": 7,
+        "endChar": 68
+      },
+      "revId": "cb7166813a91b80cfddded6d21867971e7c03a26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
