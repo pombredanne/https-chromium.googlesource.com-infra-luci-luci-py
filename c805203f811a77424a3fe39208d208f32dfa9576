@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6de38bc3_72ebf913",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-04-16T05:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6c01f8a_dbdb9260",
+      "range": {
+        "startLine": 7,
+        "startChar": 30,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "c805203f811a77424a3fe39208d208f32dfa9576",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77e8790f_73492338",
@@ -54,6 +78,48 @@
       "writtenOn": "2021-04-16T05:40:14Z",
       "side": 1,
       "message": "path.islink",
+      "range": {
+        "startLine": 183,
+        "startChar": 7,
+        "endLine": 183,
+        "endChar": 13
+      },
+      "revId": "c805203f811a77424a3fe39208d208f32dfa9576",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a71c772d_a931b5ee",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-04-16T05:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77e8790f_73492338",
+      "revId": "c805203f811a77424a3fe39208d208f32dfa9576",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3372524_b6831d99",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-04-16T05:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f399b36_eb2ff6fd",
       "range": {
         "startLine": 183,
         "startChar": 7,
