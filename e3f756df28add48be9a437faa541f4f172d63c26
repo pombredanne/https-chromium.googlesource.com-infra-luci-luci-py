@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8f149a2_40d6840d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-16T08:16:19Z",
+      "side": 1,
+      "message": "please use assertTrue() https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertTrue",
+      "range": {
+        "startLine": 535,
+        "startChar": 10,
+        "endLine": 535,
+        "endChar": 31
+      },
+      "revId": "e3f756df28add48be9a437faa541f4f172d63c26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a69f3e8c_598f4b29",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-16T08:16:19Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 841,
+        "startChar": 10,
+        "endLine": 841,
+        "endChar": 31
+      },
+      "revId": "e3f756df28add48be9a437faa541f4f172d63c26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35decbaa_10a907a9",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1148,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-16T08:16:19Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 1148,
+        "startChar": 10,
+        "endLine": 1148,
+        "endChar": 31
+      },
+      "revId": "e3f756df28add48be9a437faa541f4f172d63c26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
