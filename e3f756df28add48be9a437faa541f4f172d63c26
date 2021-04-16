@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6812af7c_67f49d1c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-16T08:18:58Z",
+      "side": 1,
+      "message": "better to use `kwargs[\u0027creationflags\u0027]` here and belows as we expect that this key is always there.",
+      "range": {
+        "startLine": 531,
+        "startChar": 26,
+        "endLine": 531,
+        "endChar": 32
+      },
+      "revId": "e3f756df28add48be9a437faa541f4f172d63c26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8f149a2_40d6840d",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main_test.py",
         "patchSetId": 4
