@@ -884,6 +884,56 @@ class TasksApiTest(BaseTest):
     response = self.call_api('new', body=message_to_dict(request))
     self.assertEqual(expected, response.json)
 
+  def test_new_ok_isolated_no_hash(self):
+    self.mock(random, 'getrandbits' lambda _: 0x88)
+    request = self.create_new_request(
+        properties=self.create_props(
+            inputs_ref=swarming_rpcs.FilesRef(namespace='default-gzip')))
+    expected_props = self.gen_props(input_refs={})
+    expected = {
+        u'request':
+            self.gen_request(
+                created_ts=fmtdate(self.now),
+                properties=expected_props,
+                task_slices=[
+                    {
+                        u'expiration_secs': u'86400',
+                        u'properties': expected_props,
+                        u'wait_for_capacity': False,
+                    },
+                ]),
+        u'task_id':
+            u'5cee488008810',
+        u'task_result': {
+            u'abandoned_ts': u'2010-01-02T03:04:05',
+            u'completed_ts': u'2010-01-02T03:04:05',
+            u'created_ts': u'2010-01-02T03:04:05',
+            u'current_task_slice': u'0',
+            u'failure': False,
+            u'internal_failure': False,
+            u'modified_ts': u'2010-01-02T03:04:05',
+            u'name': u'job1',
+            u'server_versions': [u'v1a'],
+            u'state': u'NO_RESOURCE',
+            u'tags': [
+                u'a:tag',
+                u'os:Amiga',
+                u'pool:default',
+                u'priority:20',
+                u'realm:none',
+                u'service_account:none',
+                u'swarming.pool.template:none',
+                u'swarming.pool.version:pools_cfg_rev',
+                u'user:joe@localhost',
+            ],
+            u'task_id': u'5cee488008810',
+            u'user': u'joe@localhost',
+        },
+    }
+    response = self.call_api('new', body=message_to_dict(request))
+    self.assertEqual(expected, response.json)
+
+
   def test_new_ok_cas_input_root(self):
     """Asserts that new generates appropriate metadata."""
     self.mock(random, 'getrandbits', lambda _: 0x88)
