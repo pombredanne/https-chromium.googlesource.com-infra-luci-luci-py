@@ -174,6 +174,11 @@ def _apply_isolate_server_defaults(properties, settings, pool_cfg):
   if properties.cas_input_root:
     return
 
+  # Do not set defaults if there's no hash.
+  if not properties.inputs_ref or not properties.inputs_ref.isolated:
+    properties.inputs_ref = task_request.FieldRef()
+    return
+
   iso_server = settings.isolate.default_server
   iso_ns = settings.isolate.default_namespace
   if pool_cfg and pool_cfg.default_isolate:
@@ -181,7 +186,6 @@ def _apply_isolate_server_defaults(properties, settings, pool_cfg):
     iso_ns = pool_cfg.default_isolate.namespace
 
   if iso_server and iso_ns:
-    properties.inputs_ref = properties.inputs_ref or task_request.FilesRef()
     properties.inputs_ref.isolatedserver = (
         properties.inputs_ref.isolatedserver or iso_server)
     properties.inputs_ref.namespace = (
