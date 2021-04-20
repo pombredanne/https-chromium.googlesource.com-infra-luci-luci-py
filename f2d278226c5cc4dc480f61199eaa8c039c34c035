@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8337632d_38fd2a25",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-20T05:36:32Z",
+      "side": 1,
+      "message": "I think the `inputs_ref.isolatedserver` is propagated to `run_isolated.py`.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/handlers_bot.py;l\u003d773;drc\u003d4ea37359f6f29d0583128bcb368ccd14b3f987a5\n\nAnd it\u0027s used to upload output files.\nhttps://source.chromium.org/chromium/infra/infra/+/master:luci/client/run_isolated.py;l\u003d776-777;drc\u003d652f1300729c1c23487d899807015e4665f25b9f\n\nSo we can\u0027t get rid of it at this moment?",
+      "parentUuid": "397c8598_95e16bdf",
+      "revId": "f2d278226c5cc4dc480f61199eaa8c039c34c035",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3407aa37_0922e8e2",
         "filename": "appengine/swarming/handlers_endpoints_test.py",
         "patchSetId": 6
