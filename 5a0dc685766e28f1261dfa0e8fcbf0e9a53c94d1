@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cba272b_d863503e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-20T06:23:07Z",
+      "side": 1,
+      "message": "Hmm, it doesn\u0027t pass local_smoke_test.py on CQ and my machine..",
+      "revId": "5a0dc685766e28f1261dfa0e8fcbf0e9a53c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
