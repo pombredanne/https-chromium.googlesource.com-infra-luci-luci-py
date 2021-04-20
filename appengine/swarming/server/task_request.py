@@ -525,7 +525,7 @@ class FilesRef(ndb.Model):
 
   def _pre_put_hook(self):
     super(FilesRef, self)._pre_put_hook()
-    if not self.isolatedserver or not self.namespace:
+    if self.isolated and (not self.isolatedserver or not self.namespace):
       raise datastore_errors.BadValueError(
           'isolate server and namespace are required')
 
@@ -536,7 +536,7 @@ class FilesRef(ndb.Model):
           '://' in self.isolatedserver):
         raise datastore_errors.BadValueError(
             'isolatedserver must be valid GCP project')
-    else:
+    elif self.isolatedserver and self.namespace:
       _validate_url(self.__class__.isolatedserver, self.isolatedserver)
       _validate_length(self.__class__.namespace, self.namespace, 128)
       if not pools_config.NAMESPACE_RE.match(self.namespace):

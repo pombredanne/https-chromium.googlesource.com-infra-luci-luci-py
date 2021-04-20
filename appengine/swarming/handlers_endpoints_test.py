@@ -440,10 +440,6 @@ class TasksApiTest(BaseTest):
                 u'value': u'template'
             },
         ],
-        inputs_ref={
-            u'isolatedserver': u'https://pool.config.isolate.example.com',
-            u'namespace': u'default-gzip',
-        },
     )
     expected_props[u'cipd_input'][u'client_package'] = {
         u'package_name': u'cipd-client-pkg',
@@ -512,6 +508,7 @@ class TasksApiTest(BaseTest):
     }
 
     response = self.call_api('new', body=message_to_dict(request))
+    self.maxDiff = None
     self.assertEqual(expected, response.json)
 
   def test_new_ok_template_no_additional_packages(self):
@@ -884,6 +881,55 @@ class TasksApiTest(BaseTest):
     response = self.call_api('new', body=message_to_dict(request))
     self.assertEqual(expected, response.json)
 
+  def test_new_ok_isolated_no_hash(self):
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    request = self.create_new_request(
+        properties=self.create_props(
+            inputs_ref=swarming_rpcs.FilesRef(namespace='default-gzip')))
+    expected_props = self.gen_props()
+    expected = {
+        u'request':
+            self.gen_request(
+                created_ts=fmtdate(self.now),
+                properties=expected_props,
+                task_slices=[
+                    {
+                        u'expiration_secs': u'86400',
+                        u'properties': expected_props,
+                        u'wait_for_capacity': False,
+                    },
+                ]),
+        u'task_id':
+            u'5cee488008810',
+        u'task_result': {
+            u'abandoned_ts': u'2010-01-02T03:04:05',
+            u'completed_ts': u'2010-01-02T03:04:05',
+            u'created_ts': u'2010-01-02T03:04:05',
+            u'current_task_slice': u'0',
+            u'failure': False,
+            u'internal_failure': False,
+            u'modified_ts': u'2010-01-02T03:04:05',
+            u'name': u'job1',
+            u'server_versions': [u'v1a'],
+            u'state': u'NO_RESOURCE',
+            u'tags': [
+                u'a:tag',
+                u'os:Amiga',
+                u'pool:default',
+                u'priority:20',
+                u'realm:none',
+                u'service_account:none',
+                u'swarming.pool.template:none',
+                u'swarming.pool.version:pools_cfg_rev',
+                u'user:joe@localhost',
+            ],
+            u'task_id': u'5cee488008810',
+            u'user': u'joe@localhost',
+        },
+    }
+    response = self.call_api('new', body=message_to_dict(request))
+    self.assertEqual(expected, response.json)
+
   def test_new_ok_cas_input_root(self):
     """Asserts that new generates appropriate metadata."""
     self.mock(random, 'getrandbits', lambda _: 0x88)
@@ -943,6 +989,7 @@ class TasksApiTest(BaseTest):
         },
     }
     response = self.call_api('new', body=message_to_dict(request))
+    self.maxDiff = None
     self.assertEqual(expected, response.json)
 
   def test_new_conflict_inputs(self):
@@ -2484,7 +2531,7 @@ class TaskApiTest(BaseTest):
     """Asserts that 404 is raised for unknown tasks."""
     self.call_api('request', body={'task_id': '12310'}, status=404)
 
-  @parameterized.expand(['', 'test:task_realm'])
+  @parameterized.expand(['', u'test:task_realm'])
   def test_request_ok(self, realm):
     """Asserts that request produces a task request."""
     self.mock(random, 'getrandbits', lambda _: 0x88)
@@ -2526,7 +2573,7 @@ class TaskApiTest(BaseTest):
             },
         ])
     if realm:
-      expected['realm'] = realm
+      expected[u'realm'] = realm
     response = self.call_api('request', body={'task_id': task_id})
     self.assertEqual(expected, response.json)
 
