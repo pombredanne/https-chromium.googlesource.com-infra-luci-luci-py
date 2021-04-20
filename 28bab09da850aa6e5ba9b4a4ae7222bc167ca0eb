@@ -16,6 +16,24 @@
       "message": "I think it is better to check only response.json doesn\u0027t have isolated property?",
       "revId": "28bab09da850aa6e5ba9b4a4ae7222bc167ca0eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24e3c5c9_d4de185f",
+        "filename": "appengine/swarming/handlers_endpoints_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-04-20T05:18:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a48a53a6_8a08328d",
+      "revId": "28bab09da850aa6e5ba9b4a4ae7222bc167ca0eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
