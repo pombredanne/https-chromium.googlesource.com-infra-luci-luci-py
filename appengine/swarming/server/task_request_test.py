@@ -1926,9 +1926,10 @@ class TaskRequestApiTest(TestCase):
                 namespace='default-gzip')))
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
-    # inputs_ref without server/namespace.
+    # inputs_ref with isolated but without server/namespace.
     req = _gen_request(
-        properties=_gen_properties(inputs_ref=task_request.FilesRef()))
+        properties=_gen_properties(
+            inputs_ref=task_request.FilesRef(isolated='chickenchicken')))
     with self.assertRaises(datastore_errors.BadValueError):
       req.put()
     # Without digest nor command.

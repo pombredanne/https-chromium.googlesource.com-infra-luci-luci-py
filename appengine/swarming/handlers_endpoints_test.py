@@ -440,10 +440,6 @@ class TasksApiTest(BaseTest):
                 u'value': u'template'
             },
         ],
-        inputs_ref={
-            u'isolatedserver': u'https://pool.config.isolate.example.com',
-            u'namespace': u'default-gzip',
-        },
     )
     expected_props[u'cipd_input'][u'client_package'] = {
         u'package_name': u'cipd-client-pkg',
@@ -883,6 +879,14 @@ class TasksApiTest(BaseTest):
     }
     response = self.call_api('new', body=message_to_dict(request))
     self.assertEqual(expected, response.json)
+
+  def test_new_ok_isolated_no_hash(self):
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    request = self.create_new_request(
+        properties=self.create_props(
+            inputs_ref=swarming_rpcs.FilesRef(namespace='default-gzip')))
+    response = self.call_api('new', body=message_to_dict(request))
+    self.assertIsNone(response.json['request']['properties'].get('inputs_ref'))
 
   def test_new_ok_cas_input_root(self):
     """Asserts that new generates appropriate metadata."""

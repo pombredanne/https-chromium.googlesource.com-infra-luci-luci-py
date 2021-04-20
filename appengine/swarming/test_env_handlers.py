@@ -559,13 +559,8 @@ class AppTestBase(test_case.TestCase):
         u'grace_period_secs': u'30',
         u'idempotent': False,
         u'io_timeout_secs': u'1200',
-        u'outputs': [u'foo', u'path/to/foobar']
+        u'outputs': [u'foo', u'path/to/foobar'],
     }
-    if 'cas_input_root' not in kwargs:
-      out['inputs_ref'] = {
-          u'isolatedserver': u'https://pool.config.isolate.example.com',
-          u'namespace': u'default-gzip',
-      }
     out.update((unicode(k), v) for k, v in kwargs.items())
     return out
 
