@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9215b202_1b68413e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-21T05:29:03Z",
+      "side": 1,
+      "message": "Copying the priority from TaskRequest is not ideal. \nThe request entity could be fetched when necessary (assuming the entity is cached in ndb library or mamcached).\n\nBut user/tags are also copied from TaskRequest. So I add +1.",
+      "revId": "b88ee371c922dd816bc22083884175061e924777",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5a93627_0557d76e",
