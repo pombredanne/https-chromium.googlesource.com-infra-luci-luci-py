@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5a93627_0557d76e",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2021-04-21T05:27:07Z",
+      "side": 1,
+      "message": "Is this safe to do with cardinality perspective?",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 44
+      },
+      "revId": "b88ee371c922dd816bc22083884175061e924777",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
