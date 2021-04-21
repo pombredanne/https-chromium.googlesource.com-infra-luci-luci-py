@@ -979,6 +979,7 @@ class TaskResultSummary(_TaskResultCommon):
   name = ndb.StringProperty()
   user = ndb.StringProperty()
   tags = ndb.StringProperty(repeated=True)
+  priority = ndb.IntegerProperty(indexed=False)
 
   # Value of TaskRequest.properties.properties_hash only when these conditions
   # are met:
