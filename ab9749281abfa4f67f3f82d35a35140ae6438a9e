@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "988b265b_6fbf1395",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 870,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-24T14:18:35Z",
+      "side": 1,
+      "message": "nit:\nelapsed \u003d time.time() - start\ntimeout \u003d min(timeout - elapsed, 0)\n\nIs easier to understand?",
+      "range": {
+        "startLine": 870,
+        "startChar": 0,
+        "endLine": 870,
+        "endChar": 56
+      },
+      "revId": "ab9749281abfa4f67f3f82d35a35140ae6438a9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
