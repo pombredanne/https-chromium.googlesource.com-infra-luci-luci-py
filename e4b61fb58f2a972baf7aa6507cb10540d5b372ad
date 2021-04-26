@@ -46,6 +46,30 @@
       },
       "revId": "e4b61fb58f2a972baf7aa6507cb10540d5b372ad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1d70267_2f853725",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-26T04:35:46Z",
+      "side": 1,
+      "message": "Retrying always cas download isn\u0027t a good workaround. But I can\u0027t come up with a better idea...",
+      "parentUuid": "bf19b236_527ebe9c",
+      "range": {
+        "startLine": 624,
+        "startChar": 0,
+        "endLine": 624,
+        "endChar": 22
+      },
+      "revId": "e4b61fb58f2a972baf7aa6507cb10540d5b372ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
