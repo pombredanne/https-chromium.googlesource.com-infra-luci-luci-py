@@ -378,6 +378,15 @@ const requestBlock = (request, result, currentSlice) => html`
     </a>
   </td>
 </tr>
+<tr ?hidden=${!request.parent_task_id}>
+  <td>Child Tasks</td>
+  <td>
+    <a href=${taskListLink(
+      [{'key': 'parent_task_id-tag', 'value': result.run_id}])}>
+      Task List
+    </a>
+  </td>
+</tr>
 `;
 
 const dimensionBlock = (dimensions) => html`
