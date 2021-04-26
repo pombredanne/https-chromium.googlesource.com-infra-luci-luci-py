@@ -22,6 +22,30 @@
       },
       "revId": "ab9749281abfa4f67f3f82d35a35140ae6438a9e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b09459ae_ff6547e6",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 870,
+      "author": {
+        "id": 1002224
+      },
+      "writtenOn": "2021-04-26T00:32:10Z",
+      "side": 1,
+      "message": "Or, simply,\n  timeout -\u003d (time.time() - start)\n  if timeout \u003c 0:  # already timed-out. timeout must be \u003e\u003d 0.\n    timeout \u003d 0",
+      "parentUuid": "988b265b_6fbf1395",
+      "range": {
+        "startLine": 870,
+        "startChar": 0,
+        "endLine": 870,
+        "endChar": 56
+      },
+      "revId": "ab9749281abfa4f67f3f82d35a35140ae6438a9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
