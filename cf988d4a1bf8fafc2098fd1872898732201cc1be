@@ -16,6 +16,24 @@
       "message": "+1 to unblock fixing the issue.\n\nBut please consider moving the cache cleanup to post task (only after infra failure), ideally with cache corruption check. e.g. \"cas cacheCheck -kvs-dir ...\"",
       "revId": "cf988d4a1bf8fafc2098fd1872898732201cc1be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "589d6691_7028841a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-26T07:16:17Z",
+      "side": 1,
+      "message": "I think this is difficult as badger doesn\u0027t provide verification api, and it currently causes panic instead of returning error from its api.\nhttps://pkg.go.dev/github.com/dgraph-io/badger/v3\n\nAlso this is workaround, and I think we actually need to fix our client not to leave such broken states.",
+      "parentUuid": "a154d8c4_74d851ae",
+      "revId": "cf988d4a1bf8fafc2098fd1872898732201cc1be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
