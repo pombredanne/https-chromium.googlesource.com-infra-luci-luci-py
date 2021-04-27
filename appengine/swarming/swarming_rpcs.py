@@ -640,6 +640,10 @@ class PerformanceStats(messages.Message):
   isolated_download = messages.MessageField(OperationStats, 2)
   isolated_upload = messages.MessageField(OperationStats, 3)
   package_installation = messages.MessageField(OperationStats, 4)
+  cache_trim = messages.MessageField(OperationStats, 5)
+  named_caches_install = messages.MessageField(OperationStats, 6)
+  named_caches_uninstall = messages.MessageField(OperationStats, 7)
+  cleanup = messages.MessageField(OperationStats, 8)
 
 
 class CancelResponse(messages.Message):

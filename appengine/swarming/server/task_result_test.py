@@ -519,9 +519,6 @@ class TaskResultApiTest(TestCase):
     self.assertEqual(expected, result_summary.key.get().to_dict())
     expected = {
         'bot_overhead': 0.1,
-        'cache_trim': None,
-        'named_caches_install': None,
-        'named_caches_uninstall': None,
         'isolated_download': {
             'duration': 0.05,
             'initial_number_items': 10,
@@ -555,7 +552,6 @@ class TaskResultApiTest(TestCase):
             'num_items_hot': None,
             'total_bytes_items_hot': None,
         },
-        'cleanup': None,
     }
     self.assertEqual(expected, result_summary.performance_stats.to_dict())
     self.assertEqual('foo', result_summary.get_output(0, 0))
