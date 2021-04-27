@@ -326,12 +326,20 @@ class PerformanceStats(ndb.Model):
   # package_installation.duration, isolated_download.duration and
   # isolated_upload.duration and others.
   bot_overhead = ndb.FloatProperty(indexed=False)
+  # Cache trimming before the dependency installations.
+  cache_trim = ndb.LocalStructuredProperty(OperationStats)
   # Results installing CIPD packages before the task.
   package_installation = ndb.LocalStructuredProperty(OperationStats)
+  # Named cache install operation before the task.
+  named_caches_install = ndb.LocalStructuredProperty(OperationStats)
+  # Named cache uninstall operation after the task.
+  named_caches_uninstall = ndb.LocalStructuredProperty(OperationStats)
   # Runtime dependencies download operation before the task.
   isolated_download = ndb.LocalStructuredProperty(OperationStats)
   # Results uploading operation after the task.
   isolated_upload = ndb.LocalStructuredProperty(OperationStats)
+  # Cleanup work dirs after the task.
+  cleanup = ndb.LocalStructuredProperty(OperationStats)
 
   @property
   def is_valid(self):
