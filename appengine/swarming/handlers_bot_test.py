@@ -1152,6 +1152,20 @@ class BotApiTest(test_env_handlers.AppTestBase):
         'bot_overhead': 0.1,
         'exit_code': 0,
         'id': 'bot1',
+        'cache_trim_stats': {
+            'duration': 0.1,
+        },
+        'cipd_stats': {
+            'duration': 0.1,
+        },
+        'named_caches_stats': {
+            'install': {
+                'duration': 0.1,
+            },
+            'uninstall': {
+                'duration': 0.1,
+            },
+        },
         'isolated_stats': {
             'download': {
                 'duration': 0.1,
@@ -1165,6 +1179,9 @@ class BotApiTest(test_env_handlers.AppTestBase):
                 'items_cold': '',
                 'items_hot': '',
             },
+        },
+        'cleanup_stats': {
+            'duration': 0.1,
         },
         'output': base64.b64encode('Ahahah'),
         'output_chunk_start': 0,
@@ -1190,7 +1207,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.assertEqual({u'must_stop': False, u'ok': True}, response)
 
     self.set_as_user()
-    response = self.client_get_results(task_id)
+    response = self.client_get_results(task_id, include_performance_stats=True)
     expected = self.gen_run_result(
         cipd_pins={
             u'client_package': {
@@ -1207,6 +1224,32 @@ class BotApiTest(test_env_handlers.AppTestBase):
         costs_usd=[0.1],
         created_ts=fmtdate(self.now),
         duration=3.0,
+        performance_stats={
+            u'bot_overhead': 0.1,
+            u'cache_trim': {
+                u'duration': 0.1,
+            },
+            u'package_installation': {
+                u'duration': 0.1,
+            },
+            u'named_caches_install': {
+                u'duration': 0.1,
+            },
+            u'named_caches_uninstall': {
+                u'duration': 0.1,
+            },
+            u'isolated_download': {
+                u'duration': 0.1,
+                u'initial_number_items': u'10',
+                u'initial_size': u'1000',
+            },
+            u'isolated_upload': {
+                u'duration': 0.1,
+            },
+            u'cleanup': {
+                u'duration': 0.1,
+            },
+        },
         exit_code=u'0',
         modified_ts=fmtdate(self.now),
         outputs_ref={
@@ -1240,6 +1283,20 @@ class BotApiTest(test_env_handlers.AppTestBase):
         'bot_overhead': 0.1,
         'exit_code': 0,
         'id': 'bot1',
+        'cache_trim_stats': {
+            'duration': 0.1,
+        },
+        'cipd_stats': {
+            'duration': 0.1,
+        },
+        'named_caches_stats': {
+            'install': {
+                'duration': 0.1,
+            },
+            'uninstall': {
+                'duration': 0.1,
+            },
+        },
         'isolated_stats': {
             'download': {
                 'duration': 0.1,
@@ -1253,6 +1310,9 @@ class BotApiTest(test_env_handlers.AppTestBase):
                 'items_cold': '',
                 'items_hot': '',
             },
+        },
+        'cleanup_stats': {
+            'duration': 0.1,
         },
         'output': base64.b64encode('Ahahah'),
         'output_chunk_start': 0,
@@ -1280,7 +1340,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.assertEqual({u'must_stop': False, u'ok': True}, response)
 
     self.set_as_user()
-    response = self.client_get_results(task_id)
+    response = self.client_get_results(task_id, include_performance_stats=True)
     expected = self.gen_run_result(
         cas_output_root={
             'cas_instance': 'projects/test/instances/default',
@@ -1304,6 +1364,32 @@ class BotApiTest(test_env_handlers.AppTestBase):
         costs_usd=[0.1],
         created_ts=fmtdate(self.now),
         duration=3.0,
+        performance_stats={
+            u'bot_overhead': 0.1,
+            u'cache_trim': {
+                u'duration': 0.1,
+            },
+            u'package_installation': {
+                u'duration': 0.1,
+            },
+            u'named_caches_install': {
+                u'duration': 0.1,
+            },
+            u'named_caches_uninstall': {
+                u'duration': 0.1,
+            },
+            u'isolated_download': {
+                u'duration': 0.1,
+                u'initial_number_items': u'10',
+                u'initial_size': u'1000',
+            },
+            u'isolated_upload': {
+                u'duration': 0.1,
+            },
+            u'cleanup': {
+                u'duration': 0.1,
+            },
+        },
         exit_code=u'0',
         modified_ts=fmtdate(self.now),
         started_ts=fmtdate(self.now),
