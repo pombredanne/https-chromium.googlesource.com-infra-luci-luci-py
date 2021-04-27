@@ -367,9 +367,14 @@ def task_result_to_rpc(entity, send_stats):
     performance_stats = _ndb_to_rpc(
         swarming_rpcs.PerformanceStats,
         entity.performance_stats,
+        cache_trim=op(entity.performance_stats.cache_trim),
+        package_installation=op(entity.performance_stats.package_installation),
+        named_caches_install=op(entity.performance_stats.named_caches_install),
+        named_caches_uninstall=op(
+            entity.performance_stats.named_caches_uninstall),
         isolated_download=op(entity.performance_stats.isolated_download),
         isolated_upload=op(entity.performance_stats.isolated_upload),
-        package_installation=op(entity.performance_stats.package_installation))
+        cleanup=op(entity.performance_stats.cleanup))
   kwargs = {
       'bot_dimensions':
           _string_list_pairs_from_dict(entity.bot_dimensions or {}),
