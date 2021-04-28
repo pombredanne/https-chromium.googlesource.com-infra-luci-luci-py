@@ -39,6 +39,24 @@
       "message": "could you add test for this function?",
       "revId": "b25dcd25c67054caa93d35fe3d33300781332907",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ca44a0e_61b6e91f",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-28T05:13:26Z",
+      "side": 1,
+      "message": "+1 to add a test as we couldn\u0027t detect this in unittests.",
+      "parentUuid": "c955997f_6e54e389",
+      "revId": "b25dcd25c67054caa93d35fe3d33300781332907",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
