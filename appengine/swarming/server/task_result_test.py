@@ -492,6 +492,10 @@ class TaskResultApiTest(TestCase):
     task_result.PerformanceStats(
         key=task_pack.run_result_key_to_performance_stats_key(run_result.key),
         bot_overhead=0.1,
+        cache_trim=task_result.OperationStats(duration=0.01),
+        package_installation=task_result.OperationStats(duration=0.01),
+        named_caches_install=task_result.OperationStats(duration=0.01),
+        named_caches_uninstall=task_result.OperationStats(duration=0.01),
         isolated_download=task_result.OperationStats(
             duration=0.05,
             initial_number_items=10,
@@ -499,7 +503,8 @@ class TaskResultApiTest(TestCase):
             items_cold=large.pack([1, 2]),
             items_hot=large.pack([3, 4, 5])),
         isolated_upload=task_result.OperationStats(
-            duration=0.01, items_cold=large.pack([10]))).put()
+            duration=0.01, items_cold=large.pack([10])),
+        cleanup=task_result.OperationStats(duration=0.01)).put()
     ndb.transaction(lambda: ndb.put_multi(run_result.append_output('foo', 0)))
     ndb.transaction(lambda: result_summary.set_from_run_result(
         run_result, request))
@@ -519,6 +524,27 @@ class TaskResultApiTest(TestCase):
     self.assertEqual(expected, result_summary.key.get().to_dict())
     expected = {
         'bot_overhead': 0.1,
+        'cache_trim': {
+            'duration': 0.01,
+            'initial_number_items': None,
+            'initial_size': None,
+            'items_cold': None,
+            'items_hot': None,
+        },
+        'named_caches_install': {
+            'duration': 0.01,
+            'initial_number_items': None,
+            'initial_size': None,
+            'items_cold': None,
+            'items_hot': None,
+        },
+        'named_caches_uninstall': {
+            'duration': 0.01,
+            'initial_number_items': None,
+            'initial_size': None,
+            'items_cold': None,
+            'items_hot': None,
+        },
         'isolated_download': {
             'duration': 0.05,
             'initial_number_items': 10,
@@ -542,7 +568,7 @@ class TaskResultApiTest(TestCase):
             'total_bytes_items_hot': None,
         },
         'package_installation': {
-            'duration': None,
+            'duration': 0.01,
             'initial_number_items': None,
             'initial_size': None,
             'items_cold': None,
@@ -551,6 +577,13 @@ class TaskResultApiTest(TestCase):
             'total_bytes_items_cold': None,
             'num_items_hot': None,
             'total_bytes_items_hot': None,
+        },
+        'cleanup': {
+            'duration': 0.01,
+            'initial_number_items': None,
+            'initial_size': None,
+            'items_cold': None,
+            'items_hot': None,
         },
     }
     self.assertEqual(expected, result_summary.performance_stats.to_dict())
