@@ -304,14 +304,6 @@ class TestTaskRunnerBase(auto_stub.TestCase):
       if u'duration' in value:
         v = actual[u'isolated_stats'][key].pop(u'duration')
         self.assertLessEqual(value.pop(u'duration'), v)
-
-    # drop duration stats.
-    if 'cache_trim_stats' in actual:
-      actual.pop(u'cache_trim_stats')
-    if 'named_caches_stats' in actual:
-      actual.pop(u'named_caches_stats')
-    if 'cleanup_stats' in actual:
-      actual.pop(u'cleanup_stats')
     # Rest is explicit comparison.
     self.assertEqual(expected, actual)
     return out
