@@ -22,6 +22,30 @@
       },
       "revId": "e33ad546c6cf53064d6aed2a4ef7c823960db0fa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "450489ea_f31eebee",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-28T07:39:09Z",
+      "side": 1,
+      "message": "When running test.py, it\u0027s \"api.os_utilities\".\nWhen running this test file directly, it\u0027s \"os_utilities\".",
+      "parentUuid": "9cd1091f_ec689601",
+      "range": {
+        "startLine": 61,
+        "startChar": 44,
+        "endLine": 61,
+        "endChar": 52
+      },
+      "revId": "e33ad546c6cf53064d6aed2a4ef7c823960db0fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
