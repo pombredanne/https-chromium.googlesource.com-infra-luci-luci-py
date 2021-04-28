@@ -58,10 +58,10 @@ class TestOsUtilities(auto_stub.TestCase):
   def test_get_os_values_linux(self):
     with mock.patch(
         'platforms.linux.get_os_version_number', lambda: '16.04.6'), mock.patch(
-            'os_utilities.get_os_name', lambda: 'Ubuntu'):
-      self.assertEqual(
-          os_utilities.get_os_values(),
-          ['Linux', 'Ubuntu', 'Ubuntu-16', 'Ubuntu-16.04', 'Ubuntu-16.04.6'])
+            '%s.get_os_name' % os_utilities.__name__, lambda: 'Ubuntu'):
+      self.assertEqual(os_utilities.get_os_values(), [
+          u'Linux', u'Ubuntu', u'Ubuntu-16', u'Ubuntu-16.04', u'Ubuntu-16.04.6'
+      ])
 
   @unittest.skipUnless(sys.platform == 'darwin', 'this is only for Mac')
   def test_get_os_values_mac(self):
