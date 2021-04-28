@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a19c125_e9552d85",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-28T09:03:47Z",
+      "side": 1,
+      "message": "Ah, fixed with the helpers.",
+      "parentUuid": "a45ad597_fab2a716",
+      "range": {
+        "startLine": 376,
+        "startChar": 26,
+        "endLine": 376,
+        "endChar": 49
+      },
+      "revId": "e86c3e8adecb2131c73500af065aac969662b259",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99cfc94d_aeb3751c",
