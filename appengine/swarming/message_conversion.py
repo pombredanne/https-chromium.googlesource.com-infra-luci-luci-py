@@ -359,17 +359,23 @@ def task_result_to_rpc(entity, send_stats):
   performance_stats = None
   if send_stats and entity.performance_stats.is_valid:
 
-    def op(entity):
-      if entity:
-        return _ndb_to_rpc(swarming_rpcs.OperationStats, entity)
-      return None
+    perf_stats = entity.performance_stats
+    if perf_stats.isolated_download:
+      isolated_download_stats = _ndb_to_rpc(swarming_rpcs.CASOperationStats,
+                                            perf_stats.isolated_download)
+    if perf_stats.isolated_upload:
+      isolated_upload_stats = _ndb_to_rpc(swarming_rpcs.CASOperationStats,
+                                          perf_stats.isolated_upload)
+    if perf_stats.package_installation:
+      package_installation_stats = _ndb_to_rpc(swarming_rpcs.OperationStats,
+                                               perf_stats.package_installation)
 
     performance_stats = _ndb_to_rpc(
         swarming_rpcs.PerformanceStats,
         entity.performance_stats,
-        isolated_download=op(entity.performance_stats.isolated_download),
-        isolated_upload=op(entity.performance_stats.isolated_upload),
-        package_installation=op(entity.performance_stats.package_installation))
+        isolated_download=isolated_download_stats,
+        isolated_upload=isolated_upload_stats,
+        package_installation=package_installation_stats)
   kwargs = {
       'bot_dimensions':
           _string_list_pairs_from_dict(entity.bot_dimensions or {}),

@@ -221,7 +221,6 @@ class TaskOutputChunk(ndb.Model):
   def chunk_number(self):
     return self.key.integer_id() - 1
 
-
 class OperationStats(ndb.Model):
   """Statistics for an operation.
 
@@ -231,6 +230,17 @@ class OperationStats(ndb.Model):
   """
   # Duration of the isolation operation in seconds.
   duration = ndb.FloatProperty(indexed=False)
+
+  def to_proto(self, out):
+    """Converts self to a swarming_pb2.CASEntriesStats."""
+    if self.duration:
+      out.duration.FromTimedelta(datetime.timedelta(seconds=self.duration))
+    return out
+
+
+class CASOperationStats(OperationStats):
+  """Statistics for an CAS downloads/uploads operation.
+  """
   # Initial cache size, if applicable.
   initial_number_items = ndb.IntegerProperty(indexed=False)
   initial_size = ndb.IntegerProperty(indexed=False)
@@ -283,9 +293,8 @@ class OperationStats(ndb.Model):
     return out
 
   def to_proto(self, out):
-    """Converts self to a swarming_pb2.CASEntriesStats."""
-    if self.duration:
-      out.duration.FromTimedelta(datetime.timedelta(seconds=self.duration))
+    """Converts self to a swarming_pb2.TaskOverheadStats."""
+    out = super(CASOperationStats, self).to_proto(out)
 
     if self.items_cold:
       out.cold.num_items = self.num_items_cold
@@ -298,6 +307,7 @@ class OperationStats(ndb.Model):
     # TODO(maruel): Put initial_number_items and initial_size in the bot
     # snapshot for now, until this is better restructured later.
     # https://crbug.com/850560
+    return out
 
   def _ensure_cache(self):
     if self._num_items_cold is None and self.items_cold:
@@ -329,9 +339,9 @@ class PerformanceStats(ndb.Model):
   # Results installing CIPD packages before the task.
   package_installation = ndb.LocalStructuredProperty(OperationStats)
   # Runtime dependencies download operation before the task.
-  isolated_download = ndb.LocalStructuredProperty(OperationStats)
+  isolated_download = ndb.LocalStructuredProperty(CASOperationStats)
   # Results uploading operation after the task.
-  isolated_upload = ndb.LocalStructuredProperty(OperationStats)
+  isolated_upload = ndb.LocalStructuredProperty(CASOperationStats)
 
   @property
   def is_valid(self):
@@ -556,8 +566,8 @@ class _TaskResultCommon(ndb.Model):
       key = None if self.deduped_from else self.performance_stats_key
       # pylint: disable=attribute-defined-outside-init
       stats = (key.get() if key else None) or PerformanceStats()
-      stats.isolated_download = stats.isolated_download or OperationStats()
-      stats.isolated_upload = stats.isolated_upload or OperationStats()
+      stats.isolated_download = stats.isolated_download or CASOperationStats()
+      stats.isolated_upload = stats.isolated_upload or CASOperationStats()
       stats.package_installation = (
           stats.package_installation or OperationStats())
       self._performance_stats_cache = stats
