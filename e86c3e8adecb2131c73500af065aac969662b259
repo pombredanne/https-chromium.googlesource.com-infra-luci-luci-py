@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a45ad597_fab2a716",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-28T08:46:12Z",
+      "side": 1,
+      "message": "this may not be defined here?",
+      "range": {
+        "startLine": 376,
+        "startChar": 26,
+        "endLine": 376,
+        "endChar": 49
+      },
+      "revId": "e86c3e8adecb2131c73500af065aac969662b259",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99cfc94d_aeb3751c",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 4
@@ -32,6 +55,24 @@
       "side": 1,
       "message": "The isolated_download, isolated_upload already uses items_cold, items_hot etc.\n\nFor package_installation and other stats, \nI don\u0027t have plan right now, but I just leave the room for adding new fields.\n(Changing property type from float to struct isn\u0027t easy)",
       "parentUuid": "99cfc94d_aeb3751c",
+      "revId": "e86c3e8adecb2131c73500af065aac969662b259",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40d1b8fd_e1f54654",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-28T08:46:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6680f993_33ccf7a7",
       "revId": "e86c3e8adecb2131c73500af065aac969662b259",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
