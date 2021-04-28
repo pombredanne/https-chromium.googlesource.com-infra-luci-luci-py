@@ -70,6 +70,30 @@
       },
       "revId": "e33ad546c6cf53064d6aed2a4ef7c823960db0fa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d6a471f_352ec980",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-28T08:16:00Z",
+      "side": 1,
+      "message": "I think it runs on a \u0027Ubuntu\u0027 machine, while my workstation is a \u0027Debian\u0027.",
+      "parentUuid": "a1484029_26fb70ee",
+      "range": {
+        "startLine": 61,
+        "startChar": 44,
+        "endLine": 61,
+        "endChar": 52
+      },
+      "revId": "e33ad546c6cf53064d6aed2a4ef7c823960db0fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
