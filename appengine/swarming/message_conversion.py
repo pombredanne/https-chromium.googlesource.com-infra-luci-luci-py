@@ -359,23 +359,22 @@ def task_result_to_rpc(entity, send_stats):
   performance_stats = None
   if send_stats and entity.performance_stats.is_valid:
 
-    perf_stats = entity.performance_stats
-    if perf_stats.isolated_download:
-      isolated_download_stats = _ndb_to_rpc(swarming_rpcs.CASOperationStats,
-                                            perf_stats.isolated_download)
-    if perf_stats.isolated_upload:
-      isolated_upload_stats = _ndb_to_rpc(swarming_rpcs.CASOperationStats,
-                                          perf_stats.isolated_upload)
-    if perf_stats.package_installation:
-      package_installation_stats = _ndb_to_rpc(swarming_rpcs.OperationStats,
-                                               perf_stats.package_installation)
+    def op(entity):
+      if entity:
+        return _ndb_to_rpc(swarming_rpcs.OperationStats, entity)
+      return None
 
     performance_stats = _ndb_to_rpc(
         swarming_rpcs.PerformanceStats,
         entity.performance_stats,
-        isolated_download=isolated_download_stats,
-        isolated_upload=isolated_upload_stats,
-        package_installation=package_installation_stats)
+        cache_trim=op(entity.performance_stats.cache_trim),
+        package_installation=op(entity.performance_stats.package_installation),
+        named_caches_install=op(entity.performance_stats.named_caches_install),
+        named_caches_uninstall=op(
+            entity.performance_stats.named_caches_uninstall),
+        isolated_download=op(entity.performance_stats.isolated_download),
+        isolated_upload=op(entity.performance_stats.isolated_upload),
+        cleanup=op(entity.performance_stats.cleanup))
   kwargs = {
       'bot_dimensions':
           _string_list_pairs_from_dict(entity.bot_dimensions or {}),

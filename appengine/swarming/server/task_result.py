@@ -231,17 +231,6 @@ class OperationStats(ndb.Model):
   """
   # Duration of the isolation operation in seconds.
   duration = ndb.FloatProperty(indexed=False)
-
-  def to_proto(self, out):
-    """Converts self to a swarming_pb2.CASEntriesStats."""
-    if self.duration:
-      out.duration.FromTimedelta(datetime.timedelta(seconds=self.duration))
-    return out
-
-
-class CASOperationStats(OperationStats):
-  """Statistics for an CAS downloads/uploads operation.
-  """
   # Initial cache size, if applicable.
   initial_number_items = ndb.IntegerProperty(indexed=False)
   initial_size = ndb.IntegerProperty(indexed=False)
@@ -294,8 +283,9 @@ class CASOperationStats(OperationStats):
     return out
 
   def to_proto(self, out):
-    """Converts self to a swarming_pb2.TaskOverheadStats."""
-    out = super(CASOperationStats, self).to_proto(out)
+    """Converts self to a swarming_pb2.CASEntriesStats."""
+    if self.duration:
+      out.duration.FromTimedelta(datetime.timedelta(seconds=self.duration))
 
     if self.items_cold:
       out.cold.num_items = self.num_items_cold
@@ -308,7 +298,6 @@ class CASOperationStats(OperationStats):
     # TODO(maruel): Put initial_number_items and initial_size in the bot
     # snapshot for now, until this is better restructured later.
     # https://crbug.com/850560
-    return out
 
   def _ensure_cache(self):
     if self._num_items_cold is None and self.items_cold:
@@ -346,9 +335,9 @@ class PerformanceStats(ndb.Model):
   # Named cache uninstall operation after the task.
   named_caches_uninstall = ndb.LocalStructuredProperty(OperationStats)
   # Runtime dependencies download operation before the task.
-  isolated_download = ndb.LocalStructuredProperty(CASOperationStats)
+  isolated_download = ndb.LocalStructuredProperty(OperationStats)
   # Results uploading operation after the task.
-  isolated_upload = ndb.LocalStructuredProperty(CASOperationStats)
+  isolated_upload = ndb.LocalStructuredProperty(OperationStats)
   # Cleanup work dirs after the task.
   cleanup = ndb.LocalStructuredProperty(OperationStats)
 
@@ -360,11 +349,21 @@ class PerformanceStats(ndb.Model):
     # to_dict() doesn't correctly call overriden to_dict() on
     # LocalStructuredProperty.
     out = super(PerformanceStats, self).to_dict(exclude=[
-        'package_installation', 'isolated_download', 'isolated_upload'
+        'cache_trim',
+        'package_installation',
+        'named_caches_install',
+        'named_caches_uninstall',
+        'isolated_download',
+        'isolated_upload',
+        'cleanup',
     ])
+    out['cache_trim'] = self.cache_trim.to_dict()
     out['package_installation'] = self.package_installation.to_dict()
+    out['named_caches_install'] = self.named_caches_install.to_dict()
+    out['named_caches_uninstall'] = self.named_caches_uninstall.to_dict()
     out['isolated_download'] = self.isolated_download.to_dict()
     out['isolated_upload'] = self.isolated_upload.to_dict()
+    out['cleanup'] = self.cleanup.to_dict()
     return out
 
   def to_proto(self, out):
@@ -575,8 +574,8 @@ class _TaskResultCommon(ndb.Model):
       key = None if self.deduped_from else self.performance_stats_key
       # pylint: disable=attribute-defined-outside-init
       stats = (key.get() if key else None) or PerformanceStats()
-      stats.isolated_download = stats.isolated_download or CASOperationStats()
-      stats.isolated_upload = stats.isolated_upload or CASOperationStats()
+      stats.isolated_download = stats.isolated_download or OperationStats()
+      stats.isolated_upload = stats.isolated_upload or OperationStats()
       stats.package_installation = (
           stats.package_installation or OperationStats())
       self._performance_stats_cache = stats
