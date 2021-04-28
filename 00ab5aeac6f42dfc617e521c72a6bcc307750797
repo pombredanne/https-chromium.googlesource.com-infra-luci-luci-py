@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4e1b568_60b60a25",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-28T06:14:05Z",
+      "side": 1,
+      "message": "This seems to have unused fields, better to have different class for this?",
+      "range": {
+        "startLine": 330,
+        "startChar": 43,
+        "endLine": 330,
+        "endChar": 57
+      },
+      "revId": "00ab5aeac6f42dfc617e521c72a6bcc307750797",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
