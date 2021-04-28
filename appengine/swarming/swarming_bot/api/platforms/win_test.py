@@ -132,6 +132,10 @@ class TestWin(auto_stub.TestCase):
         1, b'\nMicrosoft Windows [Version 6.3.9600]\n',
         ('8.1', '6.3.9600', '', u'Multiprocessor Free'), [u'8.1', u'8.1-SP0'])
 
+  def test_get_gpu(self):
+    actual = win.get_gpu()
+    #self.assertTrue(actual is None or actual)
+    self.assertTrue(0)
 
   def test_list_top_windows(self):
     if sys.platform == 'win32':
