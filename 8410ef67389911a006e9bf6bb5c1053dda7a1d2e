@@ -22,6 +22,30 @@
       },
       "revId": "8410ef67389911a006e9bf6bb5c1053dda7a1d2e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a356a35_1d69c623",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-29T00:29:56Z",
+      "side": 1,
+      "message": "To not change the result in other tests.\nhttps://source.chromium.org/search?q\u003dclient_get_results\u0026sq\u003d\u0026ss\u003dchromium",
+      "parentUuid": "8ae8c724_4d4c6faf",
+      "range": {
+        "startLine": 518,
+        "startChar": 40,
+        "endLine": 518,
+        "endChar": 65
+      },
+      "revId": "8410ef67389911a006e9bf6bb5c1053dda7a1d2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
