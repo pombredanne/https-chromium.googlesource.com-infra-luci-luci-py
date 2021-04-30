@@ -16,6 +16,46 @@
       "message": "+jwata for appengine/swarming OWNERS\n\nThe Xenial trybot failure appears to be unrelated to this change.",
       "revId": "f94a21689ba51c42b792e2b4c94ea8f7c7d73862",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddbb02e8_d76179e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-30T00:50:28Z",
+      "side": 1,
+      "message": "Thank you! I left a nit comment.",
+      "revId": "f94a21689ba51c42b792e2b4c94ea8f7c7d73862",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a855a2b_9728f821",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-30T00:50:28Z",
+      "side": 1,
+      "message": "nit: is it worth logging this error?\nIf it\u0027s not useful, I\u0027m fine without logging.",
+      "range": {
+        "startLine": 761,
+        "startChar": 0,
+        "endLine": 763,
+        "endChar": 0
+      },
+      "revId": "f94a21689ba51c42b792e2b4c94ea8f7c7d73862",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
