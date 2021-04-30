@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "42facaef_fb422a28",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-30T07:58:26Z",
+      "side": 1,
+      "message": "Yes, I think so, too.",
+      "parentUuid": "e1561b4c_d160e090",
+      "range": {
+        "startLine": 393,
+        "startChar": 8,
+        "endLine": 393,
+        "endChar": 14
+      },
+      "revId": "b25dcd25c67054caa93d35fe3d33300781332907",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c955997f_6e54e389",
         "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
         "patchSetId": 1
