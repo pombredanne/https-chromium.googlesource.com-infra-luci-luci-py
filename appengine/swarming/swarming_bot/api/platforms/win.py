@@ -382,10 +382,12 @@ def get_gpu():
   state = set()
   # https://msdn.microsoft.com/library/aa394512.aspx
   try:
+    print(wbem.ExecQuery('SELECT * FROM Win32_VideoController'))
     for device in wbem.ExecQuery('SELECT * FROM Win32_VideoController'):
       # The string looks like:
       #  PCI\VEN_15AD&DEV_0405&SUBSYS_040515AD&REV_00\3&2B8E0B4B&0&78
       pnp_string = device.PNPDeviceID
+      print(pnp_string)
       ven_id = u'UNKNOWN'
       dev_id = u'UNKNOWN'
       match = re.search(r'VEN_([0-9A-F]{4})', pnp_string)
@@ -397,9 +399,8 @@ def get_gpu():
 
       dev_name = device.VideoProcessor or u''
       version = device.DriverVersion or u''
-      ven_name, dev_name = gpu.ids_to_names(ven_id, u'', dev_id, dev_name)
-
-      dimensions.add(unicode(ven_id))
+      ven_name, dev_name = gpu.ids_to_names(ven_id, u'Unknown', dev_id, dev_name)
+      dimensions.add(six.ensure_text(ven_id))
       dimensions.add(u'%s:%s' % (ven_id, dev_id))
       if version:
         dimensions.add(u'%s:%s-%s' % (ven_id, dev_id, version))
