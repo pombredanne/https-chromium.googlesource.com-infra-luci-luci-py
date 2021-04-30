@@ -10,6 +10,7 @@ import re
 import subprocess
 import sys
 import unittest
+import unittest.mock
 
 import six
 
@@ -132,6 +133,32 @@ class TestWin(auto_stub.TestCase):
         1, b'\nMicrosoft Windows [Version 6.3.9600]\n',
         ('8.1', '6.3.9600', '', u'Multiprocessor Free'), [u'8.1', u'8.1-SP0'])
 
+  def test_get_gpu(self):
+    # class SWbemObjectSet():
+    #   PNPDeviceID = u'PCI\\VEN_1AE0&DEV_A002&SUBSYS_00011AE0&REV_01\\3&13C0B0C5&0&28'
+    #   VideoProcessor = u'GGA'
+    #   DriverVersion = u'1.1.1.18'
+
+    SWbemObjectSet = unittest.mock.Mock()
+    SWbemObjectSet.PNPDeviceID = u'PCI\\VEN_1AE0&DEV_A002&SUBSYS_00011AE0&REV_01\\3&13C0B0C5&0&28'
+    SWbemObjectSet.VideoProcessor = u'GGA'
+    SWbemObjectSet.DriverVersion = u'1.1.1.18'
+    # class SWbemServices():
+    #   def ExecQuery(self, query):
+    #     if query == 'SELECT * FROM Win32_VideoController':
+    #       return [SWbemObjectSet]
+    #     return None
+    SWbemServices = unittest.mock.Mock()
+    SWbemServices.ExecQuery.return_value = [SWbemObjectSet]
+    
+    def _get_wmi_wbem():
+      return SWbemServices
+
+    self.mock(win, '_get_wmi_wbem', _get_wmi_wbem)
+
+    actual = win.get_gpu()
+    expected = (['1ae0', '1ae0:a002', '1ae0:a002-1.1.1.18'], ['Unknown GGA 1.1.1.18'])
+    self.assertEqual(expected, actual)
 
   def test_list_top_windows(self):
     if sys.platform == 'win32':
