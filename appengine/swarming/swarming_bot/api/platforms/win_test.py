@@ -24,6 +24,7 @@ tools.cached = lambda func: func
 
 import win
 
+# add dummy comment add dummy comment add dummy comment add dummy comment add dummy comment 
 
 MockWinVer = collections.namedtuple('MockWinVer', ['product_type'])
 
