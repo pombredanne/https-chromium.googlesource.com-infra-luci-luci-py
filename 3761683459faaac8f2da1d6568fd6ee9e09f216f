@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f30eadb_695527af",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-30T07:58:33Z",
+      "side": 1,
+      "message": "remove this space in args.",
+      "range": {
+        "startLine": 140,
+        "startChar": 20,
+        "endLine": 140,
+        "endChar": 21
+      },
+      "revId": "3761683459faaac8f2da1d6568fd6ee9e09f216f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac550840_3089957e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-30T07:58:33Z",
+      "side": 1,
+      "message": "could you use mock.patch instead of self.mock?\nhttps://docs.python.org/3/library/unittest.mock.html#unittest.mock.patch",
+      "revId": "3761683459faaac8f2da1d6568fd6ee9e09f216f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
