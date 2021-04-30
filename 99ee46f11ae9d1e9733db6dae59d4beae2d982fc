@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "590ee7dc_24bcb4d4",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-30T06:30:06Z",
+      "side": 1,
+      "message": "this shouldn\u0027t be treated as function.",
+      "range": {
+        "startLine": 149,
+        "startChar": 32,
+        "endLine": 149,
+        "endChar": 34
+      },
+      "revId": "99ee46f11ae9d1e9733db6dae59d4beae2d982fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
