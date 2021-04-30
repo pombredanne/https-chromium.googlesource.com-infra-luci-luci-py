@@ -78,6 +78,7 @@ def _get_win32com():
   try:
     import pythoncom
     from win32com import client  # pylint: disable=F0401
+    print('client, pythoncom',  client, pythoncom)
     return client, pythoncom
   except ImportError:
     # win32com is included in pywin32, which is an optional package that is
@@ -92,6 +93,7 @@ def _get_wmi_wbem():
   """Returns a WMI client connected to localhost ready to do queries."""
   client, _ = _get_win32com()
   if not client:
+    print('_get_wmi_wbem is none')
     return None
   wmi_service = client.Dispatch('WbemScripting.SWbemLocator')
   return wmi_service.ConnectServer('.', 'root\\cimv2')
@@ -373,8 +375,10 @@ def get_gpu():
 
   Not cached as the GPU driver may change underneat.
   """
+  print('in get_gpu')
   wbem = _get_wmi_wbem()
   if not wbem:
+    print('in not wbem')
     return None, None
 
   _, pythoncom = _get_win32com()
@@ -382,23 +386,33 @@ def get_gpu():
   state = set()
   # https://msdn.microsoft.com/library/aa394512.aspx
   try:
+    print('start try')
+    print(wbem.ExecQuery('SELECT * FROM Win32_VideoController'))
+    print(wbem)
     for device in wbem.ExecQuery('SELECT * FROM Win32_VideoController'):
+      print('in for loop')
+      print('device', device)
       # The string looks like:
       #  PCI\VEN_15AD&DEV_0405&SUBSYS_040515AD&REV_00\3&2B8E0B4B&0&78
       pnp_string = device.PNPDeviceID
+      print('pnp_string', pnp_string)
       ven_id = u'UNKNOWN'
       dev_id = u'UNKNOWN'
       match = re.search(r'VEN_([0-9A-F]{4})', pnp_string)
+      print('match', match)
       if match:
+        print('in if matched, ven_id is not UNKNOWN')
         ven_id = match.group(1).lower()
       match = re.search(r'DEV_([0-9A-F]{4})', pnp_string)
       if match:
         dev_id = match.group(1).lower()
+      print('ven_id',ven_id)
+      print('device.VideoProcessor', device.VideoProcessor)
+      print('device.DriverVersion', device.DriverVersion)
 
       dev_name = device.VideoProcessor or u''
       version = device.DriverVersion or u''
       ven_name, dev_name = gpu.ids_to_names(ven_id, u'', dev_id, dev_name)
-
       dimensions.add(unicode(ven_id))
       dimensions.add(u'%s:%s' % (ven_id, dev_id))
       if version:
@@ -408,7 +422,8 @@ def get_gpu():
         state.add(u'%s %s' % (ven_name, dev_name))
   except pythoncom.com_error as e:
     # This generally happens when this is called as the host is shutting down.
-    logging.error('get_gpu(): %s', e)
+    print('get_gpu(): %s', e)
+  print('dimention %s, state %s',sorted(dimensions), sorted(state))
   return sorted(dimensions), sorted(state)
 
 

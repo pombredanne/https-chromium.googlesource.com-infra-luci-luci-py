@@ -132,6 +132,23 @@ class TestWin(auto_stub.TestCase):
         1, b'\nMicrosoft Windows [Version 6.3.9600]\n',
         ('8.1', '6.3.9600', '', u'Multiprocessor Free'), [u'8.1', u'8.1-SP0'])
 
+  def test_get_gpu(self):
+    class SWbemObjectSet():
+      PNPDeviceID = u'PCI\\VEN_1AE0&DEV_A002'
+      VideoProcessor = u'GGA'
+      DriverVersion = u'1.1.1.18'
+    class SWbemServices():
+      def ExecQuery(self, query):
+        device = SWbemObjectSet()  
+        return [device]
+    def _get_wmi_wbem():
+      return SWbemServices()
+
+    self.mock(win, '_get_wmi_wbem', _get_wmi_wbem)
+    
+    actual = win.get_gpu()
+    self.assertTrue(actual is None or actual)
+    #self.assertTrue(0)
 
   def test_list_top_windows(self):
     if sys.platform == 'win32':
