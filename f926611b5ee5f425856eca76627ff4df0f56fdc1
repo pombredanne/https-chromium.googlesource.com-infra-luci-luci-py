@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fca1fbb5_bd7538f0",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-30T09:54:39Z",
+      "side": 1,
+      "message": "could you confirm this is called using\nhttps://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock.assert_called_once_with\n?",
+      "revId": "f926611b5ee5f425856eca76627ff4df0f56fdc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0e078fd_8c6116fc",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-30T09:54:39Z",
+      "side": 1,
+      "message": "I think you can avoid this conditional if you do like\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/swarming_bot/api/platforms/gce_test.py;l\u003d25;drc\u003d7af1f6740dfb868978bd637552863aafd9fb1335",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 34
+      },
+      "revId": "f926611b5ee5f425856eca76627ff4df0f56fdc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
