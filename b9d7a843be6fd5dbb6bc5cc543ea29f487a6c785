@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f0dcdcd_e72cfe75",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-04-30T10:59:51Z",
+      "side": 1,
+      "message": "nit: the mock.patch() can be called as decorator.\nhttps://source.chromium.org/search?q\u003df:_test.py%20@mock.patch\u0026sq\u003d\u0026ss\u003dchromium%2Finfra%2Finfra\n\nThis way, you can avoid the nest.",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 69
+      },
+      "revId": "b9d7a843be6fd5dbb6bc5cc543ea29f487a6c785",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
