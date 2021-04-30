@@ -56,6 +56,30 @@
       },
       "revId": "f94a21689ba51c42b792e2b4c94ea8f7c7d73862",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eff29b9_c31782b1",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-04-30T17:30:12Z",
+      "side": 1,
+      "message": "No idea if it\u0027s particularly useful, but since we shouldn\u0027t ever be hitting this unless something\u0027s wrong, no harm in logging it.",
+      "parentUuid": "7a855a2b_9728f821",
+      "range": {
+        "startLine": 761,
+        "startChar": 0,
+        "endLine": 763,
+        "endChar": 0
+      },
+      "revId": "f94a21689ba51c42b792e2b4c94ea8f7c7d73862",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
