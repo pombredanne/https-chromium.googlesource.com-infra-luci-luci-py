@@ -881,6 +881,7 @@ class TaskResultApiTest(TestCase):
             ],
         ),
         performance=swarming_pb2.TaskPerformance(
+            total_overhead=duration_pb2.Duration(nanos=100000000),
             other_overhead=duration_pb2.Duration(nanos=20000000),
             setup=swarming_pb2.TaskOverheadStats(
                 duration=duration_pb2.Duration(nanos=70000000),
@@ -972,6 +973,10 @@ class TaskResultApiTest(TestCase):
     task_result.PerformanceStats(
         key=task_pack.run_result_key_to_performance_stats_key(run_result.key),
         bot_overhead=0.1,
+        cache_trim=task_result.OperationStats(duration=0.001),
+        package_installation=task_result.OperationStats(duration=0.002),
+        named_caches_install=task_result.OperationStats(duration=0.003),
+        named_caches_uninstall=task_result.OperationStats(duration=0.004),
         isolated_download=task_result.CASOperationStats(
             duration=0.05,
             initial_number_items=10,
@@ -980,7 +985,7 @@ class TaskResultApiTest(TestCase):
             items_hot=large.pack([3, 4, 5])),
         isolated_upload=task_result.CASOperationStats(
             duration=0.01, items_cold=large.pack([10])),
-        package_installation=task_result.OperationStats(duration=0.02)).put()
+        cleanup=task_result.OperationStats(duration=0.01)).put()
 
     # Note: It cannot be both TIMED_OUT and have run_result.deduped_from set.
     run_result.state = task_result.State.TIMED_OUT
@@ -1066,9 +1071,10 @@ class TaskResultApiTest(TestCase):
             ],
         ),
         performance=swarming_pb2.TaskPerformance(
+            total_overhead=duration_pb2.Duration(nanos=100000000),
             other_overhead=duration_pb2.Duration(nanos=20000000),
             setup=swarming_pb2.TaskOverheadStats(
-                duration=duration_pb2.Duration(nanos=70000000),
+                duration=duration_pb2.Duration(nanos=56000000),
                 cold=swarming_pb2.CASEntriesStats(
                     num_items=2,
                     total_bytes_items=3,
@@ -1079,11 +1085,24 @@ class TaskResultApiTest(TestCase):
                 ),
             ),
             teardown=swarming_pb2.TaskOverheadStats(
-                duration=duration_pb2.Duration(nanos=10000000),
+                duration=duration_pb2.Duration(nanos=24000000),
                 cold=swarming_pb2.CASEntriesStats(
                     num_items=1,
                     total_bytes_items=10,
                 ),
+            ),
+            teardown_overhead=swarming_pb2.TaskTeardownOverhead(
+                duration=duration_pb2.Duration(nanos=24000000),
+                cas=swarming_pb2.CASOverhead(
+                    duration=duration_pb2.Duration(nanos=10000000),
+                    cold=swarming_pb2.CASEntriesStats(
+                        num_items=1,
+                        total_bytes_items=10,
+                    )),
+                named_caches=swarming_pb2.NamedCachesOverhead(
+                    duration=duration_pb2.Duration(nanos=4000000)),
+                cleanup=swarming_pb2.CleanupOverhead(
+                    duration=duration_pb2.Duration(nanos=10000000)),
             ),
         ),
         exit_code=1,
