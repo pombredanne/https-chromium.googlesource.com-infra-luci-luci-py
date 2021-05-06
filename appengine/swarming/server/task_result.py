@@ -379,25 +379,45 @@ class PerformanceStats(ndb.Model):
 
   def to_proto(self, out):
     """Converts self to a swarming_pb2.TaskPerformance"""
+    if not self.bot_overhead:
+      return
     # out.cost_usd is not set here.
-    other_overhead = self.bot_overhead
 
+    # Total overhead.
+    out.total_overhead.FromTimedelta(
+        datetime.timedelta(seconds=self.bot_overhead))
+
+    # Setup overheads.
+    setup_dur = 0
+    if self.cache_trim.duration:
+      setup_dur += self.cache_trim.duration
+    if self.package_installation.duration:
+      setup_dur += self.package_installation.duration
+    if self.named_caches_install.duration:
+      setup_dur += self.named_caches_install.duration
     if self.isolated_download.duration:
+      # TODO(crbug.com/1202053): deprecate setup field.
       self.isolated_download.to_proto(out.setup)
-
-    setup_dur = ((self.package_installation.duration or 0.) +
-                 (self.isolated_download.duration or 0.))
+      setup_dur += self.isolated_download.duration
     if setup_dur:
-      out.setup.duration.FromTimedelta(datetime.timedelta(seconds=setup_dur))
-      other_overhead -= setup_dur
+      out.setup.duration.FromTimedelta(
+          datetime.timedelta(seconds=setup_dur))
 
+    # Teardown overheads.
+    teardown_dur = 0
     if self.isolated_upload.duration:
       self.isolated_upload.to_proto(out.teardown)
-      other_overhead -= self.isolated_upload.duration
+      teardown_dur += self.isolated_upload.duration
+    if self.named_caches_uninstall.duration:
+      teardown_dur += self.named_caches_uninstall.duration
+    if teardown_dur:
+      out.teardown.duration.FromTimedelta(
+          datetime.timedelta(seconds=teardown_dur))
 
-    if other_overhead:
-      out.other_overhead.FromTimedelta(
-          datetime.timedelta(seconds=other_overhead))
+    # Other overheads.
+    other_overhead = self.bot_overhead - setup_dur - teardown_dur
+    out.other_overhead.FromTimedelta(
+        datetime.timedelta(seconds=other_overhead))
 
   def _pre_put_hook(self):
     if self.bot_overhead is None:
