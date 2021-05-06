@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b42e77cb_21ba01fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2021-05-06T19:53:00Z",
+      "side": 1,
+      "message": "Hi Yiwei, I started to add a main.star to generate just tricium-prod.cfg, but found that just the `luci.cq_tryjob_verifier` depended on defining cq_group, bucket, etc... so I tried just dumping in most of everything from the infra repo config; although I feel this is a little silly, and probably not the right way to do things.\n\nAny thoughts?",
+      "revId": "b7fb558f740af151038223138da3674b9cbb98a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
