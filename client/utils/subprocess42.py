@@ -872,13 +872,16 @@ class Popen(subprocess.Popen):
               timeout = 0
           continue
 
-      if self.universal_newlines and data:
+      if self.universal_newlines:
         if six.PY3:
           data = self._translate_newlines(
               six.ensure_binary(data), encoding='utf-8', errors='strict')
         else:
           data = self._translate_newlines(data)
-      data = six.ensure_binary(data)
+        # converts str to byte string in Python3.
+        data = data.encode()
+      if six.PY3 and self.universal_newlines:
+        data = data.decode()
       return names[index], data
 
   def recv_out(self, maxsize=None, timeout=None):
