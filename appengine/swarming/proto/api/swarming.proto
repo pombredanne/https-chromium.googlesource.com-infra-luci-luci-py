@@ -1087,7 +1087,7 @@ message TaskSetupOverhead {
   // CIPD packge installation overhead.
   CIPDOverhead cipd = 3;
   // Named cache install overhead.
-  NamedCacheOverhead named_cache = 4;
+  NamedCachesOverhead named_caches = 4;
   // CAS download overhead.
   CASOverhead cas = 5;
 }
@@ -1099,7 +1099,7 @@ message TaskTeardownOverhead {
   // CAS upload overhead.
   CASOverhead cas = 2;
   // Named cache uninstall overhead.
-  NamedCacheOverhead named_cache = 3;
+  NamedCachesOverhead named_caches = 3;
   // Directory cleanup overhead.
   CleanupOverhead cleanup = 4;
 }
@@ -1116,7 +1116,7 @@ message CIPDOverhead {
 }
 
 // Overhead information about Named Caches install or uninstall.
-message NamedCacheOverhead {
+message NamedCachesOverhead {
   // Duration of this overhead.
   google.protobuf.Duration duration = 1;
 }
