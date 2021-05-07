@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6001ff78_4ed70470",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-07T05:19:04Z",
+      "side": 1,
+      "message": "It seems https://crrev.com/c/2879388 will make CQ flaky for some reason. \nLet me skip luci_context_test.py to fix CQ.",
+      "revId": "995d6e7abe9d4fd990c2116c22e3d22faeb41d82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
