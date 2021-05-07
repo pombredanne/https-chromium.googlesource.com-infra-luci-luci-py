@@ -861,7 +861,7 @@ class Popen(subprocess.Popen):
       conns, names = zip(*pipes)
       index, data, closed = recv_multi_impl(conns, maxsize, timeout)
       if index is None:
-        return index, data
+        return None, None
       if closed:
         self._close(names[index])
         if not data:
@@ -878,7 +878,10 @@ class Popen(subprocess.Popen):
               six.ensure_binary(data), encoding='utf-8', errors='strict')
         else:
           data = self._translate_newlines(data)
-      data = six.ensure_binary(data)
+        # converts str to byte string in Python3.
+        data = data.encode()
+      if six.PY3 and self.universal_newlines:
+        data = data.decode()
       return names[index], data
 
   def recv_out(self, maxsize=None, timeout=None):
