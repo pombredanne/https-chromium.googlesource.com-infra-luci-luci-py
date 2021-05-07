@@ -602,17 +602,20 @@ time.sleep(60)
             'stdout': None,
             'stderr': None,
             'expected': {},
+            'universal_newlines': False,
         },
         {
             'cmd': ['out_print', 'err_print'],
             'stdout': None,
             'stderr': subprocess42.STDOUT,
+            'universal_newlines': False,
             'expected': {},
         },
         {
             'cmd': ['out_print'],
             'stdout': subprocess42.PIPE,
             'stderr': subprocess42.PIPE,
+            'universal_newlines': False,
             'expected': {
                 'stdout': b'printing'
             },
@@ -621,6 +624,7 @@ time.sleep(60)
             'cmd': ['out_print'],
             'stdout': subprocess42.PIPE,
             'stderr': None,
+            'universal_newlines': False,
             'expected': {
                 'stdout': b'printing'
             },
@@ -629,6 +633,7 @@ time.sleep(60)
             'cmd': ['out_print'],
             'stdout': subprocess42.PIPE,
             'stderr': subprocess42.STDOUT,
+            'universal_newlines': False,
             'expected': {
                 'stdout': b'printing'
             },
@@ -637,6 +642,7 @@ time.sleep(60)
             'cmd': ['err_print'],
             'stdout': subprocess42.PIPE,
             'stderr': subprocess42.PIPE,
+            'universal_newlines': False,
             'expected': {
                 'stderr': b'printing'
             },
@@ -645,6 +651,7 @@ time.sleep(60)
             'cmd': ['err_print'],
             'stdout': None,
             'stderr': subprocess42.PIPE,
+            'universal_newlines': False,
             'expected': {
                 'stderr': b'printing'
             },
@@ -653,6 +660,7 @@ time.sleep(60)
             'cmd': ['err_print'],
             'stdout': subprocess42.PIPE,
             'stderr': subprocess42.STDOUT,
+            'universal_newlines': False,
             'expected': {
                 'stdout': b'printing'
             },
@@ -661,6 +669,7 @@ time.sleep(60)
             'cmd': ['out_print', 'err_print'],
             'stdout': subprocess42.PIPE,
             'stderr': subprocess42.PIPE,
+            'universal_newlines': False,
             'expected': {
                 'stderr': b'printing',
                 'stdout': b'printing'
@@ -670,20 +679,36 @@ time.sleep(60)
             'cmd': ['out_print', 'err_print'],
             'stdout': subprocess42.PIPE,
             'stderr': subprocess42.STDOUT,
+            'universal_newlines': False,
             'expected': {
                 'stdout': b'printingprinting'
             },
         },
+        {
+            'cmd': ['out_print', 'err_print'],
+            'stdout': subprocess42.PIPE,
+            'stderr': subprocess42.PIPE,
+            'universal_newlines': True,
+            'expected': {
+                'stderr': 'printing',
+                'stdout': 'printing'
+            },
+        },
     ]
     for i, testcase in enumerate(combinations):
+      default = '' if testcase['universal_newlines'] else b''
       cmd = [sys.executable, self.output_script] + testcase['cmd']
       p = subprocess42.Popen(
-          cmd, env=ENV, stdout=testcase['stdout'], stderr=testcase['stderr'])
+          cmd,
+          env=ENV,
+          stdout=testcase['stdout'],
+          stderr=testcase['stderr'],
+          universal_newlines=testcase['universal_newlines'])
       actual = {}
       while p.poll() is None:
         pipe, data = p.recv_any()
         if data:
-          actual.setdefault(pipe, b'')
+          actual.setdefault(pipe, default)
           actual[pipe] += data
 
       # The process exited, read any remaining data in the pipes.
@@ -691,7 +716,7 @@ time.sleep(60)
         pipe, data = p.recv_any()
         if pipe is None:
           break
-        actual.setdefault(pipe, b'')
+        actual.setdefault(pipe, default)
         actual[pipe] += data
       self.assertEqual(testcase['expected'], actual,
                        (i, testcase['cmd'], testcase['expected'], actual))
@@ -701,7 +726,7 @@ time.sleep(60)
   def test_recv_any_different_buffering(self):
     # Specifically test all buffering scenarios.
     for flush, unbuffered in itertools.product([True, False], [True, False]):
-      actual = b''
+      actual = ''
       proc = get_output_sleep_proc(flush, unbuffered, 0.5)
       while True:
         p, data = proc.recv_any()
@@ -711,7 +736,7 @@ time.sleep(60)
         self.assertTrue(data, (p, data))
         actual += data
 
-      self.assertEqual(b'A\nB\n', actual)
+      self.assertEqual('A\nB\n', actual)
       # Contrary to yield_any() or recv_any(0), wait() needs to be used here.
       proc.wait()
       self.assertEqual(0, proc.returncode)
@@ -727,7 +752,7 @@ time.sleep(60)
     # least once, due to the sleep of 'duration' and the use of timeout=0.
     for duration in (0.05, 0.1, 0.5, 2):
       got_none = False
-      actual = b''
+      actual = ''
       try:
         proc = get_output_sleep_proc(flush, unbuffered, duration)
         try:
@@ -743,7 +768,7 @@ time.sleep(60)
               continue
             break
 
-          self.assertEqual(b'A\nB\n', actual)
+          self.assertEqual('A\nB\n', actual)
           self.assertEqual(0, proc.returncode)
           self.assertEqual(True, got_none)
           break
@@ -762,8 +787,8 @@ time.sleep(60)
         proc = get_output_sleep_proc(True, True, duration)
         try:
           expected = [
-              b'A\n',
-              b'B\n',
+              'A\n',
+              'B\n',
           ]
           for p, data in proc.yield_any():
             self.assertEqual('stdout', p)
@@ -788,8 +813,8 @@ time.sleep(60)
         proc = get_output_sleep_proc(True, True, duration)
         try:
           expected = [
-              b'A\n',
-              b'B\n',
+              'A\n',
+              'B\n',
           ]
           got_none = False
           for p, data in proc.yield_any(timeout=0):
@@ -816,7 +841,7 @@ time.sleep(60)
     # least once, due to the sleep of 'duration' and the use of timeout=0.
     for duration in (0.05, 0.1, 0.5, 2):
       got_none = False
-      expected = [b'A\n', b'B\n']
+      expected = ['A\n', 'B\n']
       called = []
 
       def timeout():
