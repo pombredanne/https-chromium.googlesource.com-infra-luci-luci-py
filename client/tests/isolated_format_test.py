@@ -30,6 +30,10 @@ ALGO = hashlib.sha1
 
 
 class SymlinkTest(unittest.TestCase):
+  # Some of tests fail when running with nose2.
+  # Need to run in test_seq.py as an executable
+  no_run = 1
+
   def setUp(self):
     super(SymlinkTest, self).setUp()
     self.old_cwd = six.text_type(os.getcwd())
@@ -143,6 +147,10 @@ class SymlinkTest(unittest.TestCase):
 
 
 class TestIsolated(auto_stub.TestCase):
+  # SymlinkTest fails when running with nose2.
+  # Need to run in test_seq.py as an executable
+  no_run = 1
+
   def test_load_isolated_empty(self):
     m = isolated_format.load_isolated('{}', isolateserver_fake.ALGO)
     self.assertEqual({}, m)
