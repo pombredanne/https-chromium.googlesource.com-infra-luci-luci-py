@@ -9,7 +9,6 @@ import sys
 import six
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-TESTS_DIR = os.path.join(THIS_DIR, 'tests')
 LUCI_DIR = os.path.dirname(THIS_DIR)
 COMPONENTS_DIR = os.path.join(LUCI_DIR, 'appengine', 'components')
 
@@ -21,15 +20,6 @@ def main():
 
 
 def run_tests_parralel():
-  sys.path.insert(0, TESTS_DIR)
-  import test_env
-  test_env.setup()
-
-  # Need to specify config path explicitly
-  # because test_env.setup() changes directory
-  cfg = os.path.join(THIS_DIR, 'unittest.cfg')
-  sys.argv.extend(['-c', cfg])
-
   # enable plugins only on linux
   plugins = []
   if sys.platform.startswith('linux'):
@@ -50,10 +40,12 @@ def run_tests_sequential():
   # or run via test runner
   abs_path = lambda f: os.path.join(THIS_DIR, f)
   test_cmds = [
-      [abs_path('tests/swarming_test.py')],
-      [abs_path('tests/run_isolated_test.py')],
+      [abs_path('tests/isolated_format_test.py')],
       [abs_path('tests/isolateserver_test.py')],
       [abs_path('tests/logging_utils_test.py')],
+      [abs_path('tests/run_isolated_smoke_test.py')],
+      [abs_path('tests/run_isolated_test.py')],
+      [abs_path('tests/swarming_test.py')],
   ]
 
   # execute test runner
