@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37c7d07a_ee640821",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-07T02:32:58Z",
+      "side": 1,
+      "message": "We could retrieve by summing up. But I think this is the most interesting number for many people, I think.",
+      "parentUuid": "b8433617_8fce66b9",
+      "revId": "d698eeac0accf340b0d831ffcdc23e13758552b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7300ccbf_cb08a0cf",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 2
@@ -48,6 +66,30 @@
       "writtenOn": "2021-05-07T01:26:04Z",
       "side": 1,
       "message": "NamedCache?",
+      "range": {
+        "startLine": 1102,
+        "startChar": 12,
+        "endLine": 1102,
+        "endChar": 13
+      },
+      "revId": "d698eeac0accf340b0d831ffcdc23e13758552b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e9bea16_39a0b57e",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-07T02:32:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7300ccbf_cb08a0cf",
       "range": {
         "startLine": 1102,
         "startChar": 12,
