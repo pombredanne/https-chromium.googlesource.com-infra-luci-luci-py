@@ -16,6 +16,24 @@
       "message": "rebase on parent?",
       "revId": "396748387803d0ddeee100c4e3aa2c59a3a55ee3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24f4fca6_0256ebae",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-07T05:56:26Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "76477007_c736e8a4",
+      "revId": "396748387803d0ddeee100c4e3aa2c59a3a55ee3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
