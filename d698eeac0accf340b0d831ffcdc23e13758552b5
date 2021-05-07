@@ -107,6 +107,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "981b400e_45b21b09",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-07T03:42:13Z",
+      "side": 1,
+      "message": "I see your point. I added a comment. PTAL.",
+      "parentUuid": "ed50da22_ed213a2f",
+      "revId": "d698eeac0accf340b0d831ffcdc23e13758552b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7300ccbf_cb08a0cf",
