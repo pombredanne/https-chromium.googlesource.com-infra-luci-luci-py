@@ -16,6 +16,24 @@
       "message": "better to remove Auto-Submit?",
       "revId": "cd342f05156358caa4126eea3388a7e22e353bce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ab4a8cb_dd1d6841",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-07T06:05:31Z",
+      "side": 1,
+      "message": "Ah, right. done.",
+      "parentUuid": "61b205d2_0c37ca78",
+      "revId": "cd342f05156358caa4126eea3388a7e22e353bce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
