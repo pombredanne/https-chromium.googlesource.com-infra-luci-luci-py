@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed50da22_ed213a2f",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-05-07T03:14:49Z",
+      "side": 1,
+      "message": "My concern is that how this is calculated. Could you add comment explaining how to calculate this?",
+      "parentUuid": "6a9537a2_1b079578",
+      "revId": "d698eeac0accf340b0d831ffcdc23e13758552b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7300ccbf_cb08a0cf",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 2
