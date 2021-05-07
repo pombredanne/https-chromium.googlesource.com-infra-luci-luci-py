@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21584ee9_6547eea6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-07T01:04:26Z",
+      "side": 1,
+      "message": "Will skip the failing test https://crbug.com/1206509",
+      "revId": "d698eeac0accf340b0d831ffcdc23e13758552b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
