@@ -30,6 +30,10 @@ ALGO = hashlib.sha1
 
 
 class SymlinkTest(unittest.TestCase):
+  # Some of tests fail when running with nose2.
+  # Need to run in test_seq.py as an executable
+  no_run = 1
+
   def setUp(self):
     super(SymlinkTest, self).setUp()
     self.old_cwd = six.text_type(os.getcwd())
