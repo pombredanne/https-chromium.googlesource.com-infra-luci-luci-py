@@ -770,7 +770,7 @@ class Popen(subprocess.Popen):
 
     Like yield_any, but yields lines.
     """
-    return split(self.yield_any(**kwargs))
+    return split(self.yield_any(**kwargs), self.universal_newlines)
 
   def yield_any(self, maxsize=None, timeout=None):
     """Yields output until the process terminates.
@@ -861,7 +861,7 @@ class Popen(subprocess.Popen):
       conns, names = zip(*pipes)
       index, data, closed = recv_multi_impl(conns, maxsize, timeout)
       if index is None:
-        return index, data
+        return None, None
       if closed:
         self._close(names[index])
         if not data:
@@ -878,7 +878,10 @@ class Popen(subprocess.Popen):
               six.ensure_binary(data), encoding='utf-8', errors='strict')
         else:
           data = self._translate_newlines(data)
-      data = six.ensure_binary(data)
+        # converts str to byte string in Python3.
+        data = data.encode()
+      if six.PY3 and self.universal_newlines:
+        data = data.decode()
       return names[index], data
 
   def recv_out(self, maxsize=None, timeout=None):
@@ -1070,7 +1073,7 @@ def inhibit_os_error_reporting():
   # - Ubuntu, disable apport if needed.
 
 
-def split(data):
+def split(data, text=False):
   """Splits pipe data by |sep|. Does some buffering.
 
   For example, [('stdout', b'a\nb'), ('stdout', b'\n'), ('stderr', b'c\n')] ->
@@ -1087,6 +1090,8 @@ def split(data):
   if six.PY3 and sys.platform == 'win32':
     # CRLF is used instead of LF in python3 on windows
     sep = b'\r\n'
+  if six.PY3 and text:
+    sep = sep.decode()
 
   # A dict {pipe_name -> list of pending chunks without separators}
   pending_chunks = collections.defaultdict(list)
