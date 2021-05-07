@@ -254,6 +254,10 @@ def load_isolated_stats(stats_json_path, key):
 
 
 class RunIsolatedTest(unittest.TestCase):
+  # These test fail when running with nose2.
+  # Need to run in test_seq.py as an executable
+  no_run = 1
+
   def setUp(self):
     super(RunIsolatedTest, self).setUp()
     self.tempdir = run_isolated.make_temp_dir(
