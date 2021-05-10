@@ -34,6 +34,24 @@
       "parentUuid": "912a0515_abe2b91b",
       "revId": "5ec622976b953f23c4b1500a0d966f37d9989005",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bd931be_c3e15a65",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-05-10T06:09:32Z",
+      "side": 1,
+      "message": "status of the issue is still fixed?",
+      "parentUuid": "765aed60_1ff4cdf9",
+      "revId": "5ec622976b953f23c4b1500a0d966f37d9989005",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
