@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "841c6609_330aa8cd",
+        "filename": "client/cipd.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-05-10T07:51:17Z",
+      "side": 1,
+      "message": "better to use \u0027backslashreplace\u0027 for errors here instead?\nhttps://docs.python.org/3/library/io.html#io.TextIOWrapper",
+      "revId": "1e49aaa0006264e53307ec9dffaff65dd6d5bf3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
