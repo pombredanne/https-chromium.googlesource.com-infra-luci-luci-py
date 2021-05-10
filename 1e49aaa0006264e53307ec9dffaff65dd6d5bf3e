@@ -34,6 +34,24 @@
       "parentUuid": "841c6609_330aa8cd",
       "revId": "1e49aaa0006264e53307ec9dffaff65dd6d5bf3e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab0c93c1_64bfeb32",
+        "filename": "client/cipd.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-10T08:15:45Z",
+      "side": 1,
+      "message": "Or I can re-revert the https://crrev.com/c/2879776 with errors\u003d\u0027backslashreplace\u0027.",
+      "parentUuid": "e360a4ff_7376917b",
+      "revId": "1e49aaa0006264e53307ec9dffaff65dd6d5bf3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
