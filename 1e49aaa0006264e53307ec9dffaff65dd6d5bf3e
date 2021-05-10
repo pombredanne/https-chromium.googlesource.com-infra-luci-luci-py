@@ -70,6 +70,24 @@
       "parentUuid": "e360a4ff_7376917b",
       "revId": "1e49aaa0006264e53307ec9dffaff65dd6d5bf3e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ceb196c_4516e944",
+        "filename": "client/cipd.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-10T08:20:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07c848ef_2e81a527",
+      "revId": "1e49aaa0006264e53307ec9dffaff65dd6d5bf3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
