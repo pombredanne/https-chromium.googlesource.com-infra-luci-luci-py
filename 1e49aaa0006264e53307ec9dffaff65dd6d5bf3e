@@ -52,6 +52,24 @@
       "parentUuid": "e360a4ff_7376917b",
       "revId": "1e49aaa0006264e53307ec9dffaff65dd6d5bf3e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07c848ef_2e81a527",
+        "filename": "client/cipd.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-05-10T08:15:50Z",
+      "side": 1,
+      "message": "\u003e Since I reverted https://crrev.com/c/2879776, yield_any_line() returns byte string even when universal_newlines\u003dTrue. So the decode error wouldn\u0027t come from subprocess.py.\n\u003e \n\nAh, I see.\n\n\u003e Should \u0027backslashreplace\u0027 be added six.ensure_str() instead?\n\nI think so.",
+      "parentUuid": "e360a4ff_7376917b",
+      "revId": "1e49aaa0006264e53307ec9dffaff65dd6d5bf3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
