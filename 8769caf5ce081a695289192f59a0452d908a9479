@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31d3f24e_64039b89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-10T09:23:39Z",
+      "side": 1,
+      "message": "I updated the schemas on prod. http://shortn/_vZuo48eZSl",
+      "revId": "8769caf5ce081a695289192f59a0452d908a9479",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
