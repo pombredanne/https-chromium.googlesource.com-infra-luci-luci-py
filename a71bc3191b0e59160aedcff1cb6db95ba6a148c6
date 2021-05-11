@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e660efd3_98708a81",
+        "filename": "client/cipd.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-05-11T03:07:40Z",
+      "side": 1,
+      "message": "I prefer to pass these directly.",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 37
+      },
+      "revId": "a71bc3191b0e59160aedcff1cb6db95ba6a148c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
