@@ -16,6 +16,104 @@
       "message": "Hi Yiwei, I meant to send this earlier for crbug.com/1185933; I wanted to add some starlark to generate the luci-py Tricium config for luci-py, but it depends on defining a bunch of other things.\n\nI think the right thing to do is to define all of the things, but in main.star only generate tricium-prod.cfg. WDYT? ",
       "revId": "106ed7571880139d833a2e4d845e7649f4801ae7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cf65ce9_22c8a80d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-05-11T23:17:42Z",
+      "side": 1,
+      "message": "\u003e I think the right thing to do is to define all of the things, but in main.star only generate tricium-prod.cfg. WDYT?\n\nI don\u0027t think you need anything apart from cq if you refer to the builder definition in the infra project. Please see my other comment on main.star.",
+      "parentUuid": "1a31fdd3_092351c5",
+      "revId": "106ed7571880139d833a2e4d845e7649f4801ae7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c3f2acd_052230f1",
+        "filename": "generated/commit-queue.cfg",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-05-11T23:17:42Z",
+      "side": 1,
+      "message": "Can you remove this file? This should not be generated with `tracked_file \u003d [\"tricium-prod.cfg\"]`",
+      "revId": "106ed7571880139d833a2e4d845e7649f4801ae7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4756aa27_73d69ec7",
+        "filename": "generated/cr-buildbucket.cfg",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-05-11T23:17:42Z",
+      "side": 1,
+      "message": "Same here",
+      "revId": "106ed7571880139d833a2e4d845e7649f4801ae7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46f7f0db_8582a2f1",
+        "filename": "main.star",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-05-11T23:17:42Z",
+      "side": 1,
+      "message": "should the name be \"luci-py\"?",
+      "range": {
+        "startLine": 13,
+        "startChar": 12,
+        "endLine": 13,
+        "endChar": 17
+      },
+      "revId": "106ed7571880139d833a2e4d845e7649f4801ae7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ec1eaa6_3a97562c",
+        "filename": "main.star",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-05-11T23:17:42Z",
+      "side": 1,
+      "message": "you can define cq_group directly using https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/main/lucicfg/doc/README.md#luci.cq_group instead of copying the `lib/infra.star`",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 14
+      },
+      "revId": "106ed7571880139d833a2e4d845e7649f4801ae7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

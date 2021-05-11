@@ -39,6 +39,30 @@
       },
       "revId": "b7fb558f740af151038223138da3674b9cbb98a0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3df2d652_65cbda73",
+        "filename": "main.star",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-05-11T23:17:42Z",
+      "side": 1,
+      "message": "\u003e This is of course the main central part that we want to add.\n\u003e \n\u003e But adding the cq_group depends on defining a cq group; adding a builder here depends on defining the builder, which depends on defining the bucket and project etc.\n\nYou will need to define project, cq group but not necessary the bucket because the builder definition can remain in the infra project and you can refer to the builder in the infra project using special syntax documented here: https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/main/lucicfg/doc/README.md#external_builders",
+      "parentUuid": "abf9617b_10d54f37",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 1
+      },
+      "revId": "b7fb558f740af151038223138da3674b9cbb98a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
