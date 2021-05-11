@@ -210,18 +210,17 @@ class CipdClient(object):
         cmd += ['-service-url', self.service_url]
 
       logging.debug('Running %r', cmd)
-      process = subprocess42.Popen(
-          cmd,
-          stdout=subprocess42.PIPE,
-          stderr=subprocess42.PIPE,
-          universal_newlines=True)
+      kwargs = {
+          'stdout': subprocess42.PIPE,
+          'stderr': subprocess42.PIPE,
+          'universal_newlines': True,
+      }
+      if six.PY3:
+        kwargs['encoding'] = 'utf-8'
+        kwargs['errors'] = 'backslashreplace'
+      process = subprocess42.Popen(cmd, **kwargs)
       output = []
       for pipe_name, line in process.yield_any_line(timeout=0.1):
-        # TODO(crbug.com/1206402, crbug.com/1207232):
-        # subprocess42.Popen.yield_any_line() doesn't return str even when
-        # universal_newlines=True. Remove six.ensure_str() after fixing
-        # subprocess42.
-        line = six.ensure_str(line, errors='backslashreplace')
         to = timeoutfn()
         if to is not None and to <= 0:
           raise Error(
