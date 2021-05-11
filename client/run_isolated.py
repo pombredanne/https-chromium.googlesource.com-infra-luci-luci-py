@@ -1668,9 +1668,14 @@ def main(args):
   # parsed normally, the strings are str instances.
   (parser, options, args) = parse_args(args)
 
+  SWARMING_BOT_ID = 'SWARMING_BOT_ID'
   SWARMING_SERVER = 'SWARMING_SERVER'
+  SWARMING_TASK_ID = 'SWARMING_TASK_ID'
   if options.report_on_exception and SWARMING_SERVER in os.environ:
-    on_error.report_on_exception_exit(os.environ[SWARMING_SERVER])
+    source = 'task_id=%s, bot_id=%s' % (os.environ.get(SWARMING_TASK_ID),
+                                        os.environ.get(SWARMING_BOT_ID))
+    on_error.report_on_exception_exit(
+        os.environ[SWARMING_SERVER], source=source)
 
   if not file_path.enable_symlink():
     logging.warning('Symlink support is not enabled')
