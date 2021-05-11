@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a31fdd3_092351c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2021-05-11T18:08:46Z",
+      "side": 1,
+      "message": "Hi Yiwei, I meant to send this earlier for crbug.com/1185933; I wanted to add some starlark to generate the luci-py Tricium config for luci-py, but it depends on defining a bunch of other things.\n\nI think the right thing to do is to define all of the things, but in main.star only generate tricium-prod.cfg. WDYT? ",
+      "revId": "106ed7571880139d833a2e4d845e7649f4801ae7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
