@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cdac839_930d9f6b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-05-11T05:17:38Z",
+      "side": 1,
+      "message": "it is better to show task url there?",
+      "revId": "1dce45bffcb75d83980a076e4d5ce9b5a8a9eedc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1a42212_61713f80",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-05-11T05:17:38Z",
+      "side": 1,
+      "message": "take this?",
+      "revId": "1dce45bffcb75d83980a076e4d5ce9b5a8a9eedc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
