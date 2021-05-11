@@ -16,6 +16,47 @@
       "message": "Sorry, but I meant to use kwargs only for encoding and errors.",
       "revId": "f938615668fd1dd19dfeba453eea0a92ab9ed896",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fa8ddbb_e34f7749",
+        "filename": "client/cipd.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-11T03:28:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f59805c_63542b1d",
+      "revId": "f938615668fd1dd19dfeba453eea0a92ab9ed896",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fba44b4_3a4278b0",
+        "filename": "client/cipd.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-11T03:28:31Z",
+      "side": 1,
+      "message": "Oops... I deleted this...",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 49
+      },
+      "revId": "f938615668fd1dd19dfeba453eea0a92ab9ed896",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
