@@ -1669,8 +1669,10 @@ def main(args):
   (parser, options, args) = parse_args(args)
 
   SWARMING_SERVER = 'SWARMING_SERVER'
+  SWARMING_BOT_ID = 'SWARMING_BOT_ID'
   if options.report_on_exception and SWARMING_SERVER in os.environ:
-    on_error.report_on_exception_exit(os.environ[SWARMING_SERVER])
+    on_error.report_on_exception_exit(
+        os.environ[SWARMING_SERVER], bot_id=os.environ[SWARMING_BOT_ID])
 
   if not file_path.enable_symlink():
     logging.warning('Symlink support is not enabled')
