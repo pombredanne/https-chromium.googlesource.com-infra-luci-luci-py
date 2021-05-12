@@ -369,12 +369,15 @@ def gen_expected(**kwargs):
       u'server_versions': [u'N/A'],
       u'state': u'COMPLETED',
       u'tags': [
+          u'authenticated:bot:whitelisted-ip',
           u'pool:default',
           u'priority:200',
           u'realm:none',
           u'service_account:none',
           u'swarming.pool.template:none',
           u'swarming.pool.version:pools_cfg_rev',
+          u'use_cas_1143123:0',
+          u'use_isolate_1143123:0',
           u'user:joe@localhost',
       ],
       u'try_number': u'1',
@@ -477,6 +480,7 @@ class Test(unittest.TestCase):
         # The string is mostly converted to 'Replacement Character'.
         output=u'A\ufeff\ufffd\ufffd\ufffdsfs\ufffd(B\n',
         tags=sorted([
+            u'authenticated:bot:whitelisted-ip',
             u'os:' + self.dimensions['os'][0],
             u'os:' + self.dimensions['os'][1],
             u'pool:default',
@@ -485,6 +489,8 @@ class Test(unittest.TestCase):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
+            u'use_cas_1143123:0',
+            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ]))
     self.assertOneTask(args, summary, {})
@@ -1071,11 +1077,14 @@ class Test(unittest.TestCase):
     # List of tuple(task_name, priority, task_id).
     tasks = []
     tags = [
+        u'authenticated:bot:whitelisted-ip',
         u'pool:default',
         u'realm:none',
         u'service_account:none',
         u'swarming.pool.template:none',
         u'swarming.pool.version:pools_cfg_rev',
+        u'use_cas_1143123:0',
+        u'use_isolate_1143123:0',
         u'user:joe@localhost',
     ]
     with self._make_wait_task('test_priority'):
@@ -1231,12 +1240,15 @@ class Test(unittest.TestCase):
         name=u'task_slice',
         output=u'first\n',
         tags=[
+            u'authenticated:bot:whitelisted-ip',
             u'pool:default',
             u'priority:40',
             u'realm:none',
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
+            u'use_cas_1143123:0',
+            u'use_isolate_1143123:0',
             u'user:none',
         ],
         user=u'')
@@ -1297,6 +1309,7 @@ class Test(unittest.TestCase):
         output=u'second\n',
         tags=[
             # Bug!
+            u'authenticated:bot:whitelisted-ip',
             u'invalidkey:invalidvalue',
             u'pool:default',
             u'priority:40',
@@ -1304,6 +1317,8 @@ class Test(unittest.TestCase):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
+            u'use_cas_1143123:0',
+            u'use_isolate_1143123:0',
             u'user:none',
         ],
         user=u'')
@@ -1386,12 +1401,15 @@ class Test(unittest.TestCase):
     # Ensure the initial wait task is completed.
     actual_summary, actual_files = self.client.task_collect(wait_task_id)
     tags = [
+        u'authenticated:bot:whitelisted-ip',
         u'pool:default',
         u'priority:20',
         u'realm:none',
         u'service_account:none',
         u'swarming.pool.template:none',
         u'swarming.pool.version:pools_cfg_rev',
+        u'use_cas_1143123:0',
+        u'use_isolate_1143123:0',
         u'user:joe@localhost',
     ]
     performance_stats = actual_summary['shards'][0].pop('performance_stats')
