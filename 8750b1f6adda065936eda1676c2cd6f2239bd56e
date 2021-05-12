@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd9b6b9e_8f165492",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2021-05-12T23:17:30Z",
+      "side": 1,
+      "message": "these is a great documentation, but I suspect placing it in the projects.cfg file itself will make it more likely that someone will read it.",
+      "revId": "8750b1f6adda065936eda1676c2cd6f2239bd56e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23b71cf3_f91b8871",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2021-05-12T23:17:30Z",
+      "side": 1,
+      "message": "teams, plural, because repeated",
+      "range": {
+        "startLine": 183,
+        "startChar": 16,
+        "endLine": 183,
+        "endChar": 20
+      },
+      "revId": "8750b1f6adda065936eda1676c2cd6f2239bd56e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
