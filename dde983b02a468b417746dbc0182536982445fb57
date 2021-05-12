@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae1825f6_22fc09e1",
+        "filename": "appengine/third_party/python-adb/README.swarming",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-05-12T06:07:48Z",
+      "side": 1,
+      "message": "no need to have this TODO this time?",
+      "revId": "dde983b02a468b417746dbc0182536982445fb57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
