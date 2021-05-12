@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad92b212_4c71c56a",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1474,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-12T08:54:49Z",
+      "side": 1,
+      "message": "If you put the hash, it would be difficult to find tasks with isolate/CAS in the task list as each task has a near-unique tag?",
+      "range": {
+        "startLine": 1474,
+        "startChar": 32,
+        "endLine": 1474,
+        "endChar": 36
+      },
+      "revId": "e5dcf9141313d62ea19acfe405464656f1209065",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed760afd_1b30b741",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1474,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-12T08:54:49Z",
+      "side": 1,
+      "message": "This suffix doesn\u0027t seem useful.",
+      "range": {
+        "startLine": 1474,
+        "startChar": 24,
+        "endLine": 1474,
+        "endChar": 32
+      },
+      "revId": "e5dcf9141313d62ea19acfe405464656f1209065",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
