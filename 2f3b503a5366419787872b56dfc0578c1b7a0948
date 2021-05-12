@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3f9a21f_7cfe5b9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-12T00:34:46Z",
+      "side": 1,
+      "message": "Looks empty commit isn\u0027t allowed to run CQ",
+      "revId": "2f3b503a5366419787872b56dfc0578c1b7a0948",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
