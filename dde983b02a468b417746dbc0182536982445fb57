@@ -16,6 +16,24 @@
       "message": "no need to have this TODO this time?",
       "revId": "dde983b02a468b417746dbc0182536982445fb57",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10288af7_515fa4ae",
+        "filename": "appengine/third_party/python-adb/README.swarming",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-12T06:21:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae1825f6_22fc09e1",
+      "revId": "dde983b02a468b417746dbc0182536982445fb57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
