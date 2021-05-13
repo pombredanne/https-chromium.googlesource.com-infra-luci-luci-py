@@ -22,6 +22,30 @@
       },
       "revId": "2df67fb41ac4a7ea4ac0a569b124ce6a7b7610d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e00fdfb6_f0bf66c7",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-05-13T03:08:34Z",
+      "side": 0,
+      "message": "Ah, this error message is not windows specific.",
+      "parentUuid": "ef423152_70beba05",
+      "range": {
+        "startLine": 1143,
+        "startChar": 0,
+        "endLine": 1145,
+        "endChar": 78
+      },
+      "revId": "2df67fb41ac4a7ea4ac0a569b124ce6a7b7610d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
