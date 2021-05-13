@@ -8,6 +8,8 @@ import os
 import sys
 import threading
 
+import six
+
 BOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 sys.path.insert(
@@ -65,7 +67,7 @@ class Handler(httpserver.Handler):
     raise NotImplementedError(self.path)
 
   def do_POST(self):
-    data = json.loads(self.read_body())
+    data = json.loads(six.ensure_str(self.read_body()))
 
     if self.path == '/auth/api/v1/accounts/self/xsrf_token':
       return self.send_json({'xsrf_token': 'a'})

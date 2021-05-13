@@ -56,7 +56,7 @@ class TestBotBase(net_utils.TestCase):
     super(TestBotBase, self).setUp()
     # Throw away all swarming environ if running the test on Swarming. It may
     # interfere with the test.
-    for k in os.environ.keys():
+    for k in list(os.environ.keys()):
       if k.startswith('SWARMING_'):
         os.environ.pop(k)
     self.root_dir = tempfile.mkdtemp(prefix='bot_main')
@@ -107,7 +107,7 @@ class TestBotMain(TestBotBase):
     self.mock(remote_client, 'make_appengine_id', lambda *a: 42)
     config_path = os.path.join(
         test_env_bot_code.BOT_DIR, 'config', 'config.json')
-    with open(config_path, 'rb') as f:
+    with open(config_path) as f:
       config = json.load(f)
     self.mock(bot_main, 'get_config', lambda: config)
     self.mock(bot_main, '_bot_restart', self.fail)
@@ -823,7 +823,7 @@ class TestBotMain(TestBotBase):
         if expected_auth_params_json:
           auth_params_file = os.path.join(self.root_dir, 'w',
                                           'bot_auth_params.json')
-          with open(auth_params_file, 'rb') as f:
+          with open(auth_params_file) as f:
             actual_auth_params = json.load(f)
           self.assertEqual(expected_auth_params_json, actual_auth_params)
           self.assertEqual(cmd[:2], ['--auth-params-file', auth_params_file])

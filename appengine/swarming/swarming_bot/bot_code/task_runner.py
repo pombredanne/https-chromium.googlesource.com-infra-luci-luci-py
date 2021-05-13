@@ -292,7 +292,7 @@ class TaskDetails(object):
     Raises InternalError if the file can't be read or parsed.
     """
     try:
-      with open(path, 'rb') as f:
+      with open(path) as f:
         return TaskDetails(json.load(f))
     except (IOError, ValueError) as e:
       raise InternalError('Cannot load task_runner_in.json: %s' % e)

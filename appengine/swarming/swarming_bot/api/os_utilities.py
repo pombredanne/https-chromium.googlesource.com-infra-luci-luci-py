@@ -818,6 +818,7 @@ def get_timeseries_data(name, project, service_account, **kwargs):
   try:
     response, content = authenticated_http_request(
         service_account, url, method='GET', scopes=MONITORING_SCOPES)
+    content = content.decode()
   except (AuthenticatedHttpRequestFailure, IOError) as e:
     raise GetTimeseriesDataFailure(e)
 
@@ -882,6 +883,7 @@ def send_metric(name, value, labels, project, service_account):
         '%s/projects/%s/timeseries:write' % (MONITORING_ENDPOINT, project),
         method='POST', body=json.dumps(body), headers=headers,
         scopes=MONITORING_SCOPES)
+    content = content.decode()
   except (AuthenticatedHttpRequestFailure, IOError) as e:
     raise SendMetricsFailure(e)
 

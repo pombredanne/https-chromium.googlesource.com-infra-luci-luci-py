@@ -40,7 +40,7 @@ def _padded_b64_decode(data):
   mod = len(data) % 4
   if mod:
     data += b'=' * (4 - mod)
-  return base64.urlsafe_b64decode(data)
+  return base64.urlsafe_b64decode(data).decode()
 
 
 def _raw_metadata_request(path):
@@ -63,7 +63,7 @@ def _raw_metadata_request(path):
     try:
       resp = urllib.request.urlopen(
           urllib.request.Request(url, headers=headers), timeout=10)
-      return resp.read()
+      return resp.read().decode()
     except IOError as e:
       logging.warning(
           'Failed to grab GCE metadata from %s on attempt #%d: %s',

@@ -1010,7 +1010,7 @@ def _run_manifest(botobj, manifest, start):
 
     logging.info('task_runner exit: %d', proc.returncode)
     if fs.exists(task_result_file):
-      with fs.open(task_result_file, 'rb') as fd:
+      with fs.open(task_result_file) as fd:
         task_result = json.load(fd)
 
     if proc.returncode:

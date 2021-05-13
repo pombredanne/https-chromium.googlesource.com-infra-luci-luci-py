@@ -42,7 +42,7 @@ class TestFileRefresherThread(auto_stub.TestCase):
     time.sleep(1)
     r.stop()
     self.assertTrue(0 < counter[0] < 15) # was called reasonable number of times
-    with open(self.path, 'rb') as f:
+    with open(self.path) as f:
       body = json.load(f)
     self.assertEqual(counter[0], body)  # actually updated the file
 

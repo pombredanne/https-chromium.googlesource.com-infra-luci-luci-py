@@ -626,7 +626,7 @@ class HttpService(object):
     if not response:
       return None
     try:
-      text = response.read()
+      text = response.read().decode()
       if not text:
         return None
     except TimeoutError:
