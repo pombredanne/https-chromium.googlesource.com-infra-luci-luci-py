@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef423152_70beba05",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-05-13T03:07:00Z",
+      "side": 0,
+      "message": "I think it is better to run this only in windows.\n\nI think running process is not related to deletion failure in other platform.",
+      "range": {
+        "startLine": 1143,
+        "startChar": 0,
+        "endLine": 1145,
+        "endChar": 78
+      },
+      "revId": "2df67fb41ac4a7ea4ac0a569b124ce6a7b7610d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
