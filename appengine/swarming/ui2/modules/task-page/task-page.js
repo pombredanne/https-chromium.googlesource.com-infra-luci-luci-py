@@ -883,6 +883,12 @@ const reproduceSection = (ele, currentSlice) => {
     python ./client-py/swarming.py reproduce -S ${hostUrl} ${ele._taskId}
   </div>
 
+  <div>Run this task locally (Go):</div>
+  <div class="code bottom_space">
+    # (if needed) go get go.chromium.org/luci/client/cmd/swarming<br>
+    swarming reproduce -S ${hostUrl} ${ele._taskId}
+  </div>
+
   <div>Download output results into directory <i>foo</i>:</div>
   <div class="code bottom_space">
     # (if needed, use "\\\${platform}" as-is) cipd install "infra/tools/luci/swarming/\\\${platform}" -root bar<br>
