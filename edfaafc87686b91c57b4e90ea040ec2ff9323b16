@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8fbf506_35ca3579",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 888,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-05-14T15:00:52Z",
+      "side": 1,
+      "message": "not sure if this is how we expect users to fetch the library or if we can expect them to have infra fetched already?",
+      "range": {
+        "startLine": 888,
+        "startChar": 17,
+        "endLine": 888,
+        "endChar": 66
+      },
+      "revId": "edfaafc87686b91c57b4e90ea040ec2ff9323b16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
