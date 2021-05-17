@@ -16,6 +16,115 @@
       "message": "Thanks for the help, could you take another look?",
       "revId": "320599d680a6e73d540e5d324faff7b8ad2e4355",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cf86b78_3aefa5a8",
+        "filename": "main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-05-17T23:04:55Z",
+      "side": 1,
+      "message": "Del. only tricium host is needed.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 44
+      },
+      "revId": "320599d680a6e73d540e5d324faff7b8ad2e4355",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d391af8f_eed23f9f",
+        "filename": "main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-05-17T23:04:55Z",
+      "side": 1,
+      "message": "I think \n\n```\n        acl.entry(\n            roles \u003d [\n                acl.CQ_COMMITTER,\n            ],\n            groups \u003d \"project-infra-committers\",\n        ),\n```\n\nis the only needed entry here.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 10
+      },
+      "revId": "320599d680a6e73d540e5d324faff7b8ad2e4355",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71416d79_1b35921a",
+        "filename": "main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-05-17T23:04:55Z",
+      "side": 1,
+      "message": "del. there\u0027s no builder/bucket definition required for \"luci-py\" project. \"infra\" project only covers that.",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 1
+      },
+      "revId": "320599d680a6e73d540e5d324faff7b8ad2e4355",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72bbf3a1_223e5eb3",
+        "filename": "main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-05-17T23:04:55Z",
+      "side": 1,
+      "message": "nit: I don\u0027t think this matters for tricium because it is omitted in generated tricium config. If you want to keep this, change it to `refs\u003d[\"refs/head/.+\"]` so that it describes Tricium\u0027s behavior.",
+      "revId": "320599d680a6e73d540e5d324faff7b8ad2e4355",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3ab78d4_ab5bafc0",
+        "filename": "main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-05-17T23:04:55Z",
+      "side": 1,
+      "message": "nit: can be omitted.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 33
+      },
+      "revId": "320599d680a6e73d540e5d324faff7b8ad2e4355",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
