@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a7ed07a9_6fbc568b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-17T00:05:48Z",
+      "side": 1,
+      "message": "Please run `make release` at the `ui2/` dir to re-compile js/css/html.",
+      "revId": "edfaafc87686b91c57b4e90ea040ec2ff9323b16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc508a74_0ef56ac3",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-17T00:05:48Z",
+      "side": 1,
+      "message": "I think it\u0027s ok to remove this.",
+      "range": {
+        "startLine": 882,
+        "startChar": 0,
+        "endLine": 884,
+        "endChar": 0
+      },
+      "revId": "edfaafc87686b91c57b4e90ea040ec2ff9323b16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e8fbf506_35ca3579",
         "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
         "patchSetId": 1
@@ -14,6 +54,30 @@
       "writtenOn": "2021-05-14T15:00:52Z",
       "side": 1,
       "message": "not sure if this is how we expect users to fetch the library or if we can expect them to have infra fetched already?",
+      "range": {
+        "startLine": 888,
+        "startChar": 17,
+        "endLine": 888,
+        "endChar": 66
+      },
+      "revId": "edfaafc87686b91c57b4e90ea040ec2ff9323b16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b8cb2d2_6cc605ec",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 888,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-17T00:05:48Z",
+      "side": 1,
+      "message": "better to use `cipd` command so that people don\u0027t need to checkout the repo.\nSee L894.",
+      "parentUuid": "e8fbf506_35ca3579",
       "range": {
         "startLine": 888,
         "startChar": 17,
