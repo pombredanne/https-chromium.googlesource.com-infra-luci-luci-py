@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16e11ee2_2de1beac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-05-17T20:02:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7ed07a9_6fbc568b",
+      "revId": "edfaafc87686b91c57b4e90ea040ec2ff9323b16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc508a74_0ef56ac3",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-05-17T00:05:48Z",
       "side": 1,
       "message": "I think it\u0027s ok to remove this.",
+      "range": {
+        "startLine": 882,
+        "startChar": 0,
+        "endLine": 884,
+        "endChar": 0
+      },
+      "revId": "edfaafc87686b91c57b4e90ea040ec2ff9323b16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f598d1ef_1c8f6b92",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-05-17T20:02:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc508a74_0ef56ac3",
       "range": {
         "startLine": 882,
         "startChar": 0,
@@ -78,6 +120,30 @@
       "side": 1,
       "message": "better to use `cipd` command so that people don\u0027t need to checkout the repo.\nSee L894.",
       "parentUuid": "e8fbf506_35ca3579",
+      "range": {
+        "startLine": 888,
+        "startChar": 17,
+        "endLine": 888,
+        "endChar": 66
+      },
+      "revId": "edfaafc87686b91c57b4e90ea040ec2ff9323b16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96d54fdf_6f78bd9f",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 888,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-05-17T20:02:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b8cb2d2_6cc605ec",
       "range": {
         "startLine": 888,
         "startChar": 17,
