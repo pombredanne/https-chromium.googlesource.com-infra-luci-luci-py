@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "273b0615_57c5c255",
+        "filename": "main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2021-05-18T17:21:15Z",
+      "side": 1,
+      "message": "And buildbucket, otherwise lucicfg emits an error. Done.",
+      "parentUuid": "1cf86b78_3aefa5a8",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 44
+      },
+      "revId": "320599d680a6e73d540e5d324faff7b8ad2e4355",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d391af8f_eed23f9f",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-05-17T23:04:55Z",
       "side": 1,
       "message": "I think \n\n```\n        acl.entry(\n            roles \u003d [\n                acl.CQ_COMMITTER,\n            ],\n            groups \u003d \"project-infra-committers\",\n        ),\n```\n\nis the only needed entry here.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 10
+      },
+      "revId": "320599d680a6e73d540e5d324faff7b8ad2e4355",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aba8c5a4_80d80aee",
+        "filename": "main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2021-05-18T17:21:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d391af8f_eed23f9f",
       "range": {
         "startLine": 24,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c246ead5_34e5f5d6",
+        "filename": "main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2021-05-18T17:21:15Z",
+      "side": 1,
+      "message": "Done, thanks for pointing this out.",
+      "parentUuid": "71416d79_1b35921a",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 1
+      },
+      "revId": "320599d680a6e73d540e5d324faff7b8ad2e4355",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72bbf3a1_223e5eb3",
@@ -104,6 +176,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5bd5d97_ff06b1ee",
+        "filename": "main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2021-05-18T17:21:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72bbf3a1_223e5eb3",
+      "revId": "320599d680a6e73d540e5d324faff7b8ad2e4355",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3ab78d4_ab5bafc0",
@@ -117,6 +207,30 @@
       "writtenOn": "2021-05-17T23:04:55Z",
       "side": 1,
       "message": "nit: can be omitted.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 33
+      },
+      "revId": "320599d680a6e73d540e5d324faff7b8ad2e4355",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f4073fc_f152cfca",
+        "filename": "main.star",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2021-05-18T17:21:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3ab78d4_ab5bafc0",
       "range": {
         "startLine": 88,
         "startChar": 0,
