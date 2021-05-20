@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "249509c6_e8f4ec32",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-05-20T07:50:35Z",
+      "side": 1,
+      "message": "Is it easy to use `io.BytesIO(b\u0027...\u0027)` here?",
+      "range": {
+        "startLine": 266,
+        "startChar": 31,
+        "endLine": 266,
+        "endChar": 47
+      },
+      "revId": "81d5225093b7d1444d9efd111124d04c7ea9ba8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
