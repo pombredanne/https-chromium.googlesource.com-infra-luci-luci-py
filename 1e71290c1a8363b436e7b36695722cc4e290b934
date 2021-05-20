@@ -16,6 +16,23 @@
       "message": "This CL cannot be submitted as is because there is no OWNERS in this repo.\n\nI\u0027m asking for an Owners-Override, but also in the latest patchset I added an OWNERS file with a few people to avoid having to do that again next time.",
       "revId": "1e71290c1a8363b436e7b36695722cc4e290b934",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84a06139_52d52796",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2021-05-20T18:29:21Z",
+      "side": 1,
+      "message": "The current sheriff is saying that chromium sheriffs don\u0027t do Owners-Override for infra repos; does someone else have the power to do Owners Override? Robbie or Andrii do you know?",
+      "revId": "1e71290c1a8363b436e7b36695722cc4e290b934",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
