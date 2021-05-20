@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc737806_76b31e07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2021-05-20T18:25:53Z",
+      "side": 1,
+      "message": "This CL cannot be submitted as is because there is no OWNERS in this repo.\n\nI\u0027m asking for an Owners-Override, but also in the latest patchset I added an OWNERS file with a few people to avoid having to do that again next time.",
+      "revId": "1e71290c1a8363b436e7b36695722cc4e290b934",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
