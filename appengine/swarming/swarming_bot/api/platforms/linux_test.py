@@ -9,6 +9,7 @@ import textwrap
 import unittest
 
 import mock
+import six
 
 import test_env_platforms
 test_env_platforms.setup_test_env()
@@ -259,6 +260,15 @@ class TestLinux(auto_stub.TestCase):
       Version: 1.2.3
     """).encode()
     self.assertEqual(linux._get_intel_version(), '1.2.3')
+
+  @mock.patch('%s.open' % six.moves.builtins.__name__)
+  def test_get_device_tree_compatible(self, mock_open):
+    mock_open.return_value = mock.MagicMock()
+    handler = mock_open.return_value.__enter__.return_value
+    handler.read.return_value = b'foo,bar'
+
+    self.assertEqual(linux.get_device_tree_compatible(),
+                     sorted([u'foo', u'bar']))
 
 
 if __name__ == '__main__':
