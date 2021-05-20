@@ -33,6 +33,23 @@
       "message": "The current sheriff is saying that chromium sheriffs don\u0027t do Owners-Override for infra repos; does someone else have the power to do Owners Override? Robbie or Andrii do you know?",
       "revId": "1e71290c1a8363b436e7b36695722cc4e290b934",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9f84447_1199f826",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2021-05-20T21:41:49Z",
+      "side": 1,
+      "message": "FWIW i don\u0027t think we have CQ for this *ref*",
+      "revId": "1e71290c1a8363b436e7b36695722cc4e290b934",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
