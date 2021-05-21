@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b87e9b5_1ab35a62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1249287
+      },
+      "writtenOn": "2021-05-21T19:00:21Z",
+      "side": 1,
+      "message": "SGTM. This is a great idea. ",
+      "revId": "e0eefe5f9d4650e85fffc5da16b85eb142af9f73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
