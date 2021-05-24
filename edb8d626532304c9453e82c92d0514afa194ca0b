@@ -16,6 +16,69 @@
       "message": "Hi! This is a bug I picked up for 4B/Q.\n\nThis is a simple way to do it, but I\u0027m not sure if it\u0027s the best. Let me know if you think it\u0027s better to return a different value or raise an error for a nonexistent group.\n\nI also didn\u0027t see how to test the UI for auth component; how should I test this?",
       "revId": "edb8d626532304c9453e82c92d0514afa194ca0b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbbfe9c1_dbc3605b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-05-24T19:55:37Z",
+      "side": 1,
+      "message": "There are no JS tests here... To test UI you can use `./tools/gae devserver -A something` to run the service locally and then click buttons in the browser.",
+      "revId": "edb8d626532304c9453e82c92d0514afa194ca0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a1ba3a7_f0d8f028",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-05-24T19:55:37Z",
+      "side": 1,
+      "message": "Returns a completely empty graph if `principal` is a nonexistent group.",
+      "range": {
+        "startLine": 691,
+        "startChar": 14,
+        "endLine": 691,
+        "endChar": 15
+      },
+      "revId": "edb8d626532304c9453e82c92d0514afa194ca0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccc2de05_77bdbe1b",
+        "filename": "appengine/components/components/auth/api.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-05-24T19:55:37Z",
+      "side": 1,
+      "message": "nit:\n\n  principal not in self._groups\n\n(no need to construct AuthGroup entity just to discard it)",
+      "range": {
+        "startLine": 714,
+        "startChar": 45,
+        "endLine": 714,
+        "endChar": 78
+      },
+      "revId": "edb8d626532304c9453e82c92d0514afa194ca0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
