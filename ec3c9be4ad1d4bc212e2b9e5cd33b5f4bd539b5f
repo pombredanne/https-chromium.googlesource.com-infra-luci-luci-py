@@ -70,6 +70,41 @@
       "parentUuid": "e011f0e8_f13a92d2",
       "revId": "ec3c9be4ad1d4bc212e2b9e5cd33b5f4bd539b5f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4ae2d67_1f6be0f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-24T07:50:40Z",
+      "side": 1,
+      "message": "\u003e Ok, will make a CL to discuss with friedman@.\nMade https://crrev.com/i/3852826\n\n\u003e To unblock luci-py CLs. I can manually rollback Mac bots in the flex pool.\n\nDone.\nhttps://chromium-swarm.appspot.com/botlist?c\u003did\u0026c\u003dtask\u0026c\u003dos\u0026c\u003dpython\u0026c\u003dstatus\u0026d\u003dasc\u0026f\u003dcpu%3Ax86-64\u0026f\u003dpool%3Aluci.flex.try\u0026f\u003dos%3AMac\u0026k\u003dos\u0026s\u003did",
+      "parentUuid": "62a2eb1f_0aac7956",
+      "revId": "ec3c9be4ad1d4bc212e2b9e5cd33b5f4bd539b5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "538a8899_a41cfc38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-24T07:50:40Z",
+      "side": 1,
+      "message": "I manually rolled back Mac bots in luci.flex.try to Python2.\nSo the next dryrun should pass.\n\nLet me keep this CL just in case when other builders experience the issue in a large pool.",
+      "revId": "ec3c9be4ad1d4bc212e2b9e5cd33b5f4bd539b5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
