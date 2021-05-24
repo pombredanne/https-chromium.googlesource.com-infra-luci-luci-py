@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca7a262a_bfd8f7c5",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-24T00:58:47Z",
+      "side": 1,
+      "message": "Add comment why we want to disable kvs on Linux, and another reason for Docker.",
+      "range": {
+        "startLine": 754,
+        "startChar": 0,
+        "endLine": 756,
+        "endChar": 0
+      },
+      "revId": "fc3df035bc461e154f3938ccaea53342b25d9bb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
