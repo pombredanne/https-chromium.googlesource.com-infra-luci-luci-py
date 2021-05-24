@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57c09f53_3f0d863e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2021-05-24T17:43:06Z",
+      "side": 1,
+      "message": "Hi! This is a bug I picked up for 4B/Q.\n\nThis is a simple way to do it, but I\u0027m not sure if it\u0027s the best. Let me know if you think it\u0027s better to return a different value or raise an error for a nonexistent group.\n\nI also didn\u0027t see how to test the UI for auth component; how should I test this?",
+      "revId": "edb8d626532304c9453e82c92d0514afa194ca0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
