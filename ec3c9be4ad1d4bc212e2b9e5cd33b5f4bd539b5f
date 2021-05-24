@@ -16,6 +16,24 @@
       "message": "Does it take time to rollback to python2 and wait for fix?",
       "revId": "ec3c9be4ad1d4bc212e2b9e5cd33b5f4bd539b5f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc9b9310_a561c6b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-24T06:37:40Z",
+      "side": 1,
+      "message": "We can\u0027t simply rollback to python2. (This is an issue, indeed)\n\nA CL in my mind needs a discussion and a review from friedman@ to make sure that it\u0027s safe. So at least it takes a day to rollback.\n\nI think this is quicker.",
+      "parentUuid": "0cedaabd_2044dffb",
+      "revId": "ec3c9be4ad1d4bc212e2b9e5cd33b5f4bd539b5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
