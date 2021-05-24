@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cedaabd_2044dffb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-05-24T06:32:58Z",
+      "side": 1,
+      "message": "Does it take time to rollback to python2 and wait for fix?",
+      "revId": "ec3c9be4ad1d4bc212e2b9e5cd33b5f4bd539b5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
