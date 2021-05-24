@@ -52,6 +52,24 @@
       "parentUuid": "dc9b9310_a561c6b1",
       "revId": "ec3c9be4ad1d4bc212e2b9e5cd33b5f4bd539b5f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62a2eb1f_0aac7956",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-05-24T07:17:14Z",
+      "side": 1,
+      "message": "\u003e Then it is fine to wait that\n\nOk, will make a CL to discuss with friedman@.\n\n\u003e or need to change recipe to unblock CLs?\n\nI worry more about potential bad effects on builders other than luci-py-mac because *any* python2 tasks which contain locale.getdefaultlocale() can potentially fail.\n\nI personally think this CL is as safe as changing recipe because we hadn\u0027t set LC_CTYPE\u003dUTF-8 in Python2, though.\n\nTo unblock luci-py CLs. I can manually rollback Mac bots in the flex pool.",
+      "parentUuid": "e011f0e8_f13a92d2",
+      "revId": "ec3c9be4ad1d4bc212e2b9e5cd33b5f4bd539b5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
