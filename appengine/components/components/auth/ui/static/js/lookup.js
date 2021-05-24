@@ -87,7 +87,13 @@ var lookup = function(principal) {
     if (this === currentLookupOp) {
       setBusyIndicator(false);
       currentLookupOp = null;
-      setLookupResults(principal, response.data.subgraph);
+      if response.data.subgraph && !response.data.subgraph.nodes {
+        // In the case where the principal is a group but the group was not
+        // found, an entirely empty subgraph with no nodes is returned.
+        setErrorText('The group "'+ principal +'" was not found.');
+      } else {
+        setLookupResults(principal, response.data.subgraph);
+      }
     }
   }, function(error) {
     if (this === currentLookupOp) {
