@@ -406,6 +406,13 @@ def get_command_env(tmp_dir, cipd_info, run_dir, env, env_prefixes, out_dir,
   for k, v in env.items():
     if not v:
       out.pop(k, None)
+    elif k == 'LC_CTYPE' and v == 'UTF-8':
+      # TODO(crbug.com/1211734):
+      # Remove this workaround after CIPD cpython3 gets fixed.
+      # CIPD cpython3 sets LC_CTYPE=UTF-8 automatically, which is propagated to
+      # child processes. But LC_CTYPE=UTF-8 causes unknown locale error in
+      # Python2.
+      out.pop(k, None)
     else:
       out[k] = replace_parameters(v, out_dir, bot_file)
 
