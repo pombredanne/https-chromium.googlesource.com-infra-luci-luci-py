@@ -708,6 +708,12 @@ class AuthDB(object):
     add_node = graph.add_node
     add_edge = graph.add_edge
 
+    # Return an empty graph to indicate nonexistent group. It's helpful to
+    # differentiate between a group with no owned or including groups, and
+    # a group that just doesn't exist.
+    if isinstance(principal, basestring) and self.get_group(principal) is None:
+      return graph
+
     # Adds the given group and all groups that include it and owned by it (
     # perhaps indirectly) to 'graph'. Traverses group graph from leafs (most
     # nested groups) to roots (least nested groups that include other groups).
