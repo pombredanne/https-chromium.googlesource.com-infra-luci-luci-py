@@ -105,13 +105,21 @@ var beautifyChange = function(obj) {
   var target = parseTarget(obj.target);
   return _.extend(_.clone(obj), {
     when: common.utcTimestampToString(obj.when),
-    who: stripUserPrefix(obj.who),
+    who: dateDiff(obj.when / 1000, 365, stripUserPrefix(obj.who)),
     targetTitle: target.title,
     changeLogURL: target.changeLogURL,
     revisionURL: common.getChangeLogRevisionURL(obj.auth_db_rev)
   });
 };
 
+// Calculate difference in days between two UTC times
+// in milliseconds. limit is assumed in days, if the
+// difference in days is greater than the limit we redact.
+var dateDiff = function(when, limit, who) {
+  var today = Date.now();
+  var dayDiff = Math.floor((today - when) / (1000 * 60 * 60 * 24));
+  return  dayDiff > limit ? "REDACTED" : who;
+}
 
 // Offload HTML escaping to Handlebars.
 var listTemplate = Handlebars.compile(
