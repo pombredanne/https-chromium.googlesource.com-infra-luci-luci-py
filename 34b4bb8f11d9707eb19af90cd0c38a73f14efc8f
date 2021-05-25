@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab94ff44_753b3945",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-05-25T21:33:19Z",
+      "side": 1,
+      "message": "I\u0027m not sure what is the usefulness of such solution since emails are still easily accessible by calling the REST API directly (or just observing API response in Development Console in Chrome).",
+      "revId": "34b4bb8f11d9707eb19af90cd0c38a73f14efc8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e88fa5e_9cc71c06",
