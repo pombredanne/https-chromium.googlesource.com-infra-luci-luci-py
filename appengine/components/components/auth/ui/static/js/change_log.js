@@ -105,13 +105,20 @@ var beautifyChange = function(obj) {
   var target = parseTarget(obj.target);
   return _.extend(_.clone(obj), {
     when: common.utcTimestampToString(obj.when),
-    who: stripUserPrefix(obj.who),
+    who: dateDifference(obj.when / 1000, 365, stripUserPrefix(obj.who)),
     targetTitle: target.title,
     changeLogURL: target.changeLogURL,
     revisionURL: common.getChangeLogRevisionURL(obj.auth_db_rev)
   });
 };
 
+// Calculates the difference in days between two dates.
+// Date is assumed to be UTC milliseconds.
+var dateDifference = function(when, limit, who) {
+  var currDay = Date.parse(new Date());
+  var diffDays = Math.floor((currDay - when) / (1000 * 60 * 60 * 24));
+  return diffDays > limit ? "REDACTED" : who;
+};
 
 // Offload HTML escaping to Handlebars.
 var listTemplate = Handlebars.compile(
