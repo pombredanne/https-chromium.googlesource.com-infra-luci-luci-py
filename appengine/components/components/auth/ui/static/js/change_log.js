@@ -103,15 +103,24 @@ var stripUserPrefix = function(x) {
 // Converts UTC timestamps to readable strings, strips identity prefixes, etc.
 var beautifyChange = function(obj) {
   var target = parseTarget(obj.target);
+  var whenMilli = obj.when / 1000;
+  var whoMadeChange = dateDifference(whenMilli, 365, stripUserPrefix(obj.who));
   return _.extend(_.clone(obj), {
     when: common.utcTimestampToString(obj.when),
-    who: stripUserPrefix(obj.who),
+    who: whoMadeChange,
     targetTitle: target.title,
     changeLogURL: target.changeLogURL,
     revisionURL: common.getChangeLogRevisionURL(obj.auth_db_rev)
   });
 };
 
+// Calculates the difference in days between two dates.
+// Date is assumed to be UTC milliseconds.
+var dateDifference = function(when, limit, who) {
+  var currDay = Date.parse(new Date());
+  var diffDays = Math.floor((currDay - when) / (1000 * 60 * 60 * 24));
+  return diffDays > limit ? "REDACTED" : who;
+};
 
 // Offload HTML escaping to Handlebars.
 var listTemplate = Handlebars.compile(
