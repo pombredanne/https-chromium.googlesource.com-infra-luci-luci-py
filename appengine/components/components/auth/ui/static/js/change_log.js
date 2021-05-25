@@ -105,13 +105,14 @@ var beautifyChange = function(obj) {
   var target = parseTarget(obj.target);
   return _.extend(_.clone(obj), {
     when: common.utcTimestampToString(obj.when),
-    who: stripUserPrefix(obj.who),
+    who: Math.floor(
+          (Date.parse(new Date()) - (obj.when / 1000)) / (1000 * 60 * 60 * 24)
+        )> 365 ? "REDACTED" : obj.who,
     targetTitle: target.title,
     changeLogURL: target.changeLogURL,
     revisionURL: common.getChangeLogRevisionURL(obj.auth_db_rev)
   });
 };
-
 
 // Offload HTML escaping to Handlebars.
 var listTemplate = Handlebars.compile(
