@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45eccf83_d45bfeb8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-05-26T20:21:43Z",
+      "side": 1,
+      "message": "I have changed the approach to redact the names when a GET request is made to the REST API for groups. Please let me know your thoughts, this seems like a better approach than the first one.",
+      "revId": "9c331251845547ed4e4b11443b96bd01cec2e745",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

@@ -57,6 +57,30 @@
       },
       "revId": "34b4bb8f11d9707eb19af90cd0c38a73f14efc8f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7d97cd1_a7371edb",
+        "filename": "appengine/components/components/auth/ui/static/js/change_log.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-05-26T20:21:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e88fa5e_9cc71c06",
+      "range": {
+        "startLine": 108,
+        "startChar": 18,
+        "endLine": 108,
+        "endChar": 33
+      },
+      "revId": "34b4bb8f11d9707eb19af90cd0c38a73f14efc8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
