@@ -8,6 +8,8 @@ import base64
 import functools
 import logging
 import textwrap
+import math
+import time
 
 from six.moves import urllib
 
@@ -20,6 +22,7 @@ from google.appengine.datastore import datastore_query
 from google.appengine.ext import ndb
 
 from components import utils
+import components
 
 from . import acl
 from .. import api
@@ -570,11 +573,25 @@ class ChangeLogHandler(handler.ApiHandler):
       # This is expected for users of components.auth that did not update
       # index.yaml. Return a friendlier message pointing them to instructions.
       self.abort_with_error(500, text=self.NEED_INDEX_ERROR_MESSAGE)
-
+    redact_names_from_change(changes)
     self.send_response({
       'changes': [c.to_jsonish() for c in changes],
       'cursor': cursor.urlsafe() if cursor and more else None,
     })
+
+
+def redact_names_from_change(changes, limit=365):
+  """Redacts names from change list.
+
+  Any entry that was made farther back than the limit
+  is redacted.
+  """
+  current_utc = int(round(time.time() * 1000))
+  for change in changes:
+    diffDays = math.floor((current_utc - change.to_jsonish()['when'] / 1000) /
+                          (1000 * 60 * 60 * 24))
+    if diffDays > limit:
+      change.who = components.auth.Identity('user', 'redacted@redacted.com')
 
 
 def caller_can_modify(group_dict):
