@@ -4,6 +4,7 @@
 
 """POSIX specific utility functions."""
 
+import logging
 import os
 import subprocess
 import sys
@@ -48,12 +49,14 @@ def get_disks_info():
   out = {}
   for items in _run_df():
     path = items[5]
+    logging.info("path %s", path)
     block_size = items[1]
     try:
       f = os.statvfs(path)  # pylint: disable=E1101
     except OSError:
       # Sometimes df lists paths that cannot be stat'ed, ignore them.
       continue
+    logging.info("statvfs %s", f)
     out[path] = {
         # Do not use the value reported by 'df' since it includes all the free
         # space, including the free space reserved by root. Since the Swarming
