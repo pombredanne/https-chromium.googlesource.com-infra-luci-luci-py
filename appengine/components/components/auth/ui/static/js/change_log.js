@@ -112,7 +112,6 @@ var beautifyChange = function(obj) {
   });
 };
 
-
 // Offload HTML escaping to Handlebars.
 var listTemplate = Handlebars.compile(
     '{{#each items}}<li>{{this}}</li>{{/each}}');
