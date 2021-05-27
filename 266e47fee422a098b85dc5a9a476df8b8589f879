@@ -22,6 +22,30 @@
       },
       "revId": "266e47fee422a098b85dc5a9a476df8b8589f879",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8955120d_38f916a4",
+        "filename": "client/tests/isolate_format_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-05-27T03:10:57Z",
+      "side": 1,
+      "message": "you\u0027re right, thank you",
+      "parentUuid": "0706627f_15a7e235",
+      "range": {
+        "startLine": 369,
+        "startChar": 19,
+        "endLine": 369,
+        "endChar": 20
+      },
+      "revId": "266e47fee422a098b85dc5a9a476df8b8589f879",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
