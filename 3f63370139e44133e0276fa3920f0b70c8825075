@@ -16,6 +16,24 @@
       "message": "better to use os.path.join with different root per os?",
       "revId": "3f63370139e44133e0276fa3920f0b70c8825075",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a169610b_9936d20d",
+        "filename": "client/tests/isolate_format_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-05-27T06:08:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f1a37ac_4a749da2",
+      "revId": "3f63370139e44133e0276fa3920f0b70c8825075",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
