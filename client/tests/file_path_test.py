@@ -281,7 +281,7 @@ class FilePathTest(auto_stub.TestCase):
       finally:
         file_path.rmtree(tempdir)
 
-    @unittest.skipIf(sys.platform == 'win32', 'crbug.com/1148174')
+    #@unittest.skipIf(sys.platform == 'win32', 'crbug.com/1148174')
     def test_rmtree_win(self):
       # Mock our sleep for faster test case execution.
       sleeps = []

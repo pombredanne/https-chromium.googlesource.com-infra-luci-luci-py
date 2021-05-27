@@ -141,11 +141,20 @@ class TestWin(auto_stub.TestCase):
       DriverVersion=u'1.1.1.18')
     SWbemServices = mock.Mock()
     SWbemServices.ExecQuery.return_value = [SWbemObjectSet]
-    with mock.patch(
-      'api.platforms.win._get_wmi_wbem', return_value=SWbemServices):
+    # def _get_wmi_wbem():
+    #   return SWbemServices
+    # self.mock(win, '_get_wmi_wbem', _get_wmi_wbem)
+
+    # actual = win.get_gpu()
+    # expected = (
+    #   ['1ae0', '1ae0:a002', '1ae0:a002-1.1.1.18'], ['Unknown GGA 1.1.1.18'])
+    # self.assertEqual(expected, actual)
+    if six.PY2:
+      target = 'api.platforms.win._get_wmi_wbem'
+    else:
+      target = 'win._get_wmi_wbem'
+    with mock.patch(target, return_value=SWbemServices):
       actual = win.get_gpu()
-      SWbemServices.ExecQuery.assert_called_once_with(
-        'SELECT * FROM Win32_VideoController')
       expected = (
         ['1ae0', '1ae0:a002', '1ae0:a002-1.1.1.18'], ['Unknown GGA 1.1.1.18'])
       self.assertEqual(expected, actual)

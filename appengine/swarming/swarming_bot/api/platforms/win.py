@@ -397,8 +397,9 @@ def get_gpu():
 
       dev_name = device.VideoProcessor or u''
       version = device.DriverVersion or u''
-      ven_name, dev_name = gpu.ids_to_names(
-        ven_id, u'Unknown', dev_id, dev_name)
+      print('pnp_', pnp_string)
+      print(device.VideoProcessor, device.DriverVersion)
+      ven_name, dev_name = gpu.ids_to_names(ven_id, u'Unknown', dev_id, dev_name)
 
       dimensions.add(ven_id)
       dimensions.add(u'%s:%s' % (ven_id, dev_id))
