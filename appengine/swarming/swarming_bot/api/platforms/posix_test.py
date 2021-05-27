@@ -23,6 +23,8 @@ class TestPosix(unittest.TestCase):
       self.assertGreater(info['free_mb'], 0)
       self.assertGreater(info['size_mb'], 0)
 
+    self.assertTrue(False)
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:
