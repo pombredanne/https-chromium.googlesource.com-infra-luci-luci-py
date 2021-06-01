@@ -32,7 +32,7 @@ from adb import usb_exceptions
 FASTBOOT_WRITE_CHUNK_SIZE_KB = 1024
 
 _LOG = logging.getLogger('fastboot')
-_LOG.setLevel(logging.ERROR)
+_LOG.setLevel(logging.DEBUG)
 
 DEFAULT_MESSAGE_CALLBACK = lambda m: logging.info('Got %s from device', m)
 FastbootMessage = collections.namedtuple(  # pylint: disable=invalid-name

@@ -33,7 +33,7 @@ from adb import usb_exceptions
 DEFAULT_TIMEOUT_MS = 1000
 
 _LOG = logging.getLogger('adb.usb')
-_LOG.setLevel(logging.ERROR)
+_LOG.setLevel(logging.DEBUG)
 
 
 def GetInterface(setting):
@@ -393,6 +393,7 @@ class UsbHandle(Handle):
           continue
 
         try:
+          logging.debug('FindDevicesSafe: device=%s(%s), setting=%s(%s), usb_info=%s(%s)', type(device), device, type(setting), setting, type(usb_info), usb_info)
           handle = cls(device, setting, usb_info=usb_info,
                        timeout_ms=timeout_ms)
           if device_matcher is None or device_matcher(handle):
