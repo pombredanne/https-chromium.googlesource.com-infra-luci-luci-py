@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c69bd3b_33027e8a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-02T04:12:02Z",
+      "side": 1,
+      "message": "\u003e \"bianry\" is a possible misspelling of \"binary\".\n\nPlease fix.",
+      "parentUuid": "372f8014_c4a6a0cd",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "57d1dea1346fae76ad3bc2fe3c5879b4daf1acd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
