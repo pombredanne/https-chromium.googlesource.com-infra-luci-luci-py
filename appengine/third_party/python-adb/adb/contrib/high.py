@@ -831,8 +831,11 @@ class HighDevice(object):
     #   | base64 --decode | grep APPLICATION_UID
     out = self.PullContent('/data/system/packages.list')
     if not out:
+      logging.debug('GetLastUID: /data/system/packages.list is empty')
       return None
-    return max(int(l.split(' ', 2)[1]) for l in out.splitlines() if len(l) > 2)
+    uid = max(int(l.split(' ', 2)[1]) for l in out.splitlines() if len(l) > 2)
+    logging.debug('GetLastUID: uid=%s, out=', uid, out)
+    return uid
 
   def GetPackages(self):
     """Returns the list of packages installed."""
