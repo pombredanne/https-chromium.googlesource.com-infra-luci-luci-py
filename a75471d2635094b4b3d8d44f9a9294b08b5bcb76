@@ -34,6 +34,24 @@
       "parentUuid": "32025d54_5169fa32",
       "revId": "a75471d2635094b4b3d8d44f9a9294b08b5bcb76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34bce3d3_bce7be51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-06-04T05:45:34Z",
+      "side": 1,
+      "message": "I think that should be caught in CQ, but why wasn\u0027t?",
+      "parentUuid": "9e79b426_d482d875",
+      "revId": "a75471d2635094b4b3d8d44f9a9294b08b5bcb76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
