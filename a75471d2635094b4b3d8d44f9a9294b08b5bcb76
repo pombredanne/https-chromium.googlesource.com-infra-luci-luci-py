@@ -52,6 +52,24 @@
       "parentUuid": "9e79b426_d482d875",
       "revId": "a75471d2635094b4b3d8d44f9a9294b08b5bcb76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c81ed3dc_a4a1413e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-04T06:10:38Z",
+      "side": 1,
+      "message": "Oh, asset diff check? \nYeah, that\u0027s strange.\n\nNo output at \"git diff\" step.\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8845383424523082912/+/u/swarming-ui/git_diff/stdout",
+      "parentUuid": "34bce3d3_bce7be51",
+      "revId": "a75471d2635094b4b3d8d44f9a9294b08b5bcb76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
