@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d09e3ab4_e071a882",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1307,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-08T08:26:53Z",
+      "side": 1,
+      "message": "I think task slice expiration can be delayed due to Datastore or some other reasons.\n\nSo this max_lifetime_secs calculation isn\u0027t reliable?",
+      "range": {
+        "startLine": 1307,
+        "startChar": 18,
+        "endLine": 1307,
+        "endChar": 33
+      },
+      "revId": "9d3c7da52f3c0a5b4bff0b43e712473805e8f97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
