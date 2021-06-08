@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2c30452a_b68f157b",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1307,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2021-06-08T18:32:39Z",
+      "side": 1,
+      "message": "\u003e And I think it is fine not to guarantee about what happens if tasks exceeded specified deadline.\n\nFWIW, in ResultDB an invocation will be forcefully finalized if it exceeds the specified deadline. But if a task is predicted to exceed its deadline, swarming can choose to update it invocation (before deadline, while it\u0027s still active) to extend its deadline though.",
+      "parentUuid": "944ade32_265fe2b6",
+      "range": {
+        "startLine": 1307,
+        "startChar": 18,
+        "endLine": 1307,
+        "endChar": 33
+      },
+      "revId": "9d3c7da52f3c0a5b4bff0b43e712473805e8f97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6625b1ac_1263f31e",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 4
