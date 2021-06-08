@@ -22,6 +22,29 @@
       },
       "revId": "9d3c7da52f3c0a5b4bff0b43e712473805e8f97d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6625b1ac_1263f31e",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1315,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-08T08:31:16Z",
+      "side": 1,
+      "message": "There are different deadlines.\n- schedule deadline\n- task execution deadline\n\nSo it should be more explicit.\nIn this case, `execution_deadline` would be appropriate.\nBut I concern the accuracy of the calculation for the reason I commented.\n\nAnd, we don\u0027t want to depend on this deadline (maybe?).\nSo instead of making this property method, I would move this calculation (+ some buffer) right before resultdb.create_invocation_async() for now.",
+      "range": {
+        "startLine": 1315,
+        "startChar": 6,
+        "endLine": 1315,
+        "endChar": 14
+      },
+      "revId": "9d3c7da52f3c0a5b4bff0b43e712473805e8f97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
