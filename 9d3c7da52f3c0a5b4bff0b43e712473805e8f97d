@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "86e0e03e_fd36a6e5",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1307,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-09T08:44:46Z",
+      "side": 1,
+      "message": "\u003e I think it is better to use 0 as buffer for now because I don\u0027t know what is appropriate value if 0 is not appropriate.\n\nAn appropriate buffer depends on the reason why we want to set deadline.\n(It can be 10min, 1hour etc)\n\nAs Chan suggested, we could update the deadline at task slice. It requires yet another RPC call, though.",
+      "parentUuid": "be94a3ec_d6b6c674",
+      "range": {
+        "startLine": 1307,
+        "startChar": 18,
+        "endLine": 1307,
+        "endChar": 33
+      },
+      "revId": "9d3c7da52f3c0a5b4bff0b43e712473805e8f97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6625b1ac_1263f31e",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 4
