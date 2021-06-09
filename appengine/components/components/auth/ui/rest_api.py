@@ -41,8 +41,8 @@ def get_rest_api_routes():
   """Return a list of webapp2 routes with auth REST API handlers."""
   assert model.GROUP_NAME_RE.pattern[0] == '^'
   group_re = model.GROUP_NAME_RE.pattern[1:]
-  assert model.IP_WHITELIST_NAME_RE.pattern[0] == '^'
-  ip_whitelist_re = model.IP_WHITELIST_NAME_RE.pattern[1:]
+  assert model.IP_ALLOWLIST_NAME_RE.pattern[0] == '^'
+  ip_allowlist_re = model.IP_ALLOWLIST_NAME_RE.pattern[1:]
   return [
     webapp2.Route('/auth/api/v1/accounts/self', SelfHandler),
     webapp2.Route('/auth/api/v1/accounts/self/xsrf_token', XSRFHandler),
@@ -50,10 +50,10 @@ def get_rest_api_routes():
     webapp2.Route('/auth/api/v1/groups', GroupsHandler),
     webapp2.Route('/auth/api/v1/groups/<name:%s>' % group_re, GroupHandler),
     webapp2.Route('/auth/api/v1/internal/replication', ReplicationHandler),
-    webapp2.Route('/auth/api/v1/ip_whitelists', IPWhitelistsHandler),
+    webapp2.Route('/auth/api/v1/ip_allowlists', IPAllowlistsHandler),
     webapp2.Route(
-        '/auth/api/v1/ip_whitelists/<name:%s>' % ip_whitelist_re,
-        IPWhitelistHandler),
+        '/auth/api/v1/ip_allowlists/<name:%s>' % ip_allowlist_re,
+        IPAllowlistHandler),
     webapp2.Route(
         '/auth/api/v1/listing/groups/<name:%s>' % group_re,
         GroupListingHandler),
@@ -98,8 +98,8 @@ def is_config_locked():
   return HTTP 409 error.
 
   A configuration is subset of AuthDB that changes infrequently:
-  * OAuth client_id whitelist
-  * IP whitelist
+  * OAuth client_id allowlist
+  * IP allowlist
 
   Used by auth_service that utilizes config_service for config management.
   """
@@ -909,36 +909,36 @@ class ReplicationHandler(handler.AuthenticatingHandler):
     self.send_response(response)
 
 
-class IPWhitelistsHandler(handler.ApiHandler):
-  """Lists all IP whitelists.
+class IPAllowlistsHandler(handler.ApiHandler):
+  """Lists all IP allowlists.
 
   Available in Standalone, Primary and Replica modes. Replicas only have IP
-  whitelists referenced in "account -> IP whitelist" mapping.
+  allowlists referenced in "account -> IP allowlist" mapping.
   """
 
   @api.require(acl.has_access)
   def get(self):
     if model.is_replica():
       raise NotImplementedError()
-    entities = model.AuthIPWhitelist.query(ancestor=model.root_key())
+    entities = model.AuthIPAllowlist.query(ancestor=model.root_key())
     self.send_response({
-      'ip_whitelists': [
+      'ip_allowlists': [
         e.to_serializable_dict(with_id_as='name')
         for e in sorted(entities, key=lambda x: x.key.id())
       ],
     })
 
 
-class IPWhitelistHandler(EntityHandlerBase):
-  """Creating, reading, updating and deleting a single IP whitelist.
+class IPAllowlistHandler(EntityHandlerBase):
+  """Creating, reading, updating and deleting a single IP allowlist.
 
   GET is available in Standalone, Primary and Replica modes.
   Everything else is available only in Standalone and Primary modes.
   """
-  entity_url_prefix = '/auth/api/v1/ip_whitelists/'
-  entity_kind = model.AuthIPWhitelist
-  entity_kind_name = 'ip_whitelist'
-  entity_kind_title = 'ip whitelist'
+  entity_url_prefix = '/auth/api/v1/ip_allowlists/'
+  entity_kind = model.AuthIPAllowlist
+  entity_kind_name = 'ip_allowlist'
+  entity_kind_title = 'ip allowlist'
 
   def check_preconditions(self):
     if self.request.method != 'GET' and is_config_locked():
@@ -946,14 +946,14 @@ class IPWhitelistHandler(EntityHandlerBase):
 
   @classmethod
   def get_entity_key(cls, name):
-    assert model.is_valid_ip_whitelist_name(name), name
-    return model.ip_whitelist_key(name)
+    assert model.is_valid_ip_allowlist_name(name), name
+    return model.ip_allowlist_key(name)
 
   @classmethod
   def do_get(cls, name, request):
     if model.is_replica():
       raise NotImplementedError()
-    return super(IPWhitelistHandler, cls).do_get(name, request)
+    return super(IPAllowlistHandler, cls).do_get(name, request)
 
   @classmethod
   def do_create(cls, entity):
@@ -966,7 +966,7 @@ class IPWhitelistHandler(EntityHandlerBase):
 
   @classmethod
   def do_delete(cls, entity):
-    # TODO(vadimsh): Verify it isn't being referenced by whitelist assignments.
+    # TODO(vadimsh): Verify it isn't being referenced by allowlist assignments.
     entity.key.delete()
 
 
@@ -992,7 +992,7 @@ class PerIdentityBatchHandler(handler.ApiHandler):
     """
     raise NotImplementedError()
 
-  def validate_params(self, params):
+  def validate_params(self, params):ƒ
     """Takes a dict with some single query parameters and validates it.
 
     Raises ValueError if parameters are invalid.
