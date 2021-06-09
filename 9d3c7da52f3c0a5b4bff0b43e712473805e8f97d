@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "146e8221_f5a485ab",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1307,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-09T02:41:43Z",
+      "side": 1,
+      "message": "\u003e ignore such unexpected delay\n\nEven in a regular situation, there is some latency for task slice switch.\nIt\u0027s usually a few minutes.\n\nSo a task can keep running after the deadline.\nIt\u0027s an edge case, but possible.\n\nWhy does the deadline of invocation need to be so strict?\n\nI noticed that service_account_token also has this issue. But the rational may be different since it grants permissions.\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/handlers_endpoints.py;l\u003d606-609;drc\u003dbf1867e975fdefe7ac3f2908782c73dac4e3d1fa",
+      "parentUuid": "2c30452a_b68f157b",
+      "range": {
+        "startLine": 1307,
+        "startChar": 18,
+        "endLine": 1307,
+        "endChar": 33
+      },
+      "revId": "9d3c7da52f3c0a5b4bff0b43e712473805e8f97d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6625b1ac_1263f31e",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 4
