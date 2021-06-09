@@ -8,9 +8,7 @@ import base64
 import functools
 import logging
 import textwrap
-
-from six.moves import urllib
-
+import urllib
 import webapp2
 
 from google.appengine.api import app_identity
@@ -41,8 +39,8 @@ def get_rest_api_routes():
   """Return a list of webapp2 routes with auth REST API handlers."""
   assert model.GROUP_NAME_RE.pattern[0] == '^'
   group_re = model.GROUP_NAME_RE.pattern[1:]
-  assert model.IP_WHITELIST_NAME_RE.pattern[0] == '^'
-  ip_whitelist_re = model.IP_WHITELIST_NAME_RE.pattern[1:]
+  assert model.IP_ALLOWLIST_NAME_RE.pattern[0] == '^'
+  ip_allowlist_re = model.IP_ALLOWLIST_NAME_RE.pattern[1:]
   return [
     webapp2.Route('/auth/api/v1/accounts/self', SelfHandler),
     webapp2.Route('/auth/api/v1/accounts/self/xsrf_token', XSRFHandler),
@@ -50,16 +48,12 @@ def get_rest_api_routes():
     webapp2.Route('/auth/api/v1/groups', GroupsHandler),
     webapp2.Route('/auth/api/v1/groups/<name:%s>' % group_re, GroupHandler),
     webapp2.Route('/auth/api/v1/internal/replication', ReplicationHandler),
-    webapp2.Route('/auth/api/v1/ip_whitelists', IPWhitelistsHandler),
+    webapp2.Route('/auth/api/v1/ip_allowlists', IPAllowlistsHandler),
     webapp2.Route(
-        '/auth/api/v1/ip_whitelists/<name:%s>' % ip_whitelist_re,
-        IPWhitelistHandler),
-    webapp2.Route(
-        '/auth/api/v1/listing/groups/<name:%s>' % group_re,
-        GroupListingHandler),
+        '/auth/api/v1/ip_allowlists/<name:%s>' % ip_allowlist_re,
+        IPAllowlistHandler),
     webapp2.Route('/auth/api/v1/memberships/list', MembershipsListHandler),
     webapp2.Route('/auth/api/v1/memberships/check', MembershipsCheckHandler),
-    webapp2.Route('/auth/api/v1/subgraph/<principal:.*$>', SubgraphHandler),
     webapp2.Route('/auth/api/v1/suggest/groups', GroupsSuggestHandler),
     webapp2.Route('/auth/api/v1/server/certificates', CertificatesHandler),
     webapp2.Route('/auth/api/v1/server/info', ServerInfoHandler),
@@ -98,8 +92,8 @@ def is_config_locked():
   return HTTP 409 error.
 
   A configuration is subset of AuthDB that changes infrequently:
-  * OAuth client_id whitelist
-  * IP whitelist
+  * OAuth client_id allowlist
+  * IP allowlist
 
   Used by auth_service that utilizes config_service for config management.
   """
@@ -116,13 +110,6 @@ def _is_no_cache(request):
   """Returns True if the request should skip the cache."""
   cache_control = request.headers.get('Cache-Control') or ''
   return 'no-cache' in cache_control or 'max-age=0' in cache_control
-
-
-def _get_maybe_cached_auth_db(request):
-  """Returns cached auth DB unless the request has no cache header."""
-  if _is_no_cache(request):
-    return api.get_latest_auth_db()
-  return api.get_request_auth_db()
 
 
 class EntityOperationError(Exception):
@@ -182,8 +169,6 @@ class EntityHandlerBase(handler.ApiHandler):
   def do_get(cls, name, request):  # pylint: disable=unused-argument
     """Returns an entity given its name or None if no such entity.
 
-    Can be called in any mode (including on replicas).
-
     Args:
       name: name of the entity to fetch (use get_entity_key to convert to key).
       request: webapp2.Request object.
@@ -192,14 +177,12 @@ class EntityHandlerBase(handler.ApiHandler):
 
   @classmethod
   def can_create(cls):
-    """True if the caller is allowed to create a new entity."""
+    """True if caller is allowed to create a new entity."""
     return acl.is_admin()
 
   @classmethod
   def do_create(cls, entity):
-    """Called in a transaction to validate and put a new entity.
-
-    Called only in Primary and Standalone modes.
+    """Called in transaction to validate and put a new entity.
 
     Raises:
       EntityOperationError in case of a conflict.
@@ -208,14 +191,12 @@ class EntityHandlerBase(handler.ApiHandler):
 
   @classmethod
   def can_update(cls, entity):  # pylint: disable=unused-argument
-    """True if the caller is allowed to update a given entity."""
+    """True if caller is allowed to update a given entity."""
     return acl.is_admin()
 
   @classmethod
   def do_update(cls, entity, params):
-    """Called in a transaction to update existing entity.
-
-    Called only in Primary and Standalone modes.
+    """Called in transaction to update existing entity.
 
     Raises:
       EntityOperationError in case of a conflict.
@@ -224,14 +205,12 @@ class EntityHandlerBase(handler.ApiHandler):
 
   @classmethod
   def can_delete(cls, entity):  # pylint: disable=unused-argument
-    """True if the caller is allowed to delete a given entity."""
+    """True if caller is allowed to delete a given entity."""
     return acl.is_admin()
 
   @classmethod
   def do_delete(cls, entity):
-    """Called in a transaction to delete existing entity.
-
-    Called only in Primary and Standalone modes.
+    """Called in transaction to delete existing entity.
 
     Raises:
       EntityOperationError in case of a conflict.
@@ -311,12 +290,11 @@ class EntityHandlerBase(handler.ApiHandler):
         response={'ok': True},
         http_code=201,
         headers={
-            'Last-Modified':
-                utils.datetime_to_rfc2822(entity.modified_ts),
-            'Location':
-                '%s%s' % (self.entity_url_prefix,
-                          urllib.parse.quote(entity.key.id())),
-        })
+          'Last-Modified': utils.datetime_to_rfc2822(entity.modified_ts),
+          'Location':
+              '%s%s' % (self.entity_url_prefix, urllib.quote(entity.key.id())),
+        }
+    )
 
   @forbid_api_on_replica
   @api.require(acl.has_access)
@@ -518,7 +496,7 @@ class ChangeLogHandler(handler.ApiHandler):
   Your GAE app doesn't have indexes required for "Change log" functionality.
 
   If you need this feature, add following indexes to index.yaml. You can do it
-  any time: changes are collected, they are just not queryable until indexed.
+  any time: changes are collected, they are just not queriable until indexed.
 
   - kind: AuthDBChange
     ancestor: yes
@@ -598,16 +576,14 @@ class GroupsHandler(handler.ApiHandler):
   api_doc = [
     {
       'verb': 'GET',
-      'params': 'exclude_external=1|0',
-      'doc': 'Lists names and descriptions of groups.',
-      'response_type': 'Groups',
+      'doc': 'Lists names and descriptions of all known groups.',
+      'response_type': 'Group listing',
     },
   ]
 
   @staticmethod
-  def cache_key(auth_db_rev, exclude_external):
-    return 'api:v1:GroupsHandler/%d?exclude_external=%d' % (
-        auth_db_rev, 1 if exclude_external else 0)
+  def cache_key(auth_db_rev):
+    return 'api:v1:GroupsHandler/%d' % auth_db_rev
 
   @staticmethod
   def adjust_response_for_user(response):
@@ -617,36 +593,19 @@ class GroupsHandler(handler.ApiHandler):
 
   @api.require(acl.has_access)
   def get(self):
-    exclude_external = self.request.get('exclude_external') == '1'
-
     # Try to find a cached response for the current revision.
     auth_db_rev = model.get_auth_db_revision()
-    cache_key = self.cache_key(auth_db_rev, exclude_external)
-    cached_response = memcache.get(cache_key)
+    cached_response = memcache.get(self.cache_key(auth_db_rev))
     if cached_response is not None:
       self.adjust_response_for_user(cached_response)
       self.send_response(cached_response)
       return
 
     # Grab a list of groups and corresponding revision for cache key.
-    if not model.is_replica():
-      def run():
-        # TODO(vadimsh): We can index "is_external" field and skip fetching
-        # external groups here if exclude_external is True.
-        fut = model.AuthGroup.query(ancestor=model.root_key()).fetch_async()
-        return model.get_auth_db_revision(), fut.get_result()
-      auth_db_rev, group_list = ndb.transaction(run)
-    else:
-      auth_db = api.get_latest_auth_db()
-      auth_db_rev = auth_db.auth_db_rev
-      group_list = [auth_db.get_group(g) for g in auth_db.get_group_names()]
-
-    # Throw away external groups if asked to.
-    if exclude_external:
-      group_list = [
-          g for g in group_list
-          if not model.is_external_group_name(g.key.string_id())
-      ]
+    def run():
+      fut = model.AuthGroup.query(ancestor=model.root_key()).fetch_async()
+      return model.get_auth_db_revision(), fut.get_result()
+    auth_db_rev, group_list = ndb.transaction(run)
 
     # Currently AuthGroup entity contains a list of group members in the entity
     # body. It's an implementation detail that should not be relied upon.
@@ -661,7 +620,7 @@ class GroupsHandler(handler.ApiHandler):
         for g in sorted(group_list, key=lambda x: x.key.string_id())
       ],
     }
-    memcache.set(cache_key, response, time=24*3600)
+    memcache.set(self.cache_key(auth_db_rev), response, time=24*3600)
     self.adjust_response_for_user(response)
     self.send_response(response)
 
@@ -724,13 +683,12 @@ class GroupHandler(EntityHandlerBase):
 
   @classmethod
   def do_get(cls, name, request):
-    # On the primary/standalone, hit the datastore directly if the caching is
-    # forbidden.
-    if _is_no_cache(request) and not model.is_replica():
+    # Use in-memory cache by default. It can be slightly stale, but serving from
+    # it is extra fast (0 RPCs). Use datastore if explicitly asked to bypass
+    # the cache. Direct datastore reads are used mostly by admin UI.
+    if _is_no_cache(request):
       return super(GroupHandler, cls).do_get(name, request)
-    # Otherwise use AuthDB (either latest or cached). The cached one can be
-    # slightly stale, but serving from it is extra fast (0 RPCs).
-    return _get_maybe_cached_auth_db(request).get_group(name)
+    return api.get_request_auth_db().get_group(name)
 
   # Same as in the base class, repeated here just for clarity.
   @classmethod
@@ -795,14 +753,6 @@ class GroupHandler(EntityHandlerBase):
         raise EntityOperationError(
             message='Groups can not have cyclic dependencies: %s.' % as_str,
             details={'cycle': cycle})
-    # TODO(vadimsh): Temporary forbid using 'project:...' identities in groups.
-    # They are not safe to be added to groups until all services that consume
-    # AuthDB understand them. Many services do an overzealous validation of
-    # AuthDB pushes and totally reject them if AuthDB contains some unrecognized
-    # identity kinds.
-    if any(m.is_project for m in entity.members):
-      raise EntityOperationError(
-          message='"project:..." identities aren\'t allowed in groups yet')
     # Good enough.
     entity.put()
 
@@ -881,13 +831,13 @@ class ReplicationHandler(handler.AuthenticatingHandler):
 
     # Deserialize the request, check it is valid.
     request = replication_pb2.ReplicationPushRequest.FromString(body)
-    if not request.revision or not request.HasField('auth_db'):
+    if not request.HasField('revision') or not request.HasField('auth_db'):
       self.send_error(replication_pb2.ReplicationPushResponse.BAD_REQUEST)
       return
 
     # Handle it.
     logging.info('Received AuthDB push: rev %d', request.revision.auth_db_rev)
-    if request.auth_code_version:
+    if request.HasField('auth_code_version'):
       logging.info(
           'Primary\'s auth component version: %s', request.auth_code_version)
     applied, state = replication.push_auth_db(request.revision, request.auth_db)
@@ -909,36 +859,34 @@ class ReplicationHandler(handler.AuthenticatingHandler):
     self.send_response(response)
 
 
-class IPWhitelistsHandler(handler.ApiHandler):
-  """Lists all IP whitelists.
+class IPAllowlistsHandler(handler.ApiHandler):
+  """Lists all IP allowlists.
 
   Available in Standalone, Primary and Replica modes. Replicas only have IP
-  whitelists referenced in "account -> IP whitelist" mapping.
+  allowlists referenced in "account -> IP allowlist" mapping.
   """
 
   @api.require(acl.has_access)
   def get(self):
-    if model.is_replica():
-      raise NotImplementedError()
-    entities = model.AuthIPWhitelist.query(ancestor=model.root_key())
+    entities = model.AuthIPAllowlist.query(ancestor=model.root_key())
     self.send_response({
-      'ip_whitelists': [
+      'ip_allowlists': [
         e.to_serializable_dict(with_id_as='name')
         for e in sorted(entities, key=lambda x: x.key.id())
       ],
     })
 
 
-class IPWhitelistHandler(EntityHandlerBase):
-  """Creating, reading, updating and deleting a single IP whitelist.
+class IPAllowlistHandler(EntityHandlerBase):
+  """Creating, reading, updating and deleting a single IP allowlist.
 
   GET is available in Standalone, Primary and Replica modes.
   Everything else is available only in Standalone and Primary modes.
   """
-  entity_url_prefix = '/auth/api/v1/ip_whitelists/'
-  entity_kind = model.AuthIPWhitelist
-  entity_kind_name = 'ip_whitelist'
-  entity_kind_title = 'ip whitelist'
+  entity_url_prefix = '/auth/api/v1/ip_allowlists/'
+  entity_kind = model.AuthIPAllowlist
+  entity_kind_name = 'ip_allowlist'
+  entity_kind_title = 'ip allowlist'
 
   def check_preconditions(self):
     if self.request.method != 'GET' and is_config_locked():
@@ -946,14 +894,8 @@ class IPWhitelistHandler(EntityHandlerBase):
 
   @classmethod
   def get_entity_key(cls, name):
-    assert model.is_valid_ip_whitelist_name(name), name
-    return model.ip_whitelist_key(name)
-
-  @classmethod
-  def do_get(cls, name, request):
-    if model.is_replica():
-      raise NotImplementedError()
-    return super(IPWhitelistHandler, cls).do_get(name, request)
+    assert model.is_valid_ip_allowlist_name(name), name
+    return model.ip_allowlist_key(name)
 
   @classmethod
   def do_create(cls, entity):
@@ -966,7 +908,7 @@ class IPWhitelistHandler(EntityHandlerBase):
 
   @classmethod
   def do_delete(cls, entity):
-    # TODO(vadimsh): Verify it isn't being referenced by whitelist assignments.
+    # TODO(vadimsh): Verify it isn't being referenced by allowlist assigments.
     entity.key.delete()
 
 
@@ -1042,7 +984,7 @@ class PerIdentityBatchHandler(handler.ApiHandler):
 
     # Validate individual queries.
     queries = {}
-    for ident_str, params in per_identity.items():
+    for ident_str, params in per_identity.iteritems():
       try:
         ident = model.Identity.from_bytes(ident_str)
       except ValueError as e:
@@ -1065,39 +1007,9 @@ class PerIdentityBatchHandler(handler.ApiHandler):
     return {
       'per_identity': {
         ident.to_bytes(): res
-        for ident, res in self.execute_batch(queries).items()
+        for ident, res in self.execute_batch(queries).iteritems()
       },
     }
-
-
-class GroupListingHandler(handler.ApiHandler):
-  """Lists all members of a group, recursively."""
-
-  # This is visible in the UI.
-  api_doc = [
-    {
-      'verb': 'GET',
-      'doc': 'Lists all members of a group, expanding subgroups.',
-      'response_type': 'Group listing',
-    },
-  ]
-
-  @api.require(acl.has_access)
-  def get(self, name):
-    if not model.is_valid_group_name(name):
-      self.abort_with_error(400, text='Invalid group name')
-
-    # By default use cached auth DB. Switch to latest one only if No-Cache
-    # header is given.
-    listing = _get_maybe_cached_auth_db(self.request).list_group(name)
-
-    self.send_response({
-      'listing': {
-        'members': [{'principal': m.to_bytes()} for m in listing.members],
-        'globs': [{'principal': g.to_bytes()} for g in listing.globs],
-        'nested': [{'principal': n} for n in listing.nested],
-      },
-    })
 
 
 class MembershipsListHandler(PerIdentityBatchHandler):
@@ -1279,81 +1191,12 @@ class MembershipsCheckHandler(PerIdentityBatchHandler):
     # in parallel will only hurt, since we have only one CPU and there's no IO.
     auth_db = api.get_request_cache().auth_db
     resp = {}
-    for iden, p in queries.items():
+    for iden, p in queries.iteritems():
       assert isinstance(p['groups'], list)
       resp[iden] = {
         'is_member': any(auth_db.is_group_member(g, iden) for g in p['groups']),
       }
     return resp
-
-
-class SubgraphHandler(handler.ApiHandler):
-  """Returns groups that include this principal and are owned by it."""
-
-  # This is visible in the UI.
-  api_doc = [
-    {
-      'verb': 'GET',
-      'doc': 'Returns groups that include this principal and are owned by it.',
-      'response_type': 'Group subgraph',
-    },
-  ]
-
-  @api.require(acl.has_access)
-  def get(self, principal):
-    # Guess the principal type. All globs necessarily have '*' and ':', and all
-    # identities necessarily have ':' (but don't have '*'). Group names are
-    # forbidden to have '*' or ':'.
-    try:
-      if '*' in principal:
-        principal = model.IdentityGlob.from_bytes(principal)
-      elif ':' in principal:
-        principal = model.Identity.from_bytes(principal)
-      elif not model.is_valid_group_name(principal):
-        raise ValueError('Not a valid group name')
-    except ValueError as exc:
-      self.abort_with_error(400, text='Bad principal - %s' % exc)
-
-    # By default use cached auth DB. Switch to latest one only if No-Cache
-    # header is given.
-    auth_db = _get_maybe_cached_auth_db(self.request)
-    subgraph = auth_db.get_relevant_subgraph(principal)
-
-    if subgraph.root_id is None:
-      # Empty graph from get_relevant_subgraph means group not found.
-      self.abort_with_error(
-          404, text='The requested group "%s" was not found.' % principal)
-
-    def as_dict(node, edges):
-      if isinstance(node, model.Identity):
-        kind = 'IDENTITY'
-        value = node.to_bytes()
-      elif isinstance(node, model.IdentityGlob):
-        kind = 'GLOB'
-        value = node.to_bytes()
-      else:
-        assert isinstance(node, basestring), node
-        kind = 'GROUP'
-        value = node
-
-      sorted_edges = {}
-      for label, node_id_set in edges.items():
-        if node_id_set:
-          sorted_edges[label] = sorted(node_id_set)
-
-      out = {'kind': kind, 'value': value}
-      if sorted_edges:
-        out['edges'] = sorted_edges
-      return out
-
-    # Per API contract the requested principal for a normal response
-    # should have ID 0, verify this.
-    assert subgraph.root_id == 0, subgraph.root_id
-    self.send_response({
-      'subgraph': {
-        'nodes': [as_dict(node, edges) for node, edges in subgraph.describe()],
-      },
-    })
 
 
 class GroupsSuggestHandler(handler.ApiHandler):
@@ -1429,18 +1272,17 @@ class OAuthConfigHandler(handler.ApiHandler):
     additional_ids = None
     token_server_url = None
 
-    # Use most up-to-date data in datastore if requested and available.
-    if _is_no_cache(self.request) and not model.is_replica():
+    # Use most up-to-date data in datastore if requested. Used by management UI.
+    if _is_no_cache(self.request):
       global_config = model.root_key().get()
       client_id = global_config.oauth_client_id
       client_secret = global_config.oauth_client_secret
       additional_ids = global_config.oauth_additional_client_ids
       token_server_url = global_config.token_server_url
     else:
-      # Potentially faster call that uses cached config (that may be several
-      # minutes stale). Used by all client side scripts that just want to
-      # authenticate.
-      auth_db = _get_maybe_cached_auth_db(self.request)
+      # Faster call that uses cached config (that may be several minutes stale).
+      # Used by all client side scripts that just want to authenticate.
+      auth_db = api.get_request_auth_db()
       client_id, client_secret, additional_ids = auth_db.get_oauth_config()
       token_server_url = auth_db.token_server_url
 
