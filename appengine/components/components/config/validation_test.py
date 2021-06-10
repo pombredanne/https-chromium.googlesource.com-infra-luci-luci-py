@@ -119,11 +119,11 @@ class ValidationTestCase(test_case.TestCase):
 
     self.assertTrue(
         self.rule_set.is_defined_for(
-            'projects/baz/refs/heads/master', 'bar.cfg'))
+            'projects/baz/refs/heads/client', 'bar.cfg'))
 
     self.assertFalse(
         self.rule_set.is_defined_for(
-            'projects/baz/refs/heads/master', 'nonbar.cfg'))
+            'projects/baz/refs/heads/client', 'nonbar.cfg'))
     self.assertFalse(self.rule_set.is_defined_for('services/foo', 'bar.cfg'))
     self.assertFalse(self.rule_set.is_defined_for('projects/baz', 'bar.cfg'))
 
