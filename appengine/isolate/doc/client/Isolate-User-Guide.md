@@ -6,7 +6,7 @@ Isolate your test.
 ## Introduction
 
 -   The Go binary `isolate` (compiled from
-    https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/master/client/cmd/isolate/main.go)
+    https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/client/client/cmd/isolate/main.go)
     is meant to replace `isolate.py`.
 -   `isolate` wraps the vast majority of the client side code relating to
     executable isolation.

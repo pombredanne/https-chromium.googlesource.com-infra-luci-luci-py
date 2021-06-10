@@ -409,7 +409,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
 
     # Quarantine event should be registered, too.
     expected_event = {
-        'authenticated_as': u'bot:whitelisted-ip',
+        'authenticated_as': u'bot:allowlisted-ip',
         # last valid dimensions should be used in BotEvent.
         'dimensions': {
             u'id': [u'bot1'],
@@ -521,7 +521,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         u'cmd': u'run',
         u'manifest': {
             u'bot_id': u'bot1',
-            u'bot_authenticated_as': u'bot:whitelisted-ip',
+            u'bot_authenticated_as': u'bot:allowlisted-ip',
             u'caches': [],
             u'cipd_input': {
                 u'client_package': {
@@ -599,7 +599,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         u'cmd': u'run',
         u'manifest': {
             u'bot_id': u'bot1',
-            u'bot_authenticated_as': u'bot:whitelisted-ip',
+            u'bot_authenticated_as': u'bot:allowlisted-ip',
             u'caches': [],
             u'cipd_input': {
                 u'client_package': {
@@ -674,7 +674,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         u'cmd': u'run',
         u'manifest': {
             u'bot_id': u'bot1',
-            u'bot_authenticated_as': u'bot:whitelisted-ip',
+            u'bot_authenticated_as': u'bot:allowlisted-ip',
             u'caches': [{
                 u'hint': '-1',
                 u'name': u'git_infra',
@@ -800,7 +800,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         u'cmd': u'run',
         u'manifest': {
             u'bot_id': u'bot1',
-            u'bot_authenticated_as': u'bot:whitelisted-ip',
+            u'bot_authenticated_as': u'bot:allowlisted-ip',
             u'caches': [],
             u'cipd_input': {
                 u'client_package': {
@@ -878,7 +878,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
             require_luci_machine_token=False,
             require_service_account=None,
             require_gce_vm_token=None,
-            ip_whitelist=None,
+            ip_allowlist=None,
         ),),
         dimensions={u'pool': [u'server-side']},
         bot_config_script=None,
@@ -905,7 +905,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
             require_luci_machine_token=False,
             require_service_account=None,
             require_gce_vm_token=None,
-            ip_whitelist=None,
+            ip_allowlist=None,
         ),),
         dimensions={},
         bot_config_script='foo.py',
@@ -1089,7 +1089,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         u'cmd': u'run',
         u'manifest': {
             u'bot_id': u'bot1',
-            u'bot_authenticated_as': u'bot:whitelisted-ip',
+            u'bot_authenticated_as': u'bot:allowlisted-ip',
             u'caches': [],
             u'cipd_input': {
                 u'client_package': {
@@ -1526,7 +1526,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         e.to_dict() for e in bot_management.get_events_query('bot1', True)
     ]
     expected = [{
-        'authenticated_as': u'bot:whitelisted-ip',
+        'authenticated_as': u'bot:allowlisted-ip',
         'dimensions': dimensions,
         'event_type': unicode(e),
         'external_ip': u'192.168.2.2',
@@ -1552,7 +1552,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
                 for e in reversed(handlers_bot.BotEventHandler.ALLOWED_EVENTS)
                 if e != 'bot_error']
     expected.append({
-        'authenticated_as': u'bot:whitelisted-ip',
+        'authenticated_as': u'bot:allowlisted-ip',
         'dimensions': dimensions,
         'event_type': u'bot_connected',
         'external_ip': u'192.168.2.2',
@@ -2117,7 +2117,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
             require_luci_machine_token=False,
             require_service_account=None,
             require_gce_vm_token=None,
-            ip_whitelist=None,
+            ip_allowlist=None,
         ),),
         dimensions={},
         bot_config_script=None,

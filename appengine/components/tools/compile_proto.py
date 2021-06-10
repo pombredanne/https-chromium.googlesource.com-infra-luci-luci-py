@@ -37,24 +37,24 @@ PROTOC_INSTALL_HELP = (
 
 
 # Paths that should not be searched for *.proto.
-BLACKLISTED_PATHS = [
+DENYLISTED_PATHS = [
   re.compile(r'.*(/|\\)third_party(/|\\)?'),
 ]
 
 
-def is_blacklisted(path):
-  """True if |path| matches any regexp in |blacklist|."""
-  return any(b.match(path) for b in BLACKLISTED_PATHS)
+def is_denylisted(path):
+  """True if |path| matches any regexp in |denylist|."""
+  return any(b.match(path) for b in DENYLISTED_PATHS)
 
 
 def find_proto_files(path):
   """Recursively searches for *.proto files, yields absolute paths to them."""
   path = os.path.abspath(path)
   for dirpath, dirnames, filenames in os.walk(path, followlinks=True):
-    # Skip hidden and blacklisted directories
+    # Skip hidden and denylisted directories
     skipped = [
       x for x in dirnames
-      if x[0] == '.' or is_blacklisted(os.path.join(dirpath, x))
+      if x[0] == '.' or is_denylisted(os.path.join(dirpath, x))
     ]
     for dirname in skipped:
       dirnames.remove(dirname)

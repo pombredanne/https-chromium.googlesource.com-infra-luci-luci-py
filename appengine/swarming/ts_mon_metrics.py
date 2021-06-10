@@ -233,7 +233,7 @@ _jobs_max_pending_duration = gae_ts_mon.FloatMetric(
 
 
 # Instance metric. Metric fields:
-# - auth_method = one of 'luci_token', 'service_account', 'ip_whitelist'.
+# - auth_method = one of 'luci_token', 'service_account', 'ip_allowlist'.
 # - condition = depends on the auth method (e.g. email for 'service_account').
 _bot_auth_successes = gae_ts_mon.CounterMetric(
     'swarming/bot_auth/success',

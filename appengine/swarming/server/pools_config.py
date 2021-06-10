@@ -756,7 +756,7 @@ def bootstrap_dev_server_acls():
                   scheduling_users=frozenset([
                       auth.Identity(auth.IDENTITY_USER,
                                     'smoke-test@example.com'),
-                      auth.Identity(auth.IDENTITY_BOT, 'whitelisted-ip'),
+                      auth.Identity(auth.IDENTITY_BOT, 'allowlisted-ip'),
                   ]),
               ),
       },

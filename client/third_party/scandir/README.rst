@@ -6,11 +6,11 @@ scandir, a better directory iterator and faster os.walk()
    :target: https://pypi.python.org/pypi/scandir
    :alt: scandir on PyPI (Python Package Index)
 
-.. image:: https://travis-ci.org/benhoyt/scandir.svg?branch=master
+.. image:: https://travis-ci.org/benhoyt/scandir.svg?branch=client
    :target: https://travis-ci.org/benhoyt/scandir
    :alt: Travis CI tests (Linux)
 
-.. image:: https://ci.appveyor.com/api/projects/status/github/benhoyt/scandir?branch=master&svg=true
+.. image:: https://ci.appveyor.com/api/projects/status/github/benhoyt/scandir?branch=client&svg=true
    :target: https://ci.appveyor.com/project/benhoyt/scandir
    :alt: Appveyor tests (Windows)
 

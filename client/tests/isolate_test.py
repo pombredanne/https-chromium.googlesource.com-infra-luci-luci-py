@@ -286,7 +286,7 @@ class IsolateLoad(IsolateBase):
       isolated = os.path.join(self.isolated_dir, 'foo.isolated')
       outdir = os.path.join(self.directory, 'outdir')
       isolate = isolate_file
-      blacklist = list(isolateserver.DEFAULT_DENYLIST)
+      denylist = list(isolateserver.DEFAULT_DENYLIST)
       path_variables = {}
       config_variables = {
         'OS': 'linux',

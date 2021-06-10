@@ -1,13 +1,13 @@
 Distro - an OS platform information API
 =======================================
 
-[![Build Status](https://travis-ci.org/nir0s/distro.svg?branch=master)](https://travis-ci.org/nir0s/distro)
-[![Build status](https://ci.appveyor.com/api/projects/status/e812qjk1gf0f74r5/branch/master?svg=true)](https://ci.appveyor.com/project/nir0s/distro/branch/master)
+[![Build Status](https://travis-ci.org/nir0s/distro.svg?branch=client)](https://travis-ci.org/nir0s/distro)
+[![Build status](https://ci.appveyor.com/api/projects/status/e812qjk1gf0f74r5/branch/client?svg=true)](https://ci.appveyor.com/project/nir0s/distro/branch/client)
 [![PyPI version](http://img.shields.io/pypi/v/distro.svg)](https://pypi.python.org/pypi/distro)
 [![Supported Python Versions](https://img.shields.io/pypi/pyversions/distro.svg)](https://img.shields.io/pypi/pyversions/distro.svg)
-[![Requirements Status](https://requires.io/github/nir0s/distro/requirements.svg?branch=master)](https://requires.io/github/nir0s/distro/requirements/?branch=master)
-[![Code Coverage](https://codecov.io/github/nir0s/distro/coverage.svg?branch=master)](https://codecov.io/github/nir0s/distro?branch=master)
-[![Code Quality](https://landscape.io/github/nir0s/distro/master/landscape.svg?style=flat)](https://landscape.io/github/nir0s/distro)
+[![Requirements Status](https://requires.io/github/nir0s/distro/requirements.svg?branch=client)](https://requires.io/github/nir0s/distro/requirements/?branch=client)
+[![Code Coverage](https://codecov.io/github/nir0s/distro/coverage.svg?branch=client)](https://codecov.io/github/nir0s/distro?branch=client)
+[![Code Quality](https://landscape.io/github/nir0s/distro/client/landscape.svg?style=flat)](https://landscape.io/github/nir0s/distro)
 [![Is Wheel](https://img.shields.io/pypi/wheel/distro.svg?style=flat)](https://pypi.python.org/pypi/distro)
 [![Latest Github Release](https://readthedocs.org/projects/distro/badge/?version=stable)](http://distro.readthedocs.io/en/latest/)
 [![Join the chat at https://gitter.im/nir0s/distro](https://badges.gitter.im/nir0s/distro.svg)](https://gitter.im/nir0s/distro?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -37,7 +37,7 @@ pip install distro
 Installation of the latest development version:
 
 ```shell
-pip install https://github.com/nir0s/distro/archive/master.tar.gz
+pip install https://github.com/nir0s/distro/archive/client.tar.gz
 ```
 
 
@@ -101,7 +101,7 @@ namely from these data sources (from high to low precedence):
 any distribution that provides one or more of the data sources
 covered.
 
-This package is tested with test data that mimics the exact behavior of the data sources of [a number of Linux distributions](https://github.com/nir0s/distro/tree/master/tests/resources/distros).
+This package is tested with test data that mimics the exact behavior of the data sources of [a number of Linux distributions](https://github.com/nir0s/distro/tree/client/tests/resources/distros).
 
 
 ## Testing
@@ -119,15 +119,15 @@ tox
 Pull requests are always welcome to deal with specific distributions or just
 for general merriment.
 
-See [CONTRIBUTIONS](https://github.com/nir0s/distro/blob/master/CONTRIBUTING.md) for contribution info.
+See [CONTRIBUTIONS](https://github.com/nir0s/distro/blob/client/CONTRIBUTING.md) for contribution info.
 
 Reference implementations for supporting additional distributions and file
 formats can be found here:
 
 * https://github.com/saltstack/salt/blob/develop/salt/grains/core.py#L1172
-* https://github.com/chef/ohai/blob/master/lib/ohai/plugins/linux/platform.rb
+* https://github.com/chef/ohai/blob/client/lib/ohai/plugins/linux/platform.rb
 * https://github.com/ansible/ansible/blob/devel/lib/ansible/module_utils/facts/system/distribution.py
-* https://github.com/puppetlabs/facter/blob/master/lib/src/facts/linux/os_linux.cc
+* https://github.com/puppetlabs/facter/blob/client/lib/src/facts/linux/os_linux.cc
 
 ## Package manager distributions
 

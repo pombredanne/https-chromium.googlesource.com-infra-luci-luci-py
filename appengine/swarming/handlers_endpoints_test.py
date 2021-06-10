@@ -60,7 +60,7 @@ def message_to_dict(rpc_message):
 
 def _bot_event(event_type, bot_id, **kwargs):
   args = {
-      'authenticated_as': 'bot:whitelisted-ip',
+      'authenticated_as': 'bot:allowlisted-ip',
       'dimensions': {
           u'id': [bot_id],
           u'pool': [u'default']
@@ -2795,7 +2795,7 @@ class BotsApiTest(BaseTest):
     _bot_event('request_sleep', bot_id='id2', quarantined=True)
     _bot_event('request_sleep', bot_id='id4', maintenance_msg='very busy')
     bot1 = {
-        u'authenticated_as': u'bot:whitelisted-ip',
+        u'authenticated_as': u'bot:allowlisted-ip',
         u'bot_id': u'id1',
         u'deleted': False,
         u'dimensions': [
@@ -2817,7 +2817,7 @@ class BotsApiTest(BaseTest):
         u'version': u'123456789',
     }
     bot2 = {
-        u'authenticated_as': u'bot:whitelisted-ip',
+        u'authenticated_as': u'bot:allowlisted-ip',
         u'bot_id': u'id2',
         u'deleted': False,
         u'dimensions': [
@@ -2839,7 +2839,7 @@ class BotsApiTest(BaseTest):
         u'version': u'123456789',
     }
     bot3 = {
-        u'authenticated_as': u'bot:whitelisted-ip',
+        u'authenticated_as': u'bot:allowlisted-ip',
         u'bot_id': u'id3',
         u'deleted': False,
         u'dimensions': [
@@ -2861,7 +2861,7 @@ class BotsApiTest(BaseTest):
         u'version': u'123456789',
     }
     bot4 = {
-        u'authenticated_as': u'bot:whitelisted-ip',
+        u'authenticated_as': u'bot:allowlisted-ip',
         u'bot_id': u'id4',
         u'deleted': False,
         u'dimensions': [
@@ -3261,7 +3261,7 @@ class BotApiTest(BaseTest):
     _bot_event('bot_connected', bot_id='id1', maintenance_msg='very busy')
 
     expected = {
-        u'authenticated_as': u'bot:whitelisted-ip',
+        u'authenticated_as': u'bot:allowlisted-ip',
         u'bot_id': u'id1',
         u'deleted': False,
         u'dimensions': [
@@ -3292,7 +3292,7 @@ class BotApiTest(BaseTest):
     _bot_event('request_sleep', bot_id='id1', maintenance_msg='very busy')
 
     expected = {
-        u'authenticated_as': u'bot:whitelisted-ip',
+        u'authenticated_as': u'bot:allowlisted-ip',
         u'bot_id': u'id1',
         u'deleted': False,
         u'dimensions': [
@@ -3331,7 +3331,7 @@ class BotApiTest(BaseTest):
 
     # Get it. Should still return a ghost version.
     expected = {
-        u'authenticated_as': u'bot:whitelisted-ip',
+        u'authenticated_as': u'bot:allowlisted-ip',
         u'bot_id': u'id1',
         u'deleted': True,
         u'dimensions': [
@@ -3549,7 +3549,7 @@ class BotApiTest(BaseTest):
     expected = {
         u'items': [
             {
-                u'authenticated_as': u'bot:whitelisted-ip',
+                u'authenticated_as': u'bot:allowlisted-ip',
                 u'dimensions': dimensions,
                 u'event_type': u'bot_rebooting',
                 u'external_ip': unicode(self.source_ip),
@@ -3560,7 +3560,7 @@ class BotApiTest(BaseTest):
                 u'version': unicode(self.bot_version),
             },
             {
-                u'authenticated_as': u'bot:whitelisted-ip',
+                u'authenticated_as': u'bot:allowlisted-ip',
                 u'dimensions': dimensions,
                 u'event_type': u'task_completed',
                 u'external_ip': unicode(self.source_ip),
@@ -3571,7 +3571,7 @@ class BotApiTest(BaseTest):
                 u'version': unicode(self.bot_version),
             },
             {
-                u'authenticated_as': u'bot:whitelisted-ip',
+                u'authenticated_as': u'bot:allowlisted-ip',
                 u'dimensions': dimensions,
                 u'event_type': u'request_task',
                 u'external_ip': unicode(self.source_ip),
@@ -3582,7 +3582,7 @@ class BotApiTest(BaseTest):
                 u'version': unicode(self.bot_version),
             },
             {
-                u'authenticated_as': u'bot:whitelisted-ip',
+                u'authenticated_as': u'bot:allowlisted-ip',
                 u'dimensions': dimensions,
                 u'event_type': u'request_sleep',
                 u'external_ip': unicode(self.source_ip),
@@ -3592,7 +3592,7 @@ class BotApiTest(BaseTest):
                 u'version': unicode(self.bot_version),
             },
             {
-                u'authenticated_as': u'bot:whitelisted-ip',
+                u'authenticated_as': u'bot:allowlisted-ip',
                 u'dimensions': dimensions,
                 u'event_type': u'bot_connected',
                 u'external_ip': unicode(self.source_ip),

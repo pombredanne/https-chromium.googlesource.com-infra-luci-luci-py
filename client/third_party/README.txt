@@ -7,7 +7,7 @@ infra.git, please use glyco tool:
 For example, installing google-api-python-client:
 
 Look up the revision used in
-  https://chromium.googlesource.com/infra/infra/+/master/bootstrap/deps.pyl
+  https://chromium.googlesource.com/infra/infra/+/client/bootstrap/deps.pyl
 At the time of writing, it's d83246e69b22f084d1ae92da5897572a4a4eb03d.
 
 cd <scratch dir>

@@ -717,7 +717,7 @@ const taskExecutionSection = (ele, request, result, currentSlice) => {
   This task was deduplicated from task
   <a href=${taskPageLink(result.deduped_from)}>${result.deduped_from}</a>.
   For more information on deduplication, see
-  <a href="https://chromium.googlesource.com/infra/luci/luci-py/+/master/appengine/swarming/doc/Detailed-Design.md#task-deduplication">
+  <a href="https://chromium.googlesource.com/infra/luci/luci-py/+/client/appengine/swarming/doc/Detailed-Design.md#task-deduplication">
   the docs</a>.
 </p>`;
   }

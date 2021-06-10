@@ -164,7 +164,7 @@ class CertificateBundle(object):
 
         # Convert PEM to DER. There's a function for this in 'ssl' module
         # (ssl.PEM_cert_to_DER_cert), but 'ssl' is not importable in GAE sandbox
-        # on dev server (C extension is not whitelisted).
+        # on dev server (C extension is not allowlisted).
         lines = x509_cert.strip().split('\n')
         if (len(lines) < 3 or
             lines[0] != '-----BEGIN CERTIFICATE-----' or

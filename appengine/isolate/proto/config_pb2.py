@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto2',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x63onfig.proto\"\x98\x02\n\x0bSettingsCfg\x12\x18\n\x10google_analytics\x18\x01 \x01(\t\x12\x1a\n\x12\x64\x65\x66\x61ult_expiration\x18\x02 \x01(\x05\x12\x18\n\x10sharding_letters\x18\x03 \x01(\x05\x12\x11\n\tgs_bucket\x18\x04 \x01(\t\x12\x1a\n\x12gs_client_id_email\x18\x05 \x01(\t\x12\x1c\n\x14\x65nable_ts_monitoring\x18\x06 \x01(\x08\x12\x1b\n\x04\x61uth\x18\x07 \x01(\x0b\x32\r.AuthSettings\x12\x14\n\x0cui_client_id\x18\x08 \x01(\t\x12\x39\n\x18\x63lient_monitoring_config\x18\t \x03(\x0b\x32\x17.ClientMonitoringConfig\"H\n\x0c\x41uthSettings\x12\x19\n\x11\x66ull_access_group\x18\x01 \x01(\t\x12\x1d\n\x15readonly_access_group\x18\x02 \x01(\t\"=\n\x16\x43lientMonitoringConfig\x12\x14\n\x0cip_whitelist\x18\x01 \x01(\t\x12\r\n\x05label\x18\x02 \x01(\t'
+  serialized_pb=b'\n\x0c\x63onfig.proto\"\x98\x02\n\x0bSettingsCfg\x12\x18\n\x10google_analytics\x18\x01 \x01(\t\x12\x1a\n\x12\x64\x65\x66\x61ult_expiration\x18\x02 \x01(\x05\x12\x18\n\x10sharding_letters\x18\x03 \x01(\x05\x12\x11\n\tgs_bucket\x18\x04 \x01(\t\x12\x1a\n\x12gs_client_id_email\x18\x05 \x01(\t\x12\x1c\n\x14\x65nable_ts_monitoring\x18\x06 \x01(\x08\x12\x1b\n\x04\x61uth\x18\x07 \x01(\x0b\x32\r.AuthSettings\x12\x14\n\x0cui_client_id\x18\x08 \x01(\t\x12\x39\n\x18\x63lient_monitoring_config\x18\t \x03(\x0b\x32\x17.ClientMonitoringConfig\"H\n\x0c\x41uthSettings\x12\x19\n\x11\x66ull_access_group\x18\x01 \x01(\t\x12\x1d\n\x15readonly_access_group\x18\x02 \x01(\t\"=\n\x16\x43lientMonitoringConfig\x12\x14\n\x0cip_allowlist\x18\x01 \x01(\t\x12\r\n\x05label\x18\x02 \x01(\t'
 )
 
 
@@ -161,7 +161,7 @@ _CLIENTMONITORINGCONFIG = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='ip_whitelist', full_name='ClientMonitoringConfig.ip_whitelist', index=0,
+      name='ip_allowlist', full_name='ClientMonitoringConfig.ip_allowlist', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,

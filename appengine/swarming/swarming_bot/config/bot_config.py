@@ -52,7 +52,7 @@ def get_dimensions(bot):
   more information.
 
   See
-  https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Magic-Values.md
+  https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/swarming/doc/Magic-Values.md
 
   Arguments:
   - bot: bot.Bot instance or None. See ../api/bot.py.
@@ -140,7 +140,7 @@ def get_state(bot):
   tasks.
 
   See
-  https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Magic-Values.md
+  https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/swarming/doc/Magic-Values.md
 
   Arguments:
   - bot: bot.Bot instance or None. See ../api/bot.py.
@@ -260,7 +260,7 @@ def on_before_task(bot, bot_file, runner_cmd, runner_env):
   - bot_file: Path to file to write information about the state of the bot.
               This file can be used to pass certain info about the bot
               to tasks, such as which connected android devices to run on. See
-              https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Magic-Values.md#run_isolated
+              https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/swarming/doc/Magic-Values.md#run_isolated
   - runner_cmd: Command to be executed to launch task runner. This variable can
                 be mutated to override the task runner, modify its arguments
                 and/or add a wrapper script around it. USE WITH CAUTION.

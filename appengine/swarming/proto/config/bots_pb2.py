@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z3go.chromium.org/luci/swarming/proto/config;configpb',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\nbots.proto\x12\x0fswarming.config\"S\n\x07\x42otsCfg\x12\x1a\n\x12trusted_dimensions\x18\x01 \x03(\t\x12,\n\tbot_group\x18\x02 \x03(\x0b\x32\x19.swarming.config.BotGroup\"\x80\x02\n\x08\x42otGroup\x12\x0e\n\x06\x62ot_id\x18\x01 \x03(\t\x12\x15\n\rbot_id_prefix\x18\x02 \x03(\t\x12&\n\x04\x61uth\x18\x14 \x03(\x0b\x32\x18.swarming.config.BotAuth\x12\x0e\n\x06owners\x18\x15 \x03(\t\x12\x12\n\ndimensions\x18\x16 \x03(\t\x12\x19\n\x11\x62ot_config_script\x18\x17 \x01(\t\x12\x1d\n\x15\x62ot_config_script_rev\x18\x1a \x01(\t\x12!\n\x19\x62ot_config_script_content\x18\x19 \x01(\x0c\x12\x1e\n\x16system_service_account\x18\x18 \x01(\tJ\x04\x08\x03\x10\x04\"\xcf\x01\n\x07\x42otAuth\x12\x15\n\rlog_if_failed\x18\x05 \x01(\x08\x12\"\n\x1arequire_luci_machine_token\x18\x01 \x01(\x08\x12\x1f\n\x17require_service_account\x18\x02 \x03(\t\x12:\n\x14require_gce_vm_token\x18\x04 \x01(\x0b\x32\x1c.swarming.config.BotAuth.GCE\x12\x14\n\x0cip_whitelist\x18\x03 \x01(\t\x1a\x16\n\x03GCE\x12\x0f\n\x07project\x18\x01 \x01(\tB5Z3go.chromium.org/luci/swarming/proto/config;configpbb\x06proto3'
+  serialized_pb=b'\n\nbots.proto\x12\x0fswarming.config\"S\n\x07\x42otsCfg\x12\x1a\n\x12trusted_dimensions\x18\x01 \x03(\t\x12,\n\tbot_group\x18\x02 \x03(\x0b\x32\x19.swarming.config.BotGroup\"\x80\x02\n\x08\x42otGroup\x12\x0e\n\x06\x62ot_id\x18\x01 \x03(\t\x12\x15\n\rbot_id_prefix\x18\x02 \x03(\t\x12&\n\x04\x61uth\x18\x14 \x03(\x0b\x32\x18.swarming.config.BotAuth\x12\x0e\n\x06owners\x18\x15 \x03(\t\x12\x12\n\ndimensions\x18\x16 \x03(\t\x12\x19\n\x11\x62ot_config_script\x18\x17 \x01(\t\x12\x1d\n\x15\x62ot_config_script_rev\x18\x1a \x01(\t\x12!\n\x19\x62ot_config_script_content\x18\x19 \x01(\x0c\x12\x1e\n\x16system_service_account\x18\x18 \x01(\tJ\x04\x08\x03\x10\x04\"\xcf\x01\n\x07\x42otAuth\x12\x15\n\rlog_if_failed\x18\x05 \x01(\x08\x12\"\n\x1arequire_luci_machine_token\x18\x01 \x01(\x08\x12\x1f\n\x17require_service_account\x18\x02 \x03(\t\x12:\n\x14require_gce_vm_token\x18\x04 \x01(\x0b\x32\x1c.swarming.config.BotAuth.GCE\x12\x14\n\x0cip_allowlist\x18\x03 \x01(\t\x1a\x16\n\x03GCE\x12\x0f\n\x07project\x18\x01 \x01(\tB5Z3go.chromium.org/luci/swarming/proto/config;configpbb\x06proto3'
 )
 
 
@@ -220,7 +220,7 @@ _BOTAUTH = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='ip_whitelist', full_name='swarming.config.BotAuth.ip_whitelist', index=4,
+      name='ip_allowlist', full_name='swarming.config.BotAuth.ip_allowlist', index=4,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,

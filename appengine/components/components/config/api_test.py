@@ -107,31 +107,31 @@ class ApiTestCase(test_case.TestCase):
   def test_get_ref_configs(self):
     self.provider.get_ref_configs_async.return_value = ndb.Future()
     self.provider.get_ref_configs_async.return_value.set_result({
-      'projects/chromium/refs/heads/master': ('dead', 'param: "master"'),
+      'projects/chromium/refs/heads/client': ('dead', 'param: "client"'),
       'projects/chromium/refs/non-branch': ('beef', 'param: "ref"'),
-      'projects/v8/refs/heads/master': ('aaaa', 'param: "value2"'),
-      'projects/skia/refs/heads/master': ('badcoffee', 'invalid config'),
+      'projects/v8/refs/heads/client': ('aaaa', 'param: "value2"'),
+      'projects/skia/refs/heads/client': ('badcoffee', 'invalid config'),
     })
 
     actual = config.get_ref_configs('bar.cfg', test_config_pb2.Config)
     self.assertIsInstance(
-        actual['skia']['refs/heads/master'][2], config.ConfigFormatError)
+        actual['skia']['refs/heads/client'][2], config.ConfigFormatError)
     expected = {
       'chromium': {
-        'refs/heads/master': (
-          'dead', test_config_pb2.Config(param='master'), None),
+        'refs/heads/client': (
+          'dead', test_config_pb2.Config(param='client'), None),
         'refs/non-branch': (
           'beef', test_config_pb2.Config(param='ref'), None),
       },
       'v8': {
-        'refs/heads/master': (
+        'refs/heads/client': (
           'aaaa', test_config_pb2.Config(param='value2'), None),
       },
       'skia': {
-        'refs/heads/master': (
+        'refs/heads/client': (
           'badcoffee',
           None,
-          actual['skia']['refs/heads/master'][2],
+          actual['skia']['refs/heads/client'][2],
         ),
       }
     }

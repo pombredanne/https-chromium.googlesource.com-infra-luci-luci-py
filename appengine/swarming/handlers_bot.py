@@ -170,11 +170,11 @@ class _BotAuthenticatingHandler(auth.AuthenticatingHandler):
       logging.debug('Using bootstrap token %r', payload)
       return existing_token
 
-    # TODO(crbug/1010555): Remove is_ip_whitelisted_machine check once all bots
+    # TODO(crbug/1010555): Remove is_ip_allowlisted_machine check once all bots
     # are using auth for bootstrap and updating.
     if (not acl.can_create_bot() and
         not (bot_id and bot_auth.is_authenticated_bot(bot_id)) and
-        not acl.is_ip_whitelisted_machine()):
+        not acl.is_ip_allowlisted_machine()):
       raise auth.AuthorizationError('Not allowed to access the bot code')
 
     return bot_code.generate_bootstrap_token() if generate_token else None

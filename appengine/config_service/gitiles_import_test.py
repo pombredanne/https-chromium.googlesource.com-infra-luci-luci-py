@@ -137,7 +137,7 @@ class GitilesImportTestCase(test_case.TestCase):
         gitiles.Location(
             hostname='localhost',
             project='project',
-            treeish='master',
+            treeish='client',
             path='/'),
         self.test_commit,
         False,
@@ -153,7 +153,7 @@ class GitilesImportTestCase(test_case.TestCase):
     loc = gitiles.Location(
         hostname='localhost',
         project='project',
-        treeish='master',
+        treeish='client',
         path='/')
     cs = storage.ConfigSet(
         id='config_set',
@@ -185,7 +185,7 @@ class GitilesImportTestCase(test_case.TestCase):
         gitiles.Location(
             hostname='localhost',
             project='project',
-            treeish='master',
+            treeish='client',
             path='/'),
         self.test_commit,
         False,
@@ -207,7 +207,7 @@ class GitilesImportTestCase(test_case.TestCase):
         gitiles.Location(
             hostname='localhost',
             project='project',
-            treeish='master',
+            treeish='client',
             path='/'),
         self.test_commit,
         False,
@@ -289,7 +289,7 @@ class GitilesImportTestCase(test_case.TestCase):
         latest_revision_url='https://localhost/project/+/deadbeef/x',
         latest_revision_committer_email=self.john.email,
         latest_revision_time=self.john.time,
-        location='https://localhost/project/+/master/x',
+        location='https://localhost/project/+/client/x',
     )
     cs.put()
 
@@ -324,13 +324,13 @@ class GitilesImportTestCase(test_case.TestCase):
         latest_revision_url='https://localhost/project/+/deadbeef/x',
         latest_revision_committer_email=self.john.email,
         latest_revision_time=self.john.time,
-        location='https://localhost/project/+/master/x',
+        location='https://localhost/project/+/client/x',
         version=0,
     ).put()
     self.mock(gitiles_import, '_import_revision', mock.Mock())
     gitiles_import._import_config_set(
         'config_set',
-        gitiles.Location.parse('https://localhost/project/+/master/x'),
+        gitiles.Location.parse('https://localhost/project/+/client/x'),
         self.test_project_id)
     gitiles_import._import_revision.assert_called_once()
 
@@ -342,13 +342,13 @@ class GitilesImportTestCase(test_case.TestCase):
         latest_revision_url='https://localhost/project/+/deadbeef/x',
         latest_revision_committer_email=self.john.email,
         latest_revision_time=self.john.time,
-        location='https://localhost/project/+/master/x',
+        location='https://localhost/project/+/client/x',
         version=2,
     ).put()
     self.mock(gitiles_import, '_import_revision', mock.Mock())
     gitiles_import._import_config_set(
         'config_set',
-        gitiles.Location.parse('https://localhost/project/+/master/x'),
+        gitiles.Location.parse('https://localhost/project/+/client/x'),
         self.test_project_id)
     self.assertFalse(gitiles_import._import_revision.called)
 
@@ -357,7 +357,7 @@ class GitilesImportTestCase(test_case.TestCase):
     self.mock(gitiles_import, '_import_revision', mock.Mock())
     gitiles_import._import_config_set(
         'config_set',
-        gitiles.Location.parse('https://localhost/project/+/master/x'),
+        gitiles.Location.parse('https://localhost/project/+/client/x'),
         self.test_project_id)
     self.assertTrue(gitiles_import._import_revision.called)
 
@@ -446,14 +446,14 @@ class GitilesImportTestCase(test_case.TestCase):
     RefType = project_config_pb2.RefsCfg.Ref
     projects.get_refs.return_value = {
       'chromium': [
-        RefType(name='refs/heads/master'),
+        RefType(name='refs/heads/client'),
         RefType(name='refs/heads/release42', config_path='/my-configs'),
       ],
     }
 
     self.assertEqual(gitiles_import._project_and_ref_config_sets(), [
       'projects/chromium',
-      'projects/chromium/refs/heads/master',
+      'projects/chromium/refs/heads/client',
       'projects/chromium/refs/heads/release42',
     ])
 

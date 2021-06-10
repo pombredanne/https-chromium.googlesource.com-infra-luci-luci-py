@@ -1156,7 +1156,7 @@ class TestBotNotMocked(TestBotBase):
       bot_main._bot_restart(self.bot, 'Yo', bot_main.THIS_FILE)
     self.assertEqual(23, e.exception.code)
 
-    self.assertEqual([[bot_main.THIS_FILE, 'start_slave', '--survive']], calls)
+    self.assertEqual([[bot_main.THIS_FILE, 'start_agent', '--survive']], calls)
 
 
 if __name__ == '__main__':

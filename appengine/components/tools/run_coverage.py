@@ -22,11 +22,11 @@ import time
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-def _get_tests(root, blacklist):
+def _get_tests(root, denylist):
   """Yields all the tests to run excluding smoke tests."""
   for root, dirs, files in os.walk(root):
     for d in dirs[:]:
-      if d.startswith('.') or d in blacklist:
+      if d.startswith('.') or d in denylist:
         dirs.remove(d)
 
     for f in files:
@@ -46,7 +46,7 @@ def _start_coverage(root, args):
       stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
 
 
-def main(root, blacklist, omit):
+def main(root, denylist, omit):
   parser = optparse.OptionParser(
       description=sys.modules[__name__].__doc__ % root)
   parser.add_option(
@@ -92,7 +92,7 @@ def main(root, blacklist, omit):
     start = time.time()
     processes = {
       _start_coverage(root, flags + [test]): None
-      for test in _get_tests(root, blacklist)
+      for test in _get_tests(root, denylist)
     }
     if not processes:
       print('Failed to find any test in %s' % root)

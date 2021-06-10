@@ -79,7 +79,7 @@ starting `swarming_bot.zip` to alter the bot's behavior:
 *   `pool`: **must** be a list with at least one value. Pools are used to
     provide some isolation between categories of tasks, and as a secondary
     access control mechanism. See
-    [pools.proto](https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/proto/pools.proto)
+    [pools.proto](https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/swarming/proto/pools.proto)
     for more information.
 
 **Optional**:
@@ -146,7 +146,7 @@ The tags are in `key:value` format but other than that, they are free form and
 user chosen. A small subset of the tags have predefined meaning:
 
 *   `allow_milo:1`: Tells Swarming Web UI to enable the [LUCI
-    Milo](https://chromium.googlesource.com/infra/luci/luci-go/+/master/milo/)
+    Milo](https://chromium.googlesource.com/infra/luci/luci-go/+/client/milo/)
     annotation processing support.
 *   `source_revision`: if present, it specifies the SCM revision related to the
     task. This allows the UI to link to the relevant revision.

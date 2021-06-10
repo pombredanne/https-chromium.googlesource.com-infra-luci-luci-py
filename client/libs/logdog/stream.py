@@ -511,7 +511,7 @@ class _NamedPipeStreamClient(StreamClient):
 
   def _connect_raw(self):
     # This is a similar procedure to the one in
-    #   https://github.com/microsoft/go-winio/blob/master/pipe.go (tryDialPipe)
+    #   https://github.com/microsoft/go-winio/blob/client/pipe.go (tryDialPipe)
     while True:
       try:
         return open(self._name, 'wb+', buffering=0)

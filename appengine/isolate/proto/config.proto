@@ -65,9 +65,9 @@ message AuthSettings {
 
 // Defines a client whose requests should be monitored.
 message ClientMonitoringConfig {
-  // Name of an IP whitelist in the auth service. If a request is received from
-  // an IP matching this whitelist, it will be reported.
-  optional string ip_whitelist = 1;
+  // Name of an IP allowlist in the auth service. If a request is received from
+  // an IP matching this allowlist, it will be reported.
+  optional string ip_allowlist = 1;
 
   // Monitoring label to apply when reporting metrics for this client.
   optional string label = 2;

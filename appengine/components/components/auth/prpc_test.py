@@ -144,15 +144,15 @@ class PrpcAuthTest(testing.TestCase):
     self.assertEqual(ctx.code, prpclib.StatusCode.UNAUTHENTICATED)
     self.assertEqual(ctx.details, 'OMG, bad token')
 
-  def test_ip_whitelisted_bot(self):
-    model.bootstrap_ip_whitelist(
-        model.bots_ip_whitelist(), ['192.168.1.100/32'])
+  def test_ip_allowlisted_bot(self):
+    model.bootstrap_ip_allowlist(
+        model.bots_ip_allowlist(), ['192.168.1.100/32'])
 
     state, _ = self.call('ipv4:192.168.1.100', None)
     self.assertEqual(state, CapturedState(
-        current_identity='bot:whitelisted-ip',
+        current_identity='bot:allowlisted-ip',
         is_superuser=False,
-        peer_identity='bot:whitelisted-ip',
+        peer_identity='bot:allowlisted-ip',
         peer_ip=ipaddr.ip_from_string('192.168.1.100'),
         delegation_token=None,
     ))
@@ -166,10 +166,10 @@ class PrpcAuthTest(testing.TestCase):
         delegation_token=None,
     ))
 
-  def test_ip_whitelist_whitelisted(self):
-    model.bootstrap_ip_whitelist('whitelist', ['192.168.1.100/32'])
-    model.bootstrap_ip_whitelist_assignment(
-        model.Identity(model.IDENTITY_USER, 'a@example.com'), 'whitelist')
+  def test_ip_allowlist_allowlisted(self):
+    model.bootstrap_ip_allowlist('allowlist', ['192.168.1.100/32'])
+    model.bootstrap_ip_allowlist_assignment(
+        model.Identity(model.IDENTITY_USER, 'a@example.com'), 'allowlist')
 
     state, _ = self.call('ipv4:192.168.1.100', 'a@example.com')
     self.assertEqual(state, CapturedState(
@@ -180,15 +180,15 @@ class PrpcAuthTest(testing.TestCase):
         delegation_token=None,
     ))
 
-  def test_ip_whitelist_not_whitelisted(self):
-    model.bootstrap_ip_whitelist('whitelist', ['192.168.1.100/32'])
-    model.bootstrap_ip_whitelist_assignment(
-        model.Identity(model.IDENTITY_USER, 'a@example.com'), 'whitelist')
+  def test_ip_allowlist_not_allowlisted(self):
+    model.bootstrap_ip_allowlist('allowlist', ['192.168.1.100/32'])
+    model.bootstrap_ip_allowlist_assignment(
+        model.Identity(model.IDENTITY_USER, 'a@example.com'), 'allowlist')
 
     state, ctx = self.call('ipv4:127.0.0.1', 'a@example.com')
     self.assertIsNone(state)
     self.assertEqual(ctx.code, prpclib.StatusCode.PERMISSION_DENIED)
-    self.assertEqual(ctx.details, 'IP 127.0.0.1 is not whitelisted')
+    self.assertEqual(ctx.details, 'IP 127.0.0.1 is not allowlisted')
 
   def test_delegation_token(self):
     # Grab a fake-signed delegation token.

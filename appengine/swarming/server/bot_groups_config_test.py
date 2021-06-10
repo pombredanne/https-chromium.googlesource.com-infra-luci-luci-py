@@ -41,7 +41,7 @@ TEST_CONFIG = bots_pb2.BotsCfg(
             bot_config_script='foo.py',
             system_service_account='bot'),
         bots_pb2.BotGroup(
-            auth=[bots_pb2.BotAuth(ip_whitelist='bots')],
+            auth=[bots_pb2.BotAuth(ip_allowlist='bots')],
             dimensions=['pool:default']),
     ],
 )
@@ -54,21 +54,21 @@ EXPECTED_GROUP_1 = bot_groups_config._make_bot_group_config(
             require_luci_machine_token=True,
             require_service_account=(),
             require_gce_vm_token=None,
-            ip_whitelist=u'',
+            ip_allowlist=u'',
         ),
         bot_groups_config.BotAuth(
             log_if_failed=False,
             require_luci_machine_token=False,
             require_service_account=('z@example.com',),
             require_gce_vm_token=None,
-            ip_whitelist=u'',
+            ip_allowlist=u'',
         ),
         bot_groups_config.BotAuth(
             log_if_failed=False,
             require_luci_machine_token=False,
             require_service_account=(),
             require_gce_vm_token=bot_groups_config.BotAuthGCE('proj'),
-            ip_whitelist=u'',
+            ip_allowlist=u'',
         ),
     ),
     dimensions={
@@ -88,7 +88,7 @@ EXPECTED_GROUP_2 = bot_groups_config._make_bot_group_config(
         require_luci_machine_token=False,
         require_service_account=(u'a@example.com',),
         require_gce_vm_token=None,
-        ip_whitelist=u'',
+        ip_allowlist=u'',
     ),),
     dimensions={u'pool': []},
     bot_config_script='foo.py',
@@ -104,7 +104,7 @@ EXPECTED_GROUP_3 = bot_groups_config._make_bot_group_config(
         require_luci_machine_token=False,
         require_service_account=(),
         require_gce_vm_token=None,
-        ip_whitelist=u'bots',
+        ip_allowlist=u'bots',
     ),),
     dimensions={u'pool': [u'default']},
     bot_config_script='',
@@ -114,7 +114,7 @@ EXPECTED_GROUP_3 = bot_groups_config._make_bot_group_config(
     is_default=True)
 
 
-DEFAULT_AUTH_CFG = [bots_pb2.BotAuth(ip_whitelist='bots')]
+DEFAULT_AUTH_CFG = [bots_pb2.BotAuth(ip_allowlist='bots')]
 
 
 class ValidationCtx(validation.Context):
@@ -302,12 +302,12 @@ class BotGroupsConfigTest(test_case.TestCase):
         'and require_gce_vm_token can\'t be used at the same time'
     ])
 
-  def test_bad_auth_cfg_no_ip_whitelist(self):
+  def test_bad_auth_cfg_no_ip_allowlist(self):
     cfg = bots_pb2.BotsCfg(
         bot_group=[bots_pb2.BotGroup(auth=[bots_pb2.BotAuth()])])
     self.validator_test(cfg, [
         'bot_group #0: if all auth requirements are unset, '
-        'ip_whitelist must be set'
+        'ip_allowlist must be set'
     ])
 
   def test_bad_required_service_account(self):
@@ -328,14 +328,14 @@ class BotGroupsConfigTest(test_case.TestCase):
     self.validator_test(
         cfg, ['bot_group #0: missing project in require_gce_vm_token'])
 
-  def test_bad_ip_whitelist_name(self):
+  def test_bad_ip_allowlist_name(self):
     cfg = bots_pb2.BotsCfg(bot_group=[
         bots_pb2.BotGroup(auth=[
-            bots_pb2.BotAuth(ip_whitelist='bad ## name'),
+            bots_pb2.BotAuth(ip_allowlist='bad ## name'),
         ])
     ])
     self.validator_test(
-        cfg, ['bot_group #0: invalid ip_whitelist name "bad ## name"'])
+        cfg, ['bot_group #0: invalid ip_allowlist name "bad ## name"'])
 
   def test_bad_owners(self):
     cfg = bots_pb2.BotsCfg(bot_group=[
@@ -402,7 +402,7 @@ class BotGroupsConfigTest(test_case.TestCase):
       bot_group=[
         bots_pb2.BotGroup(
           bot_id=['blah'],
-          auth=[bots_pb2.BotAuth(ip_whitelist='bots')],
+          auth=[bots_pb2.BotAuth(ip_allowlist='bots')],
           system_service_account='bot'),
       ])
     self.validator_test(cfg, [
