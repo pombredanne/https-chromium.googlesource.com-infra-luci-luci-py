@@ -706,13 +706,15 @@ class Popen(subprocess.Popen):
       process.
     """
     assert timeout is None or isinstance(timeout, (int, float)), timeout
-    if timeout is None:
+    if timeout is None and not sys.platform == 'win32':
       super(Popen, self).wait()
     elif six.PY3 and not sys.platform == 'win32':
       super(Popen, self).wait(timeout)
     elif self.returncode is None:
       # If you think the following code is horrible, it's because it is
       # inspired by python3's stdlib.
+      if not timeout:
+        timeout = float('inf')
       end = time.time() + timeout
       delay = poll_initial_interval
       wait = self._wait_win if sys.platform == 'win32' else self._wait_non_win
