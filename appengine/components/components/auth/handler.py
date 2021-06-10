@@ -101,8 +101,8 @@ class AuthenticatingHandler(webapp2.RequestHandler):
 
   # A method used to authenticate this request, see get_auth_methods().
   auth_method = None
-  # If True, allow to use '<appid>-bots' IP whitelist to auth anonymous calls.
-  use_bots_ip_whitelist = True
+  # If True, allow to use '<appid>-bots' IP allowlist to auth anonymous calls.
+  use_bots_ip_allowlist = True
 
   def dispatch(self):
     """Extracts and verifies Identity, sets up request auth context."""
@@ -160,9 +160,9 @@ class AuthenticatingHandler(webapp2.RequestHandler):
           delegation_token=self.request.headers.get(delegation.HTTP_HEADER),
           project_header=self.request.headers.get(check.X_LUCI_PROJECT),
           use_project_identites=conf.USE_PROJECT_IDENTITIES,
-          use_bots_ip_whitelist=self.use_bots_ip_whitelist)
+          use_bots_ip_allowlist=self.use_bots_ip_allowlist)
 
-      # XSRF token is required only if using Cookie based or IP whitelist auth.
+      # XSRF token is required only if using Cookie based or IP allowlist auth.
       # A browser doesn't send Authorization: 'Bearer ...' or any other headers
       # by itself. So XSRF check is not required if header based authentication
       # is used.
