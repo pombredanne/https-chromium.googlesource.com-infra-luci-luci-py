@@ -706,21 +706,34 @@ class Popen(subprocess.Popen):
       process.
     """
     assert timeout is None or isinstance(timeout, (int, float)), timeout
-    if timeout is None:
-      super(Popen, self).wait()
-    elif six.PY3 and not sys.platform == 'win32':
-      super(Popen, self).wait(timeout)
-    elif self.returncode is None:
-      # If you think the following code is horrible, it's because it is
-      # inspired by python3's stdlib.
-      end = time.time() + timeout
-      delay = poll_initial_interval
-      wait = self._wait_win if sys.platform == 'win32' else self._wait_non_win
-      while not wait(delay):
-        remaining = end - time.time()
-        if remaining <= 0:
-          raise TimeoutExpired(self.args, timeout)
-        delay = min(delay * 2, remaining, poll_max_interval)
+    if self.returncode is None:
+      use_native_wait = False
+
+      # Use the native wait() when on Linux in Python 2 when timeout is
+      # not given and on Linux in Python 3.
+      # For Windows, and Linux in Python 2 when timeout is given, use
+      # the non-native one.
+      if sys.platform != 'win32':
+        if timeout is None:
+          use_native_wait = True
+        elif six.PY2:
+          use_native_wait = True
+
+      if use_native_wait:
+        super(Popen, self).wait(timeout)
+      else:
+        # If you think the following code is horrible, it's because it is
+        # inspired by python3's stdlib.
+        if sys.platform == 'win32' and not timeout:
+          timeout = float('inf')
+        end = time.time() + timeout
+        delay = poll_initial_interval
+        wait = self._wait_win if sys.platform == 'win32' else self._wait_non_win
+        while not wait(delay):
+          remaining = end - time.time()
+          if remaining <= 0:
+            raise TimeoutExpired(self.args, timeout)
+          delay = min(delay * 2, remaining, poll_max_interval)
 
     if not self.end:
       # communicate() uses wait() internally.
