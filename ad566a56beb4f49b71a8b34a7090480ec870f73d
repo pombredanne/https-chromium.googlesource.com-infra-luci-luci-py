@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d3afbd5_d30c619a",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-10T06:57:11Z",
+      "side": 1,
+      "message": "Can these conditions be simplified?  \nAnd would be good to have comments about in which conditions we can call the native wait().",
+      "range": {
+        "startLine": 709,
+        "startChar": 0,
+        "endLine": 712,
+        "endChar": 38
+      },
+      "revId": "ad566a56beb4f49b71a8b34a7090480ec870f73d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
