@@ -406,7 +406,7 @@ def generate_initd(command, cwd, user):
   This is open source software, licensed under the MIT License. See the file
   LICENSE for details.
 
-  LICENSE is at https://github.com/fhd/init-script-template/blob/master/LICENSE
+  LICENSE is at https://github.com/fhd/init-script-template/blob/client/LICENSE
   """
   return """#!/bin/sh
 ### BEGIN INIT INFO

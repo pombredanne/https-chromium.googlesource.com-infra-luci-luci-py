@@ -72,11 +72,11 @@ class ApiTest(test_case.EndpointsTestCase):
     self.mock(projects, 'get_refs', mock.Mock())
     projects.get_refs.return_value = {
       'chromium': [
-        project_config_pb2.RefsCfg.Ref(name='refs/heads/master'),
+        project_config_pb2.RefsCfg.Ref(name='refs/heads/client'),
         project_config_pb2.RefsCfg.Ref(name='refs/heads/release42'),
       ],
       'v8': [
-        project_config_pb2.RefsCfg.Ref(name='refs/heads/master'),
+        project_config_pb2.RefsCfg.Ref(name='refs/heads/client'),
       ],
     }
 
@@ -620,7 +620,7 @@ class ApiTest(test_case.EndpointsTestCase):
 
     self.assertEqual(resp, {
       'refs': [
-        {'name': 'refs/heads/master'},
+        {'name': 'refs/heads/client'},
         {'name': 'refs/heads/release42'},
       ],
     })

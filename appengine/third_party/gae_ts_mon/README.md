@@ -68,7 +68,7 @@
 
 You're done!  You can now use ts_mon metrics exactly as you normally would using
 the infra_libs.ts_mon module. Here's a quick example, but see the
-[timeseries monitoring docs](https://chrome-internal.googlesource.com/infra/infra_internal/+/master/doc/ts_mon.md)
+[timeseries monitoring docs](https://chrome-internal.googlesource.com/infra/infra_internal/+/client/doc/ts_mon.md)
 for more information.
 
     from infra_libs import ts_mon

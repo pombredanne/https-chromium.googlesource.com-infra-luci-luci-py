@@ -4,7 +4,7 @@
 
 ### Service config example
 
-Auth service admins keep client id whitelist and configuration of group import
+Auth service admins keep client id allowlist and configuration of group import
 from external sources. These configs are stored as files in Gitiles.
 Config service imports them from Gitiles to `services/<auth-service-app-id>`
 config set. Auth service can use
@@ -37,7 +37,7 @@ component to read `swarming.cfg` from `projects/<project id>` config set.
 *   **ref**: a git ref in a project repo.
 *   **config set**: a versioned collection of config files. Config sets have
     names, for example: `services/chrome-infra-auth`, `projects/chromium`,
-    `projects/chromium/refs/heads/master`. Config sets encapsulate location of
+    `projects/chromium/refs/heads/client`. Config sets encapsulate location of
     files. Config service API accepts config sets instead of repository URLs.
     `services/luci-config:projects.cfg` means `projects.cfg` file in
     `services/luci-config` config set.
@@ -48,7 +48,7 @@ component to read `swarming.cfg` from `projects/<project id>` config set.
 There are three types of configs:
 
 1.  Service configs. A service may have a global project-independent config.
-    Example: auth service has a whitelist of oauth2 client ids. These configs
+    Example: auth service has a allowlist of oauth2 client ids. These configs
     are generally not interesting to project maintainers.
 
     Service configs live in `services/<service_id>` config sets. For GAE apps,

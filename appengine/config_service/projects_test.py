@@ -55,7 +55,7 @@ class ProjectsTestCase(test_case.TestCase):
     # TODO(crbug/924803): remove ref support from the service entirely.
     self.mock_latest_config('projects/chromium', '''
       refs {
-        name: "refs/heads/master"
+        name: "refs/heads/client"
       }
       refs {
         name: "refs/heads/release42"

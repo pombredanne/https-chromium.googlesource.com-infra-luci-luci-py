@@ -106,7 +106,7 @@ class PRPCTest(test_env_handlers.AppTestBase):
                   'started_ts': struct_pb2.Value(number_value=1410990411.11),
                 }),
               external_ip='192.168.2.2',
-              authenticated_as='bot:whitelisted-ip',
+              authenticated_as='bot:allowlisted-ip',
               version='123',
               ),
             dimensions=[
@@ -214,7 +214,7 @@ class PRPCTest(test_env_handlers.AppTestBase):
               'started_ts': struct_pb2.Value(number_value=1410990411.11),
             }),
         external_ip='192.168.2.2',
-        authenticated_as='bot:whitelisted-ip',
+        authenticated_as='bot:allowlisted-ip',
         version=self.bot_version,
     )
     events = [
@@ -275,7 +275,7 @@ class PRPCTest(test_env_handlers.AppTestBase):
                             number_value=1410990411.11),
                       }),
                   external_ip='192.168.2.2',
-                  authenticated_as='bot:whitelisted-ip',
+                  authenticated_as='bot:allowlisted-ip',
                   version='123',
               ),
               dimensions=dimensions),

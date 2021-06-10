@@ -1828,7 +1828,7 @@ def CMDreproduce(parser, args):
   if properties.get('command'):
     command.extend(properties['command'])
 
-  # https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Magic-Values.md
+  # https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/swarming/doc/Magic-Values.md
   command = tools.find_executable(command, env)
   if not options.output:
     new_command = run_isolated.process_command(command, 'invalid', None)

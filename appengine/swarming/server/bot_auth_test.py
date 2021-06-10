@@ -40,9 +40,9 @@ TEST_CONFIG = bots_pb2.BotsCfg(
       ],
       dimensions=['pool:with_service_account']),
     bots_pb2.BotGroup(
-      bot_id=['bot_with_ip_whitelist'],
-      auth=[bots_pb2.BotAuth(ip_whitelist='ip_whitelist')],
-      dimensions=['pool:with_ip_whitelist']),
+      bot_id=['bot_with_ip_allowlist'],
+      auth=[bots_pb2.BotAuth(ip_allowlist='ip_allowlist')],
+      dimensions=['pool:with_ip_allowlist']),
     bots_pb2.BotGroup(
       bot_id=['bot_with_gce_token'],
       auth=[
@@ -52,27 +52,27 @@ TEST_CONFIG = bots_pb2.BotsCfg(
       ],
       dimensions=['pool:bot_with_gce_token']),
     bots_pb2.BotGroup(
-      bot_id=['bot_with_service_account_and_ip_whitelist'],
+      bot_id=['bot_with_service_account_and_ip_allowlist'],
       auth=[
         bots_pb2.BotAuth(
           require_service_account=['a@example.com'],
-          ip_whitelist='ip_whitelist',
+          ip_allowlist='ip_allowlist',
         ),
       ],
-      dimensions=['pool:with_service_account_and_ip_whitelist']),
+      dimensions=['pool:with_service_account_and_ip_allowlist']),
     bots_pb2.BotGroup(
-      bot_id=['bot_with_token_and_ip_whitelist'],
+      bot_id=['bot_with_token_and_ip_allowlist'],
       auth=[
         bots_pb2.BotAuth(
           require_luci_machine_token=True,
-          ip_whitelist='ip_whitelist'),
+          ip_allowlist='ip_allowlist'),
       ],
-      dimensions=['pool:with_token_and_ip_whitelist']),
+      dimensions=['pool:with_token_and_ip_allowlist']),
     bots_pb2.BotGroup(
       bot_id=['bot_with_fallback_to_ip_wl'],
       auth=[
         bots_pb2.BotAuth(require_luci_machine_token=True, log_if_failed=True),
-        bots_pb2.BotAuth(ip_whitelist='ip_whitelist'),
+        bots_pb2.BotAuth(ip_allowlist='ip_allowlist'),
       ],
       dimensions=['pool:with_fallback_to_ip_wl']),
     bots_pb2.BotGroup(
@@ -108,9 +108,9 @@ class BotAuthTest(test_case.TestCase):
     self.logs = []
     self.mock(logging, 'error', lambda l, *_args: self.logs.append(l % _args))
 
-    auth.bootstrap_ip_whitelist(
-        auth.bots_ip_whitelist(), ['1.2.3.4', '1.2.3.5'])
-    auth.bootstrap_ip_whitelist('ip_whitelist', ['1.1.1.1', '1.2.3.4'])
+    auth.bootstrap_ip_allowlist(
+        auth.bots_ip_allowlist(), ['1.2.3.4', '1.2.3.5'])
+    auth.bootstrap_ip_allowlist('ip_allowlist', ['1.1.1.1', '1.2.3.4'])
 
     auth_testing.reset_local_state()
     self.mock_config(TEST_CONFIG)
@@ -138,25 +138,25 @@ class BotAuthTest(test_case.TestCase):
           'expected to see %r in the following log:\n%s' %
           (msg, '\n'.join(self.logs)))
 
-  def test_default_config_not_ip_whitelisted(self):
-    # With default config, callers not in 'bots' IP whitelist are rejected.
+  def test_default_config_not_ip_allowlisted(self):
+    # With default config, callers not in 'bots' IP allowlist are rejected.
     self.mock_config(None)
     self.mock_caller('anonymous:anonymous', '1.1.1.1')
     with self.assertRaises(auth.AuthorizationError):
       bot_auth.validate_bot_id_and_fetch_config('some-bot')
 
-  def test_default_config_ip_whitelisted(self):
-    # With default config, callers in 'bots' IP whitelist are allowed.
+  def test_default_config_ip_allowlisted(self):
+    # With default config, callers in 'bots' IP allowlist are allowed.
     self.mock_config(None)
     self.mock_caller('anonymous:anonymous', '1.2.3.5')
     bot_auth.validate_bot_id_and_fetch_config('some-bot')
 
-  def test_ip_whitelist_based_auth_ok(self):
-    # Caller passes 'bots' IP whitelist and belongs to 'ip_whitelist'.
+  def test_ip_allowlist_based_auth_ok(self):
+    # Caller passes 'bots' IP allowlist and belongs to 'ip_allowlist'.
     self.mock_caller('anonymous:anonymous', '1.2.3.4')
     cfg = bot_auth.validate_bot_id_and_fetch_config(
-        'bot_with_ip_whitelist')
-    self.assertEquals({u'pool': [u'with_ip_whitelist']}, cfg.dimensions)
+        'bot_with_ip_allowlist')
+    self.assertEquals({u'pool': [u'with_ip_allowlist']}, cfg.dimensions)
 
   def test_unknown_bot_id(self):
     # Prepare bots.cfg with no default group
@@ -184,21 +184,21 @@ class BotAuthTest(test_case.TestCase):
     self.assert_error_log('bot ID doesn\'t match the machine token used')
     self.assert_error_log('bot_id: "bot_with_token"')
 
-  def test_machine_token_ip_whitelist_ok(self):
-    # Caller is using valid machine token and belongs to the IP whitelist.
-    self.mock_caller('bot:bot_with_token_and_ip_whitelist.domain', '1.2.3.4')
+  def test_machine_token_ip_allowlist_ok(self):
+    # Caller is using valid machine token and belongs to the IP allowlist.
+    self.mock_caller('bot:bot_with_token_and_ip_allowlist.domain', '1.2.3.4')
     cfg = bot_auth.validate_bot_id_and_fetch_config(
-        'bot_with_token_and_ip_whitelist')
+        'bot_with_token_and_ip_allowlist')
     self.assertEquals(
-        {u'pool': [u'with_token_and_ip_whitelist']}, cfg.dimensions)
+        {u'pool': [u'with_token_and_ip_allowlist']}, cfg.dimensions)
 
-  def test_machine_token_ip_whitelist_not_ok(self):
+  def test_machine_token_ip_allowlist_not_ok(self):
     # Caller is using valid machine token but doesn't belongs to the IP
-    # whitelist.
-    self.mock_caller('bot:bot_with_token_and_ip_whitelist.domain', '1.2.3.5')
+    # allowlist.
+    self.mock_caller('bot:bot_with_token_and_ip_allowlist.domain', '1.2.3.5')
     with self.assertRaises(auth.AuthorizationError):
       bot_auth.validate_bot_id_and_fetch_config(
-          'bot_with_token_and_ip_whitelist')
+          'bot_with_token_and_ip_allowlist')
     self.assert_error_log('IP not allowed')
 
   def test_service_account_ok(self):
@@ -223,21 +223,21 @@ class BotAuthTest(test_case.TestCase):
           'bot_with_service_account')
     self.assert_error_log('bot is not using expected service account')
 
-  def test_service_account_ip_whitelist_ok(self):
-    # Caller is using valid service account and belongs to the IP whitelist.
+  def test_service_account_ip_allowlist_ok(self):
+    # Caller is using valid service account and belongs to the IP allowlist.
     self.mock_caller('user:a@example.com', '1.2.3.4')
     cfg = bot_auth.validate_bot_id_and_fetch_config(
-        'bot_with_service_account_and_ip_whitelist')
+        'bot_with_service_account_and_ip_allowlist')
     self.assertEquals(
-        {u'pool': [u'with_service_account_and_ip_whitelist']}, cfg.dimensions)
+        {u'pool': [u'with_service_account_and_ip_allowlist']}, cfg.dimensions)
 
-  def test_service_account_ip_whitelist_not_ok(self):
+  def test_service_account_ip_allowlist_not_ok(self):
     # Caller is using valid service account and doesn't belong to the IP
-    # whitelist.
+    # allowlist.
     self.mock_caller('user:a@example.com', '1.2.3.5')
     with self.assertRaises(auth.AuthorizationError):
       bot_auth.validate_bot_id_and_fetch_config(
-          'bot_with_service_account_and_ip_whitelist')
+          'bot_with_service_account_and_ip_allowlist')
     self.assert_error_log('IP not allowed')
 
   def test_gce_token_ok(self):

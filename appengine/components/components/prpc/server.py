@@ -9,7 +9,7 @@ actually runs on AppEngine (and therefore couldn't include Cython). It acts
 as a webapp2.RequestHandler, and exposes a .get_routes() method for the host
 application to call.
 
-https://github.com/grpc/grpc/tree/master/src/python/grpcio/grpc
+https://github.com/grpc/grpc/tree/client/src/python/grpcio/grpc
 """
 
 import collections

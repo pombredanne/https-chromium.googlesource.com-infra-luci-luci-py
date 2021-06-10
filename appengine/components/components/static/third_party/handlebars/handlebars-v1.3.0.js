@@ -77,7 +77,7 @@ var __module3__ = (function(__dependency1__) {
   __exports__.extend = extend;var toString = Object.prototype.toString;
   __exports__.toString = toString;
   // Sourced from lodash
-  // https://github.com/bestiejs/lodash/blob/master/LICENSE.txt
+  // https://github.com/bestiejs/lodash/blob/client/LICENSE.txt
   var isFunction = function(value) {
     return typeof value === 'function';
   };

@@ -84,7 +84,7 @@ class ConfigTest(test_case.TestCase):
     self.assertIsNone(config._get_configs_url())
 
   def test_gitiles_url(self):
-    url = 'https://gitiles.net/repo/+/master/'
+    url = 'https://gitiles.net/repo/+/client/'
     self.assertEqual('https://gitiles.net/repo/+/testrev/settings.cfg',
                      config._gitiles_url(url, 'testrev', 'settings.cfg'))
 

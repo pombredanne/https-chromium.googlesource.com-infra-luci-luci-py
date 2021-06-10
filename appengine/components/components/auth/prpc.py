@@ -23,7 +23,7 @@ __all__ = ['prpc_interceptor']
 def prpc_interceptor(request, context, call_details, continuation):
   """Initializes the auth context and catches auth exceptions.
 
-  Validates Authorization header, delegation tokens and checks IP whitelist.
+  Validates Authorization header, delegation tokens and checks IP allowlist.
   On success updates the auth context in the thread-local storage. This makes
   various components.auth functions work from inside pRPC handlers.
 
@@ -97,7 +97,7 @@ def _prepare_auth_context(metadata, peer_ip):
 
   Raises:
     api.AuthenticationError if the authentication token is malformed.
-    api.AuthorizationError if the caller is not in the IP whitelist or not
+    api.AuthorizationError if the caller is not in the IP allowlist or not
       authorized to use the delegation token.
   """
   conf = config.ensure_configured()
@@ -122,7 +122,7 @@ def _prepare_auth_context(metadata, peer_ip):
       delegation_token=_grab_metadata(metadata, _DELEGATION_METADATA_KEY),
       project_header=_grab_metadata(metadata, _X_LUCI_PROJECT_METADATA_KEY),
       use_project_identites=conf.USE_PROJECT_IDENTITIES,
-      use_bots_ip_whitelist=True)
+      use_bots_ip_allowlist=True)
 
 
 def _log_auth_error(title, exc, metadata, peer_ip):

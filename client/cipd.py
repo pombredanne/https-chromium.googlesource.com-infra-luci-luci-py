@@ -256,7 +256,7 @@ def get_platform():
   """Returns ${platform} parameter value.
 
   The logic is similar to
-  https://chromium.googlesource.com/chromium/tools/build/+/6c5c7e9c/scripts/slave/infra_platform.py
+  https://chromium.googlesource.com/chromium/tools/build/+/6c5c7e9c/scripts/agent/infra_platform.py
   """
   # linux, mac or windows.
   os_name = {

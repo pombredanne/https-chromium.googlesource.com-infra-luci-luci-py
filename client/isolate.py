@@ -8,8 +8,8 @@
 This includes creating, merging or compiling them to generate a .isolated file.
 
 See more information at
-  https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/isolate/doc/client/
-  https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/isolate/doc/Design.md#file-format
+  https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/isolate/doc/client/
+  https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/isolate/doc/Design.md#file-format
 """
 # Run ./isolate.py --help for more detailed information.
 
@@ -181,7 +181,7 @@ def chromium_save_isolated(isolated, data, path_variables, algo):
   """Writes one or many .isolated files.
 
   This slightly increases the cold cache cost but greatly reduce the warm cache
-  cost by splitting low-churn files off the master .isolated file. It also
+  cost by splitting low-churn files off the client .isolated file. It also
   reduces overall isolateserver memcache consumption.
   """
   subs = []
@@ -378,7 +378,7 @@ class SavedState(Flattenable):
   def to_isolated(self):
     """Creates a .isolated dictionary out of the saved state.
 
-    https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/isolate/doc/Design.md#file-format
+    https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/isolate/doc/Design.md#file-format
     """
 
     def strip(data):
@@ -693,7 +693,7 @@ def load_complete_state(options, cwd, subdir, skip_update):
   if not skip_update:
     # Then load the .isolate and expands directories.
     complete_state.load_isolate(cwd, isolate, options.path_variables,
-                                options.config_variables, options.blacklist,
+                                options.config_variables, options.denylist,
                                 options.ignore_broken_items,
                                 options.collapse_symlinks)
 

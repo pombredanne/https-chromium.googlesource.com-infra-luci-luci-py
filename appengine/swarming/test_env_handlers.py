@@ -97,9 +97,9 @@ class AppTestBase(test_case.TestCase):
         users_group, [auth.Identity(auth.IDENTITY_USER, 'user@example.com')])
 
   def set_as_anonymous(self):
-    """Removes all IPs from the whitelist."""
+    """Removes all IPs from the allowlist."""
     self.testbed.setup_env(USER_EMAIL='', overwrite=True)
-    auth.ip_whitelist_key(auth.bots_ip_whitelist()).delete()
+    auth.ip_allowlist_key(auth.bots_ip_allowlist()).delete()
     auth_testing.reset_local_state()
     auth_testing.mock_get_current_identity(self, auth.Anonymous)
 
@@ -133,9 +133,9 @@ class AppTestBase(test_case.TestCase):
 
   def set_as_bot(self):
     self.set_as_anonymous()
-    auth.bootstrap_ip_whitelist(auth.bots_ip_whitelist(), [self.source_ip])
+    auth.bootstrap_ip_allowlist(auth.bots_ip_allowlist(), [self.source_ip])
     auth_testing.reset_local_state()
-    auth_testing.mock_get_current_identity(self, auth.IP_WHITELISTED_BOT_ID)
+    auth_testing.mock_get_current_identity(self, auth.IP_ALLOWLISTED_BOT_ID)
 
   # Web or generic
 

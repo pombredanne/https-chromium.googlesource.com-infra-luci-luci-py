@@ -3,7 +3,7 @@
 // that can be found in the LICENSE file.
 
 // This proto tries to converge with
-// https://github.com/googleapis/googleapis/blob/master/google/devtools/remoteworkers/v1test2/
+// https://github.com/googleapis/googleapis/blob/client/google/devtools/remoteworkers/v1test2/
 // as much as it is sensible to (not much). It has several inherent divergences
 // as Swarming has a much wider use case and has a different fundamental model
 // for bot state. Swarming has the limitation of not supporting children
@@ -141,7 +141,7 @@ message Bot {
   // In RBE, this is called Property. The difference is that RBE's Property is a
   // string:string flat dictionary, it doesn't allow repeated values.
   //
-  // https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Detailed-Design.md#bot-dimensions
+  // https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/swarming/doc/Detailed-Design.md#bot-dimensions
   //
   // dimensions MUST be sorted by keys, and each values list must be sorted.
   // Each dimension key must be unique.
@@ -249,7 +249,7 @@ message BotInfo {
   //
   // This value is Swarming instance and configuration dependent. Bot are
   // updated through the process described at
-  // https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Bot.md#update
+  // https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/swarming/doc/Bot.md#update
   string version = 2;
   // External IP address as visible by the server.
   //
@@ -480,7 +480,7 @@ message BotEvent {
 // This can be used to refer to either a task's inputs or a task's outputs.
 //
 // The .isolated file format is defined at
-// https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/isolate/doc/Design.md#file-format
+// https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/isolate/doc/Design.md#file-format
 // It is a JSON file listing all the inputs.
 //
 // It is very different RBE's CAS format, which uses a merkel tree of protobuf
@@ -1060,7 +1060,7 @@ message TaskPerformance {
   // Total overhead caused by the bot.
   // This is calculated by subtracting the command duration measured in
   // run_isolated.py from the total duration in task_runner.run_command().
-  // https://source.chromium.org/chromium/infra/infra/+/master:luci/appengine/swarming/swarming_bot/bot_code/task_runner.py;l=811;drc=dfa14c6863d14a5969bb4fea08846985d89aed76
+  // https://source.chromium.org/chromium/infra/infra/+/client:luci/appengine/swarming/swarming_bot/bot_code/task_runner.py;l=811;drc=dfa14c6863d14a5969bb4fea08846985d89aed76
   google.protobuf.Duration total_overhead = 5;
   // Overhead that is caused by the bot server that is not accounted for by the
   // other overheads.
@@ -1253,7 +1253,7 @@ enum TaskState {
   // request, preemption or time out.
   //
   // See
-  // https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Bot.md#graceful-termination_aka-the-sigterm-and-sigkill-dance
+  // https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/swarming/doc/Bot.md#graceful-termination_aka-the-sigterm-and-sigkill-dance
   TERMINATING = 0x23;  // Not used yet. https://crbug.com/916560
   // Task completed, result metadata and task outputs are available. There's
   // still some overhead being finished like attaching relevant bot logs to the

@@ -31,11 +31,11 @@ It is written to by the swarming bot's on_before_task() hook in the swarming
 server's custom bot_config.py.
 
 See
-https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Magic-Values.md
+https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/swarming/doc/Magic-Values.md
 for all the variables.
 
 See
-https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/swarming_bot/config/bot_config.py
+https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/swarming/swarming_bot/config/bot_config.py
 for more information about bot_config.py.
 """
 
@@ -150,7 +150,7 @@ How to fix?
     them to terminate before quitting.
 
 See
-https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Bot.md#Graceful-termination_aka-the-SIGTERM-and-SIGKILL-dance
+https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/swarming/doc/Bot.md#Graceful-termination_aka-the-SIGTERM-and-SIGKILL-dance
 for more information.
 
 *** May the SIGKILL force be with you ***

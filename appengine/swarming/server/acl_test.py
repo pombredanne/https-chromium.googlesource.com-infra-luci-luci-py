@@ -58,7 +58,7 @@ class AclTest(test_case.TestCase):
 
   def test_nobody(self):
     auth_testing.mock_get_current_identity(self, auth.Anonymous)
-    self.assertFalse(acl.is_ip_whitelisted_machine())
+    self.assertFalse(acl.is_ip_allowlisted_machine())
     self.assertFalse(acl.can_access())
     self.assertFalse(acl.can_view_config())
     self.assertFalse(acl.can_edit_config())
@@ -77,7 +77,7 @@ class AclTest(test_case.TestCase):
 
   def test_instance_admin(self):
     auth_testing.mock_is_admin(self, True)
-    self.assertFalse(acl.is_ip_whitelisted_machine())
+    self.assertFalse(acl.is_ip_allowlisted_machine())
     self.assertTrue(acl.can_access())
     self.assertTrue(acl.can_view_config())
     self.assertTrue(acl.can_edit_config())
@@ -94,9 +94,9 @@ class AclTest(test_case.TestCase):
     self.assertTrue(acl.can_view_task(self._task_other))
     self.assertTrue(acl.can_view_all_tasks())
 
-  def test_ip_whitelisted(self):
-    self.mock(auth, 'is_in_ip_whitelist', lambda _name, _ip, _warn: True)
-    self.assertTrue(acl.is_ip_whitelisted_machine())
+  def test_ip_allowlisted(self):
+    self.mock(auth, 'is_in_ip_allowlist', lambda _name, _ip, _warn: True)
+    self.assertTrue(acl.is_ip_allowlisted_machine())
     self.assertFalse(acl.can_access())
     self.assertFalse(acl.can_view_config())
     self.assertFalse(acl.can_edit_config())
@@ -115,7 +115,7 @@ class AclTest(test_case.TestCase):
 
   def test_admins(self):
     self._add_to_group('admins')
-    self.assertFalse(acl.is_ip_whitelisted_machine())
+    self.assertFalse(acl.is_ip_allowlisted_machine())
     self.assertTrue(acl.can_access())
     self.assertTrue(acl.can_view_config())
     self.assertTrue(acl.can_edit_config())
@@ -134,7 +134,7 @@ class AclTest(test_case.TestCase):
 
   def test_bot_bootstrap(self):
     self._add_to_group('bot_bootstrap')
-    self.assertFalse(acl.is_ip_whitelisted_machine())
+    self.assertFalse(acl.is_ip_allowlisted_machine())
     self.assertFalse(acl.can_access())
     self.assertFalse(acl.can_view_config())
     self.assertFalse(acl.can_edit_config())
@@ -153,7 +153,7 @@ class AclTest(test_case.TestCase):
 
   def test_privileged_users(self):
     self._add_to_group('privileged_users')
-    self.assertFalse(acl.is_ip_whitelisted_machine())
+    self.assertFalse(acl.is_ip_allowlisted_machine())
     self.assertTrue(acl.can_access())
     self.assertFalse(acl.can_view_config())
     self.assertFalse(acl.can_edit_config())
@@ -172,7 +172,7 @@ class AclTest(test_case.TestCase):
 
   def test_users(self):
     self._add_to_group('users')
-    self.assertFalse(acl.is_ip_whitelisted_machine())
+    self.assertFalse(acl.is_ip_allowlisted_machine())
     self.assertTrue(acl.can_access())
     self.assertFalse(acl.can_view_config())
     self.assertFalse(acl.can_edit_config())
@@ -191,7 +191,7 @@ class AclTest(test_case.TestCase):
 
   def test_view_all_bots(self):
     self._add_to_group('view_all_bots')
-    self.assertFalse(acl.is_ip_whitelisted_machine())
+    self.assertFalse(acl.is_ip_allowlisted_machine())
     self.assertTrue(acl.can_access())
     self.assertFalse(acl.can_view_config())
     self.assertFalse(acl.can_edit_config())
@@ -210,7 +210,7 @@ class AclTest(test_case.TestCase):
 
   def test_view_all_tasks(self):
     self._add_to_group('view_all_tasks')
-    self.assertFalse(acl.is_ip_whitelisted_machine())
+    self.assertFalse(acl.is_ip_allowlisted_machine())
     self.assertTrue(acl.can_access())
     self.assertFalse(acl.can_view_config())
     self.assertFalse(acl.can_edit_config())

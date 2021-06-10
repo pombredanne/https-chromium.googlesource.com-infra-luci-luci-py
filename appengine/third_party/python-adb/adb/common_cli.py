@@ -42,7 +42,7 @@ gflags.DEFINE_bool('output_port_path', False,
 
 FLAGS = gflags.FLAGS
 
-_BLACKLIST = {
+_DENYLIST = {
     'Connect',
     'Close',
     'ConnectDevice',
@@ -67,7 +67,7 @@ def Usage(adb_dev):
       continue
     if not method.__doc__:
       continue
-    if name in _BLACKLIST:
+    if name in _DENYLIST:
       continue
 
     argspec = inspect.getargspec(method)

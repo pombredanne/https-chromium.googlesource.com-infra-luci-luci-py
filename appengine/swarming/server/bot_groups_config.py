@@ -34,7 +34,7 @@ BotAuth = collections.namedtuple(
         'require_luci_machine_token',
         'require_service_account',
         'require_gce_vm_token',  # this is BotAuthGCE
-        'ip_whitelist',
+        'ip_allowlist',
     ])
 
 # Validated and "frozen" bots_pb2.BotAuth.GCE proto.
@@ -519,7 +519,7 @@ def _default_bot_groups():
               require_luci_machine_token=False,
               require_service_account=None,
               require_gce_vm_token=None,
-              ip_whitelist=auth.bots_ip_whitelist()),),
+              ip_allowlist=auth.bots_ip_allowlist()),),
           dimensions={},
           bot_config_script='',
           bot_config_script_rev='',
@@ -582,7 +582,7 @@ def _bot_group_proto_to_tuple(msg, trusted_dimensions):
               require_gce_vm_token=(
                   BotAuthGCE(cfg.require_gce_vm_token.project) if cfg
                   .HasField('require_gce_vm_token') else None),
-              ip_whitelist=cfg.ip_whitelist) for cfg in msg.auth),
+              ip_allowlist=cfg.ip_allowlist) for cfg in msg.auth),
       dimensions={k: sorted(v) for k, v in dimensions.items()},
       bot_config_script=msg.bot_config_script or '',
       bot_config_script_rev='',
@@ -863,8 +863,8 @@ def _validate_auth(ctx, a):
 
   if len(fields) > 1:
     ctx.error('%s can\'t be used at the same time', ' and '.join(fields))
-  if not fields and not a.ip_whitelist:
-    ctx.error('if all auth requirements are unset, ip_whitelist must be set')
+  if not fields and not a.ip_allowlist:
+    ctx.error('if all auth requirements are unset, ip_allowlist must be set')
 
   if a.require_service_account:
     for email in a.require_service_account:
@@ -873,8 +873,8 @@ def _validate_auth(ctx, a):
   if a.HasField('require_gce_vm_token') and not a.require_gce_vm_token.project:
     ctx.error('missing project in require_gce_vm_token')
 
-  if a.ip_whitelist and not auth.is_valid_ip_whitelist_name(a.ip_whitelist):
-    ctx.error('invalid ip_whitelist name "%s"', a.ip_whitelist)
+  if a.ip_allowlist and not auth.is_valid_ip_allowlist_name(a.ip_allowlist):
+    ctx.error('invalid ip_allowlist name "%s"', a.ip_allowlist)
 
 
 def _validate_system_service_account(ctx, bot_group):

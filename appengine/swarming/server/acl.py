@@ -27,7 +27,7 @@
 
 
     +-------------------------+
-    |is_ip_whitelisted_machine|
+    |is_ip_allowlisted_machine|
     +-------------------------+
 
 
@@ -89,9 +89,9 @@ def _is_project():
 ### Capabilities
 
 
-def is_ip_whitelisted_machine():
+def is_ip_allowlisted_machine():
   """Returns True if the call is made from allowed-IP machine."""
-  return auth.is_in_ip_whitelist(auth.bots_ip_whitelist(), auth.get_peer_ip(),
+  return auth.is_in_ip_allowlist(auth.bots_ip_allowlist(), auth.get_peer_ip(),
                                  False)
 
 
