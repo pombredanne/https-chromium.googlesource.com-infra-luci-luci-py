@@ -106,7 +106,7 @@
           var param = {
             config_sets: [{
               files: [{path: "OWNERS"}, {path: "README.md"}],
-              location: "https://test.com/refs/master/valid-project-with-config-files",
+              location: "https://test.com/refs/client/valid-project-with-config-files",
               last_import_attempt: {
                 success: true,
                 revision: {
@@ -133,14 +133,14 @@
           var param = {
             config_sets: [{
               files: [{path: "OWNERS"}, {path: "README.md"}],
-              location: "https://test.com/refs/master/valid-project-with-config-files",
+              location: "https://test.com/refs/client/valid-project-with-config-files",
             }]
           };
           setserver(param);
           request = ajax.generateRequest();
           server.respond();
           config_set.addEventListener('processedConfigFiles', function() {
-            assert.equal(config_set.url, "https://test.com/refs/master/valid-project-with-config-files");
+            assert.equal(config_set.url, "https://test.com/refs/client/valid-project-with-config-files");
             done();
           }.bind(config_set));
         });

@@ -824,10 +824,10 @@ class HighDevice(object):
     # Applications are set in the 10000-19999 UID space. The UID are not reused.
     # So after installing 10000 apps, including stock apps, ignoring uninstalls,
     # then the device becomes unusable. Oops!
-    # https://android.googlesource.com/platform/frameworks/base/+/master/api/current.txt
+    # https://android.googlesource.com/platform/frameworks/base/+/client/api/current.txt
     # or:
     # curl -sSLJ \
-    #   https://android.googlesource.com/platform/frameworks/base/+/master/api/current.txt?format=TEXT \
+    #   https://android.googlesource.com/platform/frameworks/base/+/client/api/current.txt?format=TEXT \
     #   | base64 --decode | grep APPLICATION_UID
     out = self.PullContent('/data/system/packages.list')
     if not out:

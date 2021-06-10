@@ -420,8 +420,8 @@ class TarBundle(isolate_storage.Item):
     self._algo = algo
     self._root_len = len(root) + 1
     # Same value as for Go.
-    # https://chromium.googlesource.com/infra/luci/luci-go.git/+/master/client/archiver/tar_archiver.go
-    # https://chromium.googlesource.com/infra/luci/luci-go.git/+/master/client/archiver/upload_tracker.go
+    # https://chromium.googlesource.com/infra/luci/luci-go.git/+/client/client/archiver/tar_archiver.go
+    # https://chromium.googlesource.com/infra/luci/luci-go.git/+/client/client/archiver/upload_tracker.go
     self._archive_max_size = int(10e6)
 
   @property
@@ -1685,7 +1685,7 @@ def CMDarchive(parser, args):
   if not files:
     parser.error('Nothing to upload')
   files = (six.ensure_text(f) for f in files)
-  denylist = tools.gen_denylist(options.blacklist)
+  denylist = tools.gen_denylist(options.denylist)
   try:
     with get_storage(server_ref) as storage:
       results, _cold, _hot = archive_files_to_storage(storage, files, denylist)
@@ -1786,7 +1786,7 @@ def CMDdownload(parser, args):
 
 def add_archive_options(parser):
   parser.add_option(
-      '--blacklist',
+      '--denylist',
       action='append',
       default=list(DEFAULT_DENYLIST),
       help='List of regexp to use as denylist filter when uploading '

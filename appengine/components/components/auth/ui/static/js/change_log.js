@@ -33,12 +33,12 @@ var parseTarget = function(t) {
     case 'AuthGroup':
       targetURL = '/auth/groups/' + name;
       break;
-    case 'AuthIPWhitelist':
-      targetURL = '/auth/ip_whitelists';
+    case 'AuthIPAllowlist':
+      targetURL = '/auth/ip_allowlists';
       break;
-    case 'AuthIPWhitelistAssignments':
-      title = 'IP whitelist assignment';
-      targetURL = '/auth/ip_whitelists';
+    case 'AuthIPAllowlistAssignments':
+      title = 'IP allowlist assignment';
+      targetURL = '/auth/ip_allowlists';
       break;
     case 'AuthGlobalConfig':
       title = 'Global config';

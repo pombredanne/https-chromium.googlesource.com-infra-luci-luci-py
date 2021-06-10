@@ -111,7 +111,7 @@ class MainTest(TestCase):
   def test_run_bot_signal(self):
     # Test SIGTERM signal handling. Run it as an external process to not mess
     # things up.
-    proc = subprocess42.Popen([sys.executable, self._zip_file, 'start_slave'],
+    proc = subprocess42.Popen([sys.executable, self._zip_file, 'start_agent'],
                               stdout=subprocess42.PIPE,
                               stderr=subprocess42.STDOUT,
                               detached=True)

@@ -68,15 +68,15 @@ class InfraFilter(logging.Filter):  # pragma: no cover
 
   Args:
     timezone (str): timezone in which timestamps should be printed.
-    module_name_blacklist (str): do not print log lines from modules whose name
+    module_name_denylist (str): do not print log lines from modules whose name
       matches this regular expression.
   """
-  def __init__(self, timezone, module_name_blacklist=None):
+  def __init__(self, timezone, module_name_denylist=None):
     super(InfraFilter, self).__init__()
-    self.module_name_blacklist = None
+    self.module_name_denylist = None
 
-    if module_name_blacklist:
-      self.module_name_blacklist = re.compile(module_name_blacklist)
+    if module_name_denylist:
+      self.module_name_denylist = re.compile(module_name_denylist)
 
     self.tz = pytz.timezone(timezone)
 
@@ -86,8 +86,8 @@ class InfraFilter(logging.Filter):  # pragma: no cover
     record.severity = record.levelname[0]
     log_metric.increment(fields={'level': record.severity})
     record.fullModuleName = self._full_module_name() or record.module
-    if self.module_name_blacklist:
-      if self.module_name_blacklist.search(record.fullModuleName):
+    if self.module_name_denylist:
+      if self.module_name_denylist.search(record.fullModuleName):
         return False
     return True
 
@@ -130,7 +130,7 @@ def add_handler(logger,
                 handler=None,
                 timezone='UTC',
                 level=logging.WARNING,
-                module_name_blacklist=None,
+                module_name_denylist=None,
                 max_length=None):  # pragma: no cover
   """Configures and adds a handler to a logger the standard way for infra.
 
@@ -142,7 +142,7 @@ def add_handler(logger,
        logging.StreamHandler.
     timezone (str): timezone to use for timestamps.
     level (int): logging level. Could be one of DEBUG, INFO, WARNING, CRITICAL
-    module_name_blacklist (str): do not print log lines from modules whose name
+    module_name_denylist (str): do not print log lines from modules whose name
       matches this regular expression.
     max_length (int): truncates formatted entry to this many bytes. 0 or None
       means unlimited.
@@ -162,7 +162,7 @@ def add_handler(logger,
   """
   handler = handler or logging.StreamHandler()
   handler.addFilter(InfraFilter(timezone,
-                                module_name_blacklist=module_name_blacklist))
+                                module_name_denylist=module_name_denylist))
   handler.setFormatter(InfraFormatter(max_length))
   handler.setLevel(level=level)
   logger.addHandler(handler)
@@ -268,7 +268,7 @@ def process_argparse_options(options, logger=None):  # pragma: no cover
   add_handler(
       logger,
       level=options.log_level,
-      module_name_blacklist=options.logs_black_list,
+      module_name_denylist=options.logs_black_list,
       max_length=options.logs_max_length)
 
   if options.logs_directory:

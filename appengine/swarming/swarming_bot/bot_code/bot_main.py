@@ -92,7 +92,7 @@ _CAS_KVS_CACHE_DB = 'cas_kvs_cache_db'
 # will be forcibly deleted on startup! Note that 'w' (work) is not in this list,
 # as we want it to be deleted on startup.
 # See
-# https://chromium.googlesource.com/infra/luci/luci-py.git/+/master/appengine/swarming/doc/Bot.md
+# https://chromium.googlesource.com/infra/luci/luci-py.git/+/client/appengine/swarming/doc/Bot.md
 # for more details.
 PASSLIST = (
     '*-cacert.pem',
@@ -1394,7 +1394,7 @@ def _bot_restart(botobj, message, filepath=None):
   # to outlive the new code child process. Launchd really wants the main process
   # to survive, and it'll restart it if it disappears. os.exec*() replaces the
   # process so this is fine.
-  cmd = [filepath, 'start_slave', '--survive']
+  cmd = [filepath, 'start_agent', '--survive']
   if _IN_TEST_MODE:
     cmd.append('--test-mode')
   logging.debug('Restarting bot, cmd: %s', cmd)

@@ -203,7 +203,7 @@ def CMDstart_bot(args):
   return result
 
 
-def CMDstart_slave(args):
+def CMDstart_agent(args):
   """Ill named command that actually sets up the bot then start it."""
   # TODO(maruel): Rename function.
   logging_utils.prepare_logging(os.path.join('logs', 'bot_config.log'))
@@ -272,7 +272,7 @@ def main():
     return common.exec_python(cmd)
 
   # sys.argv[0] is the zip file itself.
-  cmd = 'start_slave'
+  cmd = 'start_agent'
   args = []
   if len(sys.argv) > 1:
     cmd = sys.argv[1]

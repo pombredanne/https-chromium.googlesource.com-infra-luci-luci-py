@@ -501,7 +501,7 @@ def _call_token_server(method, request, project_id=None):
         'Invalid token server URL %s: %s' % (ts_url, exc))
 
   # See TokenMinter in
-  # https://chromium.googlesource.com/infra/luci/luci-go/+/master/tokenserver/api/minter/v1/token_minter.proto
+  # https://chromium.googlesource.com/infra/luci/luci-go/+/client/tokenserver/api/minter/v1/token_minter.proto
   # But beware that proto JSON serialization uses camelCase, not snake_case.
   try:
     return net.json_request(

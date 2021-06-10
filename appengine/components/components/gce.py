@@ -113,7 +113,7 @@ class Project(object):
 
     Args:
       zone: name of a zone, e.g. 'us-central1-a'.
-      instance: name of an instance, e.g. 'slave123-c4'.
+      instance: name of an instance, e.g. 'agent123-c4'.
       fields: enumeration of dict fields to fetch (or None for all).
 
     Returns:
@@ -242,7 +242,7 @@ class Project(object):
 
     Args:
       zone: name of a zone, e.g. 'us-central1-a'.
-      instance: name of an instance, e.g. 'slave123-c4'.
+      instance: name of an instance, e.g. 'agent123-c4'.
       fingerprint: fingerprint of existing metadata.
       items: list of {'key': ..., 'value': ...} dicts with new metadata.
 

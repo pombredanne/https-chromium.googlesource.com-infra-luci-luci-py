@@ -89,13 +89,13 @@ class BackendTest(test_env_handlers.AppTestBase):
 
     bot_management.bot_event(
         event_type='request_sleep', bot_id='id1',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
+        external_ip='8.8.4.4', authenticated_as='bot:allowlisted-ip',
         dimensions={'foo': ['beta'], 'id': ['id1']}, state={'ram': 65},
         version='123456789', quarantined=False, maintenance_msg=None,
         task_id=None, task_name=None, register_dimensions=True)
     bot_management.bot_event(
         event_type='request_sleep', bot_id='id2',
-        external_ip='8.8.4.4', authenticated_as='bot:whitelisted-ip',
+        external_ip='8.8.4.4', authenticated_as='bot:allowlisted-ip',
         dimensions={'foo': ['alpha'], 'id': ['id2']}, state={'ram': 65},
         version='123456789', quarantined=True, maintenance_msg=None,
         task_id='987', task_name=None, register_dimensions=True)

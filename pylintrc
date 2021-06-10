@@ -1,4 +1,4 @@
-[MASTER]
+[CLIENT]
 
 # Specify a configuration file.
 #rcfile=
@@ -7,7 +7,7 @@
 # pygtk.require().
 #init-hook=
 
-# Add files or directories to the blacklist. They should be base names, not
+# Add files or directories to the denylist. They should be base names, not
 # paths.
 ignore=CVS
 
@@ -28,7 +28,7 @@ unsafe-load-any-extension=no
 # A comma-separated list of package or module names from where C extensions may
 # be loaded. Extensions are loading into the active Python interpreter and may
 # run arbitrary code
-extension-pkg-whitelist=
+extension-pkg-allowlist=
 
 # Allow optimization of some AST trees. This will activate a peephole AST
 # optimizer, which will apply various small optimizations. For instance, it can

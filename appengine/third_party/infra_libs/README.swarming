@@ -1,6 +1,6 @@
 Name: infra_libs
 Short Name: infra_libs
-URL: https://chromium.googlesource.com/infra/infra.git/+/master/appengine_module/
+URL: https://chromium.googlesource.com/infra/infra.git/+/client/appengine_module/
 Revision: 0c2b00962aec244573836a0fbb2e465e3426daa1
 License: Chromium License
 

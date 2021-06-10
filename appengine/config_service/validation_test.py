@@ -278,7 +278,7 @@ class ValidationTestCase(test_case.TestCase):
   def test_validate_refs(self):
     cfg = '''
       refs {
-        name: "refs/heads/master"
+        name: "refs/heads/client"
       }
     '''
     result = validation.validate_config('projects/x', 'refs.cfg', cfg)

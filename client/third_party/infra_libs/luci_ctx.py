@@ -4,7 +4,7 @@
 
 """Very minimal library for reading LUCI_CONTEXT sections.
 
-See chromium.googlesource.com/infra/luci/luci-py/+/master/client/LUCI_CONTEXT.md
+See chromium.googlesource.com/infra/luci/luci-py/+/client/client/LUCI_CONTEXT.md
 """
 
 import copy

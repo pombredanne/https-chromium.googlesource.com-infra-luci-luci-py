@@ -40,7 +40,7 @@ A complete CI toolkit:
 
 ## Versioning
 
-*   Branch `master` constains the latest code.
+*   Branch `client` constains the latest code.
 *   Branch `stable` contains the stable code.
 
 
@@ -55,7 +55,7 @@ Run the following to setup the code review tool and create your first review:
     git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git $HOME/src/depot_tools
     export PATH="$PATH:$HOME/src/depot_tools"
     cd luci-py
-    git checkout -b work origin/master
+    git checkout -b work origin/client
 
     # hack hack
 
@@ -73,7 +73,7 @@ Use `git cl help` and `git cl help <cmd>` for more details.
 
 The preferred style is PEP8 with two-space indent; that is, the [Chromium
 Python
-style](https://chromium.googlesource.com/chromium/src/+/master/styleguide/python/python.md),
+style](https://chromium.googlesource.com/chromium/src/+/client/styleguide/python/python.md),
 except functions use `lowercase_with_underscores`. Use yapf (`git cl format`)
 to autoformat new code.
 

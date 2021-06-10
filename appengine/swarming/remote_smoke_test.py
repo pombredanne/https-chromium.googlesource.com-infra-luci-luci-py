@@ -159,7 +159,7 @@ def test_reentrant(swarming, isolate, extra_flags):
   # First isolate the whole client directory.
   cmd = [
     os.path.join(CLIENT_DIR, 'isolateserver.py'), 'archive',
-    '-I', isolate, '--namespace', 'default-gzip', '--blacklist', 'tests',
+    '-I', isolate, '--namespace', 'default-gzip', '--denylist', 'tests',
     CLIENT_DIR,
   ]
   client_isolated = subprocess.check_output(cmd).split()[0]

@@ -13,7 +13,7 @@ your needs.
     [config_service](config_service) can be added over time to reduce the
     management overhead.
 *   Once automatic dynamic VM managment is needed, setup
-    [GCE Provider](https://chromium.googlesource.com/infra/luci/luci-go/+/master/gce/).
+    [GCE Provider](https://chromium.googlesource.com/infra/luci/luci-go/+/client/gce/).
 *   Go to http://console.cloud.google.com and register as many instances as
     needed then follow the service specific instructions.
 
@@ -80,7 +80,7 @@ by default.
 ## External dependencies
 
 luci-py leverages Chromium specific functionalities:
-[CIPD](https://chromium.googlesource.com/infra/infra/+/master/cipd/)
+[CIPD](https://chromium.googlesource.com/infra/infra/+/client/cipd/)
 (hermetic package management) and
-[ts_mon](https://chromium.googlesource.com/infra/infra/+/master/infra_libs/ts_mon/)
+[ts_mon](https://chromium.googlesource.com/infra/infra/+/client/infra_libs/ts_mon/)
 (monitoring).  Neither are strictly required for operational purpose.

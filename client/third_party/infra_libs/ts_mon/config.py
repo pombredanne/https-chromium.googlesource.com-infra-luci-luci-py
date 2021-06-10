@@ -55,8 +55,8 @@ def _default_region(fqdn):
 def _default_network(host):
   try:
     # Regular expression that matches the vast majority of our host names.
-    # Matches everything of the form 'masterN', 'masterNa', and 'foo-xN'.
-    return re.match(r'^([\w-]*?-[acm]|master)(\d+)a?$', host).group(2)  # N
+    # Matches everything of the form 'clientN', 'clientNa', and 'foo-xN'.
+    return re.match(r'^([\w-]*?-[acm]|client)(\d+)a?$', host).group(2)  # N
   except AttributeError:
     return ''
 
@@ -80,7 +80,7 @@ def add_argparse_options(parser):
            '"endpoint" and "credentials" for this machine. This config file is '
            'intended to be shared by all processes on the machine, as the '
            'values depend on the machine\'s position in the network, IP '
-           'whitelisting and deployment of credentials. (default: %(default)s)')
+           'allowlisting and deployment of credentials. (default: %(default)s)')
   parser.add_argument(
       '--ts-mon-endpoint',
       help='url (file:// or https://) to post monitoring metrics to. If set, '

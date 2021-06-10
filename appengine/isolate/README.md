@@ -69,7 +69,7 @@ scheduler is needed.
     `Proceed`.
 *   Visit "_https://\<appid\>.appspot.com/auth/groups_"
     *   Create [access groups](doc/Access-Groups.md) as relevant. Visit the "_IP
-        Whitelists_" tab and add bot external IP addresses if needed.
+        Allowlists_" tab and add bot external IP addresses if needed.
 *   Visit "_https://\<appid\>.appspot.com/restricted/config_"
     *   Follow the on-screen instructions to generate the base64 encoded DER
         private key.
@@ -77,12 +77,12 @@ scheduler is needed.
 *   If you plan to use a [config service](../config_service) (the normal case):
     *   Make sure it is setup already.
     *   Make sure you set
-        [SettingsCfg.ui_client_id](https://chromium.googlesource.com/infra/luci/luci-py/+/master/appengine/swarming/proto/config.proto)
+        [SettingsCfg.ui_client_id](https://chromium.googlesource.com/infra/luci/luci-py/+/client/appengine/swarming/proto/config.proto)
         to be `server@<appid>.iam.gserviceaccount.com`.
     *   [Follow instruction
         here](../components/components/config/#linking-to-the-config-service).
 *   If you are not using a config service, see [Configuring using FS
-    mode](https://chromium.googlesource.com/infra/luci/luci-py/+/master/appengine/components/components/config/README.md#fs-mode).
+    mode](https://chromium.googlesource.com/infra/luci/luci-py/+/client/appengine/components/components/config/README.md#fs-mode).
     You'll need to add an entry to settings.cfg like `ui_client_id:
     "server@<appid>.iam.gserviceaccount.com"`
 

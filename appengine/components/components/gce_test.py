@@ -376,8 +376,8 @@ class GceTest(test_case.TestCase):
     self.assertFalse(gce.is_valid_zone('us-central1/a'))
 
   def test_is_valid_instance(self):
-    self.assertTrue(gce.is_valid_instance('slave123-c4'))
-    self.assertFalse(gce.is_valid_instance('slave123/c4'))
+    self.assertTrue(gce.is_valid_instance('agent123-c4'))
+    self.assertFalse(gce.is_valid_instance('agent123/c4'))
 
   def test_get_network_interfaces(self):
     expected_interfaces_ext  = [{'network': 'global/networks/default',

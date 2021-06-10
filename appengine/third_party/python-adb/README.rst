@@ -6,7 +6,7 @@ protocols, using libusb1 for USB communications.
 
 This is a complete replacement and rearchitecture of the Android project's ADB
 and fastboot code available at
-https://github.com/android/platform_system_core/tree/master/adb
+https://github.com/android/platform_system_core/tree/client/adb
 
 This code is mainly targeted to users that need to communicate with Android
 devices in an automated fashion, such as in automated testing. It does not have

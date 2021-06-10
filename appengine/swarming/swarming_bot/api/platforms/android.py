@@ -144,7 +144,7 @@ def get_dimensions(devices):
   # TODO(bpastene) Make sure all the devices use the same board and OS.
   # product.device should be read (and listed) first, that is, before
   # build.product because the latter is deprecated.
-  # https://android.googlesource.com/platform/build/+/master/tools/buildinfo.sh
+  # https://android.googlesource.com/platform/build/+/client/tools/buildinfo.sh
   dimension_properties = {
       u'device_os': ['build.id'],
       u'device_os_flavor': ['product.brand', 'product.system.brand'],

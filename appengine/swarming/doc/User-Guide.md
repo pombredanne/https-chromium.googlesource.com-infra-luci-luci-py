@@ -49,10 +49,10 @@ Inputs can be a mix of all 4 of:
 
 *   Isolated tree: optionally includes a command. It's essentially a pointer
     (SHA1 digest) to a root of a [Merkle tree-like
-    structure](https://github.com/luci/luci-py/blob/master/appengine/isolate/doc/Design.md#isolated-file-format)
+    structure](https://github.com/luci/luci-py/blob/client/appengine/isolate/doc/Design.md#isolated-file-format)
     that stores files for the task.
 *   CIPD package(s): archives to be mapped inside the work directory. This
-    leverages [CIPD](https://github.com/luci/luci-go/tree/master/cipd).
+    leverages [CIPD](https://github.com/luci/luci-go/tree/client/cipd).
 *   Named cache(s): local cache directory(ies) to do incremental work to be
     mapped in the task working directory. This tells the worker to create
     directory(ies) to keep even _after_ the task is completed, so files can be
@@ -178,7 +178,7 @@ To understand how bot behaves, see [Bot.md](Bot.md). This section focuses from
 the point of view of running a task.
 
 Swarming tasks are normally running a isolated tree directly via
-[run_isolated.py](https://github.com/luci/luci-py/tree/master/client/run_isolated.py).
+[run_isolated.py](https://github.com/luci/luci-py/tree/client/client/run_isolated.py).
 
 Swarming is designed with inspiration from internal Google test distribution
 mechanism. As such, it has a few assumptions baked in. A task shall:
@@ -202,9 +202,9 @@ There's 4 ways to interact with Swarming:
     provide a way to trigger a new task (ping the author if this feature is
     desirable).
 *   CLI command line tool. There's a [python
-    client](https://github.com/luci/luci-py/tree/master/client) and eventually a
+    client](https://github.com/luci/luci-py/tree/client/client) and eventually a
     [Go
-    client](https://github.com/luci/luci-go/tree/master/client/cmd/swarming).
+    client](https://github.com/luci/luci-go/tree/client/client/cmd/swarming).
     *   The luci-py/client repository subdirectory is cloned automatically to
         [client-py](https://github.com/luci/client-py) so you don't have to
         clone the whole server code if not desired. It's the same code.
@@ -230,7 +230,7 @@ The Web UI has 4 purposes:
 
 ## Python CLI
 
-[swarming.py](https://github.com/luci/luci-py/blob/master/client/swarming.py) is
+[swarming.py](https://github.com/luci/luci-py/blob/client/client/swarming.py) is
 the client side script to manage Swarming tasks at the command line.
 
 **Warning:** This doc is bound to become out of date. Here's one weird trick:
@@ -302,4 +302,4 @@ https://apis-explorer.appspot.com/apis-explorer/?base=https://chromium-swarm.app
 
 Until the API is rewritten as proto files, each API struct description can be
 read at
-https://github.com/luci/luci-py/blob/master/appengine/swarming/swarming_rpcs.py
+https://github.com/luci/luci-py/blob/client/appengine/swarming/swarming_rpcs.py

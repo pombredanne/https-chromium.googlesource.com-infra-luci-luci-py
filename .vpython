@@ -1,7 +1,7 @@
 # This is a vpython "spec" file.
 #
 # Read more about `vpython` and how to modify this file here:
-#   https://chromium.googlesource.com/infra/infra/+/master/doc/users/vpython.md
+#   https://chromium.googlesource.com/infra/infra/+/client/doc/users/vpython.md
 
 python_version: "2.7"
 
