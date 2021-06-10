@@ -138,7 +138,7 @@ class GitilesTestCase(test_case.TestCase):
     self.assertEqual(tree.entries[0].name, 'a')
 
   def test_get_log(self):
-    req_path = 'project/+log/master/'
+    req_path = 'project/+log/client/'
     self.mock_fetch_json({
       'log': [
         {
@@ -182,7 +182,7 @@ class GitilesTestCase(test_case.TestCase):
       ],
     })
 
-    log = gitiles.get_log(HOSTNAME, 'project', 'master', limit=2)
+    log = gitiles.get_log(HOSTNAME, 'project', 'client', limit=2)
     gerrit.fetch_json_async.assert_called_once_with(
         HOSTNAME, req_path, params={'n': 2})
 
@@ -221,59 +221,59 @@ class GitilesTestCase(test_case.TestCase):
     )
 
   def test_get_log_with_slash(self):
-    req_path = 'project/+log/master/'
+    req_path = 'project/+log/client/'
     self.mock_fetch_json(None)
 
-    gitiles.get_log(HOSTNAME, 'project', 'master', path='/', limit=2)
+    gitiles.get_log(HOSTNAME, 'project', 'client', path='/', limit=2)
     gerrit.fetch_json_async.assert_called_once_with(
         HOSTNAME, req_path, params={'n': 2})
 
   def test_get_log_with_path(self):
-    req_path = 'project/+log/master/x'
+    req_path = 'project/+log/client/x'
     self.mock_fetch_json(None)
 
-    gitiles.get_log(HOSTNAME, 'project', 'master', path='x', limit=2)
+    gitiles.get_log(HOSTNAME, 'project', 'client', path='x', limit=2)
     gerrit.fetch_json_async.assert_called_once_with(
         HOSTNAME, req_path, params={'n': 2})
 
   def test_get_log_with_path_with_space(self):
-    req_path = 'project/+log/master/x%20y'
+    req_path = 'project/+log/client/x%20y'
     self.mock_fetch_json(None)
 
-    gitiles.get_log(HOSTNAME, 'project', 'master', path='x y')
+    gitiles.get_log(HOSTNAME, 'project', 'client', path='x y')
     gerrit.fetch_json_async.assert_called_once_with(
         HOSTNAME, req_path, params={})
 
   def test_get_file_content(self):
-    req_path = 'project/+/master/a.txt'
+    req_path = 'project/+/client/a.txt'
     self.mock_fetch(base64.b64encode('content'))
 
-    content = gitiles.get_file_content(HOSTNAME, 'project', 'master', '/a.txt')
+    content = gitiles.get_file_content(HOSTNAME, 'project', 'client', '/a.txt')
     gerrit.fetch_async.assert_called_once_with(
         HOSTNAME, req_path, headers={'Accept': 'text/plain'})
     self.assertEqual(content, 'content')
 
   def test_get_archive(self):
-    req_path = 'project/+archive/master.tar.gz'
+    req_path = 'project/+archive/client.tar.gz'
     self.mock_fetch('tar gz bytes')
 
-    content = gitiles.get_archive(HOSTNAME, 'project', 'master')
+    content = gitiles.get_archive(HOSTNAME, 'project', 'client')
     gerrit.fetch_async.assert_called_once_with(HOSTNAME, req_path)
     self.assertEqual('tar gz bytes', content)
 
   def test_get_archive_with_dirpath(self):
-    req_path = 'project/+archive/master/dir.tar.gz'
+    req_path = 'project/+archive/client/dir.tar.gz'
     self.mock_fetch('tar gz bytes')
 
-    content = gitiles.get_archive(HOSTNAME, 'project', 'master', '/dir')
+    content = gitiles.get_archive(HOSTNAME, 'project', 'client', '/dir')
     gerrit.fetch_async.assert_called_once_with(HOSTNAME, req_path)
     self.assertEqual('tar gz bytes', content)
 
   def test_get_diff(self):
-    req_path = 'project/+/deadbeef..master/'
+    req_path = 'project/+/deadbeef..client/'
     self.mock_fetch(base64.b64encode('thepatch'))
 
-    patch = gitiles.get_diff(HOSTNAME, 'project', 'deadbeef', 'master', '/')
+    patch = gitiles.get_diff(HOSTNAME, 'project', 'deadbeef', 'client', '/')
     self.assertEqual(patch, 'thepatch')
 
     gerrit.fetch_async.assert_called_once_with(
@@ -302,12 +302,12 @@ class GitilesTestCase(test_case.TestCase):
     self.assertEqual(loc.treeish, 'HEAD')
     self.assertEqual(loc.path, '/')
 
-  def test_parse_refs_heads_master(self):
-    url = 'http://localhost/project/+/refs/heads/master/path/to/something'
+  def test_parse_refs_heads_client(self):
+    url = 'http://localhost/project/+/refs/heads/client/path/to/something'
     loc = gitiles.Location.parse(url)
     self.assertEqual(loc.hostname, 'localhost')
     self.assertEqual(loc.project, 'project')
-    self.assertEqual(loc.treeish, 'refs/heads/master')
+    self.assertEqual(loc.treeish, 'refs/heads/client')
     self.assertEqual(loc.path, '/path/to/something')
 
   def test_parse_authenticated_url(self):
@@ -348,7 +348,7 @@ class GitilesTestCase(test_case.TestCase):
   def test_parse_resolve(self):
     self.mock(gitiles, 'get_refs', mock.Mock())
     gitiles.get_refs.return_value = {
-      'refs/heads/master': {},
+      'refs/heads/client': {},
       'refs/heads/a/b': {},
       'refs/tags/c/d': {},
     }
