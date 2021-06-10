@@ -22,6 +22,52 @@
       },
       "revId": "ad566a56beb4f49b71a8b34a7090480ec870f73d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e56f1cda_4a4dc058",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-10T07:05:48Z",
+      "side": 1,
+      "message": "If this is only for Windows, add `sys.platform \u003d\u003d \u0027win32\u0027`",
+      "range": {
+        "startLine": 716,
+        "startChar": 0,
+        "endLine": 716,
+        "endChar": 21
+      },
+      "revId": "ad566a56beb4f49b71a8b34a7090480ec870f73d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd5d1bae_5d00842e",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-10T07:05:48Z",
+      "side": 1,
+      "message": "Use _winapi.INFINITE?\nhttps://github.com/python/cpython/blob/309ab616020f8504ced8ca64f7d7abc2df25a37f/Lib/subprocess.py#L1479",
+      "range": {
+        "startLine": 717,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 30
+      },
+      "revId": "ad566a56beb4f49b71a8b34a7090480ec870f73d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
