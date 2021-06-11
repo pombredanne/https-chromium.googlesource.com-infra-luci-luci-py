@@ -68,35 +68,35 @@ class EndpointsAuthTest(testing.TestCase):
       'peer_id': api.get_peer_identity().to_bytes(),
     }
 
-  def test_ip_whitelist_bot(self):
-    """Requests from client in bots IP whitelist are authenticated as bot."""
-    model.bootstrap_ip_whitelist(
-        model.bots_ip_whitelist(), ['192.168.1.100/32'])
-    self.assertEqual('bot:whitelisted-ip', self.call('192.168.1.100', None))
+  def test_ip_allowlist_bot(self):
+    """Requests from client in bots IP allowlist are authenticated as bot."""
+    model.bootstrap_ip_allowlist(
+        model.bots_ip_allowlist(), ['192.168.1.100/32'])
+    self.assertEqual('bot:allowlisted-ip', self.call('192.168.1.100', None))
     self.assertEqual('anonymous:anonymous', self.call('127.0.0.1', None))
 
-  def test_ip_whitelist_whitelisted(self):
-    """Per-account IP whitelist works."""
-    model.bootstrap_ip_whitelist('whitelist', ['192.168.1.100/32'])
-    model.bootstrap_ip_whitelist_assignment(
-        model.Identity(model.IDENTITY_USER, 'a@example.com'), 'whitelist')
+  def test_ip_allowlist_allowlisted(self):
+    """Per-account IP allowlist works."""
+    model.bootstrap_ip_allowlist('allowlist', ['192.168.1.100/32'])
+    model.bootstrap_ip_allowlist_assignment(
+        model.Identity(model.IDENTITY_USER, 'a@example.com'), 'allowlist')
     self.assertEqual(
         'user:a@example.com',
         self.call('192.168.1.100', 'a@example.com'))
 
-  def test_ip_whitelist_not_whitelisted(self):
-    """Per-account IP whitelist works."""
-    model.bootstrap_ip_whitelist('whitelist', ['192.168.1.100/32'])
-    model.bootstrap_ip_whitelist_assignment(
-        model.Identity(model.IDENTITY_USER, 'a@example.com'), 'whitelist')
+  def test_ip_allowlist_not_allowlisted(self):
+    """Per-account IP allowlist works."""
+    model.bootstrap_ip_allowlist('allowlist', ['192.168.1.100/32'])
+    model.bootstrap_ip_allowlist_assignment(
+        model.Identity(model.IDENTITY_USER, 'a@example.com'), 'allowlist')
     with self.assertRaises(api.AuthorizationError):
       self.call('127.0.0.1', 'a@example.com')
 
-  def test_ip_whitelist_not_used(self):
-    """Per-account IP whitelist works."""
-    model.bootstrap_ip_whitelist('whitelist', ['192.168.1.100/32'])
-    model.bootstrap_ip_whitelist_assignment(
-        model.Identity(model.IDENTITY_USER, 'a@example.com'), 'whitelist')
+  def test_ip_allowlist_not_used(self):
+    """Per-account IP allowlist works."""
+    model.bootstrap_ip_allowlist('allowlist', ['192.168.1.100/32'])
+    model.bootstrap_ip_allowlist_assignment(
+        model.Identity(model.IDENTITY_USER, 'a@example.com'), 'allowlist')
     self.assertEqual(
         'user:another_user@example.com',
         self.call('127.0.0.1', 'another_user@example.com'))

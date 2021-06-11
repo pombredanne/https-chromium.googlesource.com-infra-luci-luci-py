@@ -116,10 +116,10 @@ class AuthenticatingHandlerTest(testing.TestCase):
     app = self.make_test_app('/request', Handler)
     self.assertEqual('OK', app.get('/request').body)
 
-  def test_ip_whitelist_bot(self):
-    """Requests from client in bots IP whitelist are authenticated as bot."""
-    model.bootstrap_ip_whitelist(
-        model.bots_ip_whitelist(), ['192.168.1.100/32'])
+  def test_ip_allowlist_bot(self):
+    """Requests from client in bots IP allowlist are authenticated as bot."""
+    model.bootstrap_ip_allowlist(
+        model.bots_ip_allowlist(), ['192.168.1.100/32'])
 
     class Handler(handler.AuthenticatingHandler):
       @api.public
@@ -131,16 +131,16 @@ class AuthenticatingHandlerTest(testing.TestCase):
       api.reset_local_state()
       return app.get('/request', extra_environ={'REMOTE_ADDR': ip}).body
 
-    self.assertEqual('bot:whitelisted-ip', call('192.168.1.100'))
+    self.assertEqual('bot:allowlisted-ip', call('192.168.1.100'))
     self.assertEqual('anonymous:anonymous', call('127.0.0.1'))
 
-  def test_ip_whitelist_bot_disabled(self):
-    """Same as test_ip_whitelist_bot, but IP whitelist auth is disabled."""
-    model.bootstrap_ip_whitelist(
-        model.bots_ip_whitelist(), ['192.168.1.100/32'])
+  def test_ip_allowlist_bot_disabled(self):
+    """Same as test_ip_allowlist_bot, but IP allowlist auth is disabled."""
+    model.bootstrap_ip_allowlist(
+        model.bots_ip_allowlist(), ['192.168.1.100/32'])
 
     class Handler(handler.AuthenticatingHandler):
-      use_bots_ip_whitelist = False
+      use_bots_ip_allowlist = False
       @api.public
       def get(self):
         self.response.write(api.get_current_identity().to_bytes())
@@ -152,13 +152,13 @@ class AuthenticatingHandlerTest(testing.TestCase):
 
     self.assertEqual('anonymous:anonymous', call('192.168.1.100'))
 
-  def test_ip_whitelist(self):
-    """Per-account IP whitelist works."""
+  def test_ip_allowlist(self):
+    """Per-account IP allowlist works."""
     ident1 = model.Identity(model.IDENTITY_USER, 'a@example.com')
     ident2 = model.Identity(model.IDENTITY_USER, 'b@example.com')
 
-    model.bootstrap_ip_whitelist('whitelist', ['192.168.1.100/32'])
-    model.bootstrap_ip_whitelist_assignment(ident1, 'whitelist')
+    model.bootstrap_ip_allowlist('allowlist', ['192.168.1.100/32'])
+    model.bootstrap_ip_allowlist_assignment(ident1, 'allowlist')
 
     mocked_ident = [None]
 
@@ -179,11 +179,11 @@ class AuthenticatingHandlerTest(testing.TestCase):
           '/request', extra_environ={'REMOTE_ADDR': ip}, expect_errors=True)
       return response.status_int
 
-    # IP is whitelisted.
+    # IP is allowlisted.
     self.assertEqual(200, call(ident1, '192.168.1.100'))
-    # IP is NOT whitelisted.
+    # IP is NOT allowlisted.
     self.assertEqual(403, call(ident1, '127.0.0.1'))
-    # Whitelist is not used.
+    # Allowlist is not used.
     self.assertEqual(200, call(ident2, '127.0.0.1'))
 
   def test_auth_method_order(self):

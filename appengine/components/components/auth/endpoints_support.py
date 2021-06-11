@@ -69,13 +69,13 @@ def endpoints_api(
   """Same as @endpoints.api but tweaks default auth related properties.
 
   By default API marked with this decorator will use same authentication scheme
-  as non-endpoints request handlers (i.e. fetch a whitelist of OAuth client_id's
+  as non-endpoints request handlers (i.e. fetch a allowlist of OAuth client_id's
   from the datastore, recognize service accounts, etc.), disabling client_id
   checks performed by Cloud Endpoints frontend (and doing them on the backend,
   see 'initialize_auth' below).
 
   Using service accounts with vanilla Cloud Endpoints auth is somewhat painful:
-  every service account should be whitelisted in the 'allowed_client_ids' list
+  every service account should be allowlisted in the 'allowed_client_ids' list
   in the source code of the application (when calling @endpoints.api). By moving
   client_id checks to the backend we can support saner logic.
   """
@@ -254,4 +254,4 @@ def initialize_request_auth(remote_address, headers):
       delegation_token=headers.get(delegation.HTTP_HEADER),
       project_header=headers.get(check.X_LUCI_PROJECT),
       use_project_identites=conf.USE_PROJECT_IDENTITIES,
-      use_bots_ip_whitelist=True)
+      use_bots_ip_allowlist=True)
