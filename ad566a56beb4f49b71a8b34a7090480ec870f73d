@@ -47,6 +47,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa399c5d_ed7a957e",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-11T03:11:58Z",
+      "side": 1,
+      "message": "Discussed in Chat.",
+      "parentUuid": "3d3afbd5_d30c619a",
+      "range": {
+        "startLine": 709,
+        "startChar": 0,
+        "endLine": 712,
+        "endChar": 38
+      },
+      "revId": "ad566a56beb4f49b71a8b34a7090480ec870f73d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e56f1cda_4a4dc058",
@@ -70,6 +94,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7c4e42b_4ce05937",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-11T03:11:58Z",
+      "side": 1,
+      "message": "This comment doesn\u0027t need to be addressed now.",
+      "parentUuid": "e56f1cda_4a4dc058",
+      "range": {
+        "startLine": 716,
+        "startChar": 0,
+        "endLine": 716,
+        "endChar": 21
+      },
+      "revId": "ad566a56beb4f49b71a8b34a7090480ec870f73d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd5d1bae_5d00842e",
@@ -83,6 +131,30 @@
       "writtenOn": "2021-06-10T07:05:48Z",
       "side": 1,
       "message": "Use _winapi.INFINITE?\nhttps://github.com/python/cpython/blob/309ab616020f8504ced8ca64f7d7abc2df25a37f/Lib/subprocess.py#L1479",
+      "range": {
+        "startLine": 717,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 30
+      },
+      "revId": "ad566a56beb4f49b71a8b34a7090480ec870f73d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4873de1d_426c6b7d",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-11T03:11:58Z",
+      "side": 1,
+      "message": "https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject\n\n\u003e If dwMilliseconds is INFINITE, the function will return only when the object is signaled.\n\nINFINITE\u003d-1 (\u003d2**32-1 in Python)\n\n\"timeout\u003dfloat(\u0027inf\u0027)\" is the same meaning in subprocess42\u0027s wait() to wait for ever.",
+      "parentUuid": "dd5d1bae_5d00842e",
       "range": {
         "startLine": 717,
         "startChar": 0,
