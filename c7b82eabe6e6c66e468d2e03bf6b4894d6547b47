@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e592256f_046e6547",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-06-11T07:05:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2e5a7e3_4fd478bf",
+      "revId": "c7b82eabe6e6c66e468d2e03bf6b4894d6547b47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab1dbbd8_bf8ffe6e",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-06-11T03:11:58Z",
       "side": 1,
       "message": "You don\u0027t need to repeat what the if conditions do.\nYou should explain why we use native when. \nIt\u0027s basically what you explain the CL description.",
+      "range": {
+        "startLine": 709,
+        "startChar": 2,
+        "endLine": 712,
+        "endChar": 25
+      },
+      "revId": "c7b82eabe6e6c66e468d2e03bf6b4894d6547b47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3aa18cc_86116c6a",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-06-11T07:05:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab1dbbd8_bf8ffe6e",
       "range": {
         "startLine": 709,
         "startChar": 2,
