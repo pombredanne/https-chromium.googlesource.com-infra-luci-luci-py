@@ -22,6 +22,30 @@
       },
       "revId": "8afd960be881b8e730087492ee67c8c0b664122c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c9fad4c_fb8a5eaa",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1493587
+      },
+      "writtenOn": "2021-06-11T07:47:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0865f91_50a0e838",
+      "range": {
+        "startLine": 721,
+        "startChar": 37,
+        "endLine": 721,
+        "endChar": 48
+      },
+      "revId": "8afd960be881b8e730087492ee67c8c0b664122c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
