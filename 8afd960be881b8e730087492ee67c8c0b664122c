@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0865f91_50a0e838",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-06-11T07:12:24Z",
+      "side": 1,
+      "message": "This becomes True if timeout \u003d\u003d 0.",
+      "range": {
+        "startLine": 721,
+        "startChar": 37,
+        "endLine": 721,
+        "endChar": 48
+      },
+      "revId": "8afd960be881b8e730087492ee67c8c0b664122c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
