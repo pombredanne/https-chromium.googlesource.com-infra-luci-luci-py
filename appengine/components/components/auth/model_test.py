@@ -368,19 +368,19 @@ class FindDependencyCycleTest(test_case.TestCase):
     self.assertEqual(['C', 'B1', 'A'], model.find_group_dependency_cycle(group))
 
 
-class IpWhitelistTest(test_case.TestCase):
-  """Tests for AuthIPWhitelist related functions."""
+class IpAllowlistTest(test_case.TestCase):
+  """Tests for AuthIPAllowlist related functions."""
 
-  def test_bootstrap_ip_whitelist_empty(self):
-    self.assertIsNone(model.ip_whitelist_key('list').get())
+  def test_bootstrap_ip_allowlist_empty(self):
+    self.assertIsNone(model.ip_allowlist_key('list').get())
 
     mocked_now = datetime.datetime(2014, 01, 01)
     self.mock_now(mocked_now)
 
-    ret = model.bootstrap_ip_whitelist('list', [], 'comment')
+    ret = model.bootstrap_ip_allowlist('list', [], 'comment')
     self.assertTrue(ret)
 
-    ent = model.ip_whitelist_key('list').get()
+    ent = model.ip_allowlist_key('list').get()
     self.assertTrue(ent)
     self.assertEqual({
       'auth_db_rev': 1,
@@ -393,17 +393,17 @@ class IpWhitelistTest(test_case.TestCase):
       'subnets': [],
     }, ent.to_dict())
 
-  def test_bootstrap_ip_whitelist(self):
-    self.assertIsNone(model.ip_whitelist_key('list').get())
+  def test_bootstrap_ip_allowlist(self):
+    self.assertIsNone(model.ip_allowlist_key('list').get())
 
     mocked_now = datetime.datetime(2014, 01, 01)
     self.mock_now(mocked_now)
 
-    ret = model.bootstrap_ip_whitelist(
+    ret = model.bootstrap_ip_allowlist(
         'list', ['192.168.0.0/24', '127.0.0.1/32'], 'comment')
     self.assertTrue(ret)
 
-    ent = model.ip_whitelist_key('list').get()
+    ent = model.ip_allowlist_key('list').get()
     self.assertTrue(ent)
     self.assertEqual({
       'auth_db_rev': 1,
@@ -416,15 +416,15 @@ class IpWhitelistTest(test_case.TestCase):
       'subnets': [u'192.168.0.0/24', u'127.0.0.1/32'],
     }, ent.to_dict())
 
-  def test_bootstrap_ip_whitelist_bad_subnet(self):
-    self.assertFalse(model.bootstrap_ip_whitelist('list', ['not a subnet']))
+  def test_bootstrap_ip_allowlist_bad_subnet(self):
+    self.assertFalse(model.bootstrap_ip_allowlist('list', ['not a subnet']))
 
-  def test_bootstrap_ip_whitelist_assignment_new(self):
+  def test_bootstrap_ip_allowlist_assignment_new(self):
     self.mock_now(datetime.datetime(2014, 01, 01))
 
-    ret = model.bootstrap_ip_whitelist_assignment(
+    ret = model.bootstrap_ip_allowlist_assignment(
         model.Identity(model.IDENTITY_USER, 'a@example.com'),
-        'some ip whitelist', 'some comment')
+        'some ip allowlist', 'some comment')
     self.assertTrue(ret)
 
     self.assertEqual(
@@ -435,26 +435,26 @@ class IpWhitelistTest(test_case.TestCase):
             'created_by': model.get_service_self_identity(),
             'created_ts': datetime.datetime(2014, 1, 1),
             'identity': model.Identity(model.IDENTITY_USER, 'a@example.com'),
-            'ip_whitelist': 'some ip whitelist',
+            'ip_allowlist': 'some ip allowlist',
           },
         ],
         'auth_db_rev': 1,
         'auth_db_prev_rev': None,
         'modified_by': model.get_service_self_identity(),
         'modified_ts': datetime.datetime(2014, 1, 1),
-      }, model.ip_whitelist_assignments_key().get().to_dict())
+      }, model.ip_allowlist_assignments_key().get().to_dict())
 
-  def test_bootstrap_ip_whitelist_assignment_modify(self):
+  def test_bootstrap_ip_allowlist_assignment_modify(self):
     self.mock_now(datetime.datetime(2014, 01, 01))
 
-    ret = model.bootstrap_ip_whitelist_assignment(
+    ret = model.bootstrap_ip_allowlist_assignment(
         model.Identity(model.IDENTITY_USER, 'a@example.com'),
-        'some ip whitelist', 'some comment')
+        'some ip allowlist', 'some comment')
     self.assertTrue(ret)
 
-    ret = model.bootstrap_ip_whitelist_assignment(
+    ret = model.bootstrap_ip_allowlist_assignment(
         model.Identity(model.IDENTITY_USER, 'a@example.com'),
-        'another ip whitelist', 'another comment')
+        'another ip allowlist', 'another comment')
     self.assertTrue(ret)
 
     self.assertEqual(
@@ -465,44 +465,44 @@ class IpWhitelistTest(test_case.TestCase):
             'created_by': model.get_service_self_identity(),
             'created_ts': datetime.datetime(2014, 1, 1),
             'identity': model.Identity(model.IDENTITY_USER, 'a@example.com'),
-            'ip_whitelist': 'another ip whitelist',
+            'ip_allowlist': 'another ip allowlist',
           },
         ],
         'auth_db_rev': 2,
         'auth_db_prev_rev': 1,
         'modified_by': model.get_service_self_identity(),
         'modified_ts': datetime.datetime(2014, 1, 1),
-      }, model.ip_whitelist_assignments_key().get().to_dict())
+      }, model.ip_allowlist_assignments_key().get().to_dict())
 
-  def test_fetch_ip_whitelists_empty(self):
-    assignments, whitelists = model.fetch_ip_whitelists()
-    self.assertEqual(model.ip_whitelist_assignments_key(), assignments.key)
+  def test_fetch_ip_allowlists_empty(self):
+    assignments, allowlists = model.fetch_ip_allowlists()
+    self.assertEqual(model.ip_allowlist_assignments_key(), assignments.key)
     self.assertEqual(0, len(assignments.assignments))
-    self.assertEqual([], whitelists)
+    self.assertEqual([], allowlists)
 
-  def test_fetch_ip_whitelists_non_empty(self):
-    ent = model.AuthIPWhitelistAssignments(
-        key=model.ip_whitelist_assignments_key())
+  def test_fetch_ip_allowlists_non_empty(self):
+    ent = model.AuthIPAllowlistAssignments(
+        key=model.ip_allowlist_assignments_key())
 
     def add(identity, **kwargs):
       kwargs['identity'] = model.Identity.from_bytes(identity)
       ent.assignments.append(
-          model.AuthIPWhitelistAssignments.Assignment(**kwargs))
-    add('user:a1@example.com', ip_whitelist='A')
-    add('user:a2@example.com', ip_whitelist='A')
-    add('user:b@example.com', ip_whitelist='B')
-    add('user:c@example.com', ip_whitelist='missing')
+          model.AuthIPAllowlistAssignments.Assignment(**kwargs))
+    add('user:a1@example.com', ip_allowlist='A')
+    add('user:a2@example.com', ip_allowlist='A')
+    add('user:b@example.com', ip_allowlist='B')
+    add('user:c@example.com', ip_allowlist='missing')
     ent.put()
 
-    def store_whitelist(name):
-      model.AuthIPWhitelist(key=model.ip_whitelist_key(name)).put()
-    store_whitelist('A')
-    store_whitelist('B')
-    store_whitelist('bots')
+    def store_allowlist(name):
+      model.AuthIPAllowlist(key=model.ip_allowlist_key(name)).put()
+    store_allowlist('A')
+    store_allowlist('B')
+    store_allowlist('bots')
 
-    assignments, whitelists = model.fetch_ip_whitelists()
+    assignments, allowlists = model.fetch_ip_allowlists()
     self.assertEqual(ent.to_dict(), assignments.to_dict())
-    self.assertEqual(['A', 'B', 'bots'], [e.key.id() for e in whitelists])
+    self.assertEqual(['A', 'B', 'bots'], [e.key.id() for e in allowlists])
 
 
 class AuditLogTest(test_case.TestCase):
@@ -820,13 +820,13 @@ class AuditLogTest(test_case.TestCase):
       },
     }, self.grab_log(model.AuthGroup))
 
-  def test_ip_whitelist_log(self):
+  def test_ip_allowlist_log(self):
     @ndb.transactional
     def modify(name, **kwargs):
-      k = model.ip_whitelist_key(name)
+      k = model.ip_allowlist_key(name)
       e = k.get()
       if not e:
-        e = model.AuthIPWhitelist(
+        e = model.AuthIPAllowlist(
             key=k,
             created_by=model.Identity.from_bytes('user:a@example.com'),
             created_ts=utils.utcnow())
@@ -840,7 +840,7 @@ class AuditLogTest(test_case.TestCase):
 
     @ndb.transactional
     def remove(name):
-      e = model.ip_whitelist_key(name).get()
+      e = model.ip_allowlist_key(name).get()
       if e:
         e.record_deletion(
             modified_by=model.Identity.from_bytes('user:a@example.com'),
@@ -857,7 +857,7 @@ class AuditLogTest(test_case.TestCase):
 
     # Copies in the history.
     cpy = lambda name, rev: ndb.Key(
-        'Rev', rev, 'AuthIPWhitelistHistory', name, parent=model.root_key())
+        'Rev', rev, 'AuthIPAllowlistHistory', name, parent=model.root_key())
     self.assertEqual({
       cpy('A', 1): {
         'auth_db_rev': 1,
@@ -911,15 +911,15 @@ class AuditLogTest(test_case.TestCase):
         'modified_ts': datetime.datetime(2015, 1, 1, 1, 1),
         'subnets': [u'1.0.0.0/32'],
       },
-    }, self.grab_log(model.AuthIPWhitelist))
+    }, self.grab_log(model.AuthIPAllowlist))
 
-  def test_ip_whitelist_assignment_log(self):
-    # AuthIPWhitelistAssignments is special, it has LocalStructuredProperty.
+  def test_ip_allowlist_assignment_log(self):
+    # AuthIPAllowlistAssignments is special, it has LocalStructuredProperty.
 
     @ndb.transactional
     def modify(assignments):
-      key = model.ip_whitelist_assignments_key()
-      e = key.get() or model.AuthIPWhitelistAssignments(key=key)
+      key = model.ip_allowlist_assignments_key()
+      e = key.get() or model.AuthIPAllowlistAssignments(key=key)
       e.record_revision(
           modified_by=model.Identity.from_bytes('user:a@example.com'),
           modified_ts=datetime.datetime(2015, 1, 1, 1, 1),
@@ -928,18 +928,18 @@ class AuditLogTest(test_case.TestCase):
       e.put()
       model.replicate_auth_db()
 
-    Assignment = model.AuthIPWhitelistAssignments.Assignment
+    Assignment = model.AuthIPAllowlistAssignments.Assignment
     modify([])
     modify([
       Assignment(
           identity=model.Identity.from_bytes('user:a@example.com'),
-          ip_whitelist='bots',
+          ip_allowlist='bots',
           comment='Blah'),
     ])
     modify([])
 
     cpy = lambda rev: ndb.Key(
-        'Rev', rev, 'AuthIPWhitelistAssignmentsHistory', 'default',
+        'Rev', rev, 'AuthIPAllowlistAssignmentsHistory', 'default',
         parent=model.root_key())
     self.assertEqual({
       cpy(1): {
@@ -958,7 +958,7 @@ class AuditLogTest(test_case.TestCase):
           'created_by': None,
           'created_ts': None,
           'identity': model.Identity(kind='user', name='a@example.com'),
-          'ip_whitelist': u'bots',
+          'ip_allowlist': u'bots',
         }],
         'auth_db_rev': 2,
         'auth_db_prev_rev': 1,
@@ -978,7 +978,7 @@ class AuditLogTest(test_case.TestCase):
         'modified_by': model.Identity.from_bytes('user:a@example.com'),
         'modified_ts': datetime.datetime(2015, 1, 1, 1, 1),
       },
-    }, self.grab_log(model.AuthIPWhitelistAssignments))
+    }, self.grab_log(model.AuthIPAllowlistAssignments))
 
   def test_realms_globals_log(self):
     @ndb.transactional
