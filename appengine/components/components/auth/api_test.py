@@ -32,24 +32,22 @@ from components import utils
 from test_support import test_case
 
 
-def new_auth_db(
-      replication_state=None,
-      global_config=None,
-      groups=None,
-      ip_whitelist_assignments=None,
-      ip_whitelists=None,
-      internal_service_regexp=None,
-      additional_client_ids=None
-  ):
+def new_auth_db(replication_state=None,
+                global_config=None,
+                groups=None,
+                ip_whitelist_assignments=None,
+                ip_whitelists=None,
+                internal_service_regexp=None,
+                additional_client_ids=None):
   global_config = global_config or model.AuthGlobalConfig()
   global_config.security_config = security_config_blob(internal_service_regexp)
   return api.AuthDB.from_entities(
       replication_state=replication_state or model.AuthReplicationState(),
       global_config=global_config,
       groups=groups or [],
-      ip_whitelist_assignments=(
-          ip_whitelist_assignments or model.AuthIPWhitelistAssignments()),
-      ip_whitelists=ip_whitelists or [],
+      ip_whitelist_assignments=(ip_whitelist_assignments or
+                                model.AuthIPWhitelistAssignments()),
+      ip_whitelists=ip_allowlists or [],
       additional_client_ids=additional_client_ids or [])
 
 
@@ -337,13 +335,13 @@ class AuthDBTest(test_case.TestCase):
         nested=[],
         owners='Group C')
 
-    # And a bunch IP whitelist.
+    # And a bunch IP allowlist.
     model.AuthIPWhitelistAssignments(
         key=model.ip_whitelist_assignments_key(),
         assignments=[
             model.AuthIPWhitelistAssignments.Assignment(
                 identity=model.Anonymous,
-                ip_whitelist='some ip whitelist',
+                ip_allowlist='some ip allowlist',
                 created_ts=now,
                 created_by=ident,
                 comment='comment',
@@ -351,8 +349,8 @@ class AuthDBTest(test_case.TestCase):
         ],
     ).put()
 
-    model.AuthIPWhitelist(
-        key=model.ip_whitelist_key('some ip whitelist'),
+    model.AuthIPAllowlist(
+        key=model.ip_allowlist_key('some ip allowlist'),
         subnets=['127.0.0.1/32'],
         description='description',
         created_ts=now,
@@ -360,8 +358,8 @@ class AuthDBTest(test_case.TestCase):
         modified_ts=now,
         modified_by=ident,
     ).put()
-    model.AuthIPWhitelist(
-        key=model.ip_whitelist_key('bots'),
+    model.AuthIPAllowlist(
+        key=model.ip_allowlist_key('bots'),
         subnets=['127.0.0.1/32'],
         description='description',
         created_ts=now,
@@ -392,13 +390,14 @@ class AuthDBTest(test_case.TestCase):
             for name, g in auth_db._groups.items()
         })
 
-    # IP whitelists and whitelist assignments.
+    # IP allowlists and allowlist assignments.
+    self.assertEqual({model.Anonymous: 'some ip allowlist'},
+                     auth_db._ip_whitelist_assignments)
     self.assertEqual(
-        {model.Anonymous: 'some ip whitelist'},
-        auth_db._ip_whitelist_assignments)
-    self.assertEqual(
-        {'bots': ['127.0.0.1/32'], 'some ip whitelist': ['127.0.0.1/32']},
-        auth_db._ip_whitelists)
+        {
+            'bots': ['127.0.0.1/32'],
+            'some ip allowlist': ['127.0.0.1/32']
+        }, auth_db._ip_allowlists)
 
     return auth_db
 
@@ -453,13 +452,13 @@ class AuthDBTest(test_case.TestCase):
     self.assertEqual(['123'], got)
     self.assertEqual(['some_secret'], calls)
 
-  def test_is_in_ip_whitelist(self):
-    auth_db = new_auth_db(ip_whitelists=[
-        model.AuthIPWhitelist(
-            key=model.ip_whitelist_key('l'),
+  def test_is_in_ip_allowlist(self):
+    auth_db = new_auth_db(ip_allowlists=[
+        model.AuthIPAllowlist(
+            key=model.ip_allowlist_key('l'),
             subnets=['127.0.0.1', '192.168.0.0/24']),
     ])
-    test = lambda ip: auth_db.is_in_ip_whitelist('l', ipaddr.ip_from_string(ip))
+    test = lambda ip: auth_db.is_in_ip_allowlist('l', ipaddr.ip_from_string(ip))
     self.assertTrue(test('127.0.0.1'))
     self.assertTrue(test('192.168.0.0'))
     self.assertTrue(test('192.168.0.9'))
@@ -468,56 +467,57 @@ class AuthDBTest(test_case.TestCase):
     self.assertFalse(test('192.1.0.0'))
 
   @staticmethod
-  def make_auth_db_with_ip_whitelist():
-    """AuthDB with a@example.com assigned IP whitelist '127.0.0.1/32'."""
+  def make_auth_db_with_ip_allowlist():
+    """AuthDB with a@example.com assigned IP allowlist '127.0.0.1/32'."""
     return new_auth_db(
-      ip_whitelists=[
-        model.AuthIPWhitelist(
-          key=model.ip_whitelist_key('some ip whitelist'),
-          subnets=['127.0.0.1/32'],
-        ),
-        model.AuthIPWhitelist(
-          key=model.ip_whitelist_key('bots'),
-          subnets=['192.168.1.1/32', '::1/32'],
-        ),
-      ],
-      ip_whitelist_assignments=model.AuthIPWhitelistAssignments(
-        assignments=[
-          model.AuthIPWhitelistAssignments.Assignment(
-            identity=model.Identity(model.IDENTITY_USER, 'a@example.com'),
-            ip_whitelist='some ip whitelist',)
+        ip_allowlists=[
+            model.AuthIPAllowlist(
+                key=model.ip_allowlist_key('some ip allowlist'),
+                subnets=['127.0.0.1/32'],
+            ),
+            model.AuthIPAllowlist(
+                key=model.ip_allowlist_key('bots'),
+                subnets=['192.168.1.1/32', '::1/32'],
+            ),
         ],
-      ),
+        ip_whitelist_assignments=model.AuthIPWhitelistAssignments(
+            assignments=[
+                model.AuthIPWhitelistAssignments.Assignment(
+                    identity=model.Identity(model.IDENTITY_USER,
+                                            'a@example.com'),
+                    ip_allowlist='some ip allowlist',
+                )
+            ],),
     )
 
-  def test_verify_ip_whitelisted_ok(self):
-    # Should not raise: IP is whitelisted.
+  def test_verify_ip_allowlisted_ok(self):
+    # Should not raise: IP is allowlisted.
     ident = model.Identity(model.IDENTITY_USER, 'a@example.com')
-    self.make_auth_db_with_ip_whitelist().verify_ip_whitelisted(
+    self.make_auth_db_with_ip_allowlist().verify_ip_allowlisted(
         ident, ipaddr.ip_from_string('127.0.0.1'))
 
-  def test_verify_ip_whitelisted_not_whitelisted(self):
+  def test_verify_ip_allowlisted_not_allowlisted(self):
     with self.assertRaises(api.AuthorizationError):
-      self.make_auth_db_with_ip_whitelist().verify_ip_whitelisted(
+      self.make_auth_db_with_ip_allowlist().verify_ip_allowlisted(
           model.Identity(model.IDENTITY_USER, 'a@example.com'),
           ipaddr.ip_from_string('192.168.0.100'))
 
-  def test_verify_ip_whitelisted_not_assigned(self):
-    # Should not raise: whitelist is not required for another_user@example.com.
+  def test_verify_ip_allowlisted_not_assigned(self):
+    # Should not raise: allowlist is not required for another_user@example.com.
     ident = model.Identity(model.IDENTITY_USER, 'another_user@example.com')
     self.make_auth_db_with_ip_whitelist().verify_ip_whitelisted(
         ident, ipaddr.ip_from_string('192.168.0.100'))
 
-  def test_verify_ip_whitelisted_missing_whitelist(self):
+  def test_verify_ip_allowlisted_missing_allowlist(self):
     auth_db = new_auth_db(
-      ip_whitelist_assignments=model.AuthIPWhitelistAssignments(
-        assignments=[
-          model.AuthIPWhitelistAssignments.Assignment(
-            identity=model.Identity(model.IDENTITY_USER, 'a@example.com'),
-            ip_whitelist='missing ip whitelist',)
-        ],
-      ),
-    )
+        ip_whitelist_assignments=model.AuthIPWhitelistAssignments(
+            assignments=[
+                model.AuthIPWhitelistAssignments.Assignment(
+                    identity=model.Identity(model.IDENTITY_USER,
+                                            'a@example.com'),
+                    ip_allowlist='missing ip allowlist',
+                )
+            ],),)
     with self.assertRaises(api.AuthorizationError):
       auth_db.verify_ip_whitelisted(
           model.Identity(model.IDENTITY_USER, 'a@example.com'),
