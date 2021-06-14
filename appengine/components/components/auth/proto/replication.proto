@@ -113,10 +113,10 @@ message AuthGroup {
 }
 
 
-// A named set of whitelisted IP addresses. Corresponds to AuthIPWhitelist
+// A named set of allowlisted IP addresses. Corresponds to AuthIPAllowlist
 // entity in model.py.
-message AuthIPWhitelist {
-  // Name of the IP whitelist.
+message AuthIPAllowlist {
+  // Name of the IP allowlist.
   string name = 1;
 
   // The list of IP subnets.
@@ -137,13 +137,13 @@ message AuthIPWhitelist {
 }
 
 
-// A pair (identity, IP whitelist name) plus some metadata. Corresponds to
-// AuthIPWhitelistAssignments.Assignment model in model.py.
-message AuthIPWhitelistAssignment {
-  // Identity name to limit by IP whitelist.
+// A pair (identity, IP allowlist name) plus some metadata. Corresponds to
+// AuthIPAllowlistAssignments.Assignment model in model.py.
+message AuthIPAllowlistAssignment {
+  // Identity name to limit by IP allowlist.
   string identity = 1;
-  // Name of IP whitelist to use (see AuthIPWhitelist).
-  string ip_whitelist = 2;
+  // Name of IP allowlist to use (see AuthIPAllowlist).
+  string ip_allowlist = 2;
   // Why the assignment was created.
   string comment = 3;
   // When the assignment was created. Microseconds since epoch.
@@ -168,10 +168,10 @@ message AuthDB {
 
   // All groups.
   repeated AuthGroup groups = 4;
-  // All IP whitelists.
-  repeated AuthIPWhitelist ip_whitelists = 6;
+  // All IP allowlists.
+  repeated AuthIPAllowlist ip_allowlists = 6;
   // Mapping 'account -> IP whitlist to use for that account'.
-  repeated AuthIPWhitelistAssignment ip_whitelist_assignments = 7;
+  repeated AuthIPAllowlistAssignment ip_allowlist_assignments = 7;
 
   // URL of a token server to use to generate delegation tokens.
   string token_server_url = 8;

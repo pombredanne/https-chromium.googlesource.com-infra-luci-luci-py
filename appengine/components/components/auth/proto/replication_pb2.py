@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z:go.chromium.org/luci/server/auth/service/protocol;protocol',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\'components/auth/proto/replication.proto\x12\x0f\x63omponents.auth\x1a\"components/auth/proto/realms.proto\"b\n\x11ServiceLinkTicket\x12\x12\n\nprimary_id\x18\x01 \x01(\t\x12\x13\n\x0bprimary_url\x18\x02 \x01(\t\x12\x14\n\x0cgenerated_by\x18\x03 \x01(\t\x12\x0e\n\x06ticket\x18\x04 \x01(\x0c\"O\n\x12ServiceLinkRequest\x12\x0e\n\x06ticket\x18\x01 \x01(\x0c\x12\x13\n\x0breplica_url\x18\x02 \x01(\t\x12\x14\n\x0cinitiated_by\x18\x03 \x01(\t\"\x9e\x01\n\x13ServiceLinkResponse\x12;\n\x06status\x18\x01 \x01(\x0e\x32+.components.auth.ServiceLinkResponse.Status\"J\n\x06Status\x12\x0b\n\x07SUCCESS\x10\x00\x12\x13\n\x0fTRANSPORT_ERROR\x10\x01\x12\x0e\n\nBAD_TICKET\x10\x02\x12\x0e\n\nAUTH_ERROR\x10\x03\"\xc0\x01\n\tAuthGroup\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07members\x18\x02 \x03(\t\x12\r\n\x05globs\x18\x03 \x03(\t\x12\x0e\n\x06nested\x18\x04 \x03(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12\x12\n\ncreated_ts\x18\x06 \x01(\x03\x12\x12\n\ncreated_by\x18\x07 \x01(\t\x12\x13\n\x0bmodified_ts\x18\x08 \x01(\x03\x12\x13\n\x0bmodified_by\x18\t \x01(\t\x12\x0e\n\x06owners\x18\n \x01(\t\"\x97\x01\n\x0f\x41uthIPWhitelist\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07subnets\x18\x02 \x03(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x12\n\ncreated_ts\x18\x04 \x01(\x03\x12\x12\n\ncreated_by\x18\x05 \x01(\t\x12\x13\n\x0bmodified_ts\x18\x06 \x01(\x03\x12\x13\n\x0bmodified_by\x18\x07 \x01(\t\"|\n\x19\x41uthIPWhitelistAssignment\x12\x10\n\x08identity\x18\x01 \x01(\t\x12\x14\n\x0cip_whitelist\x18\x02 \x01(\t\x12\x0f\n\x07\x63omment\x18\x03 \x01(\t\x12\x12\n\ncreated_ts\x18\x04 \x01(\x03\x12\x12\n\ncreated_by\x18\x05 \x01(\t\"\x85\x03\n\x06\x41uthDB\x12\x17\n\x0foauth_client_id\x18\x01 \x01(\t\x12\x1b\n\x13oauth_client_secret\x18\x02 \x01(\t\x12#\n\x1boauth_additional_client_ids\x18\x03 \x03(\t\x12*\n\x06groups\x18\x04 \x03(\x0b\x32\x1a.components.auth.AuthGroup\x12\x37\n\rip_whitelists\x18\x06 \x03(\x0b\x32 .components.auth.AuthIPWhitelist\x12L\n\x18ip_whitelist_assignments\x18\x07 \x03(\x0b\x32*.components.auth.AuthIPWhitelistAssignment\x12\x18\n\x10token_server_url\x18\x08 \x01(\t\x12\x17\n\x0fsecurity_config\x18\t \x01(\x0c\x12.\n\x06realms\x18\x0b \x01(\x0b\x32\x1e.components.auth.realms.RealmsJ\x04\x08\x05\x10\x06J\x04\x08\n\x10\x0b\"N\n\x0e\x41uthDBRevision\x12\x12\n\nprimary_id\x18\x01 \x01(\t\x12\x13\n\x0b\x61uth_db_rev\x18\x02 \x01(\x03\x12\x13\n\x0bmodified_ts\x18\x03 \x01(\x03\"b\n\x0cSignedAuthDB\x12\x14\n\x0c\x61uth_db_blob\x18\x01 \x01(\x0c\x12\x11\n\tsigner_id\x18\x02 \x01(\t\x12\x16\n\x0esigning_key_id\x18\x03 \x01(\t\x12\x11\n\tsignature\x18\x04 \x01(\x0c\"G\n\x12\x43hangeNotification\x12\x31\n\x08revision\x18\x01 \x01(\x0b\x32\x1f.components.auth.AuthDBRevision\"\x90\x01\n\x16ReplicationPushRequest\x12\x31\n\x08revision\x18\x01 \x01(\x0b\x32\x1f.components.auth.AuthDBRevision\x12(\n\x07\x61uth_db\x18\x02 \x01(\x0b\x32\x17.components.auth.AuthDB\x12\x19\n\x11\x61uth_code_version\x18\x03 \x01(\t\"\xbf\x03\n\x17ReplicationPushResponse\x12?\n\x06status\x18\x01 \x01(\x0e\x32/.components.auth.ReplicationPushResponse.Status\x12\x39\n\x10\x63urrent_revision\x18\x02 \x01(\x0b\x32\x1f.components.auth.AuthDBRevision\x12\x46\n\nerror_code\x18\x03 \x01(\x0e\x32\x32.components.auth.ReplicationPushResponse.ErrorCode\x12\x19\n\x11\x61uth_code_version\x18\x04 \x01(\t\"H\n\x06Status\x12\x0b\n\x07\x41PPLIED\x10\x00\x12\x0b\n\x07SKIPPED\x10\x01\x12\x13\n\x0fTRANSIENT_ERROR\x10\x02\x12\x0f\n\x0b\x46\x41TAL_ERROR\x10\x03\"{\n\tErrorCode\x12\x11\n\rERROR_UNKNOWN\x10\x00\x12\x11\n\rNOT_A_REPLICA\x10\x01\x12\r\n\tFORBIDDEN\x10\x02\x12\x15\n\x11MISSING_SIGNATURE\x10\x03\x12\x11\n\rBAD_SIGNATURE\x10\x04\x12\x0f\n\x0b\x42\x41\x44_REQUEST\x10\x05\x42<Z:go.chromium.org/luci/server/auth/service/protocol;protocolb\x06proto3'
+  serialized_pb=b'\n\'components/auth/proto/replication.proto\x12\x0f\x63omponents.auth\x1a\"components/auth/proto/realms.proto\"b\n\x11ServiceLinkTicket\x12\x12\n\nprimary_id\x18\x01 \x01(\t\x12\x13\n\x0bprimary_url\x18\x02 \x01(\t\x12\x14\n\x0cgenerated_by\x18\x03 \x01(\t\x12\x0e\n\x06ticket\x18\x04 \x01(\x0c\"O\n\x12ServiceLinkRequest\x12\x0e\n\x06ticket\x18\x01 \x01(\x0c\x12\x13\n\x0breplica_url\x18\x02 \x01(\t\x12\x14\n\x0cinitiated_by\x18\x03 \x01(\t\"\x9e\x01\n\x13ServiceLinkResponse\x12;\n\x06status\x18\x01 \x01(\x0e\x32+.components.auth.ServiceLinkResponse.Status\"J\n\x06Status\x12\x0b\n\x07SUCCESS\x10\x00\x12\x13\n\x0fTRANSPORT_ERROR\x10\x01\x12\x0e\n\nBAD_TICKET\x10\x02\x12\x0e\n\nAUTH_ERROR\x10\x03\"\xc0\x01\n\tAuthGroup\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07members\x18\x02 \x03(\t\x12\r\n\x05globs\x18\x03 \x03(\t\x12\x0e\n\x06nested\x18\x04 \x03(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12\x12\n\ncreated_ts\x18\x06 \x01(\x03\x12\x12\n\ncreated_by\x18\x07 \x01(\t\x12\x13\n\x0bmodified_ts\x18\x08 \x01(\x03\x12\x13\n\x0bmodified_by\x18\t \x01(\t\x12\x0e\n\x06owners\x18\n \x01(\t\"\x97\x01\n\x0f\x41uthIPAllowlist\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07subnets\x18\x02 \x03(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x12\n\ncreated_ts\x18\x04 \x01(\x03\x12\x12\n\ncreated_by\x18\x05 \x01(\t\x12\x13\n\x0bmodified_ts\x18\x06 \x01(\x03\x12\x13\n\x0bmodified_by\x18\x07 \x01(\t\"|\n\x19\x41uthIPAllowlistAssignment\x12\x10\n\x08identity\x18\x01 \x01(\t\x12\x14\n\x0cip_allowlist\x18\x02 \x01(\t\x12\x0f\n\x07\x63omment\x18\x03 \x01(\t\x12\x12\n\ncreated_ts\x18\x04 \x01(\x03\x12\x12\n\ncreated_by\x18\x05 \x01(\t\"\x85\x03\n\x06\x41uthDB\x12\x17\n\x0foauth_client_id\x18\x01 \x01(\t\x12\x1b\n\x13oauth_client_secret\x18\x02 \x01(\t\x12#\n\x1boauth_additional_client_ids\x18\x03 \x03(\t\x12*\n\x06groups\x18\x04 \x03(\x0b\x32\x1a.components.auth.AuthGroup\x12\x37\n\rip_allowlists\x18\x06 \x03(\x0b\x32 .components.auth.AuthIPAllowlist\x12L\n\x18ip_allowlist_assignments\x18\x07 \x03(\x0b\x32*.components.auth.AuthIPAllowlistAssignment\x12\x18\n\x10token_server_url\x18\x08 \x01(\t\x12\x17\n\x0fsecurity_config\x18\t \x01(\x0c\x12.\n\x06realms\x18\x0b \x01(\x0b\x32\x1e.components.auth.realms.RealmsJ\x04\x08\x05\x10\x06J\x04\x08\n\x10\x0b\"N\n\x0e\x41uthDBRevision\x12\x12\n\nprimary_id\x18\x01 \x01(\t\x12\x13\n\x0b\x61uth_db_rev\x18\x02 \x01(\x03\x12\x13\n\x0bmodified_ts\x18\x03 \x01(\x03\"b\n\x0cSignedAuthDB\x12\x14\n\x0c\x61uth_db_blob\x18\x01 \x01(\x0c\x12\x11\n\tsigner_id\x18\x02 \x01(\t\x12\x16\n\x0esigning_key_id\x18\x03 \x01(\t\x12\x11\n\tsignature\x18\x04 \x01(\x0c\"G\n\x12\x43hangeNotification\x12\x31\n\x08revision\x18\x01 \x01(\x0b\x32\x1f.components.auth.AuthDBRevision\"\x90\x01\n\x16ReplicationPushRequest\x12\x31\n\x08revision\x18\x01 \x01(\x0b\x32\x1f.components.auth.AuthDBRevision\x12(\n\x07\x61uth_db\x18\x02 \x01(\x0b\x32\x17.components.auth.AuthDB\x12\x19\n\x11\x61uth_code_version\x18\x03 \x01(\t\"\xbf\x03\n\x17ReplicationPushResponse\x12?\n\x06status\x18\x01 \x01(\x0e\x32/.components.auth.ReplicationPushResponse.Status\x12\x39\n\x10\x63urrent_revision\x18\x02 \x01(\x0b\x32\x1f.components.auth.AuthDBRevision\x12\x46\n\nerror_code\x18\x03 \x01(\x0e\x32\x32.components.auth.ReplicationPushResponse.ErrorCode\x12\x19\n\x11\x61uth_code_version\x18\x04 \x01(\t\"H\n\x06Status\x12\x0b\n\x07\x41PPLIED\x10\x00\x12\x0b\n\x07SKIPPED\x10\x01\x12\x13\n\x0fTRANSIENT_ERROR\x10\x02\x12\x0f\n\x0b\x46\x41TAL_ERROR\x10\x03\"{\n\tErrorCode\x12\x11\n\rERROR_UNKNOWN\x10\x00\x12\x11\n\rNOT_A_REPLICA\x10\x01\x12\r\n\tFORBIDDEN\x10\x02\x12\x15\n\x11MISSING_SIGNATURE\x10\x03\x12\x11\n\rBAD_SIGNATURE\x10\x04\x12\x0f\n\x0b\x42\x41\x44_REQUEST\x10\x05\x42<Z:go.chromium.org/luci/server/auth/service/protocol;protocolb\x06proto3'
   ,
   dependencies=[components_dot_auth_dot_proto_dot_realms__pb2.DESCRIPTOR,])
 
@@ -369,58 +369,58 @@ _AUTHGROUP = _descriptor.Descriptor(
 )
 
 
-_AUTHIPWHITELIST = _descriptor.Descriptor(
-  name='AuthIPWhitelist',
-  full_name='components.auth.AuthIPWhitelist',
+_AUTHIPALLOWLIST = _descriptor.Descriptor(
+  name='AuthIPAllowlist',
+  full_name='components.auth.AuthIPAllowlist',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='components.auth.AuthIPWhitelist.name', index=0,
+      name='name', full_name='components.auth.AuthIPAllowlist.name', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='subnets', full_name='components.auth.AuthIPWhitelist.subnets', index=1,
+      name='subnets', full_name='components.auth.AuthIPAllowlist.subnets', index=1,
       number=2, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='description', full_name='components.auth.AuthIPWhitelist.description', index=2,
+      name='description', full_name='components.auth.AuthIPAllowlist.description', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='created_ts', full_name='components.auth.AuthIPWhitelist.created_ts', index=3,
+      name='created_ts', full_name='components.auth.AuthIPAllowlist.created_ts', index=3,
       number=4, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='created_by', full_name='components.auth.AuthIPWhitelist.created_by', index=4,
+      name='created_by', full_name='components.auth.AuthIPAllowlist.created_by', index=4,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='modified_ts', full_name='components.auth.AuthIPWhitelist.modified_ts', index=5,
+      name='modified_ts', full_name='components.auth.AuthIPAllowlist.modified_ts', index=5,
       number=6, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='modified_by', full_name='components.auth.AuthIPWhitelist.modified_by', index=6,
+      name='modified_by', full_name='components.auth.AuthIPAllowlist.modified_by', index=6,
       number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -443,44 +443,44 @@ _AUTHIPWHITELIST = _descriptor.Descriptor(
 )
 
 
-_AUTHIPWHITELISTASSIGNMENT = _descriptor.Descriptor(
-  name='AuthIPWhitelistAssignment',
-  full_name='components.auth.AuthIPWhitelistAssignment',
+_AUTHIPALLOWLISTASSIGNMENT = _descriptor.Descriptor(
+  name='AuthIPAllowlistAssignment',
+  full_name='components.auth.AuthIPAllowlistAssignment',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='identity', full_name='components.auth.AuthIPWhitelistAssignment.identity', index=0,
+      name='identity', full_name='components.auth.AuthIPAllowlistAssignment.identity', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='ip_whitelist', full_name='components.auth.AuthIPWhitelistAssignment.ip_whitelist', index=1,
+      name='ip_allowlist', full_name='components.auth.AuthIPAllowlistAssignment.ip_allowlist', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='comment', full_name='components.auth.AuthIPWhitelistAssignment.comment', index=2,
+      name='comment', full_name='components.auth.AuthIPAllowlistAssignment.comment', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='created_ts', full_name='components.auth.AuthIPWhitelistAssignment.created_ts', index=3,
+      name='created_ts', full_name='components.auth.AuthIPAllowlistAssignment.created_ts', index=3,
       number=4, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='created_by', full_name='components.auth.AuthIPWhitelistAssignment.created_by', index=4,
+      name='created_by', full_name='components.auth.AuthIPAllowlistAssignment.created_by', index=4,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -540,14 +540,14 @@ _AUTHDB = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='ip_whitelists', full_name='components.auth.AuthDB.ip_whitelists', index=4,
+      name='ip_allowlists', full_name='components.auth.AuthDB.ip_allowlists', index=4,
       number=6, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='ip_whitelist_assignments', full_name='components.auth.AuthDB.ip_whitelist_assignments', index=5,
+      name='ip_allowlist_assignments', full_name='components.auth.AuthDB.ip_allowlist_assignments', index=5,
       number=7, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -825,8 +825,8 @@ _REPLICATIONPUSHRESPONSE = _descriptor.Descriptor(
 _SERVICELINKRESPONSE.fields_by_name['status'].enum_type = _SERVICELINKRESPONSE_STATUS
 _SERVICELINKRESPONSE_STATUS.containing_type = _SERVICELINKRESPONSE
 _AUTHDB.fields_by_name['groups'].message_type = _AUTHGROUP
-_AUTHDB.fields_by_name['ip_whitelists'].message_type = _AUTHIPWHITELIST
-_AUTHDB.fields_by_name['ip_whitelist_assignments'].message_type = _AUTHIPWHITELISTASSIGNMENT
+_AUTHDB.fields_by_name['ip_allowlists'].message_type = _AUTHIPALLOWLIST
+_AUTHDB.fields_by_name['ip_allowlist_assignments'].message_type = _AUTHIPALLOWLISTASSIGNMENT
 _AUTHDB.fields_by_name['realms'].message_type = components_dot_auth_dot_proto_dot_realms__pb2._REALMS
 _CHANGENOTIFICATION.fields_by_name['revision'].message_type = _AUTHDBREVISION
 _REPLICATIONPUSHREQUEST.fields_by_name['revision'].message_type = _AUTHDBREVISION
@@ -840,8 +840,8 @@ DESCRIPTOR.message_types_by_name['ServiceLinkTicket'] = _SERVICELINKTICKET
 DESCRIPTOR.message_types_by_name['ServiceLinkRequest'] = _SERVICELINKREQUEST
 DESCRIPTOR.message_types_by_name['ServiceLinkResponse'] = _SERVICELINKRESPONSE
 DESCRIPTOR.message_types_by_name['AuthGroup'] = _AUTHGROUP
-DESCRIPTOR.message_types_by_name['AuthIPWhitelist'] = _AUTHIPWHITELIST
-DESCRIPTOR.message_types_by_name['AuthIPWhitelistAssignment'] = _AUTHIPWHITELISTASSIGNMENT
+DESCRIPTOR.message_types_by_name['AuthIPAllowlist'] = _AUTHIPALLOWLIST
+DESCRIPTOR.message_types_by_name['AuthIPAllowlistAssignment'] = _AUTHIPALLOWLISTASSIGNMENT
 DESCRIPTOR.message_types_by_name['AuthDB'] = _AUTHDB
 DESCRIPTOR.message_types_by_name['AuthDBRevision'] = _AUTHDBREVISION
 DESCRIPTOR.message_types_by_name['SignedAuthDB'] = _SIGNEDAUTHDB
@@ -878,19 +878,19 @@ AuthGroup = _reflection.GeneratedProtocolMessageType('AuthGroup', (_message.Mess
   })
 _sym_db.RegisterMessage(AuthGroup)
 
-AuthIPWhitelist = _reflection.GeneratedProtocolMessageType('AuthIPWhitelist', (_message.Message,), {
-  'DESCRIPTOR' : _AUTHIPWHITELIST,
+AuthIPAllowlist = _reflection.GeneratedProtocolMessageType('AuthIPAllowlist', (_message.Message,), {
+  'DESCRIPTOR' : _AUTHIPALLOWLIST,
   '__module__' : 'components.auth.proto.replication_pb2'
-  # @@protoc_insertion_point(class_scope:components.auth.AuthIPWhitelist)
+  # @@protoc_insertion_point(class_scope:components.auth.AuthIPAllowlist)
   })
-_sym_db.RegisterMessage(AuthIPWhitelist)
+_sym_db.RegisterMessage(AuthIPAllowlist)
 
-AuthIPWhitelistAssignment = _reflection.GeneratedProtocolMessageType('AuthIPWhitelistAssignment', (_message.Message,), {
-  'DESCRIPTOR' : _AUTHIPWHITELISTASSIGNMENT,
+AuthIPAllowlistAssignment = _reflection.GeneratedProtocolMessageType('AuthIPAllowlistAssignment', (_message.Message,), {
+  'DESCRIPTOR' : _AUTHIPALLOWLISTASSIGNMENT,
   '__module__' : 'components.auth.proto.replication_pb2'
-  # @@protoc_insertion_point(class_scope:components.auth.AuthIPWhitelistAssignment)
+  # @@protoc_insertion_point(class_scope:components.auth.AuthIPAllowlistAssignment)
   })
-_sym_db.RegisterMessage(AuthIPWhitelistAssignment)
+_sym_db.RegisterMessage(AuthIPAllowlistAssignment)
 
 AuthDB = _reflection.GeneratedProtocolMessageType('AuthDB', (_message.Message,), {
   'DESCRIPTOR' : _AUTHDB,
