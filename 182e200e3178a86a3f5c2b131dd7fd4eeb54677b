@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "910902c2_b4fd9791",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-14T12:40:18Z",
+      "side": 0,
+      "message": "Wouldn\u0027t it fail if the files already exist?\n\n```\n❯ DIGEST\u003d5bc937855c9886fe7e10e9450527a408d415fdae200085828edb8a3e8826723c/978\n\n❯ cas download -cas-instance \"projects/chromium-swarm-dev/instances/default_instance\" -digest $DIGEST -dir sample\n\n❯ cas download -cas-instance \"projects/chromium-swarm-dev/instances/default_instance\" -digest $DIGEST -dir sample\n[E2021-06-14T21:38:00.937732+09:00 99306 0 annotate.go:273] original error: file exists\n\ngoroutine 5988:\n#0 go.chromium.org/luci/client/cmd/cas/lib/download.go:174 - lib.copyFiles.func1()\n  reason: failed to copy file from \u0027sample/net/data/cache_tests/remove_load2/data_3\u0027 to \u0027sample/net/data/cache_tests/remove_load3/data_3\u0027\n\n#1 golang.org/x/sync/errgroup/errgroup.go:57 - errgroup.(*Group).Go.func1()\n#2 runtime/asm_amd64.s:1371 - runtime.goexit()\ncas: failed to copy file from \u0027sample/net/data/cache_tests/remove_load2/data_3\u0027 to \u0027sample/net/data/cache_tests/remove_load3/data_3\u0027: open sample/net/data/cache_tests/remove_load3/data_3: file exists\nexit status 1\n```",
+      "range": {
+        "startLine": 630,
+        "startChar": 0,
+        "endLine": 630,
+        "endChar": 34
+      },
+      "revId": "182e200e3178a86a3f5c2b131dd7fd4eeb54677b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
