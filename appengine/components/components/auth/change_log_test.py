@@ -30,10 +30,10 @@ class MakeInitialSnapshotTest(test_case.TestCase):
     @ndb.transactional
     def make_auth_db():
       model.AuthGlobalConfig(key=model.root_key()).put()
-      model.AuthIPWhitelistAssignments(
-          key=model.ip_whitelist_assignments_key()).put()
+      model.AuthIPAllowlistAssignments(
+          key=model.ip_allowlist_assignments_key()).put()
       model.AuthGroup(key=model.group_key('A group')).put()
-      model.AuthIPWhitelist(key=model.ip_whitelist_key('A whitelist')).put()
+      model.AuthIPAllowlist(key=model.ip_allowlist_key('A allowlist')).put()
       model.replicate_auth_db()
     make_auth_db()
 
@@ -54,10 +54,10 @@ class MakeInitialSnapshotTest(test_case.TestCase):
         ndb.Key('AuthGlobalConfigHistory', 'root', parent=p).get())
     self.assertIsNotNone(
         ndb.Key(
-            'AuthIPWhitelistAssignmentsHistory', 'default', parent=p).get())
+            'AuthIPAllowlistAssignmentsHistory', 'default', parent=p).get())
     self.assertIsNotNone(ndb.Key('AuthGroupHistory', 'A group', parent=p).get())
     self.assertIsNotNone(
-        ndb.Key('AuthIPWhitelistHistory', 'A whitelist', parent=p).get())
+        ndb.Key('AuthIPAllowlistHistory', 'A allowlist', parent=p).get())
 
     # Call again, should be noop (marker is set).
     change_log.ensure_initial_snapshot(3)
@@ -77,8 +77,8 @@ def make_group(name, comment, **kwargs):
   group.put()
 
 
-def make_ip_whitelist(name, comment, **kwargs):
-  wl = model.AuthIPWhitelist(key=model.ip_whitelist_key(name), **kwargs)
+def make_ip_allowlist(name, comment, **kwargs):
+  wl = model.AuthIPAllowlist(key=model.ip_allowlist_key(name), **kwargs)
   wl.record_revision(
       modified_by=ident('me@example.com'),
       modified_ts=utils.utcnow(),
@@ -139,17 +139,17 @@ class GenerateChangesTest(test_case.TestCase):
           members=[ident('a@example.com'), ident('b@example.com')],
           description='Blah',
           comment='New group')
-      make_ip_whitelist(
-          name='An IP whitelist',
+      make_ip_allowlist(
+          name='An IP allowlist',
           subnets=['127.0.0.1/32'],
           description='Bluh',
-          comment='New IP whitelist')
-      a = model.AuthIPWhitelistAssignments(
-          key=model.ip_whitelist_assignments_key(),
+          comment='New IP allowlist')
+      a = model.AuthIPAllowlistAssignments(
+          key=model.ip_allowlist_assignments_key(),
           assignments=[
-            model.AuthIPWhitelistAssignments.Assignment(
+            model.AuthIPAllowlistAssignments.Assignment(
               identity=ident('a@example.com'),
-              ip_whitelist='An IP whitelist')
+              ip_allowlist='An IP allowlist')
           ])
       a.record_revision(
           modified_by=ident('me@example.com'),
@@ -236,38 +236,38 @@ class GenerateChangesTest(test_case.TestCase):
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
-      'AuthDBChange:AuthIPWhitelist$An IP whitelist!3000': {
+      'AuthDBChange:AuthIPAllowlist$An IP allowlist!3000': {
         'app_version': u'v1a',
         'auth_db_rev': 1,
         'change_type': change_log.AuthDBChange.CHANGE_IPWL_CREATED,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistChange'],
-        'comment': u'New IP whitelist',
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistChange'],
+        'comment': u'New IP allowlist',
         'description': u'Bluh',
-        'target': u'AuthIPWhitelist$An IP whitelist',
+        'target': u'AuthIPAllowlist$An IP allowlist',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
-      'AuthDBChange:AuthIPWhitelist$An IP whitelist!3200': {
+      'AuthDBChange:AuthIPAllowlist$An IP allowlist!3200': {
         'app_version': u'v1a',
         'auth_db_rev': 1,
         'change_type': change_log.AuthDBChange.CHANGE_IPWL_SUBNETS_ADDED,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistChange'],
-        'comment': u'New IP whitelist',
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistChange'],
+        'comment': u'New IP allowlist',
         'subnets': [u'127.0.0.1/32'],
-        'target': u'AuthIPWhitelist$An IP whitelist',
+        'target': u'AuthIPAllowlist$An IP allowlist',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
-      'AuthDBChange:AuthIPWhitelistAssignments'
+      'AuthDBChange:AuthIPAllowlistAssignments'
           '$default$user:a@example.com!5000': {
         'app_version': u'v1a',
         'auth_db_rev': 1,
         'change_type': change_log.AuthDBChange.CHANGE_IPWLASSIGN_SET,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistAssignmentChange'],
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistAssignmentChange'],
         'comment': u'New assignment',
         'identity': model.Identity(kind='user', name='a@example.com'),
-        'ip_whitelist': u'An IP whitelist',
-        'target': u'AuthIPWhitelistAssignments$default$user:a@example.com',
+        'ip_allowlist': u'An IP allowlist',
+        'target': u'AuthIPAllowlistAssignments$default$user:a@example.com',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com')
       },
@@ -528,41 +528,41 @@ class GenerateChangesTest(test_case.TestCase):
       },
     }, changes)
 
-  def test_ip_whitelists_diff(self):
+  def test_ip_allowlists_diff(self):
     def create():
-      make_ip_whitelist(
+      make_ip_allowlist(
           name='A list',
           subnets=['127.0.0.1/32', '127.0.0.2/32'],
           description='Blah',
           comment='New list')
     changes = self.grab_all(self.auth_db_transaction(create))
     self.assertEqual({
-      'AuthDBChange:AuthIPWhitelist$A list!3000': {
+      'AuthDBChange:AuthIPAllowlist$A list!3000': {
         'app_version': u'v1a',
         'auth_db_rev': 1,
         'change_type': change_log.AuthDBChange.CHANGE_IPWL_CREATED,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistChange'],
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistChange'],
         'comment': u'New list',
         'description': u'Blah',
-        'target': u'AuthIPWhitelist$A list',
+        'target': u'AuthIPAllowlist$A list',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
-      'AuthDBChange:AuthIPWhitelist$A list!3200': {
+      'AuthDBChange:AuthIPAllowlist$A list!3200': {
         'app_version': u'v1a',
         'auth_db_rev': 1,
         'change_type': change_log.AuthDBChange.CHANGE_IPWL_SUBNETS_ADDED,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistChange'],
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistChange'],
         'comment': u'New list',
         'subnets': [u'127.0.0.1/32', u'127.0.0.2/32'],
-        'target': u'AuthIPWhitelist$A list',
+        'target': u'AuthIPAllowlist$A list',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
     }, changes)
 
     def modify():
-      l = model.ip_whitelist_key('A list').get()
+      l = model.ip_allowlist_key('A list').get()
       l.subnets = ['127.0.0.1/32', '127.0.0.3/32']
       l.description = 'Another blah'
       l.record_revision(
@@ -572,44 +572,44 @@ class GenerateChangesTest(test_case.TestCase):
       l.put()
     changes = self.grab_all(self.auth_db_transaction(modify))
     self.assertEqual({
-      'AuthDBChange:AuthIPWhitelist$A list!3100': {
+      'AuthDBChange:AuthIPAllowlist$A list!3100': {
         'app_version': u'v1a',
         'auth_db_rev': 2,
         'change_type': change_log.AuthDBChange.CHANGE_IPWL_DESCRIPTION_CHANGED,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistChange'],
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistChange'],
         'comment': u'Changed',
         'description': u'Another blah',
         'old_description': u'Blah',
-        'target': u'AuthIPWhitelist$A list',
+        'target': u'AuthIPAllowlist$A list',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
-      'AuthDBChange:AuthIPWhitelist$A list!3200': {
+      'AuthDBChange:AuthIPAllowlist$A list!3200': {
         'app_version': u'v1a',
         'auth_db_rev': 2,
         'change_type': change_log.AuthDBChange.CHANGE_IPWL_SUBNETS_ADDED,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistChange'],
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistChange'],
         'comment': u'Changed',
         'subnets': [u'127.0.0.3/32'],
-        'target': u'AuthIPWhitelist$A list',
+        'target': u'AuthIPAllowlist$A list',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
-      'AuthDBChange:AuthIPWhitelist$A list!3300': {
+      'AuthDBChange:AuthIPAllowlist$A list!3300': {
         'app_version': u'v1a',
         'auth_db_rev': 2,
         'change_type': change_log.AuthDBChange.CHANGE_IPWL_SUBNETS_REMOVED,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistChange'],
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistChange'],
         'comment': u'Changed',
         'subnets': [u'127.0.0.2/32'],
-        'target': u'AuthIPWhitelist$A list',
+        'target': u'AuthIPAllowlist$A list',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
     }, changes)
 
     def delete():
-      l = model.ip_whitelist_key('A list').get()
+      l = model.ip_allowlist_key('A list').get()
       l.record_deletion(
           modified_by=ident('me@example.com'),
           modified_ts=utils.utcnow(),
@@ -617,25 +617,25 @@ class GenerateChangesTest(test_case.TestCase):
       l.key.delete()
     changes = self.grab_all(self.auth_db_transaction(delete))
     self.assertEqual({
-      'AuthDBChange:AuthIPWhitelist$A list!3300': {
+      'AuthDBChange:AuthIPAllowlist$A list!3300': {
         'app_version': u'v1a',
         'auth_db_rev': 3,
         'change_type': change_log.AuthDBChange.CHANGE_IPWL_SUBNETS_REMOVED,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistChange'],
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistChange'],
         'comment': u'Deleted',
         'subnets': [u'127.0.0.1/32', u'127.0.0.3/32'],
-        'target': u'AuthIPWhitelist$A list',
+        'target': u'AuthIPAllowlist$A list',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
-      'AuthDBChange:AuthIPWhitelist$A list!3400': {
+      'AuthDBChange:AuthIPAllowlist$A list!3400': {
         'app_version': u'v1a',
         'auth_db_rev': 3,
         'change_type': change_log.AuthDBChange.CHANGE_IPWL_DELETED,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistChange'],
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistChange'],
         'comment': u'Deleted',
         'old_description': u'Another blah',
-        'target': u'AuthIPWhitelist$A list',
+        'target': u'AuthIPAllowlist$A list',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
@@ -643,15 +643,15 @@ class GenerateChangesTest(test_case.TestCase):
 
   def test_ip_wl_assignments_diff(self):
     def create():
-      a = model.AuthIPWhitelistAssignments(
-          key=model.ip_whitelist_assignments_key(),
+      a = model.AuthIPAllowlistAssignments(
+          key=model.ip_allowlist_assignments_key(),
           assignments=[
-            model.AuthIPWhitelistAssignments.Assignment(
+            model.AuthIPAllowlistAssignments.Assignment(
               identity=ident('a@example.com'),
-              ip_whitelist='An IP whitelist'),
-            model.AuthIPWhitelistAssignments.Assignment(
+              ip_allowlist='An IP allowlist'),
+            model.AuthIPAllowlistAssignments.Assignment(
               identity=ident('b@example.com'),
-              ip_whitelist='Another IP whitelist'),
+              ip_allowlist='Another IP allowlist'),
           ])
       a.record_revision(
           modified_by=ident('me@example.com'),
@@ -660,43 +660,43 @@ class GenerateChangesTest(test_case.TestCase):
       a.put()
     changes = self.grab_all(self.auth_db_transaction(create))
     self.assertEqual({
-      'AuthDBChange:AuthIPWhitelistAssignments$'
+      'AuthDBChange:AuthIPAllowlistAssignments$'
           'default$user:a@example.com!5000': {
         'app_version': u'v1a',
         'auth_db_rev': 1,
         'change_type': change_log.AuthDBChange.CHANGE_IPWLASSIGN_SET,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistAssignmentChange'],
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistAssignmentChange'],
         'comment': u'New assignment',
         'identity': model.Identity(kind='user', name='a@example.com'),
-        'ip_whitelist': u'An IP whitelist',
-        'target': u'AuthIPWhitelistAssignments$default$user:a@example.com',
+        'ip_allowlist': u'An IP allowlist',
+        'target': u'AuthIPAllowlistAssignments$default$user:a@example.com',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
-      'AuthDBChange:AuthIPWhitelistAssignments$'
+      'AuthDBChange:AuthIPAllowlistAssignments$'
           'default$user:b@example.com!5000': {
         'app_version': u'v1a',
         'auth_db_rev': 1,
         'change_type': change_log.AuthDBChange.CHANGE_IPWLASSIGN_SET,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistAssignmentChange'],
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistAssignmentChange'],
         'comment': u'New assignment',
         'identity': model.Identity(kind='user', name='b@example.com'),
-        'ip_whitelist': u'Another IP whitelist',
-        'target': u'AuthIPWhitelistAssignments$default$user:b@example.com',
+        'ip_allowlist': u'Another IP allowlist',
+        'target': u'AuthIPAllowlistAssignments$default$user:b@example.com',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
     }, changes)
 
     def change():
-      a = model.ip_whitelist_assignments_key().get()
+      a = model.ip_allowlist_assignments_key().get()
       a.assignments=[
-        model.AuthIPWhitelistAssignments.Assignment(
+        model.AuthIPAllowlistAssignments.Assignment(
           identity=ident('a@example.com'),
-          ip_whitelist='Another IP whitelist'),
-        model.AuthIPWhitelistAssignments.Assignment(
+          ip_allowlist='Another IP allowlist'),
+        model.AuthIPAllowlistAssignments.Assignment(
           identity=ident('c@example.com'),
-          ip_whitelist='IP whitelist'),
+          ip_allowlist='IP allowlist'),
       ]
       a.record_revision(
           modified_by=ident('me@example.com'),
@@ -705,42 +705,42 @@ class GenerateChangesTest(test_case.TestCase):
       a.put()
     changes = self.grab_all(self.auth_db_transaction(change))
     self.assertEqual({
-      'AuthDBChange:AuthIPWhitelistAssignments$'
+      'AuthDBChange:AuthIPAllowlistAssignments$'
           'default$user:a@example.com!5000': {
         'app_version': u'v1a',
         'auth_db_rev': 2,
         'change_type': change_log.AuthDBChange.CHANGE_IPWLASSIGN_SET,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistAssignmentChange'],
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistAssignmentChange'],
         'comment': u'change',
         'identity': model.Identity(kind='user', name='a@example.com'),
-        'ip_whitelist': u'Another IP whitelist',
-        'target': u'AuthIPWhitelistAssignments$default$user:a@example.com',
+        'ip_allowlist': u'Another IP allowlist',
+        'target': u'AuthIPAllowlistAssignments$default$user:a@example.com',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
-      'AuthDBChange:AuthIPWhitelistAssignments$'
+      'AuthDBChange:AuthIPAllowlistAssignments$'
           'default$user:b@example.com!5100': {
         'app_version': u'v1a',
         'auth_db_rev': 2,
         'change_type': change_log.AuthDBChange.CHANGE_IPWLASSIGN_UNSET,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistAssignmentChange'],
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistAssignmentChange'],
         'comment': u'change',
         'identity': model.Identity(kind='user', name='b@example.com'),
-        'ip_whitelist': u'Another IP whitelist',
-        'target': u'AuthIPWhitelistAssignments$default$user:b@example.com',
+        'ip_allowlist': u'Another IP allowlist',
+        'target': u'AuthIPAllowlistAssignments$default$user:b@example.com',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
-      'AuthDBChange:AuthIPWhitelistAssignments$'
+      'AuthDBChange:AuthIPAllowlistAssignments$'
           'default$user:c@example.com!5000': {
         'app_version': u'v1a',
         'auth_db_rev': 2,
         'change_type': change_log.AuthDBChange.CHANGE_IPWLASSIGN_SET,
-        'class_': [u'AuthDBChange', u'AuthDBIPWhitelistAssignmentChange'],
+        'class_': [u'AuthDBChange', u'AuthDBIPAllowlistAssignmentChange'],
         'comment': u'change',
         'identity': model.Identity(kind='user', name='c@example.com'),
-        'ip_whitelist': u'IP whitelist',
-        'target': u'AuthIPWhitelistAssignments$default$user:c@example.com',
+        'ip_allowlist': u'IP allowlist',
+        'target': u'AuthIPAllowlistAssignments$default$user:c@example.com',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
@@ -1014,7 +1014,7 @@ class GenerateChangesTest(test_case.TestCase):
 
 
 class AuthDBChangeTest(test_case.TestCase):
-  # Test to_jsonish for AuthDBGroupChange and AuthDBIPWhitelistAssignmentChange,
+  # Test to_jsonish for AuthDBGroupChange and AuthDBIPAllowlistAssignmentChange,
   # the rest are trivial.
 
   def test_group_change_to_jsonish(self):
@@ -1050,24 +1050,24 @@ class AuthDBChangeTest(test_case.TestCase):
     }, c.to_jsonish())
 
   def test_wl_assignment_to_jsonish(self):
-    c = change_log.AuthDBIPWhitelistAssignmentChange(
+    c = change_log.AuthDBIPAllowlistAssignmentChange(
         change_type=change_log.AuthDBChange.CHANGE_GROUP_MEMBERS_ADDED,
-        target='AuthIPWhitelistAssignments$default',
+        target='AuthIPAllowlistAssignments$default',
         auth_db_rev=123,
         who=ident('a@example.com'),
         when=datetime.datetime(2015, 1, 2, 3, 4, 5),
         comment='A comment',
         app_version='v123',
         identity=ident('b@example.com'),
-        ip_whitelist='whitelist')
+        ip_allowlist='allowlist')
     self.assertEqual({
       'app_version': 'v123',
       'auth_db_rev': 123,
       'change_type': 'GROUP_MEMBERS_ADDED',
       'comment': 'A comment',
       'identity': 'user:b@example.com',
-      'ip_whitelist': 'whitelist',
-      'target': 'AuthIPWhitelistAssignments$default',
+      'ip_allowlist': 'allowlist',
+      'target': 'AuthIPAllowlistAssignments$default',
       'when': 1420167845000000,
       'who': 'user:a@example.com',
     }, c.to_jsonish())

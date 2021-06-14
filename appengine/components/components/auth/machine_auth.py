@@ -16,9 +16,9 @@ implemented in a dedicated LUCI token server, not in the each individual
 service.
 
 See:
-  * https://github.com/luci/luci-go/tree/master/appengine/cmd/tokenserver
-  * https://github.com/luci/luci-go/tree/master/client/cmd/luci_machine_tokend
-  * https://github.com/luci/luci-go/tree/master/server/auth/machine
+  * https://github.com/luci/luci-go/tree/client/appengine/cmd/tokenserver
+  * https://github.com/luci/luci-go/tree/client/client/cmd/luci_machine_tokend
+  * https://github.com/luci/luci-go/tree/client/server/auth/machine
 """
 
 import base64
@@ -160,9 +160,9 @@ def machine_authentication(request):
     raise BadTokenError()
 
   # Unfortunately 'bot:*' identity namespace is shared between token-based
-  # identities and old IP-whitelist based identity. They shouldn't intersect,
+  # identities and old IP-allowlist based identity. They shouldn't intersect,
   # but better to enforce this.
-  if ident == model.IP_WHITELISTED_BOT_ID:
+  if ident == model.IP_ALLOWLISTED_BOT_ID:
     log_error(request, body, None, 'Bot ID %s is forbidden', ident.to_bytes())
     raise BadTokenError()
 

@@ -296,7 +296,7 @@ def delegate_async(
   # End of validation.
 
   # See MintDelegationTokenRequest in
-  # https://github.com/luci/luci-go/blob/master/tokenserver/api/minter/v1/token_minter.proto.
+  # https://github.com/luci/luci-go/blob/client/tokenserver/api/minter/v1/token_minter.proto.
   req = {
     'delegatedIdentity': impersonate or 'REQUESTOR',
     'validityDuration': max_validity_duration_sec,

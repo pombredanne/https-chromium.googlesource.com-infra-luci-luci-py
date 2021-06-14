@@ -85,9 +85,9 @@ __all__ = [
   'ADMIN_GROUP',
   'Anonymous',
   'bootstrap_group',
-  'bootstrap_ip_whitelist',
+  'bootstrap_ip_allowlist',
   'bootstrap_loopback_ips',
-  'bots_ip_whitelist',
+  'bots_ip_allowlist',
   'configure_as_primary',
   'find_group_dependency_cycle',
   'find_referencing_groups',
@@ -103,15 +103,15 @@ __all__ = [
   'IDENTITY_USER',
   'IdentityGlob',
   'IdentityProperty',
-  'ip_whitelist_key',
-  'IP_WHITELISTED_BOT_ID',
+  'ip_allowlist_key',
+  'IP_ALLOWLISTED_BOT_ID',
   'is_empty_group',
   'is_external_group_name',
   'is_primary',
   'is_replica',
   'is_standalone',
   'is_valid_group_name',
-  'is_valid_ip_whitelist_name',
+  'is_valid_ip_allowlist_name',
   'replicate_auth_db',
 ]
 
@@ -148,8 +148,8 @@ GROUP_NAME_RE = re.compile(r'^([a-z\-]+/)?[0-9a-z_\-\.@]{1,100}$')
 # Special group name that means 'All possible users' (including anonymous!).
 GROUP_ALL = '*'
 
-# Regular expression for IP whitelist name.
-IP_WHITELIST_NAME_RE = re.compile(r'^[0-9a-zA-Z_\-\+\.\ ]{2,200}$')
+# Regular expression for IP allowlist name.
+IP_ALLOWLIST_NAME_RE = re.compile(r'^[0-9a-zA-Z_\-\+\.\ ]{2,200}$')
 
 
 # Configuration of Primary service, set by 'configure_as_primary'.
@@ -173,9 +173,9 @@ def replication_state_key():
   return ndb.Key('AuthReplicationState', 'self', parent=root_key())
 
 
-def ip_whitelist_assignments_key():
-  """Key of AuthIPWhitelistAssignments entity."""
-  return ndb.Key('AuthIPWhitelistAssignments', 'default', parent=root_key())
+def ip_allowlist_assignments_key():
+  """Key of AuthIPAllowlistAssignments entity."""
+  return ndb.Key('AuthIPAllowlistAssignments', 'default', parent=root_key())
 
 
 def historical_revision_key(auth_db_rev):
@@ -260,14 +260,14 @@ Anonymous = Identity(IDENTITY_ANONYMOUS, 'anonymous')
 
 
 # Identity assigned to callers that make unauthenticated calls from IPs
-# belonging to '<appid>-bots' IP whitelist. Note that same bot may appear to use
+# belonging to '<appid>-bots' IP allowlist. Note that same bot may appear to use
 # different IP addresses (happens with some NATs), thus we can't put IP
 # address into the bot identity string and instead hardcode some arbitrary
 # name (defined here).
 #
 # TODO(vadimsh): Get rid of this. Blocked on Swarming and Isolate switching
 # to service accounts.
-IP_WHITELISTED_BOT_ID = Identity(IDENTITY_BOT, 'whitelisted-ip')
+IP_ALLOWLISTED_BOT_ID = Identity(IDENTITY_BOT, 'allowlisted-ip')
 
 
 class IdentityProperty(datastore_utils.BytesSerializableProperty):
@@ -471,7 +471,7 @@ class AuthVersionedEntityMixin(object):
       return existing
     props = {}
     for name, prop in cls._properties.items():
-      # Whitelist supported property classes. Better to fail loudly when
+      # Allowlist supported property classes. Better to fail loudly when
       # encountering something new, rather than silently produce (possibly)
       # incorrect result. Note that all AuthDB classes are instantiated in
       # unit tests, so there should be no unexpected asserts in production.
@@ -547,8 +547,8 @@ class AuthGlobalConfig(ndb.Model, AuthVersionedEntityMixin):
 
   Entities that belong to this entity group are:
    * AuthGroup
-   * AuthIPWhitelist
-   * AuthIPWhitelistAssignments
+   * AuthIPAllowlist
+   * AuthIPAllowlistAssignments
    * AuthReplicationState
    * AuthSecret
   """
@@ -607,7 +607,7 @@ class AuthReplicationState(ndb.Model, datastore_utils.SerializableModelMixin):
 
   # For services in Replica mode, contains IDs of AuthDBSnapshotShard entities
   # that together (when concatenated) hold a deflated AuthDB proto message with
-  # all groups, IP whitelists, etc. This property is used together with
+  # all groups, IP allowlists, etc. This property is used together with
   # primary_url and auth_db_rev to reconstruct full keys of AuthDBSnapshotShard
   # entities. See replication.py for code that deals with this property.
   shard_ids = ndb.StringProperty(repeated=True, indexed=False)
@@ -1073,24 +1073,24 @@ class AuthSecret(ndb.Model):
 
 
 ################################################################################
-## IP whitelist.
+## IP allowlist.
 
 
-class AuthIPWhitelistAssignments(ndb.Model, AuthVersionedEntityMixin):
-  """A singleton entity with "identity -> AuthIPWhitelist to use" mapping.
+class AuthIPAllowlistAssignments(ndb.Model, AuthVersionedEntityMixin):
+  """A singleton entity with "identity -> AuthIPAllowlist to use" mapping.
 
-  Entity key is ip_whitelist_assignments_key(). Parent entity is root_key().
+  Entity key is ip_allowlist_assignments_key(). Parent entity is root_key().
 
-  See AuthIPWhitelist for more info about IP whitelists.
+  See AuthIPAllowlist for more info about IP allowlists.
   """
   # Disable useless in-process per-request cache.
   _use_cache = False
 
   class Assignment(ndb.Model):
-    # Identity name to limit by IP whitelist. Unique key in 'assignments' list.
+    # Identity name to limit by IP allowlist. Unique key in 'assignments' list.
     identity = IdentityProperty()
-    # Name of IP whitelist to use (see AuthIPWhitelist).
-    ip_whitelist = ndb.StringProperty()
+    # Name of IP allowlist to use (see AuthIPAllowlist).
+    ip_allowlist = ndb.StringProperty()
     # Why the assignment was created.
     comment = ndb.StringProperty()
     # When the assignment was created.
@@ -1102,18 +1102,18 @@ class AuthIPWhitelistAssignments(ndb.Model, AuthVersionedEntityMixin):
   assignments = ndb.LocalStructuredProperty(Assignment, repeated=True)
 
 
-class AuthIPWhitelist(
+class AuthIPAllowlist(
     ndb.Model,
     AuthVersionedEntityMixin,
     datastore_utils.SerializableModelMixin):
-  """A named set of whitelisted IPv4 and IPv6 subnets.
+  """A named set of allowlisted IPv4 and IPv6 subnets.
 
   Can be assigned to individual user accounts to forcibly limit them only to
   particular IP addresses, e.g. it can be used to enforce that specific service
   account is used only from some known IP range. The mapping between accounts
-  and IP whitelists is stored in AuthIPWhitelistAssignments.
+  and IP allowlists is stored in AuthIPAllowlistAssignments.
 
-  Entity id is a name of the whitelist. Parent entity is root_key().
+  Entity id is a name of the allowlist. Parent entity is root_key().
   """
   # Disable useless in-process per-request cache.
   _use_cache = False
@@ -1142,21 +1142,21 @@ class AuthIPWhitelist(
   created_by = IdentityProperty()
 
 
-def ip_whitelist_key(name):
-  """Returns ndb.Key for AuthIPWhitelist entity given its name."""
-  return ndb.Key(AuthIPWhitelist, name, parent=root_key())
+def ip_allowlist_key(name):
+  """Returns ndb.Key for AuthIPAllowlist entity given its name."""
+  return ndb.Key(AuthIPAllowlist, name, parent=root_key())
 
 
-def is_valid_ip_whitelist_name(name):
-  """True if string looks like a valid IP whitelist name."""
-  return bool(IP_WHITELIST_NAME_RE.match(name))
+def is_valid_ip_allowlist_name(name):
+  """True if string looks like a valid IP allowlist name."""
+  return bool(IP_ALLOWLIST_NAME_RE.match(name))
 
 
-def bots_ip_whitelist():
-  """Returns a name of a special IP whitelist that controls IP-based auth.
+def bots_ip_allowlist():
+  """Returns a name of a special IP allowlist that controls IP-based auth.
 
-  Requests without authentication headers coming from IPs in this whitelist
-  are authenticated as coming from IP_WHITELISTED_BOT_ID ('bot:whitelisted-ip').
+  Requests without authentication headers coming from IPs in this allowlist
+  are authenticated as coming from IP_ALLOWLISTED_BOT_ID ('bot:allowlisted-ip').
 
   DEPRECATED.
   """
@@ -1164,16 +1164,16 @@ def bots_ip_whitelist():
 
 
 @ndb.transactional
-def bootstrap_ip_whitelist(name, subnets, description=''):
-  """Adds subnets to an IP whitelist if not there yet.
+def bootstrap_ip_allowlist(name, subnets, description=''):
+  """Adds subnets to an IP allowlist if not there yet.
 
-  Can be used on local dev appserver to add 127.0.0.1 to IP whitelist during
+  Can be used on local dev appserver to add 127.0.0.1 to IP allowlist during
   startup. Should not be used from request handlers.
 
   Args:
-    name: IP whitelist name to add a subnet to.
+    name: IP allowlist name to add a subnet to.
     subnets: IP subnet to add (as a list of strings).
-    description: description of IP whitelist (if new entity is created).
+    description: description of IP allowlist (if new entity is created).
 
   Returns:
     True if entry was added, False if it is already there or subnet is invalid.
@@ -1183,13 +1183,13 @@ def bootstrap_ip_whitelist(name, subnets, description=''):
     subnets = [ipaddr.normalize_subnet(s) for s in subnets]
   except ValueError:
     return False
-  key = ip_whitelist_key(name)
+  key = ip_allowlist_key(name)
   entity = key.get()
   if entity and all(s in entity.subnets for s in subnets):
     return False
   now = utils.utcnow()
   if not entity:
-    entity = AuthIPWhitelist(
+    entity = AuthIPAllowlist(
         key=key,
         description=description,
         created_ts=now,
@@ -1207,45 +1207,45 @@ def bootstrap_ip_whitelist(name, subnets, description=''):
 
 
 def bootstrap_loopback_ips():
-  """Adds 127.0.0.1 and ::1 to '<appid>-bots' IP whitelist.
+  """Adds 127.0.0.1 and ::1 to '<appid>-bots' IP allowlist.
 
   Useful on local dev server and in tests. Must not be used in production.
 
   Returns list of corresponding bot Identities.
   """
-  # See api.py, AuthDB.verify_ip_whitelisted for IP -> Identity conversion.
+  # See api.py, AuthDB.verify_ip_allowlisted for IP -> Identity conversion.
   assert utils.is_local_dev_server()
-  bootstrap_ip_whitelist(
-      bots_ip_whitelist(), ['127.0.0.1', '::1'], 'Local bots')
-  return [IP_WHITELISTED_BOT_ID]
+  bootstrap_ip_allowlist(
+      bots_ip_allowlist(), ['127.0.0.1', '::1'], 'Local bots')
+  return [IP_ALLOWLISTED_BOT_ID]
 
 
 @ndb.transactional
-def bootstrap_ip_whitelist_assignment(identity, ip_whitelist, comment=''):
-  """Sets a mapping "identity -> IP whitelist to use" for some account.
+def bootstrap_ip_allowlist_assignment(identity, ip_allowlist, comment=''):
+  """Sets a mapping "identity -> IP allowlist to use" for some account.
 
   Replaces existing assignment. Can be used on local dev appserver to configure
-  IP whitelist assignments during startup or in tests. Should not be used from
+  IP allowlist assignments during startup or in tests. Should not be used from
   request handlers.
 
   Args:
     identity: Identity to modify.
-    ip_whitelist: name of AuthIPWhitelist to assign.
+    ip_allowlist: name of AuthIPAllowlist to assign.
     comment: comment to set.
 
   Returns:
-    True if IP whitelist assignment was modified, False if it was already set.
+    True if IP allowlist assignment was modified, False if it was already set.
   """
   entity = (
-      ip_whitelist_assignments_key().get() or
-      AuthIPWhitelistAssignments(key=ip_whitelist_assignments_key()))
+      ip_allowlist_assignments_key().get() or
+      AuthIPAllowlistAssignments(key=ip_allowlist_assignments_key()))
 
   found = False
   for assignment in entity.assignments:
     if assignment.identity == identity:
-      if assignment.ip_whitelist == ip_whitelist:
+      if assignment.ip_allowlist == ip_allowlist:
         return False
-      assignment.ip_whitelist = ip_whitelist
+      assignment.ip_allowlist = ip_allowlist
       assignment.comment = comment
       found = True
       break
@@ -1253,9 +1253,9 @@ def bootstrap_ip_whitelist_assignment(identity, ip_whitelist, comment=''):
   now = utils.utcnow()
   if not found:
     entity.assignments.append(
-        AuthIPWhitelistAssignments.Assignment(
+        AuthIPAllowlistAssignments.Assignment(
             identity=identity,
-            ip_whitelist=ip_whitelist,
+            ip_allowlist=ip_allowlist,
             comment=comment,
             created_ts=now,
             created_by=get_service_self_identity()))
@@ -1269,21 +1269,21 @@ def bootstrap_ip_whitelist_assignment(identity, ip_whitelist, comment=''):
   return True
 
 
-def fetch_ip_whitelists():
-  """Fetches AuthIPWhitelistAssignments and all AuthIPWhitelist entities.
+def fetch_ip_allowlists():
+  """Fetches AuthIPAllowlistAssignments and all AuthIPAllowlist entities.
 
   Returns:
-    (AuthIPWhitelistAssignments, list of AuthIPWhitelist).
+    (AuthIPAllowlistAssignments, list of AuthIPAllowlist).
   """
-  assign_fut = ip_whitelist_assignments_key().get_async()
-  whitelists_fut = AuthIPWhitelist.query(ancestor=root_key()).fetch_async()
+  assign_fut = ip_allowlist_assignments_key().get_async()
+  allowlists_fut = AuthIPAllowlist.query(ancestor=root_key()).fetch_async()
 
   assignments = (
       assign_fut.get_result() or
-      AuthIPWhitelistAssignments(key=ip_whitelist_assignments_key()))
+      AuthIPAllowlistAssignments(key=ip_allowlist_assignments_key()))
 
-  whitelists = sorted(whitelists_fut.get_result(), key=lambda x: x.key.id())
-  return assignments, whitelists
+  allowlists = sorted(allowlists_fut.get_result(), key=lambda x: x.key.id())
+  return assignments, allowlists
 
 
 ################################################################################
