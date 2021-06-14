@@ -38,14 +38,14 @@ def check_request(
     delegation_token,
     project_header,
     use_project_identites,
-    use_bots_ip_whitelist):
-  """Prepares the request context, checking IP whitelist and delegation token.
+    use_bots_ip_allowlist):
+  """Prepares the request context, checking IP allowlist and delegation token.
 
   This is intended to be called by request processing middlewares right after
   they have authenticated the peer, and before they dispatch the request to the
   actual handler.
 
-  It checks IP whitelist, and delegation token, and updates the request auth
+  It checks IP allowlist, and delegation token, and updates the request auth
   context accordingly, populating peer_identity, peer_ip, current_identity and
   auth_details fields.
 
@@ -58,13 +58,13 @@ def check_request(
     project_header: a value of X-Luci-Project header (or None).
     use_project_identites: True to allow authenticating requests as coming
       from 'project:...' identities (based on X-Luci-Project header).
-    use_bots_ip_whitelist: [DEPRECATED] if true, treat anonymous access from
-      IPs in "<appid>-bots" whitelist as coming from "bot:whitelisted-ip"
+    use_bots_ip_allowlist: [DEPRECATED] if true, treat anonymous access from
+      IPs in "<appid>-bots" allowlist as coming from "bot:allowlisted-ip"
       identity.
 
   Raises:
     api.AuthenticationError if the request use incompatible headers.
-    api.AuthorizationError if identity has an IP whitelist assigned and given IP
+    api.AuthorizationError if identity has an IP allowlist assigned and given IP
     address doesn't belong to it.
     delegation.TransientError if there was a transient error checking the token.
   """
@@ -76,14 +76,14 @@ def check_request(
     raise api.AuthenticationError(
         'Delegation tokens and %s cannot be used together' % X_LUCI_PROJECT)
 
-  # Hack to allow pure IP-whitelist based authentication for bots, until they
+  # Hack to allow pure IP-allowlist based authentication for bots, until they
   # are switched to use something better.
   #
-  # TODO(vadimsh): Get rid of this. Blocked on killing IP whitelisted access
+  # TODO(vadimsh): Get rid of this. Blocked on killing IP allowlisted access
   # from Chrome Buildbot machines.
-  if (use_bots_ip_whitelist and peer_identity.is_anonymous and
-      auth_db.is_in_ip_whitelist(model.bots_ip_whitelist(), peer_ip, False)):
-    peer_identity = model.IP_WHITELISTED_BOT_ID
+  if (use_bots_ip_allowlist and peer_identity.is_anonymous and
+      auth_db.is_in_ip_allowlist(model.bots_ip_allowlist(), peer_ip, False)):
+    peer_identity = model.IP_ALLOWLISTED_BOT_ID
 
   # Note: populating fields early is useful, since exception handlers may use
   # them for logging.
@@ -92,7 +92,7 @@ def check_request(
 
   # Verify the caller is allowed to make calls from the given IP. It raises
   # AuthorizationError if IP is not allowed.
-  auth_db.verify_ip_whitelisted(peer_identity, peer_ip)
+  auth_db.verify_ip_allowlisted(peer_identity, peer_ip)
 
   if delegation_token:
     # Parse the delegation token to deduce end-user identity. We clear
