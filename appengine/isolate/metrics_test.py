@@ -30,19 +30,19 @@ class TestMetrics(test_case.TestCase):
     }
     cfg = config_pb2.SettingsCfg(client_monitoring_config=[
         config_pb2.ClientMonitoringConfig(
-            ip_whitelist='bots',
+            ip_allowlist='bots',
             label='bots',
         ),
     ])
     self.mock(config, '_get_settings_with_defaults', lambda: ('revision', cfg))
 
-    # Client is whitelisted for monitoring.
-    self.mock(auth, 'is_in_ip_whitelist', lambda *args, **kwargs: False)
+    # Client is allowlisted for monitoring.
+    self.mock(auth, 'is_in_ip_allowlist', lambda *args, **kwargs: False)
     metrics.file_size(123)
     self.assertIsNone(metrics._bytes_requested.get(fields=fields))
 
-    # Client is not whitelisted for monitoring.
-    self.mock(auth, 'is_in_ip_whitelist', lambda *args, **kwargs: True)
+    # Client is not allowlisted for monitoring.
+    self.mock(auth, 'is_in_ip_allowlist', lambda *args, **kwargs: True)
     metrics.file_size(123)
     self.assertEqual(metrics._bytes_requested.get(fields=fields), 123)
 

@@ -27,7 +27,7 @@ def file_size(size):
   """
   ip = auth.get_peer_ip()
   for cfg in config.settings().client_monitoring_config:
-    if auth.is_in_ip_whitelist(cfg.ip_whitelist, ip):
+    if auth.is_in_ip_allowlist(cfg.ip_allowlist, ip):
       _bytes_requested.increment_by(
           size,
           fields={
