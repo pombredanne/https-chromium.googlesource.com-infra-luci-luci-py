@@ -431,7 +431,7 @@ def _update_ip_whitelist_config(root, rev, conf):
     else:
       new_one = model.AuthIPWhitelistAssignments.Assignment(
           identity=model.Identity.from_bytes(a.identity),
-          ip_whitelist=a.ip_whitelist_name,
+          ip_allowlist=a.ip_whitelist_name,
           comment='Imported from ip_whitelist.cfg at rev %s' % rev.revision,
           created_ts=now,
           created_by=model.get_service_self_identity())
@@ -439,7 +439,7 @@ def _update_ip_whitelist_config(root, rev, conf):
 
   # Something has changed?
   updated_keys = [
-    (a.identity.to_bytes(), a.ip_whitelist)
+    (a.identity.to_bytes(), a.ip_allowlist)
     for a in updated
   ]
   if set(updated_keys) != set(existing):
