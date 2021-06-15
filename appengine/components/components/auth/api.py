@@ -203,7 +203,7 @@ PrincipalsSet = collections.namedtuple('PrincipalsSet', [
 class AuthDB(object):
   """A read only in-memory database of auth configuration of a service.
 
-  Holds user groups, IP whitelists, OAuth2 configuration, etc.
+  Holds user groups, IP allowlists, OAuth2 configuration, etc.
 
   Each process instance holds an AuthDB object in memory and shares it between
   all requests, occasionally refetching it from Datastore.
@@ -239,8 +239,8 @@ class AuthDB(object):
       replication_state: AuthReplicationState entity.
       global_config: AuthGlobalConfig entity.
       groups: list of AuthGroup entities.
-      ip_whitelist_assignments: AuthIPWhitelistAssignments entity.
-      ip_whitelists: list of AuthIPWhitelist entities.
+      ip_allowlist_assignments: AuthIPAllowlistAssignments entity.
+      ip_allowlists: list of AuthIPAllowlist entities.
       additional_client_ids: an additional list of OAuth2 client IDs to trust.
 
     Returns:
@@ -775,14 +775,14 @@ class AuthDB(object):
       return list(entity.values)
 
   def is_in_ip_whitelist(self, whitelist_name, ip, warn_if_missing=True):
-    """Returns True if the given IP belongs to the given IP whitelist.
+    """Returns True if the given IP belongs to the given IP allowlist.
 
-    Missing IP whitelists are considered empty.
+    Missing IP allowlists are considered empty.
 
     Args:
-      whitelist_name: name of the IP whitelist (e.g. 'bots').
+      allowlist_name: name of the IP allowlist (e.g. 'bots').
       ip: instance of ipaddr.IP.
-      warn_if_missing: if True and IP whitelist is missing, logs a warning.
+      warn_if_missing: if True and IP allowlist is missing, logs a warning.
     """
     subnets = self._ip_whitelists.get(whitelist_name)
     if not subnets:
@@ -796,7 +796,7 @@ class AuthDB(object):
         for net in subnets)
 
   def verify_ip_whitelisted(self, identity, ip):
-    """Verifies IP is in a whitelist assigned to the Identity.
+    """Verifies IP is in a allowlist assigned to the Identity.
 
     This check is used to restrict some callers to particular IP subnets as
     additional security measure.
@@ -806,7 +806,7 @@ class AuthDB(object):
       ip: instance of ipaddr.IP.
 
     Raises:
-      AuthorizationError if identity has an IP whitelist assigned and given IP
+      AuthorizationError if identity has an IP allowlist assigned and given IP
       address doesn't belong to it.
     """
     assert isinstance(identity, model.Identity), identity
@@ -1061,10 +1061,10 @@ def extract_oauth_caller_identity():
 
   Implemented on top of GAE OAuth2 API.
 
-  Uses client_id whitelist fetched from the datastore to validate OAuth client
+  Uses client_id allowlist fetched from the datastore to validate OAuth client
   used to build access_token. Also recognizes various types of service accounts
   and verifies that their client_id is what it should be. Service account's
-  client_id doesn't have to be in client_id whitelist.
+  client_id doesn't have to be in client_id allowlist.
 
   Returns:
     (Identity, AuthDetails).
@@ -1090,8 +1090,8 @@ def extract_oauth_caller_identity():
   # never fail.
   email = oauth.get_current_user(oauth_scope).email()
 
-  # Is client_id in the explicit whitelist? Used with three legged OAuth. Detect
-  # Google service accounts. No need to whitelist client_ids for each of them,
+  # Is client_id in the explicit allowlist? Used with three legged OAuth. Detect
+  # Google service accounts. No need to allowlist client_ids for each of them,
   # since email address uniquely identifies credentials used.
   good = (
       email.endswith('.gserviceaccount.com') or
@@ -1122,7 +1122,7 @@ def check_oauth_access_token(header):
       useful to "stub" authentication when running integration or load tests.
 
   In addition to checking the correctness of OAuth token, this function also
-  verifies that the client_id associated with the token is whitelisted in the
+  verifies that the client_id associated with the token is allowlisted in the
   auth config.
 
   The client_id check is skipped on the local devserver or when using custom
@@ -1178,7 +1178,7 @@ def check_oauth_access_token(header):
 def dev_oauth_authentication(header, token_info_endpoint, suffix=''):
   """OAuth2 based authentication via URL Fetch to the token info endpoint.
 
-  This is slow and ignores client_id whitelist. Must be used only in
+  This is slow and ignores client_id allowlist. Must be used only in
   a development environment.
 
   Returns:
@@ -1883,21 +1883,21 @@ def get_secret(secret_key):
 
 
 def is_in_ip_whitelist(whitelist_name, ip, warn_if_missing=True):
-  """Returns True if the given IP belongs to the given IP whitelist.
+  """Returns True if the given IP belongs to the given IP allowlist.
 
-  Missing IP whitelists are considered empty.
+  Missing IP allowlists are considered empty.
 
   Args:
-    whitelist_name: name of the IP whitelist (e.g. 'bots').
+    allowlist_name: name of the IP allowlist (e.g. 'bots').
     ip: instance of ipaddr.IP.
-    warn_if_missing: if True and IP whitelist is missing, logs a warning.
+    warn_if_missing: if True and IP allowlist is missing, logs a warning.
   """
   return get_request_cache().auth_db.is_in_ip_whitelist(
       whitelist_name, ip, warn_if_missing)
 
 
 def verify_ip_whitelisted(identity, ip):
-  """Verifies IP is in a whitelist assigned to the Identity.
+  """Verifies IP is in a allowlist assigned to the Identity.
 
   This check is used to restrict some callers to particular IP subnets as
   additional security measure.
@@ -1907,7 +1907,7 @@ def verify_ip_whitelisted(identity, ip):
     ip: instance of ipaddr.IP.
 
   Raises:
-    AuthorizationError if identity has an IP whitelist assigned and given IP
+    AuthorizationError if identity has an IP allowlist assigned and given IP
     address doesn't belong to it.
   """
   get_request_cache().auth_db.verify_ip_whitelisted(identity, ip)
