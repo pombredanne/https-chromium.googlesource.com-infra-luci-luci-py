@@ -44,7 +44,7 @@ def process_change(auth_db_rev):
 # Regexp for valid values of AuthDBChange.target property.
 TARGET_RE = re.compile(
     r'^[0-9a-zA-Z_]{1,40}\$' +                # entity kind
-    r'[0-9a-zA-Z_\-\./ @]{1,300}' +           # entity ID (group, IP whitelist)
+    r'[0-9a-zA-Z_\-\./ @]{1,300}' +           # entity ID (group, IP allowlist)
     r'(\$[0-9a-zA-Z_@\-\./\:\* ]{1,200})?$')  # optional subentity ID
 
 
@@ -83,7 +83,7 @@ class AuthDBChange(polymodel.PolyModel):
     original_entity_kind: a kind of modified AuthDB entity (e.g 'AuthGroup')
     original_id: ID of modified AuthDB entity (e.g. 'Group name')
     subentity_id: optional identified of modified part of the entity, used for
-        IP whitelist assignments entity (since it's just one big singleton).
+        IP allowlist assignments entity (since it's just one big singleton).
     change_type: integer CHANGE_GROUP_* (see below), e.g. '1100'.
 
   Such key structure makes 'diff_entity_by_key' operation idempotent. A hash of
@@ -93,7 +93,7 @@ class AuthDBChange(polymodel.PolyModel):
   Parent entity is change_log_revision_key(auth_db_rev).
 
   Note: '$' and '!' are not likely to appear in entity names since they are
-  forbidden in AuthDB names (see GROUP_NAME_RE and IP_WHITELIST_NAME_RE in
+  forbidden in AuthDB names (see GROUP_NAME_RE and IP_ALLOWLIST_NAME_RE in
   model.py). Code here also asserts this.
   """
   # AuthDBGroupChange change types.
@@ -108,14 +108,14 @@ class AuthDBChange(polymodel.PolyModel):
   CHANGE_GROUP_NESTED_REMOVED      = 1700
   CHANGE_GROUP_DELETED             = 1800
 
-  # AuthDBIPWhitelistChange change types.
+  # AuthDBIPAllowlistChange change types.
   CHANGE_IPWL_CREATED             = 3000
   CHANGE_IPWL_DESCRIPTION_CHANGED = 3100
   CHANGE_IPWL_SUBNETS_ADDED       = 3200
   CHANGE_IPWL_SUBNETS_REMOVED     = 3300
   CHANGE_IPWL_DELETED             = 3400
 
-  # AuthDBIPWhitelistAssignmentChange change types.
+  # AuthDBIPAllowlistAssignmentChange change types.
   CHANGE_IPWLASSIGN_SET   = 5000
   CHANGE_IPWLASSIGN_UNSET = 5100
 
@@ -383,10 +383,10 @@ def diff_groups(target, old, new):
     yield change('NESTED_REMOVED', nested=removed)
 
 
-## AuthIPWhitelist changes.
+## AuthIPAllowlist changes.
 
 
-class AuthDBIPWhitelistChange(AuthDBChange):
+class AuthDBIPAllowlistChange(AuthDBChange):
   # Valid for CHANGE_IPWL_CREATED and CHANGE_IPWL_DESCRIPTION_CHANGED.
   description = ndb.TextProperty()
   # Valid for CHANGE_IPWL_DESCRIPTION_CHANGED, CHANGE_IPWL_DELETED.
@@ -395,14 +395,14 @@ class AuthDBIPWhitelistChange(AuthDBChange):
   subnets = ndb.StringProperty(repeated=True)
 
 
-def diff_ip_whitelists(target, old, new):
+def diff_ip_allowlists(target, old, new):
   # Helper to reduce amount of typing.
-  change = lambda tp, **kwargs: AuthDBIPWhitelistChange(
+  change = lambda tp, **kwargs: AuthDBIPAllowlistChange(
       change_type=getattr(AuthDBChange, 'CHANGE_IPWL_%s' % tp),
       target=target,
       **kwargs)
 
-  # An IP whitelist was removed. Don't trust 'old' since it may be nil for old
+  # An IP allowlist was removed. Don't trust 'old' since it may be nil for old
   # apps that did not keep history. Use "last known state" snapshot in 'new'.
   if new.auth_db_deleted:
     if new.subnets:
@@ -410,7 +410,7 @@ def diff_ip_whitelists(target, old, new):
     yield change('DELETED', old_description=new.description)
     return
 
-  # An IP whitelist was just added (or it's first its appearance in the log).
+  # An IP allowlist was just added (or it's first its appearance in the log).
   if old is None:
     yield change('CREATED', description=new.description)
     if new.subnets:
@@ -430,24 +430,24 @@ def diff_ip_whitelists(target, old, new):
     yield change('SUBNETS_REMOVED', subnets=removed)
 
 
-## AuthIPWhitelistAssignments changes.
+## AuthIPAllowlistAssignments changes.
 
 
-class AuthDBIPWhitelistAssignmentChange(AuthDBChange):
+class AuthDBIPAllowlistAssignmentChange(AuthDBChange):
   # Valid for ..._SET and ..._UNSET.
   identity = model.IdentityProperty()
   # Valid for ..._SET and ..._UNSET.
-  ip_whitelist = ndb.StringProperty()
+  ip_allowlist = ndb.StringProperty()
 
 
 def diff_ip_whitelist_assignments(target, old, new):
   # Helper to reduce amount of typing.
   def change(tp, identity, ip_whitelist, **kwargs):
-    # Whitelist assignments are special: individual assignments are defined
+    # Allowlist assignments are special: individual assignments are defined
     # as LocalStructuredProperties of a single singleton entity. We want changes
     # to refer to individual assignments (keyed by identity name), and so
     # construct change target manually to reflect that.
-    return AuthDBIPWhitelistAssignmentChange(
+    return AuthDBIPAllowlistAssignmentChange(
         change_type=getattr(AuthDBChange, 'CHANGE_IPWLASSIGN_%s' % tp),
         target='%s$%s' % (target, identity.to_bytes()),
         identity=identity,
@@ -649,7 +649,7 @@ def diff_lists(old, new):
 # Name of *History entity class name => (original class, diffing function).
 KNOWN_HISTORICAL_ENTITIES = {
   'AuthGroupHistory': (model.AuthGroup, diff_groups),
-  'AuthIPWhitelistHistory': (model.AuthIPWhitelist, diff_ip_whitelists),
+  'AuthIPWhitelistHistory': (model.AuthIPWhitelist, diff_ip_allowlists),
   'AuthIPWhitelistAssignmentsHistory': (
       model.AuthIPWhitelistAssignments, diff_ip_whitelist_assignments),
   'AuthGlobalConfigHistory': (model.AuthGlobalConfig, diff_global_config),
