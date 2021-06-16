@@ -1090,7 +1090,7 @@ class AuthIPWhitelistAssignments(ndb.Model, AuthVersionedEntityMixin):
     # Identity name to limit by IP whitelist. Unique key in 'assignments' list.
     identity = IdentityProperty()
     # Name of IP whitelist to use (see AuthIPWhitelist).
-    ip_whitelist = ndb.StringProperty()
+    ip_allowlist = ndb.StringProperty()
     # Why the assignment was created.
     comment = ndb.StringProperty()
     # When the assignment was created.
