@@ -1090,7 +1090,7 @@ class AuthIPWhitelistAssignments(ndb.Model, AuthVersionedEntityMixin):
     # Identity name to limit by IP whitelist. Unique key in 'assignments' list.
     identity = IdentityProperty()
     # Name of IP whitelist to use (see AuthIPWhitelist).
-    ip_whitelist = ndb.StringProperty()
+    ip_allowlist = ndb.StringProperty()
     # Why the assignment was created.
     comment = ndb.StringProperty()
     # When the assignment was created.
@@ -1243,9 +1243,9 @@ def bootstrap_ip_whitelist_assignment(identity, ip_whitelist, comment=''):
   found = False
   for assignment in entity.assignments:
     if assignment.identity == identity:
-      if assignment.ip_whitelist == ip_whitelist:
+      if assignment.ip_allowlist == ip_allowlist:
         return False
-      assignment.ip_whitelist = ip_whitelist
+      assignment.ip_allowlist = ip_allowlist
       assignment.comment = comment
       found = True
       break
@@ -1255,7 +1255,7 @@ def bootstrap_ip_whitelist_assignment(identity, ip_whitelist, comment=''):
     entity.assignments.append(
         AuthIPWhitelistAssignments.Assignment(
             identity=identity,
-            ip_whitelist=ip_whitelist,
+            ip_allowlist=ip_allowlist,
             comment=comment,
             created_ts=now,
             created_by=get_service_self_identity()))
