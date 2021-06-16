@@ -166,7 +166,7 @@ def validate_imports_config(conf, ctx):
     ctx.error(str(exc))
 
 
-@validation.self_rule('ip_whitelist.cfg', config_pb2.IPWhitelistConfig)
+@validation.self_rule('ip_whitelist.cfg', config_pb2.IPAllowlistConfig)
 def validate_ip_whitelist_config(conf, ctx):
   try:
     _validate_ip_whitelist_config(conf)
@@ -325,30 +325,30 @@ def _update_authdb_configs(configs):
 
 
 def _validate_ip_whitelist_config(conf):
-  if not isinstance(conf, config_pb2.IPWhitelistConfig):
+  if not isinstance(conf, config_pb2.IPAllowlistConfig):
     raise ValueError('Wrong message type: %s' % conf.__class__.__name__)
-  whitelists = set()
-  for ip_whitelist in conf.ip_whitelists:
-    if not model.IP_WHITELIST_NAME_RE.match(ip_whitelist.name):
-      raise ValueError('Invalid IP whitelist name: %s' % ip_whitelist.name)
-    if ip_whitelist.name in whitelists:
-      raise ValueError('IP whitelist %s is defined twice' % ip_whitelist.name)
-    whitelists.add(ip_whitelist.name)
-    for net in ip_whitelist.subnets:
+  allowlists = set()
+  for ip_allowlist in conf.ip_allowlists:
+    if not model.IP_WHITELIST_NAME_RE.match(ip_allowlist.name):
+      raise ValueError('Invalid IP allowlist name: %s' % ip_allowlist.name)
+    if ip_allowlist.name in allowlists:
+      raise ValueError('IP allowlist %s is defined twice' % ip_allowlist.name)
+    allowlists.add(ip_allowlist.name)
+    for net in ip_allowlist.subnets:
       # Raises ValueError if subnet is not valid.
       ipaddr.subnet_from_string(net)
   idents = []
   for assignment in conf.assignments:
     # Raises ValueError if identity is not valid.
     ident = model.Identity.from_bytes(assignment.identity)
-    if assignment.ip_whitelist_name not in whitelists:
+    if assignment.ip_allowlist_name not in allowlists:
       raise ValueError(
-          'Unknown IP whitelist: %s' % assignment.ip_whitelist_name)
+          'Unknown IP whitelist: %s' % assignment.ip_allowlist_name)
     if ident in idents:
       raise ValueError('Identity %s is specified twice' % assignment.identity)
     idents.append(ident)
   # This raises ValueError on bad includes.
-  _resolve_ip_whitelist_includes(conf.ip_whitelists)
+  _resolve_ip_whitelist_includes(conf.ip_allowlists)
 
 
 def _resolve_ip_whitelist_includes(whitelists):
@@ -545,7 +545,7 @@ _CONFIG_SCHEMAS = {
     'use_authdb_transaction': False,
   },
   'ip_whitelist.cfg': {
-    'proto_class': config_pb2.IPWhitelistConfig,
+    'proto_class': config_pb2.IPAllowlistConfig,
     'revision_getter': lambda: _get_authdb_config_rev_async('ip_whitelist.cfg'),
     'updater': _update_ip_whitelist_config,
     'use_authdb_transaction': True,
