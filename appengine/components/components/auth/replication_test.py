@@ -413,7 +413,7 @@ class SnapshotToProtoConversionTest(test_case.TestCase):
         assignments=[
             model.AuthIPWhitelistAssignments.Assignment(
                 identity=model.Identity.from_bytes('user:a@example.com'),
-                ip_whitelist='some whitelist',
+                ip_allowlist='some allowlist',
                 comment='some comment',
                 created_ts=datetime.datetime(2020, 1, 1, 1, 1, 1),
                 created_by=model.Identity.from_bytes(
