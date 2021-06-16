@@ -127,8 +127,8 @@ message OAuthConfig {
 
 // IP whitelists config: a set of named IP whitelists and a mapping between
 // identity name -> IP whitelist to restrict it to.
-message IPWhitelistConfig {
-  message IPWhitelist {
+message IPAllowlistConfig {
+  message IPAllowlist {
     // Name of the IP whitelist.
     string name = 1;
     // List of subnets.
@@ -141,11 +141,11 @@ message IPWhitelistConfig {
     // Identity to restrict IPs to.
     string identity = 1;
     // Name of the corresponding IPWhitelist with a set of subnets.
-    string ip_whitelist_name = 2;
+    string ip_allowlist_name = 2;
   }
 
   // A set of named subnets.
-  repeated IPWhitelist ip_whitelists = 1;
+  repeated IPAllowlist ip_allowlists = 1;
   // A mapping "identity name -> IP whitelist name".
   repeated Assignment assignments = 2;
 }
