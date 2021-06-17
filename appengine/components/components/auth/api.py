@@ -269,7 +269,7 @@ class AuthDB(object):
         token_server_url=global_config.token_server_url,
         groups=cached_groups,
         ip_whitelist_assignments={
-            e.identity: e.ip_whitelist
+            e.identity: e.ip_allowlist
             for e in ip_whitelist_assignments.assignments
         },
         ip_whitelists={e.key.id(): list(e.subnets) for e in ip_whitelists},
