@@ -343,7 +343,7 @@ class AuthDBTest(test_case.TestCase):
         assignments=[
             model.AuthIPWhitelistAssignments.Assignment(
                 identity=model.Anonymous,
-                ip_whitelist='some ip whitelist',
+                ip_allowlist='some ip whitelist',
                 created_ts=now,
                 created_by=ident,
                 comment='comment',
@@ -485,7 +485,7 @@ class AuthDBTest(test_case.TestCase):
         assignments=[
           model.AuthIPWhitelistAssignments.Assignment(
             identity=model.Identity(model.IDENTITY_USER, 'a@example.com'),
-            ip_whitelist='some ip whitelist',)
+            ip_allowlist='some ip whitelist',)
         ],
       ),
     )
@@ -514,7 +514,7 @@ class AuthDBTest(test_case.TestCase):
         assignments=[
           model.AuthIPWhitelistAssignments.Assignment(
             identity=model.Identity(model.IDENTITY_USER, 'a@example.com'),
-            ip_whitelist='missing ip whitelist',)
+            ip_allowlist='missing ip whitelist',)
         ],
       ),
     )
