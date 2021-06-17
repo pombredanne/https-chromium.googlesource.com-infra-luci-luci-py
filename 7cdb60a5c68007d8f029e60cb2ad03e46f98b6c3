@@ -16,6 +16,24 @@
       "message": "https://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket.appspot.com/8844206588459640496/+/u/swarming_bot/run_tests_python2/stdout\n\u003e Please enable symlink. Run \u0027git config --global core.symlinks true\u0027 and fetch the repository again\n\nHmm, is this first build since we enable the symlink check?\nOr named cache?\n",
       "revId": "7cdb60a5c68007d8f029e60cb2ad03e46f98b6c3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a913a265_b21e938a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-06-17T04:51:05Z",
+      "side": 1,
+      "message": "This was submitted 1 week ago.\nhttps://crrev.com/c/2853853\n\nSo I guess this is cache.",
+      "parentUuid": "bac2d32e_a754d991",
+      "revId": "7cdb60a5c68007d8f029e60cb2ad03e46f98b6c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
