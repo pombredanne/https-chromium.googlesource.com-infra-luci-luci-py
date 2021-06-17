@@ -149,7 +149,7 @@ class GenerateChangesTest(test_case.TestCase):
           assignments=[
             model.AuthIPWhitelistAssignments.Assignment(
               identity=ident('a@example.com'),
-              ip_whitelist='An IP whitelist')
+              ip_allowlist='An IP whitelist')
           ])
       a.record_revision(
           modified_by=ident('me@example.com'),
@@ -648,10 +648,10 @@ class GenerateChangesTest(test_case.TestCase):
           assignments=[
             model.AuthIPWhitelistAssignments.Assignment(
               identity=ident('a@example.com'),
-              ip_whitelist='An IP whitelist'),
+              ip_allowlist='An IP whitelist'),
             model.AuthIPWhitelistAssignments.Assignment(
               identity=ident('b@example.com'),
-              ip_whitelist='Another IP whitelist'),
+              ip_allowlist='Another IP whitelist'),
           ])
       a.record_revision(
           modified_by=ident('me@example.com'),
@@ -693,10 +693,10 @@ class GenerateChangesTest(test_case.TestCase):
       a.assignments=[
         model.AuthIPWhitelistAssignments.Assignment(
           identity=ident('a@example.com'),
-          ip_whitelist='Another IP whitelist'),
+          ip_allowlist='Another IP whitelist'),
         model.AuthIPWhitelistAssignments.Assignment(
           identity=ident('c@example.com'),
-          ip_whitelist='IP whitelist'),
+          ip_allowlist='IP whitelist'),
       ]
       a.record_revision(
           modified_by=ident('me@example.com'),
