@@ -16,6 +16,24 @@
       "message": "Sorry, I\u0027m not sure why you revert this from this explanation?",
       "revId": "eff11c17134ed3583efecac0918454832f1cf3be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94c63c12_4b0c191d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1117044
+      },
+      "writtenOn": "2021-06-17T15:52:12Z",
+      "side": 1,
+      "message": "This was part of what caused the outage before.  We are not ready to change the name of the swarming plist and want to stick to the original name for now.  This change diverges the name to a name that isnt used, so it needs to be reverted.",
+      "parentUuid": "96d47155_b1808e30",
+      "revId": "eff11c17134ed3583efecac0918454832f1cf3be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
