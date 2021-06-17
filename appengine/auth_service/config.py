@@ -420,7 +420,7 @@ def _update_ip_whitelist_config(root, rev, conf):
       model.AuthIPWhitelistAssignments(
           key=model.ip_whitelist_assignments_key()))
   existing = {
-    (a.identity.to_bytes(), a.ip_whitelist): a
+    (a.identity.to_bytes(), a.ip_allowlist): a
     for a in ip_whitelist_assignments.assignments
   }
   updated = []
@@ -439,7 +439,7 @@ def _update_ip_whitelist_config(root, rev, conf):
 
   # Something has changed?
   updated_keys = [
-    (a.identity.to_bytes(), a.ip_whitelist)
+    (a.identity.to_bytes(), a.ip_allowlist)
     for a in updated
   ]
   if set(updated_keys) != set(existing):
