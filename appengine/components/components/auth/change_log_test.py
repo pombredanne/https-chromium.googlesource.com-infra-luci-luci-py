@@ -140,16 +140,16 @@ class GenerateChangesTest(test_case.TestCase):
           description='Blah',
           comment='New group')
       make_ip_whitelist(
-          name='An IP whitelist',
+          name='An IP allowlist',
           subnets=['127.0.0.1/32'],
           description='Bluh',
-          comment='New IP whitelist')
+          comment='New IP allowlist')
       a = model.AuthIPWhitelistAssignments(
           key=model.ip_whitelist_assignments_key(),
           assignments=[
             model.AuthIPWhitelistAssignments.Assignment(
               identity=ident('a@example.com'),
-              ip_whitelist='An IP whitelist')
+              ip_allowlist='An IP allowlist')
           ])
       a.record_revision(
           modified_by=ident('me@example.com'),
@@ -236,25 +236,25 @@ class GenerateChangesTest(test_case.TestCase):
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
-      'AuthDBChange:AuthIPWhitelist$An IP whitelist!3000': {
+      'AuthDBChange:AuthIPWhitelist$An IP allowlist!3000': {
         'app_version': u'v1a',
         'auth_db_rev': 1,
         'change_type': change_log.AuthDBChange.CHANGE_IPWL_CREATED,
         'class_': [u'AuthDBChange', u'AuthDBIPWhitelistChange'],
-        'comment': u'New IP whitelist',
+        'comment': u'New IP allowlist',
         'description': u'Bluh',
-        'target': u'AuthIPWhitelist$An IP whitelist',
+        'target': u'AuthIPWhitelist$An IP allowlist',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
-      'AuthDBChange:AuthIPWhitelist$An IP whitelist!3200': {
+      'AuthDBChange:AuthIPWhitelist$An IP allowlist!3200': {
         'app_version': u'v1a',
         'auth_db_rev': 1,
         'change_type': change_log.AuthDBChange.CHANGE_IPWL_SUBNETS_ADDED,
         'class_': [u'AuthDBChange', u'AuthDBIPWhitelistChange'],
-        'comment': u'New IP whitelist',
+        'comment': u'New IP allowlist',
         'subnets': [u'127.0.0.1/32'],
-        'target': u'AuthIPWhitelist$An IP whitelist',
+        'target': u'AuthIPWhitelist$An IP allowlist',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
       },
@@ -266,7 +266,7 @@ class GenerateChangesTest(test_case.TestCase):
         'class_': [u'AuthDBChange', u'AuthDBIPWhitelistAssignmentChange'],
         'comment': u'New assignment',
         'identity': model.Identity(kind='user', name='a@example.com'),
-        'ip_whitelist': u'An IP whitelist',
+        'ip_allowlist': u'An IP allowlist',
         'target': u'AuthIPWhitelistAssignments$default$user:a@example.com',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com')
@@ -648,10 +648,10 @@ class GenerateChangesTest(test_case.TestCase):
           assignments=[
             model.AuthIPWhitelistAssignments.Assignment(
               identity=ident('a@example.com'),
-              ip_whitelist='An IP whitelist'),
+              ip_allowlist='An IP allowlist'),
             model.AuthIPWhitelistAssignments.Assignment(
               identity=ident('b@example.com'),
-              ip_whitelist='Another IP whitelist'),
+              ip_allowlist='Another IP allowlist'),
           ])
       a.record_revision(
           modified_by=ident('me@example.com'),
@@ -668,7 +668,7 @@ class GenerateChangesTest(test_case.TestCase):
         'class_': [u'AuthDBChange', u'AuthDBIPWhitelistAssignmentChange'],
         'comment': u'New assignment',
         'identity': model.Identity(kind='user', name='a@example.com'),
-        'ip_whitelist': u'An IP whitelist',
+        'ip_allowlist': u'An IP allowlist',
         'target': u'AuthIPWhitelistAssignments$default$user:a@example.com',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
@@ -681,7 +681,7 @@ class GenerateChangesTest(test_case.TestCase):
         'class_': [u'AuthDBChange', u'AuthDBIPWhitelistAssignmentChange'],
         'comment': u'New assignment',
         'identity': model.Identity(kind='user', name='b@example.com'),
-        'ip_whitelist': u'Another IP whitelist',
+        'ip_allowlist': u'Another IP allowlist',
         'target': u'AuthIPWhitelistAssignments$default$user:b@example.com',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
@@ -693,10 +693,10 @@ class GenerateChangesTest(test_case.TestCase):
       a.assignments=[
         model.AuthIPWhitelistAssignments.Assignment(
           identity=ident('a@example.com'),
-          ip_whitelist='Another IP whitelist'),
+          ip_allowlist='Another IP allowlist'),
         model.AuthIPWhitelistAssignments.Assignment(
           identity=ident('c@example.com'),
-          ip_whitelist='IP whitelist'),
+          ip_allowlist='IP allowlist'),
       ]
       a.record_revision(
           modified_by=ident('me@example.com'),
@@ -713,7 +713,7 @@ class GenerateChangesTest(test_case.TestCase):
         'class_': [u'AuthDBChange', u'AuthDBIPWhitelistAssignmentChange'],
         'comment': u'change',
         'identity': model.Identity(kind='user', name='a@example.com'),
-        'ip_whitelist': u'Another IP whitelist',
+        'ip_allowlist': u'Another IP allowlist',
         'target': u'AuthIPWhitelistAssignments$default$user:a@example.com',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
@@ -726,7 +726,7 @@ class GenerateChangesTest(test_case.TestCase):
         'class_': [u'AuthDBChange', u'AuthDBIPWhitelistAssignmentChange'],
         'comment': u'change',
         'identity': model.Identity(kind='user', name='b@example.com'),
-        'ip_whitelist': u'Another IP whitelist',
+        'ip_allowlist': u'Another IP allowlist',
         'target': u'AuthIPWhitelistAssignments$default$user:b@example.com',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
@@ -739,7 +739,7 @@ class GenerateChangesTest(test_case.TestCase):
         'class_': [u'AuthDBChange', u'AuthDBIPWhitelistAssignmentChange'],
         'comment': u'change',
         'identity': model.Identity(kind='user', name='c@example.com'),
-        'ip_whitelist': u'IP whitelist',
+        'ip_allowlist': u'IP allowlist',
         'target': u'AuthIPWhitelistAssignments$default$user:c@example.com',
         'when': datetime.datetime(2015, 1, 2, 3, 4, 5),
         'who': model.Identity(kind='user', name='me@example.com'),
