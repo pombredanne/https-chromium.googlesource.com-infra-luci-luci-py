@@ -173,7 +173,7 @@ class NewAuthDBSnapshotTest(test_case.TestCase):
         assignments=[
           model.AuthIPWhitelistAssignments.Assignment(
             identity=model.Identity.from_bytes('user:bot_account@example.com'),
-            ip_whitelist='bots',
+            ip_allowlist='bots',
             comment='some comment',
             created_ts=utils.utcnow(),
             created_by=model.Identity.from_bytes('user:creator@example.com')),
@@ -413,7 +413,7 @@ class SnapshotToProtoConversionTest(test_case.TestCase):
         assignments=[
             model.AuthIPWhitelistAssignments.Assignment(
                 identity=model.Identity.from_bytes('user:a@example.com'),
-                ip_whitelist='some whitelist',
+                ip_allowlist='some whitelist',
                 comment='some comment',
                 created_ts=datetime.datetime(2020, 1, 1, 1, 1, 1),
                 created_by=model.Identity.from_bytes(
