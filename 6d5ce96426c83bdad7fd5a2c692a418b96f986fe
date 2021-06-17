@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62457e6f_77ca1790",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1309389
+      },
+      "writtenOn": "2021-06-17T15:20:36Z",
+      "side": 1,
+      "message": "The actual label generated should not include .plist on the end. So, the generating code and the test should probably be updated in another CL to reflect that.",
+      "revId": "6d5ce96426c83bdad7fd5a2c692a418b96f986fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
