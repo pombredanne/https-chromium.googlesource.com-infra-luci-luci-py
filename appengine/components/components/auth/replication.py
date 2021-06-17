@@ -217,7 +217,7 @@ def auth_db_snapshot_to_proto(snapshot, auth_db_proto=None):
   for ent in snapshot.ip_whitelist_assignments.assignments:
     msg = auth_db_proto.ip_whitelist_assignments.add()
     msg.identity = ent.identity.to_bytes()
-    msg.ip_whitelist = ent.ip_whitelist
+    msg.ip_whitelist = ent.ip_allowlist
     msg.comment = ent.comment or 'empty'
     msg.created_ts = utils.datetime_to_timestamp(ent.created_ts)
     msg.created_by = ent.created_by.to_bytes()
