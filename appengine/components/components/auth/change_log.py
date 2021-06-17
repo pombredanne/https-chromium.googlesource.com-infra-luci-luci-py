@@ -458,13 +458,13 @@ def diff_ip_whitelist_assignments(target, old, new):
   # apps that did not keep history. Use "last known state" snapshot in 'new'.
   if new.auth_db_deleted:
     for a in new.assignments:
-      yield change('UNSET', a.identity, a.ip_whitelist)
+      yield change('UNSET', a.identity, a.ip_allowlist)
     return
 
   # All assignments were added.
   if old is None:
     for a in new.assignments:
-      yield change('SET', a.identity, a.ip_whitelist)
+      yield change('SET', a.identity, a.ip_allowlist)
     return
 
   # Diff two lists of assignment.
@@ -474,13 +474,13 @@ def diff_ip_whitelist_assignments(target, old, new):
   # Delete old ones.
   for ident, a in old_by_ident.items():
     if ident not in new_by_ident:
-      yield change('UNSET', a.identity, a.ip_whitelist)
+      yield change('UNSET', a.identity, a.ip_allowlist)
 
   # Add new ones, update existing ones.
   for ident, a in new_by_ident.items():
     old_a = old_by_ident.get(ident)
-    if not old_a or a.ip_whitelist != old_a.ip_whitelist:
-      yield change('SET', a.identity, a.ip_whitelist)
+    if not old_a or a.ip_allowlist != old_a.ip_allowlist:
+      yield change('SET', a.identity, a.ip_allowlist)
 
 
 ## AuthGlobalConfig changes.
