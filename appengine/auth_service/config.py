@@ -166,7 +166,7 @@ def validate_imports_config(conf, ctx):
     ctx.error(str(exc))
 
 
-@validation.self_rule('ip_whitelist.cfg', config_pb2.IPWhitelistConfig)
+@validation.self_rule('ip_whitelist.cfg', config_pb2.IPAllowlistConfig)
 def validate_ip_whitelist_config(conf, ctx):
   try:
     _validate_ip_whitelist_config(conf)
@@ -325,7 +325,7 @@ def _update_authdb_configs(configs):
 
 
 def _validate_ip_whitelist_config(conf):
-  if not isinstance(conf, config_pb2.IPWhitelistConfig):
+  if not isinstance(conf, config_pb2.IPAllowlistConfig):
     raise ValueError('Wrong message type: %s' % conf.__class__.__name__)
   whitelists = set()
   for ip_whitelist in conf.ip_whitelists:
@@ -545,7 +545,7 @@ _CONFIG_SCHEMAS = {
     'use_authdb_transaction': False,
   },
   'ip_whitelist.cfg': {
-    'proto_class': config_pb2.IPWhitelistConfig,
+    'proto_class': config_pb2.IPAllowlistConfig,
     'revision_getter': lambda: _get_authdb_config_rev_async('ip_whitelist.cfg'),
     'updater': _update_ip_whitelist_config,
     'use_authdb_transaction': True,

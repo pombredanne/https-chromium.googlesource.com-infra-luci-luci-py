@@ -131,47 +131,47 @@ class ConfigTest(test_case.TestCase):
         new_rev, config._get_imports_config_revision_async().get_result())
 
   def test_validate_ip_whitelist_config_ok(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+    conf = config_pb2.IPAllowlistConfig(
+        ip_allowlists=[
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='abc',
               subnets=['127.0.0.1/32', '0.0.0.0/0']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='bots',
               subnets=[],
               includes=['abc']),
         ],
         assignments=[
-          config_pb2.IPWhitelistConfig.Assignment(
+          config_pb2.IPAllowlistConfig.Assignment(
               identity='user:abc@example.com',
-              ip_whitelist_name='abc'),
+              ip_allowlist_name='abc'),
         ])
     config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_config_empty(self):
-    config._validate_ip_whitelist_config(config_pb2.IPWhitelistConfig())
+    config._validate_ip_whitelist_config(config_pb2.IPAllowlistConfig())
 
   def test_validate_ip_whitelist_config_bad_name(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='<bad name>'),
+    conf = config_pb2.IPAllowlistConfig(
+        ip_allowlists=[
+          config_pb2.IPAllowlistConfig.IPAllowlist(name='<bad name>'),
         ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_config_duplicated_wl(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='abc'),
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='abc'),
+    conf = config_pb2.IPAllowlistConfig(
+        ip_allowlists=[
+          config_pb2.IPAllowlistConfig.IPAllowlist(name='abc'),
+          config_pb2.IPAllowlistConfig.IPAllowlist(name='abc'),
         ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_config_bad_subnet(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+    conf = config_pb2.IPAllowlistConfig(
+        ip_allowlists=[
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='abc',
               subnets=['not a subnet']),
         ])
@@ -179,49 +179,49 @@ class ConfigTest(test_case.TestCase):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_config_bad_identity(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='abc')
+    conf = config_pb2.IPAllowlistConfig(
+        ip_allowlists=[
+          config_pb2.IPAllowlistConfig.IPAllowlist(name='abc')
         ],
         assignments=[
-          config_pb2.IPWhitelistConfig.Assignment(
+          config_pb2.IPAllowlistConfig.Assignment(
               identity='bad identity',
-              ip_whitelist_name='abc'),
+              ip_allowlist_name='abc'),
         ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_config_unknown_whitelist(self):
-    conf = config_pb2.IPWhitelistConfig(
+    conf = config_pb2.IPAllowlistConfig(
         assignments=[
-          config_pb2.IPWhitelistConfig.Assignment(
+          config_pb2.IPAllowlistConfig.Assignment(
               identity='user:abc@example.com',
-              ip_whitelist_name='missing'),
+              ip_allowlist_name='missing'),
         ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_config_identity_twice(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='abc'),
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='def'),
+    conf = config_pb2.IPAllowlistConfig(
+        ip_allowlists=[
+          config_pb2.IPAllowlistConfig.IPAllowlist(name='abc'),
+          config_pb2.IPAllowlistConfig.IPAllowlist(name='def'),
         ],
         assignments=[
-          config_pb2.IPWhitelistConfig.Assignment(
+          config_pb2.IPAllowlistConfig.Assignment(
               identity='user:abc@example.com',
-              ip_whitelist_name='abc'),
-          config_pb2.IPWhitelistConfig.Assignment(
+              ip_allowlist_name='abc'),
+          config_pb2.IPAllowlistConfig.Assignment(
               identity='user:abc@example.com',
-              ip_whitelist_name='def'),
+              ip_allowlist_name='def'),
         ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_unknown_include(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+    conf = config_pb2.IPAllowlistConfig(
+        ip_allowlists=[
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='abc',
               subnets=[],
               includes=['unknown']),
@@ -230,9 +230,9 @@ class ConfigTest(test_case.TestCase):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_include_cycle_1(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+    conf = config_pb2.IPAllowlistConfig(
+        ip_allowlists=[
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='abc',
               subnets=[],
               includes=['abc']),
@@ -241,13 +241,13 @@ class ConfigTest(test_case.TestCase):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_include_cycle_2(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+    conf = config_pb2.IPAllowlistConfig(
+        ip_allowlists=[
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='abc',
               subnets=[],
               includes=['def']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='def',
               subnets=[],
               includes=['abc']),
@@ -256,21 +256,21 @@ class ConfigTest(test_case.TestCase):
       config._validate_ip_whitelist_config(conf)
 
   def test_validate_ip_whitelist_include_diamond(self):
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+    conf = config_pb2.IPAllowlistConfig(
+        ip_allowlists=[
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='abc',
               subnets=[],
               includes=['middle1', 'middle2']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='middle1',
               subnets=[],
               includes=['inner']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='middle2',
               subnets=[],
               includes=['inner']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='inner',
               subnets=[]),
         ])
@@ -284,29 +284,29 @@ class ConfigTest(test_case.TestCase):
         ),
       })
     # Pushing empty config to empty DB -> no changes.
-    self.assertFalse(run(config_pb2.IPWhitelistConfig()))
+    self.assertFalse(run(config_pb2.IPAllowlistConfig()))
 
     # Added a bunch of IP whitelists and assignments.
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+    conf = config_pb2.IPAllowlistConfig(
+        ip_allowlists=[
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='abc',
               subnets=['0.0.0.1/32']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='bots',
               subnets=['0.0.0.2/32']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='empty'),
+          config_pb2.IPAllowlistConfig.IPAllowlist(name='empty'),
         ],
         assignments=[
-          config_pb2.IPWhitelistConfig.Assignment(
+          config_pb2.IPAllowlistConfig.Assignment(
               identity='user:abc@example.com',
-              ip_whitelist_name='abc'),
-          config_pb2.IPWhitelistConfig.Assignment(
+              ip_allowlist_name='abc'),
+          config_pb2.IPAllowlistConfig.Assignment(
               identity='user:def@example.com',
-              ip_whitelist_name='bots'),
-          config_pb2.IPWhitelistConfig.Assignment(
+              ip_allowlist_name='bots'),
+          config_pb2.IPAllowlistConfig.Assignment(
               identity='user:xyz@example.com',
-              ip_whitelist_name='bots'),
+              ip_allowlist_name='bots'),
         ])
     self.assertTrue(run(conf))
 
@@ -319,7 +319,7 @@ class ConfigTest(test_case.TestCase):
           'created_by': model.Identity(kind='service', name='sample-app'),
           'created_ts': datetime.datetime(2014, 1, 2, 3, 4, 5),
           'identity': model.Identity(kind='user', name='abc@example.com'),
-          'ip_whitelist': u'abc',
+          'ip_allowlist': u'abc',
         },
         {
           'comment':
@@ -327,7 +327,7 @@ class ConfigTest(test_case.TestCase):
           'created_by': model.Identity(kind='service', name='sample-app'),
           'created_ts': datetime.datetime(2014, 1, 2, 3, 4, 5),
           'identity': model.Identity(kind='user', name='def@example.com'),
-          'ip_whitelist': u'bots',
+          'ip_allowlist': u'bots',
         },
         {
           'comment':
@@ -335,7 +335,7 @@ class ConfigTest(test_case.TestCase):
           'created_by': model.Identity(kind='service', name='sample-app'),
           'created_ts': datetime.datetime(2014, 1, 2, 3, 4, 5),
           'identity': model.Identity(kind='user', name='xyz@example.com'),
-          'ip_whitelist': u'bots',
+          'ip_allowlist': u'bots',
         },
       ],
       'auth_db_rev': 1,
@@ -383,26 +383,26 @@ class ConfigTest(test_case.TestCase):
     self.assertFalse(run(conf))
 
     # Modify whitelist, add new one, remove some. Same for assignments.
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+    conf = config_pb2.IPAllowlistConfig(
+        ip_allowlists=[
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='abc',
               subnets=['0.0.0.3/32']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='bots',
               subnets=['0.0.0.2/32']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(name='another'),
+          config_pb2.IPAllowlistConfig.IPAllowlist(name='another'),
         ],
         assignments=[
-          config_pb2.IPWhitelistConfig.Assignment(
+          config_pb2.IPAllowlistConfig.Assignment(
               identity='user:abc@example.com',
-              ip_whitelist_name='abc'),
-          config_pb2.IPWhitelistConfig.Assignment(
+              ip_allowlist_name='abc'),
+          config_pb2.IPAllowlistConfig.Assignment(
               identity='user:def@example.com',
-              ip_whitelist_name='another'),
-          config_pb2.IPWhitelistConfig.Assignment(
+              ip_allowlist_name='another'),
+          config_pb2.IPAllowlistConfig.Assignment(
               identity='user:zzz@example.com',
-              ip_whitelist_name='bots'),
+              ip_allowlist_name='bots'),
         ])
     self.mock_now(datetime.datetime(2014, 3, 2, 3, 4, 5))
     self.assertTrue(run(conf))
@@ -416,7 +416,7 @@ class ConfigTest(test_case.TestCase):
           'created_by': model.Identity(kind='service', name='sample-app'),
           'created_ts': datetime.datetime(2014, 1, 2, 3, 4, 5),
           'identity': model.Identity(kind='user', name='abc@example.com'),
-          'ip_whitelist': u'abc',
+          'ip_allowlist': u'abc',
         },
         {
           'comment':
@@ -424,7 +424,7 @@ class ConfigTest(test_case.TestCase):
           'created_by': model.Identity(kind='service', name='sample-app'),
           'created_ts': datetime.datetime(2014, 3, 2, 3, 4, 5),
           'identity': model.Identity(kind='user', name='def@example.com'),
-          'ip_whitelist': u'another',
+          'ip_allowlist': u'another',
         },
         {
           'comment':
@@ -432,7 +432,7 @@ class ConfigTest(test_case.TestCase):
           'created_by': model.Identity(kind='service', name='sample-app'),
           'created_ts': datetime.datetime(2014, 3, 2, 3, 4, 5),
           'identity': model.Identity(kind='user', name='zzz@example.com'),
-          'ip_whitelist': u'bots',
+          'ip_allowlist': u'bots',
         },
       ],
       'auth_db_rev': 2,
@@ -483,20 +483,20 @@ class ConfigTest(test_case.TestCase):
         ),
       })
 
-    conf = config_pb2.IPWhitelistConfig(
-        ip_whitelists=[
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+    conf = config_pb2.IPAllowlistConfig(
+        ip_allowlists=[
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='a',
               subnets=['0.0.0.1/32']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='b',
               subnets=['0.0.0.1/32', '0.0.0.2/32'],
               includes=['a']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='c',
               subnets=['0.0.0.3/32'],
               includes=['a', 'b']),
-          config_pb2.IPWhitelistConfig.IPWhitelist(
+          config_pb2.IPAllowlistConfig.IPAllowlist(
               name='d',
               includes=['c']),
         ])
@@ -591,7 +591,7 @@ class ConfigTest(test_case.TestCase):
     fetches = {
       'imports.cfg': ('imports_cfg_rev', 'tarball{url:"a" systems:"b"}'),
       'ip_whitelist.cfg': (
-          'ip_whitelist_cfg_rev', config_pb2.IPWhitelistConfig()),
+          'ip_whitelist_cfg_rev', config_pb2.IPAllowlistConfig()),
       'oauth.cfg': (
           'oauth_cfg_rev', config_pb2.OAuthConfig(primary_client_id='a')),
       'settings.cfg': (None, None),  # emulate missing config
@@ -610,7 +610,7 @@ class ConfigTest(test_case.TestCase):
           'tarball{url:"a" systems:"b"}'),
       'ip_whitelist.cfg': (
           config.Revision('ip_whitelist_cfg_rev', 'http://url'),
-          config_pb2.IPWhitelistConfig()),
+          config_pb2.IPAllowlistConfig()),
       'oauth.cfg': (
           config.Revision('oauth_cfg_rev', 'http://url'),
           config_pb2.OAuthConfig(primary_client_id='a')),
