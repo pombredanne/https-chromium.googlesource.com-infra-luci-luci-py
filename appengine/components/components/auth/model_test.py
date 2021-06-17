@@ -435,7 +435,7 @@ class IpWhitelistTest(test_case.TestCase):
             'created_by': model.get_service_self_identity(),
             'created_ts': datetime.datetime(2014, 1, 1),
             'identity': model.Identity(model.IDENTITY_USER, 'a@example.com'),
-            'ip_whitelist': 'some ip whitelist',
+            'ip_allowlist': 'some ip whitelist',
           },
         ],
         'auth_db_rev': 1,
@@ -465,7 +465,7 @@ class IpWhitelistTest(test_case.TestCase):
             'created_by': model.get_service_self_identity(),
             'created_ts': datetime.datetime(2014, 1, 1),
             'identity': model.Identity(model.IDENTITY_USER, 'a@example.com'),
-            'ip_whitelist': 'another ip whitelist',
+            'ip_allowlist': u'another ip whiteslist',
           },
         ],
         'auth_db_rev': 2,
@@ -488,10 +488,10 @@ class IpWhitelistTest(test_case.TestCase):
       kwargs['identity'] = model.Identity.from_bytes(identity)
       ent.assignments.append(
           model.AuthIPWhitelistAssignments.Assignment(**kwargs))
-    add('user:a1@example.com', ip_whitelist='A')
-    add('user:a2@example.com', ip_whitelist='A')
-    add('user:b@example.com', ip_whitelist='B')
-    add('user:c@example.com', ip_whitelist='missing')
+    add('user:a1@example.com', ip_allowlist='A')
+    add('user:a2@example.com', ip_allowlist='A')
+    add('user:b@example.com', ip_allowlist='B')
+    add('user:c@example.com', ip_allowlist='missing')
     ent.put()
 
     def store_whitelist(name):
@@ -933,7 +933,7 @@ class AuditLogTest(test_case.TestCase):
     modify([
       Assignment(
           identity=model.Identity.from_bytes('user:a@example.com'),
-          ip_whitelist='bots',
+          ip_allowlist='bots',
           comment='Blah'),
     ])
     modify([])
@@ -958,7 +958,7 @@ class AuditLogTest(test_case.TestCase):
           'created_by': None,
           'created_ts': None,
           'identity': model.Identity(kind='user', name='a@example.com'),
-          'ip_whitelist': u'bots',
+          'ip_allowlist': u'bots',
         }],
         'auth_db_rev': 2,
         'auth_db_prev_rev': 1,
