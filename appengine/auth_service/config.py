@@ -131,6 +131,9 @@ def refetch_config(force=False):
 
   # First update configs that do not touch AuthDB, one by one.
   for path, (rev, conf) in sorted(dirty.items()):
+    if path == 'ip_whitelist.cfg':
+      logging.info("ignoring ip_whitelist.cfg")
+      continue
     dirty = _CONFIG_SCHEMAS[path]['updater'](None, rev, conf)
     logging.info(
         'Processed %s at rev %s: %s', path, rev.revision,
@@ -298,6 +301,9 @@ def _update_authdb_configs(configs):
 
   ingested_revs = {}  # path -> Revision
   for path, (rev, conf) in sorted(configs.items()):
+    if path == 'ip_whitelist.cfg':
+      logging.info("ignoring ip_whitelist.cfg")
+      continue
     dirty = _CONFIG_SCHEMAS[path]['updater'](root, rev, conf)
     revs.revisions[path] = {'rev': rev.revision, 'url': rev.url}
     logging.info(
