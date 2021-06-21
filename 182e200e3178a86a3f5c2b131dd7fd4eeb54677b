@@ -22,6 +22,30 @@
       },
       "revId": "182e200e3178a86a3f5c2b131dd7fd4eeb54677b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d6144f9_8e5b773d",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-06-21T03:41:57Z",
+      "side": 0,
+      "message": "Sorry for slow response. That is true. But I hope this will mitigate error before downloading anything like https://crbug.com/1219089",
+      "parentUuid": "910902c2_b4fd9791",
+      "range": {
+        "startLine": 630,
+        "startChar": 0,
+        "endLine": 630,
+        "endChar": 34
+      },
+      "revId": "182e200e3178a86a3f5c2b131dd7fd4eeb54677b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
