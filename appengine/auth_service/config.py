@@ -131,6 +131,9 @@ def refetch_config(force=False):
 
   # First update configs that do not touch AuthDB, one by one.
   for path, (rev, conf) in sorted(dirty.items()):
+    if path == 'ip_whitelist.cfg':
+      logging.info("ignoring ip_whitelist.cfg")
+      continue
     dirty = _CONFIG_SCHEMAS[path]['updater'](None, rev, conf)
     logging.info(
         'Processed %s at rev %s: %s', path, rev.revision,
@@ -298,6 +301,9 @@ def _update_authdb_configs(configs):
 
   ingested_revs = {}  # path -> Revision
   for path, (rev, conf) in sorted(configs.items()):
+    if path == 'ip_whitelist.cfg':
+      logging.info("ignoring ip_whitelist.cfg")
+      continue
     dirty = _CONFIG_SCHEMAS[path]['updater'](root, rev, conf)
     revs.revisions[path] = {'rev': rev.revision, 'url': rev.url}
     logging.info(
@@ -544,12 +550,12 @@ _CONFIG_SCHEMAS = {
     'updater': _update_imports_config,
     'use_authdb_transaction': False,
   },
-  'ip_whitelist.cfg': {
-    'proto_class': config_pb2.IPWhitelistConfig,
-    'revision_getter': lambda: _get_authdb_config_rev_async('ip_whitelist.cfg'),
-    'updater': _update_ip_whitelist_config,
-    'use_authdb_transaction': True,
-  },
+  # 'ip_whitelist.cfg': {
+  #   'proto_class': config_pb2.IPWhitelistConfig,
+  #   'revision_getter': lambda: _get_authdb_config_rev_async('ip_whitelist.cfg'),
+  #   'updater': _update_ip_whitelist_config,
+  #   'use_authdb_transaction': True,
+  # },
   'oauth.cfg': {
     'proto_class': config_pb2.OAuthConfig,
     'revision_getter': lambda: _get_authdb_config_rev_async('oauth.cfg'),
@@ -604,6 +610,7 @@ def _fetch_configs(paths):
         raise CannotLoadConfigError('Config %s is missing' % path)
       rev, conf = '0'*40, default
     try:
+      logging.info("THIS IS THE CONFIG_SET {}".format(config.self_config_set()))
       validation.validate(config.self_config_set(), path, conf)
     except ValueError as exc:
       raise CannotLoadConfigError(
