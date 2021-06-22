@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9690cb1d_6a2dc34f",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-22T22:39:30Z",
+      "side": 1,
+      "message": "It was complaining about not being formatted so I ran git cl format and now there are a bunch of extra spaces. I can change it back if that\u0027s preferred.",
+      "range": {
+        "startLine": 540,
+        "startChar": 1,
+        "endLine": 578,
+        "endChar": 6
+      },
+      "revId": "f754f9598834cba74494da2e66e5edaa383344b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
