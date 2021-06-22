@@ -166,7 +166,7 @@ def validate_imports_config(conf, ctx):
     ctx.error(str(exc))
 
 
-@validation.self_rule('ip_whitelist.cfg', config_pb2.IPWhitelistConfig)
+# @validation.self_rule('ip_whitelist.cfg', config_pb2.IPWhitelistConfig)
 def validate_ip_whitelist_config(conf, ctx):
   try:
     _validate_ip_whitelist_config(conf)
@@ -544,12 +544,12 @@ _CONFIG_SCHEMAS = {
     'updater': _update_imports_config,
     'use_authdb_transaction': False,
   },
-  'ip_whitelist.cfg': {
-    'proto_class': config_pb2.IPWhitelistConfig,
-    'revision_getter': lambda: _get_authdb_config_rev_async('ip_whitelist.cfg'),
-    'updater': _update_ip_whitelist_config,
-    'use_authdb_transaction': True,
-  },
+  # 'ip_whitelist.cfg': {
+  #   'proto_class': config_pb2.IPWhitelistConfig,
+  #   'revision_getter': lambda: _get_authdb_config_rev_async('ip_whitelist.cfg'),
+  #   'updater': _update_ip_whitelist_config,
+  #   'use_authdb_transaction': True,
+  # },
   'oauth.cfg': {
     'proto_class': config_pb2.OAuthConfig,
     'revision_getter': lambda: _get_authdb_config_rev_async('oauth.cfg'),
