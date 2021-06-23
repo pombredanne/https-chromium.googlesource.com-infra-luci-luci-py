@@ -225,6 +225,21 @@ class RunIsolatedTest(RunIsolatedTestBase):
 
     self.mock(subprocess42, 'Popen', Popen)
 
+  def test_copy_recusrsively(self):
+    src = os.path.join(self.tempdir, 'src')
+    dst = os.path.join(self.tempdir, 'dst')
+    with open(src, 'w'):
+      pass
+
+    run_isolated.copy_recursively(src, dst)
+    self.assertTrue(os.path.isfile(dst))
+
+  def test_copy_recusrsively_not_exist(self):
+    src = os.path.join(self.tempdir, 'src')
+    dst = os.path.join(self.tempdir, 'dst')
+    run_isolated.copy_recursively(src, dst)
+    self.assertFalse(os.path.exists(dst))
+
   def test_get_command_env(self):
     old_env = os.environ
     try:
