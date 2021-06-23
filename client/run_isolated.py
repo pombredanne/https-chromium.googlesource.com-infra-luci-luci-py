@@ -735,8 +735,11 @@ def copy_recursively(src, dst):
       src = os.path.join(os.path.dirname(src), res)
     # TODO(sadafm): Explicitly handle cyclic symlinks.
 
-    # Note that fs.isfile (which is a wrapper around os.path.isfile) throws
-    # an exception if src does not exist. A warning will be logged in that case.
+    if not fs.exists(src):
+      logging.warning('Path %s does not exist or %s is a broken symlink', src,
+                      orig_src)
+      return
+
     if fs.isfile(src):
       file_path.link_file(dst, src, file_path.HARDLINK_WITH_FALLBACK)
       return
