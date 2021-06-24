@@ -16,6 +16,24 @@
       "message": "fix CQ?",
       "revId": "82cc697b88972bac23fb0d56abf037065f2c0872",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f560e1c_8abe04d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-06-24T08:11:49Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "a67c5497_a17724c0",
+      "revId": "82cc697b88972bac23fb0d56abf037065f2c0872",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
