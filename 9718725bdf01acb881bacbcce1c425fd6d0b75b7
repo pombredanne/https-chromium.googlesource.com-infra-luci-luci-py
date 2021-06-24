@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bcc5466_a15c66e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-24T18:16:13Z",
+      "side": 1,
+      "message": "This one will not be submitted until the chained CL is landed and deployed.",
+      "revId": "9718725bdf01acb881bacbcce1c425fd6d0b75b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
