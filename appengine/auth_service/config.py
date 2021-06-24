@@ -9,7 +9,7 @@ and modifies auth service datastore state if anything changed.
 
 Following files are fetched:
   imports.cfg - configuration for group importer cron job.
-  ip_whitelist.cfg - IP whitelists.
+  ip_allowlist.cfg - IP whitelists.
   oauth.cfg - OAuth client_id whitelist.
 
 Configs are ASCII serialized protocol buffer messages. The schema is defined in
@@ -166,7 +166,7 @@ def validate_imports_config(conf, ctx):
     ctx.error(str(exc))
 
 
-# @validation.self_rule('ip_whitelist.cfg', config_pb2.IPWhitelistConfig)
+@validation.self_rule('ip_allowlist.cfg', config_pb2.IPWhitelistConfig)
 def validate_ip_whitelist_config(conf, ctx):
   try:
     _validate_ip_whitelist_config(conf)
@@ -184,7 +184,7 @@ def validate_oauth_config(conf, ctx):
 
 # Simple auth_service own configs stored in the datastore as plain text.
 # They are different from imports.cfg (no GUI to update them other), and from
-# ip_whitelist.cfg and oauth.cfg (not tied to AuthDB changes).
+# ip_allowlist.cfg and oauth.cfg (not tied to AuthDB changes).
 
 
 class _AuthServiceConfig(ndb.Model):
@@ -406,7 +406,7 @@ def _update_ip_whitelist_config(root, rev, conf):
           created_ts=now,
           created_by=model.get_service_self_identity())
     wl.subnets = subnets
-    wl.description = 'Imported from ip_whitelist.cfg'
+    wl.description = 'Imported from ip_allowlist.cfg'
     to_put.append(wl)
 
   # Removed IP whitelists.
@@ -432,7 +432,7 @@ def _update_ip_whitelist_config(root, rev, conf):
       new_one = model.AuthIPWhitelistAssignments.Assignment(
           identity=model.Identity.from_bytes(a.identity),
           ip_whitelist=a.ip_whitelist_name,
-          comment='Imported from ip_whitelist.cfg at rev %s' % rev.revision,
+          comment='Imported from ip_allowlist.cfg at rev %s' % rev.revision,
           created_ts=now,
           created_by=model.get_service_self_identity())
       updated.append(new_one)
@@ -448,7 +448,7 @@ def _update_ip_whitelist_config(root, rev, conf):
 
   if not to_put and not to_delete:
     return False
-  comment = 'Importing ip_whitelist.cfg at rev %s' % rev.revision
+  comment = 'Importing ip_allowlist.cfg at rev %s' % rev.revision
   for e in to_put:
     e.record_revision(
         modified_by=model.get_service_self_identity(),
@@ -544,13 +544,13 @@ _CONFIG_SCHEMAS = {
         'updater': _update_imports_config,
         'use_authdb_transaction': False,
     },
-    # 'ip_whitelist.cfg': {
-    #   'proto_class': config_pb2.IPWhitelistConfig,
-    #   'revision_getter':
-    # lambda: _get_authdb_config_rev_async('ip_whitelist.cfg'),
-    #   'updater': _update_ip_whitelist_config,
-    #   'use_authdb_transaction': True,
-    # },
+    'ip_allowlist.cfg': {
+      'proto_class': config_pb2.IPWhitelistConfig,
+      'revision_getter':
+    lambda: _get_authdb_config_rev_async('ip_allowlist.cfg'),
+      'updater': _update_ip_whitelist_config,
+      'use_authdb_transaction': True,
+    },
     'oauth.cfg': {
         'proto_class': config_pb2.OAuthConfig,
         'revision_getter': lambda: _get_authdb_config_rev_async('oauth.cfg'),
