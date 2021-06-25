@@ -9,7 +9,7 @@ and modifies auth service datastore state if anything changed.
 
 Following files are fetched:
   imports.cfg - configuration for group importer cron job.
-  ip_whitelist.cfg - IP whitelists.
+  ip_allowlist.cfg - IP whitelists.
   oauth.cfg - OAuth client_id whitelist.
 
 Configs are ASCII serialized protocol buffer messages. The schema is defined in
@@ -166,7 +166,7 @@ def validate_imports_config(conf, ctx):
     ctx.error(str(exc))
 
 
-# @validation.self_rule('ip_whitelist.cfg', config_pb2.IPWhitelistConfig)
+@validation.self_rule('ip_allowlist.cfg', config_pb2.IPAllowlistConfig)
 def validate_ip_whitelist_config(conf, ctx):
   try:
     _validate_ip_whitelist_config(conf)
@@ -184,7 +184,7 @@ def validate_oauth_config(conf, ctx):
 
 # Simple auth_service own configs stored in the datastore as plain text.
 # They are different from imports.cfg (no GUI to update them other), and from
-# ip_whitelist.cfg and oauth.cfg (not tied to AuthDB changes).
+# ip_allowlist.cfg and oauth.cfg (not tied to AuthDB changes).
 
 
 class _AuthServiceConfig(ndb.Model):
@@ -325,30 +325,30 @@ def _update_authdb_configs(configs):
 
 
 def _validate_ip_whitelist_config(conf):
-  if not isinstance(conf, config_pb2.IPWhitelistConfig):
+  if not isinstance(conf, config_pb2.IPAllowlistConfig):
     raise ValueError('Wrong message type: %s' % conf.__class__.__name__)
-  whitelists = set()
-  for ip_whitelist in conf.ip_whitelists:
-    if not model.IP_WHITELIST_NAME_RE.match(ip_whitelist.name):
-      raise ValueError('Invalid IP whitelist name: %s' % ip_whitelist.name)
-    if ip_whitelist.name in whitelists:
-      raise ValueError('IP whitelist %s is defined twice' % ip_whitelist.name)
-    whitelists.add(ip_whitelist.name)
-    for net in ip_whitelist.subnets:
+  allowlists = set()
+  for ip_allowlist in conf.ip_allowlists:
+    if not model.IP_WHITELIST_NAME_RE.match(ip_allowlist.name):
+      raise ValueError('Invalid IP allowlist name: %s' % ip_allowlist.name)
+    if ip_allowlist.name in allowlists:
+      raise ValueError('IP allowlist %s is defined twice' % ip_allowlist.name)
+    whitelists.add(ip_allowlist.name)
+    for net in ip_allowlist.subnets:
       # Raises ValueError if subnet is not valid.
       ipaddr.subnet_from_string(net)
   idents = []
   for assignment in conf.assignments:
     # Raises ValueError if identity is not valid.
     ident = model.Identity.from_bytes(assignment.identity)
-    if assignment.ip_whitelist_name not in whitelists:
+    if assignment.ip_allowlist_name not in allowlists:
       raise ValueError(
-          'Unknown IP whitelist: %s' % assignment.ip_whitelist_name)
+          'Unknown IP allowlist: %s' % assignment.ip_allowlist_name)
     if ident in idents:
       raise ValueError('Identity %s is specified twice' % assignment.identity)
     idents.append(ident)
   # This raises ValueError on bad includes.
-  _resolve_ip_whitelist_includes(conf.ip_whitelists)
+  _resolve_ip_whitelist_includes(conf.ip_allowlists)
 
 
 def _resolve_ip_whitelist_includes(whitelists):
@@ -406,7 +406,7 @@ def _update_ip_whitelist_config(root, rev, conf):
           created_ts=now,
           created_by=model.get_service_self_identity())
     wl.subnets = subnets
-    wl.description = 'Imported from ip_whitelist.cfg'
+    wl.description = 'Imported from ip_allowlist.cfg'
     to_put.append(wl)
 
   # Removed IP whitelists.
@@ -432,7 +432,7 @@ def _update_ip_whitelist_config(root, rev, conf):
       new_one = model.AuthIPWhitelistAssignments.Assignment(
           identity=model.Identity.from_bytes(a.identity),
           ip_whitelist=a.ip_whitelist_name,
-          comment='Imported from ip_whitelist.cfg at rev %s' % rev.revision,
+          comment='Imported from ip_allowlist.cfg at rev %s' % rev.revision,
           created_ts=now,
           created_by=model.get_service_self_identity())
       updated.append(new_one)
@@ -448,7 +448,7 @@ def _update_ip_whitelist_config(root, rev, conf):
 
   if not to_put and not to_delete:
     return False
-  comment = 'Importing ip_whitelist.cfg at rev %s' % rev.revision
+  comment = 'Importing ip_allowlist.cfg at rev %s' % rev.revision
   for e in to_put:
     e.record_revision(
         modified_by=model.get_service_self_identity(),
@@ -544,13 +544,13 @@ _CONFIG_SCHEMAS = {
         'updater': _update_imports_config,
         'use_authdb_transaction': False,
     },
-    # 'ip_whitelist.cfg': {
-    #   'proto_class': config_pb2.IPWhitelistConfig,
-    #   'revision_getter':
-    # lambda: _get_authdb_config_rev_async('ip_whitelist.cfg'),
-    #   'updater': _update_ip_whitelist_config,
-    #   'use_authdb_transaction': True,
-    # },
+    'ip_allowlist.cfg': {
+      'proto_class': config_pb2.IPAllowlistConfig,
+      'revision_getter':
+    lambda: _get_authdb_config_rev_async('ip_allowlist.cfg'),
+      'updater': _update_ip_whitelist_config,
+      'use_authdb_transaction': True,
+    },
     'oauth.cfg': {
         'proto_class': config_pb2.OAuthConfig,
         'revision_getter': lambda: _get_authdb_config_rev_async('oauth.cfg'),
