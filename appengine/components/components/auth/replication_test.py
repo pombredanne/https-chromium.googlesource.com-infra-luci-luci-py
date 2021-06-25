@@ -34,9 +34,9 @@ def snapshot_to_dict(snapshot):
   result = {
     'global_config': entity_to_dict(snapshot.global_config),
     'groups': [entity_to_dict(g) for g in snapshot.groups],
-    'ip_whitelists': [entity_to_dict(l) for l in snapshot.ip_whitelists],
-    'ip_whitelist_assignments':
-        entity_to_dict(snapshot.ip_whitelist_assignments),
+    'ip_allowlists': [entity_to_dict(l) for l in snapshot.ip_whitelists],
+    'ip_allowlist_assignments':
+        entity_to_dict(snapshot.ip_allowlist_assignments),
     'realms_globals': entity_to_dict(snapshot.realms_globals),
     'project_realms': [entity_to_dict(e) for e in snapshot.project_realms],
   }
@@ -47,7 +47,7 @@ def snapshot_to_dict(snapshot):
 
 def make_snapshot_obj(
     global_config=None, groups=None,
-    ip_whitelists=None, ip_whitelist_assignments=None,
+    ip_allowlists=None, ip_allowlist_assignments=None,
     realms_globals=None, project_realms=None):
   """Returns AuthDBSnapshot with empty list of groups and whitelists."""
   return replication.AuthDBSnapshot(
@@ -58,9 +58,9 @@ def make_snapshot_obj(
           token_server_url='token server',
           security_config='security config blob'),
       groups=groups or [],
-      ip_whitelists=ip_whitelists or [],
-      ip_whitelist_assignments=(
-          ip_whitelist_assignments or
+      ip_allowlists=ip_allowlists or [],
+      ip_allowlist_assignments=(
+          ip_allowlist_assignments or
           model.AuthIPWhitelistAssignments(
               key=model.ip_whitelist_assignments_key())),
       realms_globals=realms_globals or model.AuthRealmsGlobals(
@@ -94,8 +94,8 @@ class NewAuthDBSnapshotTest(test_case.TestCase):
         'token_server_url': u'',
       },
       'groups': [],
-      'ip_whitelists': [],
-      'ip_whitelist_assignments': {
+      'ip_allowlists': [],
+      'ip_allowlist_assignments': {
         '__id__': 'default',
         '__parent__': ndb.Key('AuthGlobalConfig', 'root'),
         'assignments': [],
@@ -173,7 +173,7 @@ class NewAuthDBSnapshotTest(test_case.TestCase):
         assignments=[
           model.AuthIPWhitelistAssignments.Assignment(
             identity=model.Identity.from_bytes('user:bot_account@example.com'),
-            ip_whitelist='bots',
+            ip_allowlist='bots',
             comment='some comment',
             created_ts=utils.utcnow(),
             created_by=model.Identity.from_bytes('user:creator@example.com')),
@@ -394,9 +394,9 @@ class SnapshotToProtoConversionTest(test_case.TestCase):
         modified_ts=datetime.datetime(2020, 2, 2, 2, 2, 2),
         modified_by=model.Identity.from_bytes('user:modifier@example.com'),
     )
-    auth_db = make_auth_db_proto(ip_whitelists=[ip_whitelist])
+    auth_db = make_auth_db_proto(ip_allowlists=[ip_whitelist])
     self.assertEqual(
-        list(auth_db.ip_whitelists), [replication_pb2.AuthIPWhitelist(
+        list(auth_db.ip_allowlists), [replication_pb2.AuthIPAllowlist(
             name='bots',
             subnets=['127.0.0.1/32'],
             description='Blah blah blah',
@@ -413,7 +413,7 @@ class SnapshotToProtoConversionTest(test_case.TestCase):
         assignments=[
             model.AuthIPWhitelistAssignments.Assignment(
                 identity=model.Identity.from_bytes('user:a@example.com'),
-                ip_whitelist='some whitelist',
+                ip_allowlist='some whitelist',
                 comment='some comment',
                 created_ts=datetime.datetime(2020, 1, 1, 1, 1, 1),
                 created_by=model.Identity.from_bytes(
@@ -421,12 +421,12 @@ class SnapshotToProtoConversionTest(test_case.TestCase):
             ),
         ],
     )
-    auth_db = make_auth_db_proto(ip_whitelist_assignments=entity)
+    auth_db = make_auth_db_proto(ip_allowlist_assignments=entity)
     self.assertEqual(
-        list(auth_db.ip_whitelist_assignments),
-        [replication_pb2.AuthIPWhitelistAssignment(
+        list(auth_db.ip_allowlist_assignments),
+        [replication_pb2.AuthIPAllowlistAssignment(
             identity='user:a@example.com',
-            ip_whitelist='some whitelist',
+            ip_allowlist='some whitelist',
             comment='some comment',
             created_ts=1577840461000000,
             created_by='user:creator@example.com',

@@ -40,8 +40,8 @@ AuthDBSnapshot = collections.namedtuple(
     [
         'global_config',
         'groups',
-        'ip_whitelists',
-        'ip_whitelist_assignments',
+        'ip_allowlists',
+        'ip_allowlist_assignments',
         'realms_globals',
         'project_realms',
     ])
@@ -142,15 +142,15 @@ def new_auth_db_snapshot():
       ancestor=model.root_key()).fetch_async()
 
   # It's fine to block here as long as it's the last fetch.
-  ip_whitelist_assignments, ip_whitelists = model.fetch_ip_whitelists()
+  ip_allowlist_assignments, ip_allowlists = model.fetch_ip_whitelists()
 
   snapshot = AuthDBSnapshot(
       config_future.get_result() or model.AuthGlobalConfig(
           key=model.root_key()
       ),
       groups_future.get_result(),
-      ip_whitelists,
-      ip_whitelist_assignments,
+      ip_allowlists,
+      ip_allowlist_assignments,
       realms_globals_future.get_result() or model.AuthRealmsGlobals(
           key=model.realms_globals_key()
       ),
@@ -204,8 +204,8 @@ def auth_db_snapshot_to_proto(snapshot, auth_db_proto=None):
     msg.modified_by = ent.modified_by.to_bytes()
     msg.owners = ent.owners
 
-  for ent in snapshot.ip_whitelists:
-    msg = auth_db_proto.ip_whitelists.add()
+  for ent in snapshot.ip_allowlists:
+    msg = auth_db_proto.ip_allowlists.add()
     msg.name = ent.key.id()
     msg.subnets.extend(ent.subnets)
     msg.description = ent.description or 'empty'
@@ -214,10 +214,10 @@ def auth_db_snapshot_to_proto(snapshot, auth_db_proto=None):
     msg.modified_ts = utils.datetime_to_timestamp(ent.modified_ts)
     msg.modified_by = ent.modified_by.to_bytes()
 
-  for ent in snapshot.ip_whitelist_assignments.assignments:
-    msg = auth_db_proto.ip_whitelist_assignments.add()
+  for ent in snapshot.ip_allowlist_assignments.assignments:
+    msg = auth_db_proto.ip_allowlist_assignments.add()
     msg.identity = ent.identity.to_bytes()
-    msg.ip_whitelist = ent.ip_whitelist
+    msg.ip_allowlist = ent.ip_allowlist
     msg.comment = ent.comment or 'empty'
     msg.created_ts = utils.datetime_to_timestamp(ent.created_ts)
     msg.created_by = ent.created_by.to_bytes()
