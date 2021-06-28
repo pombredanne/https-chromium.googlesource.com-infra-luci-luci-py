@@ -141,7 +141,7 @@ message IPWhitelistConfig {
     // Identity to restrict IPs to.
     string identity = 1;
     // Name of the corresponding IPWhitelist with a set of subnets.
-    string ip_whitelist_name = 2;
+    string ip_allowlist_name = 2;
   }
 
   // A set of named subnets.

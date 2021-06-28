@@ -341,9 +341,9 @@ def _validate_ip_whitelist_config(conf):
   for assignment in conf.assignments:
     # Raises ValueError if identity is not valid.
     ident = model.Identity.from_bytes(assignment.identity)
-    if assignment.ip_whitelist_name not in whitelists:
+    if assignment.ip_allowlist_name not in whitelists:
       raise ValueError(
-          'Unknown IP whitelist: %s' % assignment.ip_whitelist_name)
+          'Unknown IP whitelist: %s' % assignment.ip_allowlist_name)
     if ident in idents:
       raise ValueError('Identity %s is specified twice' % assignment.identity)
     idents.append(ident)
@@ -425,13 +425,13 @@ def _update_ip_whitelist_config(root, rev, conf):
   }
   updated = []
   for a in conf.assignments:
-    key = (a.identity, a.ip_whitelist_name)
+    key = (a.identity, a.ip_allowlist_name)
     if key in existing:
       updated.append(existing[key])
     else:
       new_one = model.AuthIPWhitelistAssignments.Assignment(
           identity=model.Identity.from_bytes(a.identity),
-          ip_whitelist=a.ip_whitelist_name,
+          ip_whitelist=a.ip_allowlist_name,
           comment='Imported from ip_allowlist.cfg at rev %s' % rev.revision,
           created_ts=now,
           created_by=model.get_service_self_identity())

@@ -144,7 +144,7 @@ class ConfigTest(test_case.TestCase):
         assignments=[
           config_pb2.IPWhitelistConfig.Assignment(
               identity='user:abc@example.com',
-              ip_whitelist_name='abc'),
+              ip_allowlist_name='abc'),
         ])
     config._validate_ip_whitelist_config(conf)
 
@@ -186,7 +186,7 @@ class ConfigTest(test_case.TestCase):
         assignments=[
           config_pb2.IPWhitelistConfig.Assignment(
               identity='bad identity',
-              ip_whitelist_name='abc'),
+              ip_allowlist_name='abc'),
         ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
@@ -196,7 +196,7 @@ class ConfigTest(test_case.TestCase):
         assignments=[
           config_pb2.IPWhitelistConfig.Assignment(
               identity='user:abc@example.com',
-              ip_whitelist_name='missing'),
+              ip_allowlist_name='missing'),
         ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
@@ -210,10 +210,10 @@ class ConfigTest(test_case.TestCase):
         assignments=[
           config_pb2.IPWhitelistConfig.Assignment(
               identity='user:abc@example.com',
-              ip_whitelist_name='abc'),
+              ip_allowlist_name='abc'),
           config_pb2.IPWhitelistConfig.Assignment(
               identity='user:abc@example.com',
-              ip_whitelist_name='def'),
+              ip_allowlist_name='def'),
         ])
     with self.assertRaises(ValueError):
       config._validate_ip_whitelist_config(conf)
@@ -300,13 +300,13 @@ class ConfigTest(test_case.TestCase):
         assignments=[
           config_pb2.IPWhitelistConfig.Assignment(
               identity='user:abc@example.com',
-              ip_whitelist_name='abc'),
+              ip_allowlist_name='abc'),
           config_pb2.IPWhitelistConfig.Assignment(
               identity='user:def@example.com',
-              ip_whitelist_name='bots'),
+              ip_allowlist_name='bots'),
           config_pb2.IPWhitelistConfig.Assignment(
               identity='user:xyz@example.com',
-              ip_whitelist_name='bots'),
+              ip_allowlist_name='bots'),
         ])
     self.assertTrue(run(conf))
 
@@ -396,13 +396,13 @@ class ConfigTest(test_case.TestCase):
         assignments=[
           config_pb2.IPWhitelistConfig.Assignment(
               identity='user:abc@example.com',
-              ip_whitelist_name='abc'),
+              ip_allowlist_name='abc'),
           config_pb2.IPWhitelistConfig.Assignment(
               identity='user:def@example.com',
-              ip_whitelist_name='another'),
+              ip_allowlist_name='another'),
           config_pb2.IPWhitelistConfig.Assignment(
               identity='user:zzz@example.com',
-              ip_whitelist_name='bots'),
+              ip_allowlist_name='bots'),
         ])
     self.mock_now(datetime.datetime(2014, 3, 2, 3, 4, 5))
     self.assertTrue(run(conf))
