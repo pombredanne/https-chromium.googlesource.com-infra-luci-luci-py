@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92e83b99_2e00a6df",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-28T21:11:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1b33dad_b8a8c454",
+      "range": {
+        "startLine": 12,
+        "startChar": 24,
+        "endLine": 12,
+        "endChar": 34
+      },
+      "revId": "449b2cfb22e69e3e417bfb7f0eba9a966a883130",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3b94799_ae772af0",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-06-28T20:15:20Z",
       "side": 1,
       "message": "allowlist",
+      "range": {
+        "startLine": 13,
+        "startChar": 30,
+        "endLine": 13,
+        "endChar": 39
+      },
+      "revId": "449b2cfb22e69e3e417bfb7f0eba9a966a883130",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "157cb2bc_b52f5385",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-28T21:11:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3b94799_ae772af0",
       "range": {
         "startLine": 13,
         "startChar": 30,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ac5d717_cceb6ed5",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-28T21:11:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4795c7e_da643ea6",
+      "range": {
+        "startLine": 170,
+        "startChar": 16,
+        "endLine": 170,
+        "endChar": 25
+      },
+      "revId": "449b2cfb22e69e3e417bfb7f0eba9a966a883130",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90702ad9_c213a9ee",
@@ -83,6 +155,30 @@
       "writtenOn": "2021-06-28T20:15:20Z",
       "side": 1,
       "message": "allowlist",
+      "range": {
+        "startLine": 172,
+        "startChar": 17,
+        "endLine": 172,
+        "endChar": 25
+      },
+      "revId": "449b2cfb22e69e3e417bfb7f0eba9a966a883130",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2348986f_954c5879",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-28T21:11:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90702ad9_c213a9ee",
       "range": {
         "startLine": 172,
         "startChar": 17,
@@ -110,6 +206,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2b5f53e_524fe9ff",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-28T21:11:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30470efe_82ea5d95",
+      "revId": "449b2cfb22e69e3e417bfb7f0eba9a966a883130",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef22052a_c5f4cca5",
@@ -123,6 +237,24 @@
       "writtenOn": "2021-06-28T20:15:20Z",
       "side": 1,
       "message": "consider using \"allowlist\" in this file too (at least in the visible UI strings, but shouldn\u0027t be difficult to replace element IDs too). Also consider renaming the file itself.",
+      "revId": "449b2cfb22e69e3e417bfb7f0eba9a966a883130",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11a11ec6_1bc41c22",
+        "filename": "appengine/components/components/auth/ui/templates/ip_whitelists.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-28T21:11:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef22052a_c5f4cca5",
       "revId": "449b2cfb22e69e3e417bfb7f0eba9a966a883130",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
