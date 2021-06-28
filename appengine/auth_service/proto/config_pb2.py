@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x63onfig.proto\x12\x0c\x61uth_service\"D\n\x0bSettingsCfg\x12\x1c\n\x14\x65nable_ts_monitoring\x18\x01 \x01(\x08\x12\x17\n\x0f\x61uth_db_gs_path\x18\x02 \x01(\t\"\x93\x04\n\x13GroupImporterConfig\x12?\n\x07tarball\x18\x01 \x03(\x0b\x32..auth_service.GroupImporterConfig.TarballEntry\x12\x43\n\tplainlist\x18\x02 \x03(\x0b\x32\x30.auth_service.GroupImporterConfig.PlainlistEntry\x12L\n\x0etarball_upload\x18\x03 \x03(\x0b\x32\x34.auth_service.GroupImporterConfig.TarballUploadEntry\x1a\x62\n\x0cTarballEntry\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x14\n\x0coauth_scopes\x18\x02 \x03(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0f\n\x07systems\x18\x04 \x03(\t\x12\x0e\n\x06groups\x18\x05 \x03(\t\x1ap\n\x12TarballUploadEntry\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1b\n\x13\x61uthorized_uploader\x18\x02 \x03(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0f\n\x07systems\x18\x04 \x03(\t\x12\x0e\n\x06groups\x18\x05 \x03(\t\x1aR\n\x0ePlainlistEntry\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x14\n\x0coauth_scopes\x18\x02 \x03(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\r\n\x05group\x18\x04 \x01(\t\"u\n\x0bOAuthConfig\x12\x19\n\x11primary_client_id\x18\x01 \x01(\t\x12\x1d\n\x15primary_client_secret\x18\x02 \x01(\t\x12\x12\n\nclient_ids\x18\x03 \x03(\t\x12\x18\n\x10token_server_url\x18\x04 \x01(\t\"\x93\x02\n\x11IPWhitelistConfig\x12\x42\n\rip_whitelists\x18\x01 \x03(\x0b\x32+.auth_service.IPWhitelistConfig.IPWhitelist\x12?\n\x0b\x61ssignments\x18\x02 \x03(\x0b\x32*.auth_service.IPWhitelistConfig.Assignment\x1a>\n\x0bIPWhitelist\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07subnets\x18\x02 \x03(\t\x12\x10\n\x08includes\x18\x03 \x03(\t\x1a\x39\n\nAssignment\x12\x10\n\x08identity\x18\x01 \x01(\t\x12\x19\n\x11ip_whitelist_name\x18\x02 \x01(\tb\x06proto3'
+  serialized_pb=b'\n\x0c\x63onfig.proto\x12\x0c\x61uth_service\"D\n\x0bSettingsCfg\x12\x1c\n\x14\x65nable_ts_monitoring\x18\x01 \x01(\x08\x12\x17\n\x0f\x61uth_db_gs_path\x18\x02 \x01(\t\"\x93\x04\n\x13GroupImporterConfig\x12?\n\x07tarball\x18\x01 \x03(\x0b\x32..auth_service.GroupImporterConfig.TarballEntry\x12\x43\n\tplainlist\x18\x02 \x03(\x0b\x32\x30.auth_service.GroupImporterConfig.PlainlistEntry\x12L\n\x0etarball_upload\x18\x03 \x03(\x0b\x32\x34.auth_service.GroupImporterConfig.TarballUploadEntry\x1a\x62\n\x0cTarballEntry\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x14\n\x0coauth_scopes\x18\x02 \x03(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0f\n\x07systems\x18\x04 \x03(\t\x12\x0e\n\x06groups\x18\x05 \x03(\t\x1ap\n\x12TarballUploadEntry\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1b\n\x13\x61uthorized_uploader\x18\x02 \x03(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0f\n\x07systems\x18\x04 \x03(\t\x12\x0e\n\x06groups\x18\x05 \x03(\t\x1aR\n\x0ePlainlistEntry\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x14\n\x0coauth_scopes\x18\x02 \x03(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\r\n\x05group\x18\x04 \x01(\t\"u\n\x0bOAuthConfig\x12\x19\n\x11primary_client_id\x18\x01 \x01(\t\x12\x1d\n\x15primary_client_secret\x18\x02 \x01(\t\x12\x12\n\nclient_ids\x18\x03 \x03(\t\x12\x18\n\x10token_server_url\x18\x04 \x01(\t\"\x93\x02\n\x11IPWhitelistConfig\x12\x42\n\rip_allowlists\x18\x01 \x03(\x0b\x32+.auth_service.IPWhitelistConfig.IPWhitelist\x12?\n\x0b\x61ssignments\x18\x02 \x03(\x0b\x32*.auth_service.IPWhitelistConfig.Assignment\x1a>\n\x0bIPWhitelist\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07subnets\x18\x02 \x03(\t\x12\x10\n\x08includes\x18\x03 \x03(\t\x1a\x39\n\nAssignment\x12\x10\n\x08identity\x18\x01 \x01(\t\x12\x19\n\x11ip_whitelist_name\x18\x02 \x01(\tb\x06proto3'
 )
 
 
@@ -425,7 +425,7 @@ _IPWHITELISTCONFIG = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='ip_whitelists', full_name='auth_service.IPWhitelistConfig.ip_whitelists', index=0,
+      name='ip_allowlists', full_name='auth_service.IPWhitelistConfig.ip_allowlists', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -462,7 +462,7 @@ _GROUPIMPORTERCONFIG.fields_by_name['plainlist'].message_type = _GROUPIMPORTERCO
 _GROUPIMPORTERCONFIG.fields_by_name['tarball_upload'].message_type = _GROUPIMPORTERCONFIG_TARBALLUPLOADENTRY
 _IPWHITELISTCONFIG_IPWHITELIST.containing_type = _IPWHITELISTCONFIG
 _IPWHITELISTCONFIG_ASSIGNMENT.containing_type = _IPWHITELISTCONFIG
-_IPWHITELISTCONFIG.fields_by_name['ip_whitelists'].message_type = _IPWHITELISTCONFIG_IPWHITELIST
+_IPWHITELISTCONFIG.fields_by_name['ip_allowlists'].message_type = _IPWHITELISTCONFIG_IPWHITELIST
 _IPWHITELISTCONFIG.fields_by_name['assignments'].message_type = _IPWHITELISTCONFIG_ASSIGNMENT
 DESCRIPTOR.message_types_by_name['SettingsCfg'] = _SETTINGSCFG
 DESCRIPTOR.message_types_by_name['GroupImporterConfig'] = _GROUPIMPORTERCONFIG

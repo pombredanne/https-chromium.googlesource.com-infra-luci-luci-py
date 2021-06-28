@@ -145,7 +145,7 @@ message IPWhitelistConfig {
   }
 
   // A set of named subnets.
-  repeated IPWhitelist ip_whitelists = 1;
+  repeated IPWhitelist ip_allowlists = 1;
   // A mapping "identity name -> IP whitelist name".
   repeated Assignment assignments = 2;
 }
