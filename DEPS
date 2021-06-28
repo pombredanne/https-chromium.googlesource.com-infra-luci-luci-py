@@ -1,3 +1,7 @@
+# Copyright 2021 The LUCI Authors. All rights reserved.
+# Use of this source code is governed under the Apache License, Version 2.0
+# that can be found in the LICENSE file.
+
 use_relative_paths = True
 
 deps = {
@@ -9,5 +13,15 @@ deps = {
       }
     ],
     'dep_type': 'cipd',
+  },
+
+  # This is used only for autoroll as ./client/DEPS.py.
+  'luci-go': {
+    'packages': [
+      {
+        'package': 'infra/tools/luci/isolated/${platform}',
+        'version': 'git_revision:d8815e36ea7b66a4b8c9d69fcc2322012d25715f'
+      }
+    ]
   },
 }
