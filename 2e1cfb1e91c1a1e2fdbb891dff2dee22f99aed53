@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5de85826_c7c1b50a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-06-28T18:14:42Z",
+      "side": 1,
+      "message": "Please change all appearances of \"whitelist\" in config.proto. It should be safe to do now.",
+      "revId": "2e1cfb1e91c1a1e2fdbb891dff2dee22f99aed53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "571d676b_c804142c",
+        "filename": "appengine/auth_service/proto/config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-06-28T18:14:42Z",
+      "side": 1,
+      "message": "Allowlist",
+      "range": {
+        "startLine": 121,
+        "startChar": 5,
+        "endLine": 121,
+        "endChar": 14
+      },
+      "revId": "2e1cfb1e91c1a1e2fdbb891dff2dee22f99aed53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e54e521a_0d4a5853",
+        "filename": "appengine/auth_service/proto/config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-06-28T18:14:42Z",
+      "side": 1,
+      "message": "allowlists, etc",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 128,
+        "endChar": 16
+      },
+      "revId": "2e1cfb1e91c1a1e2fdbb891dff2dee22f99aed53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f749bb67_8b5eb391",
+        "filename": "appengine/auth_service/proto/config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-06-28T18:14:42Z",
+      "side": 1,
+      "message": "IPAllowlist",
+      "range": {
+        "startLine": 148,
+        "startChar": 11,
+        "endLine": 148,
+        "endChar": 22
+      },
+      "revId": "2e1cfb1e91c1a1e2fdbb891dff2dee22f99aed53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
