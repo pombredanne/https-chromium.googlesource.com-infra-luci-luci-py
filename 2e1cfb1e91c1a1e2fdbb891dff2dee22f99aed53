@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b43f8ac4_c87a67e7",
+        "filename": "appengine/auth_service/proto/config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-28T19:53:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "571d676b_c804142c",
+      "range": {
+        "startLine": 121,
+        "startChar": 5,
+        "endLine": 121,
+        "endChar": 14
+      },
+      "revId": "2e1cfb1e91c1a1e2fdbb891dff2dee22f99aed53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e54e521a_0d4a5853",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88b0aed0_3703ea7f",
+        "filename": "appengine/auth_service/proto/config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-28T19:53:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e54e521a_0d4a5853",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 128,
+        "endChar": 16
+      },
+      "revId": "2e1cfb1e91c1a1e2fdbb891dff2dee22f99aed53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f749bb67_8b5eb391",
@@ -77,6 +125,30 @@
       "writtenOn": "2021-06-28T18:14:42Z",
       "side": 1,
       "message": "IPAllowlist",
+      "range": {
+        "startLine": 148,
+        "startChar": 11,
+        "endLine": 148,
+        "endChar": 22
+      },
+      "revId": "2e1cfb1e91c1a1e2fdbb891dff2dee22f99aed53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b86ebebc_65a33b97",
+        "filename": "appengine/auth_service/proto/config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-28T19:53:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f749bb67_8b5eb391",
       "range": {
         "startLine": 148,
         "startChar": 11,
