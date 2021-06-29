@@ -62,6 +62,30 @@
       },
       "revId": "29d1847d95fc9ecd920db37ab0fcd4314708f888",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "017dba4c_5c354491",
+        "filename": "appengine/components/components/auth/ui/ui.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-29T21:59:20Z",
+      "side": 1,
+      "message": "Yes I\u0027ll update the remaining Whitelist references in the files changed here in a follow up CL.",
+      "parentUuid": "3c966bcd_3e75f61f",
+      "range": {
+        "startLine": 521,
+        "startChar": 6,
+        "endLine": 521,
+        "endChar": 25
+      },
+      "revId": "29d1847d95fc9ecd920db37ab0fcd4314708f888",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
