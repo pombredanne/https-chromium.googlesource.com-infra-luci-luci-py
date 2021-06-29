@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c65be217_ed28d455",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-29T20:10:02Z",
+      "side": 1,
+      "message": "I believe it should be ready to test in dev.",
+      "revId": "29d1847d95fc9ecd920db37ab0fcd4314708f888",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dc7038b_23e3b254",
+        "filename": "appengine/components/components/auth/ui/static/js/ip_whitelists.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-06-29T20:10:02Z",
+      "side": 1,
+      "message": "I\u0027ll update the rest of this file after this CL lands and is tested.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 56
+      },
+      "revId": "29d1847d95fc9ecd920db37ab0fcd4314708f888",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
