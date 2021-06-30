@@ -2,7 +2,7 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-var ip_whitelists = (function() {
+var ip_allowlists = (function() {
 'use strict';
 
 var exports = {};
@@ -17,7 +17,7 @@ var splitSubnetsList = function(subnets) {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Selector is a combo box with IP whitelist names and "Create new" item.
+// Selector is a combo box with IP allowlist names and "Create new" item.
 
 
 var Selector = function($element, readonly) {
