@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ad9071a_e111d187",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-07-01T23:42:46Z",
+      "side": 1,
+      "message": "python client is deprecated, could you use go client to get bot list instead here\nhttps://logs.chromium.org/logs/infra-internal/buildbucket/cr-buildbucket.appspot.com/8842892528878592112/+/u/scale_bot_groups/get_current_swarming_stats/get_bot_query_result/execution_details\n?",
+      "revId": "f094b6bfe86e81a14b78476153a2d9c39544a482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
