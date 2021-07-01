@@ -16,6 +16,24 @@
       "message": "python client is deprecated, could you use go client to get bot list instead here\nhttps://logs.chromium.org/logs/infra-internal/buildbucket/cr-buildbucket.appspot.com/8842892528878592112/+/u/scale_bot_groups/get_current_swarming_stats/get_bot_query_result/execution_details\n?",
       "revId": "f094b6bfe86e81a14b78476153a2d9c39544a482",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "947934d5_d39c3aaa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1398317
+      },
+      "writtenOn": "2021-07-01T23:49:39Z",
+      "side": 1,
+      "message": "I don\u0027t see why not. ccing mikenichols to see if this work is already planned or not",
+      "parentUuid": "5ad9071a_e111d187",
+      "revId": "f094b6bfe86e81a14b78476153a2d9c39544a482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
