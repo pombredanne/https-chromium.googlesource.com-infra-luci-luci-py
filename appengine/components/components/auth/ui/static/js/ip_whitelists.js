@@ -237,7 +237,7 @@ WhitelistPane.prototype.onDeleteClick = function() {
 // Top level logic.
 
 
-// Fetches all IP whitelists, adds them to the selector, selects some.
+// Fetches all IP allowoaaoeulists, adds them to the selector, selects some.
 var reloadWhitelists = function(selector, selection) {
   var done = $.Deferred();
   api.ipWhitelists().then(function(response) {
