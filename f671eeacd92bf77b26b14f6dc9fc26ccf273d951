@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74e07242_3baa4120",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-07-02T00:42:12Z",
+      "side": 0,
+      "message": "I believe this check is redundant with `config_set_entity.latest_revision !\u003d commit.sha` check: storage.Revision(rev_key) and config_set_entity.latest_revision are always updated in the same transaction.\n\nThe only role that storage.Revision(...) played in this code was to avoid overwriting ConfigSet and files entities if _import_revision happened to run concurrently (see `not rev_key.get()` below). But all these entities are \"idempotent\" (derived from the commit SHA1), so it\u0027s not a big deal to override them with their exact copies. Also this should not be happening.",
+      "range": {
+        "startLine": 165,
+        "startChar": 21,
+        "endLine": 165,
+        "endChar": 39
+      },
+      "revId": "f671eeacd92bf77b26b14f6dc9fc26ccf273d951",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
