@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa14a174_0bf8f9b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-07-02T19:12:14Z",
+      "side": 1,
+      "message": "Follow up CL for https://crrev.com/c/2992575",
+      "revId": "34f428921f19d3528292c05c62eb383207ed210b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87a06296_e1281205",
+        "filename": "appengine/components/components/auth/ui/static/js/ip_allowlists.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-07-02T19:12:14Z",
+      "side": 1,
+      "message": "Whitelists listed here will be addressed in follow up CL changing rest_api.py and api.js",
+      "range": {
+        "startLine": 243,
+        "startChar": 7,
+        "endLine": 244,
+        "endChar": 49
+      },
+      "revId": "34f428921f19d3528292c05c62eb383207ed210b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
