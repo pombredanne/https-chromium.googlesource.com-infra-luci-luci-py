@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6625b9cd_c1e95300",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-07-09T00:04:35Z",
+      "side": 1,
+      "message": "PTAL. It is not as scary as I feared. I managed to deploy all Logdog services this way in Go Modules mode (I picked it because it is a mix of go111, go115 and Flex).\n\nI\u0027m sure we\u0027ll discover edge cases, but it appears the approach is generally viable.",
+      "revId": "1ecb4845c665357d1f8e4f3795d2cc736dde4262",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
