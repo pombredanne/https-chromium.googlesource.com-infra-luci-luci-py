@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8a51acd_161a02a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-07-09T00:25:37Z",
+      "side": 1,
+      "message": "33050 *files*\n\n?",
+      "revId": "1ecb4845c665357d1f8e4f3795d2cc736dde4262",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "6625b9cd_c1e95300",
@@ -14,6 +31,40 @@
       "writtenOn": "2021-07-09T00:04:35Z",
       "side": 1,
       "message": "PTAL. It is not as scary as I feared. I managed to deploy all Logdog services this way in Go Modules mode (I picked it because it is a mix of go111, go115 and Flex).\n\nI\u0027m sure we\u0027ll discover edge cases, but it appears the approach is generally viable.",
+      "revId": "1ecb4845c665357d1f8e4f3795d2cc736dde4262",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22e4147a_d4adfff0",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-07-09T00:25:37Z",
+      "side": 1,
+      "message": "nit: _check could probably be a function used by _check_go and _check_cloudbuildhelper... since there are only two I don\u0027t care much though.",
+      "revId": "1ecb4845c665357d1f8e4f3795d2cc736dde4262",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5be6f285_eb62b749",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-07-09T00:25:37Z",
+      "side": 1,
+      "message": "go go gadget version?",
       "revId": "1ecb4845c665357d1f8e4f3795d2cc736dde4262",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
