@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "38f9c557_79ad983e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-07-09T00:33:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8a51acd_161a02a6",
+      "revId": "1ecb4845c665357d1f8e4f3795d2cc736dde4262",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "6625b9cd_c1e95300",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2021-07-09T00:25:37Z",
       "side": 1,
       "message": "nit: _check could probably be a function used by _check_go and _check_cloudbuildhelper... since there are only two I don\u0027t care much though.",
+      "revId": "1ecb4845c665357d1f8e4f3795d2cc736dde4262",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f590fa8_b91c8821",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-07-09T00:33:50Z",
+      "side": 1,
+      "message": "They are subtly different and extracting differences into arguments makes a mess. I follow a rule of \"it is fine to copy paste once, but not twice\". It is copy-pasted only once :P",
+      "parentUuid": "22e4147a_d4adfff0",
       "revId": "1ecb4845c665357d1f8e4f3795d2cc736dde4262",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
