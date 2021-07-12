@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a02e4383_abcdb1a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2021-07-12T20:06:10Z",
+      "side": 1,
+      "message": "This should be the final change to whitelists that I can think of from the rest api end, the model.Ipwhitelist has not been touched at this point.",
+      "revId": "325c2c3e45db805c14c4ad64b42d80a195934563",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
