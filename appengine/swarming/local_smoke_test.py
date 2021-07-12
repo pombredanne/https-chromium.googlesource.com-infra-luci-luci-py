@@ -27,6 +27,8 @@ import textwrap
 import time
 import unittest
 
+PROF_DATA = {}
+
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 BOT_DIR = os.path.join(APP_DIR, 'swarming_bot')
 CLIENT_DIR = os.path.join(APP_DIR, '..', '..', 'client')
@@ -399,6 +401,8 @@ class Test(unittest.TestCase):
   no_run = 1
 
   def setUp(self):
+    self.startTime = time.time()
+
     super(Test, self).setUp()
     self.dimensions = os_utilities.get_dimensions()
     # The bot forcibly adds server_version, and bot_config.
@@ -443,6 +447,14 @@ class Test(unittest.TestCase):
       if not started_ts or new_started_ts != started_ts:
         self.assertNotIn(u'caches', state['dimensions'])
         break
+
+  def tearDown(self):
+    elapsed_time = time.time() - self.startTime
+    fn_name = self.id()
+    if fn_name not in PROF_DATA:
+      PROF_DATA[fn_name] = [0, []]
+    PROF_DATA[fn_name][0] += 1
+    PROF_DATA[fn_name][1].append(elapsed_time)
 
   def gen_expected(self, **kwargs):
     dims = [{
@@ -1693,6 +1705,7 @@ def process_arguments():
 
 
 def main():
+  start_time = time.time()
   fix_encoding.fix_encoding()
   args = process_arguments()
   Test.tmpdir = unicode(tempfile.mkdtemp(prefix='local_smoke_test'))
@@ -1753,7 +1766,20 @@ def main():
       bot.wait()
   finally:
     cleanup(bot, client, servers, failed or args.verbose)
+    print_prof_data(start_time)
   return int(failed)
+
+def print_prof_data(start_time):
+  total = 0
+  for fname, data in PROF_DATA.items():
+    max_time = max(data[1])
+    avg_time = sum(data[1]) / len(data[1])
+    total += avg_time
+    print("Function %s called %d times." % (fname, data[0]))
+    print('Execution time max: %.3f, average: %.3f' % (max_time, avg_time))
+  print("Total test time: %.3f" % total)
+  print("Total file time: %.3f" % (time.time() - start_time))
+
 
 
 if __name__ == '__main__':
