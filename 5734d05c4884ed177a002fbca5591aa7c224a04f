@@ -166,6 +166,30 @@
       },
       "revId": "5734d05c4884ed177a002fbca5591aa7c224a04f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5439f88b_ce9698c8",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1206,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-07-14T07:42:24Z",
+      "side": 1,
+      "message": "I changed the code to set -1 instead. PTAL.",
+      "parentUuid": "5b5a968f_31be301c",
+      "range": {
+        "startLine": 1206,
+        "startChar": 14,
+        "endLine": 1206,
+        "endChar": 15
+      },
+      "revId": "5734d05c4884ed177a002fbca5591aa7c224a04f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
