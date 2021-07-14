@@ -796,7 +796,16 @@ class _TaskResultCommon(ndb.Model):
     if self.resultdb_info:
       self.resultdb_info.to_proto(out.resultdb_info)
     if self.exit_code is not None:
-      out.exit_code = self.exit_code
+      if self.exit_code < 2**31 and self.exit_code >= -2**31:
+        out.exit_code = self.exit_code
+      elif self.exit_code < 2**32 and self.exit_code >= 2**31:
+        exit_code_signed = self.exit_code - 2**32
+        logging.warning('converting unsigned int32 to signed int32: %d -> %d',
+                        self.exit_code, exit_code_signed)
+        out.exit_code = exit_code_signed
+      else:
+        logging.error('exit_code value out of range: %d', self.exit_code)
+        out.exit_code = -1
     if self.outputs_ref:
       self.outputs_ref.to_proto(out.outputs)
     if self.cas_output_root:
