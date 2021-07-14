@@ -214,6 +214,30 @@
       },
       "revId": "5734d05c4884ed177a002fbca5591aa7c224a04f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcd65120_2198797a",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1206,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-07-14T07:52:57Z",
+      "side": 1,
+      "message": "I see. \nIt\u0027s possible to convert unsigned int32. Ok.",
+      "parentUuid": "259ef524_d17ae8e8",
+      "range": {
+        "startLine": 1206,
+        "startChar": 14,
+        "endLine": 1206,
+        "endChar": 15
+      },
+      "revId": "5734d05c4884ed177a002fbca5591aa7c224a04f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
