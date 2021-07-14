@@ -16,6 +16,24 @@
       "message": "Sorry for back and forth, but I think we can just change integer type in proto definition as BigQuery doesn\u0027t have data type for 32bit integer.\nhttps://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#integer_type",
       "revId": "9ed9fb9a593abee111bb05dd144cf86f2393fd68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddb83bf0_9100f6cd",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-07-14T16:34:00Z",
+      "side": 1,
+      "message": "Ah, that\u0027s good point.\nI don\u0027t know why I didn\u0027t consider that... It\u0027s just application level validation.\nI updated. PTAL.",
+      "parentUuid": "805aba48_6ab4dd5f",
+      "revId": "9ed9fb9a593abee111bb05dd144cf86f2393fd68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
