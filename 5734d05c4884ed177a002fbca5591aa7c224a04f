@@ -142,6 +142,30 @@
       },
       "revId": "5734d05c4884ed177a002fbca5591aa7c224a04f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b5a968f_31be301c",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1206,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-07-14T07:39:13Z",
+      "side": 1,
+      "message": "I see. \n\nBut I got this error when calling HasField().\n```\n\u003e  actual.HasField(\u0027exit_code\u0027)\n*** ValueError: Protocol message swarming.v1.TaskResult has no non-repeated submessage field \"exit_code\" nor marked as optional\n```\n\nIt\u0027s aligned with the document you shared, though.\n\u003e Unlike in proto2, you cannot call HasField() for a singular non-message field in proto3, and the library will throw an exception if you try to do this.\n\n\nI couldn\u0027t add `optional`, btw.\n```\nswarming.proto: This file contains proto3 optional fields, but --experimental_allow_proto3_optional was not set.\n```",
+      "parentUuid": "43e72e02_9f4eede5",
+      "range": {
+        "startLine": 1206,
+        "startChar": 14,
+        "endLine": 1206,
+        "endChar": 15
+      },
+      "revId": "5734d05c4884ed177a002fbca5591aa7c224a04f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
