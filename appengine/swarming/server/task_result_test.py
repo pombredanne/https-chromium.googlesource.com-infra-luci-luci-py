@@ -13,6 +13,7 @@ import sys
 import unittest
 
 import mock
+from parameterized import parameterized
 
 import test_env
 test_env.setup_test_env()
@@ -1199,6 +1200,21 @@ class TaskResultApiTest(TestCase):
     expected.request.root_run_id = grand_parent_run_id
     run_result.to_proto(actual, append_root_ids=True)
     self.assertEqual(unicode(expected), unicode(actual))
+
+  @parameterized.expand([
+      (2**31 - 1, 2**31 - 1),
+      (2**31, -1),
+      (-2**31, -2**31),
+      (-2**31 - 1, -1),
+  ])
+  def test_TaskRunResult_to_proto_exitcode(self, exit_code, expected):
+    actual = swarming_pb2.TaskResult()
+    req = task_request.TaskRequest(id=1230)
+    res = task_result.TaskResultSummary(parent=req.key)
+    res._request_cache = req
+    res.exit_code = exit_code
+    res.to_proto(actual)
+    self.assertEqual(actual.exit_code, expected)
 
   def test_TaskResultSummary_to_proto_empty(self):
     # Assert that it doesn't throw on empty entity.

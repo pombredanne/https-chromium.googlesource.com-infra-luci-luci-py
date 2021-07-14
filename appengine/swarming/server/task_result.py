@@ -796,7 +796,11 @@ class _TaskResultCommon(ndb.Model):
     if self.resultdb_info:
       self.resultdb_info.to_proto(out.resultdb_info)
     if self.exit_code is not None:
-      out.exit_code = self.exit_code
+      if self.exit_code > 2**31 - 1 or self.exit_code < -2**31:
+        logging.error('exit_code value out of range: %d', self.exit_code)
+        out.exit_code = -1
+      else:
+        out.exit_code = self.exit_code
     if self.outputs_ref:
       self.outputs_ref.to_proto(out.outputs)
     if self.cas_output_root:
