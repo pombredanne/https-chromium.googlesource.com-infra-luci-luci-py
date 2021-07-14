@@ -70,6 +70,30 @@
       },
       "revId": "5734d05c4884ed177a002fbca5591aa7c224a04f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8030aaf8_3b75adfe",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1206,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-07-14T07:23:22Z",
+      "side": 1,
+      "message": "Ah, maybe better to use HasField in check for that.\nhttps://developers.google.com/protocol-buffers/docs/reference/python-generated#singular-fields-proto3",
+      "parentUuid": "492613e2_81065ceb",
+      "range": {
+        "startLine": 1206,
+        "startChar": 14,
+        "endLine": 1206,
+        "endChar": 15
+      },
+      "revId": "5734d05c4884ed177a002fbca5591aa7c224a04f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
