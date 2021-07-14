@@ -46,6 +46,30 @@
       },
       "revId": "5734d05c4884ed177a002fbca5591aa7c224a04f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adfd5bd1_c0d81ebd",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1206,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-07-14T07:21:48Z",
+      "side": 1,
+      "message": "We should set -1 instead?\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/proto/api/swarming.proto;l\u003d1027;drc\u003d993b0b02f7c3e6c8cd107c829b0ba3db5a1a4b0c",
+      "parentUuid": "492613e2_81065ceb",
+      "range": {
+        "startLine": 1206,
+        "startChar": 14,
+        "endLine": 1206,
+        "endChar": 15
+      },
+      "revId": "5734d05c4884ed177a002fbca5591aa7c224a04f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
