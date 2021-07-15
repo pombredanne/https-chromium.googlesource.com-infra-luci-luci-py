@@ -33,6 +33,24 @@
       "message": "is there any reason you aren\u0027t landing htis?",
       "revId": "e0eefe5f9d4650e85fffc5da16b85eb142af9f73",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83b0ef01_543ea20f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-07-15T18:54:54Z",
+      "side": 1,
+      "message": "No; I almost landed it yesterday; I just want to make sure I\u0027m in a position to redeploy luci-config when I land it.",
+      "parentUuid": "2f75d19b_36608ec5",
+      "revId": "e0eefe5f9d4650e85fffc5da16b85eb142af9f73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
