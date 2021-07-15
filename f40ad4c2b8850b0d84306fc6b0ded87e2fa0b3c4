@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96e5ddbf_4f27fc01",
+        "filename": "client/libs/logdog/streamname.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-07-15T23:06:16Z",
+      "side": 0,
+      "message": "This logic should exist in recipe code instead (i.e. https://crrev.com/c/3031847) since str should be returned for this function in py3.",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 30
+      },
+      "revId": "f40ad4c2b8850b0d84306fc6b0ded87e2fa0b3c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
