@@ -16,6 +16,29 @@
       "message": "ptal",
       "revId": "03d22dc28bf83ed9af6eef5325d97547e44c9be7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "498f6ab2_2bfd19d0",
+        "filename": "client/libs/logdog/stream.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-07-16T00:19:54Z",
+      "side": 1,
+      "message": "I would consider \n\n  _Mapping \u003d ( ... if _PY2 else ...)\n  \nAt the top",
+      "range": {
+        "startLine": 66,
+        "startChar": 33,
+        "endLine": 66,
+        "endChar": 40
+      },
+      "revId": "03d22dc28bf83ed9af6eef5325d97547e44c9be7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
