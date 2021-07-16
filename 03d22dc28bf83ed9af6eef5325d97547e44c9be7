@@ -39,6 +39,30 @@
       },
       "revId": "03d22dc28bf83ed9af6eef5325d97547e44c9be7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42eb7d04_00a7464f",
+        "filename": "client/libs/logdog/stream.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2021-07-16T03:35:35Z",
+      "side": 1,
+      "message": "Make sense. PTAL https://crrev.com/c/3033335",
+      "parentUuid": "498f6ab2_2bfd19d0",
+      "range": {
+        "startLine": 66,
+        "startChar": 33,
+        "endLine": 66,
+        "endChar": 40
+      },
+      "revId": "03d22dc28bf83ed9af6eef5325d97547e44c9be7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
