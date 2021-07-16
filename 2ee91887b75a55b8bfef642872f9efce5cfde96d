@@ -16,6 +16,24 @@
       "message": "Takuto,\n\nHow did you fix the symlink issue?\n\u003e Please enable symlink. Run \u0027git config --global core.symlinks true\u0027 and fetch the repository again\n\nDo I just need to clear the builder cache on the bot?\n",
       "revId": "2ee91887b75a55b8bfef642872f9efce5cfde96d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b414cda_025e93ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-07-16T02:09:36Z",
+      "side": 1,
+      "message": "I think so.",
+      "parentUuid": "93562fa9_65c656f4",
+      "revId": "2ee91887b75a55b8bfef642872f9efce5cfde96d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
