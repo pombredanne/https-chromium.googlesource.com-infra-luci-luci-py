@@ -530,7 +530,7 @@ class _OutputBuffer(object):
   """
   # To be mocked in tests.
   _MIN_PACKET_INTERVAL = 1
-  _MAX_PACKET_INTERVAL = 10
+  _MAX_PACKET_INTERVAL = 1
 
   def __init__(self, task_details, start):
     self._task_details = task_details
@@ -596,6 +596,7 @@ class _OutputBuffer(object):
       and there was stdout.
     - self._last_pop was more than "self._max_packet_interval seconds ago".
     """
+    logging.debug("CHICKEN")
     packet_interval = (
         self._min_packet_interval
         if self._stdout else self._max_packet_interval)

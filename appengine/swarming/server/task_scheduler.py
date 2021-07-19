@@ -1152,6 +1152,8 @@ def schedule_request(request, secret_bytes, enable_resultdb):
   """
   assert isinstance(request, task_request.TaskRequest), request
   assert not request.key, request.key
+  logging.debug('CROC')
+  logging.debug(request)
 
   task_asserted_future = task_queues.assert_task_async(request)
   now = utils.utcnow()

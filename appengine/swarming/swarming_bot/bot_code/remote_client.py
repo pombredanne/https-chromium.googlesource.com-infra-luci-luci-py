@@ -318,7 +318,10 @@ class RemoteClientNative(object):
       replies with an error or the returned dict does not have the correct
       values set.
     """
+    logging.debug("COW")
     resp = self._url_read_json('/swarming/api/v1/bot/poll', data=attributes)
+    logging.debug(resp)
+    logging.debug("MOO")
     if not resp or resp.get('error'):
       raise PollError(
           resp.get('error') if resp else 'Failed to contact server')

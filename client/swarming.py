@@ -536,12 +536,20 @@ def retrieve_results(base_url, shard_index, task_id, timeout, should_stop,
     # request on GAE v2.
     # Retry on 500s only if no timeout is specified.
     result = net.url_read_json(result_url, retry_50x=bool(timeout == -1))
+    logging.info('BADGER')
+    logging.info(result)
+    logging.info('AFTERBADGER')
     if not result:
+      logging.info('1')
       if timeout == -1:
+        logging.info('2')
         return None
+      logging.info('3')
       continue
+    logging.info('4')
 
     if result.get('error'):
+      logging.info('error occured')
       # An error occurred.
       if result['error'].get('errors'):
         for err in result['error']['errors']:
@@ -557,6 +565,9 @@ def retrieve_results(base_url, shard_index, task_id, timeout, should_stop,
     # When timeout == -1, always return on first attempt. 500s are already
     # retried in this case.
     if result['state'] not in TaskState.STATES_RUNNING or timeout == -1:
+      logging.info('in state')
+      logging.info(timeout)
+      logging.info(result['state'])
       if fetch_stdout:
         out = net.url_read_json(output_url)
         result['output'] = out.get('output', '') if out else ''
