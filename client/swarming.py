@@ -542,6 +542,7 @@ def retrieve_results(base_url, shard_index, task_id, timeout, should_stop,
       continue
 
     if result.get('error'):
+      logging.info('error occured')
       # An error occurred.
       if result['error'].get('errors'):
         for err in result['error']['errors']:
