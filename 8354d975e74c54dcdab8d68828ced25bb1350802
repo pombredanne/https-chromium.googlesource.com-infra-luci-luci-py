@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7135af8a_50e9a442",
+        "filename": "appengine/auth_service/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-07-19T18:27:15Z",
+      "side": 1,
+      "message": "This still should be \"bot:whitelisted-ip\" since it is a special constant: https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/components/components/auth/model.py#270",
+      "range": {
+        "startLine": 56,
+        "startChar": 5,
+        "endLine": 56,
+        "endChar": 23
+      },
+      "revId": "8354d975e74c54dcdab8d68828ced25bb1350802",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
