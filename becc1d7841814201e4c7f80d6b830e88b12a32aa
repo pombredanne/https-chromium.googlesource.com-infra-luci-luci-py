@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dc2fe813_a740eeb7",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-07-21T07:55:45Z",
+      "side": 1,
+      "message": "then could you drop reference here too?",
+      "parentUuid": "1b9b7c46_37a85c59",
+      "revId": "becc1d7841814201e4c7f80d6b830e88b12a32aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "375a98cb_d985a02c",
         "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
         "patchSetId": 8
