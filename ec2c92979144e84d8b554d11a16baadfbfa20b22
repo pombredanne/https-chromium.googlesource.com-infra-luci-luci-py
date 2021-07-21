@@ -16,6 +16,24 @@
       "message": "I prefer to support only the case which we know we need to detect in this way.",
       "revId": "ec2c92979144e84d8b554d11a16baadfbfa20b22",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a126012_49f9eed8",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-07-21T07:19:03Z",
+      "side": 1,
+      "message": "That would be only PROCESSOR_ARCHITECTURE_AMD64, PROCESSOR_ARCHITECTURE_INTEL, PROCESSOR_ARCHITECTURE_IA32_ON_WIN64. I guess.\n\nPTAL.",
+      "parentUuid": "4eaf7b45_fbe08ce9",
+      "revId": "ec2c92979144e84d8b554d11a16baadfbfa20b22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
