@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08559632_fee762b4",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-07-21T07:29:46Z",
+      "side": 1,
+      "message": "where does this function come from?",
+      "revId": "becc1d7841814201e4c7f80d6b830e88b12a32aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "375a98cb_d985a02c",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-07-21T07:29:46Z",
+      "side": 1,
+      "message": "I prefer to reference\nhttps://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor#properties",
+      "revId": "becc1d7841814201e4c7f80d6b830e88b12a32aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
