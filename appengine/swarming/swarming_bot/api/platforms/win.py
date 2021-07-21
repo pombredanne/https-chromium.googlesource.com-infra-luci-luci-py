@@ -368,6 +368,62 @@ def get_cpuinfo():
     k.Close()
 
 
+def get_cpu_type_with_wmi():
+  # Get CPU architecture type using WMI.
+  # This is a fallback for when platform.machine() returns None.
+  wbem = _get_wmi_wbem()
+  if not wbem:
+    return None
+  _, pythoncom = _get_win32com()
+  try:
+    q = 'SELECT Architecture, Level, AddressWidth FROM Win32_Processor'
+    for cpu in wbem.ExecQuery(q):
+
+      def intel_arch():
+        arch_level = min(cpu.Level, 6)
+        return 'i%d86' % arch_level  # e.g. i386, i686
+
+      # The mapping comes from
+      # https://source.winehq.org/source/include/winnt.h#L680
+      if cpu.Architecture == 14:  # PROCESSOR_ARCHITECTURE_IA32_ON_ARM64
+        return 'i686'
+      if cpu.Architecture == 13:  # PROCESSOR_ARCHITECTURE_ARM32_ON_WIN64
+        return 'arm'
+      if cpu.Architecture == 12:  # PROCESSOR_ARCHITECTURE_NEUTRAL
+        return 'arm64'
+      if cpu.Architecture == 11:  # PROCESSOR_ARCHITECTURE_ARM64
+        return 'neutral'
+      if cpu.Architecture == 10:  # PROCESSOR_ARCHITECTURE_IA32_ON_WIN64
+        return 'i686'
+      if cpu.Architecture == 9:  # PROCESSOR_ARCHITECTURE_AMD64
+        if cpu.AddressWidth == 32:
+          return intel_arch()
+        return 'amd64'
+      if cpu.Architecture == 8:  # PROCESSOR_ARCHITECTURE_MSIL
+        return 'msil'
+      if cpu.Architecture == 7:  # PROCESSOR_ARCHITECTURE_ALPHA64
+        return 'alpha64'
+      if cpu.Architecture == 6:  # PROCESSOR_ARCHITECTURE_IA64
+        return 'ia64'
+      if cpu.Architecture == 5:  # PROCESSOR_ARCHITECTURE_ARM
+        return 'arm'
+      if cpu.Architecture == 4:  # PROCESSOR_ARCHITECTURE_SHX
+        return 'shx'
+      if cpu.Architecture == 3:  # PROCESSOR_ARCHITECTURE_PPC
+        return 'powerpc'
+      if cpu.Architecture == 2:  # PROCESSOR_ARCHITECTURE_ALPHA
+        return 'alpha'
+      if cpu.Architecture == 1:  # PROCESSOR_ARCHITECTURE_MIPS
+        return 'mips'
+      if cpu.Architecture == 0:  # PROCESSOR_ARCHITECTURE_INTEL
+        return intel_arch()
+  except pythoncom.com_error as e:
+    # This generally happens when this is called as the host is shutting down.
+    logging.error('get_cpu_type_with_wmi(): %s', e)
+  # Unknown or exception.
+  return None
+
+
 def get_gpu():
   """Returns video device as listed by WMI.
 
