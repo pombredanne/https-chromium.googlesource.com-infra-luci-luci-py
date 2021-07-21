@@ -34,6 +34,24 @@
       "parentUuid": "4eaf7b45_fbe08ce9",
       "revId": "ec2c92979144e84d8b554d11a16baadfbfa20b22",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6295cea_944597a8",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-07-21T07:55:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0a126012_49f9eed8",
+      "revId": "ec2c92979144e84d8b554d11a16baadfbfa20b22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
