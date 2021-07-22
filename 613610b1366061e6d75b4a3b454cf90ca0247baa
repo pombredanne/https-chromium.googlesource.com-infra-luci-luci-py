@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b9f38f3_104d6af0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2021-07-22T19:49:31Z",
+      "side": 1,
+      "message": "Hi Camilo, hope I\u0027m not stepping on your toes here, I spotted some outdated references while looking at inclusive language for ChromiumDash and Monorail.",
+      "revId": "613610b1366061e6d75b4a3b454cf90ca0247baa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
