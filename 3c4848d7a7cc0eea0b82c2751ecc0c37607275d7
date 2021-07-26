@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29ee247f_9d9bd41c",
+        "filename": "client/cipd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-07-26T13:14:57Z",
+      "side": 1,
+      "message": "is it simpler to just use 386 in this case?",
+      "revId": "3c4848d7a7cc0eea0b82c2751ecc0c37607275d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
