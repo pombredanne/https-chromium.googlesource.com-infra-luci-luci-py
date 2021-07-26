@@ -16,6 +16,24 @@
       "message": "is it simpler to just use 386 in this case?",
       "revId": "3c4848d7a7cc0eea0b82c2751ecc0c37607275d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d870770_41e11d7c",
+        "filename": "client/cipd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-07-26T14:44:05Z",
+      "side": 1,
+      "message": "I don\u0027t know if the issue happens only on 32bit.\nBut I have seen it only on 32bit Windows7 so far.\nLet\u0027s simply do that.",
+      "parentUuid": "29ee247f_9d9bd41c",
+      "revId": "3c4848d7a7cc0eea0b82c2751ecc0c37607275d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
