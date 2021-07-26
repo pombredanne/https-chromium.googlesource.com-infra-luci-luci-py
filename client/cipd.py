@@ -271,6 +271,8 @@ def get_platform():
   # Normalize machine architecture. Some architectures are identical or
   # compatible with others. We collapse them into one.
   arch = platform.machine().lower()
+  if not arch and sys.platform == 'win32':
+    arch = _get_cpu_arch_with_wmi()
   # TODO(crbug.com/1186562): mac-arm64 package isn't ready yet.
   # Use mac-amd64 package for now.
   if os_name == 'mac' and arch == 'arm64':
@@ -292,6 +294,42 @@ def get_platform():
     arch = '386'
 
   return '%s-%s' % (os_name, arch)
+
+
+# Copied logic from get_cpu_type_with_wmi() in
+# https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/swarming_bot/api/platforms/win.py
+def _get_cpu_arch_with_wmi():
+  try:
+    import pythoncom
+    from win32com import client  # pylint: disable=F0401
+  except ImportError as e:
+    logging.error('Failed to import', exc_info=True)
+    return None
+
+  wmi_service = client.Dispatch('WbemScripting.SWbemLocator')
+  wbem = wmi_service.ConnectServer('.', 'root\\cimv2')
+
+  try:
+    q = 'SELECT Architecture, Level, AddressWidth FROM Win32_Processor'
+    for cpu in wbem.ExecQuery(q):
+
+      def intel_arch():
+        arch_level = min(cpu.Level, 6)
+        return 'i%d86' % arch_level  # e.g. i386, i686
+
+      if cpu.Architecture == 10:  # PROCESSOR_ARCHITECTURE_IA32_ON_WIN64
+        return 'i686'
+      if cpu.Architecture == 9:  # PROCESSOR_ARCHITECTURE_AMD64
+        if cpu.AddressWidth == 32:
+          return intel_arch()
+        return 'amd64'
+      if cpu.Architecture == 0:  # PROCESSOR_ARCHITECTURE_INTEL
+        return intel_arch()
+  except pythoncom.com_error as e:
+    # This generally happens when this is called as the host is shutting down.
+    logging.error('get_cpu_type_with_wmi(): %s', e)
+  # Unknown or exception.
+  return None
 
 
 def _check_response(res, fmt, *args):
