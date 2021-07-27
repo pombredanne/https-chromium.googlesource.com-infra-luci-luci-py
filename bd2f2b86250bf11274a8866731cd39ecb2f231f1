@@ -87,6 +87,24 @@
       "message": "it is better to log something in each iteration?",
       "revId": "bd2f2b86250bf11274a8866731cd39ecb2f231f1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b9cfd3f_965f45f1",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1631,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-07-27T09:29:54Z",
+      "side": 1,
+      "message": "Done. See line 1643.",
+      "parentUuid": "9f200737_1f957afa",
+      "revId": "bd2f2b86250bf11274a8866731cd39ecb2f231f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
