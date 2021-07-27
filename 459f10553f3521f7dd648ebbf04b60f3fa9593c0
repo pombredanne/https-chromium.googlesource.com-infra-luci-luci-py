@@ -16,6 +16,24 @@
       "message": "this is not necessary?",
       "revId": "459f10553f3521f7dd648ebbf04b60f3fa9593c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4101141f_915cffeb",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1643,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-07-27T09:51:18Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "491451c2_00c7de04",
+      "revId": "459f10553f3521f7dd648ebbf04b60f3fa9593c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
