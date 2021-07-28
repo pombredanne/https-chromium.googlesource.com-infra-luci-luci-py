@@ -70,6 +70,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84fd6aa5_46123595",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-07-28T17:28:36Z",
+      "side": 1,
+      "message": "It may not be sufficient to delete everything (see the TODO).\n\nI figured we delete stuff rarely (and not everything at once), so performance is not a problem and cleaner code is better.",
+      "parentUuid": "a442ad43_6c53c251",
+      "revId": "9a1125ff8d9264af4fcf22262243d221966e6efc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34e5afd5_541a58ab",
@@ -83,6 +101,24 @@
       "writtenOn": "2021-07-28T03:59:02Z",
       "side": 1,
       "message": "fur?\n\nSeems like test should have seen this?",
+      "revId": "9a1125ff8d9264af4fcf22262243d221966e6efc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbc1737b_8eb1578c",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-07-28T17:28:36Z",
+      "side": 1,
+      "message": "Test? What test? This method is not covered by a test...",
+      "parentUuid": "34e5afd5_541a58ab",
       "revId": "9a1125ff8d9264af4fcf22262243d221966e6efc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
