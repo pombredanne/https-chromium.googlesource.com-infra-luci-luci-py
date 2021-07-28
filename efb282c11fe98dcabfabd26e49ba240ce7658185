@@ -22,6 +22,91 @@
       },
       "revId": "efb282c11fe98dcabfabd26e49ba240ce7658185",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05371aaf_bcffb89c",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2732,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-07-28T08:54:37Z",
+      "side": 1,
+      "message": "`self.now` is already mocked in `setUp` (line 154)",
+      "revId": "efb282c11fe98dcabfabd26e49ba240ce7658185",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d0ec0b8_042eca31",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2733,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-07-28T08:54:37Z",
+      "side": 1,
+      "message": "nit: s/ret/req/",
+      "revId": "efb282c11fe98dcabfabd26e49ba240ce7658185",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "505ee926_13fff7b5",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2739,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-07-28T08:54:37Z",
+      "side": 1,
+      "message": "This tag is not needed and can be removed.",
+      "revId": "efb282c11fe98dcabfabd26e49ba240ce7658185",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48ab3a41_e54e19d3",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2752,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-07-28T08:54:37Z",
+      "side": 1,
+      "message": "This tag is not needed and can be removed.",
+      "revId": "efb282c11fe98dcabfabd26e49ba240ce7658185",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36e023fc_1c8785f0",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2764,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-07-28T08:54:37Z",
+      "side": 1,
+      "message": "This tag is not needed and can be removed.",
+      "revId": "efb282c11fe98dcabfabd26e49ba240ce7658185",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
