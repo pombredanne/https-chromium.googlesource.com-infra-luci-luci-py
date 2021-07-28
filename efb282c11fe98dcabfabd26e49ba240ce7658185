@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaeccf1a_ba79d3fe",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-07-28T07:44:11Z",
+      "side": 1,
+      "message": "Can you reuse _gen_request_slices()?\nMaybe this can be \"properties or _gen_properties()\" as you do in _gen_request().\n\nAnd the caller side looks like\n\n```\nrequest \u003d _gen_request_slices(properties\u003dprops)\n```",
+      "range": {
+        "startLine": 83,
+        "startChar": 25,
+        "endLine": 83,
+        "endChar": 40
+      },
+      "revId": "efb282c11fe98dcabfabd26e49ba240ce7658185",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
