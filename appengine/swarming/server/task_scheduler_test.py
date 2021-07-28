@@ -92,6 +92,16 @@ def _gen_request_slices(**kwargs):
   return ret
 
 
+def _gen_request(properties=None, **kwargs):
+  """Creates a TaskRequest."""
+  return _gen_request_slices(
+      task_slices=[
+          task_request.TaskSlice(
+              expiration_secs=60, properties=properties or _gen_properties()),
+      ],
+      **kwargs)
+
+
 def _get_results(request_key):
   """Fetches all task results for a specified TaskRequest ndb.Key.
 
@@ -2719,8 +2729,42 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
           properties=_gen_properties(dimensions={u'pool': [u'some-pool']}))
 
   def test_cron_task_bot_distribution(self):
-    # TODO(maruel): https://crbug.com/912154
-    self.assertEqual(0, task_scheduler.cron_task_bot_distribution())
+    self.mock_now(self.now)
+    ret1 = _gen_request()
+    ret1.key = task_request.new_request_key()
+    ret1.put()
+    summary1 = task_result.new_result_summary(ret1)
+    summary1.state = task_result.State.RUNNING
+    summary1.modified_ts = self.now
+    summary1.tags.append('mtime:now')
+    summary1.put()
+
+    ret2 = _gen_request(
+        properties=_gen_properties(dimensions={
+            u'os': [u'Linux'],
+            u'pool': [u'some_other_pool'],
+        }))
+    ret2.key = task_request.new_request_key()
+    ret2.put()
+    summary2 = task_result.new_result_summary(ret2)
+    summary2.state = task_result.State.PENDING
+    summary2.modified_ts = self.now
+    summary2.tags.append('mtime:now')
+    summary2.put()
+
+    ret3 = _gen_request()
+    ret3.key = task_request.new_request_key()
+    ret3.put()
+    summary3 = task_result.new_result_summary(ret3)
+    summary3.state = task_result.State.COMPLETED
+    summary3.duration = 31.0
+    summary3.exit_code = 0
+    summary3.modified_ts = self.now
+    summary3.completed_ts = self.now
+    summary3.tags.append('mtime:now')
+    summary3.put()
+
+    self.assertEqual(2, task_scheduler.cron_task_bot_distribution())
 
   def test_ensure_active_slice_nonpending(self):
     # Non-PENDING task cannot have active slice set.
