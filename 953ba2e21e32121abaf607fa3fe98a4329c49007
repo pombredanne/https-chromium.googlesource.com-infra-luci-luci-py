@@ -16,6 +16,29 @@
       "message": "This should fix \"deleted\" config sets still being accessible when hit directly, like https://luci-config.appspot.com/#/services/chrome-auth",
       "revId": "953ba2e21e32121abaf607fa3fe98a4329c49007",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c5293cb_dee148dc",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-07-28T21:04:43Z",
+      "side": 1,
+      "message": "lol",
+      "range": {
+        "startLine": 132,
+        "startChar": 7,
+        "endLine": 132,
+        "endChar": 17
+      },
+      "revId": "953ba2e21e32121abaf607fa3fe98a4329c49007",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
