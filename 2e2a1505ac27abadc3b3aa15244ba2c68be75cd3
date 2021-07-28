@@ -16,6 +16,24 @@
       "message": "nit: it still needs 2 empty lines?",
       "revId": "2e2a1505ac27abadc3b3aa15244ba2c68be75cd3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85887a43_995b6bc5",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1653,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-07-28T00:43:26Z",
+      "side": 0,
+      "message": "Fixed.",
+      "parentUuid": "ac39745f_bbee2a67",
+      "revId": "2e2a1505ac27abadc3b3aa15244ba2c68be75cd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
