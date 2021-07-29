@@ -1796,7 +1796,8 @@ def cron_task_bot_distribution():
   cnt = 0
   logging.debug('Collecting task dimensions...')
   try:
-    for result in q:
+    for keys in q.iter(keys_only=True):
+      result = keys.get()
       # Make dimensions immutable so they can be used to index a key.
       req = result.request
       for i in range(req.num_task_slices):
@@ -1815,6 +1816,7 @@ def cron_task_bot_distribution():
     logging.warning('Ignoring timeout %s', e, exc_info=True)
 
   # Second, count how many bots have those dimensions for each set.
+  logging.debug('Counting number of bots with dimensions...')
   n_bots_by_dimensions = {}
   for dimensions, n_tasks in n_tasks_by_dimensions.items():
     filter_dimensions = []
