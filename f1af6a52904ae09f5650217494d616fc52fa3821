@@ -16,6 +16,24 @@
       "message": "better to log if not success?",
       "revId": "f1af6a52904ae09f5650217494d616fc52fa3821",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7171d5a_12f6eae7",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1180,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-07-29T09:52:09Z",
+      "side": 1,
+      "message": "That is already logged when False is returned.\ne.g. https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_queues.py;l\u003d827;drc\u003dff2e26490a65cd60efde33adc592fa6c7f109610",
+      "parentUuid": "cdf0223c_af1f15e6",
+      "revId": "f1af6a52904ae09f5650217494d616fc52fa3821",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
