@@ -161,6 +161,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3be613e4_0625be79",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1800,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-07-30T02:26:48Z",
+      "side": 1,
+      "message": "No if it\u0027s running. Just in case Datastore returns nothing.",
+      "parentUuid": "2f7abf60_9aa065a7",
+      "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5ececb9_60478792",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 1
@@ -220,6 +238,30 @@
       "side": 1,
       "message": "Can we just remove this exception handler? I don\u0027t see what purpose it serves other than masking errors. If this query does timeout sporadically, we should consider breaking it up with cursors.",
       "parentUuid": "e5ececb9_60478792",
+      "range": {
+        "startLine": 1812,
+        "startChar": 0,
+        "endLine": 1817,
+        "endChar": 0
+      },
+      "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "099515e5_4bac4235",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1817,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-07-30T02:26:48Z",
+      "side": 1,
+      "message": "It just suppresses errors.\nIMO, it doesn\u0027t necessary to fetch all running tasks.\nIf it collects *enough* amount of dimensions, we can go to next step.",
+      "parentUuid": "964ea379_1a146e48",
       "range": {
         "startLine": 1812,
         "startChar": 0,
