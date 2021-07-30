@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cfe84bac_dca28297",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1795,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-07-30T02:26:42Z",
+      "side": 1,
+      "message": "I\u0027m mentioning this because of `except datastore_errors.Timeout`. We might need to sacrifice some latency in order to get complete results.",
+      "parentUuid": "8e25d894_cdba874d",
+      "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4645b3b_33734c12",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 1
