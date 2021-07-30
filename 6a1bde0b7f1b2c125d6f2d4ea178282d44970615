@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd930cdf_ab9e8b97",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1795,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-07-30T02:17:11Z",
+      "side": 1,
+      "message": "I would consider breaking up this query into two: one for PENDING and one for RUNNING and consuming the result with cursors.",
+      "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4645b3b_33734c12",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 1
@@ -48,6 +65,24 @@
       "writtenOn": "2021-07-30T01:18:00Z",
       "side": 1,
       "message": "I think you need to check the existence of the entity.",
+      "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f7abf60_9aa065a7",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1800,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-07-30T02:17:11Z",
+      "side": 1,
+      "message": "Do we ever delete `TaskResultSummary` entities?",
+      "parentUuid": "efe6f1e5_0089bf0a",
       "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
