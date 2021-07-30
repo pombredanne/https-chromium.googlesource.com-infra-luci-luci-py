@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e25d894_cdba874d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1795,
+      "author": {
+        "id": 1506168
+      },
+      "writtenOn": "2021-07-30T02:23:22Z",
+      "side": 1,
+      "message": "I did test this out when running local tests and it didn\u0027t result in any improvement in latency. I put my results in the bug: https://buganizer.corp.google.com/issues/191416936#comment6",
+      "parentUuid": "dd930cdf_ab9e8b97",
+      "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4645b3b_33734c12",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2021-07-30T02:14:43Z",
       "side": 1,
       "message": "I see following issues here:\n * `keys` is plural but only holds single `TaskResultSummary` key\n * `keys.get()` performs single lookup and retrieves entire `TaskResultSummary` entity that we don\u0027t need\n * this change significantly increases the number of round-trips to the database and will result is longer execution time compared to a regular query\n \nHere is how this code could be improved:\n * use `task_pack.result_summary_key_to_request_key` to convert `TaskResultSummary` key into `TaskRequest` key\n * only retrieve `TaskRequest` entities\n * issue batch lookups (nbd.get_multi)",
+      "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cdabce5_e230080e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1799,
+      "author": {
+        "id": 1506168
+      },
+      "writtenOn": "2021-07-30T02:23:22Z",
+      "side": 1,
+      "message": "In my testing, using paging in this case seemed to increase the latency to fetch because we filter this query with an IN, which means we also have to order the results.\n\nhttps://buganizer.corp.google.com/issues/191416936#comment6\nhttps://screenshot.googleplex.com/98VXGiUopripi5z",
+      "parentUuid": "e4645b3b_33734c12",
       "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -83,6 +119,24 @@
       "side": 1,
       "message": "Do we ever delete `TaskResultSummary` entities?",
       "parentUuid": "efe6f1e5_0089bf0a",
+      "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3167737_56a06e93",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1800,
+      "author": {
+        "id": 1506168
+      },
+      "writtenOn": "2021-07-30T02:23:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f7abf60_9aa065a7",
       "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
