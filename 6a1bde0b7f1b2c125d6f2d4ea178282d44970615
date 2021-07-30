@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c64d419d_7f6bd9ff",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1799,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-07-30T02:14:43Z",
+      "side": 1,
+      "message": "I see following issues here:\n * `keys` is plural but only holds single `TaskResultSummary` key\n * `keys.get()` performs single lookup and retrieves entire `TaskResultSummary` entity that we don\u0027t need\n * this change significantly increases the number of round-trips to the database and will result is longer execution time compared to a regular query\n \nHere is how this code could be improved:\n * use `task_pack.result_summary_key_to_request_key` to convert `TaskResultSummary` key into `TaskRequest` key\n * only retrieve `TaskRequest` entities\n * issue batch lookups (nbd.get_multi)",
+      "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "efe6f1e5_0089bf0a",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 1
@@ -71,6 +88,30 @@
       "writtenOn": "2021-07-30T02:04:32Z",
       "side": 1,
       "message": "It happens often. http://screen/BdVxCzQZ37vnkpP\nBut it doesn\u0027t correlated with the execution time.",
+      "parentUuid": "e5ececb9_60478792",
+      "range": {
+        "startLine": 1812,
+        "startChar": 0,
+        "endLine": 1817,
+        "endChar": 0
+      },
+      "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "964ea379_1a146e48",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1817,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-07-30T02:14:43Z",
+      "side": 1,
+      "message": "Can we just remove this exception handler? I don\u0027t see what purpose it serves other than masking errors. If this query does timeout sporadically, we should consider breaking it up with cursors.",
       "parentUuid": "e5ececb9_60478792",
       "range": {
         "startLine": 1812,
