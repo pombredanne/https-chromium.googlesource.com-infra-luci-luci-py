@@ -39,6 +39,30 @@
       },
       "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3165ca27_9c08dfb3",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1817,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-07-30T02:04:32Z",
+      "side": 1,
+      "message": "It happens often. http://screen/BdVxCzQZ37vnkpP\nBut it doesn\u0027t correlated with the execution time.",
+      "parentUuid": "e5ececb9_60478792",
+      "range": {
+        "startLine": 1812,
+        "startChar": 0,
+        "endLine": 1817,
+        "endChar": 0
+      },
+      "revId": "6a1bde0b7f1b2c125d6f2d4ea178282d44970615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
