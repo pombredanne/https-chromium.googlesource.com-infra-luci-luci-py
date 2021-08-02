@@ -16,6 +16,29 @@
       "message": "Better to get an approval from Takuto on go/chrome-swarming-isolation:l2 before starting implementation?",
       "revId": "49c4a68f197c5fbf3fa72f5a3a9a430745208be5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67f4d1c6_f20ef614",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-02T02:05:19Z",
+      "side": 1,
+      "message": "It is better to have dir for nsjail.\nIf task has its own nsjail in cipd package, that might be overwritten by this.",
+      "range": {
+        "startLine": 1343,
+        "startChar": 24,
+        "endLine": 1343,
+        "endChar": 31
+      },
+      "revId": "49c4a68f197c5fbf3fa72f5a3a9a430745208be5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
