@@ -395,22 +395,27 @@ class Containment(object):
   # these platforms.
   # See https://docs.microsoft.com/en-us/windows/desktop/procthread/job-objects
   # cgroups will be added.
-  NONE, AUTO, JOB_OBJECT = range(3)
+  NONE, AUTO, JOB_OBJECT, NSJAIL = range(4)
 
   NAMES = {
       NONE: 'NONE',
       AUTO: 'AUTO',
       JOB_OBJECT: 'JOB_OBJECT',
+      NSJAIL: 'NSJAIL',
   }
 
   def __init__(self,
                containment_type=NONE,
                limit_processes=0,
-               limit_total_committed_memory=0):
+               limit_total_committed_memory=0,
+               nsjail_bin_path=None,
+               nsjail_config_file=None):
     self.containment_type = containment_type
     # Limit on the number of active processes.
     self.limit_processes = limit_processes
     self.limit_total_committed_memory = limit_total_committed_memory
+    self.nsjail_bin_path = nsjail_bin_path
+    self.nsjail_config_file = nsjail_config_file
 
   def __eq__(self, rhs):
     if not rhs:
@@ -418,7 +423,9 @@ class Containment(object):
     return (
         self.containment_type == rhs.containment_type and
         self.limit_processes == rhs.limit_processes and
-        self.limit_total_committed_memory == rhs.limit_total_committed_memory)
+        self.limit_total_committed_memory == rhs.limit_total_committed_memory
+        and self.nsjail_bin_path == self.nsjail_bin_path and
+        self.nsjail_config_file == self.nsjail_config_file)
 
   def __str__(self):
     return 'Containment<%s, %s, %s>' % (self.NAMES[self.containment_type],
@@ -527,7 +534,6 @@ class Popen(subprocess.Popen):
         if sys.platform != 'win32':
           raise NotImplementedError(
               'containment is not implemented on this platform')
-      if sys.platform == 'win32':
         # May throw an WindowsError.
         # pylint: disable=undefined-variable
         self._job = _JobObject(self.containment)
@@ -535,6 +541,13 @@ class Popen(subprocess.Popen):
         # object, then resume it.
         prev = kwargs.get('creationflags', 0)
         kwargs['creationflags'] = prev | CREATE_SUSPENDED
+      elif self.containment.containment_type == Containment.NSJAIL:
+        if sys.platform != 'linux':
+          raise NotImplementedError(
+              'NSJAIL containment is only supported on linux')
+        # Prepend the passed in command with an nsjail invocation and configuration.
+        args = [self.nsjail_path, "--config", self.nsjail_config_file, "--"
+               ] + args
 
     self.end = None
     self.pgid = None
