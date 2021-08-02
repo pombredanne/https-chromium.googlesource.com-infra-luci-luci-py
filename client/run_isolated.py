@@ -114,6 +114,8 @@ _CAS_CLIENT_DIR = u'cc'
 ISOLATED_PACKAGE = 'infra/tools/luci/isolated/${platform}'
 _CAS_PACKAGE = 'infra/tools/luci/cas/${platform}'
 _LUCI_GO_REVISION = DEPS.deps['luci-go']['packages'][0]['version']
+_NSJAIL_PACKAGE = 'infra/3pp/tools/nsjail/${platform}'
+_NSJAIL_VERSION = 'version:2@3.0.chromium.1'
 
 # Keep synced with task_request.py
 CACHE_NAME_RE = re.compile(r'^[a-z0-9_]{1,4096}$')
@@ -1333,6 +1335,13 @@ def install_client_and_packages(run_dir, packages, service_url,
     # Install cas client to |cas_dir|.
     _install_packages(cas_dir, cipd_cache_dir, client,
                       [('', _CAS_PACKAGE, _LUCI_GO_REVISION)])
+
+    # Install nsjail on Linux hosts to |run_dir|.
+    # TODO(https://crbug.com/1227833): Remove amd64 filter once nsjail builds
+    # on arm64.
+    if sys.platform == "linux" and get_platform() == "amd64":
+      _install_packages(run_dir, cipd_cache_dir, client,
+                        [('', _NSJAIL_PACKAGE, _NSJAIL_VERSION)])
 
     file_path.make_tree_files_read_only(run_dir)
 
