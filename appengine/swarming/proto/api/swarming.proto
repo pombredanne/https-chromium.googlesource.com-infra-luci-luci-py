@@ -14,6 +14,7 @@ syntax = "proto3";
 package swarming.v1;
 option go_package = "go.chromium.org/luci/swarming/proto/api;apipb";
 
+import "njsail.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
@@ -590,6 +591,8 @@ message Containment {
     AUTO = 2;
     // Use Job Object on Windows. Will fail if used on other platforms.
     JOB_OBJECT = 3;
+    // Use NsJail on Linux. Will fail if used on other platforms.
+    NSJAIL = 4;
   }
 
   // Lowers the priority of the task process when started. Doesn't require
@@ -606,6 +609,10 @@ message Containment {
   int64 limit_processes = 3;
   // Limits the total amount of memory allocated by processes.
   int64 limit_total_committed_memory = 4;
+
+  // Configures NsJail. Will be ignored if containment_type is not set to
+  // NSJAIL.
+  nsjail.NsJailConfig nsjail_config = 5;
 }
 
 // Defines the 'what' to run.
