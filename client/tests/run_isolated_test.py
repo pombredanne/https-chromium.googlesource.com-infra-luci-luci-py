@@ -166,7 +166,7 @@ class RunIsolatedTestBase(auto_stub.TestCase):
         prefix,
         (run_isolated.ISOLATED_OUT_DIR, run_isolated.ISOLATED_RUN_DIR,
          run_isolated.ISOLATED_TMP_DIR, run_isolated.ISOLATED_CLIENT_DIR,
-         run_isolated._CAS_CLIENT_DIR, 'cipd_site_root'))
+         run_isolated._CAS_CLIENT_DIR, 'cipd_site_root', run_isolated._NSJAIL_DIR))
     temp_dir = os.path.join(self.tempdir, prefix)
     self.assertFalse(fs.isdir(temp_dir))
     fs.makedirs(temp_dir)
