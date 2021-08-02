@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "618b2ebd_5dc09592",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-02T05:55:35Z",
+      "side": 1,
+      "message": "import \"nsjail.proto\" as it\u0027s copied to the same directory.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 62
+      },
+      "revId": "7bc28d18d7413eeb7f7549e583f25f3466de4a92",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e0d4f133_8fdaf33d",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 2
