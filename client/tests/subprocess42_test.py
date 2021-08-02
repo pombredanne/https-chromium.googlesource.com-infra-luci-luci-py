@@ -431,6 +431,16 @@ time.sleep(60)
         limit_total_committed_memory=1024 * 1024 * 1024)
     self.assertEqual(0, subprocess42.check_call(cmd, containment=containment))
 
+  def test_containment_nsjail(self):
+    # Tests that nsjail containment correctly prepends the nsjail binary to
+    # the command.
+    cmd = self._cmd_print_good()
+    containment = subprocess42.Containment(
+        containment_type=subprocess42.Containment.NSJAIL,
+        nsjail_bin_path="./nsjail_fake.py",
+        nsjail_config_file="./path/to/config")
+    self.assertEqual(0, subprocess42.check_call(cmd, containment=containment))
+
   def test_containment_auto_limit_process(self):
     # Process creates a children process. It should fail, throwing not enough
     # quota.
