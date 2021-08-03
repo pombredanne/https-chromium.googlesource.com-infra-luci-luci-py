@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8382aa22_a7ea275b",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1372464
+      },
+      "writtenOn": "2021-08-03T07:16:27Z",
+      "side": 1,
+      "message": "Done. I had originally just keyed off linux-amd64 as I had not implemented the NSJAIL containment_type yet. It\u0027s still not fully functional by any means, but I\u0027ve stubbed it out enough to use it here.",
+      "parentUuid": "6d4530b6_880ff63b",
+      "revId": "ecced23793f8dcf35dd6c537815e9965dc5fce46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c9fba46_f040739d",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-08-03T05:41:02Z",
       "side": 1,
       "message": "check nsjail_dir is empty or not",
+      "revId": "ecced23793f8dcf35dd6c537815e9965dc5fce46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6695bf99_e28dda97",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1372464
+      },
+      "writtenOn": "2021-08-03T07:16:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c9fba46_f040739d",
       "revId": "ecced23793f8dcf35dd6c537815e9965dc5fce46",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
