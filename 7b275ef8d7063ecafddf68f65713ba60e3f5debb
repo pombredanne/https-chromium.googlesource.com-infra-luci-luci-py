@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e484f383_4a38e873",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2021-08-03T01:24:54Z",
+      "side": 1,
+      "message": "lgtm % i bet tests need nit-fix, too.",
+      "revId": "7b275ef8d7063ecafddf68f65713ba60e3f5debb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
