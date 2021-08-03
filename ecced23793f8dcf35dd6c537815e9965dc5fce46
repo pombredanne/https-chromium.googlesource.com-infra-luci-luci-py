@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d4530b6_880ff63b",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-03T05:41:02Z",
+      "side": 1,
+      "message": "can we pass non-empty dir only when nsjail containment is enabled?",
+      "revId": "ecced23793f8dcf35dd6c537815e9965dc5fce46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c9fba46_f040739d",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-03T05:41:02Z",
+      "side": 1,
+      "message": "check nsjail_dir is empty or not",
+      "revId": "ecced23793f8dcf35dd6c537815e9965dc5fce46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
