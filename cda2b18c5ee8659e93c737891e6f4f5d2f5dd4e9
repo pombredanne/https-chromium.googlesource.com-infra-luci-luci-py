@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6da0e92_896c6def",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-03T08:39:30Z",
+      "side": 1,
+      "message": "I think it is better to use real nsjail.\nThat can be fetched from CIPD via DEPS.",
+      "revId": "cda2b18c5ee8659e93c737891e6f4f5d2f5dd4e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
