@@ -16,6 +16,24 @@
       "message": "I think it is better to use real nsjail.\nThat can be fetched from CIPD via DEPS.",
       "revId": "cda2b18c5ee8659e93c737891e6f4f5d2f5dd4e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4e13b82_9e9f8c2c",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1372464
+      },
+      "writtenOn": "2021-08-03T17:49:06Z",
+      "side": 1,
+      "message": "Can you link an example where we do this? I see DEPS.py in the client directory, but it appears to just be a dictionary of revisions. It doesn\u0027t actually seem to be used to fetch CIPD packages at test time.\n\nAdditionally, I\u0027m not sure I see a lot of value to running the real nsjail. The purpose of this test is to verify that subprocess42.Popen rewrites the command correctly to invoke nsjail - not to verify that nsjail itself runs correctly (that should be tested in the nsjail tests).",
+      "parentUuid": "f6da0e92_896c6def",
+      "revId": "cda2b18c5ee8659e93c737891e6f4f5d2f5dd4e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
