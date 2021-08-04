@@ -8,6 +8,7 @@ This module assumes that filesystem is not changing while current process
 is running and thus it caches results of functions that depend on FS state.
 """
 
+from collections import deque
 import ctypes
 import errno
 import getpass
@@ -1055,7 +1056,7 @@ def make_tree_files_read_only(root):
         set_read_only(os.path.join(dirpath, dirname), False)
 
 
-def make_tree_deleteable(root):
+def make_tree_deleteable_legacy(root):
   """Changes the appropriate permissions so the files in the directories can be
   deleted.
 
@@ -1066,7 +1067,7 @@ def make_tree_deleteable(root):
   modified. This means that for hard-linked files, every directory entry for the
   file node has its file permission modified.
   """
-  logging.debug('file_path.make_tree_deleteable(%s)', root)
+  logging.debug('Using file_path.make_tree_deleteable_legacy')
   err = None
   sudo_failed = False
 
@@ -1112,6 +1113,64 @@ def make_tree_deleteable(root):
     raise err
 
 
+def make_tree_deleteable_win(root):
+  logging.debug('Using file_path.make_tree_deleteable_win')
+  err = None
+
+  dirs = deque([root])
+  while dirs:
+    for entry in os.scandir(dirs.popleft()):
+      if entry.is_file():
+        e = set_read_only_swallow(entry.path, False)
+        if not err:
+          err = e
+      if not entry.is_dir() or _is_junction_entry(entry):
+        continue
+      dirs.append(entry.path)
+
+  if err:
+    raise err
+
+
+def make_tree_deleteable_posix(root):
+  logging.debug('Using file_path.make_tree_deleteable_posix')
+  err = None
+  sudo_failed = False
+
+  def try_sudo(p):
+    if sudo_failed:
+      return
+    # Try passwordless sudo, just in case. In practice, it is preferable
+    # to use linux capabilities.
+    with open(os.devnull, 'rb') as f:
+      if not subprocess42.call(['sudo', '-n', 'chmod', 'a+rwX,-t', p], stdin=f):
+        return
+    logging.debug('sudo chmod %s failed', p)
+    sudo_failed = True
+    return
+
+  if sys.platform != 'win32':
+    e = set_read_only_swallow(root, False)
+    if e:
+      try_sudo(root)
+    if not err:
+      err = e
+
+  dirs = deque([root])
+  while dirs:
+    for entry in os.scandir(dirs.popleft()):
+      if not entry.is_dir():
+        continue
+      dirs.append(entry.path)
+      e = set_read_only_swallow(entry.path, False)
+      if e:
+        try_sudo(root)
+      if not err:
+        err = e
+  if err:
+    raise err
+
+
 def rmtree(root):
   """Wrapper around shutil.rmtree() to retry automatically on Windows.
 
@@ -1129,10 +1188,16 @@ def rmtree(root):
   def change_tree_permission():
     start = time.time()
     try:
-      make_tree_deleteable(root)
+      if six.PY3:
+        if sys.platform == 'win32':
+          make_tree_deleteable_win(root)
+        else:
+          make_tree_deleteable_posix(root)
+      else:
+        make_tree_deleteable_legacy(root)
     except OSError as e:
       logging.warning('Swallowing make_tree_deleteable() error: %s', e)
-    logging.debug('file_path.make_tree_deleteable(%s) took %d seconds', root,
+    logging.debug('file_path.make_tree_deleteable(%s) took %s seconds', root,
                   time.time() - start)
 
   # First try the soft way: tries 3 times to delete and sleep a bit in between.
@@ -1148,7 +1213,7 @@ def rmtree(root):
     logging.debug('file_path.rmtree(%s) try=%d', root, i)
     start = time.time()
     fs.rmtree(root, onerror=lambda *args: errors.append(args))
-    logging.debug('file_path.rmtree(%s) try=%d took %d seconds', root, i,
+    logging.debug('file_path.rmtree(%s) try=%d took %s seconds', root, i,
                   time.time() - start)
     if not errors or not fs.exists(root):
       if i:
