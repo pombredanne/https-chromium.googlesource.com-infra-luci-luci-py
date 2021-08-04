@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16f4d399_e4ef27d9",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1255,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-04T02:28:44Z",
+      "side": 1,
+      "message": "update comment?",
+      "range": {
+        "startLine": 1254,
+        "startChar": 0,
+        "endLine": 1255,
+        "endChar": 50
+      },
+      "revId": "9a2cf0a5bf27e5de88245c0bbbc44a56bee85d21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
