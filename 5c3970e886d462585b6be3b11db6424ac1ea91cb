@@ -16,6 +16,24 @@
       "message": "is it possible log nsjail output to file?",
       "revId": "5c3970e886d462585b6be3b11db6424ac1ea91cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b029cbc6_be8b0901",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1372464
+      },
+      "writtenOn": "2021-08-04T06:27:45Z",
+      "side": 1,
+      "message": "From what I can tell, there\u0027s no way to have nsjail redirect stdout/stderr to a file. There is an option to redirect stderr to /dev/null, but that\u0027s about it.",
+      "parentUuid": "77e9bd38_8fa23175",
+      "revId": "5c3970e886d462585b6be3b11db6424ac1ea91cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
