@@ -52,6 +52,24 @@
       "parentUuid": "f4e13b82_9e9f8c2c",
       "revId": "cda2b18c5ee8659e93c737891e6f4f5d2f5dd4e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "382bb4ad_21aef028",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1372464
+      },
+      "writtenOn": "2021-08-04T05:28:37Z",
+      "side": 1,
+      "message": "Ah, thanks for the pointer to DEPS! I\u0027m new to the chromium checkout, so I wasn\u0027t aware of how they worked.\n\nI\u0027ve added nsjail and used the real binary in the unit test.",
+      "parentUuid": "87032b65_5eabdbf9",
+      "revId": "cda2b18c5ee8659e93c737891e6f4f5d2f5dd4e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
