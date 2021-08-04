@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90b650ed_3b31d21b",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1372464
+      },
+      "writtenOn": "2021-08-04T22:06:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "564cd3df_f3562da5",
+      "range": {
+        "startLine": 120,
+        "startChar": 18,
+        "endLine": 120,
+        "endChar": 44
+      },
+      "revId": "fa3a7a5c26d329f468b81f5fd2fa8d376794bd22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3884bcb_da132ad2",
@@ -41,6 +65,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09fc5186_ab3beb79",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1372464
+      },
+      "writtenOn": "2021-08-04T22:06:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3884bcb_da132ad2",
+      "revId": "fa3a7a5c26d329f468b81f5fd2fa8d376794bd22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4641f722_df4f4925",
@@ -54,6 +96,30 @@
       "writtenOn": "2021-08-04T21:38:53Z",
       "side": 1,
       "message": "it is better to read from file as this can be blocked?",
+      "range": {
+        "startLine": 467,
+        "startChar": 27,
+        "endLine": 467,
+        "endChar": 32
+      },
+      "revId": "fa3a7a5c26d329f468b81f5fd2fa8d376794bd22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21ac2b80_48cba176",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1372464
+      },
+      "writtenOn": "2021-08-04T22:06:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4641f722_df4f4925",
       "range": {
         "startLine": 467,
         "startChar": 27,
