@@ -106,6 +106,24 @@
       "parentUuid": "ad75970f_505ed4cd",
       "revId": "5c3970e886d462585b6be3b11db6424ac1ea91cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea8ff6d3_417bb801",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-04T09:42:41Z",
+      "side": 1,
+      "message": "\u003e Okay. Is this something you want to change in the test? I think it\u0027s valuable to check stdout/stderr in the test.\n\u003e \n\nI see. But my concern is nsjail log might be too chatty in task output.\nThen could you write nsjail log to some temp file and check the content of the file?\n\n\u003e And right now I\u0027ve been distinguishing the failures by reading the stderr messages, so it is possible, though I\u0027m not sure exactly how (or maybe even if?) we\u0027ll have swarming do this.\n\nI see.",
+      "parentUuid": "fc1131a0_d005fe1b",
+      "revId": "5c3970e886d462585b6be3b11db6424ac1ea91cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
