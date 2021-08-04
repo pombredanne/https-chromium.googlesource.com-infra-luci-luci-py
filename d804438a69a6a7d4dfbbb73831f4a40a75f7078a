@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c67d83d_ea2eaf05",
+        "filename": "DEPS",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-04T05:35:46Z",
+      "side": 1,
+      "message": "add gitignore for this",
+      "revId": "d804438a69a6a7d4dfbbb73831f4a40a75f7078a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c71599e9_23dff806",
+        "filename": "DEPS",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-04T05:35:46Z",
+      "side": 1,
+      "message": "download this only in linux?",
+      "revId": "d804438a69a6a7d4dfbbb73831f4a40a75f7078a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "672e79dc_92c4523a",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-04T05:35:46Z",
+      "side": 1,
+      "message": "better to use abspath, tests may not run in this dir",
+      "range": {
+        "startLine": 453,
+        "startChar": 24,
+        "endLine": 453,
+        "endChar": 45
+      },
+      "revId": "d804438a69a6a7d4dfbbb73831f4a40a75f7078a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
