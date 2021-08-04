@@ -34,6 +34,24 @@
       "parentUuid": "77e9bd38_8fa23175",
       "revId": "5c3970e886d462585b6be3b11db6424ac1ea91cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e59e913_970e543a",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-04T06:41:56Z",
+      "side": 1,
+      "message": "https://github.com/google/nsjail/blob/95e112cf41abc0a98e80ed0c932a5ef263a4e735/config.proto#L111 seems the config for such purpose?",
+      "parentUuid": "b029cbc6_be8b0901",
+      "revId": "5c3970e886d462585b6be3b11db6424ac1ea91cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
