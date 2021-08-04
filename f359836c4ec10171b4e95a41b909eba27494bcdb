@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c163137b_9585ef58",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 988,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2021-08-04T22:56:12Z",
+      "side": 1,
+      "message": "I disagree. You still want a filter because there are (used to have?) armv7 and mips bots. So remove the comment.",
+      "revId": "f359836c4ec10171b4e95a41b909eba27494bcdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
