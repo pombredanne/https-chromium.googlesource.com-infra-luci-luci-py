@@ -23,6 +23,7 @@ from depot_tools import auto_stub
 
 from utils import file_path
 from utils import fs
+from utils import subprocess42
 
 
 def write_content(filepath, content):
@@ -185,6 +186,60 @@ class FilePathTest(auto_stub.TestCase):
     # Do not raise OSError with errno.EEXIST
     file_path.ensure_tree(dir_foo, 0o777)
 
+  @unittest.skipIf(sys.platform == 'win32', 'posix only')
+  def test_rmtree(self):
+    root = os.path.join(self.tempdir, 'root')
+    child_dir = os.path.join(root, 'child')
+    grand_child_dir = os.path.join(child_dir, 'grand_child')
+    dirs = [root, child_dir, grand_child_dir]
+    for d in dirs:
+      os.mkdir(d)
+
+    # Emulate fs.rmtree() permission error.
+    can_delete = set()
+    def fs_rmtree_mock(_path, onerror):
+      for d in dirs:
+        if not d in can_delete:
+          onerror(None, None, (None, None, None))
+
+    def chmod_mock(path, _mode):
+      can_delete.add(path)
+
+    self.mock(fs, 'rmtree', fs_rmtree_mock)
+    if hasattr(os, 'lchmod'):
+      self.mock(fs, 'lchmod', chmod_mock)
+    else:
+      self.mock(fs, 'chmod', chmod_mock)
+
+    file_path.rmtree(root)
+
+  @unittest.skipIf(sys.platform == 'win32', 'posix only')
+  def test_rmtree_with_sudo_chmod(self):
+    root = os.path.join(self.tempdir, 'root')
+    child_dir = os.path.join(root, 'child')
+    grand_child_dir = os.path.join(child_dir, 'grand_child')
+    dirs = [root, child_dir, grand_child_dir]
+    for d in dirs:
+      os.mkdir(d)
+
+    # Emulate fs.rmtree() permission error.
+    can_delete = set()
+    def fs_rmtree_mock(_path, onerror):
+      for d in dirs:
+        if not d in can_delete:
+          onerror(None, None, (None, None, None))
+
+    # pylint: disable=unused-argument
+    def subprocess_mock(cmd, stdin=None):
+      path = cmd[4]
+      can_delete.add(path)
+
+    self.mock(fs, 'rmtree', fs_rmtree_mock)
+    self.mock(file_path, 'set_read_only_swallow', lambda *_: OSError('error'))
+    self.mock(subprocess42, 'call', subprocess_mock)
+
+    file_path.rmtree(root)
+
   def test_rmtree_unicode(self):
     subdir = os.path.join(self.tempdir, 'hi')
     fs.mkdir(subdir)
@@ -280,6 +335,36 @@ class FilePathTest(auto_stub.TestCase):
         self.assertEqual([basename], fs.listdir(tempdir))
       finally:
         file_path.rmtree(tempdir)
+
+    def test_rmtree_win(self):
+      root = os.path.join(self.tempdir, 'root')
+      child_dir = os.path.join(root, 'child')
+      grand_child_dir = os.path.join(child_dir, 'grand_child')
+      dirs = [root, child_dir, grand_child_dir]
+      for d in dirs:
+        os.mkdir(d)
+      files = [
+        os.path.join(root, 'file1'),
+        os.path.join(child_dir, 'file2'),
+        os.path.join(grand_child_dir, 'file3'),
+      ]
+      for f in files:
+        open(f, 'w').close()
+
+      # Emulate fs.rmtree() permission error.
+      can_delete = set()
+      def fs_rmtree_mock(_path, onerror):
+        for f in files:
+          if not f in can_delete:
+            onerror(None, None, (None, None, None))
+
+      def chmod_mock(path, _mode):
+        can_delete.add(path)
+
+      self.mock(fs, 'rmtree', fs_rmtree_mock)
+      self.mock(fs, 'chmod', chmod_mock)
+
+      file_path.rmtree(root)
 
     def test_rmtree_outliving_processes(self):
       # Mock our sleep for faster test case execution.
