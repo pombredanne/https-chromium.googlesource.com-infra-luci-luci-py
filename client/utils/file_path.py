@@ -1127,6 +1127,7 @@ def rmtree(root):
   root = six.text_type(root)
 
   def change_tree_permission():
+    logging.debug('file_path.make_tree_deleteable(%s) starting', root)
     start = time.time()
     try:
       make_tree_deleteable(root)
@@ -1157,6 +1158,9 @@ def rmtree(root):
 
     # Try to change tree permission.
     if not has_called_change_tree_permission:
+      logging.error(
+          'Failed to delete %s (%d files remaining).\n'
+          '  Maybe tree permission needs to be changed.\n', root, len(errors))
       change_tree_permission()
       has_called_change_tree_permission = True
       # do not sleep here.
