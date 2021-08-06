@@ -197,7 +197,6 @@ class FilePathTest(auto_stub.TestCase):
 
     # Emulate fs.rmtree() permission error.
     can_delete = set()
-
     def fs_rmtree_mock(_path, onerror):
       for d in dirs:
         if not d in can_delete:
@@ -225,7 +224,6 @@ class FilePathTest(auto_stub.TestCase):
 
     # Emulate fs.rmtree() permission error.
     can_delete = set()
-
     def fs_rmtree_mock(_path, onerror):
       for d in dirs:
         if not d in can_delete:
@@ -346,16 +344,15 @@ class FilePathTest(auto_stub.TestCase):
       for d in dirs:
         os.mkdir(d)
       files = [
-          os.path.join(root, 'file1'),
-          os.path.join(child_dir, 'file2'),
-          os.path.join(grand_child_dir, 'file3'),
+        os.path.join(root, 'file1'),
+        os.path.join(child_dir, 'file2'),
+        os.path.join(grand_child_dir, 'file3'),
       ]
       for f in files:
         open(f, 'w').close()
 
       # Emulate fs.rmtree() permission error.
       can_delete = set()
-
       def fs_rmtree_mock(_path, onerror):
         for f in files:
           if not f in can_delete:
