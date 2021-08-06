@@ -23,6 +23,7 @@ from depot_tools import auto_stub
 
 from utils import file_path
 from utils import fs
+from utils import subprocess42
 
 
 def write_content(filepath, content):
@@ -184,6 +185,63 @@ class FilePathTest(auto_stub.TestCase):
 
     # Do not raise OSError with errno.EEXIST
     file_path.ensure_tree(dir_foo, 0o777)
+
+  def test_rmtree(self):
+    root = os.path.join(self.tempdir, 'root')
+    os.mkdir(root)
+    child_dir = os.path.join(root, 'child')
+    os.mkdir(child_dir)
+    grand_child_dir = os.path.join(child_dir, 'grand_child')
+    os.mkdir(grand_child_dir)
+    dirs = [root, child_dir, grand_child_dir]
+
+    can_delete = set()
+
+    # Emulate fs.rmtree() permission error.
+    def fs_rmtree_mock(_path, onerror):
+      for d in dirs:
+        if not d in can_delete:
+          onerror(None, None, (None, None, None))
+
+    def chmod_mock(path, _mode):
+      can_delete.add(path)
+      return
+
+    self.mock(fs, 'rmtree', fs_rmtree_mock)
+    self.mock(fs, 'lchmod', chmod_mock)
+    self.mock(fs, 'chmod', chmod_mock)
+
+    file_path.rmtree(root)
+
+  @unittest.skipIf(sys.platform == 'win32', 'Posix only')
+  def test_rmtree_with_sudo_chmod(self):
+    root = os.path.join(self.tempdir, 'root')
+    os.mkdir(root)
+    child_dir = os.path.join(root, 'child')
+    os.mkdir(child_dir)
+    grand_child_dir = os.path.join(child_dir, 'grand_child')
+    os.mkdir(grand_child_dir)
+    dirs = [root, child_dir, grand_child_dir]
+
+    can_delete = set()
+
+    # Emulate fs.rmtree() permission error.
+    def fs_rmtree_mock(_path, onerror):
+      for d in dirs:
+        if not d in can_delete:
+          onerror(None, None, (None, None, None))
+
+    # pylint: disable=unused-argument
+    def subprocess42_mock(cmd, stdin=None):
+      path = cmd[4]
+      can_delete.add(path)
+      return
+
+    self.mock(fs, 'rmtree', fs_rmtree_mock)
+    self.mock(file_path, 'set_read_only_swallow', lambda *_: OSError('error'))
+    self.mock(subprocess42, 'call', subprocess42_mock)
+
+    file_path.rmtree(root)
 
   def test_rmtree_unicode(self):
     subdir = os.path.join(self.tempdir, 'hi')
