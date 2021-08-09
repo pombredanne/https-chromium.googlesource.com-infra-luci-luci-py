@@ -33,6 +33,24 @@
       "message": "How do you think the last comment in https://docs.google.com/document/d/1SfgQBrsgvLei_JrbA-m-KbIJL7kuE4IMvzaY_be8R50/edit?disco\u003dAAAANZeNf9w\n?",
       "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9730e4b7_a93d4529",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1372464
+      },
+      "writtenOn": "2021-08-09T20:19:24Z",
+      "side": 1,
+      "message": "I think I may have misunderstood the scope of that comment. It was my understanding that we would import the full nsjail proto into swarming, but that the task properties message in swarming_rpcs.py would include only a subset of those properties. Is this not what you had in mind?",
+      "parentUuid": "41da03a5_a650f896",
+      "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
