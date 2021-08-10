@@ -51,6 +51,24 @@
       "message": "opt nit: `if orig_mode is None`?",
       "revId": "8d8f1c763a50a655d36901905161f55a56f3918c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d962aaf_e6cd31f4",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-10T02:19:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb9285a9_6fd0a365",
+      "revId": "8d8f1c763a50a655d36901905161f55a56f3918c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
