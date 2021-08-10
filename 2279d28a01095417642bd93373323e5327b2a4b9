@@ -16,6 +16,24 @@
       "message": "update revision in\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/third_party/gae_ts_mon/README.swarming\ntoo?",
       "revId": "2279d28a01095417642bd93373323e5327b2a4b9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca1fab0b_029ba640",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2021-08-10T03:00:44Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "58cc03a2_929d763a",
+      "revId": "2279d28a01095417642bd93373323e5327b2a4b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
