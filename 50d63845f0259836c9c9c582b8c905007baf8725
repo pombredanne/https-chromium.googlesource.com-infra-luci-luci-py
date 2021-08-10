@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30be00da_1a87fefb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1372464
+      },
+      "writtenOn": "2021-08-10T02:24:28Z",
+      "side": 1,
+      "message": "I see. In this case, I\u0027m not sure it makes sense to create a custom proto message that is a subset of the nsjail configuration; any time we wanted to use a new feature, we would need to roll the RPC definition, which doesn\u0027t seem like a good way to do things.\n\nFrom that comment thread, it seems that the main reason to have a subset is to do the strictness comparison between task properties and pool defaults. Is that correct? If so, I think we\u0027re willing to avoid the comparison for now.",
+      "parentUuid": "e8c0bee6_da45e2bc",
+      "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5cdd337_9864e32c",
         "filename": "appengine/swarming/proto/api/nsjail.proto",
         "patchSetId": 3
