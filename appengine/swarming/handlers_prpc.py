@@ -14,6 +14,24 @@ from proto.api import swarming_prpc_pb2  # pylint: disable=no-name-in-module
 from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
 from server import bot_management
 
+from go.chromium.org.luci.buildbucket.proto import taskbackend_service_prpc_pb2
+
+
+class TaskBackendAPIService(object):
+  """Service implements the pRPC service in backend.proto."""
+
+  DESCRIPTION = taskbackend_service_prpc_pb2.TaskBackendServiceDescription
+
+  def RunTask(self, request, context):
+
+    # Store request.backend_token that expires after
+    # request.start_deadline + request.execution_timeout + request.grace_period
+
+    new_task_json = backend_helpers._ingest_run_task_request(request)
+
+    res = backend_helpers._call_swarming_api_async(
+        'tasks/new', payload=new_task_json, act_as_project=project)
+
 
 class BotAPIService(object):
   """Service implements the pRPC service in swarming.proto."""
@@ -81,4 +99,5 @@ class BotAPIService(object):
 def get_routes():
   s = prpc.Server()
   s.add_service(BotAPIService())
+  s.add_service(TaskBackendAPIService())
   return s.get_routes()
