@@ -127,6 +127,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1faea18b_ed10d2ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-10T06:57:32Z",
+      "side": 1,
+      "message": "\u003e Sorry, I don\u0027t have a lot of familiarity with the task triggering layer - can you point me to some code? \n\u003e \n\nThat depends on which task you want to use nsjail, and we are familar to such layer too as those are configured by our customers.\ne.g. I guess buildbucket constructs tasks around\nhttps://chromium.googlesource.com/infra/infra/+/refs/heads/main/appengine/cr-buildbucket/swarming.py#115\n\n\nAlso if you are not famliar to task triggering layer, it is better to check how will you have task specific nsjail config.\nAnd I think if you can support task specific nsjail config in task triggering layer, it won\u0027t be so difficult to prepend nsjail to task request.\n\n\u003e Our main thought process here was that nsjail was the conceptual equivalent of a JobObject in Windows, and thus should belong in the same part of the stack. It also seemed easiest to implement pool level defaults by including it at this level. \n\u003e \n\u003e As for the strictness check, I still want to keep the option to do this in the future open, but I don\u0027t want to block on it for this particular effort, as BCID does not require it.\n\nI see. Then I think you need to consider whether you trust task triggerer and they won\u0027t send request doing bad thing with less restricted nsjail config.",
+      "parentUuid": "a6bb847a_e820018c",
+      "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5cdd337_9864e32c",
         "filename": "appengine/swarming/proto/api/nsjail.proto",
         "patchSetId": 3
