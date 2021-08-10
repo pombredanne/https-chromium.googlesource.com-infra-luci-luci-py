@@ -51,6 +51,41 @@
       "parentUuid": "41da03a5_a650f896",
       "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8c0bee6_da45e2bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-10T00:52:39Z",
+      "side": 1,
+      "message": "I\u0027d like to have the same structure for bq schema and rpc message.",
+      "parentUuid": "9730e4b7_a93d4529",
+      "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5cdd337_9864e32c",
+        "filename": "appengine/swarming/proto/api/nsjail.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-10T00:52:39Z",
+      "side": 1,
+      "message": "This is not used?",
+      "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
