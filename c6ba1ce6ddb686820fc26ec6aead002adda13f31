@@ -3,6 +3,63 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37e33ef8_b4ceeaa5",
+        "filename": "client/tests/file_path_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-10T00:27:19Z",
+      "side": 1,
+      "message": "you can use os.makedirs?",
+      "range": {
+        "startLine": 196,
+        "startChar": 9,
+        "endLine": 196,
+        "endChar": 14
+      },
+      "revId": "c6ba1ce6ddb686820fc26ec6aead002adda13f31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14e5b3bb_456d831a",
+        "filename": "client/tests/file_path_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-10T00:27:19Z",
+      "side": 1,
+      "message": "why do we need this?",
+      "revId": "c6ba1ce6ddb686820fc26ec6aead002adda13f31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4eba8e0_ae01104a",
+        "filename": "client/tests/file_path_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-10T00:27:19Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "c6ba1ce6ddb686820fc26ec6aead002adda13f31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56c9927a_a170be04",
         "filename": "client/tests/file_path_test.py",
         "patchSetId": 7
@@ -14,6 +71,29 @@
       "writtenOn": "2021-08-07T03:09:38Z",
       "side": 1,
       "message": "opt nit: `if d not in can_delete` feels faster to understand, \nbut this may not be a universal opinion",
+      "revId": "c6ba1ce6ddb686820fc26ec6aead002adda13f31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da4dda1d_85e65633",
+        "filename": "client/tests/file_path_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-10T00:27:19Z",
+      "side": 1,
+      "message": "is it possible to unify the code other than these with above test?",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 0
+      },
       "revId": "c6ba1ce6ddb686820fc26ec6aead002adda13f31",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
