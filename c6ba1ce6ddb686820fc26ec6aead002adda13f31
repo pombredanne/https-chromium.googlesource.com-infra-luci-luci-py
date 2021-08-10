@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2b9aee1_b2608721",
+        "filename": "client/tests/file_path_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-10T02:16:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37e33ef8_b4ceeaa5",
+      "range": {
+        "startLine": 196,
+        "startChar": 9,
+        "endLine": 196,
+        "endChar": 14
+      },
+      "revId": "c6ba1ce6ddb686820fc26ec6aead002adda13f31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14e5b3bb_456d831a",
@@ -37,6 +61,24 @@
       "writtenOn": "2021-08-10T00:27:19Z",
       "side": 1,
       "message": "why do we need this?",
+      "revId": "c6ba1ce6ddb686820fc26ec6aead002adda13f31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a243c2c_48ed44de",
+        "filename": "client/tests/file_path_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-10T02:16:02Z",
+      "side": 1,
+      "message": "This is for mocking this logic.\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/client/utils/file_path.py;l\u003d892;drc\u003dfa1a65ec7cabda0016cf7c9104cc54dfa6ef567d\n\nPython on Mac has os.lchmod while it doesn\u0027t on Linux.",
+      "parentUuid": "14e5b3bb_456d831a",
       "revId": "c6ba1ce6ddb686820fc26ec6aead002adda13f31",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -58,6 +100,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0432eb08_106bef25",
+        "filename": "client/tests/file_path_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-10T02:16:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4eba8e0_ae01104a",
+      "revId": "c6ba1ce6ddb686820fc26ec6aead002adda13f31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56c9927a_a170be04",
@@ -75,6 +135,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dee1f24_43b207e4",
+        "filename": "client/tests/file_path_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-10T02:16:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56c9927a_a170be04",
+      "revId": "c6ba1ce6ddb686820fc26ec6aead002adda13f31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da4dda1d_85e65633",
@@ -88,6 +166,30 @@
       "writtenOn": "2021-08-10T00:27:19Z",
       "side": 1,
       "message": "is it possible to unify the code other than these with above test?",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 0
+      },
+      "revId": "c6ba1ce6ddb686820fc26ec6aead002adda13f31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db3f5e64_b53fc8cc",
+        "filename": "client/tests/file_path_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-10T02:16:02Z",
+      "side": 1,
+      "message": "I extracted making directories and files.\nI kept fs_rmtree_mock() because it access to `can_delete`. So it wasn\u0027t that simple.",
+      "parentUuid": "da4dda1d_85e65633",
       "range": {
         "startLine": 240,
         "startChar": 0,
