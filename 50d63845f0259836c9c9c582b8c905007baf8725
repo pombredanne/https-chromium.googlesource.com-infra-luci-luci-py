@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "981c4092_b633bd86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-10T02:37:50Z",
+      "side": 1,
+      "message": "I think we won\u0027t require new feature frequently, and I\u0027d like to narrow down the scope of knowledge by having only necessary part of configs we need to handle nsjail.\nI also want to know the context of each feature addition to nsjail config.\n\nAlso if you are fine to avoid comparison check, task owners can prepend nsjail in their task with arbitrary nsjail config. Then I\u0027m wondering why you need support for that in Swarming layer.\nDid you consider adding this feature to task triggering layer instead?",
+      "parentUuid": "30be00da_1a87fefb",
+      "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5cdd337_9864e32c",
         "filename": "appengine/swarming/proto/api/nsjail.proto",
         "patchSetId": 3
