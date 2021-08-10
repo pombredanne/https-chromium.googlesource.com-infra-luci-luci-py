@@ -16,6 +16,24 @@
       "message": "DO NOT MERGE\n\nI will deploy this version first.\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/3d9a075",
       "revId": "0487a16bbd731ab1f23f98b69fce762cecc38b2c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24ba0749_fe6746d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-10T02:36:42Z",
+      "side": 1,
+      "message": "\u003e https://chromium.googlesource.com/infra/luci/luci-py/+/3d9a075\nI released it.\n\nWill test this CL on dev for a while.",
+      "parentUuid": "7a536391_3efd3d66",
+      "revId": "0487a16bbd731ab1f23f98b69fce762cecc38b2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
