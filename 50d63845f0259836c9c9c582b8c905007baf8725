@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6bb847a_e820018c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1372464
+      },
+      "writtenOn": "2021-08-10T05:06:58Z",
+      "side": 1,
+      "message": "Sorry, I don\u0027t have a lot of familiarity with the task triggering layer - can you point me to some code? \n\nOur main thought process here was that nsjail was the conceptual equivalent of a JobObject in Windows, and thus should belong in the same part of the stack. It also seemed easiest to implement pool level defaults by including it at this level. \n\nAs for the strictness check, I still want to keep the option to do this in the future open, but I don\u0027t want to block on it for this particular effort, as BCID does not require it.",
+      "parentUuid": "981c4092_b633bd86",
+      "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5cdd337_9864e32c",
         "filename": "appengine/swarming/proto/api/nsjail.proto",
         "patchSetId": 3
