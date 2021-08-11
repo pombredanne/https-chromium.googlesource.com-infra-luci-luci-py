@@ -515,41 +515,58 @@ class DiskContentAddressedCache(ContentAddressedCache):
 
     # Verify hash of every single item to detect corruption. the corrupted
     # files will be evicted.
-    total = 0
-    verified = 0
-    deleted = 0
+    counter = {
+        'total': 0,
+        'verified': 0,
+        'deleted': 0,
+    }
     logging.info(
         'DiskContentAddressedCache.cleanup(): Verifying modified files')
+
+    def _delete_corrupted_item(digest, timestamp, mtime):
+      counter['total'] += 1
+      # verify only if the mtime is grather than the timestamp in state.json
+      # to avoid take too long time.
+      if mtime <= timestamp:
+        return
+      logging.warning(
+          'DiskContentAddressedCache.cleanup(): Item has been modified.'
+          ' verifying item: %s', digest)
+      is_valid = self._is_valid_hash(digest)
+      counter['verified'] += 1
+      logging.warning(
+          'DiskContentAddressedCache.cleanup(): verified. is_valid: %s, '
+          'item: %s', is_valid, digest)
+      if is_valid:
+        # Update timestamp in state.json
+        self._lru.touch(digest)
+        return
+      # remove corrupted file from LRU and file system
+      self._lru.pop(digest)
+      self._delete_file(digest, UNKNOWN_FILE_SIZE)
+      counter['deleted'] += 1
+      logging.error(
+          'DiskContentAddressedCache.cleanup(): Deleted corrupted item: %s',
+          digest)
+
     with self._lock:
-      for digest, (_, timestamp) in list(self._lru._items.items()):
-        total += 1
-        # verify only if the mtime is grather than the timestamp in state.json
-        # to avoid take too long time.
-        if self._get_mtime(digest) <= timestamp:
-          continue
-        logging.warning(
-            'DiskContentAddressedCache.cleanup(): Item has been modified.'
-            ' verifying item: %s', digest)
-        is_valid = self._is_valid_hash(digest)
-        verified += 1
-        logging.warning(
-            'DiskContentAddressedCache.cleanup(): verified. is_valid: %s, '
-            'item: %s', is_valid, digest)
-        if is_valid:
-          # Update timestamp in state.json
-          self._lru.touch(digest)
-          continue
-        # remove corrupted file from LRU and file system
-        self._lru.pop(digest)
-        self._delete_file(digest, UNKNOWN_FILE_SIZE)
-        deleted += 1
-        logging.error(
-            'DiskContentAddressedCache.cleanup(): Deleted corrupted item: %s',
-            digest)
+      if six.PY3:
+        for entry in os.scandir(self.cache_dir):
+          if entry.name == self.STATE_FILE:
+            continue
+          digest = entry.name
+          mtime = entry.stat().st_mtime
+          _, timestamp = self._lru._items.get(digest)
+          _delete_corrupted_item(digest, timestamp, mtime)
+      else:
+        for digest, (_, timestamp) in list(self._lru._items.items()):
+          mtime = self._get_mtime(digest)
+          _delete_corrupted_item(digest, timestamp, mtime)
       self._save()
     logging.info(
         'DiskContentAddressedCache.cleanup(): Verified modified files.'
-        ' total: %d, verified: %d, deleted: %d', total, verified, deleted)
+        ' total: %d, verified: %d, deleted: %d', counter['total'],
+        counter['verified'], counter['deleted'])
 
   # ContentAddressedCache interface implementation.
 
