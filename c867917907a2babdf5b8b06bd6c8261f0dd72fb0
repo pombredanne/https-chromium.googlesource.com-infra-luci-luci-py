@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "234207bf_d6e49e5b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-11T06:38:26Z",
+      "side": 1,
+      "message": "used to track task_update times in run_command, e.g:\n\n2021-08-11 06:31:32.142 I: Calling /swarming/api/v1/bot/task_update/554cba33b64e4311\n2021-08-11 06:31:32.402 D: post_task_update() \u003d {u\u0027ok\u0027: True, u\u0027must_stop\u0027: False}",
+      "revId": "c867917907a2babdf5b8b06bd6c8261f0dd72fb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9208307d_50d2a85c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-11T06:38:26Z",
+      "side": 1,
+      "message": "Should see a .4-.5s delay between the bot_main.py log and this one.",
+      "revId": "c867917907a2babdf5b8b06bd6c8261f0dd72fb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
