@@ -461,6 +461,7 @@ def run_command(
       proc = subprocess42.Popen(
           command, cwd=cwd, env=env, detached=True, close_fds=True,
           lower_priority=lower_priority, containment=containment)
+      logging.info('Subprocess for command started')
       with subprocess42.set_signal_handler(subprocess42.STOP_SIGNALS, handler):
         try:
           exit_code = proc.wait(hard_timeout or None)
@@ -1666,6 +1667,7 @@ def _clean_cmd(parser, options, caches, root):
 
 
 def main(args):
+  logging.info('Starting run_isolated script')
   # Warning: when --argsfile is used, the strings are unicode instances, when
   # parsed normally, the strings are str instances.
   (parser, options, args) = parse_args(args)
