@@ -34,6 +34,7 @@ import signal
 import sys
 import threading
 import time
+import logging
 
 import subprocess
 
@@ -724,6 +725,8 @@ class Popen(subprocess.Popen):
       delay = poll_initial_interval
       wait = self._wait_win if sys.platform == 'win32' else self._wait_non_win
       while not wait(delay):
+        logging.debug(delay)
+        logging.debug('DELAY')
         remaining = end - time.time()
         if remaining <= 0:
           raise TimeoutExpired(self.args, timeout)

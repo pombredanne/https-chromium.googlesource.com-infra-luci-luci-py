@@ -786,6 +786,9 @@ def _Popen(botobj, cmd, **kwargs):
     kwargs['creationflags'] = prev | subprocess42.CREATE_NEW_CONSOLE
   else:
     kwargs['close_fds'] = True
+  logging.debug(cmd)
+  logging.debug(kwargs)
+  logging.debug('COMMAND!')
   return subprocess42.Popen(
       cmd,
       stdin=subprocess42.PIPE,
@@ -991,9 +994,15 @@ def _run_manifest(botobj, manifest, start):
     os_utilities.roll_log(log_path)
     os_utilities.trim_rolled_log(log_path)
     with fs.open(log_path, 'a+b') as f:
+      start_time = time.time()
+      logging.debug('BEFORE POP')
       proc = _Popen(botobj, command, stdout=f, env=env)
+      logging.debug('AFTER')
+      logging.debug(time.time() - start_time)
       try:
         proc.wait(last_ditch_timeout)
+        logging.debug('AFTER WAIT')
+        logging.debug(time.time() - start_time)
       except subprocess42.TimeoutExpired:
         # That's the last ditch effort; as task_runner should have completed a
         # while ago and had enforced the io_timeout or run_isolated for
@@ -1299,7 +1308,11 @@ def _poll_server(botobj, quit_bit, last_action):
 
   if cmd == 'run':
     # Value is the manifest
+    logging.debug('INSIDE BOT START')
+    start_time = time.time()
     success = _run_manifest(botobj, value, start)
+    logging.debug(time.time() - start_time)
+    logging.debug('INSIDE BOT END')
     # Unconditionally clean up cache after each task. This is done *after* the
     # task is terminated, so that:
     # - there's no task overhead

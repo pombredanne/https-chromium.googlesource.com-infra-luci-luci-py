@@ -887,6 +887,8 @@ def expand_dimensions_to_flats(dimensions, is_bot_dim=False):
 
   Silently remove duplicate dimensions, for the same reason as for long ones.
   """
+  logging.debug('START DIM')
+  logging.debug(dimensions.items())
   dimensions_kv = list(dimensions.items())
   for i, (k, v) in enumerate(dimensions_kv):
     if isinstance(v, (str, unicode)):
@@ -924,6 +926,7 @@ def expand_dimensions_to_flats(dimensions, is_bot_dim=False):
       cur_dimensions_flat.pop()
 
   gen(0, 0)
+  logging.debug('END DIM')
   return result
 
 

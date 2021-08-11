@@ -1986,6 +1986,8 @@ def require(callback, error_msg=None, log_identity=False):
 
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
+      print(get_current_identity())
+      print('HONEY')
       if not callback():
         raise AuthorizationError(error_msg)
       if log_identity:

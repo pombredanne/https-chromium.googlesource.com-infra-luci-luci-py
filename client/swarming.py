@@ -498,6 +498,8 @@ def retrieve_results(base_url, shard_index, task_id, timeout, should_stop,
     <result dict> on success.
     None on failure.
   """
+  print('PURE')
+  start_time = time.time()
   assert timeout is None or isinstance(timeout, float), timeout
   result_url = '%s/_ah/api/swarming/v1/task/%s/result' % (base_url, task_id)
   if include_perf:
@@ -542,6 +544,7 @@ def retrieve_results(base_url, shard_index, task_id, timeout, should_stop,
       continue
 
     if result.get('error'):
+      logging.info('error occured')
       # An error occurred.
       if result['error'].get('errors'):
         for err in result['error']['errors']:
@@ -551,6 +554,8 @@ def retrieve_results(base_url, shard_index, task_id, timeout, should_stop,
         logging.warning('Error while reading task: %s',
                         result['error']['message'])
       if timeout == -1:
+        print('CHICKEN')
+        print(time.time() - start_time)
         return result
       continue
 
@@ -568,6 +573,8 @@ def retrieve_results(base_url, shard_index, task_id, timeout, should_stop,
         logging.error('Internal error!')
       elif result['state'] == 'BOT_DIED':
         logging.error('Bot died!')
+      print('CHICKEN')
+      print(time.time() - start_time)
       return result
 
 

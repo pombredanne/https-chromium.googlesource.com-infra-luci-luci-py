@@ -412,9 +412,12 @@ def load_and_run(in_file, swarming_server, cost_usd_hour, start, out_file,
       # Auth environment is up, start the command. task_result is dumped to
       # disk in 'finally' block.
       with luci_context.stage(_tmpdir=work_dir, **context_edits) as ctx_file:
+        start_time = time.time()
         task_result = run_command(
             remote, task_details, work_dir, cost_usd_hour,
             start, run_isolated_flags, bot_file, ctx_file)
+        logging.debug('INSIDE TR')
+        logging.debug(time.time() - start_time)
   except (ExitSignal, InternalError, remote_client.InternalError) as e:
     # This normally means run_command() didn't get the chance to run, as it
     # itself traps exceptions and will report accordingly. In this case, we want
@@ -530,7 +533,7 @@ class _OutputBuffer(object):
   """
   # To be mocked in tests.
   _MIN_PACKET_INTERVAL = 1
-  _MAX_PACKET_INTERVAL = 10
+  _MAX_PACKET_INTERVAL = 1
 
   def __init__(self, task_details, start):
     self._task_details = task_details
@@ -680,6 +683,8 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
   if task_details.grace_period:
     task_details.grace_period *= 2
 
+  logging.debug('ARGS ARE')
+  logging.debug(args)
   try:
     proc = _start_task_runner(args, work_dir, ctx_file)
   except _FailureOnStart as e:
@@ -696,6 +701,9 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
     term_sent = False
     kill_sent = False
     timed_out = None
+    start_time = time.time()
+    logging.debug('START EXEC')
+    logging.debug(start_time)
     try:
       for channel, new_data in proc.yield_any(
           maxsize=buf.maxsize, timeout=lambda: buf.calc_yield_wait(timed_out)):
@@ -757,6 +765,9 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
       # Something wrong happened, try to kill the child process.
       must_signal_internal_failure = str(e) or 'unknown error'
       exit_code = kill_and_wait(proc, task_details.grace_period, str(e))
+
+    logging.debug('TR EXEC')
+    logging.debug(time.time() - start_time)
 
     # This is the very last packet for this command. It if was an isolated task,
     # include the output reference to the archived .isolated file.
@@ -836,6 +847,8 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
         must_signal_internal_failure = '%s\n%s' % (
             e, traceback.format_exc()[-2048:])
 
+    logging.debug('HORSE')
+
     # If no exit code has been set, something went wrong with run_isolated.py.
     # Set exit code to -1 to indicate a generic error occurred.
     if exit_code is None:
@@ -865,6 +878,7 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
         params.pop('named_caches_stats', None)
         params.pop('cache_trim_stats', None)
         params.pop('cleanup_stats', None)
+      logging.debug('START UPDATE')
       remote.post_task_update(task_details.task_id, params, buf.pop(),
                               exit_code)
       logging.debug('Last task update finished. task_id: %s, exit_code: %s, '
@@ -872,6 +886,7 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
       if must_signal_internal_failure:
         remote.post_task_error(task_details.task_id,
                                must_signal_internal_failure)
+        logging.debug('END UPDATE')
         # Clear out this error as we've posted it now (we already cleared out
         # exit_code above). Note: another error could arise after this point,
         # which is fine, since bot_main.py will post it).
@@ -881,6 +896,7 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
       if not must_signal_internal_failure:
         must_signal_internal_failure = str(e) or 'unknown error'
 
+    logging.debug('PENGUIN')
     return {
         u'exit_code': exit_code,
         u'hard_timeout': had_hard_timeout,
@@ -893,6 +909,7 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
 
 
 def main(args):
+  start_time = time.time()
   subprocess42.inhibit_os_error_reporting()
 
   # Disable magical auto-detection of OAuth config. See main() in bot_main.py
@@ -932,3 +949,5 @@ def main(args):
     return 0
   finally:
     logging.info('quitting')
+    logging.debug('TR TOTAL TIME')
+    logging.debug(time.time() - start_time)

@@ -27,11 +27,18 @@ import textwrap
 import time
 import unittest
 
+from functools import wraps
+
+PROF_DATA = {}
+CLASS_DATA = {}
+
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 BOT_DIR = os.path.join(APP_DIR, 'swarming_bot')
 CLIENT_DIR = os.path.join(APP_DIR, '..', '..', 'client')
 sys.path.insert(0, CLIENT_DIR)
 sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party'))
+
+CURRENT_TEST = ''
 
 # client/
 from utils import fs
@@ -81,6 +88,31 @@ def _script(content):
   return textwrap.dedent(content.encode('utf-8'))
 
 
+def measure_time(fn):
+  @wraps(fn)
+  def timed(self, *args, **kw):
+    ts = time.time()
+    result = fn(self, *args, **kw)
+    te = time.time()
+    global CURRENT_TEST
+    name = fn.__name__ + '_' + CURRENT_TEST
+    if name not in CLASS_DATA:
+      CLASS_DATA[name] = [0, []]
+    CLASS_DATA[name][0] += 1
+    CLASS_DATA[name][1].append(te-ts)
+    return result
+  return timed
+
+def print_class_data():
+  for fname, data in CLASS_DATA.items():
+    for t in data[1]:
+      print('func %s, time %.3f' % (fname, t))
+    max_time = max(data[1])
+    avg_time = sum(data[1]) / len(data[1])
+    print('Function %s called %d times.' % (fname, data[0]))
+    print('Execution time max: %.3f, average: %.3f' % (max_time, avg_time))
+
+
 class SwarmingClient(object):
 
   def __init__(self, swarming_server, isolate_server, namespace, tmpdir):
@@ -90,6 +122,7 @@ class SwarmingClient(object):
     self._tmpdir = tmpdir
     self._index = 0
 
+  @measure_time
   def isolate(self, isolate_path, isolated_path):
     """Archives a .isolate file into the isolate server and returns the isolated
     hash.
@@ -106,6 +139,7 @@ class SwarmingClient(object):
     logging.debug('%s = %s', isolated_path, isolated_hash)
     return isolated_hash
 
+  @measure_time
   def retrieve_file(self, isolated_hash, dst):
     """Retrieves a single isolated content."""
     args = [
@@ -119,6 +153,7 @@ class SwarmingClient(object):
     ]
     return self._run_isolateserver('download', args)
 
+  @measure_time
   def task_trigger_raw(self, args):
     """Triggers a task and return the task id."""
     h, tmp = tempfile.mkstemp(
@@ -142,6 +177,7 @@ class SwarmingClient(object):
       logging.debug('task_id = %s', task_id)
       return task_id
 
+  @measure_time
   def task_trigger_isolated(self, isolated_hash, name, extra):
     """Triggers a task and return the task id."""
     h, tmp = tempfile.mkstemp(
@@ -173,6 +209,7 @@ class SwarmingClient(object):
       logging.debug('task_id = %s', task_id)
       return task_id
 
+  @measure_time
   def task_trigger_post(self, request):
     """Triggers a task with the very raw RPC and returns the task id.
 
@@ -188,6 +225,53 @@ class SwarmingClient(object):
     logging.debug('task_id = %s', task_id)
     return task_id
 
+  #@measure_time
+  #def tasks_collect(self, task_ids, timeout=TIMEOUT_SECS):
+  #  all_task_ids = "-".join(task_ids)
+  #  tmp = os.path.join(self._tmpdir, all_task_ids + '.json')
+  #  tmpdir = unicode(os.path.join(self._tmpdir, all_task_ids))
+  #  if os.path.isdir(tmpdir):
+  #    for i in range(100000):
+  #      t = '%s_%d' % (tmpdir, i)
+  #      if not os.path.isdir(t):
+  #        tmpdir = t
+  #        break
+  #  os.mkdir(tmpdir)
+  #  ids_name = os.path.join(self._tmpdir, all_task_ids + '-task-ids.json')
+  #  ids_file = open(ids_name, 'w')
+  #  ids_file.write(" ".join(task_ids))
+  #  ids_file.close()
+
+  #  args = [
+  #      '--task-summary-json',
+  #      tmp,
+  #      '--json',
+  #      ids_name,
+  #      '--task-output-dir',
+  #      tmpdir,
+  #      '--timeout',
+  #      str(timeout),
+  #      '--perf',
+  #  ]
+  #  self._run_swarming('collect', args)
+  #  sys.exit()
+  #  with fs.open(tmp, 'rb') as f:
+  #    data = f.read()
+  #  try:
+  #    summary = json.loads(data)
+  #  except ValueError:
+  #    print('Bad json:\n%s' % data, file=sys.stderr)
+  #    raise
+  #  file_outputs = {}
+  #  for root, _, files in fs.walk(tmpdir):
+  #    for i in files:
+  #      p = os.path.join(root, i)
+  #      name = p[len(tmpdir) + 1:]
+  #      with fs.open(p, 'rb') as f:
+  #        file_outputs[name] = f.read()
+  #  return summary, file_outputs
+
+  @measure_time
   def task_collect(self, task_id, timeout=TIMEOUT_SECS):
     """Collects the results for a task.
 
@@ -195,6 +279,7 @@ class SwarmingClient(object):
       - Result summary as saved by the tool
       - output files as a dict
     """
+    start_time = time.time()
     tmp = os.path.join(self._tmpdir, task_id + '.json')
     tmpdir = unicode(os.path.join(self._tmpdir, task_id))
     if os.path.isdir(tmpdir):
@@ -215,7 +300,58 @@ class SwarmingClient(object):
         str(timeout),
         '--perf',
     ]
+    print(time.time() - start_time)
+    print('STARTING RUN')
     self._run_swarming('collect', args)
+    print(time.time() - start_time)
+    print('STOP RUN')
+    with fs.open(tmp, 'rb') as f:
+      data = f.read()
+    try:
+      summary = json.loads(data)
+    except ValueError:
+      print('Bad json:\n%s' % data, file=sys.stderr)
+      raise
+    file_outputs = {}
+    for root, _, files in fs.walk(tmpdir):
+      for i in files:
+        p = os.path.join(root, i)
+        name = p[len(tmpdir) + 1:]
+        with fs.open(p, 'rb') as f:
+          file_outputs[name] = f.read()
+    print(time.time() - start_time)
+    print('ENDING NOW')
+    return summary, file_outputs
+
+  @measure_time
+  def task_collect_go(self, task_id, timeout=TIMEOUT_SECS):
+    """Collects the results for a task.
+
+    Returns:
+      - Result summary as saved by the tool
+      - output files as a dict
+    """
+    tmp = os.path.join(self._tmpdir, task_id + '.json')
+    tmpdir = unicode(os.path.join(self._tmpdir, task_id))
+    if os.path.isdir(tmpdir):
+      for i in range(100000):
+        t = '%s_%d' % (tmpdir, i)
+        if not os.path.isdir(t):
+          tmpdir = t
+          break
+    os.mkdir(tmpdir)
+    # swarming.py collect will return the exit code of the task.
+    args = [
+        '--task-summary-json',
+        tmp,
+        '--task-output-stdout',
+        'json',
+        '--timeout',
+        str(0),
+        '--perf',
+        task_id,
+    ]
+    self._run_swarming_go('collect', args)
     with fs.open(tmp, 'rb') as f:
       data = f.read()
     try:
@@ -232,30 +368,38 @@ class SwarmingClient(object):
           file_outputs[name] = f.read()
     return summary, file_outputs
 
+  @measure_time
   def task_cancel(self, task_id, args):
     """Cancels a task."""
     return self._capture_swarming('cancel',
                                   list(args) + [str(task_id)], '') == ''
 
+  @measure_time
   def task_result(self, task_id):
     """Queries a task result without waiting for it to complete."""
     # collect --timeout 0 now works the same.
     return json.loads(
         self._capture_swarming('query', ['task/%s/result' % task_id], ''))
 
+  @measure_time
   def task_stdout(self, task_id):
     """Returns current task stdout without waiting for it to complete."""
     raw = self._capture_swarming('query', ['task/%s/stdout' % task_id], '')
     return json.loads(raw).get('output')
 
+  @measure_time
   def terminate(self, bot_id):
+    print('WATER')
     task_id = self._capture_swarming('terminate', [bot_id], '').strip()
+    print(task_id)
     logging.info('swarming.py terminate returned %r', task_id)
     if not task_id:
+      print('not task_id')
       return 1
     return self._run_swarming(
         'collect', ['--timeout', str(TIMEOUT_SECS), task_id])
 
+  @measure_time
   def query_bot(self):
     """Returns the bot's properties."""
     raw = self._capture_swarming('query', ['bots/list', '--limit', '10'], '')
@@ -265,6 +409,7 @@ class SwarmingClient(object):
     assert len(data['items']) == 1
     return data['items'][0]
 
+  @measure_time
   def dump_log(self):
     print('-' * 60, file=sys.stderr)
     print('Client calls', file=sys.stderr)
@@ -275,6 +420,7 @@ class SwarmingClient(object):
       for l in log.splitlines():
         sys.stderr.write('  %s\n' % l)
 
+  @measure_time
   def _run_swarming(self, command, args):
     """Runs swarming.py and capture the stdout to a log file.
 
@@ -302,6 +448,33 @@ class SwarmingClient(object):
       p.communicate()
       return p.returncode
 
+  @measure_time
+  def _run_swarming_go(self, command, args):
+    name = os.path.join(self._tmpdir, u'client_%d.log' % self._index)
+    self._index += 1
+    cmd = [
+        'go',
+        'run',
+        'go.chromium.org/luci/client/cmd/swarming',
+        command,
+        '-S',
+        self._swarming_server,
+    ] + args
+    with fs.open(name, 'wb') as f:
+      f.write('\nRunning: %s\n' % ' '.join(cmd))
+      f.flush()
+      p = subprocess42.Popen(
+          cmd, stdout=f, stderr=subprocess42.STDOUT, cwd=CLIENT_DIR)
+      p.communicate()
+      print("GOOG")
+      print(p.returncode)
+      print(command)
+      print(name)
+      print(args)
+      return p.returncode
+
+
+  @measure_time
   def _run_isolateserver(self, command, args):
     """Runs isolateserver.py and capture the stdout to a log file.
 
@@ -329,6 +502,7 @@ class SwarmingClient(object):
       p.communicate()
       return p.returncode
 
+  @measure_time
   def _capture_swarming(self, command, args, stdin):
     name = os.path.join(self._tmpdir, u'client_%d.log' % self._index)
     self._index += 1
@@ -342,6 +516,7 @@ class SwarmingClient(object):
         cmd, stdin=subprocess42.PIPE, stdout=subprocess42.PIPE, cwd=CLIENT_DIR)
     return p.communicate(stdin)[0]
 
+  @measure_time
   def _capture_isolate(self, command, args, stdin):
     name = os.path.join(self._tmpdir, u'client_%d.log' % self._index)
     self._index += 1
@@ -399,6 +574,8 @@ class Test(unittest.TestCase):
   no_run = 1
 
   def setUp(self):
+    self.startTime = time.time()
+
     super(Test, self).setUp()
     self.dimensions = os_utilities.get_dimensions()
     # The bot forcibly adds server_version, and bot_config.
@@ -418,7 +595,7 @@ class Test(unittest.TestCase):
       if time.time() - start > TIMEOUT_SECS:
         self.fail('Bot took too long to start')
 
-    started_ts = json.loads(old['state'])['started_ts']
+    started_ts = json.loads(old['state']).get('started_ts')
     logging.info('setUp: started_ts was %s', started_ts)
     had_cache = any(u'caches' == i['key'] for i in old['dimensions'])
     self.bot.wipe_cache(had_cache)
@@ -443,6 +620,14 @@ class Test(unittest.TestCase):
       if not started_ts or new_started_ts != started_ts:
         self.assertNotIn(u'caches', state['dimensions'])
         break
+
+    global CURRENT_TEST
+    CURRENT_TEST = self.id()
+    PROF_DATA[self.id()+'.setUp'] = time.time() - self.startTime
+
+  def tearDown(self):
+    elapsed_time = time.time() - self.startTime
+    PROF_DATA[self.id()] = elapsed_time
 
   def gen_expected(self, **kwargs):
     dims = [{
@@ -583,17 +768,18 @@ class Test(unittest.TestCase):
         ),
     ]
 
-    # tuple(task_id, expectation)
     running_tasks = [(self.client.task_trigger_raw(args), expected)
                      for args, expected in tasks]
 
     for task_id, (summary, files) in running_tasks:
+      startTime = time.time()
       actual_summary, actual_files = self.client.task_collect(task_id)
       performance_stats = actual_summary['shards'][0].pop('performance_stats')
       self.assertPerformanceStatsEmpty(performance_stats)
       self.assertResults(summary, actual_summary)
       actual_files.pop('summary.json')
       self.assertEqual(files, actual_files)
+      PROF_DATA[self.id() + '.%s' % task_id] = time.time() - startTime
 
   def test_isolated(self):
     # Make an isolated file, archive it.
@@ -1150,10 +1336,11 @@ class Test(unittest.TestCase):
         u'user:joe@localhost',
     ]
     with self._make_wait_task('test_priority'):
+      start_time = time.time()
       # This is the order of the priorities used for each task triggered. In
       # particular, below it asserts that the priority 8 tasks are run in order
       # of created_ts.
-      for i, priority in enumerate((9, 8, 6, 7, 8)):
+      for i, priority in enumerate((9, 8, 7, 8)):
         task_name = u'%d-p%d' % (i, priority)
         args = [
             '-T',
@@ -1164,20 +1351,24 @@ class Test(unittest.TestCase):
             'python',
             '-u',
             '-c',
-            'print(\'%d\')' % priority,
+            ('import time;'
+             'print(time.time());'
+             'print(\'%d\')') % priority,
         ]
         tasks.append((task_name, priority, self.client.task_trigger_raw(args)))
       # Ensure the tasks under test are pending.
       for task_name, priority, task_id in tasks:
         result = self.client.task_result(task_id)
       self.assertEqual(u'PENDING', result[u'state'], result)
+      PROF_DATA[self.id() + '.inside'] = time.time() - start_time
 
+    start_time = time.time()
     # The wait task is done. This will cause all the pending tasks to be run.
     # Now, will they be run in the expected order? That is the question!
     # List of tuple(task_name, priority, task_id, results).
     results = []
     # Collect every tasks.
-    for task_name, priority, task_id in tasks:
+    for task_name, priority, task_id in [tasks[2], tasks[1], tasks[3], tasks[0]]:
       actual_summary, actual_files = self.client.task_collect(task_id)
       performance_stats = actual_summary['shards'][0].pop('performance_stats')
       self.assertPerformanceStatsEmpty(performance_stats)
@@ -1192,8 +1383,9 @@ class Test(unittest.TestCase):
     # Now assert that they ran in the expected order. started_ts encoding means
     # string sort is equivalent to timestamp sort.
     results.sort(key=lambda x: x[3][u'started_ts'])
-    expected = ['2-p6', '3-p7', '1-p8', '4-p8', '0-p9']
+    expected = ['2-p7', '1-p8', '3-p8', '0-p9']
     self.assertEqual(expected, [r[0] for r in results])
+    PROF_DATA[self.id() + '.outside'] = time.time() - start_time
 
   def test_cancel_pending(self):
     # Cancel a pending task. Triggering a task for an unknown dimension will
@@ -1433,6 +1625,7 @@ class Test(unittest.TestCase):
     """Creates a dummy task that keeps the bot busy, while other things are
     being done.
     """
+    start_time = time.time()
     signal_file = os.path.join(self.tmpdir, name)
     fs.open(signal_file, 'wb').close()
     args = [
@@ -1454,7 +1647,9 @@ class Test(unittest.TestCase):
     # Assert that the 'wait' task has started but not completed, otherwise
     # this defeats the purpose.
     self._wait_for_state(wait_task_id, u'PENDING', u'RUNNING')
+    PROF_DATA[self.id() + '._make_wait_task_1'] = time.time() - start_time
     yield
+    start_time = time.time()
     # Double check.
     result = self.client.task_result(wait_task_id)
     self.assertEqual(u'RUNNING', result[u'state'], result)
@@ -1474,12 +1669,14 @@ class Test(unittest.TestCase):
         u'use_isolate_1143123:0',
         u'user:joe@localhost',
     ]
+    print(actual_summary['shards'][0])
     performance_stats = actual_summary['shards'][0].pop('performance_stats')
     self.assertPerformanceStatsEmpty(performance_stats)
     self.assertResults(
         self.gen_expected(name=u'wait', tags=tags, output=u'hi\nhi again\n'),
         actual_summary)
     self.assertEqual(['summary.json'], actual_files.keys())
+    PROF_DATA[self.id()+'._make_wait_task_2'] = time.time() - start_time
 
   def _run_isolated(self, isolated_hash, name, args, expected_summary,
                     expected_files, deduped):
@@ -1626,14 +1823,15 @@ class Test(unittest.TestCase):
 
   def _wait_for_state(self, task_id, current, new):
     """Waits for the task to start on the bot."""
+    start_time = time.time()
     state = result = None
     start = time.time()
     # 45 seconds is a long time.
     # TODO(maruel): Make task_runner use exponential backoff instead of
-    # hardcoded 10s/30s, which makes these tests tremendously slower than
+    # hardcoded 1s/10s, which makes these tests tremendously slower than
     # necessary.
     # https://crbug.com/825500
-    while time.time() - start < 45.:
+    while time.time() - start < 5.:
       result = self.client.task_result(task_id)
       state = result[u'state']
       if state == new:
@@ -1641,6 +1839,7 @@ class Test(unittest.TestCase):
       self.assertEqual(current, state, result)
       time.sleep(0.01)
     self.assertEqual(new, state, result)
+    PROF_DATA[self.id() + ".wait_for_state"] = time.time() - start_time
     return result
 
 
@@ -1693,9 +1892,12 @@ def process_arguments():
 
 
 def main():
+  start_time = time.time()
   fix_encoding.fix_encoding()
   args = process_arguments()
   Test.tmpdir = unicode(tempfile.mkdtemp(prefix='local_smoke_test'))
+  print(Test.tmpdir)
+  print('TEMP DIR')
 
   # Force language to be English, otherwise the error messages differ from
   # expectations.
@@ -1731,7 +1933,11 @@ def main():
     Test.client = client
     Test.servers = servers
     Test.namespace = namespace
-    failed = not unittest.main(exit=False).result.wasSuccessful()
+    #failed = not unittest.main(exit=False).result.wasSuccessful()
+    singletest = unittest.TestSuite()
+    singletest.addTest(Test('test_priority'))
+    unittest.TextTestRunner().run(singletest)
+    failed = True
 
     # Then try to terminate the bot sanely. After the terminate request
     # completed, the bot process should have terminated. Give it a few
@@ -1753,7 +1959,18 @@ def main():
       bot.wait()
   finally:
     cleanup(bot, client, servers, failed or args.verbose)
+    print_prof_data(start_time)
+    print_class_data()
   return int(failed)
+
+def print_prof_data(start_time):
+  total = 0
+  for fname, data in PROF_DATA.items():
+    total += data
+    print("Function %s time %.3f." % (fname, data))
+  print("Total test time: %.3f" % total)
+  print("Total file time: %.3f" % (time.time() - start_time))
+
 
 
 if __name__ == '__main__':

@@ -394,6 +394,8 @@ class SwarmingTaskService(remote.Service):
     A summary ID ends with '0', a run ID ends with '1' or '2'.
     """
     logging.debug('%s', request)
+    logging.debug('DREAM')
+    logging.debug(auth.get_current_identity())
     # Workaround a bug in ndb where if a memcache set fails, a stale copy can be
     # kept in memcache indefinitely. In the case of task result, if this happens
     # on the very last store where the task is saved to NDB to be marked as
@@ -780,6 +782,8 @@ class SwarmingTasksService(remote.Service):
     possible.
     """
     logging.debug('%s', request)
+    logging.debug('SWIFT')
+    logging.debug(auth.get_current_identity())
     if request.include_performance_stats:
       raise endpoints.BadRequestException(
           'Can\'t set include_performance_stats for tasks/list')

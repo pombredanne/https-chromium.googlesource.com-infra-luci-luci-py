@@ -581,6 +581,7 @@ def bot_event(
   Returns:
     ndb.Key to BotEvent entity if one was added.
   """
+  logging.debug('START BOT EVENT')
   if not bot_id:
     return
 
@@ -679,7 +680,9 @@ def bot_event(
       version=bot_info.version,
       **kwargs)
 
+  logging.debug('BEGIN DATASTORE')
   datastore_utils.store_new_version(event, BotRoot, [bot_info])
+  logging.debug('END BOT EVENT')
   return event.key
 
 

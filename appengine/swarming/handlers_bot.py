@@ -12,6 +12,7 @@ import six
 
 import webob
 import webapp2
+import time
 
 from google.appengine.api import app_identity
 from google.appengine.api import datastore_errors
@@ -543,6 +544,9 @@ class BotPollHandler(_BotBaseHandler):
       return
 
     res = self._process()
+    pres = vars(res)
+    logging.debug(pres)
+    logging.debug('GOAT')
 
     sleep_streak = res.state.get('sleep_streak', 0)
     quarantined = bool(res.quarantined_msg)
@@ -1136,11 +1140,14 @@ class BotTaskUpdateHandler(_BotApiHandler):
   @decorators.silence(apiproxy_errors.RPCFailedError)
   @auth.public  # auth happens in bot_auth.validate_bot_id_and_fetch_config()
   def post(self, task_id=None):
+    logging.debug('UPDATE START')
     # Unlike handshake and poll, we do not accept invalid keys here. This code
     # path is much more strict.
     request = self.parse_body()
+    logging.debug('PARSED BODY')
     msg = log_unexpected_subset_keys(self.ACCEPTED_KEYS, self.REQUIRED_KEYS,
                                      request, self.request, 'bot', 'keys')
+    logging.debug('LOG UNEXPECTED')
     if msg:
       self.abort_with_error(400, error=msg)
 
@@ -1151,6 +1158,7 @@ class BotTaskUpdateHandler(_BotApiHandler):
     # Make sure bot self-reported ID matches the authentication token. Raises
     # auth.AuthorizationError if not.
     bot_auth.validate_bot_id_and_fetch_config(bot_id)
+    logging.debug('VALIDATE BOT ID')
 
     bot_overhead = request.get('bot_overhead')
     cipd_pins = request.get('cipd_pins')
@@ -1181,8 +1189,9 @@ class BotTaskUpdateHandler(_BotApiHandler):
           error='isolated_stats and cipd_stats require bot_overhead to be set'
           '\nbot_overhead: %s\nisolate_stats: %s' %
           (bot_overhead, isolated_stats))
-
+    logging.debug('SET ATTR')
     run_result_key = task_pack.unpack_run_result_key(task_id)
+    logging.debug('UNPACK RUN RESULT')
     performance_stats = None
     if bot_overhead is not None:
       performance_stats = task_result.PerformanceStats(
@@ -1222,7 +1231,7 @@ class BotTaskUpdateHandler(_BotApiHandler):
       if cleanup_stats:
         performance_stats.cleanup = task_result.OperationStats(
             duration=cleanup_stats.get('duration'))
-
+    logging.debug('BOT OVERHEAD')
     if output is not None:
       try:
         output = base64.b64decode(output)
@@ -1240,6 +1249,7 @@ class BotTaskUpdateHandler(_BotApiHandler):
       cas_output_root = task_request.CASReference(
           cas_instance=cas_output_root['cas_instance'],
           digest=task_request.Digest(**cas_output_root['digest']))
+    logging.debug('OUTPUT')
 
     if cipd_pins:
       cipd_pins = task_result.CipdPins(
@@ -1248,11 +1258,12 @@ class BotTaskUpdateHandler(_BotApiHandler):
           packages=[
               task_request.CipdPackage(**args) for args in cipd_pins['packages']
           ])
-
+    logging.debug('CIPD PINS')
     # Tell the task queues management engine that the bot is still alive, and
     # it shall refresh the task queues.
     bot_root_key = bot_management.get_root_key(bot_id)
     task_queues.get_queues(bot_root_key)
+    logging.debug('GET ROOT KEY')
 
     try:
       state = task_scheduler.bot_update_task(
@@ -1270,6 +1281,7 @@ class BotTaskUpdateHandler(_BotApiHandler):
           cipd_pins=cipd_pins,
           performance_stats=performance_stats,
           canceled=canceled)
+      logging.debug('GOT STATE')
       if not state:
         logging.info('Failed to update, please retry')
         self.abort_with_error(500, error='Failed to update, please retry')
@@ -1295,6 +1307,7 @@ class BotTaskUpdateHandler(_BotApiHandler):
           task_id=task_id,
           task_name=None,
           register_dimensions=False)
+      logging.debug('BOT EVENT')
     except ValueError as e:
       ereporter2.log_request(
           request=self.request,
@@ -1320,6 +1333,7 @@ class BotTaskUpdateHandler(_BotApiHandler):
     if must_stop:
       logging.info('asking bot to kill the task')
     self.send_response({'must_stop': must_stop, 'ok': True})
+    logging.debug('UPDATE END')
 
 
 class BotTaskErrorHandler(_BotApiHandler):
