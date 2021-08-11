@@ -18,6 +18,29 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd35c07_843873f4",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-11T06:54:08Z",
+      "side": 1,
+      "message": "pass url_path as args to info()?\nhttps://docs.python.org/3/howto/logging.html#logging-variable-data",
+      "range": {
+        "startLine": 229,
+        "startChar": 30,
+        "endLine": 229,
+        "endChar": 31
+      },
+      "revId": "c867917907a2babdf5b8b06bd6c8261f0dd72fb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "eefe885f_c765d12c",
