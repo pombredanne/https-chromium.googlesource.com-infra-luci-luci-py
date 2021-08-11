@@ -283,6 +283,7 @@ class RemoteClientNative(object):
     if exit_code != None:
       data['exit_code'] = exit_code
 
+    logging.info('Calling task_update')
     resp = self._url_read_json(
         '/swarming/api/v1/bot/task_update/%s' % task_id, data)
     logging.debug('post_task_update() = %s', resp)
