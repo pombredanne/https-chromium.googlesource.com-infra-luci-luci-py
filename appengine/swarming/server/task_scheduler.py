@@ -330,14 +330,16 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request,
   return run_result, secret_bytes
 
 
-def _handle_dead_bot(run_result_key):
-  """Handles TaskRunResult where its bot has stopped showing sign of life.
+@ndb.tasklet
+def _detect_dead_task_async(run_result_key):
+  """Checks if the bot has stopped working on the task.
 
   Transactionally updates the entities depending on the state of this task. The
   task may be retried automatically, canceled or left alone.
 
   Returns:
-    True if the task was killed, False if no action was done.
+    ndb.Future that returns True if the task was killed,
+    False if no action was done.
   """
   result_summary_key = task_pack.run_result_key_to_result_summary_key(
       run_result_key)
@@ -359,7 +361,8 @@ def _handle_dead_bot(run_result_key):
     # is valid, and the code in task_result really assumes it is in the DB.
     #
     # So for now, just skip it to unblock the cron job.
-    return False
+    raise ndb.Return(False)
+
   es_cfg = external_scheduler.config_for_task(request)
 
   def run():
@@ -416,10 +419,7 @@ def _handle_dead_bot(run_result_key):
       f.check_success()
     return True
 
-  try:
-    return datastore_utils.transaction(run)
-  except datastore_utils.CommitError:
-    return False
+  return datastore_utils.transaction_async(run)
 
 
 def _copy_summary(src, dst, skip_list):
@@ -1705,13 +1705,21 @@ def cron_handle_bot_died():
   try:
     ignored = 0
     killed = []
+    futures = []
     try:
       for run_result_key in task_result.yield_active_run_result_keys():
-        result = _handle_dead_bot(run_result_key)
-        if result:
-          killed.append(task_pack.pack_run_result_key(run_result_key))
-        else:
-          ignored += 1
+        f = _detect_dead_task_async(run_result_key)
+        futures.append(f)
+      while any(futures):
+        for i, f in enumerate(futures):
+          if not f or not f.done():
+            continue
+          result = f.get_result()
+          if result:
+            killed.append(task_pack.pack_run_result_key(run_result_key))
+          else:
+            ignored += 1
+          futures[i] = None
     finally:
       if killed:
         logging.error(
