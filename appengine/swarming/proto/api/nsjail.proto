@@ -1,0 +1,44 @@
+// This proto file contains a subset of config.proto in nsjail version 3.0.
+// https://github.com/google/nsjail
+// See design doc at: go/chrome-swarming-isolation:l2
+
+syntax = "proto2";
+
+package swarming.v1;
+option go_package = "go.chromium.org/luci/swarming/proto/api;apipb";
+
+message IdMap {
+  /* Empty string means "current uid/gid" */
+  optional string inside_id = 1;
+  optional string outside_id = 2;
+  /* See 'man user_namespaces' for the meaning of count */
+  optional uint32 count = 3;
+  /* Does this map use /usr/bin/new[u|g]idmap binary? */
+  optional bool use_newidmap = 4;
+}
+message NsJailConfig {
+  /* Which name-spaces should be used? */
+  optional bool clone_newnet = 1;
+  optional bool clone_newuser = 2;
+  optional bool clone_newns = 3;
+  optional bool clone_newpid = 4;
+  optional bool clone_newipc = 5;
+  optional bool clone_newuts = 6;
+  /* Disable for kernel versions < 4.6 as it's not supported there */
+  optional bool clone_newcgroup = 7;
+
+  /* Should /proc be mounted (R/O)? This can also be added in the 'mount'
+     section below */
+  optional bool mount_proc = 8;
+
+  /* Mappings for UIDs and GIDs. See the description for 'msg IdMap'
+     for more */
+  repeated IdMap uidmap = 9;
+  repeated IdMap gidmap = 10;
+
+  /* Should the 'lo' interface be brought up (active) inside this jail? */
+  optional bool iface_no_lo = 11;
+
+  /* Put this interface inside the jail */
+  repeated string iface_own = 12;
+}
