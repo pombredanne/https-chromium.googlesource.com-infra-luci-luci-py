@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bb4f7d0_df0827a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1409819
+      },
+      "writtenOn": "2021-08-12T23:31:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d6f7a06_35b1925d",
+      "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41da03a5_a650f896",
@@ -143,6 +161,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53a5b4fd_32f15a1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1409819
+      },
+      "writtenOn": "2021-08-12T23:31:32Z",
+      "side": 1,
+      "message": "As we\u0027ve discussed, I\u0027m now adding only a subset of nsjail configs in the proto.",
+      "parentUuid": "1faea18b_ed10d2ca",
+      "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5cdd337_9864e32c",
@@ -156,6 +192,24 @@
       "writtenOn": "2021-08-10T00:52:39Z",
       "side": 1,
       "message": "This is not used?",
+      "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "708d9371_7d8ea92c",
+        "filename": "appengine/swarming/proto/api/nsjail.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1409819
+      },
+      "writtenOn": "2021-08-12T23:31:32Z",
+      "side": 1,
+      "message": "It\u0027s used now.",
+      "parentUuid": "a5cdd337_9864e32c",
       "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
