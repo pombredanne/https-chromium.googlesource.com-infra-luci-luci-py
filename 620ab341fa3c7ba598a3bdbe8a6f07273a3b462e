@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2794d969_82f99f5d",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1677,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-12T06:13:57Z",
+      "side": 1,
+      "message": "1240853 2021-08-12 05:59:06.266 I: Subprocess for run_isolated started\n1240881 2021-08-12 05:59:06.646 I: Starting run_isolated script\n1240853 2021-08-12 05:59:06.746 I: Subprocess for run_isolated was completed or killed",
+      "revId": "620ab341fa3c7ba598a3bdbe8a6f07273a3b462e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

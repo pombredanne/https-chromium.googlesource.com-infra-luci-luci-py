@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cff75c48_fefed0f6",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1675,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-12T06:13:57Z",
+      "side": 1,
+      "message": "https://source.chromium.org/chromium/infra/infra/+/main:luci/client/utils/logging_utils.py;l\u003d184?q\u003d%22prepare_logging(%22\u0026ss\u003dchromium%2Finfra%2Finfra:luci%2Fclient%2F",
+      "range": {
+        "startLine": 1675,
+        "startChar": 49,
+        "endLine": 1675,
+        "endChar": 74
+      },
+      "revId": "f1fbd6eafc5fd431bb510683887ecd0f46a63eee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
