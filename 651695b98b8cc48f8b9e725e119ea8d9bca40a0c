@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7db25e7a_11f3ef42",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-12T02:58:24Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "dd249fef_bc42f022",
+      "range": {
+        "startLine": 415,
+        "startChar": 0,
+        "endLine": 416,
+        "endChar": 23
+      },
+      "revId": "651695b98b8cc48f8b9e725e119ea8d9bca40a0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d6f1151_62a23eb5",
@@ -37,6 +61,24 @@
       "writtenOn": "2021-08-11T08:49:50Z",
       "side": 0,
       "message": "Can we have sampling log first in this loop?",
+      "revId": "651695b98b8cc48f8b9e725e119ea8d9bca40a0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9d6d070_694cefce",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-12T02:58:24Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "4d6f1151_62a23eb5",
       "revId": "651695b98b8cc48f8b9e725e119ea8d9bca40a0c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
