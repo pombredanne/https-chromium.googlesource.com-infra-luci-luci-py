@@ -81,6 +81,24 @@
       "parentUuid": "4d6f1151_62a23eb5",
       "revId": "651695b98b8cc48f8b9e725e119ea8d9bca40a0c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "312d2e49_22d01426",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-12T03:03:15Z",
+      "side": 0,
+      "message": "Sorry, I meant to have log only in this CL to confirm that code this CL tries to optimize is really slow.",
+      "parentUuid": "a9d6d070_694cefce",
+      "revId": "651695b98b8cc48f8b9e725e119ea8d9bca40a0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
