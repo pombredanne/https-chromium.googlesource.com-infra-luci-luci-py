@@ -16,6 +16,24 @@
       "message": "add 1238772 ?",
       "revId": "e8ae8ff85c560369726315b0d22ad8b3d47af60e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10be5551_44e14853",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-12T00:40:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dc11976_0a6a19fb",
+      "revId": "e8ae8ff85c560369726315b0d22ad8b3d47af60e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
