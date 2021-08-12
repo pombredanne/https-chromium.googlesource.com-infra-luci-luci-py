@@ -70,6 +70,7 @@ from components import utils
 from components.config import validation
 
 from proto.api import swarming_pb2
+from proto.api import nsjail_pb2
 from server import bq_state
 from server import config
 from server import directory_occlusion
@@ -708,6 +709,56 @@ class CacheEntry(ndb.Model):
     if not self.name:
       raise datastore_errors.BadValueError('name is not specified')
 
+class IdMap(ndb.Model):
+  inside_id = ndb.StringProperty()
+  outside_id = ndb.StringProperty()
+  count = ndb.IntegerProperty()
+  use_newidmap = ndb.BooleanProperty(default=False)
+
+  def to_proto(self, out):
+    """Converts self to a nsjail_pb2.IdMap."""
+    out.inside_id = self.inside_id
+    out.outside_id = self.outside_id
+    out.count = self.count
+    out.use_newidmap = self.use_newidmap
+
+class NsJailConfig(ndb.Model):
+  """See ../proto/api/nsjail.proto for details."""
+  clone_newnet = ndb.BooleanProperty(default=False)
+  clone_newuser = ndb.BooleanProperty(default=False)
+  clone_newns = ndb.BooleanProperty(default=False)
+  clone_newpid = ndb.BooleanProperty(default=False)
+  clone_newipc = ndb.BooleanProperty(default=False)
+  clone_newuts = ndb.BooleanProperty(default=False)
+  clone_newcgroup = ndb.BooleanProperty(default=False)
+
+  mount_proc = ndb.BooleanProperty(default=False)
+
+  uidmap = ndb.LocalStructuredProperty(IdMap, repeated=True)
+  gidmap = ndb.LocalStructuredProperty(IdMap, repeated=True)
+
+  iface_no_lo = ndb.BooleanProperty(default=False)
+  ifaces_own = ndb.StringProperty(repeated=True)
+
+  def to_proto(self, out):
+    """Converts self to a nsjail_pb2.NsJailConfig."""
+    out.clone_newnet = self.clone_newnet
+    out.clone_newuser = self.clone_newuser
+    out.clone_newns = self.clone_newns
+    out.clone_newpid = self.clone_newpid
+    out.clone_newipc = self.clone_newipc
+    out.clone_newuts = self.clone_newuts
+    out.clone_newcgroup = self.clone_newcgroup
+
+    out.mount_proc = self.mount_proc
+
+    if self.uidmap:
+      self.uidmap.to_proto(out.uidmap)
+    if self.gidmap:
+      self.gidmap.to_proto(out.gidmap)
+
+    out.iface_no_lo = self.iface_no_lo
+    out.ifaces_own = self.ifaces_own
 
 class ContainmentType(object):
   NOT_SPECIFIED = 0
@@ -735,6 +786,7 @@ class Containment(ndb.Model):
   containment_type = ContainmentTypeProperty()
   limit_processes = ndb.IntegerProperty()
   limit_total_committed_memory = ndb.IntegerProperty()
+  nsjail_config = ndb.LocalStructuredProperty(NsJailConfig)
 
   def to_proto(self, out):
     """Converts self to a swarming_pb2.Containment."""
@@ -743,6 +795,8 @@ class Containment(ndb.Model):
     out.limit_processes = self.limit_processes or 0
     out.limit_total_committed_memory = self.limit_total_committed_memory or 0
 
+    if self.nsjail_config:
+      self.nsjail_config.to_proto(out.nsjail_config)
 
 class ResultDBCfg(ndb.Model):
   """Swarming:ResultDB integration configuration for a task.

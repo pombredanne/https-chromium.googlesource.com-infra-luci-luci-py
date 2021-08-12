@@ -63,6 +63,7 @@ def _gen_properties(**kwargs):
           u'containment_type': None,
           u'limit_processes': None,
           u'limit_total_committed_memory': None,
+          u'nsjail_config': None,
       },
       u'dimensions': {
           u'OS': [u'Windows-3.1.1'],
@@ -537,6 +538,7 @@ class TaskRequestApiTest(TestCase):
             u'containment_type': None,
             u'limit_processes': None,
             u'limit_total_committed_memory': None,
+            u'nsjail_config': None,
         },
         'relative_cwd': u'deeep',
         'dimensions': {
@@ -656,6 +658,7 @@ class TaskRequestApiTest(TestCase):
             u'containment_type': None,
             u'limit_processes': None,
             u'limit_total_committed_memory': None,
+            u'nsjail_config': None,
         },
         'relative_cwd': None,
         'dimensions': {
@@ -780,6 +783,7 @@ class TaskRequestApiTest(TestCase):
             u'containment_type': None,
             u'limit_processes': None,
             u'limit_total_committed_memory': None,
+            u'nsjail_config': None,
         },
         'relative_cwd': None,
         'dimensions': {
@@ -1092,6 +1096,10 @@ class TaskRequestApiTest(TestCase):
             containment_type=task_request.ContainmentType.JOB_OBJECT,
             limit_processes=1000,
             limit_total_committed_memory=1024**3,
+            nsjail_config=task_request.NsJailConfig(
+                clone_newnet=True,
+                uidmap=task_request.IdMap(use_newidmap=True),
+            ),
         ),
     )
     request = _gen_request_slices(
@@ -1136,6 +1144,10 @@ class TaskRequestApiTest(TestCase):
             containment_type=swarming_pb2.Containment.JOB_OBJECT,
             limit_processes=1000,
             limit_total_committed_memory=1024**3,
+            nsjail_config=task_request.NsJailConfig(
+                clone_newnet=True,
+                uidmap=task_request.IdMap(use_newidmap=True),
+            ),
         ),
         command=[u'command1', u'arg1'],
         relative_cwd=u'subdir',
@@ -1261,6 +1273,10 @@ class TaskRequestApiTest(TestCase):
             containment_type=task_request.ContainmentType.JOB_OBJECT,
             limit_processes=1000,
             limit_total_committed_memory=1024**3,
+            nsjail_config=task_request.NsJailConfig(
+                clone_newnet=True,
+                uidmap=task_request.IdMap(use_newidmap=True),
+            ),
         ),
     )
     request = _gen_request_slices(
@@ -1305,6 +1321,10 @@ class TaskRequestApiTest(TestCase):
             containment_type=swarming_pb2.Containment.JOB_OBJECT,
             limit_processes=1000,
             limit_total_committed_memory=1024**3,
+            nsjail_config=task_request.NsJailConfig(
+                clone_newnet=True,
+                uidmap=task_request.IdMap(use_newidmap=True),
+            ),
         ),
         command=[u'command1', u'arg1'],
         relative_cwd=u'subdir',
