@@ -50,6 +50,7 @@ def _gen_properties(**kwargs):
           u'containment_type': None,
           u'limit_processes': None,
           u'limit_total_committed_memory': None,
+          u'nsjail_config': None,
       },
       'dimensions': {
           u'pool': [u'default']
