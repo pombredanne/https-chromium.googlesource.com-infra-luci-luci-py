@@ -99,6 +99,24 @@
       "parentUuid": "a9d6d070_694cefce",
       "revId": "651695b98b8cc48f8b9e725e119ea8d9bca40a0c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ea49a27_d11245e4",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-12T07:23:52Z",
+      "side": 0,
+      "message": "made https://crrev.com/c/3089084",
+      "parentUuid": "312d2e49_22d01426",
+      "revId": "651695b98b8cc48f8b9e725e119ea8d9bca40a0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
