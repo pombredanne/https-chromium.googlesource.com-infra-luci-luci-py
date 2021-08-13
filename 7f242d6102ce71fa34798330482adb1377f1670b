@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf046f2f_f36f77f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1409819
+      },
+      "writtenOn": "2021-08-13T01:51:08Z",
+      "side": 1,
+      "message": "I realized that nsjail uses proto2 while swarming uses proto3. Should I use proto3 for this nsjail config subset? It seems fine to compile them together though.",
+      "revId": "7f242d6102ce71fa34798330482adb1377f1670b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
