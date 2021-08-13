@@ -16,6 +16,64 @@
       "message": "I realized that nsjail uses proto2 while swarming uses proto3. Should I use proto3 for this nsjail config subset? It seems fine to compile them together though.",
       "revId": "7f242d6102ce71fa34798330482adb1377f1670b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "684e85dc_1743a067",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-13T02:28:24Z",
+      "side": 1,
+      "message": "proto2 is fine there.",
+      "parentUuid": "cf046f2f_f36f77f8",
+      "revId": "7f242d6102ce71fa34798330482adb1377f1670b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0766e553_dd3ede26",
+        "filename": "appengine/swarming/proto/api/nsjail.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-13T02:28:24Z",
+      "side": 1,
+      "message": "https://github.com/google/nsjail/blob/3.0/config.proto ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 35
+      },
+      "revId": "7f242d6102ce71fa34798330482adb1377f1670b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4fcfaca_87f9d5d5",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-13T02:28:24Z",
+      "side": 1,
+      "message": "prefer to have one empty line above",
+      "revId": "7f242d6102ce71fa34798330482adb1377f1670b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
