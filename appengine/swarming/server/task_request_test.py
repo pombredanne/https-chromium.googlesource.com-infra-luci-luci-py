@@ -24,6 +24,7 @@ from components import utils
 from test_support import test_case
 
 from proto.api import swarming_pb2
+from proto.api import nsjail_pb2
 from server import bq_state
 from server import config
 from server import pools_config
@@ -63,6 +64,7 @@ def _gen_properties(**kwargs):
           u'containment_type': None,
           u'limit_processes': None,
           u'limit_total_committed_memory': None,
+          u'nsjail_config': None,
       },
       u'dimensions': {
           u'OS': [u'Windows-3.1.1'],
@@ -537,6 +539,7 @@ class TaskRequestApiTest(TestCase):
             u'containment_type': None,
             u'limit_processes': None,
             u'limit_total_committed_memory': None,
+            u'nsjail_config': None,
         },
         'relative_cwd': u'deeep',
         'dimensions': {
@@ -607,7 +610,7 @@ class TaskRequestApiTest(TestCase):
     # Intentionally hard code the hash value since it has to be deterministic.
     # Other unit tests should use the calculated value.
     self.assertEqual(
-        'c262bae20e9b1a265fa5937d67aa36f690612b0e28c8af7e38b347dd6746da65',
+        '23018cadeb111bd473ddfafce93063964bc7a7183a00ef1ebba10e5e72d03db0',
         req.task_slice(0).properties_hash(req).encode('hex'))
 
   # TODO(crbug.com/1115778): remove after RBE-CAS migration.
@@ -656,6 +659,7 @@ class TaskRequestApiTest(TestCase):
             u'containment_type': None,
             u'limit_processes': None,
             u'limit_total_committed_memory': None,
+            u'nsjail_config': None,
         },
         'relative_cwd': None,
         'dimensions': {
@@ -727,7 +731,7 @@ class TaskRequestApiTest(TestCase):
     # Intentionally hard code the hash value since it has to be deterministic.
     # Other unit tests should use the calculated value.
     self.assertEqual(
-        'f9254eae480e442121919c503c685319ab3a903c2d7b76eac79a947afd09d425',
+        '7f3dcdb75050b3be13129dcddb79c8118da212011841435e7ba0fd112989b060',
         req.task_slice(0).properties_hash(req).encode('hex'))
 
   def test_init_new_request_cas_input(self):
@@ -780,6 +784,7 @@ class TaskRequestApiTest(TestCase):
             u'containment_type': None,
             u'limit_processes': None,
             u'limit_total_committed_memory': None,
+            u'nsjail_config': None,
         },
         'relative_cwd': None,
         'dimensions': {
@@ -847,7 +852,7 @@ class TaskRequestApiTest(TestCase):
     # Intentionally hard code the hash value since it has to be deterministic.
     # Other unit tests should use the calculated value.
     self.assertEqual(
-        '9e1b99c20a5c523ea1ade51276230781f9ddfd3ae396e66c810612a1c5c8062a',
+        '9fd318ef4f84a28fc358174857fafa24cc894c7a84739750e3a78d20a8aa9aeb',
         req.task_slice(0).properties_hash(req).encode('hex'))
 
   def test_init_new_request_parent(self):
@@ -880,7 +885,7 @@ class TaskRequestApiTest(TestCase):
     # Other unit tests should use the calculated value.
     # Ensure the algorithm is deterministic.
     self.assertEqual(
-        'b1230281cc4bcc8d9458dab0810c86fcfaf8e4124351f4d39517833eb9541465',
+        '1819859cce8c89d66884696e687c76f4427ac65e98518af8488d2976254d0ca4',
         request.task_slice(0).properties_hash(request).encode('hex'))
 
   def test_init_new_request_bot_service_account(self):
@@ -1092,6 +1097,10 @@ class TaskRequestApiTest(TestCase):
             containment_type=task_request.ContainmentType.JOB_OBJECT,
             limit_processes=1000,
             limit_total_committed_memory=1024**3,
+            nsjail_config=task_request.NsJailConfig(
+                clone_newnet=True,
+                uidmap=[task_request.IdMap(inside_id='1000')],
+            ),
         ),
     )
     request = _gen_request_slices(
@@ -1136,6 +1145,18 @@ class TaskRequestApiTest(TestCase):
             containment_type=swarming_pb2.Containment.JOB_OBJECT,
             limit_processes=1000,
             limit_total_committed_memory=1024**3,
+            nsjail_config=nsjail_pb2.NsJailConfig(
+                clone_newnet=True,
+                clone_newuser=False,
+                clone_newns=False,
+                clone_newpid=False,
+                clone_newipc=False,
+                clone_newuts=False,
+                clone_newcgroup=False,
+                mount_proc=False,
+                uidmap=[nsjail_pb2.IdMap(inside_id='1000', use_newidmap=False)],
+                iface_no_lo=False,
+            ),
         ),
         command=[u'command1', u'arg1'],
         relative_cwd=u'subdir',
@@ -1160,7 +1181,7 @@ class TaskRequestApiTest(TestCase):
         outputs=[u'foo'],
     )
     # To be updated every time the schema changes.
-    props_h = 'e8718f59959d2c17d9ab1084b6fc9b3ee63e998a704de579543dd84bc1ef603a'
+    props_h = '09a674b1ae906637b03df35f0fb7339f386cdc0235759130f0ee092416c86332'
     expected = swarming_pb2.TaskRequest(
         # Scheduling.
         task_slices=[
@@ -1261,6 +1282,10 @@ class TaskRequestApiTest(TestCase):
             containment_type=task_request.ContainmentType.JOB_OBJECT,
             limit_processes=1000,
             limit_total_committed_memory=1024**3,
+            nsjail_config=task_request.NsJailConfig(
+                clone_newnet=True,
+                uidmap=[task_request.IdMap(inside_id='1000')],
+            ),
         ),
     )
     request = _gen_request_slices(
@@ -1289,8 +1314,7 @@ class TaskRequestApiTest(TestCase):
     expected_props = swarming_pb2.TaskProperties(
         cas_input_root=swarming_pb2.CASReference(
             cas_instance='projects/test/instances/default',
-            digest=swarming_pb2.Digest(
-                hash='12345', size_bytes=1),
+            digest=swarming_pb2.Digest(hash='12345', size_bytes=1),
         ),
         cipd_inputs=[
             swarming_pb2.CIPDPackage(
@@ -1305,6 +1329,18 @@ class TaskRequestApiTest(TestCase):
             containment_type=swarming_pb2.Containment.JOB_OBJECT,
             limit_processes=1000,
             limit_total_committed_memory=1024**3,
+            nsjail_config=nsjail_pb2.NsJailConfig(
+                clone_newnet=True,
+                clone_newuser=False,
+                clone_newns=False,
+                clone_newpid=False,
+                clone_newipc=False,
+                clone_newuts=False,
+                clone_newcgroup=False,
+                mount_proc=False,
+                uidmap=[nsjail_pb2.IdMap(inside_id='1000', use_newidmap=False)],
+                iface_no_lo=False,
+            ),
         ),
         command=[u'command1', u'arg1'],
         relative_cwd=u'subdir',
@@ -1329,7 +1365,7 @@ class TaskRequestApiTest(TestCase):
         outputs=[u'foo'],
     )
     # To be updated every time the schema changes.
-    props_h = '516b5f86592b0e5e3bdd9fbf715305ee6f7ddad36320775d5a945e60df67c360'
+    props_h = '7682445a00b9c987f656fdd488dfc82cb28aae42d8e0181bac59323a9f032a3c'
     expected = swarming_pb2.TaskRequest(
         # Scheduling.
         task_slices=[

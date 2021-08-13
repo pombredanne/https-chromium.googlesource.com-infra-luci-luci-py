@@ -50,6 +50,7 @@ def _gen_properties(**kwargs):
           u'containment_type': None,
           u'limit_processes': None,
           u'limit_total_committed_memory': None,
+          u'nsjail_config': None,
       },
       'dimensions': {
           u'pool': [u'default']
@@ -812,7 +813,7 @@ class TaskResultApiTest(TestCase):
     run_result.dead_after_ts = None
     run_result.put()
 
-    props_h = '5c7429e5ab9a21f37ec8c39dcbafbe41127fa67075b92ab0642861bb06578a12'
+    props_h = '7781e69be835f69fc08beafbb2acf18f8fbc3f875f1a7a58bbc7e9cc4d509f90'
     expected = swarming_pb2.TaskResult(
         request=swarming_pb2.TaskRequest(
             task_slices=[
@@ -1036,7 +1037,7 @@ class TaskResultApiTest(TestCase):
     run_result.dead_after_ts = None
     run_result.put()
 
-    props_h = '5c7429e5ab9a21f37ec8c39dcbafbe41127fa67075b92ab0642861bb06578a12'
+    props_h = '7781e69be835f69fc08beafbb2acf18f8fbc3f875f1a7a58bbc7e9cc4d509f90'
     expected = swarming_pb2.TaskResult(
         request=swarming_pb2.TaskRequest(
             task_slices=[
