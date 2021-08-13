@@ -24,6 +24,7 @@ from components import utils
 from test_support import test_case
 
 from proto.api import swarming_pb2
+from proto.api import nsjail_pb2
 from server import bq_state
 from server import config
 from server import pools_config
@@ -1092,6 +1093,10 @@ class TaskRequestApiTest(TestCase):
             containment_type=task_request.ContainmentType.JOB_OBJECT,
             limit_processes=1000,
             limit_total_committed_memory=1024**3,
+            nsjail_config=task_request.NsJailConfig(
+                clone_newnet=True,
+                uidmap=[task_request.IdMap(use_newidmap=True)],
+            ),
         ),
     )
     request = _gen_request_slices(
@@ -1136,6 +1141,10 @@ class TaskRequestApiTest(TestCase):
             containment_type=swarming_pb2.Containment.JOB_OBJECT,
             limit_processes=1000,
             limit_total_committed_memory=1024**3,
+            nsjail_config=nsjail_pb2.NsJailConfig(
+                clone_newnet=True,
+                uidmap=[nsjail_pb2.IdMap(use_newidmap=True)],
+            ),
         ),
         command=[u'command1', u'arg1'],
         relative_cwd=u'subdir',
@@ -1261,6 +1270,10 @@ class TaskRequestApiTest(TestCase):
             containment_type=task_request.ContainmentType.JOB_OBJECT,
             limit_processes=1000,
             limit_total_committed_memory=1024**3,
+            nsjail_config=task_request.NsJailConfig(
+                clone_newnet=True,
+                uidmap=[task_request.IdMap(use_newidmap=True)],
+            ),
         ),
     )
     request = _gen_request_slices(
@@ -1289,8 +1302,7 @@ class TaskRequestApiTest(TestCase):
     expected_props = swarming_pb2.TaskProperties(
         cas_input_root=swarming_pb2.CASReference(
             cas_instance='projects/test/instances/default',
-            digest=swarming_pb2.Digest(
-                hash='12345', size_bytes=1),
+            digest=swarming_pb2.Digest(hash='12345', size_bytes=1),
         ),
         cipd_inputs=[
             swarming_pb2.CIPDPackage(
@@ -1305,6 +1317,10 @@ class TaskRequestApiTest(TestCase):
             containment_type=swarming_pb2.Containment.JOB_OBJECT,
             limit_processes=1000,
             limit_total_committed_memory=1024**3,
+            nsjail_config=nsjail_pb2.NsJailConfig(
+                clone_newnet=True,
+                uidmap=[nsjail_pb2.IdMap(use_newidmap=True)],
+            ),
         ),
         command=[u'command1', u'arg1'],
         relative_cwd=u'subdir',
