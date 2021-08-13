@@ -331,6 +331,33 @@ class CacheEntry(messages.Message):
   path = messages.StringField(2)
 
 
+class IdMap(messages.Message):
+  """See proto/api/nsjail.proto for description."""
+  inside_id = messages.StringField(1)
+  outside_id = messages.StringField(2)
+  count = messages.IntegerField(3)
+  use_newidmap = messages.BooleanField(4)
+
+
+class NsJailConfig(messages.Message):
+  """See proto/api/nsjail.proto for description."""
+  clone_newnet = messages.BooleanField(1)
+  clone_newuser = messages.BooleanField(2)
+  clone_newns = messages.BooleanField(3)
+  clone_newpid = messages.BooleanField(4)
+  clone_newipc = messages.BooleanField(5)
+  clone_newuts = messages.BooleanField(6)
+  clone_newcgroup = messages.BooleanField(7)
+
+  mount_proc = messages.BooleanField(8)
+
+  uidmap = messages.MessageField(IdMap, 9, repeated=True)
+  gidmap = messages.MessageField(IdMap, 10, repeated=True)
+
+  iface_no_lo = messages.BooleanField(11)
+  ifaces_own = messages.StringField(12, repeated=True)
+
+
 class ContainmentType(messages.Enum):
   """See proto/api/swarming.proto for description."""
   NOT_SPECIFIED = 0
@@ -345,6 +372,7 @@ class Containment(messages.Message):
   containment_type = messages.EnumField(ContainmentType, 2)
   limit_processes = messages.IntegerField(3)
   limit_total_committed_memory = messages.IntegerField(4)
+  nsjail_config = messages.MessageField(NsJailConfig, 5)
 
 
 class TaskProperties(messages.Message):
