@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee2fb79d_4fb6c71a",
+        "filename": "client/local_caching.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-13T06:35:00Z",
+      "side": 1,
+      "message": "use \u0027if six.PY2:\u0027 for later cleanup?",
+      "revId": "e1636814164e1f725fd25a5becbe787612128c28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
