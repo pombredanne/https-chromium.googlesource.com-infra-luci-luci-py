@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2308f36_072b7b04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2021-08-13T22:45:44Z",
+      "side": 1,
+      "message": "At google, there\u0027s a meme that \"the only thing SWEs do is copying protos\".\n\nThe reason is that generally speaking, we try to avoid using the same proto message definition for API and for internal implementation. So the customary thing to do is to create essentially the same message twice, one for API, one for the Database.\n\nWhy? It\u0027s because data schema updates and API versioning should not be linked! So when an API update is done, the DB can evolve separately. This principle was used a lot in Swarming, for example when Task Slices were created, I evolved the DB schema and the RPC messages independently.\n\nnsjail authors demonstrated that their proto definitions cannot be relied on with this change:\n- YOLO message field renumbering: https://github.com/google/nsjail/commit/d6b9357e6b21b1684c71d3a6607e9ff52f08ef1a\n- Serious abuse of [default \u003d true] fields.\n- Can\u0027t load binary protos, only text protos.\n- No code review whatsoever.\n\nAs such, I\u0027d recommend to split the API (here) and the implementation (bot side) and have them to be completely different definitions and then \"copy protos\".\n\nThis way, if the nsjail want to fuck around again, we do not have to update the DB schema (!?!) Pardon the language but yo message renumbering!\n\nOne interesting thing is that the bot doesn\u0027t need to have the protobuf library at all! The server can already \"rasterize\" the message (as provided by the API, serialized in the TaskProperties) into the textproto format (implementation that nsjail recognizes) thus providing a clean and most importantly maintainable (!) abstraction layer.",
+      "revId": "4832789f735f19375235fcc6659f4d3179d1cdcb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
