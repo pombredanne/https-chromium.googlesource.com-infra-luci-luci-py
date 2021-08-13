@@ -18,6 +18,8 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
+import "nsjail.proto";
+
 
 // APIs.
 
@@ -606,6 +608,9 @@ message Containment {
   int64 limit_processes = 3;
   // Limits the total amount of memory allocated by processes.
   int64 limit_total_committed_memory = 4;
+
+  // Configurations for nsjail.
+  NsJailConfig nsjail_config = 5;
 }
 
 // Defines the 'what' to run.
