@@ -908,7 +908,7 @@ class NamedCache(Cache):
         logging.info('- creating new directory')
         file_path.ensure_tree(dst)
         return 0
-      except (IOError, OSError) as ex:
+      except (IOError, OSError, PermissionError) as ex:
         # Raise using the original traceback.
         exc = NamedCacheError(
             'cannot install cache named %r at %r: %s' % (name, dst, ex))
@@ -981,7 +981,7 @@ class NamedCache(Cache):
           if sys.platform != 'win32':
             raise
         return size
-      except (IOError, OSError) as ex:
+      except (IOError, OSError, PermissionError) as ex:
         # Raise using the original traceback.
         exc = NamedCacheError(
             'cannot uninstall cache named %r at %r: %s' % (name, src, ex))
