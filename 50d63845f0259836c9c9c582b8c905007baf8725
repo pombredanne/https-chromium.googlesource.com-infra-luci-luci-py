@@ -54,6 +54,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f750a4b4_83bcfffd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1409819
+      },
+      "writtenOn": "2021-08-13T16:33:37Z",
+      "side": 1,
+      "message": "Oh sorry my bad. I thought you were saying adding design doc link at the proto\u0027s comment... I just added it in the bug. Thanks for reminding!",
+      "parentUuid": "b3f203f8_0ccc7b67",
+      "revId": "50d63845f0259836c9c9c582b8c905007baf8725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41da03a5_a650f896",

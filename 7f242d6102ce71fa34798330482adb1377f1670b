@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff19d357_215b1390",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1409819
+      },
+      "writtenOn": "2021-08-13T16:33:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "684e85dc_1743a067",
+      "revId": "7f242d6102ce71fa34798330482adb1377f1670b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0766e553_dd3ede26",
@@ -59,6 +77,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c473fb46_b9c1a703",
+        "filename": "appengine/swarming/proto/api/nsjail.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1409819
+      },
+      "writtenOn": "2021-08-13T16:33:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0766e553_dd3ede26",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 35
+      },
+      "revId": "7f242d6102ce71fa34798330482adb1377f1670b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4fcfaca_87f9d5d5",
@@ -72,6 +114,24 @@
       "writtenOn": "2021-08-13T02:28:24Z",
       "side": 1,
       "message": "prefer to have one empty line above",
+      "revId": "7f242d6102ce71fa34798330482adb1377f1670b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca1f7878_8a510486",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1409819
+      },
+      "writtenOn": "2021-08-13T16:33:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4fcfaca_87f9d5d5",
       "revId": "7f242d6102ce71fa34798330482adb1377f1670b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
