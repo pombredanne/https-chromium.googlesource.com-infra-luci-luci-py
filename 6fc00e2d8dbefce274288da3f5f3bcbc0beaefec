@@ -22,6 +22,29 @@
       },
       "revId": "6fc00e2d8dbefce274288da3f5f3bcbc0beaefec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbbbd3f7_35b8187f",
+        "filename": "appengine/third_party/gae_ts_mon/README.swarming",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-16T02:31:10Z",
+      "side": 1,
+      "message": "why not submitted revision?",
+      "range": {
+        "startLine": 4,
+        "startChar": 10,
+        "endLine": 4,
+        "endChar": 47
+      },
+      "revId": "6fc00e2d8dbefce274288da3f5f3bcbc0beaefec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
