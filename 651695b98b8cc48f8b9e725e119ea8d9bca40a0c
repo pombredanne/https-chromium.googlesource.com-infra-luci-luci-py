@@ -135,6 +135,24 @@
       "parentUuid": "0ea49a27_d11245e4",
       "revId": "651695b98b8cc48f8b9e725e119ea8d9bca40a0c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9646e69_58da2426",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-16T04:53:27Z",
+      "side": 0,
+      "message": "I confirmed that the iteration takes long time.\nIt seems to take time to process running tasks, and the duration tends to increase as the number of running tasks increases when peak time.\nhttps://crbug.com/1183873#c78\n\nSo it would speed up by parallelization.",
+      "parentUuid": "99776925_106b762f",
+      "revId": "651695b98b8cc48f8b9e725e119ea8d9bca40a0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

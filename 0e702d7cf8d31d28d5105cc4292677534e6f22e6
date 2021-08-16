@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c1e14d8_f7feed45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-16T04:53:27Z",
+      "side": 1,
+      "message": "PTAL\n\nI will test it on dev before submission.\n",
+      "revId": "0e702d7cf8d31d28d5105cc4292677534e6f22e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9773149e_357c125a",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1724,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-16T04:53:27Z",
+      "side": 1,
+      "message": "I wonder if it can spawn too many datastore transactions as the number of running can be 8000+.\nSo might be better to limit the number of transactions to run at the same time.\n\nLet\u0027s see how it works on prod.",
+      "revId": "0e702d7cf8d31d28d5105cc4292677534e6f22e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
