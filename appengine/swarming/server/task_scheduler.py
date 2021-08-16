@@ -330,14 +330,15 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request,
   return run_result, secret_bytes
 
 
-def _handle_dead_bot(run_result_key):
-  """Handles TaskRunResult where its bot has stopped showing sign of life.
+def _detect_dead_task_async(run_result_key):
+  """Checks if the bot has stopped working on the task.
 
   Transactionally updates the entities depending on the state of this task. The
   task may be retried automatically, canceled or left alone.
 
   Returns:
-    True if the task was killed, False if no action was done.
+    ndb.Future that returns TaskRunResult key if the task was killed,
+    None if no action was done.
   """
   result_summary_key = task_pack.run_result_key_to_result_summary_key(
       run_result_key)
@@ -359,7 +360,8 @@ def _handle_dead_bot(run_result_key):
     # is valid, and the code in task_result really assumes it is in the DB.
     #
     # So for now, just skip it to unblock the cron job.
-    return False
+    return None
+
   es_cfg = external_scheduler.config_for_task(request)
 
   def run():
@@ -371,10 +373,10 @@ def _handle_dead_bot(run_result_key):
 
     if run_result.state != task_result.State.RUNNING:
       # It was updated already or not updating last. Likely DB index was stale.
-      return False
+      return None
 
     if not run_result.dead_after_ts or run_result.dead_after_ts > now:
-      return False
+      return None
 
     run_result.signal_server_version(server_version)
     run_result.modified_ts = now
@@ -417,12 +419,9 @@ def _handle_dead_bot(run_result_key):
       f.check_success()
     logging.warning('Task state was successfully updated. task: %s',
                     run_result.task_id)
-    return True
+    return run_result_key
 
-  try:
-    return datastore_utils.transaction(run)
-  except datastore_utils.CommitError:
-    return False
+  return datastore_utils.transaction_async(run)
 
 
 def _copy_summary(src, dst, skip_list):
@@ -1709,16 +1708,28 @@ def cron_handle_bot_died():
     total = 0
     ignored = 0
     killed = []
+    futures = []
     try:
       for run_result_key in task_result.yield_active_run_result_keys():
         total += 1
         if total % 500 == 0:
           logging.info('Fetched %d keys', total)
-        result = _handle_dead_bot(run_result_key)
-        if result:
-          killed.append(task_pack.pack_run_result_key(run_result_key))
+        f = _detect_dead_task_async(run_result_key)
+        if f:
+          futures.append(f)
+          if len(futures) % 500 == 0:
+            logging.info('Spawned %d async jobs', len(futures))
         else:
           ignored += 1
+      for f in futures:
+        key = f.get_result()
+        if key:
+          killed.append(task_pack.pack_run_result_key(key))
+        else:
+          ignored += 1
+        checked = len(killed) + ignored
+        if checked % 500 == 0:
+          logging.info('Checked %d tasks', checked)
     finally:
       if killed:
         logging.error(
