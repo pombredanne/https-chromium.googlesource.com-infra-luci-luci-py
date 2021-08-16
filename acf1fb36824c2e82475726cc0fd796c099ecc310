@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71907330_9471442a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-16T22:50:19Z",
+      "side": 1,
+      "message": "Comment removed by: Joanna Wang; Reason: avoid confusion",
+      "revId": "acf1fb36824c2e82475726cc0fd796c099ecc310",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
