@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f039ea47_d6ff75c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-16T13:55:51Z",
+      "side": 1,
+      "message": "I fixed a bug detected on dev.\nAfter that, the log looks fine. http://screen/7PDiQeQjh47BcTG\nBut there are only 15 tasks.\n\nI will deploy it to prod monitoring carefully, tomorrow morning.",
+      "parentUuid": "6c1e14d8_f7feed45",
+      "revId": "0e702d7cf8d31d28d5105cc4292677534e6f22e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "9773149e_357c125a",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 12
