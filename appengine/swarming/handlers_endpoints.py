@@ -518,101 +518,19 @@ class SwarmingTasksService(remote.Service):
     if sb is not None:
       request.properties.secret_bytes = sb
 
+    request_obj, secret_bytes, template_apply = (
+        message_conversion.new_task_request_from_rpc(request, utils.utcnow()))
+    # TODO: Check for TypeError, ValueError
+
     try:
-      request_obj, secret_bytes, template_apply = (
-          message_conversion.new_task_request_from_rpc(
-              request, utils.utcnow()))
-
-      # Retrieve pool_cfg, and check the existence.
-      pool = request_obj.pool
-      pool_cfg = pools_config.get_pool_config(pool)
-      if not pool_cfg:
-        logging.warning('Pool "%s" is not in pools.cfg', pool)
-        # TODO(crbug.com/1086058): It currently returns 403 Forbidden, but
-        # should return 400 BadRequest or 422 Unprocessable Entity, instead.
-        raise auth.AuthorizationError(
-            'Can\'t submit tasks to pool "%s", not defined in pools.cfg' % pool)
-
-      task_request.init_new_request(
-          request_obj, acl.can_schedule_high_priority_tasks(),
-          template_apply)
-      for index in range(request_obj.num_task_slices):
-        apply_server_property_defaults(request_obj.task_slice(index).properties)
-      # We need to call the ndb.Model pre-put check earlier because the
-      # following checks assume that the request itself is valid and could crash
-      # otherwise.
-      request_obj._pre_put_hook()
-    except (datastore_errors.BadValueError, TypeError, ValueError) as e:
-      logging.warning('Incorrect new task request', exc_info=True)
+      api_helpers.process_task_request(request_obj, template_apply)
+    except (datastore_errors.BadValueError, api_helpers.BadTaskRequestException,
+            service_accounts.MisconfigurationError) as e:
       raise endpoints.BadRequestException(e.message)
-
-    # TODO(crbug.com/1109378): Check ACLs before calling init_new_request to
-    # avoid leaking information about pool templates to unauthorized callers.
-
-    # If the task request supplied a realm it means the task is in a realm-aware
-    # mode and it wants *all* realm ACLs to be enforced. Otherwise assume
-    # the task runs in pool_cfg.default_task_realm and enforce only permissions
-    # specified in enforced_realm_permissions pool config (using legacy ACLs
-    # for the rest). This should simplify the transition to realm ACLs.
-    enforce_realms_acl = False
-    if request_obj.realm:
-      logging.info('Using task realm %r', request_obj.realm)
-      enforce_realms_acl = True
-    elif pool_cfg.default_task_realm:
-      logging.info('Using default_task_realm %r', pool_cfg.default_task_realm)
-      request_obj.realm = pool_cfg.default_task_realm
-    else:
-      logging.info('Not using realms')
-
-    # Warn if the pool has realms configured, but the task is using old ACLs.
-    if pool_cfg.realm and not request_obj.realm:
-      logging.warning(
-          'crbug.com/1066839: %s: %r is not using realms',
-          pool, request_obj.name)
-
-    # Realm permission 'swarming.pools.createInRealm' checks if the
-    # caller is allowed to create a task in the task realm.
-    request_obj.realms_enabled = realms.check_tasks_create_in_realm(
-        request_obj.realm, pool_cfg, enforce_realms_acl)
-
-    # Realm permission 'swarming.pools.create' checks if the caller is allowed
-    # to create a task in the pool.
-    realms.check_pools_create_task(pool_cfg, enforce_realms_acl)
-
-    # If the request has a service account email, check if the service account
-    # is allowed to run.
-    if service_accounts_utils.is_service_account(request_obj.service_account):
-      if not service_accounts.has_token_server():
-        raise endpoints.BadRequestException(
-            'This Swarming server doesn\'t support task service accounts '
-            'because Token Server URL is not configured')
-
-      # Realm permission 'swarming.tasks.actAs' checks if the service account is
-      # allowed to run in the task realm.
-      realms.check_tasks_act_as(request_obj, pool_cfg, enforce_realms_acl)
-
-      # If using legacy ACLs for service accounts, use the legacy mechanism to
-      # mint oauth token as well. Note that this path will be deprecated after
-      # migration to MintServiceAccountToken rpc which accepts realm.
-      # It contacts the token server to generate "OAuth token grant" (or grab a
-      # cached one). By doing this we check that the given service account usage
-      # is allowed by the token server rules at the time the task is posted.
-      # This check is also performed later (when running the task), when we get
-      # the actual OAuth access token.
-      if not request_obj.realms_enabled:
-        max_lifetime_secs = request_obj.max_lifetime_secs
-        try:
-          duration = datetime.timedelta(seconds=max_lifetime_secs)
-          request_obj.service_account_token = (
-              service_accounts.get_oauth_token_grant(
-                  service_account=request_obj.service_account,
-                  validity_duration=duration))
-        except service_accounts.PermissionError as exc:
-          raise auth.AuthorizationError(exc.message)
-        except service_accounts.MisconfigurationError as exc:
-          raise endpoints.BadRequestException(exc.message)
-        except service_accounts.InternalError as exc:
-          raise endpoints.InternalServerErrorException(exc.message)
+    except service_accounts.Permission as e:
+      raise auth.AuthorizationError(e.message)
+    except service_accounts.InternalError as e:
+      raise endpoints.InternalServerErrorException(e.message)
 
     # If the user only wanted to evaluate scheduling the task, but not actually
     # schedule it, return early without a task_id.
