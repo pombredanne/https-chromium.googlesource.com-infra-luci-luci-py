@@ -93,6 +93,30 @@
       },
       "revId": "6fc00e2d8dbefce274288da3f5f3bcbc0beaefec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9f63348_31b361fb",
+        "filename": "appengine/third_party/gae_ts_mon/README.swarming",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-16T02:48:59Z",
+      "side": 1,
+      "message": "Looks like you plan is to deploy this change to CL. Is that correct?\nPlease add your plan on the CL description.",
+      "parentUuid": "814a0a38_1dfe4e2d",
+      "range": {
+        "startLine": 4,
+        "startChar": 10,
+        "endLine": 4,
+        "endChar": 47
+      },
+      "revId": "6fc00e2d8dbefce274288da3f5f3bcbc0beaefec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
