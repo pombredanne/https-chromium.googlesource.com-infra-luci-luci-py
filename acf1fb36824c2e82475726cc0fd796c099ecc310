@@ -16,6 +16,23 @@
       "message": "Comment removed by: Joanna Wang; Reason: avoid confusion",
       "revId": "acf1fb36824c2e82475726cc0fd796c099ecc310",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eee6e2a_fb601741",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-16T22:52:12Z",
+      "side": 1,
+      "message": "I would consider having a subfolder for these (e.g. api/internal/bb or something)\n\nOnce the new backend protos land in their \"final form\" upstream in luci-go, we should also set up a script to copy from there to here, too.",
+      "revId": "acf1fb36824c2e82475726cc0fd796c099ecc310",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
