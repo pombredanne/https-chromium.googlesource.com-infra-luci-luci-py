@@ -50,6 +50,24 @@
       "message": "(lgtm for now though)",
       "revId": "acf1fb36824c2e82475726cc0fd796c099ecc310",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2d1fd5f_cf447350",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-16T23:04:17Z",
+      "side": 1,
+      "message": "moved temporary protos into internal/bb/\n\ncrbug/1240388",
+      "parentUuid": "3eee6e2a_fb601741",
+      "revId": "acf1fb36824c2e82475726cc0fd796c099ecc310",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
