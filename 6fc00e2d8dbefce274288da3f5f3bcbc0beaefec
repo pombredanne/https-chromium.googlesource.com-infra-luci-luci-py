@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e50bd0d0_99c41c73",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-16T02:23:00Z",
+      "side": 1,
+      "message": "Experiment gae_ts_mon would be better tittle?\n\nI think you don\u0027t need to submit this change to luci-py.\nYou can deploy your local luci-py branch to dev using gae.py.\nYou may need to stop spinnaker auto deployment, though.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 4
+      },
+      "revId": "6fc00e2d8dbefce274288da3f5f3bcbc0beaefec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
