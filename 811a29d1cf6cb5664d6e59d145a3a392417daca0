@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27e2cd25_298ca993",
+        "filename": "appengine/swarming/proto/api/internal/bb/backend.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T02:13:13Z",
+      "side": 1,
+      "message": "Why does only this have dot?",
+      "range": {
+        "startLine": 167,
+        "startChar": 11,
+        "endLine": 167,
+        "endChar": 12
+      },
+      "revId": "811a29d1cf6cb5664d6e59d145a3a392417daca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47295bfb_835cc2e7",
+        "filename": "appengine/swarming/proto/api/internal/bb/common.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T02:13:13Z",
+      "side": 1,
+      "message": "Remove this, too?",
+      "range": {
+        "startLine": 19,
+        "startChar": 8,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "811a29d1cf6cb5664d6e59d145a3a392417daca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9f757e6_efdd1c04",
+        "filename": "appengine/swarming/proto/api/internal/bb/launcher.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T02:13:13Z",
+      "side": 1,
+      "message": "remove this, too?",
+      "range": {
+        "startLine": 19,
+        "startChar": 8,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "811a29d1cf6cb5664d6e59d145a3a392417daca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
