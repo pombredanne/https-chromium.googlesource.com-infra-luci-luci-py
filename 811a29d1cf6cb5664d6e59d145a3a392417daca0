@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b47e039_5a5a4dbd",
+        "filename": "appengine/swarming/proto/api/internal/bb/backend.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-17T02:52:40Z",
+      "side": 1,
+      "message": "`bb.CacheEntry` in backend.proto (package `swarming.backend`) will resolve to `swarming.bb.CacheEntry` which does not exist. `.bb.CacheEntry` ensures that it will start searching in the outermost scope first for `bb`. \n\nSorry i forgot to upload changes for common.proto and launcher.proto. will send follow-up CL to be consistent.\n\nI assume we\u0027ll have to revisit these package names etc when we implement the proto copying script.",
+      "parentUuid": "27e2cd25_298ca993",
+      "range": {
+        "startLine": 167,
+        "startChar": 11,
+        "endLine": 167,
+        "endChar": 12
+      },
+      "revId": "811a29d1cf6cb5664d6e59d145a3a392417daca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47295bfb_835cc2e7",
