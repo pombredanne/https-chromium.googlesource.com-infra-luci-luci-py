@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a2b7a3e_13682ff7",
+        "filename": "appengine/swarming/proto/api/internal/bb/backend.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-17T02:01:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "807d00b7_e36869da",
+      "range": {
+        "startLine": 142,
+        "startChar": 11,
+        "endLine": 142,
+        "endChar": 41
+      },
+      "revId": "9e86c75c3577477869c2f007c605c3f443d061c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20dae584_8e2a3a01",
@@ -37,6 +61,24 @@
       "writtenOn": "2021-08-17T01:33:21Z",
       "side": 1,
       "message": "nit: add comment that the unit is sec.",
+      "revId": "9e86c75c3577477869c2f007c605c3f443d061c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4327adb2_760508d4",
+        "filename": "appengine/swarming/proto/api/internal/bb/common.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-17T02:01:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20dae584_8e2a3a01",
       "revId": "9e86c75c3577477869c2f007c605c3f443d061c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
