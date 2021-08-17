@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01d20968_cbf2c510",
+        "filename": "appengine/swarming/proto/api/internal/bb/backend.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T03:42:05Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "0b47e039_5a5a4dbd",
+      "range": {
+        "startLine": 167,
+        "startChar": 11,
+        "endLine": 167,
+        "endChar": 12
+      },
+      "revId": "811a29d1cf6cb5664d6e59d145a3a392417daca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47295bfb_835cc2e7",
