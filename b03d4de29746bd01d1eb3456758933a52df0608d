@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ce3ff14_15c84ae9",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-17T06:44:33Z",
+      "side": 1,
+      "message": "https://source.chromium.org/chromium/infra/infra/+/main:appengine/cr-buildbucket/swarming.py;l\u003d229\n\nonly calculates `wait_for_capacity` for the base_slice.\n@iannucci, do you know the reason for that? should I follow that here?",
+      "revId": "b03d4de29746bd01d1eb3456758933a52df0608d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
