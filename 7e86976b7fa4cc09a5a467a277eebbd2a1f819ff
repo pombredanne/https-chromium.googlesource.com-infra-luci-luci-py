@@ -95,6 +95,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8429b3e_b75fe871",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-17T18:45:31Z",
+      "side": 1,
+      "message": "(original line removed)",
+      "parentUuid": "e1c64d7b_76e61d31",
+      "range": {
+        "startLine": 65,
+        "startChar": 2,
+        "endLine": 65,
+        "endChar": 8
+      },
+      "revId": "7e86976b7fa4cc09a5a467a277eebbd2a1f819ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66db2c2b_c786e27c",
@@ -179,6 +203,30 @@
       "writtenOn": "2021-08-17T07:50:20Z",
       "side": 1,
       "message": "a helper function would simplify the tests. e.g. def requested_dim(key, value, exp\u003dNone)",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 41
+      },
+      "revId": "7e86976b7fa4cc09a5a467a277eebbd2a1f819ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13712a7f_273ec53e",
+        "filename": "appengine/swarming/backend_conversions_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-17T18:45:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7196fe1c_5752b6f4",
       "range": {
         "startLine": 58,
         "startChar": 12,
