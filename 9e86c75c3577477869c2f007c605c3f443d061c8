@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "807d00b7_e36869da",
+        "filename": "appengine/swarming/proto/api/internal/bb/backend.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T01:33:21Z",
+      "side": 1,
+      "message": "nit: Will this become bb.RequestedDimension after importing from proto buildbucket?\nIf so, can the package name be bb?",
+      "range": {
+        "startLine": 142,
+        "startChar": 11,
+        "endLine": 142,
+        "endChar": 41
+      },
+      "revId": "9e86c75c3577477869c2f007c605c3f443d061c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20dae584_8e2a3a01",
+        "filename": "appengine/swarming/proto/api/internal/bb/common.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T01:33:21Z",
+      "side": 1,
+      "message": "nit: add comment that the unit is sec.",
+      "revId": "9e86c75c3577477869c2f007c605c3f443d061c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
