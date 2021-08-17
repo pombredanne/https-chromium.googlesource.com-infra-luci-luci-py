@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3cc8d85_46b7f40f",
+        "filename": "appengine/swarming/proto/api/internal/bb/backend.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-17T06:53:26Z",
+      "side": 1,
+      "message": "copied from other CL\n\"`bb.CacheEntry` in backend.proto (package `swarming.backend`) will resolve to `swarming.bb.CacheEntry` which does not exist. `.bb.CacheEntry` ensures that it will start searching in the outermost scope first for `bb`. \"",
+      "range": {
+        "startLine": 142,
+        "startChar": 11,
+        "endLine": 142,
+        "endChar": 12
+      },
+      "revId": "edc3bf86cecbc19e5b589be373bf58671ecaadd8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
