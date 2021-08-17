@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0325bc3e_1fd7d82d",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T07:50:20Z",
+      "side": 1,
+      "message": "I think it needs to raise a custom exception to return invalid argument response instead of AssertionError.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 35
+      },
+      "revId": "7e86976b7fa4cc09a5a467a277eebbd2a1f819ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1c64d7b_76e61d31",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T07:50:20Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 65,
+        "startChar": 2,
+        "endLine": 65,
+        "endChar": 8
+      },
+      "revId": "7e86976b7fa4cc09a5a467a277eebbd2a1f819ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66db2c2b_c786e27c",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T07:50:20Z",
+      "side": 1,
+      "message": "Why is this different from the original code?\nhttps://source.chromium.org/chromium/infra/infra/+/main:appengine/cr-buildbucket/swarming.py;l\u003d276;drc\u003d4c4acc34162aa4058b103d818d23d6c9b977b724",
+      "range": {
+        "startLine": 85,
+        "startChar": 24,
+        "endLine": 85,
+        "endChar": 26
+      },
+      "revId": "7e86976b7fa4cc09a5a467a277eebbd2a1f819ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7196fe1c_5752b6f4",
+        "filename": "appengine/swarming/backend_conversions_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T07:50:20Z",
+      "side": 1,
+      "message": "a helper function would simplify the tests. e.g. def requested_dim(key, value, exp\u003dNone)",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 41
+      },
+      "revId": "7e86976b7fa4cc09a5a467a277eebbd2a1f819ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
