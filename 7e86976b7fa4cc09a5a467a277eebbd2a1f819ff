@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bff4d935_73180a2e",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T08:21:52Z",
+      "side": 1,
+      "message": "\u003e See TODO at line 18.\nSorry I missed that.\n\n\u003e e.g. I\u0027m currently thinking of implementing a wrapper around handlers_prpc.RunTask() that changes internal exceptions in prpc codes. \n\nSounds good to generalize exception handling.",
+      "parentUuid": "66445345_fbda094e",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 35
+      },
+      "revId": "7e86976b7fa4cc09a5a467a277eebbd2a1f819ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1c64d7b_76e61d31",
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "I think this is easier to understand. \nthe previous code had to use -2 because it added the base_slice to task_slices before this loop.\nIn this code, I moved adding base_slice to after this loop.",
       "parentUuid": "66db2c2b_c786e27c",
+      "range": {
+        "startLine": 85,
+        "startChar": 24,
+        "endLine": 85,
+        "endChar": 26
+      },
+      "revId": "7e86976b7fa4cc09a5a467a277eebbd2a1f819ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d2cde91_3293eb3c",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T08:21:52Z",
+      "side": 1,
+      "message": "I see. the last append has moved.",
+      "parentUuid": "d518ca42_6eb42243",
       "range": {
         "startLine": 85,
         "startChar": 24,

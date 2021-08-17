@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b94514f7_c2384e82",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T08:21:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1609e4b4_e750ed54",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 5
+      },
+      "revId": "efd9c1b26509b29dfdfc6e4effbd7205c04889e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1f09a7d_df1be22a",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "has this been considered for swarming code?\nhttps://www.python.org/dev/peps/pep-0484/#suggested-syntax-for-python-2-7-and-straddling-code\n\nI find it a little tedious to write these in doc strings\nand there\u0027s clear syntax that could be followed.",
       "parentUuid": "a1f09a7d_df1be22a",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 0
+      },
+      "revId": "efd9c1b26509b29dfdfc6e4effbd7205c04889e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "810e4be4_ac8f6590",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T08:21:52Z",
+      "side": 1,
+      "message": "Ah, this is a standard.\nThank you for sharing that.",
+      "parentUuid": "7ac99332_94a340cc",
       "range": {
         "startLine": 20,
         "startChar": 0,
