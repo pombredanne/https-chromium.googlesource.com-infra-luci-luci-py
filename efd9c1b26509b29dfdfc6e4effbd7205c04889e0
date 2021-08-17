@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91911bb7_51205111",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T07:29:13Z",
+      "side": 1,
+      "message": "Will this be used only in this module?",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 5
+      },
+      "revId": "efd9c1b26509b29dfdfc6e4effbd7205c04889e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1f09a7d_df1be22a",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T07:29:13Z",
+      "side": 1,
+      "message": "It would be better to write it in a doc string format.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 0
+      },
+      "revId": "efd9c1b26509b29dfdfc6e4effbd7205c04889e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a665efdc_192157fe",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T07:29:13Z",
+      "side": 1,
+      "message": "nit: key1",
+      "range": {
+        "startLine": 23,
+        "startChar": 24,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "efd9c1b26509b29dfdfc6e4effbd7205c04889e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5760c8c_a6190a52",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-17T07:29:13Z",
+      "side": 1,
+      "message": "I wonder this validation is duplicated with ndb model validation.\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_request.py;l\u003d1402;drc\u003d5713ed3a13f2e278f404493ffa816b5481abd1ce\n\nThe proto doc saids the max is 8.\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/proto/api/swarming.proto;l\u003d777;drc\u003d67745fb08589665950481f8c4e3349c0723816c7",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 72
+      },
+      "revId": "efd9c1b26509b29dfdfc6e4effbd7205c04889e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
