@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "66445345_fbda094e",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-17T08:01:15Z",
+      "side": 1,
+      "message": "See TODO at line 18.\nI wanted to implement how the prpc handlers will handle exceptions first.\ne.g. I\u0027m currently thinking of implementing a wrapper around handlers_prpc.RunTask() that changes internal exceptions in prpc codes. \n\nsimilar to: https://source.chromium.org/chromium/infra/infra/+/main:appengine/monorail/api/monorail_servicer.py;l\u003d294?q\u003dPRPCMe\u0026ss\u003dchromium%2Finfra%2Finfra:appengine%2Fmonorail%2F",
+      "parentUuid": "0325bc3e_1fd7d82d",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 35
+      },
+      "revId": "7e86976b7fa4cc09a5a467a277eebbd2a1f819ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1c64d7b_76e61d31",
         "filename": "appengine/swarming/backend_conversions.py",
         "patchSetId": 6
@@ -60,6 +84,30 @@
       "writtenOn": "2021-08-17T07:50:20Z",
       "side": 1,
       "message": "Why is this different from the original code?\nhttps://source.chromium.org/chromium/infra/infra/+/main:appengine/cr-buildbucket/swarming.py;l\u003d276;drc\u003d4c4acc34162aa4058b103d818d23d6c9b977b724",
+      "range": {
+        "startLine": 85,
+        "startChar": 24,
+        "endLine": 85,
+        "endChar": 26
+      },
+      "revId": "7e86976b7fa4cc09a5a467a277eebbd2a1f819ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d518ca42_6eb42243",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-17T08:01:15Z",
+      "side": 1,
+      "message": "I think this is easier to understand. \nthe previous code had to use -2 because it added the base_slice to task_slices before this loop.\nIn this code, I moved adding base_slice to after this loop.",
+      "parentUuid": "66db2c2b_c786e27c",
       "range": {
         "startLine": 85,
         "startChar": 24,

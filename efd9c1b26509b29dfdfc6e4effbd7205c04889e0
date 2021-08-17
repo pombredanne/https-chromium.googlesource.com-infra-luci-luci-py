@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1609e4b4_e750ed54",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-17T08:01:15Z",
+      "side": 1,
+      "message": "yes, that\u0027s the plan. _compute_task_slices should eventually be called by some compute_task_request()",
+      "parentUuid": "91911bb7_51205111",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 5
+      },
+      "revId": "efd9c1b26509b29dfdfc6e4effbd7205c04889e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a1f09a7d_df1be22a",
         "filename": "appengine/swarming/backend_conversions.py",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2021-08-17T07:29:13Z",
       "side": 1,
       "message": "It would be better to write it in a doc string format.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 0
+      },
+      "revId": "efd9c1b26509b29dfdfc6e4effbd7205c04889e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ac99332_94a340cc",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-17T08:01:15Z",
+      "side": 1,
+      "message": "has this been considered for swarming code?\nhttps://www.python.org/dev/peps/pep-0484/#suggested-syntax-for-python-2-7-and-straddling-code\n\nI find it a little tedious to write these in doc strings\nand there\u0027s clear syntax that could be followed.",
+      "parentUuid": "a1f09a7d_df1be22a",
       "range": {
         "startLine": 20,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3535566a_61a9406e",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-17T08:01:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a665efdc_192157fe",
+      "range": {
+        "startLine": 23,
+        "startChar": 24,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "efd9c1b26509b29dfdfc6e4effbd7205c04889e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5760c8c_a6190a52",
@@ -83,6 +155,30 @@
       "writtenOn": "2021-08-17T07:29:13Z",
       "side": 1,
       "message": "I wonder this validation is duplicated with ndb model validation.\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_request.py;l\u003d1402;drc\u003d5713ed3a13f2e278f404493ffa816b5481abd1ce\n\nThe proto doc saids the max is 8.\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/proto/api/swarming.proto;l\u003d777;drc\u003d67745fb08589665950481f8c4e3349c0723816c7",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 72
+      },
+      "revId": "efd9c1b26509b29dfdfc6e4effbd7205c04889e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71a9c60c_41777f92",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-17T08:01:15Z",
+      "side": 1,
+      "message": "Thanks for checking!\nThis was copied over from https://source.chromium.org/chromium/infra/infra/+/main:appengine/cr-buildbucket/swarming.py;l\u003d250\n\nremoved",
+      "parentUuid": "f5760c8c_a6190a52",
       "range": {
         "startLine": 63,
         "startChar": 0,
