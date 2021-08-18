@@ -5,10 +5,9 @@
 import datetime
 import logging
 
-import endpoints
-
 from components import auth
 
+import handlers_exceptions
 from proto.config import realms_pb2
 from server import acl
 from server import bot_management
