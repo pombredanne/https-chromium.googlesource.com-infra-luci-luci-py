@@ -9,10 +9,23 @@ import logging
 from components import prpc
 from components.prpc.codes import StatusCode
 
+import prpc_helpers
 from components import datastore_utils
+from proto.api import backend_prpc_pb2
+from proto.api import backend_pb2
 from proto.api import swarming_prpc_pb2  # pylint: disable=no-name-in-module
 from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
 from server import bot_management
+
+
+class TaskBackendAPIService(SwarmingPRPCService):
+  """Service implements the pRPC service in backend.proto."""
+
+  DESCRIPTION = backend_prpc_pb2.TaskBackendServiceDescription
+
+  @prpc_helpers.PRPCMethod
+  def RunTask(self, request, context):
+    # type: (backend_pb2.RunTaskRequest, context.ServicerContext) -> empty_pb2.Empty
 
 
 class BotAPIService(object):
@@ -81,4 +94,5 @@ class BotAPIService(object):
 def get_routes():
   s = prpc.Server()
   s.add_service(BotAPIService())
+  s.add_service(TaskBackendAPIService())
   return s.get_routes()
