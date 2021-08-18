@@ -43,6 +43,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "860b387e_88471594",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2021-08-18T11:07:43Z",
+      "side": 1,
+      "message": "well, if googlers have access to infradata/config, then they already know all projects. However, once we don\u0027t store swarming bots / GCE VMs in infradata/config, we might have more restrictive ACL here. Some day...",
+      "parentUuid": "172d6de4_7e54fecc",
+      "range": {
+        "startLine": 255,
+        "startChar": 9,
+        "endLine": 255,
+        "endChar": 29
+      },
+      "revId": "699d77259124505e07a5409b043cd6229b501222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "558ef23c_477b2d34",
         "filename": "appengine/components/components/config/proto/service_config.proto",
         "patchSetId": 1
@@ -77,6 +101,30 @@
       "writtenOn": "2021-08-18T03:56:26Z",
       "side": 1,
       "message": "Probably \"googlers\", so they can validate infradata/config CLs.",
+      "range": {
+        "startLine": 278,
+        "startChar": 9,
+        "endLine": 278,
+        "endChar": 29
+      },
+      "revId": "699d77259124505e07a5409b043cd6229b501222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19bac346_aca068cd",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2021-08-18T11:07:43Z",
+      "side": 1,
+      "message": "Tbh, i find this bit unfortunate, but given that swarming bots are still global, it sadly makes sense 😞",
+      "parentUuid": "a2c82619_2b16b755",
       "range": {
         "startLine": 278,
         "startChar": 9,
@@ -135,6 +183,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "59c51d85_02f4373c",
+        "filename": "appengine/components/components/config/proto/service_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2021-08-18T11:07:43Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "51751632_82899948",
+      "range": {
+        "startLine": 290,
+        "startChar": 9,
+        "endLine": 290,
+        "endChar": 20
+      },
+      "revId": "699d77259124505e07a5409b043cd6229b501222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b1c3f298_f38c9dbd",
         "filename": "appengine/config_service/acl.py",
         "patchSetId": 1
@@ -174,6 +246,76 @@
         "startChar": 9,
         "endLine": 164,
         "endChar": 30
+      },
+      "revId": "699d77259124505e07a5409b043cd6229b501222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c5aa4f1_b94ccf0b",
+        "filename": "appengine/config_service/acl.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2021-08-18T11:07:43Z",
+      "side": 1,
+      "message": "ha, makes sense!",
+      "parentUuid": "31125137_bb5c9f87",
+      "range": {
+        "startLine": 164,
+        "startChar": 9,
+        "endLine": 164,
+        "endChar": 30
+      },
+      "revId": "699d77259124505e07a5409b043cd6229b501222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a3f1da3_e5b2a442",
+        "filename": "appengine/config_service/acl.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2021-08-18T11:07:43Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 190,
+        "startChar": 42,
+        "endLine": 190,
+        "endChar": 43
+      },
+      "revId": "699d77259124505e07a5409b043cd6229b501222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68f33d23_c4ab95a1",
+        "filename": "appengine/config_service/acl.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2021-08-18T11:07:43Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 217,
+        "startChar": 42,
+        "endLine": 217,
+        "endChar": 43
       },
       "revId": "699d77259124505e07a5409b043cd6229b501222",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
