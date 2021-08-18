@@ -219,6 +219,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8675a0a_0136d23a",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-18T06:54:59Z",
+      "side": 1,
+      "message": "\u003e make it shareable\n\nI meant this. and agree to not include in this scope.",
+      "parentUuid": "168b799f_bf150d36",
+      "range": {
+        "startLine": 447,
+        "startChar": 0,
+        "endLine": 453,
+        "endChar": 42
+      },
+      "revId": "a444cfeec799b1d6787716096da81a25e3726613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1a13067_9c646d5a",
