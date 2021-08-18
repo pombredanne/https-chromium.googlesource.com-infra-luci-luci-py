@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a752474_821b292d",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T00:16:42Z",
+      "side": 1,
+      "message": "FYI: No code changes in \u0027private\u0027 \u0027_foo()\u0027 methods. Copied directly from handlers_endpoints.",
+      "revId": "a119e73817a12cd813b915cad6d3e9da8653c31b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c95d4fd3_e4441a74",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T00:16:42Z",
+      "side": 1,
+      "message": "My goal is i don\u0027t want exception-\u003eprpc code converter to have to keep track of  a wide range of exceptions. \n\nSo the backend api handlers should only raise these exceptions. If new methods are written just for the backend api handlers they should also raise these exceptions and the handler itself won\u0027t worry about try-excepting.\nIf a handler has to call common methods that already raise other exceptions that can\u0027t easily be changed, they will be try-excepted at the backend handler level.\n\nShould not be difficult to change if we find a better strategy later.\nhappy for feedback.",
+      "range": {
+        "startLine": 191,
+        "startChar": 32,
+        "endLine": 191,
+        "endChar": 68
+      },
+      "revId": "a119e73817a12cd813b915cad6d3e9da8653c31b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
