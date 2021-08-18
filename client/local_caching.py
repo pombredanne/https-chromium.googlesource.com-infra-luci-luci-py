@@ -913,6 +913,13 @@ class NamedCache(Cache):
         file_path.ensure_tree(dst)
         return 0
       except (IOError, OSError, PermissionError) as ex:
+        if sys.platform == 'win' and isinstance(ex, PermissionError):
+          print(
+              "There may be running process in cache e.g. https://crbug.com/1239809#c14",
+              file=sys.stderr)
+          subprocess.check_call(
+              ["powershell", "get-process | select path,starttime"])
+
         # Raise using the original traceback.
         exc = NamedCacheError(
             'cannot install cache named %r at %r: %s' % (name, dst, ex))
