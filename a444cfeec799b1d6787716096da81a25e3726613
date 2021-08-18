@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "95571725_86794b54",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T06:31:32Z",
+      "side": 1,
+      "message": "I named this api_helpers because I expect this file will contain helpers/shared code for all backend API handlers too, not just helpers for RunTaskRequest. And I assume (though may be wrong) we\u0027ll need some helper code to manage things other than what\u0027s in task_request.py? (regardless, i\u0027m also not attached to \"api_helpers\")",
+      "parentUuid": "ebc61109_9654270a",
+      "revId": "a444cfeec799b1d6787716096da81a25e3726613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "943e478c_dc224696",
         "filename": "appengine/swarming/api_helpers.py",
         "patchSetId": 9
@@ -31,6 +49,30 @@
       "writtenOn": "2021-08-18T05:15:41Z",
       "side": 1,
       "message": "Why don\u0027t you get this from TaskRequest object `tr`? so you don\u0027t need `    enable_resultdb \u003d request.resultdb and request.resultdb.enable` in handlers.",
+      "range": {
+        "startLine": 21,
+        "startChar": 45,
+        "endLine": 21,
+        "endChar": 60
+      },
+      "revId": "a444cfeec799b1d6787716096da81a25e3726613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ed89b80_1c929965",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T06:31:32Z",
+      "side": 1,
+      "message": "whoops thanks",
+      "parentUuid": "943e478c_dc224696",
       "range": {
         "startLine": 21,
         "startChar": 45,
@@ -54,6 +96,30 @@
       "writtenOn": "2021-08-18T05:15:41Z",
       "side": 1,
       "message": "Does this need to be inside the try-except?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "a444cfeec799b1d6787716096da81a25e3726613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1675d13_a54e908d",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T06:31:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12bf4b88_137b3228",
       "range": {
         "startLine": 38,
         "startChar": 0,
@@ -89,6 +155,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a0147f74_06e757c5",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T06:31:32Z",
+      "side": 1,
+      "message": "Do you mean make it shareable or just move it somewhere else? \nI considered how to make this code shareable, but didn\u0027t see an obvious way to do it so didn\u0027t want to tackle it in the same CL.\n\nIf you mean just move this code somewhere else, I\u0027m not sure what the benefits are? AFAICT, this seems pretty specific to this endpoints handler.",
+      "parentUuid": "7d895765_f225984e",
+      "range": {
+        "startLine": 447,
+        "startChar": 0,
+        "endLine": 453,
+        "endChar": 42
+      },
+      "revId": "a444cfeec799b1d6787716096da81a25e3726613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1a13067_9c646d5a",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 9
@@ -100,6 +190,30 @@
       "writtenOn": "2021-08-18T05:15:41Z",
       "side": 1,
       "message": "commented in api_helpers.py",
+      "range": {
+        "startLine": 454,
+        "startChar": 0,
+        "endLine": 454,
+        "endChar": 66
+      },
+      "revId": "a444cfeec799b1d6787716096da81a25e3726613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9198f3b8_f845f838",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T06:31:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1a13067_9c646d5a",
       "range": {
         "startLine": 454,
         "startChar": 0,
@@ -123,6 +237,30 @@
       "writtenOn": "2021-08-18T05:15:41Z",
       "side": 1,
       "message": "Can this be more generic like BadRequestException, so that exception handlers can be generalized for other handlers? e.g. BadRequestException -\u003e 400 http error.",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "a444cfeec799b1d6787716096da81a25e3726613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb575eaf_a178f240",
+        "filename": "appengine/swarming/handlers_exceptions.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T06:31:32Z",
+      "side": 1,
+      "message": "yah thx, i meant to do this as well.",
+      "parentUuid": "e45edb51_f7f3f8e7",
       "range": {
         "startLine": 7,
         "startChar": 6,
