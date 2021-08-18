@@ -39,6 +39,30 @@
       },
       "revId": "a119e73817a12cd813b915cad6d3e9da8653c31b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3102979_5b1d30c7",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T01:17:38Z",
+      "side": 1,
+      "message": "(I don\u0027t think the details need to be hashed out at this point. It will be easier for me to be more certain about this as I implement more. \njust looking for strong opposition if it\u0027s already obvious to people more familiar with swarming code that this is not the direction to go.)",
+      "parentUuid": "c95d4fd3_e4441a74",
+      "range": {
+        "startLine": 191,
+        "startChar": 32,
+        "endLine": 191,
+        "endChar": 68
+      },
+      "revId": "a119e73817a12cd813b915cad6d3e9da8653c31b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
