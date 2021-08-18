@@ -107,6 +107,92 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c1c6f5a_d9ff4d71",
+        "filename": "appengine/swarming/api_helpers_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-18T01:58:27Z",
+      "side": 1,
+      "message": "2021?",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "2cfc255eb0ea2991e3dfef58978d0d6debb37b29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a06ef036_b15b083a",
+        "filename": "appengine/swarming/api_helpers_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-18T01:58:27Z",
+      "side": 1,
+      "message": "sort?",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "2cfc255eb0ea2991e3dfef58978d0d6debb37b29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffeaef6e_4667d16c",
+        "filename": "appengine/swarming/api_helpers_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-18T01:58:27Z",
+      "side": 1,
+      "message": "Better to merge these imports to above block?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 31
+      },
+      "revId": "2cfc255eb0ea2991e3dfef58978d0d6debb37b29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f332f0ce_9a418f90",
+        "filename": "appengine/swarming/api_helpers_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-18T01:58:27Z",
+      "side": 1,
+      "message": "make this member of the test class?",
+      "revId": "2cfc255eb0ea2991e3dfef58978d0d6debb37b29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "09fd7545_a578980f",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 7
