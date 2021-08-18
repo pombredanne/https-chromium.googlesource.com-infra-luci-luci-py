@@ -52,6 +52,24 @@
       "parentUuid": "7a192398_1636a323",
       "revId": "b03d4de29746bd01d1eb3456758933a52df0608d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec2168c1_59ffb194",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T23:53:28Z",
+      "side": 1,
+      "message": "chatted on chat with Robbie.\nThe existing implementation matches the swarming.py implementation which is correct.\nIn bb-on-swarming, `wait_for_capacity` is only used for the last slice (base_slice) to give named caches some time to show up.\n\nNo code changes. Just added a comment to explain this.",
+      "parentUuid": "3736c369_c76ef004",
+      "revId": "b03d4de29746bd01d1eb3456758933a52df0608d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6c73d67_636cb48d",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T23:53:28Z",
+      "side": 1,
+      "message": "See above comment.",
+      "parentUuid": "ad7f27d7_814112c4",
+      "revId": "24aa9643a9a3d431b4a39e54c721fe8fe7f8741c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37e0ede9_79fc251a",
@@ -58,6 +76,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c1b8b18_3729b5af",
+        "filename": "appengine/swarming/backend_conversions_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T23:53:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37e0ede9_79fc251a",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "24aa9643a9a3d431b4a39e54c721fe8fe7f8741c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "677f97e6_630ca242",
@@ -71,6 +113,30 @@
       "writtenOn": "2021-08-18T01:37:29Z",
       "side": 1,
       "message": "import third party library before our library?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 41
+      },
+      "revId": "24aa9643a9a3d431b4a39e54c721fe8fe7f8741c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea393b69_228c3735",
+        "filename": "appengine/swarming/backend_conversions_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T23:53:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "677f97e6_630ca242",
       "range": {
         "startLine": 22,
         "startChar": 0,
