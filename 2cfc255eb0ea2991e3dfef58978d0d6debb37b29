@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09bf4f88_ae5427ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-18T01:42:08Z",
+      "side": 1,
+      "message": "That\u0027s good refactoring. I think it can refactor future.",
+      "revId": "2cfc255eb0ea2991e3dfef58978d0d6debb37b29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d4ce983_77cc96a3",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-18T01:42:08Z",
+      "side": 1,
+      "message": "Does it make sense to move the logic to task_request.init_new_request()?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 60
+      },
+      "revId": "2cfc255eb0ea2991e3dfef58978d0d6debb37b29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4c491ac_bb932b6e",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-18T01:42:08Z",
+      "side": 1,
+      "message": "This also can be moved to init_new_request() if that makes sense.\napi_helpers.py can define only exceptions, and legacy handler and prpc handler will convert them differently.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 0
+      },
+      "revId": "2cfc255eb0ea2991e3dfef58978d0d6debb37b29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7cd711f_1173e19b",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-18T01:42:08Z",
+      "side": 1,
+      "message": "This logic, too. validation can be done inside init_new_request().",
+      "range": {
+        "startLine": 47,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 44
+      },
+      "revId": "2cfc255eb0ea2991e3dfef58978d0d6debb37b29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09fd7545_a578980f",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-18T01:42:08Z",
+      "side": 1,
+      "message": "This validation can be moved to api_handlers.process_task_request().",
+      "range": {
+        "startLine": 513,
+        "startChar": 0,
+        "endLine": 517,
+        "endChar": 0
+      },
+      "revId": "2cfc255eb0ea2991e3dfef58978d0d6debb37b29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
