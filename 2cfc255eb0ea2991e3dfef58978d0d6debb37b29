@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1635137_834bb03f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-18T02:14:11Z",
+      "side": 1,
+      "message": "I noticed that server/realms.py raise endpoints exceptions. (implemented by me...)\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/realms.py;l\u003d8?q\u003df:server%2Frealms.py\u0026ss\u003dchromium\n\nThose exceptions also need to be changed to api_handlers exceptions.",
+      "revId": "2cfc255eb0ea2991e3dfef58978d0d6debb37b29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "09bf4f88_ae5427ae",
