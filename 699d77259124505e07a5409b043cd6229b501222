@@ -298,6 +298,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8beefedc_764f6f49",
+        "filename": "appengine/config_service/acl.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-08-18T21:59:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a3f1da3_e5b2a442",
+      "range": {
+        "startLine": 190,
+        "startChar": 42,
+        "endLine": 190,
+        "endChar": 43
+      },
+      "revId": "699d77259124505e07a5409b043cd6229b501222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68f33d23_c4ab95a1",
@@ -311,6 +335,30 @@
       "writtenOn": "2021-08-18T11:07:43Z",
       "side": 1,
       "message": "is",
+      "range": {
+        "startLine": 217,
+        "startChar": 42,
+        "endLine": 217,
+        "endChar": 43
+      },
+      "revId": "699d77259124505e07a5409b043cd6229b501222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0854a2aa_a7aad7c5",
+        "filename": "appengine/config_service/acl.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-08-18T21:59:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68f33d23_c4ab95a1",
       "range": {
         "startLine": 217,
         "startChar": 42,
