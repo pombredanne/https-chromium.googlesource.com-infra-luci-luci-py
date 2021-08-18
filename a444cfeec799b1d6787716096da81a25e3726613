@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e0a66e0_401c3b90",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-18T06:41:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "95571725_86794b54",
+      "revId": "a444cfeec799b1d6787716096da81a25e3726613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "943e478c_dc224696",
@@ -167,6 +185,30 @@
       "side": 1,
       "message": "Do you mean make it shareable or just move it somewhere else? \nI considered how to make this code shareable, but didn\u0027t see an obvious way to do it so didn\u0027t want to tackle it in the same CL.\n\nIf you mean just move this code somewhere else, I\u0027m not sure what the benefits are? AFAICT, this seems pretty specific to this endpoints handler.",
       "parentUuid": "7d895765_f225984e",
+      "range": {
+        "startLine": 447,
+        "startChar": 0,
+        "endLine": 453,
+        "endChar": 42
+      },
+      "revId": "a444cfeec799b1d6787716096da81a25e3726613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "168b799f_bf150d36",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-18T06:41:54Z",
+      "side": 1,
+      "message": "I don\u0027t think we need to modify this. I even think this is not necessary.\nIf someone can see GCP logs, they can see content in datastore entity too in current swarming setup.",
+      "parentUuid": "a0147f74_06e757c5",
       "range": {
         "startLine": 447,
         "startChar": 0,
