@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3f80b202_876c1d47",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-18T05:15:41Z",
+      "side": 1,
+      "message": "Yes. better to separate CLs.",
+      "parentUuid": "2e492673_5d1113dd",
+      "revId": "2cfc255eb0ea2991e3dfef58978d0d6debb37b29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "09bf4f88_ae5427ae",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 7
@@ -165,6 +183,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a48e540f_84e7a153",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-18T05:15:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "94db72c2_7c41d4bd",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 0
+      },
+      "revId": "2cfc255eb0ea2991e3dfef58978d0d6debb37b29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7cd711f_1173e19b",
@@ -202,6 +244,30 @@
       "side": 1,
       "message": "moved `_pre_put_hook` to init_new_request(), if that\u0027s what you mean.",
       "parentUuid": "d7cd711f_1173e19b",
+      "range": {
+        "startLine": 47,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 44
+      },
+      "revId": "2cfc255eb0ea2991e3dfef58978d0d6debb37b29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f58885b_e2452dd6",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-18T05:15:41Z",
+      "side": 1,
+      "message": "Thanks. That\u0027s what I meant.",
+      "parentUuid": "e0d20d0c_ef326f42",
       "range": {
         "startLine": 47,
         "startChar": 1,
