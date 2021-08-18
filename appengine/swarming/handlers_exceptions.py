@@ -14,6 +14,11 @@ class PermissionException(Exception):
   pass
 
 
+class NotFoundException(Exception):
+  """Resource not found."""
+  pass
+
+
 class InternalException(Exception):
   """Unexpected error occurred."""
   pass
