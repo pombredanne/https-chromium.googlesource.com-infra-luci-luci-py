@@ -34,6 +34,24 @@
       "parentUuid": "8ce3ff14_15c84ae9",
       "revId": "b03d4de29746bd01d1eb3456758933a52df0608d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3736c369_c76ef004",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-18T22:25:04Z",
+      "side": 1,
+      "message": "Base slice should be the \u0027basis\u0027 for ALL the slices (it\u0027s not just the 0th slice). So if wait_for_capacity is true, it\u0027s true for all slices.",
+      "parentUuid": "7a192398_1636a323",
+      "revId": "b03d4de29746bd01d1eb3456758933a52df0608d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

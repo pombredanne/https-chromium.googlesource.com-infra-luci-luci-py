@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad7f27d7_814112c4",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-18T22:25:04Z",
+      "side": 1,
+      "message": "I believe this should be seeded with base_slice, right?",
+      "revId": "24aa9643a9a3d431b4a39e54c721fe8fe7f8741c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37e0ede9_79fc251a",
         "filename": "appengine/swarming/backend_conversions_test.py",
         "patchSetId": 8
