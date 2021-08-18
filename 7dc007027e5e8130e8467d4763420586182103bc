@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4bbaa3b_0bdd4b7f",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-18T21:45:38Z",
+      "side": 1,
+      "message": "I think most exception messages will be created in internal code and passed to handlers_prpc.py. \nIs it fine to expose those here or is it very likely a lot of swarming exception messages contain sensitive info? If not I can replace with general messages for each exception type here.",
+      "range": {
+        "startLine": 56,
+        "startChar": 40,
+        "endLine": 56,
+        "endChar": 49
+      },
+      "revId": "7dc007027e5e8130e8467d4763420586182103bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
