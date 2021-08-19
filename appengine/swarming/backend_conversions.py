@@ -18,8 +18,31 @@ _CACHE_DIR = 'cache'
 # TODO(crbug/1236848): Replace 'assert's with raised exceptions.
 
 
+def _compute_task_request(run_task_req):
+  # type: (backend_pb2.RunTaskRequest) -> task_request.TaskRequest
+
+  # Notes: resultdb is handled by bbagent
+  slices = _compute_task_slices(run_task_req)
+  task_request.TaskRequest(
+      created_ts=utils.utcnow(),
+      task_slices=slices,
+      expiration_ts=slices[-1].expiration_secs,
+      realm=run_task_req.realm,
+      name='bb-%d-%s' % (run_task_req.build_id, 'TODO:builder_id?'),
+      manual_tags=run_task_req.backend_config.fields['tags'],
+      priority=run_task_req.backend_config.fields['priority'],
+      pubsub_topic=run_task_req.backend_config.fields['pubsub_topic'],
+      pubsub_userdata=run_task_req.backend_config.fields['pubsub_userdata'],
+      pubsub_auth_token=run_task_req.backend_config.fields['pubsub_auth_token'],
+      bot_ping_tolerance_secs=run_task_req.backend_config
+      .fields['bot_ping_tolerance'],
+      service_account=run_task_req.backend_config.fields['service_account'],
+      parent_task_id=run_task_req.backend_config.fields['parent_run_id'],
+      user=run_task_req.backend_config.fields['user'])
+
+
 def _compute_task_slices(run_task_req):
-  # type: (taskbackend_service_pb2.RunTaskRequest)
+  # type: (backend_pb2.RunTaskRequest)
   #   -> Sequence[task_request.TaskSlice]
 
   # {expiration_secs: {'key1': [value1, ...], 'key2': [value1, ...]}
@@ -42,6 +65,11 @@ def _compute_task_slices(run_task_req):
   # TODO(crbug/1236848): Add remaining TaskSlice fields.
   # TODO(crbug/1236848): Validate backend_config.fields have the expected
   # value types.
+  # NOTES:
+  #  - secret_bytes added to command args
+  #  - env and env_prefixes handled by bbagent
+  #  - cache env_prefixes not set here, but passed in `-cache-base` in command args
+  #    instead
   base_slice = task_request.TaskSlice(
       # In bb-on-swarming, `wait_for_capacity` is only used for the last slice
       # (base_slice) to give named caches some time to show up.
@@ -58,6 +86,10 @@ def _compute_task_slices(run_task_req):
           dimensions_data=base_dims,
           execution_timeout_secs=run_task_req.execution_timeout.seconds,
           grace_period_secs=run_task_req.grace_period.seconds,
+          containment=_ingest_containment(
+              run_task_req.backend_config.fields['containment']),
+          command=_compute_command(run_task_req),
+          has_secret_bytes=False,  # ?
       ),
   )
 
@@ -92,3 +124,15 @@ def _compute_task_slices(run_task_req):
   task_slices.append(base_slice)
 
   return task_slices
+
+
+def _compute_command(run_task_req):
+  args = ['<run_task_req.agent>'] + run_task_req.agent_args[:]
+  # args.append('-secrets=<run_task_req.secrets>')
+  # args.append('-task=id={SWARMING_TASK_ID}')
+  # args.append('-cache-base=%s' % _CACHE_DIR)
+  return args
+
+
+def _ingest_containment(containment):
+  pass
