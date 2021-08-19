@@ -22,6 +22,30 @@
       },
       "revId": "7dc007027e5e8130e8467d4763420586182103bc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "946a365d_353c749e",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-19T02:52:35Z",
+      "side": 1,
+      "message": "I think this is fine.",
+      "parentUuid": "f4bbaa3b_0bdd4b7f",
+      "range": {
+        "startLine": 56,
+        "startChar": 40,
+        "endLine": 56,
+        "endChar": 49
+      },
+      "revId": "7dc007027e5e8130e8467d4763420586182103bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

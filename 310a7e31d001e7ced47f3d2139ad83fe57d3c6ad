@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b79d5fea_c63f5f38",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-19T02:52:35Z",
+      "side": 1,
+      "message": "Will you also change this base class?",
+      "range": {
+        "startLine": 36,
+        "startChar": 20,
+        "endLine": 36,
+        "endChar": 26
+      },
+      "revId": "310a7e31d001e7ced47f3d2139ad83fe57d3c6ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2053af4_38b5aba4",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-19T02:52:35Z",
+      "side": 1,
+      "message": "How about moving the base class to handlers_prpc.py?",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 74
+      },
+      "revId": "310a7e31d001e7ced47f3d2139ad83fe57d3c6ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f91586e3_d1048926",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-19T02:52:35Z",
+      "side": 1,
+      "message": "It doesn\u0027t need to be an instance method.",
+      "range": {
+        "startLine": 45,
+        "startChar": 23,
+        "endLine": 45,
+        "endChar": 27
+      },
+      "revId": "310a7e31d001e7ced47f3d2139ad83fe57d3c6ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1454dd52_bc83b1ea",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-19T02:52:35Z",
+      "side": 1,
+      "message": "Would re-raising here be easier to read the code, instead of returning True/False?",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 69
+      },
+      "revId": "310a7e31d001e7ced47f3d2139ad83fe57d3c6ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
