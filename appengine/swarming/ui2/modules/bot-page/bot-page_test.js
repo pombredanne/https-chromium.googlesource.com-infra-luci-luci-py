@@ -739,8 +739,9 @@ describe('bot-page', function() {
         ele.render();
         fetchMock.reset(); // clears history and routes
 
+        let tasks = tasksMap['SkiaGPU'];
         fetchMock.get(`glob:/_ah/api/swarming/v1/bot/${TEST_BOT_ID}/tasks*`, {
-          items: tasksMap['SkiaGPU'],
+          items: tasks.concat(tasks, tasks, tasks, tasks, tasks, tasks),
           cursor: 'newCursor',
         });
 
@@ -760,11 +761,11 @@ describe('bot-page', function() {
           // spot check a few fields
           expect(url).toContain('state');
           expect(url).toContain('name');
-          expect(url).toContain('limit=30');
+          expect(url).toContain('limit=200');
           // validate cursor
           expect(url).toContain('cursor=myCursor');
           expect(ele._taskCursor).toEqual('newCursor', 'cursor should update');
-          expect(ele._tasks).toHaveSize(30+30, '30 initial tasks, 30 new tasks');
+          expect(ele._tasks).toHaveSize(200+200, `200 initial tasks, 200 new tasks: ${ele._tasks.length}`);
 
           done();
         });
@@ -779,8 +780,9 @@ describe('bot-page', function() {
         ele.render();
         fetchMock.reset(); // clears history and routes
 
+        let events = eventsMap['SkiaGPU'];
         fetchMock.get(`glob:/_ah/api/swarming/v1/bot/${TEST_BOT_ID}/events*`, {
-          items: eventsMap['SkiaGPU'],
+          items: events.concat(events, events, events),
           cursor: 'newCursor',
         });
 
@@ -800,11 +802,11 @@ describe('bot-page', function() {
           // spot check a few fields
           expect(url).toContain('event_type');
           expect(url).toContain('task_id');
-          expect(url).toContain('limit=50');
+          expect(url).toContain('limit=200');
           // validate cursor
           expect(url).toContain('cursor=myCursor');
           expect(ele._eventsCursor).toEqual('newCursor', 'cursor should update');
-          expect(ele._events).toHaveSize(50+50, '50 initial tasks, 50 new tasks');
+          expect(ele._events).toHaveSize(200+200, `200 initial tasks, 200 new tasks: ${ele._events.length}`);
 
           done();
         });
