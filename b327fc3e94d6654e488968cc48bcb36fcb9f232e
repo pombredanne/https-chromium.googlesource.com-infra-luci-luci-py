@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb60b880_ab55e5cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-08-19T22:52:59Z",
+      "side": 1,
+      "message": "PTAL\n\nI\u0027m on a quest to clean up https://chrome-infra-auth.appspot.com/auth/groups/config-project-access and especially https://chrome-infra-auth.appspot.com/auth/groups/config-validation as part of Realms migration. These groups should not contain random builder services accounts (all this stuff should be in corresponding project configs, not in global groups).\n\nThis CL is needed to setup dry run logging of when new and old ACLs mismatch.",
+      "revId": "b327fc3e94d6654e488968cc48bcb36fcb9f232e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
