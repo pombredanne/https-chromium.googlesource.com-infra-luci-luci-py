@@ -1,0 +1,158 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6416836_134be25f",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-19T17:33:34Z",
+      "side": 1,
+      "message": "Hm... yeah I wonder how important having the builder_id _here_ is; bbagent could clearly print it in the output instead. If this is needed on the task list view (which doesn\u0027t exist in RBE afaik) then we\u0027ll have to pass it through.",
+      "revId": "cfbed5e905a13e59f9ab73eacebe24908c90f53b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24f678f3_1acf3152",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-19T17:33:34Z",
+      "side": 1,
+      "message": "note that tags is not currently exposed; I would drop this for now.",
+      "revId": "cfbed5e905a13e59f9ab73eacebe24908c90f53b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49704e7a_a0290848",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-19T17:33:34Z",
+      "side": 1,
+      "message": "I think you actually just want to omit these pubsub fields; These were only needed to signal buildbucket when the task changed state, but now this should be done via the TaskBackend API (i.e. some mechanism internal to swarming)\n\nIf it were me, I would store some metadata (maybe as a swarming tag?) which, when the task changes state, can translate into a TaskBackend call (via task-queue, similar to how pubsub notifications work, IIUC. Could even be the existing pubsub notifier handlers, maybe?)",
+      "revId": "cfbed5e905a13e59f9ab73eacebe24908c90f53b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1300fc48_2cb141f1",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-19T17:33:34Z",
+      "side": 1,
+      "message": "tagged you in design doc re: service_account... but then I realized that you\u0027ve done that here already 🤪",
+      "revId": "cfbed5e905a13e59f9ab73eacebe24908c90f53b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "273dea45_b48c7e81",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-19T17:33:34Z",
+      "side": 1,
+      "message": "I\u0027ll make a note in the design doc that we need to cheat this field into the backend_config field too.",
+      "revId": "cfbed5e905a13e59f9ab73eacebe24908c90f53b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d70dc7d0_45cf5a2e",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-19T17:33:34Z",
+      "side": 1,
+      "message": "No, this must still be passed in swarming via its own SecretBytes mechanism. The reason for this is that Swarming doesn\u0027t have good ACL separation for tasks. Any task can read any other task\u0027s command line within the same pool. The \u0027pass via CLI\u0027 option is only for backends which prevent tasks from reading each-others stuff by default (e.g. RBE... I think. Otherwise we\u0027ll have to ask for a SecretBytes impl there as well).",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 41
+      },
+      "revId": "cfbed5e905a13e59f9ab73eacebe24908c90f53b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9707f36_3a584d2d",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-19T17:33:34Z",
+      "side": 1,
+      "message": "I believe this should just be set to the binary proto encoding of the secrets passed in",
+      "range": {
+        "startLine": 92,
+        "startChar": 10,
+        "endLine": 92,
+        "endChar": 26
+      },
+      "revId": "cfbed5e905a13e59f9ab73eacebe24908c90f53b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39e55deb_a2e73bcb",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-19T17:33:34Z",
+      "side": 1,
+      "message": "this will depend on how we resolve the \"how does swarming get the agent\" question.\n\nIf this is downloaded with a direct download, then you can just pick a name (any name), and download it to that place.\n\nIf it\u0027s done with CIPD, then this will have to use the extra cipd \"binary_name\" field I mentioned in the buildbucket doc.",
+      "range": {
+        "startLine": 130,
+        "startChar": 10,
+        "endLine": 130,
+        "endChar": 32
+      },
+      "revId": "cfbed5e905a13e59f9ab73eacebe24908c90f53b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
