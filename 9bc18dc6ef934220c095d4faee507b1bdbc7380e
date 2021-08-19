@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f24bae64_d4f2646c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-19T00:14:37Z",
+      "side": 1,
+      "message": "lgtm too (forgot to stamp after our chat)",
+      "revId": "9bc18dc6ef934220c095d4faee507b1bdbc7380e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
