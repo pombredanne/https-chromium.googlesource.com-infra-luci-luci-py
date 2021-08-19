@@ -72,6 +72,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1a1d6a6_f1d7e819",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-19T02:52:46Z",
+      "side": 1,
+      "message": "bool?",
+      "range": {
+        "startLine": 46,
+        "startChar": 52,
+        "endLine": 46,
+        "endChar": 59
+      },
+      "revId": "310a7e31d001e7ced47f3d2139ad83fe57d3c6ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a33035f7_62794791",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-19T02:52:46Z",
+      "side": 1,
+      "message": "this is redundant?",
+      "revId": "310a7e31d001e7ced47f3d2139ad83fe57d3c6ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1454dd52_bc83b1ea",
         "filename": "appengine/swarming/prpc_helpers.py",
         "patchSetId": 7
