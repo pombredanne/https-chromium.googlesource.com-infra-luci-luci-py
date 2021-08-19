@@ -16,10 +16,41 @@ from server import task_request
 _CACHE_DIR = 'cache'
 
 # TODO(crbug/1236848): Replace 'assert's with raised exceptions.
+# TODO(crbug/1236848): Validate backend_config.fields have the expected
+# value types.
 
 
-def _compute_task_slices(run_task_req):
-  # type: (taskbackend_service_pb2.RunTaskRequest)
+def _compute_task_request(run_task_req):
+  # type: (backend_pb2.RunTaskRequest) ->
+  #     Tuple[task_request.TaskRequest, task_request.SecretBytes]
+
+  # NOTE: secret_bytes cannot be passed via `-secret_bytes` in `command`
+  # because tasks in swarming can view command details of other tasks.
+  secret_bytes = None
+  if run_task_req.secrets:
+    secret_bytes = task_request.SecretBytes(
+        secret_bytes=run_task_req.secrets.SerializeToString())
+
+  slices = _compute_task_slices(run_task_req, secret_bytes is not None)
+  tr = task_request.TaskRequest(
+      created_ts=utils.utcnow(),
+      task_slices=slices,
+      expiration_ts=slices[-1].expiration_secs,
+      realm=run_task_req.realm,
+      name='bb-%d' % run_task_req.build_id,
+      priority=run_task_req.backend_config.fields['priority'],
+      bot_ping_tolerance_secs=run_task_req.backend_config
+      .fields['bot_ping_tolerance'],
+      service_account=run_task_req.backend_config.fields['service_account'],
+      parent_task_id=run_task_req.backend_config.fields['parent_run_id'],
+      user=run_task_req.backend_config.fields['user'])
+
+  # TODO(crbug/1236848): Create a task_request.BuildToken and return here.
+  return tr, secret_bytes
+
+
+def _compute_task_slices(run_task_req, has_secret_bytes):
+  # type: (backend_pb2.RunTaskRequest, bool)
   #   -> Sequence[task_request.TaskSlice]
 
   # {expiration_secs: {'key1': [value1, ...], 'key2': [value1, ...]}
@@ -39,9 +70,6 @@ def _compute_task_slices(run_task_req):
   for key, values in base_dims.iteritems():
     values.sort()
 
-  # TODO(crbug/1236848): Add remaining TaskSlice fields.
-  # TODO(crbug/1236848): Validate backend_config.fields have the expected
-  # value types.
   base_slice = task_request.TaskSlice(
       # In bb-on-swarming, `wait_for_capacity` is only used for the last slice
       # (base_slice) to give named caches some time to show up.
@@ -58,8 +86,13 @@ def _compute_task_slices(run_task_req):
           dimensions_data=base_dims,
           execution_timeout_secs=run_task_req.execution_timeout.seconds,
           grace_period_secs=run_task_req.grace_period.seconds,
+          command=_compute_command(run_task_req),
+          has_secret_bytes=has_secret_bytes,
       ),
   )
+  containment = run_task_req.backend_config.fields['containment'].struct_value
+  if containment.fields:
+    base_slice.properties.containment = _ingest_containment(containment)
 
   if not dims_by_exp:
     return [base_slice]
@@ -92,3 +125,21 @@ def _compute_task_slices(run_task_req):
   task_slices.append(base_slice)
 
   return task_slices
+
+
+def _compute_command(run_task_req):
+  # TODO(crbug/236848): Fetch agent binary and replace `echo`.
+  args = ['echo'] + run_task_req.agent_args[:] + [
+      '-cache-base', _CACHE_DIR, '-task-id', '{SWARMING_TASK_ID}'
+  ]
+  return args
+
+
+def _ingest_containment(containment):
+  # (struct_pb2.Struct) -> task_request.Containment
+  return task_request.Containment(
+      lower_priority=bool(containment.fields['lower_priority'].bool_value),
+      containment_type=int(containment.fields['containment_type'].number_value),
+      limit_processes=int(containment.fields['limit_processes'].number_value),
+      limit_total_committed_memory=int(
+          containment.fields['limit_total_committed_memory'].number_value))

@@ -50,7 +50,23 @@ class TestBackendConversions(test_case.TestCase):
 
     run_task_req = backend_pb2.RunTaskRequest(
         backend_config=struct_pb2.Struct(
-            fields={'wait_for_capacity': struct_pb2.Value(bool_value=True)}),
+            fields={
+                'wait_for_capacity':
+                    struct_pb2.Value(bool_value=True),
+                'containment':
+                    struct_pb2.Value(
+                        struct_value=struct_pb2.Struct(
+                            fields={
+                                'lower_priority':
+                                    struct_pb2.Value(bool_value=True),
+                                'limit_processes':
+                                    struct_pb2.Value(number_value=5),
+                                'limit_total_committed_memory':
+                                    struct_pb2.Value(number_value=2),
+                                'containment_type':
+                                    struct_pb2.Value(number_value=1)
+                            }))
+            }),
         caches=[
             swarming_bb_pb2.CacheEntry(name='name_1', path='path_1'),
             swarming_bb_pb2.CacheEntry(
@@ -74,6 +90,10 @@ class TestBackendConversions(test_case.TestCase):
     base_slice = task_request.TaskSlice(
         wait_for_capacity=True,
         properties=task_request.TaskProperties(
+            command=[
+                'echo', '-cache-base', 'cache', '-task-id', '{SWARMING_TASK_ID}'
+            ],
+            has_secret_bytes=True,
             caches=[
                 task_request.CacheEntry(
                     path=posixpath.join(backend_conversions._CACHE_DIR,
@@ -86,7 +106,11 @@ class TestBackendConversions(test_case.TestCase):
             ],
             execution_timeout_secs=exec_secs,
             grace_period_secs=grace_secs,
-        ),
+            containment=task_request.Containment(
+                lower_priority=True,
+                limit_processes=5,
+                limit_total_committed_memory=2,
+                containment_type=1)),
     )
 
     slice_1 = task_request.TaskSlice(
@@ -118,8 +142,9 @@ class TestBackendConversions(test_case.TestCase):
 
     expected_slices = [slice_1, slice_2, base_slice]
 
-    self.assertEqual(expected_slices,
-                     backend_conversions._compute_task_slices(run_task_req))
+    self.assertEqual(
+        expected_slices,
+        backend_conversions._compute_task_slices(run_task_req, True))
 
   def test_compute_task_slices_base_slice_only(self):
     exec_secs = 180
@@ -142,6 +167,10 @@ class TestBackendConversions(test_case.TestCase):
         wait_for_capacity=True,
         expiration_secs=120,
         properties=task_request.TaskProperties(
+            command=[
+                'echo', '-cache-base', 'cache', '-task-id', '{SWARMING_TASK_ID}'
+            ],
+            has_secret_bytes=False,
             execution_timeout_secs=exec_secs,
             grace_period_secs=grace_secs,
             dimensions_data={
@@ -152,7 +181,8 @@ class TestBackendConversions(test_case.TestCase):
     )
 
     self.assertEqual([base_slice],
-                     backend_conversions._compute_task_slices(run_task_req))
+                     backend_conversions._compute_task_slices(
+                         run_task_req, False))
 
 
 if __name__ == '__main__':
