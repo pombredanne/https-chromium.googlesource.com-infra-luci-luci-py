@@ -178,7 +178,7 @@ const TASK_TIMES = ['started_ts', 'completed_ts', 'abandoned_ts', 'modified_ts']
 // may speed up the server time and should speed up the network time.
 export const TASKS_QUERY_PARAMS = [
   'include_performance_stats=true',
-  'limit=30',
+  'limit=200',
   'sort=STARTED_TS',
   encodeURIComponent(
       'fields=cursor,'+
@@ -187,4 +187,4 @@ export const TASKS_QUERY_PARAMS = [
             'server_versions,started_ts,task_id)'),
 ].join('&');
 
-export const EVENTS_QUERY_PARAMS = 'limit=50&fields=cursor%2Citems(event_type%2Cmaintenance_msg%2Cmessage%2Cquarantined%2Ctask_id%2Cts%2Cversion)';
+export const EVENTS_QUERY_PARAMS = 'limit=200&fields=cursor%2Citems(event_type%2Cmaintenance_msg%2Cmessage%2Cquarantined%2Ctask_id%2Cts%2Cversion)';
