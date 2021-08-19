@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b62155fe_20f3687f",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-19T04:21:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a02765a4_ce07aa82",
+      "range": {
+        "startLine": 36,
+        "startChar": 20,
+        "endLine": 36,
+        "endChar": 26
+      },
+      "revId": "310a7e31d001e7ced47f3d2139ad83fe57d3c6ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2053af4_38b5aba4",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "I think this file will only hold things that happen in the \u0027background\u0027 that we don\u0027t need to think about during normal prpc handlers implementation dev work.\nSo I kind of don\u0027t want to crowd handlers_prpc.py with this code and make it more annoying to navigate.\n\nNot attached to this idea though, \nlmk if you had other thoughts",
       "parentUuid": "c2053af4_38b5aba4",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 74
+      },
+      "revId": "310a7e31d001e7ced47f3d2139ad83fe57d3c6ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc1d51b8_abb55120",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-19T04:21:18Z",
+      "side": 1,
+      "message": "Oh, I thought opposite since the current code looks generic. \nWe can revisit as you implement the code for backend API.",
+      "parentUuid": "f4e9926b_3f468065",
       "range": {
         "startLine": 4,
         "startChar": 0,
