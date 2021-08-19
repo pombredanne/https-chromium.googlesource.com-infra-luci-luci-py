@@ -154,7 +154,6 @@ class TestBackendConversions(test_case.TestCase):
     self.assertEqual([base_slice],
                      backend_conversions._compute_task_slices(run_task_req))
 
-
 if __name__ == '__main__':
   if '-v' in sys.argv:
     unittest.TestCase.maxDiff = None
