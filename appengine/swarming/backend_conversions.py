@@ -15,12 +15,57 @@ from server import task_request
 # caches defined in swarmbucket configs.
 _CACHE_DIR = 'cache'
 
+
+_CIPD_SERVER = 'https://chrome-infra-packages.appspot.com'
+
 # TODO(crbug/1236848): Replace 'assert's with raised exceptions.
+# TODO(crbug/1236848): Validate backend_config.fields have the expected
+# value types.
 
 
-def _compute_task_slices(run_task_req):
-  # type: (taskbackend_service_pb2.RunTaskRequest)
-  #   -> Sequence[task_request.TaskSlice]
+def compute_task_request(run_task_req):
+  # type: (backend_pb2.RunTaskRequest) ->
+  #     Tuple[task_request.TaskRequest, Optional[task_request.SecretBytes]]
+
+  # NOTE: secret_bytes cannot be passed via `-secret_bytes` in `command`
+  # because tasks in swarming can view command details of other tasks.
+  secret_bytes = None
+  if run_task_req.secrets:
+    secret_bytes = task_request.SecretBytes(
+        secret_bytes=run_task_req.secrets.SerializeToString())
+
+  slices, expiration_secs = _compute_task_slices(run_task_req,
+                                                 secret_bytes is not None)
+
+  tr = task_request.TaskRequest(
+      created_ts=utils.utcnow(),
+      task_slices=slices,
+      expiration_ts=utils.timestamp_to_datetime(utils.time_time() +
+                                                expiration_secs),
+      realm=run_task_req.realm,
+      name='bb-%d' % run_task_req.build_id,
+      priority=int(run_task_req.backend_config.fields['priority'].number_value),
+      bot_ping_tolerance_secs=int(run_task_req.backend_config
+                                  .fields['bot_ping_tolerance'].number_value),
+      service_account=run_task_req.backend_config.fields['service_account']
+      .string_value,
+      user=run_task_req.backend_config.fields['user'].string_value)
+
+  parent_id = run_task_req.backend_config.fields['parent_run_id'].string_value
+  if parent_id:
+    tr.parent_task_id = parent_id
+  # TODO(crbug/1236848): Create a task_request.BuildToken and return here.
+  return tr, secret_bytes
+
+
+def _compute_task_slices(run_task_req, has_secret_bytes):
+  # type: (backend_pb2.RunTaskRequest, bool)
+  #   -> Tuple[Sequence[task_request.TaskSlice], int]
+  """Return TaskSlices and the schedule timeout.
+
+  The schedule timeout duration returned by this method may result in a
+  start deadline timestamp that's different from run_task_req.start_deadline.
+  """
 
   # {expiration_secs: {'key1': [value1, ...], 'key2': [value1, ...]}
   dims_by_exp = collections.defaultdict(lambda: collections.defaultdict(list))
@@ -39,9 +84,6 @@ def _compute_task_slices(run_task_req):
   for key, values in base_dims.iteritems():
     values.sort()
 
-  # TODO(crbug/1236848): Add remaining TaskSlice fields.
-  # TODO(crbug/1236848): Validate backend_config.fields have the expected
-  # value types.
   base_slice = task_request.TaskSlice(
       # In bb-on-swarming, `wait_for_capacity` is only used for the last slice
       # (base_slice) to give named caches some time to show up.
@@ -58,22 +100,35 @@ def _compute_task_slices(run_task_req):
           dimensions_data=base_dims,
           execution_timeout_secs=run_task_req.execution_timeout.seconds,
           grace_period_secs=run_task_req.grace_period.seconds,
-      ),
+          command=_compute_command(run_task_req),
+          has_secret_bytes=has_secret_bytes,
+          cipd_input=task_request.CipdInput(
+              server=_CIPD_SERVER,
+              packages=[
+                  task_request.CipdPackage(
+                      package_name=run_task_req.backend_config
+                      .fields['agent_binary_cipd_pkg'].string_value,
+                      version=run_task_req.backend_config
+                      .fields['agent_binary_cipd_vers'].string_value)
+              ])),
   )
 
   if not dims_by_exp:
-    return [base_slice]
+    return [base_slice], base_slice.expiration_secs
 
   # Initialize task slices with base properties and computed expiration.
   last_exp = 0
+  total_exp = 0
   task_slices = []
   for expiration_secs in sorted(dims_by_exp):
+    slice_exp_secs = expiration_secs - last_exp
     task_slices.append(
         task_request.TaskSlice(
-            expiration_secs=expiration_secs - last_exp,
+            expiration_secs=slice_exp_secs,
             properties=copy.deepcopy(base_slice.properties),
         ))
     last_exp = expiration_secs
+    total_exp += slice_exp_secs
 
   # Add extra dimensions for all slices.
   extra_dims = collections.defaultdict(list)
@@ -90,5 +145,18 @@ def _compute_task_slices(run_task_req):
   # Adjust expiration on base_slice and add it as the last slice.
   base_slice.expiration_secs = max(base_slice.expiration_secs - last_exp, 60)
   task_slices.append(base_slice)
+  total_exp += base_slice.expiration_secs
 
-  return task_slices
+  return task_slices, total_exp
+
+
+def _compute_command(run_task_req):
+  # type: (backend_pb2.RunTaskRequest) -> Sequence[str]
+  # TODO(crbug/1236848): Before the command is executed, `${SWARMING_TASK_ID`
+  # should be replaced by the actual task_id.
+  args = [
+      run_task_req.backend_config.fields['agent_binary_cipd_filename']
+      .string_value
+  ] + run_task_req.agent_args[:]
+  args.extend(['-cache-base', _CACHE_DIR, '-task-id', '${SWARMING_TASK_ID}'])
+  return args
