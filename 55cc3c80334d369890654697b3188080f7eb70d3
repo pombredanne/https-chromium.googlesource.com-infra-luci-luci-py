@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99d7de9c_6761e7a0",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-20T04:49:05Z",
+      "side": 1,
+      "message": "I\u0027m taking a wild guess on what the containment struct will look like.",
+      "range": {
+        "startLine": 153,
+        "startChar": 24,
+        "endLine": 153,
+        "endChar": 35
+      },
+      "revId": "55cc3c80334d369890654697b3188080f7eb70d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
