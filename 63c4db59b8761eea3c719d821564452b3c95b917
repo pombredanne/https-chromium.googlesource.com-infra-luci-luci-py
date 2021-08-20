@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e6419cf_4555f432",
+        "filename": "appengine/swarming/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-20T05:24:06Z",
+      "side": 1,
+      "message": "this is redundant?",
+      "range": {
+        "startLine": 35,
+        "startChar": 29,
+        "endLine": 35,
+        "endChar": 36
+      },
+      "revId": "63c4db59b8761eea3c719d821564452b3c95b917",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
