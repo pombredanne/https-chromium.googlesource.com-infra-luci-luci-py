@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e5e64cb_b5b221fa",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-20T06:12:35Z",
+      "side": 1,
+      "message": "Should this be the same with created_ts?",
+      "range": {
+        "startLine": 39,
+        "startChar": 48,
+        "endLine": 39,
+        "endChar": 65
+      },
+      "revId": "55cc3c80334d369890654697b3188080f7eb70d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1adbe7b2_421965ca",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-20T06:12:35Z",
+      "side": 1,
+      "message": "This can be recalculated from slices. Maybe like this? `sum([s.expiration_secs for s in slices])`.\nThat might be easy to read.",
+      "range": {
+        "startLine": 40,
+        "startChar": 48,
+        "endLine": 40,
+        "endChar": 63
+      },
+      "revId": "55cc3c80334d369890654697b3188080f7eb70d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1f128ea_a32a2da7",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-20T06:12:35Z",
+      "side": 1,
+      "message": "Isn\u0027t this already int?",
+      "range": {
+        "startLine": 43,
+        "startChar": 66,
+        "endLine": 43,
+        "endChar": 78
+      },
+      "revId": "55cc3c80334d369890654697b3188080f7eb70d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "598b0ce2_86dc5ac6",
         "filename": "appengine/swarming/backend_conversions.py",
         "patchSetId": 8
