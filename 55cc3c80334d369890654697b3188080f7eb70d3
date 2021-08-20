@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "598b0ce2_86dc5ac6",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-20T04:57:36Z",
+      "side": 1,
+      "message": "trying to follow: http://shortn/_vxPzOczUjz\n\nexpiration_ts may be slightly different from `run_task_req.start_deadline`\nif \n```\nbase_slice.expiration_secs \u003d max(base_slice.expiration_secs - last_exp, 60) \u003d\u003e 60\n```",
+      "range": {
+        "startLine": 63,
+        "startChar": 34,
+        "endLine": 63,
+        "endChar": 76
+      },
+      "revId": "55cc3c80334d369890654697b3188080f7eb70d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "99d7de9c_6761e7a0",
