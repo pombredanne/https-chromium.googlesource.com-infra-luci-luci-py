@@ -142,6 +142,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "946b8ece_0399f96c",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-20T07:10:43Z",
+      "side": 1,
+      "message": "I see. Thanks.",
+      "parentUuid": "6db73c2b_ff8349ad",
+      "range": {
+        "startLine": 43,
+        "startChar": 66,
+        "endLine": 43,
+        "endChar": 78
+      },
+      "revId": "55cc3c80334d369890654697b3188080f7eb70d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "598b0ce2_86dc5ac6",
