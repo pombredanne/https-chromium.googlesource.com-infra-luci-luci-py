@@ -1,0 +1,27 @@
+// Copyright 2021 The Swarming Authors. All rights reserved.
+// Use of this source code is governed by the Apache v2.0 license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package buildbucket.v2;
+
+import "swarming_bb.proto";
+
+
+// Manages builds.
+//
+// Buildbot: To simplify V1->V2 API transition for clients, buildbucket.v2.Builds
+// service has some support for non-LUCI builds. Most of such builds are
+// Buildbot builds and this documentation refers to them as such, but they also
+// include non-Buildbot non-LUCI builds (e.g. Skia builds).
+// See "Buildbot" paragraph in each RPC comment.
+service Builds {
+  rpc UpdateBuildTask(UpdateBuildTaskRequest) returns (Task) {};
+}
+
+
+message UpdateBuildTaskRequest {
+  int64 build_id = 1;
+  Task task = 2;
+}

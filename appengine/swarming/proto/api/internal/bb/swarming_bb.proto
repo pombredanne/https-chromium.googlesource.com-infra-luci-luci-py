@@ -57,4 +57,39 @@ message CacheEntry {
       // Environment variable with this name will be set to the path to the cache
       // directory.
       string env_var = 4;
-    }
+}
+
+
+message Task {
+  TaskID id = 1;
+
+  // (optional) Human-clickable link to the status page for this task.
+  string link = 2;
+
+  // The backend's status for handling this task.
+  Status status = 3;
+
+  // The 'status_details' around handling this task.
+  StatusDetails status_details = 4;
+
+  // Human-readable commentary around the handling of this task.
+  string summary_html =	5;
+
+  // Additional backend-specific details about the task.
+  //
+  // This could be used to indicate things like named-cache status, task
+  // startup/end time, etc.
+  google.protobuf.Struct details = 6;
+}
+
+
+message TaskID {
+  // The backend target, e.g. "swarming://chromium-swarm"
+  string target = 1;
+
+  // id must uniquely identify the state associated with this Task
+  // in the Backend for the given target.
+  //
+  // Example: for Swarming this would be the task ID.
+  string id = 2;
+}

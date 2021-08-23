@@ -28,3 +28,27 @@ message RequestedDimension {
   // Expect value to be found in `seconds` field.
   google.protobuf.Duration expiration = 3;
 }
+
+
+// Machine-readable details of a status.
+// Human-readble details are present in a sibling summary_markdown field.
+message StatusDetails {
+  reserved 1; // is_resource_exhaustion, replaced by resource_exhaustion
+  reserved 2; // is_timeout, replaced with timeout.
+
+  message ResourceExhaustion {}
+  // If set, indicates that the failure was due to a resource exhaustion / quota
+  // denial.
+  // Applicable in FAILURE and INFRA_FAILURE statuses.
+  ResourceExhaustion resource_exhaustion = 3;
+
+  message Timeout {}
+  // If set, indicates that the build ended due to the expiration_timeout or
+  // scheduling_timeout set for the build.
+  //
+  // Applicable in all final statuses.
+  //
+  // SUCCESS+timeout would indicate a successful recovery from a timeout signal
+  // during the build's grace_period.
+  Timeout timeout = 4;
+}
