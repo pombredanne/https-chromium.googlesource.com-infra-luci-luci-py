@@ -292,6 +292,15 @@ class TaskSendPubSubMessage(webapp2.RequestHandler):
     task_scheduler.task_handle_pubsub_task(json.loads(self.request.body))
 
 
+class TaskNotifyBuildbucketHandler(webapp2.RequestHandler):
+  """Sends updates to Buildbucket about tastk status."""
+
+  # Add task_id to the URL for better visibility in request logs.
+  @decorators.require_taskqueue('buildbucket')
+  def post(self, task_id):  # pylint: disable=unused-argument
+    pass
+
+
 class TaskESNotifyTasksHandler(webapp2.RequestHandler):
   """Sends task notifications to external scheduler."""
 
