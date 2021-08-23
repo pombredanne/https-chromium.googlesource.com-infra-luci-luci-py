@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5a7c9dd_ca61d490",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-23T22:18:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98ecb8ee_9ca02729",
+      "revId": "a393e23aa864a47d591672ccf3cdafb28ffe3547",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c7e10d9_b6723dcd",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-08-23T21:45:39Z",
       "side": 1,
       "message": "nit: I would add some doc blurbs about these. This message will stick around in swarming code even after the other protos source-of-truth moves to buildbucket.",
+      "revId": "a393e23aa864a47d591672ccf3cdafb28ffe3547",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a98dbf23_256b09dc",
+        "filename": "appengine/swarming/proto/api/internal/bb/swarming_bb.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-23T22:18:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c7e10d9_b6723dcd",
       "revId": "a393e23aa864a47d591672ccf3cdafb28ffe3547",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
