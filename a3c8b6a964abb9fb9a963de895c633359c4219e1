@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86cc04e7_00abe518",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-23T04:12:35Z",
+      "side": 1,
+      "message": "Is there any other payload that it needs to include? e.g. task state",
+      "range": {
+        "startLine": 509,
+        "startChar": 0,
+        "endLine": 509,
+        "endChar": 34
+      },
+      "revId": "a3c8b6a964abb9fb9a963de895c633359c4219e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
