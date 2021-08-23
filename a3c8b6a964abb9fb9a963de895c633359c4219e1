@@ -54,6 +54,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "943245ec_60399c78",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-23T16:21:38Z",
+      "side": 1,
+      "message": "I\u0027ll add this to the initial request",
+      "parentUuid": "1eab2b0f_2052c0c1",
+      "revId": "a3c8b6a964abb9fb9a963de895c633359c4219e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00b3d859_7491e51c",
@@ -90,6 +108,30 @@
       "writtenOn": "2021-08-23T04:12:35Z",
       "side": 1,
       "message": "Is there any other payload that it needs to include? e.g. task state",
+      "range": {
+        "startLine": 509,
+        "startChar": 0,
+        "endLine": 509,
+        "endChar": 34
+      },
+      "revId": "a3c8b6a964abb9fb9a963de895c633359c4219e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ef84015_cc5882bf",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-23T16:21:38Z",
+      "side": 1,
+      "message": "I suspect this can work exactly like it does for pubsub (e.g. at task queue run time it pulls the current task state to fill any additional fields)",
+      "parentUuid": "86cc04e7_00abe518",
       "range": {
         "startLine": 509,
         "startChar": 0,
