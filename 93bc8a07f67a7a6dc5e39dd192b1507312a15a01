@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "736791d0_b669936e",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-23T20:34:32Z",
+      "side": 0,
+      "message": "nevermind, not gonna validate, since we\u0027ll have backend.ValidateConfigs()",
+      "range": {
+        "startLine": 19,
+        "startChar": 23,
+        "endLine": 19,
+        "endChar": 31
+      },
+      "revId": "93bc8a07f67a7a6dc5e39dd192b1507312a15a01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
