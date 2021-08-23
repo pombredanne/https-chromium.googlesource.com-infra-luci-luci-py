@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fed68d4b_0eaa515c",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-23T19:54:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "232db3d6_c0ffbd07",
+      "range": {
+        "startLine": 37,
+        "startChar": 24,
+        "endLine": 37,
+        "endChar": 39
+      },
+      "revId": "8e4fb5f83cc65c1d2380c1cdd6b7afb6808f55b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fd998fc_f5939f93",
@@ -71,6 +95,30 @@
       "writtenOn": "2021-08-23T18:30:15Z",
       "side": 1,
       "message": "hm... I\u0027m not sure this really make sense. Buildbucket doesn\u0027t retain the original user (but even if it did, it\u0027s almost always a service account). If we want to carry this information, Buildbucket will have to do some extra work to keep this. That said, I don\u0027t think RBE has a \u0027user\u0027 field (apart from its authenticated value) so I\u0027m not sure how much we want to do for this.\n\nI would also recommend creating a proto message to describe the expected backend_config, and then when the request comes in, convert the Struct into that proto (so you don\u0027t have .fields[...].*_value all over, but instead have a single schema\u0027d object)",
+      "range": {
+        "startLine": 51,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 66
+      },
+      "revId": "8e4fb5f83cc65c1d2380c1cdd6b7afb6808f55b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6b6fb74_f0d3ca69",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-23T19:54:42Z",
+      "side": 1,
+      "message": "Ack. next CL",
+      "parentUuid": "6fd998fc_f5939f93",
       "range": {
         "startLine": 51,
         "startChar": 11,
