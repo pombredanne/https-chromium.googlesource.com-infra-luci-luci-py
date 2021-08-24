@@ -137,6 +137,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b152f15d_c3b1c9e1",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-24T19:57:46Z",
+      "side": 1,
+      "message": "actually this needs to match the keyword provided in the URL:\n`r\u0027/internal/taskqueue/important/buildbucket/notify-task/\u003ctask_id:[0-9a-f]+\u003e`\n\n`task_id`",
+      "parentUuid": "793e11ce_80bb70af",
+      "range": {
+        "startLine": 300,
+        "startChar": 27,
+        "endLine": 300,
+        "endChar": 61
+      },
+      "revId": "a3c8b6a964abb9fb9a963de895c633359c4219e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86cc04e7_00abe518",
@@ -232,6 +256,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "429657d5_97435bbc",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-24T19:57:46Z",
+      "side": 1,
+      "message": "I think pubsub is just a signal that there\u0027s been a state change and GetTask should be called to get the actual state?",
+      "parentUuid": "fa70a367_251758b1",
+      "range": {
+        "startLine": 509,
+        "startChar": 0,
+        "endLine": 509,
+        "endChar": 34
+      },
+      "revId": "a3c8b6a964abb9fb9a963de895c633359c4219e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d6c273c_23ba2775",
@@ -245,6 +293,30 @@
       "writtenOn": "2021-08-24T01:41:40Z",
       "side": 1,
       "message": "If the request URL includes task_id, the payload doesn\u0027t need to include task_id?",
+      "range": {
+        "startLine": 511,
+        "startChar": 69,
+        "endLine": 511,
+        "endChar": 76
+      },
+      "revId": "a3c8b6a964abb9fb9a963de895c633359c4219e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8dc249a_028839d3",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-24T19:57:46Z",
+      "side": 1,
+      "message": "thanks",
+      "parentUuid": "8d6c273c_23ba2775",
       "range": {
         "startLine": 511,
         "startChar": 69,
