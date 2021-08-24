@@ -1055,8 +1055,13 @@ def _should_allow_es_fallback(es_cfg, request):
   return task_es_cfg == es_cfg
 
 
-def _gen_new_keys(result_summary, to_run, secret_bytes):
-  """Creates new keys for the entities.
+def _gen_new_keys(
+    result_summary,  # type: task_result.TaskResultSummary
+    to_run=None,  # type: Optional[task_to_run.TaskToRun
+    secret_bytes=None,  # type: Optional[task_request.SecretBytes]
+    build_token=None):  # type: Optional[task_request.BuildToken]
+  # type: (...) -> ndb.Key
+  """Creates new keys for the entities and returns the TaskRequest key.
 
   Warning: this assumes knowledge about the hierarchy of each entity.
   """
@@ -1064,11 +1069,11 @@ def _gen_new_keys(result_summary, to_run, secret_bytes):
   if to_run:
     to_run.key = ndb.Key(to_run.key.kind(), to_run.key.id(), parent=key)
   if secret_bytes:
-    secret_bytes.key = ndb.Key(
-        secret_bytes.key.kind(), secret_bytes.key.id(), parent=key)
+    secret_bytes.key = task_pack.request_key_to_secret_bytes_key(key)
+  if build_token:
+    build_token.key = task_pack.request_key_to_build_token_key(key)
   old = result_summary.task_id
-  result_summary.key = ndb.Key(
-      result_summary.key.kind(), result_summary.key.id(), parent=key)
+  result_summary.key = task_pack.request_key_to_result_summary_key(key)
   logging.info('%s conflicted, using %s', old, result_summary.task_id)
   return key
 
@@ -1143,7 +1148,10 @@ def check_schedule_request_acl_service_account(request, pool_cfg):
         (request.service_account, request.pool))
 
 
-def schedule_request(request, secret_bytes, enable_resultdb):
+def schedule_request(request,
+                     enable_resultdb,
+                     secret_bytes=None,
+                     build_token=None):
   """Creates and stores all the entities to schedule a new task request.
 
   Assumes ACL check has already happened (see 'check_schedule_request_acl').
@@ -1155,10 +1163,11 @@ def schedule_request(request, secret_bytes, enable_resultdb):
   Arguments:
   - request: TaskRequest entity to be saved in the DB. It's key must not be set
              and the entity must not be saved in the DB yet.
-  - secret_bytes: SecretBytes entity to be saved in the DB. It's key will be set
-             and the entity will be stored by this function. None is allowed if
-             there are no SecretBytes for this task.
-  - enable_resultdb: Whether we use resultdb or not for this task.
+  - enable_resultdb: Boolean of whether we use resultdb or not for this task.
+  - secret_bytes: Optional SecretBytes entity to be saved in the DB. It's key
+             will be set and the entity will be stored by this function.
+  - build_token: Optional BuildToken entity to be saved in the DB. It's key will
+             be set and the entity will be stored by this function.
 
   Returns:
     TaskResultSummary. TaskToRun is not returned.
@@ -1172,8 +1181,6 @@ def schedule_request(request, secret_bytes, enable_resultdb):
   result_summary = task_result.new_result_summary(request)
   result_summary.modified_ts = now
   to_run = None
-  if secret_bytes:
-    secret_bytes.key = request.secret_bytes_key
   resultdb_update_token_future = None
 
   dupe_summary = None
@@ -1246,7 +1253,11 @@ def schedule_request(request, secret_bytes, enable_resultdb):
   # Storing these entities makes this task live. It is important at this point
   # that the HTTP handler returns as fast as possible, otherwise the task will
   # be run but the client will not know about it.
-  _gen_key = lambda: _gen_new_keys(result_summary, to_run, secret_bytes)
+  _gen_key = lambda: _gen_new_keys(
+      result_summary,
+      to_run=to_run,
+      secret_bytes=secret_bytes,
+      build_token=build_token)
   extra = filter(bool, [result_summary, to_run, secret_bytes])
   datastore_utils.insert(request, new_key_callback=_gen_key, extra=extra)
 
