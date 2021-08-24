@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62a45198_d446dfee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-24T03:35:13Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "0fda4d108fe7759ac0de86a5c65604a8608fc4f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8479719c_ea691774",
+        "filename": "appengine/swarming/backend_conversions_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-24T03:35:13Z",
+      "side": 1,
+      "message": "🐄",
+      "range": {
+        "startLine": 85,
+        "startChar": 26,
+        "endLine": 85,
+        "endChar": 29
+      },
+      "revId": "0fda4d108fe7759ac0de86a5c65604a8608fc4f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f7e2ec7_c0bb9907",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-24T03:35:13Z",
+      "side": 1,
+      "message": "actually.... string may more future-proof (I dread that we\u0027ll have to change the build id format, but an opaque string would be easier to adapt than an integer).\n\nI\u0027m also not sure you need to index this?",
+      "range": {
+        "startLine": 608,
+        "startChar": 17,
+        "endLine": 608,
+        "endChar": 32
+      },
+      "revId": "0fda4d108fe7759ac0de86a5c65604a8608fc4f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
