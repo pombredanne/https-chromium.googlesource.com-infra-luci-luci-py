@@ -46,6 +46,30 @@
       },
       "revId": "d587d8ab0d909fe814456ca1db92331e95cc287a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dac65819_7e0e79cc",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-24T01:48:13Z",
+      "side": 1,
+      "message": "Sorry, I missed \u0027Optional[\u0027 part.",
+      "parentUuid": "443f54e5_ab1ec595",
+      "range": {
+        "startLine": 26,
+        "startChar": 41,
+        "endLine": 26,
+        "endChar": 42
+      },
+      "revId": "d587d8ab0d909fe814456ca1db92331e95cc287a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
