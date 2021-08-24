@@ -22,6 +22,30 @@
       },
       "revId": "d587d8ab0d909fe814456ca1db92331e95cc287a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "443f54e5_ab1ec595",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-24T01:35:07Z",
+      "side": 1,
+      "message": "Is this because requests from buildbucket will always have secrets? If so, I should make some changes elsewhere as well.",
+      "parentUuid": "bf49b99b_ade9261e",
+      "range": {
+        "startLine": 26,
+        "startChar": 41,
+        "endLine": 26,
+        "endChar": 42
+      },
+      "revId": "d587d8ab0d909fe814456ca1db92331e95cc287a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
