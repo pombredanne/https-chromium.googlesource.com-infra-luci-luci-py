@@ -62,6 +62,30 @@
       },
       "revId": "0fda4d108fe7759ac0de86a5c65604a8608fc4f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3a7dee6_309e6d93",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-24T04:39:57Z",
+      "side": 1,
+      "message": "\u003e you need to index this\n\nGood point. BuildToken entity will be fetched only by its parent key?",
+      "parentUuid": "0f7e2ec7_c0bb9907",
+      "range": {
+        "startLine": 608,
+        "startChar": 17,
+        "endLine": 608,
+        "endChar": 32
+      },
+      "revId": "0fda4d108fe7759ac0de86a5c65604a8608fc4f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
