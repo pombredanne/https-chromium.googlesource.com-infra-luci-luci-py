@@ -206,6 +206,53 @@
       },
       "revId": "a3c8b6a964abb9fb9a963de895c633359c4219e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa70a367_251758b1",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-24T01:41:40Z",
+      "side": 1,
+      "message": "\u003e e.g. at task queue run time it pulls the current task state to fill any additional fields\n\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_scheduler.py;l\u003d508;drc\u003d4a75d5f1714e85060adb431028aef55239d7400f\n\nThe pubsub task doesn\u0027t pull task state. So I wonder how subscribers distinguish events now.\n\nAnyway,\nwith task id, it can retrieve the latest status indeed.\nIf that\u0027s enough, there shouldn\u0027t be a problem.",
+      "parentUuid": "48b5e23c_10e4d68a",
+      "range": {
+        "startLine": 509,
+        "startChar": 0,
+        "endLine": 509,
+        "endChar": 34
+      },
+      "revId": "a3c8b6a964abb9fb9a963de895c633359c4219e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d6c273c_23ba2775",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-24T01:41:40Z",
+      "side": 1,
+      "message": "If the request URL includes task_id, the payload doesn\u0027t need to include task_id?",
+      "range": {
+        "startLine": 511,
+        "startChar": 69,
+        "endLine": 511,
+        "endChar": 76
+      },
+      "revId": "a3c8b6a964abb9fb9a963de895c633359c4219e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
