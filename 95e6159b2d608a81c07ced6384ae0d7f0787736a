@@ -22,6 +22,30 @@
       },
       "revId": "95e6159b2d608a81c07ced6384ae0d7f0787736a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba4bb1da_3237e6c4",
+        "filename": "appengine/swarming/proto/api/internal/bb/backend.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-24T00:04:48Z",
+      "side": 1,
+      "message": "I think using the next available number for new field is fine.",
+      "parentUuid": "6ae15dcb_44a63f5e",
+      "range": {
+        "startLine": 137,
+        "startChar": 19,
+        "endLine": 137,
+        "endChar": 20
+      },
+      "revId": "95e6159b2d608a81c07ced6384ae0d7f0787736a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
