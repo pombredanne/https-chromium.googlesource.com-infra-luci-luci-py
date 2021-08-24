@@ -86,6 +86,30 @@
       },
       "revId": "0fda4d108fe7759ac0de86a5c65604a8608fc4f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06176d3c_dfa3452a",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-24T19:55:30Z",
+      "side": 1,
+      "message": "I\u0027m just gonna sneak these changes in the other CL:\n\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3112724/10/appengine/swarming/proto/api/internal/bb/backend.proto\n\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3112724/10/appengine/swarming/backend_conversions.py\n\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3112724/10/appengine/swarming/backend_conversions_test.py\n\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3112724/10/appengine/swarming/server/task_request.py",
+      "parentUuid": "a3a7dee6_309e6d93",
+      "range": {
+        "startLine": 608,
+        "startChar": 17,
+        "endLine": 608,
+        "endChar": 32
+      },
+      "revId": "0fda4d108fe7759ac0de86a5c65604a8608fc4f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
