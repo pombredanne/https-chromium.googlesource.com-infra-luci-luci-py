@@ -16,6 +16,70 @@
       "message": "Not sure if it\u0027s better to replace ${SWARMING_TASK_ID} here along with the other magic values, or before run_isolated.py is called.",
       "revId": "b6e4f5da337e420935c4169a96bb51b019c49fda",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3223f54_6734e46d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-25T02:34:05Z",
+      "side": 1,
+      "message": "I think this is the right place.",
+      "parentUuid": "591237a2_c52952c1",
+      "revId": "b6e4f5da337e420935c4169a96bb51b019c49fda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d57c8aae_05e8a2d4",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-25T02:34:05Z",
+      "side": 1,
+      "message": "Is this new flag?\nHow does the existing swarming.py in buildbucket specify this argument?",
+      "range": {
+        "startLine": 155,
+        "startChar": 42,
+        "endLine": 155,
+        "endChar": 75
+      },
+      "revId": "b6e4f5da337e420935c4169a96bb51b019c49fda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "358f2979_980c2e25",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-25T02:34:05Z",
+      "side": 1,
+      "message": "Please update this document, too.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 104
+      },
+      "revId": "b6e4f5da337e420935c4169a96bb51b019c49fda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
