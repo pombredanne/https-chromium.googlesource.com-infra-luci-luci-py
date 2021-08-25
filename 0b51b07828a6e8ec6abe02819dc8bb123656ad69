@@ -16,6 +16,24 @@
       "message": "test looks failing?\nis it timing issue or intended?",
       "revId": "0b51b07828a6e8ec6abe02819dc8bb123656ad69",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2346db8_b6990401",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-25T07:42:41Z",
+      "side": 1,
+      "message": "That test is flaky, made https://crrev.com/c/3117207 for debug.",
+      "parentUuid": "e009ee7a_fd4a570a",
+      "revId": "0b51b07828a6e8ec6abe02819dc8bb123656ad69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
