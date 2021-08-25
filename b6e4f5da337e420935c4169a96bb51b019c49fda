@@ -61,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a78a92b_7f92fd82",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-25T02:39:43Z",
+      "side": 1,
+      "message": "I tagged you in a comment in the backend API doc.\n\nI believe `-task-id` is a new arg that wasn\u0027t needed before. It\u0027s needed now because bbagent needs it when calling buildbucket.UpdateBuild",
+      "parentUuid": "d57c8aae_05e8a2d4",
+      "range": {
+        "startLine": 155,
+        "startChar": 42,
+        "endLine": 155,
+        "endChar": 75
+      },
+      "revId": "b6e4f5da337e420935c4169a96bb51b019c49fda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "358f2979_980c2e25",
         "filename": "client/run_isolated.py",
         "patchSetId": 2
