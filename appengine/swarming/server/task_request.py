@@ -153,6 +153,12 @@ _CAS_INSTANCE_RE = re.compile(r'^projects/[a-z0-9-]+/instances/[a-z0-9-_]+$')
 
 ### Properties validators must come before the models.
 
+_DEFAULT_CIPD_SERVER = 'https://chrome-infra-packages.appspot.com'
+
+_DEFAULT_CIPD_CLIENT_PACKAGE = 'infra/tools/cipd/${platform}'
+
+_DEFAULT_CIPD_CLIENT_VERSION = 'latest'
+
 
 def _validate_length(prop, value, maximum):
   if len(value) > maximum:
@@ -673,9 +679,12 @@ class CipdInput(ndb.Model):
 
   def _pre_put_hook(self):
     if not self.server:
-      raise datastore_errors.BadValueError('cipd server is required')
+      self.server = _DEFAULT_CIPD_SERVER
     if not self.client_package:
-      raise datastore_errors.BadValueError('client_package is required')
+      self.client_package = CipdPackage(
+          version=_DEFAULT_CIPD_CLIENT_VERSION,
+          package_name=_DEFAULT_CIPD_CLIENT_PACKAGE
+      )
     if self.client_package.path:
       raise datastore_errors.BadValueError('client_package.path must be unset')
     # _pre_put_hook() doesn't recurse correctly into
