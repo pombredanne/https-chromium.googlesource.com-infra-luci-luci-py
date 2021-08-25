@@ -107,6 +107,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c340669_702c2ef8",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-25T02:53:38Z",
+      "side": 1,
+      "message": "nvm, I just read the design.",
+      "parentUuid": "a988eee2_c8774e1f",
+      "range": {
+        "startLine": 155,
+        "startChar": 42,
+        "endLine": 155,
+        "endChar": 75
+      },
+      "revId": "b6e4f5da337e420935c4169a96bb51b019c49fda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "358f2979_980c2e25",
