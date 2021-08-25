@@ -280,6 +280,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6588410_8824c8a5",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-25T00:43:41Z",
+      "side": 1,
+      "message": "If subscribers need only the latest state, that\u0027s fine.\n(I just wondered if *prev* state is useful in some cases.)",
+      "parentUuid": "429657d5_97435bbc",
+      "range": {
+        "startLine": 509,
+        "startChar": 0,
+        "endLine": 509,
+        "endChar": 34
+      },
+      "revId": "a3c8b6a964abb9fb9a963de895c633359c4219e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d6c273c_23ba2775",
