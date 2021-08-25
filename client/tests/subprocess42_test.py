@@ -1089,6 +1089,11 @@ time.sleep(60)
               except ExitError:
                 sys.stdout.write('wait is interrupted')
                 sys.stdout.flush()
+
+                # Exit soon after flush may not guarantee the availability of
+                # output? https://crbug.com/1183233
+                time.sleep(0.1)
+
                 proc.kill()
         """ % timeout),
     ]
