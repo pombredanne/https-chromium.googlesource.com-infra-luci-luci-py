@@ -16,6 +16,24 @@
       "message": "Was this redundant?",
       "revId": "e2c81b9665458e5b6d61b3232a370318dc11aa12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa0810a6_7e4d3589",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-25T01:01:35Z",
+      "side": 0,
+      "message": "i thought it was because _gen_new_keys also sets `key`\nbut actually _gen_new_keys is only called to try generating another TaskRequest key if the existing key was already taken.\n\nSo this is not redundant.\nI added it back",
+      "parentUuid": "7348d1b7_b09fc0a8",
+      "revId": "e2c81b9665458e5b6d61b3232a370318dc11aa12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

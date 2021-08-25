@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab058a44_812dbbc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-25T01:01:35Z",
+      "side": 1,
+      "message": "Active again.",
+      "parentUuid": "5e3b9bf6_4a7f0afb",
+      "revId": "f658f314b69a147b5ed268c960347af6c503fe1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16632980_73c05f42",
@@ -48,6 +66,30 @@
       "writtenOn": "2021-08-25T00:42:13Z",
       "side": 1,
       "message": "better to have argument name here for readability?",
+      "range": {
+        "startLine": 1014,
+        "startChar": 62,
+        "endLine": 1014,
+        "endChar": 67
+      },
+      "revId": "f658f314b69a147b5ed268c960347af6c503fe1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d15ea5cc_19f52c6f",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1014,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-25T01:01:35Z",
+      "side": 1,
+      "message": "made optional and using argument name here.",
+      "parentUuid": "16632980_73c05f42",
       "range": {
         "startLine": 1014,
         "startChar": 62,
