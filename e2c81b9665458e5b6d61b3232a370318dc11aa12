@@ -52,6 +52,24 @@
       "parentUuid": "aa0810a6_7e4d3589",
       "revId": "e2c81b9665458e5b6d61b3232a370318dc11aa12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4493fdd_0adc1231",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-25T01:56:29Z",
+      "side": 0,
+      "message": "Looks like this was news to everyone currently on swarming, so I added a note to explain this.\nAlso moved this section to right before `datastore_utils.insert()` so work isn\u0027t wasted if it\u0027s a dupe.",
+      "parentUuid": "f3e2d59b_68a87ac5",
+      "revId": "e2c81b9665458e5b6d61b3232a370318dc11aa12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
