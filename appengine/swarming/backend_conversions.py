@@ -19,6 +19,10 @@ from proto.api.internal.bb import swarming_bb_pb2
 # caches defined in swarmbucket configs.
 _CACHE_DIR = 'cache'
 
+_DEFAULT_CIPD_SERVER = 'https://chrome-infra-packages.appspot.com'
+_DEFAULT_CIPD_CLIENT_PACKAGE = 'infra/tools/cipd/${platform}'
+_DEFAULT_CIPD_CLIENT_VERSION = 'latest'
+
 # TODO(crbug/1236848): Replace 'assert's with raised exceptions.
 
 def compute_task_request(run_task_req):
@@ -105,14 +109,21 @@ def _compute_task_slices(run_task_req, backend_config, has_secret_bytes):
           dimensions_data=base_dims,
           execution_timeout_secs=run_task_req.execution_timeout.seconds,
           grace_period_secs=run_task_req.grace_period.seconds,
-          command=_compute_command(
-              run_task_req, backend_config.agent_binary_cipd_filename),
+          command=_compute_command(run_task_req,
+                                   backend_config.agent_binary_cipd_filename),
           has_secret_bytes=has_secret_bytes,
-          cipd_input=task_request.CipdInput(packages=[
-              task_request.CipdPackage(
-                  package_name=backend_config.agent_binary_cipd_pkg,
-                  version=backend_config.agent_binary_cipd_vers)
-          ])),
+          cipd_input=task_request.CipdInput(
+              server=_DEFAULT_CIPD_SERVER,
+              client_package=task_request.CipdPackage(
+                  package_name=_DEFAULT_CIPD_CLIENT_PACKAGE,
+                  version=_DEFAULT_CIPD_CLIENT_VERSION,
+              ),
+              packages=[
+                  task_request.CipdPackage(
+                      package_name=backend_config.agent_binary_cipd_pkg,
+                      version=backend_config.agent_binary_cipd_vers,
+                      path='.')
+              ])),
   )
 
   if not dims_by_exp:
