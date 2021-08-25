@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "591237a2_c52952c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-25T02:26:45Z",
+      "side": 1,
+      "message": "Not sure if it\u0027s better to replace ${SWARMING_TASK_ID} here along with the other magic values, or before run_isolated.py is called.",
+      "revId": "b6e4f5da337e420935c4169a96bb51b019c49fda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
