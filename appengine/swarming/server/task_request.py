@@ -624,7 +624,7 @@ class CipdPackage(ndb.Model):
   version = ndb.StringProperty(
       indexed=False, validator=_validate_package_version)
   # Path to dir, relative to the run dir, where to install the package.
-  # If empty, the package will be installed in the run dir.
+  # Set to "." for the package to be installed in the run dir.
   path = ndb.StringProperty(indexed=False, validator=_validate_package_path)
 
   def to_proto(self, out):

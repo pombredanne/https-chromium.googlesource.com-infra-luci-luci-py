@@ -97,11 +97,19 @@ class TestBackendConversions(test_case.TestCase):
                 u'agent', '-fantasia', 'pegasus', '-cache-base', 'cache',
                 '-task-id', '${SWARMING_TASK_ID}'
             ],
-            cipd_input=task_request.CipdInput(packages=[
-                task_request.CipdPackage(
-                    package_name=u'agent/package/${platform}',
-                    version=u'latest')
-            ])))
+            cipd_input=task_request.CipdInput(
+                server=backend_conversions._DEFAULT_CIPD_SERVER,
+                client_package=task_request.CipdPackage(
+                    package_name=backend_conversions
+                    ._DEFAULT_CIPD_CLIENT_PACKAGE,
+                    version=backend_conversions._DEFAULT_CIPD_CLIENT_VERSION,
+                ),
+                packages=[
+                    task_request.CipdPackage(
+                        package_name=u'agent/package/${platform}',
+                        version=u'latest',
+                        path='.')
+                ])))
     expected_tr = task_request.TaskRequest(
         created_ts=utils.utcnow(),
         task_slices=[expected_slice],
@@ -188,11 +196,19 @@ class TestBackendConversions(test_case.TestCase):
             ],
             execution_timeout_secs=exec_secs,
             grace_period_secs=grace_secs,
-            cipd_input=task_request.CipdInput(packages=[
-                task_request.CipdPackage(
-                    package_name=u'agent/package/${platform}',
-                    version=u'latest')
-            ])))
+            cipd_input=task_request.CipdInput(
+                server=backend_conversions._DEFAULT_CIPD_SERVER,
+                client_package=task_request.CipdPackage(
+                    package_name=backend_conversions
+                    ._DEFAULT_CIPD_CLIENT_PACKAGE,
+                    version=backend_conversions._DEFAULT_CIPD_CLIENT_VERSION,
+                ),
+                packages=[
+                    task_request.CipdPackage(
+                        package_name=u'agent/package/${platform}',
+                        version=u'latest',
+                        path='.')
+                ])))
 
     slice_1 = task_request.TaskSlice(
         expiration_secs=60, properties=copy.deepcopy(base_slice.properties))
@@ -271,11 +287,20 @@ class TestBackendConversions(test_case.TestCase):
                 u'required-1': [u'req-1', u'req-1-2'],
                 u'required-2': [u'req-2']
             },
-            cipd_input=task_request.CipdInput(packages=[
-                task_request.CipdPackage(
-                    package_name=u'agent/package/${platform}',
-                    version=u'latest')
-            ])),
+            cipd_input=task_request.CipdInput(
+                server=backend_conversions._DEFAULT_CIPD_SERVER,
+                client_package=task_request.CipdPackage(
+                    package_name=backend_conversions
+                    ._DEFAULT_CIPD_CLIENT_PACKAGE,
+                    version=backend_conversions._DEFAULT_CIPD_CLIENT_VERSION,
+                ),
+                packages=[
+                    task_request.CipdPackage(
+                        path='.',
+                        package_name=u'agent/package/${platform}',
+                        version=u'latest',
+                        path='.')
+                ])),
     )
 
     self.assertEqual([base_slice],
