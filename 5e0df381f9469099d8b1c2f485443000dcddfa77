@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78ab1725_819d9669",
+        "filename": "client/tests/subprocess42_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1116,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-25T10:14:52Z",
+      "side": 1,
+      "message": "It failed at this path.\nhttps://logs.chromium.org/logs/infra/buildbucket/cr-buildbucket/8837943121062748561/+/u/client/run_tests_python2/stdout#L1611_7",
+      "range": {
+        "startLine": 1116,
+        "startChar": 0,
+        "endLine": 1116,
+        "endChar": 62
+      },
+      "revId": "5e0df381f9469099d8b1c2f485443000dcddfa77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
