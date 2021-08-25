@@ -1176,6 +1176,10 @@ def schedule_request(request,
   assert isinstance(request, task_request.TaskRequest), request
   assert not request.key, request.key
 
+  print(secret_bytes)
+  print(build_token)
+  print('PIKACHU')
+
   task_asserted_future = task_queues.assert_task_async(request)
   now = utils.utcnow()
   request.key = task_request.new_request_key()

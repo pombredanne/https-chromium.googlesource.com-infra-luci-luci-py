@@ -9,21 +9,34 @@ import posixpath
 
 from google.protobuf import json_format
 
+import handlers_exceptions
 from components import utils
 from server import task_request
 
 from proto.api.internal.bb import swarming_bb_pb2
+from proto.api.internal.bb import backend_pb2
 
 # This is the path, relative to the swarming run dir, to the directory that
 # contains the mounted swarming named caches. It will be prepended to paths of
 # caches defined in swarmbucket configs.
 _CACHE_DIR = 'cache'
 
-# TODO(crbug/1236848): Replace 'assert's with raised exceptions.
+_DEFAULT_CIPD_SERVER = 'https://chrome-infra-packages.appspot.com'
+
+_DEFAULT_CIPD_CLIENT_PACKAGE = 'infra/tools/cipd/${platform}'
+
+_DEFAULT_CIPD_CLIENT_VERSION = 'latest'
+
 
 def compute_task_request(run_task_req):
   # type: (backend_pb2.RunTaskRequest) -> Tuple[task_request.TaskRequest,
   #     Optional[task_request.SecretBytes], task_request.BuildToken]
+  """Computes internal ndb objects from a RunTaskRequest.
+
+  Raises:
+    handlers_exceptions.BadRequestException if any `run_task_req` fields are
+        invalid.
+  """
 
   build_token = task_request.BuildToken(
       build_id=run_task_req.build_id,
@@ -57,7 +70,7 @@ def compute_task_request(run_task_req):
       has_build_token=True)
 
   parent_id = backend_config.parent_run_id
-  if parent_id:
+  if parent_id is not '':
     tr.parent_task_id = parent_id
 
   return tr, secret_bytes, build_token
@@ -66,7 +79,7 @@ def compute_task_request(run_task_req):
 def _ingest_backend_config(req_backend_config):
   # type: (struct_pb2.Struct) -> swarming_bb_pb2.SwarmingBackendConfig
   json_config = json_format.MessageToJson(req_backend_config)
-  return json_format.Parse(json_config, swarming_bb_pb2.SwarmingBackendConfig)
+  return json_format.Parse(json_config, swarming_bb_pb2.SwarmingBackendConfig())
 
 
 def _compute_task_slices(run_task_req, backend_config, has_secret_bytes):
@@ -77,19 +90,25 @@ def _compute_task_slices(run_task_req, backend_config, has_secret_bytes):
   dims_by_exp = collections.defaultdict(lambda: collections.defaultdict(list))
 
   for cache in run_task_req.caches:
-    assert not cache.wait_for_warm_cache.nanos
+    if cache.wait_for_warm_cache.nanos:
+      raise handlers_exceptions.BadRequestException(
+          'cache\'s `wait_for_warm_cache.nanos` must be 0')
     if cache.wait_for_warm_cache.seconds:
       dims_by_exp[cache.wait_for_warm_cache.seconds]['caches'].append(
           cache.name)
 
   for dim in run_task_req.dimensions:
-    assert not dim.expiration.nanos
+    if dim.expiration.nanos:
+      raise handlers_exceptions.BadRequestException(
+          'dimension\'s `expiration.nanos` must be 0')
     dims_by_exp[dim.expiration.seconds][dim.key].append(dim.value)
 
   base_dims = dims_by_exp.pop(0, {})
   for key, values in base_dims.iteritems():
     values.sort()
 
+  print(run_task_req)
+  print('CHICKEN')
   base_slice = task_request.TaskSlice(
       # In bb-on-swarming, `wait_for_capacity` is only used for the last slice
       # (base_slice) to give named caches some time to show up.
@@ -105,14 +124,21 @@ def _compute_task_slices(run_task_req, backend_config, has_secret_bytes):
           dimensions_data=base_dims,
           execution_timeout_secs=run_task_req.execution_timeout.seconds,
           grace_period_secs=run_task_req.grace_period.seconds,
-          command=_compute_command(
-              run_task_req, backend_config.agent_binary_cipd_filename),
+          command=_compute_command(run_task_req,
+                                   backend_config.agent_binary_cipd_filename),
           has_secret_bytes=has_secret_bytes,
-          cipd_input=task_request.CipdInput(packages=[
-              task_request.CipdPackage(
-                  package_name=backend_config.agent_binary_cipd_pkg,
-                  version=backend_config.agent_binary_cipd_vers)
-          ])),
+          cipd_input=task_request.CipdInput(
+              server=_DEFAULT_CIPD_SERVER,
+              client_package=task_request.CipdPackage(
+                  package_name=_DEFAULT_CIPD_CLIENT_PACKAGE,
+                  version=_DEFAULT_CIPD_CLIENT_VERSION,
+              ),
+              packages=[
+                  task_request.CipdPackage(
+                      package_name=backend_config.agent_binary_cipd_pkg,
+                      version=backend_config.agent_binary_cipd_vers,
+                      path='.')
+              ])),
   )
 
   if not dims_by_exp:
