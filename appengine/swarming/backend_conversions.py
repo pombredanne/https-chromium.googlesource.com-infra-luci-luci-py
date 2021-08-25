@@ -19,11 +19,16 @@ from proto.api.internal.bb import swarming_bb_pb2
 # caches defined in swarmbucket configs.
 _CACHE_DIR = 'cache'
 
-# TODO(crbug/1236848): Replace 'assert's with raised exceptions.
 
 def compute_task_request(run_task_req):
   # type: (backend_pb2.RunTaskRequest) -> Tuple[task_request.TaskRequest,
   #     Optional[task_request.SecretBytes], task_request.BuildToken]
+  """Computes internal ndb objects from a RunTaskRequest.
+
+  Raises:
+    handlers_exceptions.BadRequestException if any `run_task_req` fields are
+        invalid.
+  """
 
   build_token = task_request.BuildToken(
       build_id=run_task_req.build_id,
@@ -77,13 +82,17 @@ def _compute_task_slices(run_task_req, backend_config, has_secret_bytes):
   dims_by_exp = collections.defaultdict(lambda: collections.defaultdict(list))
 
   for cache in run_task_req.caches:
-    assert not cache.wait_for_warm_cache.nanos
+    if cache.wait_for_warm_cache.nanos:
+      raise handlers_exceptions.BadRequestException(
+          'cache\'s `wait_for_warm_cache.nanos` must be 0')
     if cache.wait_for_warm_cache.seconds:
       dims_by_exp[cache.wait_for_warm_cache.seconds]['caches'].append(
           cache.name)
 
   for dim in run_task_req.dimensions:
-    assert not dim.expiration.nanos
+    if dim.expiration.nanos:
+      raise handlers_exceptions.BadRequestException(
+          'dimension\'s `expiration.nanos` must be 0')
     dims_by_exp[dim.expiration.seconds][dim.key].append(dim.value)
 
   base_dims = dims_by_exp.pop(0, {})
