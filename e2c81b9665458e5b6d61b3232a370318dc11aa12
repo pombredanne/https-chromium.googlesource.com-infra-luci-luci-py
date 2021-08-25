@@ -34,6 +34,24 @@
       "parentUuid": "7348d1b7_b09fc0a8",
       "revId": "e2c81b9665458e5b6d61b3232a370318dc11aa12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3e2d59b_68a87ac5",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-25T01:23:45Z",
+      "side": 0,
+      "message": "I see. That\u0027s confusing.",
+      "parentUuid": "aa0810a6_7e4d3589",
+      "revId": "e2c81b9665458e5b6d61b3232a370318dc11aa12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
