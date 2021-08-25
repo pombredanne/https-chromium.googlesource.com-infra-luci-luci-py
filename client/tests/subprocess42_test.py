@@ -8,6 +8,7 @@ from __future__ import print_function
 import ctypes
 import errno
 import itertools
+import logging
 import os
 import platform
 import signal
@@ -1105,9 +1106,13 @@ time.sleep(60)
     start = time.time()
     got = proc.recv_out(timeout=8)
     want = b'wait is interrupted'
-    self.assertEqual(
-        got, want,
-        "%s != %s after %s seconds" % (got, want, time.time() - start))
+
+    # TODO(crbug.com/1183233): use assertEqual
+    if got != want:
+      logging.error("got '%s', want '%s' after %s", got, want, time.time() - start)
+      time.sleep(0.5)
+      logging.error("recv again, out: '%s'", proc.recv_out(timeout=8))
+      self.assertTrue(False)
 
 
 if __name__ == '__main__':
