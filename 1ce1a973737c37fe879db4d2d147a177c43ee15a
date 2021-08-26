@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "414cd678_c85b6c4c",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-26T02:46:20Z",
+      "side": 1,
+      "message": "I was also looking where.\nMaybe this code?\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_request.py;l\u003d1928;drc\u003d3a706c45c8b5cac193b2278f104382e0a4a587f0",
+      "parentUuid": "79e44b01_ce08319a",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 0
+      },
+      "revId": "1ce1a973737c37fe879db4d2d147a177c43ee15a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c0b36d4b_4e129b16",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 1
