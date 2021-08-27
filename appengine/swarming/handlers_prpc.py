@@ -26,9 +26,23 @@ class TaskBackendAPIService(prpc_helpers.SwarmingPRPCService):
   DESCRIPTION = backend_prpc_pb2.TaskBackendServiceDescription
 
   @prpc_helpers.PRPCMethod
-  def RunTask(self, _request, _context):
+  def RunTask(self, request, _context):
     # type: (backend_pb2.RunTaskRequest, context.ServicerContext)
     #     -> empty_pb2.Empty
+
+    # TODO(crbug/1236848): Check if user can create tasks
+    # (maybe via auth.require()).
+
+    tr, secret_bytes, build_token = backend_conversions.compute_task_request(
+        request)
+
+    # TODO(get template_apply)
+    api_helpers.process_task_request(tr, template_apply)
+
+    # TODO(crbug/1236848): Used request.request_id to dedupe tasks within
+    # ten minutes.
+
+    result_summary = task_scheduler.schedule_request(tr, secret_bytes, False)
 
     return empty_pb2.Empty()
 
