@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab69db26_b1ee7b87",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-28T01:17:47Z",
+      "side": 1,
+      "message": "was only planning on listing handlers_exceptions Exceptions and auth.AuthorizationError here. \nBut this is a common enough error that is a result of invalid user args, so seems to make sense to add this as well and would save a lot of lines of code.",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 20
+      },
+      "revId": "73c8c7ab09f944ac37f7591dcc2497ddd706ee8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
