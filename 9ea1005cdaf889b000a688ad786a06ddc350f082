@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e19ada4e_daa88e58",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-30T11:47:03Z",
+      "side": 1,
+      "message": "If there are non-successful tasks with same property hash, will the new task still run rather than deduplicating it?\nIf so, isn\u0027t it expected to have multiple tasks?\n\nI still don\u0027t understand why it needs to give up.",
+      "range": {
+        "startLine": 556,
+        "startChar": 0,
+        "endLine": 561,
+        "endChar": 14
+      },
+      "revId": "9ea1005cdaf889b000a688ad786a06ddc350f082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
