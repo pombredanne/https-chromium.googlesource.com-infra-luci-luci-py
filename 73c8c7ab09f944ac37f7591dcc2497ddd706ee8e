@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "740da4d0_5e228583",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-30T19:49:17Z",
+      "side": 1,
+      "message": "Sorry, I\u0027m not sure what you mean.\n\nBut if you mean update the backend protos to match recent updates to Robbie\u0027s design doc, I\u0027m not aware of any big structural changes.\nIf there have only been small changes in annotation/names, those could always continue to change, so it seems more efficient to wait until Robbie commits those to code on the buildbucket side and we have a script to copy things over.\nW/e name changes and enforcing of field_behavior annotations can be done in one CL when everything is finalized?",
+      "parentUuid": "86ff5ec2_b6cb4785",
+      "revId": "73c8c7ab09f944ac37f7591dcc2497ddd706ee8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bbd13461_62721f0b",
         "filename": "appengine/swarming/backend_conversions.py",
         "patchSetId": 16
@@ -31,6 +49,30 @@
       "writtenOn": "2021-08-30T02:13:11Z",
       "side": 1,
       "message": "This and the following nanos checks seem too strict to me. I\u0027m just curious why you want to check them explicitly?\nIt can be more tolerant. e.g. ignore/ceil nanos",
+      "range": {
+        "startLine": 95,
+        "startChar": 1,
+        "endLine": 98,
+        "endChar": 37
+      },
+      "revId": "73c8c7ab09f944ac37f7591dcc2497ddd706ee8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdf3434a_5fcc32d8",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-30T19:49:17Z",
+      "side": 1,
+      "message": "I assumed from swarming.py\u0027s treatment of nanos\nhttps://source.chromium.org/chromium/infra/infra/+/main:appengine/cr-buildbucket/swarming.py;l\u003d203\n\nthat we, in general, don\u0027t want to deal with both nanos and seconds. \n\nAnd if we don\u0027t want to deal with nanos, but somehow there\u0027s a nanos value provided by the client, it seems like that should result in a noisy error. \nOtherwise to silently ignore it means the client expects/expected their nanos to be processed, but it was not and it would not be immediately obvious why. Or they may not even realize it\u0027s being ignored and the unexpected behavior goes unchecked for awhile.\n\n(I might be missing context on why swarming.py doesn\u0027t deal with nanos, though.)",
+      "parentUuid": "bbd13461_62721f0b",
       "range": {
         "startLine": 95,
         "startChar": 1,
