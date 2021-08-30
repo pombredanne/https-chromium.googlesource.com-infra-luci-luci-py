@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1edc6597_aa84aa9b",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1754,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-30T03:22:34Z",
+      "side": 1,
+      "message": "Hmm, I want to use a feature like https://en.cppreference.com/w/cpp/language/attributes/nodiscard in our codebase.",
+      "revId": "a72b38e7cc8173090dc2999d07a1783eb08f688f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
