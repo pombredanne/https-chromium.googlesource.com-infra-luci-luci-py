@@ -22,6 +22,30 @@
       },
       "revId": "9ea1005cdaf889b000a688ad786a06ddc350f082",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10f8007e_804ab236",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-31T05:32:12Z",
+      "side": 1,
+      "message": "\u003e If there are non-successful tasks with same property hash, will the new task still run rather than deduplicating it?\n\nYes. Failure can happen due to other than due to task e.g. bot. We don\u0027t want to keep task broken in such case.\n\n\u003e If so, isn\u0027t it expected to have multiple tasks?\n\u003e \n\nThat\u0027s true.\n\n\u003e I still don\u0027t understand why it needs to give up.\n\nYeah, this may not need now. But let me introduce log first.",
+      "parentUuid": "e19ada4e_daa88e58",
+      "range": {
+        "startLine": 556,
+        "startChar": 0,
+        "endLine": 561,
+        "endChar": 14
+      },
+      "revId": "9ea1005cdaf889b000a688ad786a06ddc350f082",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
