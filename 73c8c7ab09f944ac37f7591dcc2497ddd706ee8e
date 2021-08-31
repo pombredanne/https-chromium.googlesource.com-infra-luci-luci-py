@@ -149,6 +149,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "65abcf2d_f83149e7",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-08-31T01:13:38Z",
+      "side": 1,
+      "message": "Yes, my bad, went back and forth on adding this to prpc_helpers.ProcessException, so ultimately forgot to take this out.\nThank you",
+      "parentUuid": "3f2f5bc9_a4a14ab8",
+      "range": {
+        "startLine": 53,
+        "startChar": 12,
+        "endLine": 53,
+        "endChar": 42
+      },
+      "revId": "73c8c7ab09f944ac37f7591dcc2497ddd706ee8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ab69db26_b1ee7b87",
         "filename": "appengine/swarming/prpc_helpers.py",
         "patchSetId": 16
