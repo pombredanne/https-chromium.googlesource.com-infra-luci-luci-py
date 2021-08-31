@@ -89,6 +89,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75ae871c_4a4c78d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-08-31T04:34:58Z",
+      "side": 1,
+      "message": "I meant to ask importing proto to luci-go including recent change of proto like field rename. I\u0027m afraid we forget to import them.\n\nWill we copy the proto definition from the doc instead of from this repository if we have that in luci-go?",
+      "parentUuid": "6f164a14_398afee0",
+      "revId": "73c8c7ab09f944ac37f7591dcc2497ddd706ee8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbd13461_62721f0b",
