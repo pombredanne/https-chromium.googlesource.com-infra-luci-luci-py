@@ -102,6 +102,53 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "876120c5_3abe111b",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-31T00:58:08Z",
+      "side": 1,
+      "message": "I see. It\u0027s checked in the original implementation.",
+      "parentUuid": "cdf3434a_5fcc32d8",
+      "range": {
+        "startLine": 95,
+        "startChar": 1,
+        "endLine": 98,
+        "endChar": 37
+      },
+      "revId": "73c8c7ab09f944ac37f7591dcc2497ddd706ee8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f2f5bc9_a4a14ab8",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-08-31T00:58:08Z",
+      "side": 1,
+      "message": "Isn\u0027t this handled in prpc_helpers.ProcessException?",
+      "range": {
+        "startLine": 53,
+        "startChar": 12,
+        "endLine": 53,
+        "endChar": 42
+      },
+      "revId": "73c8c7ab09f944ac37f7591dcc2497ddd706ee8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ab69db26_b1ee7b87",
         "filename": "appengine/swarming/prpc_helpers.py",
         "patchSetId": 16
