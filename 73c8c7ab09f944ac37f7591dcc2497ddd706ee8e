@@ -143,6 +143,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de13db7b_0f2fbbeb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-08-31T06:18:55Z",
+      "side": 1,
+      "message": "Yes, the protos in the doc will be landed in luci-go, and at that point they can be imported here (and the code adjusted here, accordingly). I don\u0027t expect any large changes though.",
+      "parentUuid": "cd18109b_6e8f2f08",
+      "revId": "73c8c7ab09f944ac37f7591dcc2497ddd706ee8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbd13461_62721f0b",
