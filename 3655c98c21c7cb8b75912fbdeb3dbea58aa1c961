@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "8f59d25b_7f868480",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-01T04:50:52Z",
+      "side": 1,
+      "message": "*I looked at the documentation and it sounds like it would be required, but tests are passing",
+      "parentUuid": "6e8557ca_731b96b2",
+      "revId": "3655c98c21c7cb8b75912fbdeb3dbea58aa1c961",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "587f3c5e_8ffb2729",
         "filename": "appengine/swarming/handlers_prpc_test.py",
         "patchSetId": 3
