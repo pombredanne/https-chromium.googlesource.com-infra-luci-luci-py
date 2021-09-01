@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "801f3b11_504f82e8",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-01T04:41:03Z",
+      "side": 0,
+      "message": "Some mocks are already set up in https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/test_env_handlers.py",
+      "revId": "a1d521f54731fcdec5c73b2975bfb0d9b306f587",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

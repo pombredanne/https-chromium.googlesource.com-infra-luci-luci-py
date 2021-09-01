@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e8557ca_731b96b2",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-01T04:41:03Z",
+      "side": 1,
+      "message": "@jwata told me about\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/components/components/auth/prpc.py;l\u003d23;bpv\u003d0?q\u003dprpc_interceptor\u0026sq\u003d\nI assumed it would be required, but tests are passing without it.\nIf no one knows for sure, I\u0027m just going to leave it out until we try a first real call of RunTaskRequest.",
+      "revId": "3655c98c21c7cb8b75912fbdeb3dbea58aa1c961",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "587f3c5e_8ffb2729",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-01T04:41:03Z",
+      "side": 1,
+      "message": "previously\n\u0027schedule_request\u0027 was never called.\nI didn\u0027t add the process_task_requests mocks, so this was failing earlier than expected (at process_task_requests() instead of mocked_schedul_request()), but it happened to also fail with 400 so I didn\u0027t catch it.",
+      "range": {
+        "startLine": 178,
+        "startChar": 4,
+        "endLine": 187,
+        "endChar": 32
+      },
+      "revId": "3655c98c21c7cb8b75912fbdeb3dbea58aa1c961",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
