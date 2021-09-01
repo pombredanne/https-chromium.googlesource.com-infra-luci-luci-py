@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6069f076_727472f0",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-01T04:53:05Z",
+      "side": 1,
+      "message": "Is auth.Authorization caught by prpc_helpers.ProcessException()?",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 15
+      },
+      "revId": "7eab49c2afb6e68fe63b2afa1cc645ddafd29367",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
