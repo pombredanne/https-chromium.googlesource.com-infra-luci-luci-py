@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "622c6a28_002426cd",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-01T04:57:37Z",
+      "side": 1,
+      "message": "Vadim, \nCan you confirm if auth.prpc_interceptor() is required for AppEngine pRPC service?",
+      "parentUuid": "8f59d25b_7f868480",
+      "revId": "3655c98c21c7cb8b75912fbdeb3dbea58aa1c961",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "587f3c5e_8ffb2729",
