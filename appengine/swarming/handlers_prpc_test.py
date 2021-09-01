@@ -98,6 +98,8 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         agent_args=['-fantasia', 'pegasus'],
         backend_config=struct_pb2.Struct(
             fields={
+                'priority':
+                    struct_pb2.Value(number_value=1),
                 'wait_for_capacity':
                     struct_pb2.Value(bool_value=True),
                 'bot_ping_tolerance':
@@ -120,19 +122,6 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         buildbucket_host='cow-buildbucket.appspot.com',
     )
 
-  # Shareable mocking.
-  def _mock_pool_config(self, name):
-
-    def mocked_get_pool_config(pool):
-      if pool == name:
-        return pools_config.init_pool_config(
-            name=name,
-            rev='rev',
-        )
-      return None
-
-    self.mock(pools_config, 'get_pool_config', mocked_get_pool_config)
-
   def _mock_enqueue_task(self, allowed_queues):
 
     def mocked_enqueue_task(url, queue_name, **kwargs):
@@ -145,14 +134,11 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
 
   # Tests
   def test_run_task(self):
+    self.set_as_user()
+
     # Mocks for process_task_requests()
-    settings_cfg = config_pb2.SettingsCfg(
-        cipd=config_pb2.CipdSettings(
-            default_server='https://chrome-infra-packages.appspot.com',
-            default_client_package=config_pb2.CipdPackage(
-                package_name='chicken/cipd/${platform}', version='latest')))
-    self.mock(config, '_get_settings', lambda: (None, settings_cfg))
-    self._mock_pool_config('default')
+    # adds pool configs for which user is a `scheduling_user`
+    self.mock_default_pool_acl([])
     self.mock(realms, 'check_tasks_create_in_realm', lambda *_: True)
     self.mock(realms, 'check_pools_create_task', lambda *_: True)
     self.mock(realms, 'check_tasks_act_as', lambda *_: True)
@@ -174,7 +160,8 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     self.assertEqual(1, task_request.BuildToken.query().count())
     self.assertEqual(1, task_request.SecretBytes.query().count())
 
-  def test_run_task_exceptions(self):
+  def test_run_task_exceptions_bad_conversion(self):
+    self.set_as_user()
 
     request = backend_pb2.RunTaskRequest()
     raw_resp = self.app.post(
@@ -183,9 +170,21 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         self._headers,
         expect_errors=True)
     self.assertEqual(raw_resp.status, '400 Bad Request')
+    self.assertIn('must be a valid package', raw_resp.body)
 
-    def mocked_schedule_request():
-      raise TypeError()
+  def test_run_task_exceptions_schedule_request_error(self):
+    self.set_as_user()
+
+    # Mocks for process_task_requests()
+    # adds pool configs for which user is a `scheduling_user`
+    self.mock_default_pool_acl([])
+    self.mock(realms, 'check_tasks_create_in_realm', lambda *_: True)
+    self.mock(realms, 'check_pools_create_task', lambda *_: True)
+    self.mock(realms, 'check_tasks_act_as', lambda *_: True)
+    self.mock(service_accounts, 'has_token_server', lambda: True)
+
+    def mocked_schedule_request(_, secret_bytes=None, build_token=None):
+      raise TypeError('chicken')
 
     self.mock(task_scheduler, 'schedule_request', mocked_schedule_request)
     request = self._basic_run_task_request()
@@ -195,6 +194,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         self._headers,
         expect_errors=True)
     self.assertEqual(raw_resp.status, '400 Bad Request')
+    self.assertEqual(raw_resp.body, 'chicken')
 
 
 class PRPCTest(test_env_handlers.AppTestBase):
