@@ -54,6 +54,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdd1d014_6de686e3",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-09-01T19:19:52Z",
+      "side": 1,
+      "message": "It is required if the RPC implementation is using any of auth.* functions (in particular auth.is_group_member, like acl.can_create_task does). So yes, it is required in this case. It also converts auth.AuthorizationError into pRPC response codes.",
+      "parentUuid": "622c6a28_002426cd",
+      "revId": "3655c98c21c7cb8b75912fbdeb3dbea58aa1c961",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "587f3c5e_8ffb2729",
