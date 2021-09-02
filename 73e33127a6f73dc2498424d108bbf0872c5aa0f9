@@ -111,6 +111,30 @@
       },
       "revId": "73e33127a6f73dc2498424d108bbf0872c5aa0f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d9ec182_81dad33a",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-02T05:37:22Z",
+      "side": 1,
+      "message": "Ah, the ndb function returns None for missing entries.\nThank you for your confirmation.",
+      "parentUuid": "8f9d1821_af7e0e21",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 22
+      },
+      "revId": "73e33127a6f73dc2498424d108bbf0872c5aa0f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
