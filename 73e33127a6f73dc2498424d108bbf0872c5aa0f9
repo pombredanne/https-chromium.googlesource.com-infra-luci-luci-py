@@ -63,6 +63,30 @@
       },
       "revId": "73e33127a6f73dc2498424d108bbf0872c5aa0f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "124ce9e7_92e31d60",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-02T04:49:41Z",
+      "side": 1,
+      "message": "My question isn\u0027t related to BB.\n\nLet me elaborate.\n\nI assume task_results are fetched from Datastore by task_ids in FetchTasks request and given to convert_results_to_tasks(). And I also assumed that Datastore returns only existing task_results.\nSo it may need to reconstruct task_results to include None for none-existing ones.\n\nIf those assumptions are correct,\nIt\u0027s better to check the existence of task_results in convert_results_to_tasks() comparing task_ids and result.task_id.",
+      "parentUuid": "493155f1_81da7eb1",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 22
+      },
+      "revId": "73e33127a6f73dc2498424d108bbf0872c5aa0f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
