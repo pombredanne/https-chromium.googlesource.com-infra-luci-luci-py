@@ -16,6 +16,29 @@
       "message": "See https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3137414/2/appengine/swarming/handlers_prpc.py\n\nfor how backend_conversions.convert_results_to_tasks() will be called",
       "revId": "73e33127a6f73dc2498424d108bbf0872c5aa0f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e91b95f0_911bc6c9",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-02T03:56:38Z",
+      "side": 1,
+      "message": "Does the caller side need to contract task_results that include None?",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 22
+      },
+      "revId": "73e33127a6f73dc2498424d108bbf0872c5aa0f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
