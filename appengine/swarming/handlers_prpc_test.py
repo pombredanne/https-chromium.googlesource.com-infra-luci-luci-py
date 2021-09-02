@@ -67,7 +67,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     # the Backend is ready and added.
     routes = s.get_routes()
     self.app = webtest.TestApp(
-        webapp2.WSGIApplication(routes, debug=True),
+        webapp2.WSGIApplication(routes + handlers_bot.get_routes(), debug=True),
         extra_environ={
             'REMOTE_ADDR': self.source_ip,
             'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
@@ -79,8 +79,8 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         'Accept': encoding.Encoding.JSON[1],
     }
 
-    now = datetime.datetime(2019, 01, 02, 03)
-    test_case.mock_now(self, now, 0)
+    self.now = datetime.datetime(2019, 01, 02, 03)
+    test_case.mock_now(self, self.now, 0)
 
   # Test helpers.
   def _req_dim_prpc(self, key, value, exp_secs=None):
@@ -143,6 +143,15 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
 
     self.mock(utils, 'enqueue_task', mocked_enqueue_task)
 
+  def _mock_enqueue_task_async(self, allowed_queues):
+    def mocked_enqueue_task_async(url, queue_name, payload):
+      if queue_name not in allowed_queues:
+        self.fail(url)
+      if queue_name == 'rebuild-task-cache':
+        return task_queues.rebuild_task_cache_async(payload)
+      self.fail(url)
+    self.mock(utils, 'enqueue_task_async', mocked_enqueue_task_async)
+
   # Tests
   def test_run_task(self):
     # Mocks for process_task_requests()
@@ -159,12 +168,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     self.mock(service_accounts, 'has_token_server', lambda: True)
 
     # Mocks for task_scheduler.schedule_request()
-    def mocked_enqueue_task_async(url, queue_name, payload):
-      if queue_name == 'rebuild-task-cache':
-        return task_queues.rebuild_task_cache_async(payload)
-      self.fail(url)
-
-    self.mock(utils, 'enqueue_task_async', mocked_enqueue_task_async)
+    self._mock_enqueue_task_async(['rebuild-task-cache'])
     self._mock_enqueue_task(['pubsub', 'buildbucket-notify'])
 
     request = self._basic_run_task_request()
@@ -195,6 +199,68 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         self._headers,
         expect_errors=True)
     self.assertEqual(raw_resp.status, '400 Bad Request')
+
+  def test_fetch_tasks(self):
+    self._mock_enqueue_task_async(['rebuild-task-cache'])
+    self._mock_enqueue_task(['pubsub', 'cancel-children-tasks'])
+
+    self.mock_default_pool_acl([])
+
+    # Create two tasks, one COMPLETED, one PENDING
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    self.set_as_bot()
+    params = self.do_handshake()
+    self.mock_now(self.now, 30)
+    self.bot_poll(params=params)
+    self.set_as_user()
+    # first request
+    _, first_id = self.client_create_task_raw(
+        name='first',
+        tags=['project:yay', 'commit:post'],
+        properties=dict(idempotent=True))
+    self.set_as_bot()
+    self.bot_run_task()
+
+    # second request
+    self.set_as_user()
+    self.mock(random, 'getrandbits', lambda _: 0x66)
+    self.mock_now(self.now, 60)
+    _, second_id = self.client_create_task_raw(
+        name='second',
+        user='jack@localhost',
+        tags=['project:yay', 'commit:pre'])
+
+
+    request = backend_pb2.FetchTasksRequest(
+      task_ids=[
+          backend_pb2.TaskID(id=str(first_id)),
+          backend_pb2.TaskID(id=str(second_id)),
+    ])
+
+    expected_response = backend_pb2.FetchTasksResponse(
+      tasks=[
+          backend_pb2.Task(
+              id=backend_pb2.TaskID(
+                  target='swarming://',
+                  id=first_id),
+              status=common_pb2.SUCCESS),
+          backend_pb2.Task(
+              id=backend_pb2.TaskID(
+                  target='swarming://',
+                  id=second_id),
+              status=common_pb2.SCHEDULED),
+
+      ])
+
+    raw_resp = self.app.post(
+        '/prpc/swarming.backend.TaskBackend/FetchTasks',
+        _encode(request),
+        self._headers,
+        expect_errors=True)
+    resp = backend_pb2.FetchTasksResponse()
+    _decode(raw_resp.body, resp)
+    self.assertEqual(
+        resp, expected_response)
 
 
 class PRPCTest(test_env_handlers.AppTestBase):
