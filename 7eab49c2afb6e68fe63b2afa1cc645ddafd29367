@@ -70,6 +70,30 @@
       },
       "revId": "7eab49c2afb6e68fe63b2afa1cc645ddafd29367",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfeb85a8_bb1ffc9a",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-02T01:34:38Z",
+      "side": 1,
+      "message": "\u003e but since auth.prpc_interceptor() handles it too, i\u0027m removing it from prpc_helpers.ProcessException()\n\nSounds good.",
+      "parentUuid": "7f378807_13361302",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 15
+      },
+      "revId": "7eab49c2afb6e68fe63b2afa1cc645ddafd29367",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
