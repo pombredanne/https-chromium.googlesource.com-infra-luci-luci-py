@@ -87,6 +87,30 @@
       },
       "revId": "73e33127a6f73dc2498424d108bbf0872c5aa0f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f9d1821_af7e0e21",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-02T04:59:22Z",
+      "side": 1,
+      "message": "gotcha, thanks\n\nIf i stay with the following plan https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3137414/2/appengine/swarming/handlers_prpc.py\n\nand use ndb.get_multi() to fetch, \nI believe the list it returns will always be the same size as the list of given keys.\nIf an item is not found, None is returned as part of the list rather than just skipping, iiuc based on https://cloud.google.com/appengine/docs/standard/python/ndb/functions",
+      "parentUuid": "124ce9e7_92e31d60",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 22
+      },
+      "revId": "73e33127a6f73dc2498424d108bbf0872c5aa0f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
