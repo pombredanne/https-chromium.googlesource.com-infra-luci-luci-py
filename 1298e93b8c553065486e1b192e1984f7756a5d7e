@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce292010_758e679f",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-02T01:39:29Z",
+      "side": 1,
+      "message": "Is it possible to check the pRPC status code here?",
+      "range": {
+        "startLine": 203,
+        "startChar": 4,
+        "endLine": 203,
+        "endChar": 12
+      },
+      "revId": "1298e93b8c553065486e1b192e1984f7756a5d7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
