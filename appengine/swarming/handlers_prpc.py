@@ -5,8 +5,10 @@
 """This module defines Swarming Server frontend pRPC handlers."""
 
 import logging
+import json
 
 from google.appengine.api import datastore_errors
+from google.appengine.ext import ndb
 from google.protobuf import empty_pb2
 
 from components import prpc
@@ -16,16 +18,21 @@ import api_helpers
 import backend_conversions
 import handlers_exceptions
 import prpc_helpers
+
 from components import auth
 from components import datastore_utils
+from components import utils
+
 from proto.api.internal.bb import backend_prpc_pb2
 from proto.api.internal.bb import backend_pb2
 from proto.api import swarming_prpc_pb2  # pylint: disable=no-name-in-module
 from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
 from server import acl
 from server import bot_management
+from server import task_pack
 from server import task_request
 from server import task_scheduler
+from server import task_result
 
 
 class TaskBackendAPIService(prpc_helpers.SwarmingPRPCService):
@@ -56,6 +63,50 @@ class TaskBackendAPIService(prpc_helpers.SwarmingPRPCService):
       raise handlers_exceptions.BadRequestException(e.message)
 
     return empty_pb2.Empty()
+
+  @prpc_helpers.PRPCMethod
+  #@auth.require(acl.can_access, log_identity=True)
+  def CancelTasks(self, request, _context):
+    # type: (backend_pb2.CancelTasksRequest, context.ServicerContext)
+    #     -> backend_pb2.CancelTasksResponse
+
+    # TODO(crbug/1236848): Check cancel permissions for pools:
+    # `realms.check_tasks_cancel_acl(pools)`
+    task_ids = [task_id.id for task_id in request.task_ids]
+    task_result_keys = [task_pack.get_request_and_result_keys(task_id)[1]
+                        for task_id in task_ids]
+
+    base_q = task_result.TaskResultSummary.query(
+        task_result.TaskResultSummary.key.IN(task_result_keys))
+
+    cond = ndb.OR(
+        task_result.TaskResultSummary.state == task_result.State.PENDING,
+        task_result.TaskResultSummary.state == task_result.State.RUNNING)
+    to_cancel_q = base_q.filter(cond)
+
+    tasks = to_cancel_q.fetch()
+    cancel_ids = [task.task_id for task in to_cancel_q.fetch()]
+
+    if cancel_ids:
+      payload = json.dumps(
+          {
+              'tasks': cancel_ids,
+              'kill_running': True,
+          })
+      ok = utils.enqueue_task(
+          '/internal/taskqueue/important/tasks/cancel', 'cancel-tasks',
+          payload=payload)
+      if not ok:
+        raise handlers_exceptions.InternalException(
+            'Could not enqueue cancel request, try again later')
+
+    task_results = ndb.get_multi(
+        task_result_keys, use_cache=False, use_memcache=False,
+        use_datastore=True)
+
+    return backend_pb2.CancelTasksResponse(
+        tasks=backend_conversions.convert_results_to_tasks(
+            task_results, task_ids))
 
 
 class BotAPIService(object):
