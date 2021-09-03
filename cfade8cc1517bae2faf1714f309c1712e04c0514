@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80236358_0c9c0a1f",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-03T05:53:56Z",
+      "side": 1,
+      "message": "It has many duplicated code with the get_states API.\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/handlers_endpoints.py;l\u003d593;drc\u003dc78c0718408327ac24d33b83175755fa21d45f0a\n\nCan you consider moving the common logic to task_result.py to share?",
+      "range": {
+        "startLine": 65,
+        "startChar": 6,
+        "endLine": 65,
+        "endChar": 16
+      },
+      "revId": "cfade8cc1517bae2faf1714f309c1712e04c0514",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bfeb814_042b5667",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-03T05:53:56Z",
+      "side": 1,
+      "message": "unexpected?",
+      "range": {
+        "startLine": 79,
+        "startChar": 30,
+        "endLine": 79,
+        "endChar": 38
+      },
+      "revId": "cfade8cc1517bae2faf1714f309c1712e04c0514",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e3c9a63_cc2efcad",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-03T05:53:56Z",
+      "side": 1,
+      "message": "What are the default options?\nI thought they are all True by default. \nhttp://shortn/_e10rb7VO6D\nhttp://shortn/_O8m0xCKX15\nhttp://shortn/_QP9MUnlyCa\n\nAnd it checks local cache first, and then check memcache, and then check datastore.\nhttp://shortn/_8Lm1Tqt56H\n\nAnd that operation is done for each key.\nhttp://shortn/_2uItAhBxbC\n\n--\nMaybe, I found the reason why you wanted to fetch from cache first.\nJust let me leave the comment to share what I checked.",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 0
+      },
+      "revId": "cfade8cc1517bae2faf1714f309c1712e04c0514",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76dab0a3_755ded42",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-03T05:53:56Z",
+      "side": 1,
+      "message": "Oh, maybe this is the reason why there are 2 get_multi().\nYou want to fetch if the task state is running in cache.",
+      "range": {
+        "startLine": 88,
+        "startChar": 29,
+        "endLine": 88,
+        "endChar": 77
+      },
+      "revId": "cfade8cc1517bae2faf1714f309c1712e04c0514",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c5ea972_666b6d5b",
+        "filename": "appengine/swarming/server/task_pack.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-03T05:53:56Z",
+      "side": 1,
+      "message": "unexpected?",
+      "range": {
+        "startLine": 93,
+        "startChar": 39,
+        "endLine": 93,
+        "endChar": 47
+      },
+      "revId": "cfade8cc1517bae2faf1714f309c1712e04c0514",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
