@@ -7,6 +7,7 @@
 import logging
 
 from google.appengine.api import datastore_errors
+from google.appengine.ext import ndb
 from google.protobuf import empty_pb2
 
 from components import prpc
@@ -24,7 +25,9 @@ from proto.api import swarming_prpc_pb2  # pylint: disable=no-name-in-module
 from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
 from server import acl
 from server import bot_management
+from server import task_pack
 from server import task_request
+from server import task_result
 from server import task_scheduler
 
 
@@ -56,6 +59,46 @@ class TaskBackendAPIService(prpc_helpers.SwarmingPRPCService):
       raise handlers_exceptions.BadRequestException(e.message)
 
     return empty_pb2.Empty()
+
+
+  @prpc_helpers.PRPCMethod
+  def FetchTasks(self, request, _context):
+    # type: (backend_pb2.FetchTasksRequest, context.ServicerContext)
+    #     -> backend_pb2.FetchTaskResponse
+
+    # TODO(crbug/1236848): Check user can view each task.
+
+    requested_task_ids = [task_id for task_id in request.task_ids]
+    try:
+      result_keys = [
+          task_pack.get_request_and_result_keys(task_id.id)[1]
+          for task_id in requested_task_ids
+      ]
+    except ValueError as e:
+      raise handlers_exceptions.BadRequestException(
+          '`task_id.id` in an expected format: %s', e.message)
+
+    # Hot path. Fetch everything we can from memcache.
+    task_results = ndb.get_multi(
+        result_keys, use_cache=True, use_memcache=True, use_datastore=False)
+
+    missing_keys = [
+        result_keys[i]
+        for i, result in enumerate(task_results)
+        if result is None or result.state in task_result.State.STATES_RUNNING
+    ]
+
+    # Fetch results in a non-stable state or not in memcache.
+    if missing_keys:
+      more_results = ndb.get_multi(
+          missing_keys, use_cache=False, use_memcache=False, use_datastore=True)
+      for i, result in enumerate(task_results):
+        if result is None or result.state in task_result.State.STATES_RUNNING:
+          task_results[i] = more_results.pop(0)
+
+    return backend_pb2.FetchTasksResponse(
+        tasks=backend_conversions.convert_results_to_tasks(
+            task_results, requested_task_ids))
 
 
 class BotAPIService(object):
