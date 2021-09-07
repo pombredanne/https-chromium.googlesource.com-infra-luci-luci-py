@@ -3,12 +3,20 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 import datetime
+import os
 import logging
 import sys
 import unittest
 
 import swarming_test_env
 swarming_test_env.setup_test_env()
+import test_env_handlers
+
+import webapp2
+import webtest
+
+from google.appengine.api import memcache
+from google.appengine.ext import ndb
 
 import api_helpers
 from components import auth
@@ -22,7 +30,10 @@ from server import pools_config
 from server import realms
 from server import service_accounts
 from server import task_request
+from server import task_result
+from server import task_queues
 from test_support import test_case
+import handlers_bot
 
 
 class TestProcessTaskRequest(test_case.TestCase):
@@ -158,6 +169,82 @@ class TestProcessTaskRequest(test_case.TestCase):
       return None
 
     self.mock(pools_config, 'get_pool_config', mocked_get_pool_config)
+
+
+class TestFetchTasks(test_env_handlers.AppTestBase):
+
+  def setUp(self):
+    super(TestFetchTasks, self).setUp()
+    self.app = webtest.TestApp(
+        webapp2.WSGIApplication(handlers_bot.get_routes(), debug=True),
+        extra_environ={
+            'REMOTE_ADDR': self.source_ip,
+            'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
+        },
+    )
+    now = datetime.datetime(2019, 01, 02, 03)
+    test_case.mock_now(self, now, 0)
+
+    self._known_pools = None
+
+  def _mock_enqueue_task_async(self, allowed_queues):
+
+    def mocked_enqueue_task_async(url, queue_name, payload):
+      if queue_name not in allowed_queues:
+        self.fail(url)
+      if queue_name == 'rebuild-task-cache':
+        return task_queues.rebuild_task_cache_async(payload)
+      self.fail(url)
+
+    self.mock(utils, 'enqueue_task_async', mocked_enqueue_task_async)
+
+  def _mock_enqueue_task(self, allowed_queues):
+
+    def mocked_enqueue_task(url, queue_name, **kwargs):
+      del kwargs
+      if queue_name in allowed_queues:
+        return True
+      self.fail(url)
+
+    self.mock(utils, 'enqueue_task', mocked_enqueue_task)
+
+  def test_fetch_tasks(self):
+    self._mock_enqueue_task_async(['rebuild-task-cache'])
+    self.mock_default_pool_acl([])
+
+    # Create two tasks, one COMPLETED, one PENDING
+    self.set_as_bot()
+    params = self.do_handshake()
+    self.bot_poll(params=params)
+    self.set_as_user()
+
+    # first request
+    _, first_id = self.client_create_task_raw(
+        name='first',
+        tags=['project:yay', 'commit:post'],
+        properties=dict(idempotent=True))
+    self.set_as_bot()
+    self._mock_enqueue_task(['cancel-children-tasks'])
+    self.bot_run_task()
+
+    # Clear cache to test fetching from datastore path.
+    ndb.get_context().clear_cache()
+    memcache.flush_all()
+
+    # second request
+    self.set_as_user()
+    _, second_id = self.client_create_task_raw(
+        name='second',
+        user='jack@localhost',
+        tags=['project:yay', 'commit:pre'])
+
+    results = api_helpers.fetch_tasks([first_id, second_id, '1d69b9f088008810'])
+
+    self.assertEqual(results[0].state, task_result.State.COMPLETED)
+    self.assertEqual(results[0].task_id, first_id)
+    self.assertEqual(results[1].state, task_result.State.PENDING)
+    self.assertEqual(results[1].task_id, second_id)
+    self.assertIsNone(results[2])
 
 
 if __name__ == '__main__':
