@@ -7,6 +7,7 @@ import datetime
 import logging
 
 from google.appengine.api import datastore_errors
+from google.appengine.ext import ndb
 
 import handlers_exceptions
 from server import acl
@@ -15,7 +16,9 @@ from server import pools_config
 from server import realms
 from server import service_accounts
 from server import service_accounts_utils
+from server import task_pack
 from server import task_request
+from server import task_result
 
 
 def process_task_request(tr, template_apply):
@@ -115,3 +118,34 @@ def process_task_request(tr, template_apply):
         raise handlers_exceptions.BadRequestException(e.message)
       except service_accounts.InternalError as e:
         raise handlers_exceptions.InternalException(e.message)
+
+
+def fetch_tasks(task_ids):
+  # type: (str) -> Sequence[Union[task_result._TaskResultCommon, None]]
+  """Returns the task results for the given tasks in the same order."""
+  try:
+    result_keys = [
+        task_pack.get_request_and_result_keys(task_id)[1]
+        for task_id in task_ids
+    ]
+  except ValueError as e:
+    raise handlers_exceptions.BadRequestException(
+        '`task_id.id` in an unexpected format: %s', e.message)
+
+  # Hot path. Fetch everything we can from memcache.
+  task_results = ndb.get_multi(result_keys, use_datastore=False)
+
+  # Fetch ones in a non-stable state or not in memcache.
+  missing_keys = [
+      result_keys[i]
+      for i, result in enumerate(task_results)
+      if result is None or result.state in task_result.State.STATES_RUNNING
+  ]
+  if missing_keys:
+    more_results = ndb.get_multi(
+        missing_keys, use_cache=False, use_memcache=False)
+    for i, result in enumerate(task_results):
+      if result is None or result.state in task_result.State.STATES_RUNNING:
+        task_results[i] = more_results.pop(0)
+
+  return task_results
