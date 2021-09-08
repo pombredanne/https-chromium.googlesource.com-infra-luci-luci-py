@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5338021_05f307f0",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-08T00:41:42Z",
+      "side": 1,
+      "message": "Since this is a database operation, I think it\u0027s better to implement it in task_result.py",
+      "range": {
+        "startLine": 123,
+        "startChar": 4,
+        "endLine": 123,
+        "endChar": 15
+      },
+      "revId": "d36b0af4e371bbc65189a3d66a960c3092d08cab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c6139ff_24cf59d9",
         "filename": "appengine/swarming/api_helpers.py",
         "patchSetId": 3
