@@ -16,6 +16,133 @@
       "message": "I want to know if you agree on sharing the code for request idempotency.\nWDYT?",
       "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa5bcd19_29c0367c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-13T06:58:39Z",
+      "side": 1,
+      "message": "Direction looks good to me.",
+      "parentUuid": "4399eaf9_7ae975c0",
+      "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ac6d34d_0eac3b0e",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-13T06:58:39Z",
+      "side": 1,
+      "message": "I think this is not needed to be given here?",
+      "range": {
+        "startLine": 120,
+        "startChar": 28,
+        "endLine": 120,
+        "endChar": 37
+      },
+      "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a9f80bd_3fa11146",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-13T06:58:39Z",
+      "side": 1,
+      "message": "better to have test for this?",
+      "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4f051a1_3abd5ee3",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-13T06:58:39Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 120,
+        "startChar": 53,
+        "endLine": 120,
+        "endChar": 64
+      },
+      "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "934f8cee_745e781e",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-13T06:58:39Z",
+      "side": 1,
+      "message": "not defined?",
+      "range": {
+        "startLine": 145,
+        "startChar": 47,
+        "endLine": 145,
+        "endChar": 62
+      },
+      "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f96e1f8d_aea72804",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-13T06:58:39Z",
+      "side": 1,
+      "message": "Why not directly returns this or fix docstring?",
+      "range": {
+        "startLine": 147,
+        "startChar": 22,
+        "endLine": 147,
+        "endChar": 34
+      },
+      "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
