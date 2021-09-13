@@ -351,6 +351,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8ab8d6c_c87a05df",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-13T19:37:12Z",
+      "side": 1,
+      "message": "I think I can use cache_request() for the TaskBackend as well, thanks jwata.\nBut the RunTask deduplication window is 10 min. So when i call cache_request() in the `RunTask` implementation, I\u0027ll add a `ttl` param back into cache_request() if that SGTY.",
+      "parentUuid": "fd5f5a32_12dee243",
+      "range": {
+        "startLine": 120,
+        "startChar": 28,
+        "endLine": 120,
+        "endChar": 37
+      },
+      "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "934f8cee_745e781e",
