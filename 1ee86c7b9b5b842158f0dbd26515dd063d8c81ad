@@ -215,6 +215,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f7e3318b_597a0882",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-13T07:44:28Z",
+      "side": 1,
+      "message": "Why?\nIsn\u0027t it better to use a unique namespace for each request type?",
+      "parentUuid": "92d04969_044b39fe",
+      "range": {
+        "startLine": 120,
+        "startChar": 53,
+        "endLine": 120,
+        "endChar": 64
+      },
+      "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd5f5a32_12dee243",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-13T07:44:28Z",
+      "side": 1,
+      "message": "Ah, the current value is 10 min. Yeah, sounds good to use the same ttl.",
+      "parentUuid": "226c678b_7a0c966d",
+      "range": {
+        "startLine": 120,
+        "startChar": 28,
+        "endLine": 120,
+        "endChar": 37
+      },
+      "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "934f8cee_745e781e",
         "filename": "appengine/swarming/api_helpers.py",
         "patchSetId": 3
@@ -321,6 +369,30 @@
       "side": 1,
       "message": "I meant that docstring says this function returns cached result, but that may not true if func doesn\u0027t return result_cache?",
       "parentUuid": "e3e96913_f0b39b92",
+      "range": {
+        "startLine": 147,
+        "startChar": 22,
+        "endLine": 147,
+        "endChar": 34
+      },
+      "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c15a7978_09412a07",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-13T07:44:28Z",
+      "side": 1,
+      "message": "I updated the doc string. PTAL.",
+      "parentUuid": "a6bc269b_b9f8f709",
       "range": {
         "startLine": 147,
         "startChar": 22,
