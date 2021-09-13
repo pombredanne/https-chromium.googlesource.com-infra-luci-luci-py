@@ -681,19 +681,16 @@ class SwarmingTasksService(remote.Service):
     realms.check_tasks_cancel_acl(pools)
 
     now = utils.utcnow()
-    cond = task_result.TaskResultSummary.state == task_result.State.PENDING
-    if request.kill_running:
-      cond = ndb.OR(
-          cond,
-          task_result.TaskResultSummary.state == task_result.State.RUNNING)
-    q = task_result.TaskResultSummary.query(cond).order(
-        task_result.TaskResultSummary.key)
-    for tag in request.tags:
-      q = q.filter(task_result.TaskResultSummary.tags == tag)
 
+    filter_nodes = [
+        task_result.TaskResultSummary.tags == tag for tag in request.tags
+    ]
     try:
-      tasks, cursor = datastore_utils.fetch_page(q, request.limit,
-                                                 request.cursor)
+      task_scheduler.cancel_tasks(
+          filter_nodes,
+          request.limit,
+          request.cursor,
+          kill_running=request.kill_running)
     except ValueError as e:
       raise endpoints.BadRequestException(
           'Inappropriate filter for tasks/list: %s' % e)
