@@ -333,6 +333,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "983f3cb6_7d79e1a5",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-13T13:30:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41fc4ef0_afb535e7",
+      "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "934f8cee_745e781e",
