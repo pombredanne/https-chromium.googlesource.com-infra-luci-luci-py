@@ -287,6 +287,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "669bd22b_80a3e113",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-13T11:32:25Z",
+      "side": 1,
+      "message": "Not only collision. a different request handler will cache a different entity.\nSo it would be good to store in a different namespace or a different key format.",
+      "parentUuid": "bc14267d_a7b94d87",
+      "range": {
+        "startLine": 120,
+        "startChar": 53,
+        "endLine": 120,
+        "endChar": 64
+      },
+      "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "934f8cee_745e781e",
         "filename": "appengine/swarming/api_helpers.py",
         "patchSetId": 3
