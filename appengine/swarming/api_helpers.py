@@ -3,6 +3,7 @@
 # that can be found in the LICENSE file.
 """Functions that do common acl checking/processing on internal ndb objects."""
 
+from contextlib import contextmanager
 import datetime
 import logging
 
@@ -115,3 +116,42 @@ def process_task_request(tr, template_apply):
         raise handlers_exceptions.BadRequestException(e.message)
       except service_accounts.InternalError as e:
         raise handlers_exceptions.InternalException(e.message)
+
+
+def check_identical_request(namespace, request_uuid, ttl=60 * 60):
+  """Generates a decotrator that checks and returns the cached result of
+  the identical request.
+
+  The decorator returns the cache if it exists in Memcache.
+  Otherwise, it executes the original function and stores the result
+  in Memcache.
+  """
+
+  def decotrator(func):
+
+    def wrapper():
+      if request_uuid and not re.match(
+          r'^[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-'
+          r'[\da-fA-F]{12}$', request_uuid):
+        raise handlers_exceptions.BadRequestException(
+            'invalid uuid is given as request_uuid')
+
+      request_idempotency_key = None
+      if request_uuid:
+        request_idempotency_key = 'request_id/%s/%s' % (
+            request_uuid, auth.get_current_identity().to_bytes())
+
+      if request_idempotency_key:
+        result_cache = memcache.get(
+            request_idempotency_key, namespace=cache_namespace)
+        if result_cache is not None:
+          return func(result_cache)
+
+      result = func(None)
+      if request_idempotency_key:
+        memcache.add(request_idempotency_key, result, time=ttl)
+      return result
+
+    return wrapper
+
+  return decotrator
