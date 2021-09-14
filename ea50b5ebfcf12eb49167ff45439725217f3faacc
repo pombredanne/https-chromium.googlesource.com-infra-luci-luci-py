@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71bce379_d9eb9a36",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-14T12:54:26Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 613,
+        "startChar": 36,
+        "endLine": 613,
+        "endChar": 45
+      },
+      "revId": "ea50b5ebfcf12eb49167ff45439725217f3faacc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f5be486_72e4044f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-14T12:54:26Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 645,
+        "startChar": 36,
+        "endLine": 645,
+        "endChar": 45
+      },
+      "revId": "ea50b5ebfcf12eb49167ff45439725217f3faacc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4066e61e_49e69f40",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-14T12:54:26Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 715,
+        "startChar": 36,
+        "endLine": 715,
+        "endChar": 45
+      },
+      "revId": "ea50b5ebfcf12eb49167ff45439725217f3faacc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f94cf5c_afa57e73",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-14T12:54:26Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 749,
+        "startChar": 36,
+        "endLine": 749,
+        "endChar": 45
+      },
+      "revId": "ea50b5ebfcf12eb49167ff45439725217f3faacc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a93f1a9_4283c035",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-14T12:54:26Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 782,
+        "startChar": 36,
+        "endLine": 782,
+        "endChar": 45
+      },
+      "revId": "ea50b5ebfcf12eb49167ff45439725217f3faacc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eca3320f_aacb58c7",
+        "filename": "appengine/swarming/swarming_bot/swarmingserver_bot_fake.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-14T12:54:26Z",
+      "side": 1,
+      "message": "why do we need this?",
+      "revId": "ea50b5ebfcf12eb49167ff45439725217f3faacc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
