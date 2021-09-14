@@ -399,6 +399,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e19a2273_5f3444c5",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-14T03:33:37Z",
+      "side": 1,
+      "message": "I think we can(should?) use the same ttl for RunTask and the legacy tasks new API.\n\nTakuto,\nIs there any reason why you set 1 hour ttl?\nCan we just change it to 10 minutes?",
+      "parentUuid": "dced11ba_41dd7671",
+      "range": {
+        "startLine": 120,
+        "startChar": 28,
+        "endLine": 120,
+        "endChar": 37
+      },
+      "revId": "1ee86c7b9b5b842158f0dbd26515dd063d8c81ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "934f8cee_745e781e",
