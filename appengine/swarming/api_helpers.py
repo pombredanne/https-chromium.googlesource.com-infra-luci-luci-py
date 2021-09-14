@@ -145,5 +145,5 @@ def cache_request(namespace, request_uuid, func):
   result = func()
   if request_idempotency_key:
     memcache.add(
-        request_idempotency_key, result, namespace=namespace, time=10 * 60)
+        request_idempotency_key, result, namespace=namespace, time=60 * 60)
   return result

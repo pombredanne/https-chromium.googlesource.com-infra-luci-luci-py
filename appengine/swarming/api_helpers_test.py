@@ -191,7 +191,7 @@ class TestCheckIdenticalRequest(test_case.TestCase):
     func.assert_called_once()
 
     # the cache just got expired.
-    self.mock_now(self.now, 10 * 60)
+    self.mock_now(self.now, 60 * 60)
     func.reset_mock()
 
     self.assertEqual(
