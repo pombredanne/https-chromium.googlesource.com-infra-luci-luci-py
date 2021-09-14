@@ -45,8 +45,21 @@ class TaskBackendAPIService(prpc_helpers.SwarmingPRPCService):
 
     api_helpers.process_task_request(tr, task_request.TEMPLATE_AUTO)
 
-    # TODO(crbug/1236848): Used request.request_id to dedupe tasks within
-    # ten minutes.
+    if request.request_id:
+      if not re.match(
+          r'^[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-'
+          r'[\da-fA-F]{12}$', request.request_id):
+        raise handlers_exceptions.BadRequestException('Invalid `request_id`')
+
+      request_idempotency_key = 'backend/request_id/%s/%s' % (
+          request.request_id, auth.get_current_identity().to_bytes())
+      request_metadata = memcache.get(
+          request_idempotency_key, namespace='backend_run_task')
+      # This check is for idempotency when creating new tasks.
+      # There is still a possibility of duplicate task creation if requests with
+      # the same `request_id` are sent in a short period of time.
+      if request_metadata is not None:
+        pass
 
     try:
       result_summary = task_scheduler.schedule_request(
