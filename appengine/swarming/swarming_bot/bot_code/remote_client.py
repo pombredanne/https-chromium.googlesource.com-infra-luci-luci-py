@@ -11,6 +11,7 @@ import os
 import threading
 import time
 import traceback
+import uuid
 
 from six.moves import urllib
 
@@ -319,6 +320,8 @@ class RemoteClientNative(object):
       replies with an error or the returned dict does not have the correct
       values set.
     """
+    # This makes retry requests idempotent. See also crbug.com/1214700.
+    attributes['request_uuid'] = str(uuid.uuid4())
     resp = self._url_read_json('/swarming/api/v1/bot/poll', data=attributes)
     if not resp or resp.get('error'):
       raise PollError(
