@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11aa39ec_fea9202c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-14T08:03:51Z",
+      "side": 1,
+      "message": "why not use uuid4?",
+      "range": {
+        "startLine": 329,
+        "startChar": 42,
+        "endLine": 329,
+        "endChar": 47
+      },
+      "revId": "49bbbae9a1daafce97b43af23421f07d477f58e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
