@@ -39,6 +39,30 @@
       },
       "revId": "b3be1c6b9a0e1b822775b639db6bd75551c12d02",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f50b07b5_ebce8ca9",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-14T03:26:45Z",
+      "side": 1,
+      "message": "I changed it to return the cache directly.\nThe returned value can be validated after calling this function.",
+      "parentUuid": "4a5722c7_954bed58",
+      "range": {
+        "startLine": 125,
+        "startChar": 16,
+        "endLine": 125,
+        "endChar": 41
+      },
+      "revId": "b3be1c6b9a0e1b822775b639db6bd75551c12d02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
