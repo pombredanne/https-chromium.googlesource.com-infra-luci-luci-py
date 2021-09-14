@@ -70,6 +70,30 @@
       },
       "revId": "49bbbae9a1daafce97b43af23421f07d477f58e0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d88d3bd_43635b43",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-14T12:46:33Z",
+      "side": 1,
+      "message": "I don\u0027t concern about collision of uuid4. It\u0027s just a minor preference for a zero chance. \nAnyway, either is fine. I updated it to uuid4.",
+      "parentUuid": "7a4adf0a_e7baebd7",
+      "range": {
+        "startLine": 329,
+        "startChar": 42,
+        "endLine": 329,
+        "endChar": 47
+      },
+      "revId": "49bbbae9a1daafce97b43af23421f07d477f58e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
