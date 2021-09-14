@@ -512,8 +512,6 @@ class SwarmingTasksService(remote.Service):
           'the same request_uuid value was reused for different task '
           'requests')
     request_metadata.request.task_id = task_id_orig
-    logging.info('Reusing task %s with uuid %s', task_id_orig,
-                 request.request_uuid)
 
     return request_metadata
 
