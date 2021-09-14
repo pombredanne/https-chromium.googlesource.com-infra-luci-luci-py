@@ -103,8 +103,10 @@ class TestCase(auto_stub.TestCase):
     with self._lock:
       if not self._requests:
         return None
-      # Ignore 'stream' argument, it's not important for these tests.
+      # Ignore 'stream' and 'request_uuid' arguments, they are not important
+      # for these tests.
       kwargs.pop('stream', None)
+      kwargs['data'].pop('request_uuid', None)
       for i, n in enumerate(self._requests):
         if n[0] == url:
           data = self._requests.pop(i)
