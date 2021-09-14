@@ -140,6 +140,11 @@ def cache_request(namespace, request_uuid, func):
   if request_idempotency_key:
     result_cache = memcache.get(request_idempotency_key, namespace=namespace)
     if result_cache is not None:
+      try:  # result_cache can be anything. It may not have a `task_id`.
+        logging.info('Reusing task %s with uuid %s', result_cache.task_id,
+                     request_uuid)
+      except AttributeError:
+        logging.info('Reusing a previous task with uuid %s', request_uuid)
       return result_cache
 
   result = func()
