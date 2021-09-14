@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cf45ed8_2de09e3e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-14T13:31:41Z",
+      "side": 1,
+      "message": "This had to be copied, otherwise request_uuid is stored in the attributes.",
+      "range": {
+        "startLine": 324,
+        "startChar": 11,
+        "endLine": 324,
+        "endChar": 28
+      },
+      "revId": "82f0aea25b425fdb47e40b788d926c24ded42642",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
