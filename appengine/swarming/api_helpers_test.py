@@ -3,6 +3,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 import datetime
+import os
 import logging
 import sys
 import unittest
@@ -11,6 +12,13 @@ import mock
 
 import swarming_test_env
 swarming_test_env.setup_test_env()
+import test_env_handlers
+
+import webapp2
+import webtest
+
+from google.appengine.api import memcache
+from google.appengine.ext import ndb
 
 import api_helpers
 from components import auth
@@ -24,7 +32,10 @@ from server import pools_config
 from server import realms
 from server import service_accounts
 from server import task_request
+from server import task_result
+from server import task_queues
 from test_support import test_case
+import handlers_bot
 
 
 class TestProcessTaskRequest(test_case.TestCase):

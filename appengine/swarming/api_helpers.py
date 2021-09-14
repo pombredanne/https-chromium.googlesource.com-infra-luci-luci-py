@@ -19,7 +19,9 @@ from server import pools_config
 from server import realms
 from server import service_accounts
 from server import service_accounts_utils
+from server import task_pack
 from server import task_request
+from server import task_result
 
 
 def process_task_request(tr, template_apply):
