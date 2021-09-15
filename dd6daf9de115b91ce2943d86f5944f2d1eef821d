@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df8c55da_c963857d",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-15T03:40:00Z",
+      "side": 1,
+      "message": "no you\u0027re right, only rebuild-task-cache uses `enqueue_task_async`",
+      "parentUuid": "5b364c7a_7a274feb",
+      "range": {
+        "startLine": 142,
+        "startChar": 6,
+        "endLine": 143,
+        "endChar": 22
+      },
+      "revId": "dd6daf9de115b91ce2943d86f5944f2d1eef821d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "588fa8b0_d3e0beb1",
