@@ -7,6 +7,7 @@
 import logging
 
 from google.appengine.api import datastore_errors
+from google.appengine.ext import ndb
 from google.protobuf import empty_pb2
 
 from components import prpc
@@ -24,7 +25,9 @@ from proto.api import swarming_prpc_pb2  # pylint: disable=no-name-in-module
 from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
 from server import acl
 from server import bot_management
+from server import task_pack
 from server import task_request
+from server import task_result
 from server import task_scheduler
 
 
@@ -60,6 +63,21 @@ class TaskBackendAPIService(prpc_helpers.SwarmingPRPCService):
                    request.request_id)
 
     return empty_pb2.Empty()
+
+
+  @prpc_helpers.PRPCMethod
+  def FetchTasks(self, request, _context):
+    # type: (backend_pb2.FetchTasksRequest, context.ServicerContext)
+    #     -> backend_pb2.FetchTaskResponse
+
+    # TODO(crbug/1236848): Check user can view each task.
+
+    requested_task_ids = [task_id.id for task_id in request.task_ids]
+    task_results = task_result.fetch_task_results(requested_task_ids)
+
+    return backend_pb2.FetchTasksResponse(
+        tasks=backend_conversions.convert_results_to_tasks(
+            task_results, requested_task_ids))
 
 
 class BotAPIService(object):
