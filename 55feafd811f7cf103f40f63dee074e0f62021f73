@@ -46,6 +46,30 @@
       },
       "revId": "55feafd811f7cf103f40f63dee074e0f62021f73",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3af5b0cd_261b8479",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-15T01:48:32Z",
+      "side": 1,
+      "message": "Discussed in the daily meeting.\ncache_request() will return a boolean flag about whether it reuses cache or not.\nThis code will be executed only when the cache flag is true.",
+      "parentUuid": "d1323c40_8e733495",
+      "range": {
+        "startLine": 515,
+        "startChar": 4,
+        "endLine": 516,
+        "endChar": 38
+      },
+      "revId": "55feafd811f7cf103f40f63dee074e0f62021f73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
