@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d3c25a9_8588204c",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-15T03:50:40Z",
+      "side": 1,
+      "message": "here and line 141 are the same exact changes as: \nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3137414\n\nI\u0027ll rebase whenever one of these CLs are merged. Please ignore.",
+      "revId": "d3547c3192651542df6023ddf7b0b418f5f46e23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
