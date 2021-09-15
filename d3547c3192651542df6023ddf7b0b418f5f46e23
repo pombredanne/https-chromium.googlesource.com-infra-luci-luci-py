@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1301c2ad_9b029cde",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-15T04:04:58Z",
+      "side": 1,
+      "message": "why this is commented out?",
+      "revId": "d3547c3192651542df6023ddf7b0b418f5f46e23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a48298e_b87e52c5",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-15T04:04:58Z",
+      "side": 1,
+      "message": "this is third party library in python2",
+      "revId": "d3547c3192651542df6023ddf7b0b418f5f46e23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5d3c25a9_8588204c",
