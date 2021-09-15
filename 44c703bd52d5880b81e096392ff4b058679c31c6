@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74be4b79_409258ba",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-15T01:55:15Z",
+      "side": 1,
+      "message": "You may need to rebase to not include unrelated diffs.",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 124,
+        "endChar": 17
+      },
+      "revId": "44c703bd52d5880b81e096392ff4b058679c31c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
