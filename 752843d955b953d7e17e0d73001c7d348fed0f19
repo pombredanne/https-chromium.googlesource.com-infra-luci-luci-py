@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "adca242e_73d7623a",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-15T02:59:09Z",
+      "side": 1,
+      "message": "Without this \ntest_mass_cancel_pending()\nfails with\n```\n- {\u0027kill_running\u0027: False, \u0027tasks\u0027: [u\u00275d0b948008810\u0027]}\n?                  ^^^^\n\n+ {u\u0027kill_running\u0027: None, u\u0027tasks\u0027: [u\u00275d0b948008810\u0027]}\n```\nbecause `kill_running` is not explicitly set in the request body.\n\nIf the the test is just not an accurate representation of a real request, then I\u0027ll just change the test to explicitly test kill_running\u003dFalse or something.",
+      "parentUuid": "70ace4c6_3cecbf71",
+      "range": {
+        "startLine": 696,
+        "startChar": 23,
+        "endLine": 696,
+        "endChar": 27
+      },
+      "revId": "752843d955b953d7e17e0d73001c7d348fed0f19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d44f6d78_135c56df",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 5
@@ -37,6 +61,24 @@
       "writtenOn": "2021-09-15T02:46:23Z",
       "side": 1,
       "message": "this can be after try except?",
+      "revId": "752843d955b953d7e17e0d73001c7d348fed0f19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf7d73af_51231ae6",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-15T02:59:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d44f6d78_135c56df",
       "revId": "752843d955b953d7e17e0d73001c7d348fed0f19",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
