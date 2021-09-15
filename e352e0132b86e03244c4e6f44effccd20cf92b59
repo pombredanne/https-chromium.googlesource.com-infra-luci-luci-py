@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24f20a28_03bb0daa",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-15T02:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f1cb8be_b759f46d",
+      "range": {
+        "startLine": 248,
+        "startChar": 9,
+        "endLine": 248,
+        "endChar": 31
+      },
+      "revId": "e352e0132b86e03244c4e6f44effccd20cf92b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9aeca44e_5e146446",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-09-15T01:24:28Z",
       "side": 1,
       "message": "This is not infra failure.",
+      "range": {
+        "startLine": 249,
+        "startChar": 33,
+        "endLine": 249,
+        "endChar": 46
+      },
+      "revId": "e352e0132b86e03244c4e6f44effccd20cf92b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e47ffe64_1c4edf62",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-15T02:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9aeca44e_5e146446",
       "range": {
         "startLine": 249,
         "startChar": 33,
