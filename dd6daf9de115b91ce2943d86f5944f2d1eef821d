@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "588fa8b0_d3e0beb1",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-15T02:51:28Z",
+      "side": 1,
+      "message": "_mock_enqueue_task can be used for this?",
+      "range": {
+        "startLine": 163,
+        "startChar": 9,
+        "endLine": 163,
+        "endChar": 33
+      },
+      "revId": "dd6daf9de115b91ce2943d86f5944f2d1eef821d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ace4ee91_4b27833a",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-15T02:51:28Z",
+      "side": 1,
+      "message": "_mock_enqueue_task can be used for this?",
+      "range": {
+        "startLine": 245,
+        "startChar": 9,
+        "endLine": 245,
+        "endChar": 33
+      },
+      "revId": "dd6daf9de115b91ce2943d86f5944f2d1eef821d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
