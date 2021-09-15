@@ -46,6 +46,30 @@
       },
       "revId": "44c703bd52d5880b81e096392ff4b058679c31c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "285748fa_0a37a93f",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-15T02:07:29Z",
+      "side": 1,
+      "message": "Ah, right.\nThe diff base was automatically selected.\nSorry for the noise.",
+      "parentUuid": "ece54a9c_a8e1f40a",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 124,
+        "endChar": 17
+      },
+      "revId": "44c703bd52d5880b81e096392ff4b058679c31c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
