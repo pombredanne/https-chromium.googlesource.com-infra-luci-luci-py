@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ca4cd83_2fe56186",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-15T21:42:37Z",
+      "side": 1,
+      "message": "careless mistake",
+      "parentUuid": "1301c2ad_9b029cde",
+      "revId": "d3547c3192651542df6023ddf7b0b418f5f46e23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0452bd12_9b52f935",
@@ -41,6 +59,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e005439e_1318a7a5",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-15T21:42:37Z",
+      "side": 1,
+      "message": "cancel_tasks only returns tasks that were PENDING or RUNNING before the `cancel-task` task was enqueued. So it may not include every task in `request.task_ids`.\n\nCancelTasksResponse should return all tasks in request.task_ids with the latest state, not just ones that have cancellation enqueued.\n\nI\u0027ve added a comment.",
+      "parentUuid": "0452bd12_9b52f935",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 16
+      },
+      "revId": "d3547c3192651542df6023ddf7b0b418f5f46e23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a48298e_b87e52c5",
@@ -54,6 +96,24 @@
       "writtenOn": "2021-09-15T04:04:58Z",
       "side": 1,
       "message": "this is third party library in python2",
+      "revId": "d3547c3192651542df6023ddf7b0b418f5f46e23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa1cdc1f_ebda5727",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-15T21:42:37Z",
+      "side": 1,
+      "message": "I think this comment is implying an action item for me, but I don\u0027t know what it is.",
+      "parentUuid": "2a48298e_b87e52c5",
       "revId": "d3547c3192651542df6023ddf7b0b418f5f46e23",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
