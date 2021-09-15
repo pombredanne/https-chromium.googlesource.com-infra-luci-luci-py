@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d497155_5f750bd2",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-15T00:52:50Z",
+      "side": 1,
+      "message": "This is better to have in caller side?",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 74
+      },
+      "revId": "e7679b5199419bd993510d281f928fe76067987c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
