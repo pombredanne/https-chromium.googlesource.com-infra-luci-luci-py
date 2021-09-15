@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f1cb8be_b759f46d",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-15T01:24:28Z",
+      "side": 1,
+      "message": "Can you use `failure` in this situation?\nhttps://source.chromium.org/chromium/_/chromium/infra/luci/luci-py/+/f40c8f92b4c8a9d7a20c12be0b34f8df6c144326:appengine/swarming/server/task_result.py;l\u003d505;drc\u003db315a6158f3157b881bacabd7b29ee442678ac65",
+      "range": {
+        "startLine": 248,
+        "startChar": 9,
+        "endLine": 248,
+        "endChar": 31
+      },
+      "revId": "e352e0132b86e03244c4e6f44effccd20cf92b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aeca44e_5e146446",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-15T01:24:28Z",
+      "side": 1,
+      "message": "This is not infra failure.",
+      "range": {
+        "startLine": 249,
+        "startChar": 33,
+        "endLine": 249,
+        "endChar": 46
+      },
+      "revId": "e352e0132b86e03244c4e6f44effccd20cf92b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
