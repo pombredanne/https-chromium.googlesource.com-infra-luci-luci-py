@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d700c129_5aeccf5d",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-15T02:46:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80236358_0c9c0a1f",
+      "range": {
+        "startLine": 65,
+        "startChar": 6,
+        "endLine": 65,
+        "endChar": 16
+      },
+      "revId": "cfade8cc1517bae2faf1714f309c1712e04c0514",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bfeb814_042b5667",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-09-03T05:53:56Z",
       "side": 1,
       "message": "unexpected?",
+      "range": {
+        "startLine": 79,
+        "startChar": 30,
+        "endLine": 79,
+        "endChar": 38
+      },
+      "revId": "cfade8cc1517bae2faf1714f309c1712e04c0514",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec9667a8_c7ca4697",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-15T02:46:24Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "5bfeb814_042b5667",
       "range": {
         "startLine": 79,
         "startChar": 30,
@@ -106,6 +154,30 @@
       "writtenOn": "2021-09-03T05:53:56Z",
       "side": 1,
       "message": "unexpected?",
+      "range": {
+        "startLine": 93,
+        "startChar": 39,
+        "endLine": 93,
+        "endChar": 47
+      },
+      "revId": "cfade8cc1517bae2faf1714f309c1712e04c0514",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4acfdf25_f9a970e3",
+        "filename": "appengine/swarming/server/task_pack.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-15T02:46:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c5ea972_666b6d5b",
       "range": {
         "startLine": 93,
         "startChar": 39,
