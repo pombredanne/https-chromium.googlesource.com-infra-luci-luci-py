@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70ace4c6_3cecbf71",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-15T02:46:23Z",
+      "side": 1,
+      "message": "this is not necessary?",
+      "range": {
+        "startLine": 696,
+        "startChar": 23,
+        "endLine": 696,
+        "endChar": 27
+      },
+      "revId": "752843d955b953d7e17e0d73001c7d348fed0f19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d44f6d78_135c56df",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-15T02:46:23Z",
+      "side": 1,
+      "message": "this can be after try except?",
+      "revId": "752843d955b953d7e17e0d73001c7d348fed0f19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
