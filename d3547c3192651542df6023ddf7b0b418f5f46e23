@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0452bd12_9b52f935",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-15T05:34:26Z",
+      "side": 1,
+      "message": "Why not using the task_results from task_scheduler.cancel_tasks()?",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 16
+      },
+      "revId": "d3547c3192651542df6023ddf7b0b418f5f46e23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2a48298e_b87e52c5",
         "filename": "appengine/swarming/handlers_prpc_test.py",
         "patchSetId": 6
