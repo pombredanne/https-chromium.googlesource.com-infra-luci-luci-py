@@ -138,6 +138,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "931bad94_1fbb20d7",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-16T01:44:39Z",
+      "side": 1,
+      "message": "yes.",
+      "parentUuid": "e111d1b1_9b3c2db3",
+      "revId": "d3547c3192651542df6023ddf7b0b418f5f46e23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5d3c25a9_8588204c",
         "filename": "appengine/swarming/handlers_prpc_test.py",
         "patchSetId": 6
