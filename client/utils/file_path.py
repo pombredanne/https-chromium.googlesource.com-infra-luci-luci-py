@@ -1312,14 +1312,16 @@ def get_recursive_size(path):
   start = time.time()
   try:
     if _use_scandir():
-      total, n_dirs, n_files, n_links = _get_recursive_size_with_scandir(path)
+      total, n_dirs, n_files, n_links, n_others = _get_recur_size_with_scandir(
+          path)
     else:
-      total, n_dirs, n_files, n_links = _get_recursive_size_with_fswalk(path)
+      total, n_dirs, n_files, n_links, n_others = _get_recur_size_with_fswalk(
+          path)
     elapsed = time.time() - start
     logging.debug(
         '_get_recursive_size: traversed %s took %s seconds. '
-        'scandir: %s, files: %d, links: %d, dirs: %d', path, elapsed,
-        _use_scandir(), n_files, n_links, n_dirs)
+        'scandir: %s, files: %d, links: %d, dirs: %d, others: %d', path,
+        elapsed, _use_scandir(), n_files, n_links, n_dirs, n_others)
     return total
   except (IOError, OSError, UnicodeEncodeError):
     logging.exception('Exception while getting the size of %s', path)
@@ -1357,43 +1359,51 @@ def _is_symlink_entry(entry):
               & scandir.FILE_ATTRIBUTE_REPARSE_POINT)
 
 
-def _get_recursive_size_with_scandir(path):
+def _get_recur_size_with_scandir(path):
   if six.PY3:
-    logging.debug('Using _get_recursive_size_with_scandir with native scandir')
+    logging.debug('Using _get_recur_size_with_scandir with native scandir')
     _scandir = os.scandir
   else:
     # TODO(crbug.com/1111688): remove after Python3 migration.
-    logging.debug('Using _get_recursive_size_with_scandir with scandir library')
+    logging.debug('Using _get_recur_size_with_scandir with scandir library')
     _scandir = scandir.scandir
 
   total = 0
   n_dirs = 0
   n_files = 0
   n_links = 0
+  n_others = 0
   stack = [path]
   while stack:
-    for entry in _scandir(stack.pop()):
-      if _is_symlink_entry(entry):
-        n_links += 1
-        continue
-      if entry.is_file():
-        n_files += 1
-        total += entry.stat().st_size
-      elif entry.is_dir():
-        n_dirs += 1
-        stack.append(entry.path)
-      else:
-        logging.warning('non directory/file entry: %s', entry)
-  return total, n_dirs, n_files, n_links
+    try:
+      for entry in _scandir(stack.pop()):
+        if _is_symlink_entry(entry):
+          n_links += 1
+          continue
+        if entry.is_file():
+          n_files += 1
+          total += entry.stat().st_size
+        elif entry.is_dir():
+          n_dirs += 1
+          stack.append(entry.path)
+        else:
+          n_others += 1
+          logging.warning('non directory/file entry: %s', entry)
+    # TODO(crbug.com/1111688): PermissionError doesn't exist in Python2.
+    # Replace OSError with PermissionError after migrating to Python3.
+    except OSError:
+      logging.error('Failed to scan directory', exc_info=True)
+  return total, n_dirs, n_files, n_links, n_others
 
 
-def _get_recursive_size_with_fswalk(path):
-  logging.debug('Using _get_recursive_size_with_fswalk')
+def _get_recur_size_with_fswalk(path):
+  logging.debug('Using _get_recur_size_with_fswalk')
 
   total = 0
   n_dirs = 0
   n_files = 0
   n_links = 0
+  n_others = 0
   for root, dirs, files in fs.walk(path):
     n_dirs += len(dirs)
     for f in files:
@@ -1403,4 +1413,4 @@ def _get_recursive_size_with_fswalk(path):
         continue
       n_files += 1
       total += st.st_size
-  return total, n_dirs, n_files, n_links
+  return total, n_dirs, n_files, n_links, n_others
