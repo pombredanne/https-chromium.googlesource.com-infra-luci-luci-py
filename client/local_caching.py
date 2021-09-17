@@ -869,6 +869,8 @@ class NamedCache(Cache):
     # Maybe owner of |path| is different from runner of this script. This is to
     # make fs.rename work in that case.
     # https://crbug.com/986676
+    # This is also for os.scandir() when calculating named cache size
+    # recursively. https://crbug.com/1238772
     subprocess.check_call(['sudo', '-n', 'chown', str(uid), path])
 
   def install(self, dst, name):
@@ -958,6 +960,9 @@ class NamedCache(Cache):
           logging.error('- overwriting existing cache!')
           self._remove(name)
 
+        # Change owner because some files/dirs may be owned by root.
+        self._sudo_chown(src)
+
         # Calculate the size of the named cache to keep.
         size = file_path.get_recursive_size(src)
         logging.info('- Size is %s', size)
@@ -970,7 +975,6 @@ class NamedCache(Cache):
         abs_cache = os.path.join(self.cache_dir, rel_cache)
         logging.info('- Moving to %r', rel_cache)
         file_path.ensure_tree(os.path.dirname(abs_cache))
-        self._sudo_chown(src)
         fs.rename(src, abs_cache)
 
         self._lru.add(name, (rel_cache, size))
