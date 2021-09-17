@@ -1312,14 +1312,16 @@ def get_recursive_size(path):
   start = time.time()
   try:
     if _use_scandir():
-      total, n_dirs, n_files, n_links = _get_recursive_size_with_scandir(path)
+      total, n_dirs, n_files, n_links, n_others = _get_recursive_size_with_scandir(
+          path)
     else:
-      total, n_dirs, n_files, n_links = _get_recursive_size_with_fswalk(path)
+      total, n_dirs, n_files, n_links, n_others = _get_recursive_size_with_fswalk(
+          path)
     elapsed = time.time() - start
     logging.debug(
         '_get_recursive_size: traversed %s took %s seconds. '
-        'scandir: %s, files: %d, links: %d, dirs: %d', path, elapsed,
-        _use_scandir(), n_files, n_links, n_dirs)
+        'scandir: %s, files: %d, links: %d, dirs: %d, others: %d', path,
+        elapsed, _use_scandir(), n_files, n_links, n_dirs, n_others)
     return total
   except (IOError, OSError, UnicodeEncodeError):
     logging.exception('Exception while getting the size of %s', path)
@@ -1370,9 +1372,16 @@ def _get_recursive_size_with_scandir(path):
   n_dirs = 0
   n_files = 0
   n_links = 0
+  n_others = 0
   stack = [path]
   while stack:
-    for entry in _scandir(stack.pop()):
+    dir_iter = []
+    try:
+      dir_iter = _scandir(stack.pop())
+    except PermissionError:
+      logging.error('Failed to scan directory', exc_info=True)
+      continue
+    for entry in dir_iter:
       if _is_symlink_entry(entry):
         n_links += 1
         continue
@@ -1383,8 +1392,9 @@ def _get_recursive_size_with_scandir(path):
         n_dirs += 1
         stack.append(entry.path)
       else:
+        n_others += 1
         logging.warning('non directory/file entry: %s', entry)
-  return total, n_dirs, n_files, n_links
+  return total, n_dirs, n_files, n_links, n_others
 
 
 def _get_recursive_size_with_fswalk(path):
@@ -1394,6 +1404,7 @@ def _get_recursive_size_with_fswalk(path):
   n_dirs = 0
   n_files = 0
   n_links = 0
+  n_others = 0
   for root, dirs, files in fs.walk(path):
     n_dirs += len(dirs)
     for f in files:
@@ -1403,4 +1414,4 @@ def _get_recursive_size_with_fswalk(path):
         continue
       n_files += 1
       total += st.st_size
-  return total, n_dirs, n_files, n_links
+  return total, n_dirs, n_files, n_links, n_others
