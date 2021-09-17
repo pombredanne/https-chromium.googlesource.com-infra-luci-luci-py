@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8f90020_38d0f26c",
+        "filename": "client/tests/file_path_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-17T18:14:54Z",
+      "side": 1,
+      "message": "i think you forgot to un-comment these out?",
+      "range": {
+        "startLine": 568,
+        "startChar": 3,
+        "endLine": 569,
+        "endChar": 38
+      },
+      "revId": "65771c69f80e15bc2879936d67053537a61e63d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f9cdab3_16691171",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1362,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-17T18:14:54Z",
+      "side": 1,
+      "message": "nit: consider adding type annotations\n# type: (str) -\u003e Tuple[int, int, int, int, int]\nso it\u0027s faster for the reader to grasp what\u0027s going on or what format is being returned?",
+      "revId": "65771c69f80e15bc2879936d67053537a61e63d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e07bd518_24a740a9",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1406,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-17T18:14:54Z",
+      "side": 1,
+      "message": "nit: since this is not being adjusted at all, I think it\u0027d be easier for the reader if a 0 was returned directly. Or any indication that saves the reader time from having to figure out why `n_others` here is necessary.",
+      "revId": "65771c69f80e15bc2879936d67053537a61e63d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
