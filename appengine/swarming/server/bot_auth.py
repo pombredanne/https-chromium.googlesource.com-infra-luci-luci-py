@@ -179,6 +179,7 @@ def _check_bot_auth(bot_auth, bot_id, peer_ident, ip):
     ts_mon_metrics.on_bot_auth_success(auth_method, condition)
     return None, []
 
+  print(bot_auth)
   if bot_auth.require_luci_machine_token:
     if not _is_valid_ident_for_bot(peer_ident, bot_id):
       error(
@@ -255,6 +256,8 @@ def _is_valid_ident_for_bot(ident, bot_id):
   """
   # TODO(vadimsh): Should bots.cfg also contain a list of allowed domain names,
   # so this check is stricter?
+  print(ident)
+  print(bot_id)
   return (
       ident.kind == auth.IDENTITY_BOT and
       ident != auth.IP_WHITELISTED_BOT_ID and
