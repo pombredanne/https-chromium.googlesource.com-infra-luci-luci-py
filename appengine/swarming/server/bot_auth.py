@@ -47,6 +47,9 @@ def validate_bot_id_and_fetch_config(bot_id):
     raise auth.AuthorizationError('Bot ID is not specified')
 
   auth_bot_id, cfg = _get_bot_group_config(bot_id)
+  print(cfg)
+  print(auth_bot_id)
+  print('CHICKEN')
 
   # This should not really happen for validated configs.
   if not cfg.auth:
@@ -255,6 +258,9 @@ def _is_valid_ident_for_bot(ident, bot_id):
   """
   # TODO(vadimsh): Should bots.cfg also contain a list of allowed domain names,
   # so this check is stricter?
+  print(ident)
+  print(bot_id)
+  print('HORSE')
   return (
       ident.kind == auth.IDENTITY_BOT and
       ident != auth.IP_WHITELISTED_BOT_ID and
