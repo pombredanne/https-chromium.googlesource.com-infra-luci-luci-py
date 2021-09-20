@@ -809,6 +809,11 @@ def cron_update_bot_info():
   logging.debug('Updating dead bots...')
   try:
     for b in BotInfo.yield_bots_should_be_dead():
+      bot_id = b.id
+      b = b.key.get()
+      if b is None:
+        logging.debug('BotInfo for bot %s does not exist.', bot_id)
+        continue
       cron_stats['seen'] += 1
       # Retry more often than the default 1. We do not want to throw too much
       # in the logs and there should be plenty of time to do the retries.
