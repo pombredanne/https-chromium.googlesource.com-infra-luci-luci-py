@@ -16,6 +16,24 @@
       "message": "You need to use \u0027-R\u0027 for chown?",
       "revId": "1e1d6a4f07ed85af3874129a9173789c0107f9e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd23daa0_544c646e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-21T02:45:32Z",
+      "side": 1,
+      "message": "This CL is abandoned.",
+      "parentUuid": "555bf2db_298dcffd",
+      "revId": "1e1d6a4f07ed85af3874129a9173789c0107f9e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
