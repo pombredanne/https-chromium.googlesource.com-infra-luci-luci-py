@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae1254d7_ed1df03e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-21T00:36:23Z",
+      "side": 1,
+      "message": "Added observations in https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1247362#c19\n\nI\u0027m not familiar with datastore, but it\u0027s hard to believe it could cause a 10+ min delay. But it\u0027s the only possibility i can think of so far. ",
+      "revId": "a5b9ee9407db3ec210cf1b91ef01d272ef0263c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
