@@ -41,6 +41,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f8628d9_fa15696b",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1362,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-21T03:27:12Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "3f9cdab3_16691171",
+      "revId": "65771c69f80e15bc2879936d67053537a61e63d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a639179_56943318",
@@ -66,6 +84,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "96d6b562_2136a375",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1393,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-21T03:27:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a639179_56943318",
+      "range": {
+        "startLine": 1392,
+        "startChar": 0,
+        "endLine": 1393,
+        "endChar": 70
+      },
+      "revId": "65771c69f80e15bc2879936d67053537a61e63d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e07bd518_24a740a9",
         "filename": "client/utils/file_path.py",
         "patchSetId": 5
@@ -77,6 +119,24 @@
       "writtenOn": "2021-09-17T18:14:54Z",
       "side": 1,
       "message": "nit: since this is not being adjusted at all, I think it\u0027d be easier for the reader if a 0 was returned directly. Or any indication that saves the reader time from having to figure out why `n_others` here is necessary.",
+      "revId": "65771c69f80e15bc2879936d67053537a61e63d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5e2cb7b_aed6a3f5",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1406,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-21T03:27:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e07bd518_24a740a9",
       "revId": "65771c69f80e15bc2879936d67053537a61e63d5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
