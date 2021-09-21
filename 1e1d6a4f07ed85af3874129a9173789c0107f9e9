@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "555bf2db_298dcffd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-21T02:39:13Z",
+      "side": 1,
+      "message": "You need to use \u0027-R\u0027 for chown?",
+      "revId": "1e1d6a4f07ed85af3874129a9173789c0107f9e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
