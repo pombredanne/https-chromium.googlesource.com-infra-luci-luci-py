@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c2b3022a_cc85cc90",
+        "filename": "client/tests/file_path_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-21T04:36:15Z",
+      "side": 1,
+      "message": "Oops, I missed this.\n\nI removed the lines since it\u0027s covered by test_get_recursive_size().",
+      "parentUuid": "2c0000e0_2f0a2181",
+      "range": {
+        "startLine": 568,
+        "startChar": 3,
+        "endLine": 569,
+        "endChar": 38
+      },
+      "revId": "65771c69f80e15bc2879936d67053537a61e63d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "3f9cdab3_16691171",
         "filename": "client/utils/file_path.py",
         "patchSetId": 5
