@@ -16,6 +16,29 @@
       "message": "Added observations in https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1247362#c19\n\nI\u0027m not familiar with datastore, but it\u0027s hard to believe it could cause a 10+ min delay. But it\u0027s the only possibility i can think of so far. ",
       "revId": "a5b9ee9407db3ec210cf1b91ef01d272ef0263c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b5d98fb_fd7ee9ca",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-21T02:05:34Z",
+      "side": 1,
+      "message": "Since the entity is already fetched by yield_bots_should_be_dead(), wouldn\u0027t it hit the process cache?\nYou may need to set use_cache\u003dFalse, and use_memcache\u003dFalse.\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/functions#context_options\n\nAnd I think this validation should be done in the transaction.\nSo I would change yield_bots_should_be_dead() to return keys only, and fetch each entity in \"run()\" function.",
+      "range": {
+        "startLine": 814,
+        "startChar": 12,
+        "endLine": 814,
+        "endChar": 21
+      },
+      "revId": "a5b9ee9407db3ec210cf1b91ef01d272ef0263c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
