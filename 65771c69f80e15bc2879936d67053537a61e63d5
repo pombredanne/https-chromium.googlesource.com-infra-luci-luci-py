@@ -41,6 +41,29 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a639179_56943318",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1393,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-21T02:52:40Z",
+      "side": 1,
+      "message": "You can have code like\n\n```\nif six.PY2:\n  PermissionError \u003d OSError\n```\nand that might be more difficult to forget when python2 cleanup?",
+      "range": {
+        "startLine": 1392,
+        "startChar": 0,
+        "endLine": 1393,
+        "endChar": 70
+      },
+      "revId": "65771c69f80e15bc2879936d67053537a61e63d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e07bd518_24a740a9",
