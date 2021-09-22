@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "da412875_24366c7e",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-22T04:49:09Z",
+      "side": 1,
+      "message": "I noticed that _validate_length() is called in _validate_service_account().\nMaybe, the refactored _validate_service_account would look like\n\ndef _validate_service_account(prop, value):\n  _validate_length(prop, value, 128)\n  validate_service_account(value)\n  return value",
+      "parentUuid": "696e0d2a_5f557804",
+      "revId": "9bd2ec809d34b8700ada3dbbe08edc9fdfe7454a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9eeeb4bf_7b9f092a",
         "filename": "appengine/swarming/handlers_prpc.py",
         "patchSetId": 1
