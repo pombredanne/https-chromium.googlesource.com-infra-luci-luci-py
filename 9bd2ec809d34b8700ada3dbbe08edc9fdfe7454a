@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "696e0d2a_5f557804",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-22T04:45:03Z",
+      "side": 1,
+      "message": "It seems validate_priority() takes value only. There is _validate_priority(prop, value) which just calls validate_priority.\nhttp://shortn/_HjKWWxvZMJ\n\nI think we can prepare validate_ping_tolerance(value), validate_service_account(value) in the same way.\nThe prop._name is used only in the error messages. We can hardcode them as validate_priority() does.",
+      "parentUuid": "528c640d_3d6444f2",
+      "revId": "9bd2ec809d34b8700ada3dbbe08edc9fdfe7454a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9eeeb4bf_7b9f092a",
         "filename": "appengine/swarming/handlers_prpc.py",
         "patchSetId": 1
