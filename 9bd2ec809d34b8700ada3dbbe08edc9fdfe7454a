@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "528c640d_3d6444f2",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-22T04:35:41Z",
+      "side": 1,
+      "message": "don\u0027t all the validate_* functions take (prop, value)?\nif it\u0027s just validate_*(value) i would know how to make it work",
+      "parentUuid": "e8836022_dd5ebc8e",
+      "revId": "9bd2ec809d34b8700ada3dbbe08edc9fdfe7454a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9eeeb4bf_7b9f092a",
         "filename": "appengine/swarming/handlers_prpc.py",
         "patchSetId": 1
