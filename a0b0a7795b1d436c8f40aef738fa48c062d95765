@@ -33,6 +33,24 @@
       "message": "nit: explicit `return None` in the end",
       "revId": "a0b0a7795b1d436c8f40aef738fa48c062d95765",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d34a3a2_bb19eb6c",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-22T00:54:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "694b5133_4c319540",
+      "revId": "a0b0a7795b1d436c8f40aef738fa48c062d95765",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
