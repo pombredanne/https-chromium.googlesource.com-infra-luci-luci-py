@@ -1098,7 +1098,7 @@ def make_tree_deleteable_legacy(root):
         if not subprocess42.call(
             ['sudo', '-n', 'chmod', 'a+rwX,-t', p], stdin=f):
           return False
-      logging.debug('sudo chmod %s failed', p)
+      logging.error('sudo chmod %s failed', p)
     return True
 
   if sys.platform != 'win32':
@@ -1165,7 +1165,7 @@ def make_tree_deleteable_posix(root):
     with open(os.devnull, 'rb') as f:
       if not subprocess42.call(['sudo', '-n', 'chmod', 'a+rwX,-t', p], stdin=f):
         return False
-    logging.debug('sudo chmod %s failed', p)
+    logging.error('sudo chmod %s failed', p)
     return True
 
   e = set_read_only_swallow(root, False)
@@ -1210,7 +1210,7 @@ def rmtree(root):
     try:
       make_tree_deleteable(root)
     except OSError as e:
-      logging.warning('Swallowing make_tree_deleteable() error: %s', e)
+      logging.error('Swallowing make_tree_deleteable() error: %s', e)
     logging.debug('file_path.make_tree_deleteable(%s) took %s seconds', root,
                   time.time() - start)
 
@@ -1236,7 +1236,7 @@ def rmtree(root):
 
     # Try to change tree permission.
     if not has_called_change_tree_permission:
-      logging.warning(
+      logging.error(
           'Failed to delete %s (%d files remaining).\n'
           '  Maybe tree permission needs to be changed.\n', root, len(errors))
       change_tree_permission()
@@ -1255,7 +1255,7 @@ def rmtree(root):
 
     if i < max_tries - 1:
       delay = (i+1)*2
-      logging.warning(
+      logging.error(
           'Failed to delete %s (%d files remaining).\n'
           '  Maybe the test has a subprocess outliving it.\n'
           '  Sleeping %d seconds.\n', root, len(errors), delay)
