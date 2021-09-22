@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8836022_dd5ebc8e",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-22T04:30:15Z",
+      "side": 1,
+      "message": "Isn\u0027t it just calling task_request.validate_* and catch/extract error messages?",
+      "parentUuid": "8845d765_59c039ed",
+      "revId": "9bd2ec809d34b8700ada3dbbe08edc9fdfe7454a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9eeeb4bf_7b9f092a",
         "filename": "appengine/swarming/handlers_prpc.py",
         "patchSetId": 1
