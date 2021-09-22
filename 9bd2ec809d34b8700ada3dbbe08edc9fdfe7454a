@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8845d765_59c039ed",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-22T03:44:08Z",
+      "side": 1,
+      "message": "I\u0027m aware of some validate functions in task_request.py and config.py,\nI spent some time considering how to share code, \nbut each function is just a few lines + with the difference in how the errors and returned for each case, i don\u0027t think it makes sense to share/combine these validate methods.",
+      "revId": "9bd2ec809d34b8700ada3dbbe08edc9fdfe7454a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93f02425_02621266",
+        "filename": "appengine/swarming/proto/api/internal/bb/backend.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-22T03:44:08Z",
+      "side": 1,
+      "message": "https://screenshot.googleplex.com/8aWLc6rJQN7hwpb",
+      "range": {
+        "startLine": 264,
+        "startChar": 4,
+        "endLine": 264,
+        "endChar": 26
+      },
+      "revId": "9bd2ec809d34b8700ada3dbbe08edc9fdfe7454a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
