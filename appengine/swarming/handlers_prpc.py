@@ -11,6 +11,7 @@ from google.appengine.ext import ndb
 from google.protobuf import empty_pb2
 
 from components import auth
+from components import cipd
 from components import datastore_utils
 from components import prpc
 from components.prpc.codes import StatusCode
@@ -105,6 +106,56 @@ class TaskBackendAPIService(prpc_helpers.SwarmingPRPCService):
     return backend_pb2.FetchTasksResponse(
         tasks=backend_conversions.convert_results_to_tasks(
             task_results, requested_task_ids))
+
+  @prpc_helpers.PRPCMethod
+  def ValidateConfigs(self, request, _context):
+    # type: (backend_pb2.ValidateConfigsRequest, context.ServicerContext)
+    #     -> backend_pb2.ValidateConfigsResponse
+
+    configs = [backend_conversions.ingest_backend_config(config.config_json) for
+               config in request.configs]
+    errors = []  # type: Tuple[int, str]
+    for i, config in enumerate(configs):
+      if (config.priority < 1 or
+          task_request.MAXIMUM_PRIORITY < config.priority):
+        errors.append((i, '`priority` must be between 1 and %s' % (
+            task_request.MAXIMUM_PRIORITY)))
+
+      if (config.bot_ping_tolerance < task_request.MIN_BOT_PING_TOLERANCE_SECS
+          or
+          task_request.MAX_BOT_PING_TOLERANCE_SECS < config.bot_ping_tolerance):
+        errors.append((i, '`bot_ping_tolerance` must be between %s and %s' % (
+            task_request.MIN_BOT_PING_TOLERANCE_SECS,
+            task_request.MAX_BOT_PING_TOLERANCE_SECS)))
+
+      if config.service_account and (
+          config.service_account not in ('bot', 'none') or not
+          service_accounts_utils.is_service_account(config.service_account)):
+        errors.append(
+            (i, '`service_account` must be an email, "bot" or "none" string'))
+
+      if config.parent_run_id:
+        try:
+          task_pack.unpack_run_result_key(config.parent_run_id)
+        except ValueError as e:
+          errors.append((i, e.message))
+
+      if (not config.agent_binary_cipd_pkg or
+          not cipd.is_valid_package_name_template(
+              config.agent_binary_cipd_pkg)):
+        errors.append((i, 'invalid `agent_binary_cipd_pkg`'))
+      if (not config.agent_binary_cipd_vers or
+          not cipd.is_valid_version(config.agent_binary_cipd_vers)):
+        errors.append((i, 'invalid `agent_binary_cipd_vers`'))
+      if not config.agent_binary_cipd_filename:
+        errors.append((i, 'missing `agent_binary_cipd_filename`'))
+
+
+    return backend_pb2.ValidateConfigsResponse(
+        config_errors=[
+            backend_pb2.ValidateConfigsResponse.ErrorDetail(
+                index=i, error=error)
+            for (i, error) in errors])
 
 
 class BotAPIService(object):

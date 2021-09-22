@@ -142,10 +142,10 @@ _TASKS_DELETE_CHUNK_SIZE = 1000
 
 # If no update is received from bot after max seconds lapsed from its last ping
 # to the server, it will be considered dead.
-_MAX_BOT_PING_TOLERANCE_SECS = 1200
+MAX_BOT_PING_TOLERANCE_SECS = 1200
 
 # Min time to keep the bot alive before it is declared dead.
-_MIN_BOT_PING_TOLERANCE_SECS = 60
+MIN_BOT_PING_TOLERANCE_SECS = 60
 
 # Full CAS instance name verification.
 # The name should be `projects/{project}/instances/{instance}`.
@@ -467,12 +467,12 @@ def _validate_service_account(prop, value):
 
 def _validate_ping_tolerance(prop, value):
   """Validates the range of input tolerance for bot to be declared dead."""
-  if (value > _MAX_BOT_PING_TOLERANCE_SECS or
-      value < _MIN_BOT_PING_TOLERANCE_SECS):
+  if (value > MAX_BOT_PING_TOLERANCE_SECS or
+      value < MIN_BOT_PING_TOLERANCE_SECS):
     raise datastore_errors.BadValueError(
         '%s (%d) must range between %d and %d' %
-        (prop._name, value, _MIN_BOT_PING_TOLERANCE_SECS,
-         _MAX_BOT_PING_TOLERANCE_SECS))
+        (prop._name, value, MIN_BOT_PING_TOLERANCE_SECS,
+         MAX_BOT_PING_TOLERANCE_SECS))
 
 
 def _validate_realm(_prop, value):
