@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52897727_d1f9e403",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1180,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-22T05:55:47Z",
+      "side": 1,
+      "message": "This must have been try_sudo(entry.path).",
+      "range": {
+        "startLine": 1180,
+        "startChar": 22,
+        "endLine": 1180,
+        "endChar": 36
+      },
+      "revId": "6ae70cdc5c0eddfe98b06c6cfcc695f6e311825a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "435a23fa_e270143d",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1180,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-22T05:55:47Z",
+      "side": 1,
+      "message": "This must be entry.path.",
+      "range": {
+        "startLine": 1180,
+        "startChar": 31,
+        "endLine": 1180,
+        "endChar": 35
+      },
+      "revId": "6ae70cdc5c0eddfe98b06c6cfcc695f6e311825a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
