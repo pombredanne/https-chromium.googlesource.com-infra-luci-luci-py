@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab7f0e34_4eeeb3fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-22T05:36:01Z",
+      "side": 1,
+      "message": "Using error level for expected failures seems confusing because it shows up in Swarming output. http://screen/6k4Jhoq9AdjGha2 \nWill abandon this.",
+      "revId": "ece0e0ff8b7150e7dc5adde1b7fdf2dee6a49773",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
