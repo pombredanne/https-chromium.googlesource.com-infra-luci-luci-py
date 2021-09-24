@@ -567,6 +567,53 @@ message NamedCacheEntry {
   string dest_path = 2;
 }
 
+// Defines the config when using containment in Linux.
+message LinuxContainment {
+  enum LinuxContainmentType {
+          NOT_SPECIFIED = 0;
+          NONE = 1;
+          AUTO = 2;
+          NSJAIL = 3;
+  }
+
+  LinuxContainmentType containment_type = 1;
+
+  int64 limit_processes = 2;
+  int64 limit_memory = 3;
+
+  // Disallows writes to the root filesystem.
+  bool mount_namespace = 4;
+  // Disallows any network dependencies.
+  bool network_namespace = 5;
+  // Prevents processes from leaking between tasks.
+  bool process_namespace = 6;
+  // Allows tasks to "look like root" in the namespace.
+  bool user_namespace = 7;
+}
+
+// Defines the config when using containment in Mac.
+message MacContainment {
+  // TODO(sumakasa): https://crbug.com/1227881
+}
+
+// Defines the config when using containment in Windows.
+message WindowsContainment {
+  enum WindowsContainmentType {
+          NOT_SPECIFIED = 0;
+          NONE = 1;
+          AUTO = 2;
+          JOB_OBJECT = 3;
+  }
+
+  WindowsContainmentType containment_type = 1;
+
+  // TODO(xinyuoffline): Use these fields to replace existing windows
+  // containment config fields. https://crbug.com/1252957
+  bool lower_priority = 2;
+  int64 limit_processes = 3;
+  int64 limit_total_committed_memory = 4;
+}
+
 // Defines the type of containment to use to put the task primary process
 // inside.
 //
@@ -606,6 +653,10 @@ message Containment {
   int64 limit_processes = 3;
   // Limits the total amount of memory allocated by processes.
   int64 limit_total_committed_memory = 4;
+
+  LinuxContainment linux_containment = 5;
+  MacContainment mac_containment = 6;
+  WindowsContainment windows_containment = 7;
 }
 
 // The user to run the task.
