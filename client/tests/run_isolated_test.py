@@ -224,6 +224,16 @@ class RunIsolatedTest(RunIsolatedTestBase):
         pass
 
     self.mock(subprocess42, 'Popen', Popen)
+    cas_hash = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+    self.mock(
+        run_isolated, 'upload_outdir_with_cas', lambda _cas_client,
+        cas_instance, _outir, _tmpdir: ({
+            'cas_instance': cas_instance,
+            'digest': {
+                'hash': cas_hash,
+                'size_bytes': 0,
+            }
+        }, {}))
 
   def test_copy_recusrsively(self):
     src = os.path.join(self.tempdir, 'src')
