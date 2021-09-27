@@ -282,12 +282,18 @@ class RunIsolatedTest(unittest.TestCase):
   def _run_cmd(self, cmd):
     pipe = subprocess.PIPE
     logging.debug(' '.join(cmd))
+    env = os.environ.copy()
+    env.update({
+        'SWARMING_SERVER': 'https://chromium-swarm-dev.appspot.com',
+        'DISABLE_LOG_FOR_TEST': '1',
+    })
     proc = subprocess.Popen(
         cmd,
         stdout=pipe,
         stderr=pipe,
         universal_newlines=True,
-        cwd=self.tempdir)
+        cwd=self.tempdir,
+        env=env)
     out, err = proc.communicate()
     return out, err, proc.returncode
 
@@ -724,12 +730,14 @@ class RunIsolatedTest(unittest.TestCase):
     # TODO(crbug.com/1129290):
     # '--max-cache-size=0' is ignored by local_caching.py unexpectedly.
     # change it to 0 after fixing the bug.
-    _, _, returncode = self._run([
+    out, err, returncode = self._run([
         '--clean',
         '--cas-cache',
         self._cas_cache_dir,
         '--max-cache-size=1',
     ])
+    logging.debug("out: %s", out)
+    logging.debug("err: %s", err)
     self.assertEqual(0, returncode)
     self.assertEqual(['state.json'], list_files_tree(self._cas_cache_dir))
 

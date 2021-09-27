@@ -860,7 +860,8 @@ def upload_outdir_with_cas(cas_client, cas_instance, outdir, tmp_dir):
         stats_json_path,
     ]
 
-    if sys.platform.startswith('linux'):
+    if (sys.platform.startswith('linux') and
+        os.environ.get('DISABLE_LOG_FOR_TEST') != '1'):
       # TODO(crbug.com/1243194): remove this after investigation.
       cmd.extend(['-log-level', 'debug'])
 
@@ -972,7 +973,7 @@ def map_and_run(data, constant_run_path):
     run_dir = make_temp_dir(ISOLATED_RUN_DIR, data.root_dir)
 
   # True if CAS is used for download/upload files.
-  use_cas = bool(data.cas_digest)
+  use_cas = not bool(data.isolated_hash)
 
   # storage should be normally set but don't crash if it is not. This can happen
   # as Swarming task can run without an isolate server.
@@ -1466,8 +1467,16 @@ def create_option_parser():
 
   group = optparse.OptionGroup(parser,
                                'Data source - Content Addressed Storage')
+  default_cas_instance = None
+  if 'SWARMING_SERVER' in os.environ:
+    swarming_server = os.environ['SWARMING_SERVER']
+    default_cas_instance = (
+        'projects/%s/instances/default_instance' %
+        swarming_server[len('https://'):-len('.appspot.com')])
   group.add_option(
-      '--cas-instance', help='Full CAS instance name for input/output files.')
+      '--cas-instance',
+      help='Full CAS instance name for input/output files.',
+      default=default_cas_instance)
   group.add_option(
       '--cas-digest',
       help='Digest of the input root on RBE-CAS. The format is '
@@ -1653,8 +1662,8 @@ def _clean_cmd(parser, options, caches, root):
     parser.error('Can\'t use --json with --clean.')
   if options.named_caches:
     parser.error('Can\t use --named-cache with --clean.')
-  if options.cas_instance or options.cas_digest:
-    parser.error('Can\t use --cas-instance, --cas-digest with --clean.')
+  if options.cas_digest:
+    parser.error('Can\t use --cas-digest with --clean.')
 
   logging.info("initial free space: %d", file_path.get_free_space(root))
 
