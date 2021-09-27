@@ -16,6 +16,52 @@
       "message": "Could you regenerate python proto?",
       "revId": "c3bd5c64995dec1c979e8435ce4ca6b9e5f51483",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a26685ac_2c1c216f",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-27T00:00:25Z",
+      "side": 1,
+      "message": "Better to have bug link here.\nhttp://go/tott/579",
+      "range": {
+        "startLine": 596,
+        "startChar": 10,
+        "endLine": 596,
+        "endChar": 18
+      },
+      "revId": "c3bd5c64995dec1c979e8435ce4ca6b9e5f51483",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11e304e2_29b9aa53",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-27T00:00:25Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 610,
+        "startChar": 10,
+        "endLine": 610,
+        "endChar": 22
+      },
+      "revId": "c3bd5c64995dec1c979e8435ce4ca6b9e5f51483",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
