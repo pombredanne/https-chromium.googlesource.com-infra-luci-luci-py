@@ -148,3 +148,54 @@ def cache_request(namespace, request_uuid, func):
     memcache.add(
         request_idempotency_key, result, namespace=namespace, time=10 * 60)
   return result, False
+
+
+def validate_backend_configs(configs):
+  # type: (Sequence[swarming_bb_pb2.SwarmingBackendConfig]) ->
+  #     Sequence[Tuple[int, str]]
+  """Checks the validity of each config.
+
+    Returns a tuple of (i, error_message) where i is the index of the
+    config that has the error.
+  """
+  errors = []  # type: Tuple[int, str]
+    for i, config in enumerate(configs):
+      try:
+        task_request.validate_priority(config.priority)
+      except datastore_errors.BadValueError, TypeError as e:
+        errors.append((i, e.message))
+
+      try:
+        task_request.validate_ping_tolerance(
+            'validate_ping_tolerance', config.bot_ping_tolerance)
+      except datastore_errors.BadValueError as e:
+        errors.append((i, e.message))
+
+      if config.parent_run_id:  # Optional value.
+        try:
+          task_request.validate_task_run_id('parent_run_id', config.parent_run_id)
+        except datastore_errors.BadValueError as e:
+          errors.append((i, e.message))
+
+      if config.service_account:
+        try:
+          task_request.service_account('service_account', config.service_account)
+        except datastore_errors.BadValueError as e:
+          errors.append((i, e.message))
+
+      try:
+        task_request.validate_package_name_template(
+            'agent_binary_cipd_pkg', config.agent_binary_cipd_pkg)
+      except datastore_errors.BadValueError as e:
+        errors.append((i, e.message))
+
+      try:
+        task_request.validate_package_version(
+            'agent_binary_cipd_vers', config.agent_binary_cipd_vers)
+      except datastore_errors.BadValueError as e:
+        errors.append((i, e.message))
+
+      if not config.agent_binary_cipd_filename:
+        errors.append((i, 'missing `agent_binary_cipd_filename`'))
+
+      return errors

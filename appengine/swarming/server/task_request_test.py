@@ -1858,9 +1858,9 @@ class TaskRequestApiTest(TestCase):
   def test_request_bad_bot_ping_tolerance(self):
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(
-          bot_ping_tolerance_secs=task_request._MAX_BOT_PING_TOLERANCE_SECS + 1)
+          bot_ping_tolerance_secs=task_request.MAX_BOT_PING_TOLERANCE_SECS + 1)
       _gen_request(
-          bot_ping_tolerance_secs=task_request._MIN_BOT_PING_TOLERANCE_SECS - 1)
+          bot_ping_tolerance_secs=task_request.MIN_BOT_PING_TOLERANCE_SECS - 1)
 
   def test_request_bad_execution_timeout(self):
     # When used locally, it is set to 1, which means it's impossible to test

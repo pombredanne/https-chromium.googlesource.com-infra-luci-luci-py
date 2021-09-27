@@ -371,6 +371,65 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     _decode(raw_resp.body, resp)
     self.assertEqual(resp, expected_response)
 
+  def test_validate_configs(self):
+    request = backend_pb2.ValidateConfigsRequest(
+        configs=[
+            backend_pb2.ValidateConfigsRequest.ConfigContext(
+                target='the-one-with-bad-values',
+                config_json=struct_pb2.Struct(fields={
+                    'priority':
+                        struct_pb2.Value(
+                            number_value=task_request.MAXIMUM_PRIORITY + 1),
+                    'bot_ping_tolerance':
+                        struct_pb2.Value(
+                            number_value=\
+                            task_request.MAX_BOT_PING_TOLERANCE_SECS + 1),
+                    'service_account':
+                        struct_pb2.Value(string_value='bokbok'),
+                    'parent_run_id':
+                        struct_pb2.Value(string_value='bad_run_id'),
+                    'agent_binary_cipd_filename':
+                        struct_pb2.Value(string_value='agent'),
+                    'agent_binary_cipd_pkg':
+                    struct_pb2.Value(
+                        string_value='agent/package/${platform}??'),
+                    'agent_binary_cipd_vers':
+                        struct_pb2.Value(string_value='3'),
+                })),
+            backend_pb2.ValidateConfigsRequest.ConfigContext(
+                target='the-one-with-missing-values',
+                config_json=struct_pb2.Struct(
+                    fields={}
+                )),
+    ])
+
+    raw_resp = self.app.post(
+        '/prpc/swarming.backend.TaskBackend/ValidateConfigs',
+        _encode(request), self._headers)
+    resp = backend_pb2.ValidateConfigsResponse()
+    _decode(raw_resp.body, resp)
+
+    expected_errors = [
+        (0, "`priority` must be between 1 and 255"),
+        (0, "`bot_ping_tolerance` must be between 60 and 1200"),
+        (0, "`service_account` must be an email, \"bot\" or \"none\" string"),
+        (0, "Invalid key u\'bad_run_i\'"),
+        (0, "invalid `agent_binary_cipd_pkg`"),
+        (1, "`priority` must be between 1 and 255"),
+        (1, "`bot_ping_tolerance` must be between 60 and 1200"),
+        (1, "invalid `agent_binary_cipd_pkg`"),
+        (1, "invalid `agent_binary_cipd_vers`"),
+        (1, "missing `agent_binary_cipd_filename`"),
+    ]
+    self.assertEqual(
+        resp,
+        backend_pb2.ValidateConfigsResponse(
+        config_errors=[
+            backend_pb2.ValidateConfigsResponse.ErrorDetail(
+                index=i, error=error)
+            for (i, error) in expected_errors])
+    )
+
 class PRPCTest(test_env_handlers.AppTestBase):
   # These test fail with 'Unknown bot ID, not in config'
   # Need to run in sequential_test_runner.py

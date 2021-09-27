@@ -142,10 +142,10 @@ _TASKS_DELETE_CHUNK_SIZE = 1000
 
 # If no update is received from bot after max seconds lapsed from its last ping
 # to the server, it will be considered dead.
-_MAX_BOT_PING_TOLERANCE_SECS = 1200
+MAX_BOT_PING_TOLERANCE_SECS = 1200
 
 # Min time to keep the bot alive before it is declared dead.
-_MIN_BOT_PING_TOLERANCE_SECS = 60
+MIN_BOT_PING_TOLERANCE_SECS = 60
 
 # Full CAS instance name verification.
 # The name should be `projects/{project}/instances/{instance}`.
@@ -465,15 +465,9 @@ def _validate_service_account(prop, value):
       (prop._name, value))
 
 
-def _validate_ping_tolerance(prop, value):
+def _validate_ping_tolerance(_prop, value):
   """Validates the range of input tolerance for bot to be declared dead."""
-  if (value > _MAX_BOT_PING_TOLERANCE_SECS or
-      value < _MIN_BOT_PING_TOLERANCE_SECS):
-    raise datastore_errors.BadValueError(
-        '%s (%d) must range between %d and %d' %
-        (prop._name, value, _MIN_BOT_PING_TOLERANCE_SECS,
-         _MAX_BOT_PING_TOLERANCE_SECS))
-
+  validate_ping_tolerance(value)
 
 def _validate_realm(_prop, value):
   if not value:
@@ -1945,9 +1939,9 @@ def _apply_cipd_defaults(properties, settings, pool_cfg):
     properties.cipd_input.client_package.version = (
         properties.cipd_input.client_package.version or cipd_vers)
 
-
+# Shared validate_foo() methods.
 def validate_priority(priority):
-  """Throws ValueError if priority is not a valid value."""
+  """Throws BadValueError if priority is not a valid value."""
   if not isinstance(priority, int):
     raise TypeError('priority (%s) must be int type, got %s' %
                     (priority, type(priority)))
@@ -1955,6 +1949,51 @@ def validate_priority(priority):
     raise datastore_errors.BadValueError(
         'priority (%d) must be between 0 and %d (inclusive)' %
         (priority, MAXIMUM_PRIORITY))
+  return priority
+
+def validate_ping_tolerance(prop_name, ping_tolerance):
+  # type: (str, int) -> None
+   """Throws BadValueError if ping_tolerance is not a valid value."""
+   if (ping_tolerance > _MAX_BOT_PING_TOLERANCE_SECS or
+      ping_tolerance < _MIN_BOT_PING_TOLERANCE_SECS):
+    raise datastore_errors.BadValueError(
+        '%s (%d) must range between %d and %d' %
+        (prop_name, value, _MIN_BOT_PING_TOLERANCE_SECS,
+         _MAX_BOT_PING_TOLERANCE_SECS))
+
+def validate_service_account(prop_name, service_account):
+  # type: (str, str) -> None
+  """Throws BadValueError if service_account is not a valid value."""
+  _validate_length('service_account', service_account, 128)
+  if service_account not in ('bot',
+               'none') or service_accounts_utils.is_service_account(value):
+  raise datastore_errors.BadValueError(
+      '%s must be an email, "bot" or "none" string, got %r' %
+      (prop_name, service_account))
+
+def validate_task_run_id(prop_name, run_id):
+  # type: (str, str) -> None
+  """Throws BadValueError if service_account is not a valid value."""
+  try:
+    task_pack.unpack_run_result_key(run_id)
+  except ValueError as e:
+    raise datastore_errors.BadValueError(
+        '%s (%d) got error: %s' % (prop_name, run_id, e.message))
+
+def validate_package_name_template(prop_name, name):
+  # type: (str, str) -> None
+  _validate_length(prop_name, name, 1024)
+  if not cipd.is_valid_package_name_template(name):
+    raise datastore_errors.BadValueError(
+        '%s must be a valid CIPD package name template "%s"' %
+        (prop_name, name))
+
+def validate_package_version(prop_name, version):
+  # type: (str, str) -> None
+  _validate_length(prop_name, version, 1024)
+  if not cipd.is_valid_version(version):
+    raise datastore_errors.BadValueError(
+        '%s must be a valid package version "%s"' % (prop_name, value))
 
 
 def yield_request_keys_by_parent_task_id(parent_task_id):
