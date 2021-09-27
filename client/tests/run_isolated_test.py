@@ -8,7 +8,6 @@ from __future__ import print_function
 import base64
 import contextlib
 import functools
-import hashlib
 import json
 import logging
 import os
@@ -42,9 +41,6 @@ from utils import logging_utils
 from utils import on_error
 from utils import subprocess42
 from utils import tools
-
-
-ALGO = hashlib.sha1
 
 
 def write_content(filepath, content):
