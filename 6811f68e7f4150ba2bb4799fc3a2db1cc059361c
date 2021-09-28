@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a0fd146_272b26bc",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-28T01:49:44Z",
+      "side": 1,
+      "message": "Is this sequence of tuple?",
+      "range": {
+        "startLine": 161,
+        "startChar": 23,
+        "endLine": 161,
+        "endChar": 28
+      },
+      "revId": "6811f68e7f4150ba2bb4799fc3a2db1cc059361c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "1f904425_b7e1a650",
