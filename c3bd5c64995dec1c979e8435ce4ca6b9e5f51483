@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d81dc8d_d5c285b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-28T22:56:44Z",
+      "side": 1,
+      "message": "jojwang@, is it possible to fix localation of generated proto?",
+      "parentUuid": "5272b559_38fd3437",
+      "revId": "c3bd5c64995dec1c979e8435ce4ca6b9e5f51483",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a26685ac_2c1c216f",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 2
