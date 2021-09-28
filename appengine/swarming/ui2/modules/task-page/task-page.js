@@ -90,22 +90,22 @@ const serverBotLogsURL = (ele, request, result) => {
 };
 
 const botLogsURL = (ele, request, result, botProjectID, botZone) => {
-  let url = `https://console.cloud.google.com/logs/viewer`;
-  url += `?project=${botProjectID}`;
+  let url = `https://console.cloud.google.com/logs/query`;
+
+  // Limit logs that we care.
+  let query = `labels."compute.googleapis.com/resource_name"="${result.bot_id}" OR `;
+  query += `protoPayload.resourceName="projects/google.com:chromecompute/zones/${botZone}/instances/${result.bot_id}"`;
+  url += `;query=${query}`;
+
+  // Set time range filter.
   if (result.started_ts) {
     const timeStart = new Date(result.started_ts.getTime() - 60*1000);
     const tsEnd = result.completed_ts || result.abandoned_ts;
     const timeEnd = tsEnd ? new Date(tsEnd.getTime() + 60*1000) : new Date();
-    url += `&interval=CUSTOM`;
-    url += `&dateRangeStart=${timeStart.toISOString()}`;
-    url += `&dateRangeEnd=${timeEnd.toISOString()}`;
+    url += `;timeRange=${timeStart.toISOString()}/${timeEnd.toISOString()}`;
+    url += `;cursorTimestamp=${timeEnd.toISOString()}`;
   }
-  // limit logs that we care
-  // TODO(jwata): Non GCE bots will need a different label.
-  let filter =
-      `labels."compute.googleapis.com/resource_name"="${result.bot_id}"`;
-  filter += `OR protoPayload.resourceName="projects/google.com:chromecompute/zones/${botZone}/instances/${result.bot_id}"`;
-  url += `&advancedFilter=${filter}`;
+  url += `?project=${botProjectID}`;
   return encodeURI(url);
 };
 
