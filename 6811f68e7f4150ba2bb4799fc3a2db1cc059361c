@@ -22,6 +22,29 @@
       },
       "revId": "6811f68e7f4150ba2bb4799fc3a2db1cc059361c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8115127f_3f567bc3",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1960,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-28T01:36:58Z",
+      "side": 1,
+      "message": "nit: You could hardcode the prop name `service_account` if there aren\u0027t variations.",
+      "range": {
+        "startLine": 1960,
+        "startChar": 9,
+        "endLine": 1960,
+        "endChar": 11
+      },
+      "revId": "6811f68e7f4150ba2bb4799fc3a2db1cc059361c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
