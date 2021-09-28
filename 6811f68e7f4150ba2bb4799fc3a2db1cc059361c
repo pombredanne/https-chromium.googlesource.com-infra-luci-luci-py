@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "7086bd0f_593daa27",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-28T23:01:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0fd146_272b26bc",
+      "range": {
+        "startLine": 161,
+        "startChar": 23,
+        "endLine": 161,
+        "endChar": 28
+      },
+      "revId": "6811f68e7f4150ba2bb4799fc3a2db1cc059361c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1f904425_b7e1a650",
         "filename": "appengine/swarming/handlers_prpc.py",
         "patchSetId": 3
@@ -72,6 +96,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d6c742a1_a1738bac",
+        "filename": "appengine/swarming/proto/api/internal/bb/backend.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-28T23:01:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb8eb86f_33e8d76b",
+      "range": {
+        "startLine": 285,
+        "startChar": 0,
+        "endLine": 285,
+        "endChar": 0
+      },
+      "revId": "6811f68e7f4150ba2bb4799fc3a2db1cc059361c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "8115127f_3f567bc3",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 3
@@ -83,6 +131,30 @@
       "writtenOn": "2021-09-28T01:36:58Z",
       "side": 1,
       "message": "nit: You could hardcode the prop name `service_account` if there aren\u0027t variations.",
+      "range": {
+        "startLine": 1960,
+        "startChar": 9,
+        "endLine": 1960,
+        "endChar": 11
+      },
+      "revId": "6811f68e7f4150ba2bb4799fc3a2db1cc059361c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb400f90_8a9f5d67",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1960,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-28T23:01:19Z",
+      "side": 1,
+      "message": "i slightly prefer the consistency and don\u0027t feel changing what i\u0027ve already written is worth it.",
+      "parentUuid": "8115127f_3f567bc3",
       "range": {
         "startLine": 1960,
         "startChar": 9,
