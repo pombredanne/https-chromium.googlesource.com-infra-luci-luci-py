@@ -96,6 +96,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ffe592f_c8fc10bc",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-28T23:30:18Z",
+      "side": 1,
+      "message": "Sorry, you are right.",
+      "parentUuid": "8311f81b_01932cb8",
+      "range": {
+        "startLine": 76,
+        "startChar": 36,
+        "endLine": 76,
+        "endChar": 38
+      },
+      "revId": "a663482a596d77d8c6b9041a7d967d6ac1a9bd41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3e1bad4_8e71200a",
