@@ -127,6 +127,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06245955_b0effd26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-29T01:17:49Z",
+      "side": 1,
+      "message": "Yes, I\u0027ll fix it.\n@xinyuoffline, a temporary workaround for this CL is running\n`make` in this directory: https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/proto/api/internal/bb/",
+      "parentUuid": "4d81dc8d_d5c285b6",
+      "revId": "c3bd5c64995dec1c979e8435ce4ca6b9e5f51483",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a26685ac_2c1c216f",
         "filename": "appengine/swarming/proto/api/swarming.proto",
         "patchSetId": 2
