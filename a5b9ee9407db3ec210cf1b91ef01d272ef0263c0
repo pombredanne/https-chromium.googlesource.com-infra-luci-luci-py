@@ -56,6 +56,30 @@
       },
       "revId": "a5b9ee9407db3ec210cf1b91ef01d272ef0263c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd65ecf4_1882b8ed",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-30T01:54:23Z",
+      "side": 1,
+      "message": "I don\u0027t know what `stats[\u0027failed\u0027]` can catch with the new changes so i removed it.\n(I\u0027m also not sure what it was meant to catch before)\n \n\nnot sure if your recommendation `yield_bots_should_be_dead() to return keys only` includes having the query itself have `keys_only \u003d True`, but I didn\u0027t do `keys_only\u003dTrue` because it still needs to eval the `should_be_dead` part?\nAnd if `should_be_dead` was only filtered out later, it seemed complicated to get an accurate `cron_stats[\u0027seen\u0027]`.",
+      "parentUuid": "5b5d98fb_fd7ee9ca",
+      "range": {
+        "startLine": 814,
+        "startChar": 12,
+        "endLine": 814,
+        "endChar": 21
+      },
+      "revId": "a5b9ee9407db3ec210cf1b91ef01d272ef0263c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
