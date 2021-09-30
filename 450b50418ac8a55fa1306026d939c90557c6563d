@@ -89,6 +89,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a71b153c_f6638af6",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-30T19:55:28Z",
+      "side": 1,
+      "message": "Done. PTAL at additional changes I made here as well.",
+      "parentUuid": "59988513_9189d23b",
+      "range": {
+        "startLine": 316,
+        "startChar": 29,
+        "endLine": 316,
+        "endChar": 39
+      },
+      "revId": "450b50418ac8a55fa1306026d939c90557c6563d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf2cba62_7faab2c2",
@@ -106,6 +130,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66bba1b8_c0aaaf24",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-30T19:55:28Z",
+      "side": 1,
+      "message": "Removed, but comment added in yield_bots_should_be_dead.",
+      "parentUuid": "cf2cba62_7faab2c2",
+      "revId": "450b50418ac8a55fa1306026d939c90557c6563d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a3554f8_e9a85b61",
@@ -119,6 +161,24 @@
       "writtenOn": "2021-09-30T03:12:23Z",
       "side": 1,
       "message": "Raising ndb.Return(None) early would be easy to read.\nAlso better to return if it updated the bot_info or not?\n\ne.g.\n```\nif not bot:\n  # logging\n  raise ndb.Return((False, None))\nif not bot.should_be_dead or not (bot.is_alive or not bot.is_dead):\n  ...\n  raise ndb.Return((False, bot))\n\nyield bot.put_async()\nraise ndb.Return((True, bot))\n```",
+      "revId": "450b50418ac8a55fa1306026d939c90557c6563d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c40c72e3_79641925",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-30T19:55:28Z",
+      "side": 1,
+      "message": "I removed the `if bot and bot.should_be_dead and (bot.is_alive or not bot.is_dead)`\ncheck altogether.\nI\u0027m not sure what the reason for it was before this change. I can only guess it was in case `yield_bots_should_be_dead()` results were stale?",
+      "parentUuid": "8a3554f8_e9a85b61",
       "revId": "450b50418ac8a55fa1306026d939c90557c6563d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
