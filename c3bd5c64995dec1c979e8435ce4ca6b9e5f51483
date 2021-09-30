@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8cb2ea7_0c7110db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-30T21:55:25Z",
+      "side": 1,
+      "message": "\u003e I thought that I would need new fields in `WindowsContainment` to replace old fields?\n\u003e \n\nI think it is better to remove deprecated field if it is not used to prevent new usage of that.\n\n\u003e Or do you mean that I can start from deleting unused containment field in API because anyway they are not used when calling the APIs?\n\nYes, but I\u0027d like you to remove code setting containment code in recipe first. Also we need to support field deletion in bqschemaupdater.\nhttps://source.chromium.org/chromium/infra/infra/+/main:go/src/go.chromium.org/luci/tools/cmd/bqschemaupdater/",
+      "parentUuid": "5bc69ea5_7e46c8f3",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "c3bd5c64995dec1c979e8435ce4ca6b9e5f51483",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7713008d_19ab88b6",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
