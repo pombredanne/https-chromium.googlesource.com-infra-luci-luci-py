@@ -80,6 +80,23 @@
       "message": "leave comment why we disable cache",
       "revId": "450b50418ac8a55fa1306026d939c90557c6563d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a3554f8_e9a85b61",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-30T03:12:23Z",
+      "side": 1,
+      "message": "Raising ndb.Return(None) early would be easy to read.\nAlso better to return if it updated the bot_info or not?\n\ne.g.\n```\nif not bot:\n  # logging\n  raise ndb.Return((False, None))\nif not bot.should_be_dead or not (bot.is_alive or not bot.is_dead):\n  ...\n  raise ndb.Return((False, bot))\n\nyield bot.put_async()\nraise ndb.Return((True, bot))\n```",
+      "revId": "450b50418ac8a55fa1306026d939c90557c6563d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

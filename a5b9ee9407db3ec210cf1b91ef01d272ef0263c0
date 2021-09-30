@@ -80,6 +80,30 @@
       },
       "revId": "a5b9ee9407db3ec210cf1b91ef01d272ef0263c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dce2114a_0325972d",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-30T03:12:23Z",
+      "side": 1,
+      "message": "Sounds good to keep `should_be_dead` check in yield_bots_should_be_dead().",
+      "parentUuid": "dd65ecf4_1882b8ed",
+      "range": {
+        "startLine": 814,
+        "startChar": 12,
+        "endLine": 814,
+        "endChar": 21
+      },
+      "revId": "a5b9ee9407db3ec210cf1b91ef01d272ef0263c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
