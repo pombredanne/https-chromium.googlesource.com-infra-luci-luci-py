@@ -146,6 +146,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fac11a51_c1de888f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-30T22:21:25Z",
+      "side": 1,
+      "message": "We can confirm that by using BigQuery.",
+      "parentUuid": "9a96e2f9_edb015df",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "c3bd5c64995dec1c979e8435ce4ca6b9e5f51483",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7713008d_19ab88b6",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2

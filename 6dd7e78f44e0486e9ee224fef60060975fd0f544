@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec9217a0_578d22cc",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-30T22:21:25Z",
+      "side": 1,
+      "message": "Add explanation about what is this?",
+      "revId": "6dd7e78f44e0486e9ee224fef60060975fd0f544",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0ba9d39_68a2ac9a",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-30T22:21:25Z",
+      "side": 1,
+      "message": "Why this has different name from Windows\u0027 one?",
+      "revId": "6dd7e78f44e0486e9ee224fef60060975fd0f544",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
