@@ -39,6 +39,24 @@
       "message": "could you also check should_be_dead too?",
       "revId": "7b878d31c93e4f3d2c288cef58775634db589828",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bed1c8a_0bb6db99",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-30T22:57:12Z",
+      "side": 1,
+      "message": "i\u0027m already checking it below, could you clarify where you think i should check it?",
+      "parentUuid": "cfeb28e9_43927dd7",
+      "revId": "7b878d31c93e4f3d2c288cef58775634db589828",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
