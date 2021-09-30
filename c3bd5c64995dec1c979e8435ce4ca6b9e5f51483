@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5bc69ea5_7e46c8f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1409819
+      },
+      "writtenOn": "2021-09-30T19:15:39Z",
+      "side": 1,
+      "message": "I thought that I would need new fields in `WindowsContainment` to replace old fields?\n\nOr do you mean that I can start from deleting unused containment field in API because anyway they are not used when calling the APIs?",
+      "parentUuid": "0ed6d770_d122ddeb",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "c3bd5c64995dec1c979e8435ce4ca6b9e5f51483",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7713008d_19ab88b6",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -157,6 +181,24 @@
       "side": 1,
       "message": "fix is merged:\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3193810\nrunning `make` in `proto/api` should work as expected now.",
       "parentUuid": "06245955_b0effd26",
+      "revId": "c3bd5c64995dec1c979e8435ce4ca6b9e5f51483",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffc8f0e5_75e2964a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1409819
+      },
+      "writtenOn": "2021-09-30T19:15:39Z",
+      "side": 1,
+      "message": "Nice. Thank you!",
+      "parentUuid": "a227ff73_a788eb0a",
       "revId": "c3bd5c64995dec1c979e8435ce4ca6b9e5f51483",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
