@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "59988513_9189d23b",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-30T03:14:42Z",
+      "side": 1,
+      "message": "Sorry, I missed that.\n\nThen can we compare fetched bots entity w/ and w/o cache, and show warning log if there is mismatch here?\nI think we don\u0027t need to return entity key here then.",
+      "parentUuid": "de7ea74d_0e0f3298",
+      "range": {
+        "startLine": 316,
+        "startChar": 29,
+        "endLine": 316,
+        "endChar": 39
+      },
+      "revId": "450b50418ac8a55fa1306026d939c90557c6563d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf2cba62_7faab2c2",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 4
