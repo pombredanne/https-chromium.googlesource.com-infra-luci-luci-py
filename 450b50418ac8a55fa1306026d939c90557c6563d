@@ -181,6 +181,24 @@
       "parentUuid": "8a3554f8_e9a85b61",
       "revId": "450b50418ac8a55fa1306026d939c90557c6563d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a356eda7_c4125d03",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-09-30T23:03:23Z",
+      "side": 1,
+      "message": "\u003e I can only guess it was in case `yield_bots_should_be_dead()` results were stale?\n\nI think so.",
+      "parentUuid": "c40c72e3_79641925",
+      "revId": "450b50418ac8a55fa1306026d939c90557c6563d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
