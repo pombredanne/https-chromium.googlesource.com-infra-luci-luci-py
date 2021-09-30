@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78dec408_c7e92533",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-30T22:45:08Z",
+      "side": 1,
+      "message": "Could you include link to investgation comment for the reference here and in log?\nhttps://crbug.com/1252454#c12\nhttps://crbug.com/1247362#c19",
+      "range": {
+        "startLine": 319,
+        "startChar": 12,
+        "endLine": 319,
+        "endChar": 15
+      },
+      "revId": "7b878d31c93e4f3d2c288cef58775634db589828",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfeb28e9_43927dd7",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-09-30T22:45:08Z",
+      "side": 1,
+      "message": "could you also check should_be_dead too?",
+      "revId": "7b878d31c93e4f3d2c288cef58775634db589828",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
