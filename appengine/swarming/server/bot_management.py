@@ -308,16 +308,22 @@ class BotInfo(_BotCommon):
 
   @classmethod
   def yield_bots_should_be_dead(cls):
-    """Yields bots who should be dead."""
+    """Yields bots that should be dead."""
     q = cls.yield_alive_bots()
     cursor = None
     more = True
     while more:
       bots, cursor, more = q.fetch_page(1000, start_cursor=cursor)
       for b in bots:
-        if not b.should_be_dead:
-          continue
-        yield b
+        if b.should_be_dead:
+          # The query results may be stale. Lookup by key again so
+          # we can bypass cache and also ensure strong consistency.
+          b = b.key.get(use_memcache=False, use_cache=False)
+          if not b:
+            logging.warning('BotInfo %s does not exist. key: %s.',
+                            (b.id, b.key))
+          else:
+            yield b
 
   @staticmethod
   def _deadline():
@@ -755,26 +761,20 @@ def cron_update_bot_info():
       # bot composite get updated in _pre_put_hook
       yield bot.put_async()
       logging.info('Changing Bot status to DEAD: %s', bot.id)
-      raise ndb.Return(bot.key)
+      raise ndb.Return(bot)
     raise ndb.Return(None)
 
   def tx_result(future, stats):
-    bot_key = future.get_result()
-    if not bot_key:
+    bot = future.get_result()
+    if not bot:
       # Do nothing.
       return
 
     try:
       # Unregister the bot from task queues since it can't reap anything.
-      task_queues.cleanup_after_bot(bot_key.parent())
+      task_queues.cleanup_after_bot(bot.key.parent())
 
       stats['dead'] += 1
-
-      bot = bot_key.get()
-      if not bot:
-        logging.warning('BotInfo does not exist. key: %s', bot_key)
-        stats['failed'] += 1
-        return
 
       logging.info('Sending bot_missing event: %s', bot.id)
       bot_event(
