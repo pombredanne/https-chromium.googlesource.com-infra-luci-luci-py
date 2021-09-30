@@ -80,6 +80,24 @@
       "parentUuid": "cfeb28e9_43927dd7",
       "revId": "7b878d31c93e4f3d2c288cef58775634db589828",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f602d157_0d593061",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-09-30T23:05:56Z",
+      "side": 1,
+      "message": "Oh i think you\u0027re saying\n`if not b or not b.should_be_dead:`\n\nI\u0027ll update it",
+      "parentUuid": "0bed1c8a_0bb6db99",
+      "revId": "7b878d31c93e4f3d2c288cef58775634db589828",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
