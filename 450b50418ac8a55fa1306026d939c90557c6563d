@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af3075d9_137782fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-01T02:52:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1fc52a4_4227da17",
+      "revId": "450b50418ac8a55fa1306026d939c90557c6563d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "582f0816_3d672db1",
@@ -108,6 +126,30 @@
         "startChar": 29,
         "endLine": 316,
         "endChar": 39
+      },
+      "revId": "450b50418ac8a55fa1306026d939c90557c6563d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9155ba2c_fdd716eb",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-01T02:52:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bd52334_33f2b52c",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 60
       },
       "revId": "450b50418ac8a55fa1306026d939c90557c6563d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
