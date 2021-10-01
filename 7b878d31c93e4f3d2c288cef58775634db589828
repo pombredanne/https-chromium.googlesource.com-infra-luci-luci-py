@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4bd52334_33f2b52c",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-01T00:41:44Z",
+      "side": 1,
+      "message": "Ah, yeah. I think it is better to move check and logging to transaction.",
+      "parentUuid": "39c43b36_75c13ca6",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 60
+      },
+      "revId": "7b878d31c93e4f3d2c288cef58775634db589828",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfeb28e9_43927dd7",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 8
