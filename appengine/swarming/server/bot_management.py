@@ -307,17 +307,31 @@ class BotInfo(_BotCommon):
     return cls.query(cls.composite == cls.ALIVE)
 
   @classmethod
-  def yield_bots_should_be_dead(cls):
-    """Yields bots who should be dead."""
+  def yield_should_be_dead_bot_keys(cls):
+    """Yields keys of bots that should be dead."""
     q = cls.yield_alive_bots()
     cursor = None
     more = True
     while more:
       bots, cursor, more = q.fetch_page(1000, start_cursor=cursor)
       for b in bots:
-        if not b.should_be_dead:
-          continue
-        yield b
+        if b.should_be_dead:
+          # The query results may be stale. Lookup by key again so
+          # we can bypass cache and also ensure strong consistency.
+          # crbug.com/1252454#c12, crbug.com/1247362#c19
+          real_b = b.key.get(use_memcache=False, use_cache=False)
+          if not real_b:
+            logging.warning('BotInfo %s does not exist. key: %s.', b.id, b.key)
+            continue
+
+          if (not real_b.should_be_dead or real_b.is_alive != b.is_alive or
+              real_b.is_dead != b.is_dead):
+            logging.warning(
+                'BotInfo %s different for query %r vs key lookup %r', b.id, b,
+                real_b)
+
+          if real_b.is_alive and not real_b.is_dead and real_b.should_be_dead:
+            yield real_b.key
 
   @staticmethod
   def _deadline():
@@ -750,31 +764,30 @@ def get_pools_from_dimensions_flat(dimensions_flat):
 def cron_update_bot_info():
   """Refreshes BotInfo.composite for dead bots."""
   @ndb.tasklet
-  def run(bot):
-    if bot and bot.should_be_dead and (bot.is_alive or not bot.is_dead):
+  def run(bot_key):
+    bot = bot_key.get(use_memcache=False, use_cache=False)
+    if not bot:
+      logging.debug('BotInfo %s deleted since yield_should_be_dead_bot_keys()',
+                    bot_key)
+      raise ndb.Return(None)
+    if bot.should_be_dead and bot.is_alive and not bot.is_dead:
       # bot composite get updated in _pre_put_hook
       yield bot.put_async()
       logging.info('Changing Bot status to DEAD: %s', bot.id)
-      raise ndb.Return(bot.key)
-    raise ndb.Return(None)
+      raise ndb.Return(bot)
+    logging.debug('BotInfo changed since yield_should_be_dead_keys(), %r', bot)
+    raise ndb.Return(bot)
 
   def tx_result(future, stats):
-    bot_key = future.get_result()
-    if not bot_key:
-      # Do nothing.
+    bot = future.get_result()
+    if not bot:
       return
 
     try:
       # Unregister the bot from task queues since it can't reap anything.
-      task_queues.cleanup_after_bot(bot_key.parent())
+      task_queues.cleanup_after_bot(bot.key.parent())
 
       stats['dead'] += 1
-
-      bot = bot_key.get()
-      if not bot:
-        logging.warning('BotInfo does not exist. key: %s', bot_key)
-        stats['failed'] += 1
-        return
 
       logging.info('Sending bot_missing event: %s', bot.id)
       bot_event(
@@ -808,11 +821,11 @@ def cron_update_bot_info():
   futures = []
   logging.debug('Updating dead bots...')
   try:
-    for b in BotInfo.yield_bots_should_be_dead():
+    for key in BotInfo.yield_should_be_dead_bot_keys():
       cron_stats['seen'] += 1
       # Retry more often than the default 1. We do not want to throw too much
       # in the logs and there should be plenty of time to do the retries.
-      f = datastore_utils.transaction_async(lambda: run(b), retries=5)
+      f = datastore_utils.transaction_async(lambda: run(key), retries=5)
       futures.append(f)
       if len(futures) < 5:
         continue
