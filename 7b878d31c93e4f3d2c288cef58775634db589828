@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be2ee689_d9509ef4",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-01T00:05:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78dec408_c7e92533",
+      "range": {
+        "startLine": 319,
+        "startChar": 12,
+        "endLine": 319,
+        "endChar": 15
+      },
+      "revId": "7b878d31c93e4f3d2c288cef58775634db589828",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26013597_6c1ccdf9",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-09-30T23:03:23Z",
       "side": 1,
       "message": "I think there is still a chance that the bot gets deleted after this check before the transaction.\nSo my proposal is to check the existence check in the transaction \"run()\".",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 60
+      },
+      "revId": "7b878d31c93e4f3d2c288cef58775634db589828",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a472af9_73ff9bc9",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-01T00:05:05Z",
+      "side": 1,
+      "message": "~\u003ddone\nsee general comment",
+      "parentUuid": "26013597_6c1ccdf9",
       "range": {
         "startLine": 321,
         "startChar": 0,
@@ -114,6 +162,24 @@
       "side": 1,
       "message": "Ah, yeah. But what I\u0027d like to see is like\n\n```\nreal_b \u003d b.get.get(...)\nif not real_b:\n  logging.warning(...)\n  continue\n\nif not real_b.should_be_dead:\n  logging.warning(...)\n  continue\n\nif real_b.is_alive !\u003d b.is_alive:\n  logging.warning(...)\n  \nif real_b.is_dead !\u003d b.is_dead:\n  logging.warning(...)\n\nif not real_b.is_alive and real_b.is_dead:\n  continue\n\nyield real_b\n```",
       "parentUuid": "0bed1c8a_0bb6db99",
+      "revId": "7b878d31c93e4f3d2c288cef58775634db589828",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd9d449b_47ff5ae4",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-01T00:05:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1c3c4fd_362844ab",
       "revId": "7b878d31c93e4f3d2c288cef58775634db589828",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
