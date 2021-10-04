@@ -334,12 +334,11 @@ class TasksApiTest(BaseTest):
                 pubsub_topic=u'projects/abc/topics/def',
                 pubsub_userdata=u'userdata',
                 tags=[
-                    u'a:tag', u'authenticated:user:user@example.com',
-                    u'os:Amiga', u'pool:default', u'priority:20', u'realm:none',
+                    u'a:tag', u'os:Amiga', u'pool:default', u'priority:20',
+                    u'realm:none',
                     u'service_account:service-account@example.com',
                     u'swarming.pool.template:none',
                     u'swarming.pool.version:pools_cfg_rev',
-                    u'use_cas_1143123:0', u'use_isolate_1143123:0',
                     u'user:joe@localhost'
                 ],
                 service_account=u'service-account@example.com',
@@ -375,7 +374,6 @@ class TasksApiTest(BaseTest):
         u'state': u'NO_RESOURCE',
         u'tags': [
             u'a:tag',
-            u'authenticated:user:user@example.com',
             u'os:Amiga',
             u'pool:default',
             u'priority:20',
@@ -383,8 +381,6 @@ class TasksApiTest(BaseTest):
             u'service_account:service-account@example.com',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ],
         u'task_id': u'5cee488008810',
@@ -470,7 +466,6 @@ class TasksApiTest(BaseTest):
                 properties=expected_props,
                 tags=[
                     u'a:tag',
-                    u'authenticated:user:user@example.com',
                     u'os:Amiga',
                     u'pool:template',
                     u'priority:20',
@@ -478,8 +473,6 @@ class TasksApiTest(BaseTest):
                     u'service_account:none',
                     u'swarming.pool.template:prod',
                     u'swarming.pool.version:pools_cfg_rev',
-                    u'use_cas_1143123:0',
-                    u'use_isolate_1143123:0',
                     u'user:joe@localhost',
                 ],
                 task_slices=[
@@ -504,7 +497,6 @@ class TasksApiTest(BaseTest):
             u'state': u'NO_RESOURCE',
             u'tags': [
                 u'a:tag',
-                u'authenticated:user:user@example.com',
                 u'os:Amiga',
                 u'pool:template',
                 u'priority:20',
@@ -512,8 +504,6 @@ class TasksApiTest(BaseTest):
                 u'service_account:none',
                 u'swarming.pool.template:prod',
                 u'swarming.pool.version:pools_cfg_rev',
-                u'use_cas_1143123:0',
-                u'use_isolate_1143123:0',
                 u'user:joe@localhost',
             ],
             u'task_id': u'5cee488008810',
@@ -623,7 +613,6 @@ class TasksApiTest(BaseTest):
         modified_ts=fmtdate(self.now),
         started_ts=fmtdate(self.now),
         tags=[
-            u'authenticated:user:user@example.com',
             u'commit:post',
             u'os:Amiga',
             u'pool:default',
@@ -633,8 +622,6 @@ class TasksApiTest(BaseTest):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ],
         try_number=u'1')
@@ -644,7 +631,6 @@ class TasksApiTest(BaseTest):
             command=[u'python', u'run_test.py'], idempotent=True),
         priority=u'20',
         tags=[
-            u'authenticated:user:user@example.com',
             u'commit:post',
             u'os:Amiga',
             u'pool:default',
@@ -654,8 +640,6 @@ class TasksApiTest(BaseTest):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ],
         task_slices=[
@@ -690,7 +674,6 @@ class TasksApiTest(BaseTest):
         properties=self.gen_props(
             command=[u'python', u'run_test.py'], idempotent=True),
         tags=[
-            u'authenticated:user:user@example.com',
             u'commit:pre',
             u'os:Amiga',
             u'pool:default',
@@ -699,8 +682,6 @@ class TasksApiTest(BaseTest):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ],
         task_id=u'5cf59b8006610',
@@ -727,7 +708,6 @@ class TasksApiTest(BaseTest):
         task_id=u'5cf59b8006610',
         started_ts=fmtdate(self.now),
         tags=[
-            u'authenticated:user:user@example.com',
             u'commit:pre',
             u'os:Amiga',
             u'pool:default',
@@ -736,8 +716,6 @@ class TasksApiTest(BaseTest):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ])
 
@@ -819,14 +797,6 @@ class TasksApiTest(BaseTest):
                         u'properties': expected_props,
                         u'wait_for_capacity': False,
                     },
-                ],
-                tags=[
-                    u'a:tag', u'authenticated:user:user@example.com',
-                    u'os:Amiga', u'pool:default', u'priority:20', u'realm:none',
-                    u'service_account:none', u'swarming.pool.template:none',
-                    u'swarming.pool.version:pools_cfg_rev',
-                    u'use_cas_1143123:0', u'use_isolate_1143123:1',
-                    u'user:joe@localhost'
                 ]),
         u'task_id':
             u'5cee488008810',
@@ -843,7 +813,6 @@ class TasksApiTest(BaseTest):
             u'state': u'NO_RESOURCE',
             u'tags': [
                 u'a:tag',
-                u'authenticated:user:user@example.com',
                 u'os:Amiga',
                 u'pool:default',
                 u'priority:20',
@@ -851,8 +820,6 @@ class TasksApiTest(BaseTest):
                 u'service_account:none',
                 u'swarming.pool.template:none',
                 u'swarming.pool.version:pools_cfg_rev',
-                u'use_cas_1143123:0',
-                u'use_isolate_1143123:1',
                 u'user:joe@localhost',
             ],
             u'task_id': u'5cee488008810',
@@ -885,14 +852,6 @@ class TasksApiTest(BaseTest):
                         u'properties': expected_props,
                         u'wait_for_capacity': False,
                     },
-                ],
-                tags=[
-                    u'a:tag', u'authenticated:user:user@example.com',
-                    u'os:Amiga', u'pool:default', u'priority:20', u'realm:none',
-                    u'service_account:none', u'swarming.pool.template:none',
-                    u'swarming.pool.version:pools_cfg_rev',
-                    u'use_cas_1143123:0', u'use_isolate_1143123:1',
-                    u'user:joe@localhost'
                 ]),
         u'task_id':
             u'5cee488008810',
@@ -909,7 +868,6 @@ class TasksApiTest(BaseTest):
             u'state': u'NO_RESOURCE',
             u'tags': [
                 u'a:tag',
-                u'authenticated:user:user@example.com',
                 u'os:Amiga',
                 u'pool:default',
                 u'priority:20',
@@ -917,8 +875,6 @@ class TasksApiTest(BaseTest):
                 u'service_account:none',
                 u'swarming.pool.template:none',
                 u'swarming.pool.version:pools_cfg_rev',
-                u'use_cas_1143123:0',
-                u'use_isolate_1143123:1',
                 u'user:joe@localhost',
             ],
             u'task_id': u'5cee488008810',
@@ -957,20 +913,6 @@ class TasksApiTest(BaseTest):
                         u'properties': expected_props,
                         u'wait_for_capacity': False,
                     },
-                ],
-                tags=[
-                    u'a:tag',
-                    u'authenticated:user:user@example.com',
-                    u'os:Amiga',
-                    u'pool:default',
-                    u'priority:20',
-                    u'realm:none',
-                    u'service_account:none',
-                    u'swarming.pool.template:none',
-                    u'swarming.pool.version:pools_cfg_rev',
-                    u'use_cas_1143123:1',
-                    u'use_isolate_1143123:0',
-                    u'user:joe@localhost',
                 ]),
         u'task_id':
             u'5cee488008810',
@@ -987,7 +929,6 @@ class TasksApiTest(BaseTest):
             u'state': u'NO_RESOURCE',
             u'tags': [
                 u'a:tag',
-                u'authenticated:user:user@example.com',
                 u'os:Amiga',
                 u'pool:default',
                 u'priority:20',
@@ -995,8 +936,6 @@ class TasksApiTest(BaseTest):
                 u'service_account:none',
                 u'swarming.pool.template:none',
                 u'swarming.pool.version:pools_cfg_rev',
-                u'use_cas_1143123:1',
-                u'use_isolate_1143123:0',
                 u'user:joe@localhost',
             ],
             u'task_id': u'5cee488008810',
@@ -1070,7 +1009,6 @@ class TasksApiTest(BaseTest):
             u'state': u'NO_RESOURCE',
             u'tags': [
                 u'a:tag',
-                u'authenticated:user:user@example.com',
                 u'os:Amiga',
                 u'pool:default',
                 u'priority:20',
@@ -1078,8 +1016,6 @@ class TasksApiTest(BaseTest):
                 u'service_account:none',
                 u'swarming.pool.template:none',
                 u'swarming.pool.version:pools_cfg_rev',
-                u'use_cas_1143123:0',
-                u'use_isolate_1143123:0',
                 u'user:joe@localhost',
             ],
             u'task_id': u'5cee488008810',
@@ -1142,7 +1078,6 @@ class TasksApiTest(BaseTest):
             u'state': u'NO_RESOURCE',
             u'tags': [
                 u'a:tag',
-                u'authenticated:user:user@example.com',
                 u'os:Amiga',
                 u'pool:default',
                 u'priority:20',
@@ -1150,8 +1085,6 @@ class TasksApiTest(BaseTest):
                 u'service_account:none',
                 u'swarming.pool.template:none',
                 u'swarming.pool.version:pools_cfg_rev',
-                u'use_cas_1143123:0',
-                u'use_isolate_1143123:0',
                 u'user:joe@localhost',
             ],
             u'task_id': u'5cee488008810',
@@ -1227,7 +1160,6 @@ class TasksApiTest(BaseTest):
             u'state': u'NO_RESOURCE',
             u'tags': [
                 u'a:tag',
-                u'authenticated:user:user@example.com',
                 u'os:Amiga',
                 u'pool:default',
                 u'priority:20',
@@ -1235,8 +1167,6 @@ class TasksApiTest(BaseTest):
                 u'service_account:none',
                 u'swarming.pool.template:none',
                 u'swarming.pool.version:pools_cfg_rev',
-                u'use_cas_1143123:0',
-                u'use_isolate_1143123:0',
                 u'user:joe@localhost',
             ],
             u'task_id': u'5cee488008810',
@@ -1309,7 +1239,6 @@ class TasksApiTest(BaseTest):
                 pubsub_userdata=u'userdata',
                 tags=[
                     u'a:tag',
-                    u'authenticated:user:user@example.com',
                     u'os:Amiga',
                     u'pool:default',
                     u'priority:20',
@@ -1317,8 +1246,6 @@ class TasksApiTest(BaseTest):
                     u'service_account:service-account@example.com',
                     u'swarming.pool.template:none',
                     u'swarming.pool.version:pools_cfg_rev',
-                    u'use_cas_1143123:0',
-                    u'use_isolate_1143123:0',
                     u'user:joe@localhost',
                 ],
                 service_account=u'service-account@example.com',
@@ -1354,7 +1281,6 @@ class TasksApiTest(BaseTest):
         u'state': u'NO_RESOURCE',
         u'tags': [
             u'a:tag',
-            u'authenticated:user:user@example.com',
             u'os:Amiga',
             u'pool:default',
             u'priority:20',
@@ -1362,8 +1288,6 @@ class TasksApiTest(BaseTest):
             u'service_account:service-account@example.com',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ],
         u'task_id': u'5cee488008810',
@@ -2094,7 +2018,6 @@ class TasksApiTest(BaseTest):
         performance_stats=self.gen_perf_stats(),
         started_ts=fmtdate(self.now),
         tags=[
-            u'authenticated:user:user@example.com',
             u'commit:post',
             u'os:Amiga',
             u'pool:default',
@@ -2104,8 +2027,6 @@ class TasksApiTest(BaseTest):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ],
         try_number=u'1')
@@ -2121,7 +2042,6 @@ class TasksApiTest(BaseTest):
         run_id=u'5cee488008811',
         started_ts=fmtdate(self.now),
         tags=[
-            u'authenticated:user:user@example.com',
             u'commit:pre',
             u'os:Amiga',
             u'pool:default',
@@ -2131,8 +2051,6 @@ class TasksApiTest(BaseTest):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:jack@localhost',
         ],
         task_id=u'5cfcee8006610',
@@ -2189,7 +2107,6 @@ class TaskApiTest(BaseTest):
         u'state': u'CANCELED',
         u'tags': [
             u'a:tag',
-            u'authenticated:user:user@example.com',
             u'os:Amiga',
             u'pool:default',
             u'priority:20',
@@ -2197,8 +2114,6 @@ class TaskApiTest(BaseTest):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ],
         u'task_id': task_id,
@@ -2306,7 +2221,6 @@ class TaskApiTest(BaseTest):
         state=u'RUNNING',
         tags=[
             u'a:tag',
-            u'authenticated:user:user@example.com',
             u'os:Amiga',
             u'pool:default',
             u'priority:20',
@@ -2314,8 +2228,6 @@ class TaskApiTest(BaseTest):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ],
         try_number=u'1')
@@ -2353,7 +2265,6 @@ class TaskApiTest(BaseTest):
         state=u'RUNNING',
         tags=[
             u'a:tag',
-            u'authenticated:user:user@example.com',
             u'os:Amiga',
             u'pool:default',
             u'priority:20',
@@ -2361,8 +2272,6 @@ class TaskApiTest(BaseTest):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ],
         try_number=u'1')
@@ -2391,7 +2300,6 @@ class TaskApiTest(BaseTest):
         state=u'KILLED',
         tags=[
             u'a:tag',
-            u'authenticated:user:user@example.com',
             u'os:Amiga',
             u'pool:default',
             u'priority:20',
@@ -2399,8 +2307,6 @@ class TaskApiTest(BaseTest):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ],
         try_number=u'1')
@@ -2435,7 +2341,6 @@ class TaskApiTest(BaseTest):
         u'state': u'PENDING',
         u'tags': [
             u'a:tag',
-            u'authenticated:user:user@example.com',
             u'os:Amiga',
             u'pool:default',
             u'priority:20',
@@ -2443,8 +2348,6 @@ class TaskApiTest(BaseTest):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ],
         u'task_id': u'5cee488008810',
@@ -2606,7 +2509,6 @@ class TaskApiTest(BaseTest):
         service_account=u'service-account@example.com',
         tags=[
             u'a:tag',
-            u'authenticated:user:user@example.com',
             u'os:Amiga',
             u'pool:default',
             u'priority:20',
@@ -2614,8 +2516,6 @@ class TaskApiTest(BaseTest):
             u'service_account:service-account@example.com',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ],
         task_slices=[
