@@ -376,8 +376,6 @@ def gen_expected(**kwargs):
           u'service_account:none',
           u'swarming.pool.template:none',
           u'swarming.pool.version:pools_cfg_rev',
-          u'use_cas_1143123:0',
-          u'use_isolate_1143123:0',
           u'user:joe@localhost',
       ],
       u'try_number': u'1',
@@ -489,8 +487,6 @@ class Test(unittest.TestCase):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:joe@localhost',
         ]))
     self.assertOneTask(args, summary, {})
@@ -620,11 +616,14 @@ class Test(unittest.TestCase):
         name=u'isolated_task',
         output=u'hi\n',
         tags=[
-            u'authenticated:bot:whitelisted-ip', u'pool:default',
-            u'priority:200', u'realm:none', u'service_account:none',
+            u'authenticated:bot:whitelisted-ip',
+            u'pool:default',
+            u'priority:200',
+            u'realm:none',
+            u'service_account:none',
             u'swarming.pool.template:none',
-            u'swarming.pool.version:pools_cfg_rev', u'use_cas_1143123:0',
-            u'use_isolate_1143123:1', u'user:joe@localhost'
+            u'swarming.pool.version:pools_cfg_rev',
+            u'user:joe@localhost'
         ])
     expected_files = {
         os.path.join(u'0', u'💣.txt'.encode('utf-8')): 'test_isolated',
@@ -698,8 +697,7 @@ class Test(unittest.TestCase):
             u'authenticated:bot:whitelisted-ip', u'pool:default',
             u'priority:200', u'realm:none', u'service_account:none',
             u'swarming.pool.template:none',
-            u'swarming.pool.version:pools_cfg_rev', u'use_cas_1143123:0',
-            u'use_isolate_1143123:1', u'user:joe@localhost'
+            u'swarming.pool.version:pools_cfg_rev', u'user:joe@localhost'
         ])
     expected_files = {
         os.path.join('0', 'result.txt'): 'hey2',
@@ -773,11 +771,14 @@ class Test(unittest.TestCase):
         exit_code=unicode(SIGNAL_TERM),
         failure=True,
         tags=[
-            u'authenticated:bot:whitelisted-ip', u'pool:default',
-            u'priority:200', u'realm:none', u'service_account:none',
+            u'authenticated:bot:whitelisted-ip',
+            u'pool:default',
+            u'priority:200',
+            u'realm:none',
+            u'service_account:none',
             u'swarming.pool.template:none',
-            u'swarming.pool.version:pools_cfg_rev', u'use_cas_1143123:0',
-            u'use_isolate_1143123:1', u'user:joe@localhost'
+            u'swarming.pool.version:pools_cfg_rev',
+            u'user:joe@localhost',
         ],
         state=u'TIMED_OUT')
     # Hard timeout is enforced by run_isolated, I/O timeout by task_runner.
@@ -842,11 +843,14 @@ class Test(unittest.TestCase):
         output=u'hi\ngot signal 15\n',
         failure=True,
         tags=[
-            u'authenticated:bot:whitelisted-ip', u'pool:default',
-            u'priority:200', u'realm:none', u'service_account:none',
+            u'authenticated:bot:whitelisted-ip',
+            u'pool:default',
+            u'priority:200',
+            u'realm:none',
+            u'service_account:none',
             u'swarming.pool.template:none',
-            u'swarming.pool.version:pools_cfg_rev', u'use_cas_1143123:0',
-            u'use_isolate_1143123:1', u'user:joe@localhost'
+            u'swarming.pool.version:pools_cfg_rev',
+            u'user:joe@localhost',
         ],
         state=u'TIMED_OUT')
     expected_files = {
@@ -894,11 +898,14 @@ class Test(unittest.TestCase):
     expected_summary = self.gen_expected(
         name=u'idempotent_reuse',
         tags=[
-            u'authenticated:bot:whitelisted-ip', u'pool:default',
-            u'priority:200', u'realm:none', u'service_account:none',
+            u'authenticated:bot:whitelisted-ip',
+            u'pool:default',
+            u'priority:200',
+            u'realm:none',
+            u'service_account:none',
             u'swarming.pool.template:none',
-            u'swarming.pool.version:pools_cfg_rev', u'use_cas_1143123:0',
-            u'use_isolate_1143123:1', u'user:joe@localhost'
+            u'swarming.pool.version:pools_cfg_rev',
+            u'user:joe@localhost',
         ])
     task_id, outputs_ref, performance_stats = self._run_isolated(
         isolated_hash,
@@ -968,11 +975,14 @@ class Test(unittest.TestCase):
     expected_summary = self.gen_expected(
         name=u'secret_bytes',
         tags=[
-            u'authenticated:bot:whitelisted-ip', u'pool:default',
-            u'priority:200', u'realm:none', u'service_account:none',
+            u'authenticated:bot:whitelisted-ip',
+            u'pool:default',
+            u'priority:200',
+            u'realm:none',
+            u'service_account:none',
             u'swarming.pool.template:none',
-            u'swarming.pool.version:pools_cfg_rev', u'use_cas_1143123:0',
-            u'use_isolate_1143123:1', u'user:joe@localhost'
+            u'swarming.pool.version:pools_cfg_rev',
+            u'user:joe@localhost'
         ])
     tmp = os.path.join(self.tmpdir, 'test_secret_bytes')
     with fs.open(tmp, 'wb') as f:
@@ -1036,11 +1046,14 @@ class Test(unittest.TestCase):
     expected_summary = self.gen_expected(
         name=u'cache_first',
         tags=[
-            u'authenticated:bot:whitelisted-ip', u'pool:default',
-            u'priority:200', u'realm:none', u'service_account:none',
+            u'authenticated:bot:whitelisted-ip',
+            u'pool:default',
+            u'priority:200',
+            u'realm:none',
+            u'service_account:none',
             u'swarming.pool.template:none',
-            u'swarming.pool.version:pools_cfg_rev', u'use_cas_1143123:0',
-            u'use_isolate_1143123:1', u'user:joe@localhost'
+            u'swarming.pool.version:pools_cfg_rev',
+            u'user:joe@localhost'
         ])
     _, outputs_ref, performance_stats = self._run_isolated(
         isolated_hash,
@@ -1074,11 +1087,14 @@ class Test(unittest.TestCase):
     expected_summary = self.gen_expected(
         name=u'cache_second',
         tags=[
-            u'authenticated:bot:whitelisted-ip', u'pool:default',
-            u'priority:200', u'realm:none', u'service_account:none',
+            u'authenticated:bot:whitelisted-ip',
+            u'pool:default',
+            u'priority:200',
+            u'realm:none',
+            u'service_account:none',
             u'swarming.pool.template:none',
-            u'swarming.pool.version:pools_cfg_rev', u'use_cas_1143123:0',
-            u'use_isolate_1143123:1', u'user:joe@localhost'
+            u'swarming.pool.version:pools_cfg_rev',
+            u'user:joe@localhost'
         ])
     # The previous task caused the bot to have a named cache.
     # pylint: disable=not-an-iterable,unsubscriptable-object
@@ -1145,8 +1161,6 @@ class Test(unittest.TestCase):
         u'service_account:none',
         u'swarming.pool.template:none',
         u'swarming.pool.version:pools_cfg_rev',
-        u'use_cas_1143123:0',
-        u'use_isolate_1143123:0',
         u'user:joe@localhost',
     ]
     with self._make_wait_task('test_priority'):
@@ -1309,8 +1323,6 @@ class Test(unittest.TestCase):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:none',
         ],
         user=u'')
@@ -1379,8 +1391,6 @@ class Test(unittest.TestCase):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'use_cas_1143123:0',
-            u'use_isolate_1143123:0',
             u'user:none',
         ],
         user=u'')
@@ -1470,8 +1480,6 @@ class Test(unittest.TestCase):
         u'service_account:none',
         u'swarming.pool.template:none',
         u'swarming.pool.version:pools_cfg_rev',
-        u'use_cas_1143123:0',
-        u'use_isolate_1143123:0',
         u'user:joe@localhost',
     ]
     performance_stats = actual_summary['shards'][0].pop('performance_stats')
