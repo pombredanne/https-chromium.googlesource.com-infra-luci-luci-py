@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34c0134d_320a4361",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-04T03:50:31Z",
+      "side": 1,
+      "message": "Testing enable_automation\u003dFalse in LUCI CD config.\nhttps://crrev.com/i/4163108\n\nThis CL shouldn\u0027t be deployed automatically to dev.",
+      "revId": "638d104d1f439d9cb87c49cdf42a262ad0cb4ec2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
