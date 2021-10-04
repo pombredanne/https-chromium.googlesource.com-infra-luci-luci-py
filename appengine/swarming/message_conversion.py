@@ -91,9 +91,6 @@ def _taskproperties_from_rpc(props):
         task_request.Containment, props.containment,
         containment_type=int(props.containment.containment_type or 0))
 
-  inputs_ref = None
-  if props.inputs_ref:
-    inputs_ref = _rpc_to_ndb(task_request.FilesRef, props.inputs_ref)
   cas_input_root = None
   if props.cas_input_root:
     digest = _rpc_to_ndb(task_request.Digest, props.cas_input_root.digest)
@@ -125,7 +122,7 @@ def _taskproperties_from_rpc(props):
       dimensions_data=dims,
       env={i.key: i.value for i in props.env},
       env_prefixes={i.key: i.value for i in props.env_prefixes},
-      inputs_ref=inputs_ref,
+      inputs_ref=None, # TODO(crbug.com/1255535): Deprecated.
       cas_input_root=cas_input_root)
   return out, secret_bytes
 
@@ -157,9 +154,6 @@ def _taskproperties_to_rpc(props):
         containment_type=swarming_rpcs.ContainmentType(
             props.containment.containment_type or 0))
 
-  inputs_ref = None
-  if props.inputs_ref:
-    inputs_ref = _ndb_to_rpc(swarming_rpcs.FilesRef, props.inputs_ref)
   cas_input_root = None
   if props.cas_input_root:
     digest = _ndb_to_rpc(swarming_rpcs.Digest, props.cas_input_root.digest)
@@ -176,7 +170,6 @@ def _taskproperties_to_rpc(props):
       dimensions=_duplicate_string_pairs_from_dict(props.dimensions),
       env=_string_pairs_from_dict(props.env),
       env_prefixes=_string_list_pairs_from_dict(props.env_prefixes or {}),
-      inputs_ref=inputs_ref,
       cas_input_root=cas_input_root)
 
 
@@ -331,9 +324,6 @@ def task_result_to_rpc(entity, send_stats):
   """"Returns a swarming_rpcs.TaskResult from a task_result.TaskResultSummary or
   task_result.TaskRunResult.
   """
-  outputs_ref = (
-      _ndb_to_rpc(swarming_rpcs.FilesRef, entity.outputs_ref)
-      if entity.outputs_ref else None)
   cas_output_root = None
   if entity.cas_output_root:
     digest = _ndb_to_rpc(swarming_rpcs.Digest, entity.cas_output_root.digest)
@@ -386,8 +376,6 @@ def task_result_to_rpc(entity, send_stats):
           _string_list_pairs_from_dict(entity.bot_dimensions or {}),
       'cipd_pins':
           cipd_pins,
-      'outputs_ref':
-          outputs_ref,
       'cas_output_root':
           cas_output_root,
       'performance_stats':
