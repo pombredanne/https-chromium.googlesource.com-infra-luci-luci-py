@@ -68,15 +68,16 @@ def get_protoc():
   """Returns protoc executable path (maybe relative to PATH)."""
   return 'protoc.exe' if sys.platform == 'win32' else 'protoc'
 
-def compile_proto(proto_file, output_path, proto_path):
+def compile_proto(proto_file, output_path, proto_paths):
   """Invokes 'protoc', compiling single *.proto file into *_pb2.py file.
 
   Returns:
       The path of the generated _pb2.py file.
   """
   cmd = [get_protoc()]
-  proto_path = proto_path or os.path.dirname(proto_file)
-  cmd.append('--proto_path=%s' % proto_path)
+  proto_paths = proto_paths or [os.path.dirname(proto_file)]
+  for proto in proto_paths:
+    cmd.append('--proto_path=%s' % proto)
   cmd.append('--python_out=%s' % output_path)
   cmd.append('--prpc-python_out=%s' % output_path)
   cmd.append(proto_file)
@@ -91,7 +92,7 @@ def compile_proto(proto_file, output_path, proto_path):
                                                          output_path)
 
 
-def check_proto_compiled(proto_file, proto_path):
+def check_proto_compiled(proto_file, proto_paths):
   """Return True if *_pb2.py on disk is up to date."""
   # Missing?
   expected_path = proto_file.replace('.proto', '_pb2.py')
@@ -107,7 +108,7 @@ def check_proto_compiled(proto_file, proto_path):
   tmp_dir = tempfile.mkdtemp()
   try:
     try:
-      compiled = compile_proto(proto_file, tmp_dir, proto_path)
+      compiled = compile_proto(proto_file, tmp_dir, proto_paths)
     except subprocess.CalledProcessError:
       return False
     return read(compiled) == read(expected_path)
@@ -115,25 +116,25 @@ def check_proto_compiled(proto_file, proto_path):
     shutil.rmtree(tmp_dir)
 
 
-def compile_all_files(root_dir, proto_path):
+def compile_all_files(root_dir, proto_paths):
   """Compiles all *.proto files it recursively finds in |root_dir|."""
   root_dir = os.path.abspath(root_dir)
   success = True
   for path in find_proto_files(root_dir):
     try:
-      compile_proto(path, os.path.dirname(path), proto_path)
+      compile_proto(path, os.path.dirname(path), proto_paths)
     except subprocess.CalledProcessError:
       print('Failed to compile: %s' % path[len(root_dir) + 1:], file=sys.stderr)
       success = False
   return success
 
 
-def check_all_files(root_dir, proto_path):
+def check_all_files(root_dir, proto_paths):
   """Returns True if all *_pb2.py files on disk are up to date."""
   root_dir = os.path.abspath(root_dir)
   success = True
   for path in find_proto_files(root_dir):
-    if not check_proto_compiled(path, proto_path):
+    if not check_proto_compiled(path, proto_paths):
       print(
           'Need to recompile file: %s' % path[len(root_dir) + 1:],
           file=sys.stderr)
@@ -209,13 +210,15 @@ def main(args, app_dir=None):
     sys.stderr.write(PROTOC_INSTALL_HELP)
     return 1
 
+  proto_paths = []
   if options.proto_path:
-    options.proto_path = os.path.abspath(options.proto_path)
+    proto_paths = [os.path.abspath(p)
+                   for p in options.proto_path.split(',')])
 
   if options.check:
-    success = check_all_files(root_dir, options.proto_path)
+    success = check_all_files(root_dir, proto_paths)
   else:
-    success = compile_all_files(root_dir, options.proto_path)
+    success = compile_all_files(root_dir, proto_paths)
 
   return int(not success)
 
