@@ -146,6 +146,30 @@
       },
       "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec45ab02_73db2455",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-05T22:08:12Z",
+      "side": 1,
+      "message": "Yes, that\u0027s my concern.\n\n\u003e appengine/swarming/proto/backend/go.chromium.org/luci/...\n\nThis sounds better.\n\nBtw, is `go.chromium.org/luci/` required?",
+      "parentUuid": "a55b53ef_edfd0d70",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 82,
+        "endChar": 13
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
