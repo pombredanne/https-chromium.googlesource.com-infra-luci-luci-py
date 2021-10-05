@@ -16,6 +16,24 @@
       "message": "Why is this added in `bb_backend` instead of `bb`?",
       "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e0af139_76acc909",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-05T20:40:28Z",
+      "side": 1,
+      "message": "I don\u0027t think the taskbackend protos have been fully added yet.\nThere\u0027s only some experimental stuff: https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/3180150\n\nSo i\u0027m just getting the script/process ready, and when protos are added on the bb side, switch all the bb -\u003e bb_internal on the swarming side.",
+      "parentUuid": "4f7bd3b1_efd35fa7",
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
