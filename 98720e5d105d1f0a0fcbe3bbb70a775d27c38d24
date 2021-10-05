@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6dfe3ee6_67e6fdf5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-05T22:17:48Z",
+      "side": 1,
+      "message": "better to have a link to CL produced by this script?",
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af035c32_37ced9ac",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/Makefile",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-05T22:17:48Z",
+      "side": 1,
+      "message": "can be python3?",
+      "range": {
+        "startLine": 6,
+        "startChar": 1,
+        "endLine": 6,
+        "endChar": 8
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f7bd3b1_efd35fa7",
         "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
         "patchSetId": 12
@@ -56,6 +96,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "22dc8fe2_f95374f9",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-05T22:17:48Z",
+      "side": 1,
+      "message": "can be python3?",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2793fb3a_f96d3447",
         "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
         "patchSetId": 12
@@ -103,6 +166,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a8df856a_7c12b60e",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-05T22:17:48Z",
+      "side": 1,
+      "message": "I think it is better to avoid using chdir.",
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "271244fc_38ad519c",
         "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
         "patchSetId": 12
@@ -119,6 +199,52 @@
         "startChar": 0,
         "endLine": 61,
         "endChar": 0
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4309890a_a86ed811",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-05T22:17:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 72,
+        "startChar": 5,
+        "endLine": 72,
+        "endChar": 10
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aacc0810_d95fa362",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-05T22:17:48Z",
+      "side": 1,
+      "message": "better to use subprocess?",
+      "range": {
+        "startLine": 79,
+        "startChar": 5,
+        "endLine": 79,
+        "endChar": 11
       },
       "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
