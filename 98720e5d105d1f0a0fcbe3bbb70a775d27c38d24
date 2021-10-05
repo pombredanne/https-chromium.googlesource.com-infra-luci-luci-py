@@ -34,6 +34,70 @@
       "parentUuid": "4f7bd3b1_efd35fa7",
       "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec5ae126_4ece3c89",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-05T21:41:35Z",
+      "side": 1,
+      "message": "I see.\nIf the imported protos won\u0027t be used for a while, you could keep CLs open.\nSo the bb -\u003e bb_backend replacements aren\u0027t necessary.\n\nBut please do steps that you are comfortable with.",
+      "parentUuid": "1e0af139_76acc909",
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2793fb3a_f96d3447",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-05T21:41:35Z",
+      "side": 1,
+      "message": "Is this necessary?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 25
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbfedd23_90188c42",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-05T21:41:35Z",
+      "side": 1,
+      "message": "It seems the artifacts are produced under \u0027proto/api/internal/bb_backend/go.chromium.org/luci/buildbucket/proto/\u0027.\nHow will the code import them?\n\nAre you going to copy or link the compiled proto to somewhere else?",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 82,
+        "endChar": 13
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
