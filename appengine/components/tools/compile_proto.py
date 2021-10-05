@@ -76,7 +76,8 @@ def compile_proto(proto_file, output_path, proto_path):
   """
   cmd = [get_protoc()]
   proto_path = proto_path or os.path.dirname(proto_file)
-  cmd.append('--proto_path=%s' % proto_path)
+  for proto in proto_path.split(' '):
+    cmd.append('--proto_path=%s' % proto)
   cmd.append('--python_out=%s' % output_path)
   cmd.append('--prpc-python_out=%s' % output_path)
   cmd.append(proto_file)
@@ -89,7 +90,6 @@ def compile_proto(proto_file, output_path, proto_path):
   subprocess.check_call(cmd, env=env)
   return proto_file.replace('.proto', '_pb2.py').replace(proto_path,
                                                          output_path)
-
 
 def check_proto_compiled(proto_file, proto_path):
   """Return True if *_pb2.py on disk is up to date."""
@@ -210,7 +210,8 @@ def main(args, app_dir=None):
     return 1
 
   if options.proto_path:
-    options.proto_path = os.path.abspath(options.proto_path)
+    options.proto_path = " ".join(
+        [os.path.abspath(p) for p in options.proto_path.split(',')])
 
   if options.check:
     success = check_all_files(root_dir, options.proto_path)
