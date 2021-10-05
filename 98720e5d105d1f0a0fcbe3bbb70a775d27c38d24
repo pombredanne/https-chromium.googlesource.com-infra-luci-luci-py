@@ -77,6 +77,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78c98c7f_8956ca4c",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-05T22:03:44Z",
+      "side": 1,
+      "message": "yes, buildbucket/proto needs this.\n\nwe need buildbucket/proto/launcher.proto which imports build.proto, which imports something from swarming/proto/api.",
+      "parentUuid": "2793fb3a_f96d3447",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 25
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbfedd23_90188c42",
@@ -90,6 +114,30 @@
       "writtenOn": "2021-10-05T21:41:35Z",
       "side": 1,
       "message": "It seems the artifacts are produced under \u0027proto/api/internal/bb_backend/go.chromium.org/luci/buildbucket/proto/\u0027.\nHow will the code import them?\n\nAre you going to copy or link the compiled proto to somewhere else?",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 82,
+        "endChar": 13
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a55b53ef_edfd0d70",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-05T22:03:44Z",
+      "side": 1,
+      "message": "do you mean that the import path seems very long and it might be tedious to include everything when importing in files like handlers_prpc.py?\n\nI thought about this too and considered moving stuff to appengine/swarming/proto/backend/go.chromium.org/luci/... if it gets annoying",
+      "parentUuid": "cbfedd23_90188c42",
       "range": {
         "startLine": 82,
         "startChar": 9,
