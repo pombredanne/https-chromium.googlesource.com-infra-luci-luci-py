@@ -246,6 +246,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e6cee2b_91fb9f69",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-06T04:12:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e0dca224_3c74898f",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 0
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4309890a_a86ed811",
