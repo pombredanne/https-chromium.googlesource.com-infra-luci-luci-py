@@ -183,6 +183,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c8641b46_eed4c94b",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-10-06T03:59:32Z",
+      "side": 1,
+      "message": "+1 (I\u0027ve had many chdir-related headaches over the years. Absolute paths for the win :p)",
+      "parentUuid": "a8df856a_7c12b60e",
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "271244fc_38ad519c",
         "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
         "patchSetId": 12
@@ -194,6 +212,30 @@
       "writtenOn": "2021-10-05T22:15:17Z",
       "side": 1,
       "message": "Can\u0027t the protos be just copied from local luci-go? like luci-go imports swarming protos from luci-py.\nhttps://source.chromium.org/chromium/infra/infra/+/main:go/src/go.chromium.org/luci/swarming/proto/update.sh",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 0
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0dca224_3c74898f",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-10-06T03:59:32Z",
+      "side": 1,
+      "message": "As long as they\u0027re a consistent, checked-in, version then I think it\u0027s OK. It doesn\u0027t appear (at first glance) that the update.sh script you link enforces that the copied protos are actually committed to a repo. However, this Makefile for infra does check if the checkout is dirty (or not part of \u0027main\u0027): https://chromium.googlesource.com/infra/infra/+/refs/heads/main/python_pb2/Makefile#46",
+      "parentUuid": "271244fc_38ad519c",
       "range": {
         "startLine": 49,
         "startChar": 0,
