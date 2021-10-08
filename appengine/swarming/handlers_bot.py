@@ -493,7 +493,8 @@ class BotHandshakeHandler(_BotBaseHandler):
         task_id=None,
         task_name=None,
         message=res.quarantined_msg,
-        register_dimensions=False)
+        register_dimensions=False,
+        is_idle=False)
 
     bot_ver, _, bot_config_rev = bot_code.get_bot_version(self.request.host_url)
     data = {
@@ -554,7 +555,7 @@ class BotPollHandler(_BotBaseHandler):
     # Note bot existence at two places, one for stats at 1 minute resolution,
     # the other for the list of known bots.
 
-    def bot_event(event_type, task_id=None, task_name=None):
+    def bot_event(event_type, task_id=None, task_name=None, is_idle=True):
       try:
         bot_management.bot_event(
             event_type=event_type,
@@ -569,7 +570,8 @@ class BotPollHandler(_BotBaseHandler):
             task_id=task_id,
             task_name=task_name,
             message=res.quarantined_msg,
-            register_dimensions=True)
+            register_dimensions=True,
+            is_idle=is_idle)
       except runtime.DeadlineExceededError as e:
         # Ignore runtime.DeadlineExceededError at the following events
         # and return 429 for the bot to retry later
@@ -683,7 +685,7 @@ class BotPollHandler(_BotBaseHandler):
 
       if not request:
         # No task found, tell it to sleep a bit.
-        bot_event('request_sleep')
+        bot_event('request_sleep', is_idle=True)
         self._cmd_sleep(sleep_streak, quarantined)
         return
 
@@ -887,7 +889,8 @@ class BotEventHandler(_BotBaseHandler):
           task_id=None,
           task_name=None,
           message=message,
-          register_dimensions=False)
+          register_dimensions=False,
+          is_idle=False)
     except datastore_errors.BadValueError as e:
       logging.warning('Invalid BotInfo or BotEvent values', exc_info=True)
       return self.abort_with_error(400, error=e.message)
@@ -1307,7 +1310,8 @@ class BotTaskUpdateHandler(_BotApiHandler):
           maintenance_msg=None,
           task_id=task_id,
           task_name=None,
-          register_dimensions=False)
+          register_dimensions=False,
+          is_idle=False)
     except ValueError as e:
       ereporter2.log_request(
           request=self.request,
@@ -1370,7 +1374,8 @@ class BotTaskErrorHandler(_BotApiHandler):
         task_id=task_id,
         task_name=None,
         message=message,
-        register_dimensions=False)
+        register_dimensions=False,
+        is_idle=False)
     line = ('Bot: https://%s/restricted/bot/%s\n'
             'Task failed: https://%s/user/task/%s\n'
             '%s') % (app_identity.get_default_version_hostname(), bot_id,

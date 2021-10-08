@@ -138,6 +138,10 @@ class _BotCommon(ndb.Model):
   # Last time the bot pinged and this entity was updated
   last_seen_ts = ndb.DateTimeProperty()
 
+  # Time the bot started polling for next task.
+  # None is set during running task or hooks.
+  idle_since_ts = ndb.DateTimeProperty()
+
   @property
   def dimensions(self):
     """Returns a dict representation of self.dimensions_flat."""
@@ -259,7 +263,7 @@ class BotInfo(_BotCommon):
         if self.maintenance_msg else self.NOT_IN_MAINTENANCE,
         self.DEAD if self.should_be_dead else self.ALIVE,
         self.QUARANTINED if self.quarantined else self.HEALTHY,
-        self.BUSY if self.task_id else self.IDLE
+        self.IDLE if self.idle_since_ts else self.BUSY,
     ]
 
   @property
@@ -548,7 +552,7 @@ def filter_availability(q, quarantined, in_maintenance, is_dead, is_busy):
 def bot_event(
     event_type, bot_id, external_ip, authenticated_as, dimensions, state,
     version, quarantined, maintenance_msg, task_id, task_name,
-    register_dimensions, **kwargs):
+    register_dimensions, is_idle, **kwargs):
   """Records when a bot has queried for work.
 
   This event happening usually means the bot is alive (not dead), except for
@@ -611,6 +615,9 @@ def bot_event(
     bot_info.external_ip = external_ip
     bot_info.authenticated_as = authenticated_as
     bot_info.maintenance_msg = maintenance_msg
+  # idle_since_ts is updated only when bot starts polling with healthy state.
+  if is_idle and not bot_info.idle_since_ts:
+    bot_info.idle_since_ts = now
   dimensions_updated = False
   dimensions_flat = []
   if dimensions:
