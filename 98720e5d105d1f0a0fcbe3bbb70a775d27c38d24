@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d637908e_94315be8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-08T00:06:41Z",
+      "side": 1,
+      "message": "added changes produced by `make` to this CL.",
+      "parentUuid": "6dfe3ee6_67e6fdf5",
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af035c32_37ced9ac",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-10-05T22:17:48Z",
       "side": 1,
       "message": "can be python3?",
+      "range": {
+        "startLine": 6,
+        "startChar": 1,
+        "endLine": 6,
+        "endChar": 8
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "059327a6_a2985258",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/Makefile",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-08T00:06:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af035c32_37ced9ac",
       "range": {
         "startLine": 6,
         "startChar": 1,
@@ -107,6 +149,30 @@
       "writtenOn": "2021-10-05T22:17:48Z",
       "side": 1,
       "message": "can be python3?",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26e3f63c_96b12ed0",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-08T00:06:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22dc8fe2_f95374f9",
       "range": {
         "startLine": 1,
         "startChar": 15,
@@ -195,6 +261,24 @@
       "side": 1,
       "message": "+1 (I\u0027ve had many chdir-related headaches over the years. Absolute paths for the win :p)",
       "parentUuid": "a8df856a_7c12b60e",
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89e16a33_6402e214",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-08T00:06:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8641b46_eed4c94b",
       "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -293,6 +377,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f17ad21_4d710ddc",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-08T00:06:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4309890a_a86ed811",
+      "range": {
+        "startLine": 72,
+        "startChar": 5,
+        "endLine": 72,
+        "endChar": 10
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aacc0810_d95fa362",
@@ -306,6 +414,30 @@
       "writtenOn": "2021-10-05T22:17:48Z",
       "side": 1,
       "message": "better to use subprocess?",
+      "range": {
+        "startLine": 79,
+        "startChar": 5,
+        "endLine": 79,
+        "endChar": 11
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46c76d5e_3018c668",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-08T00:06:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aacc0810_d95fa362",
       "range": {
         "startLine": 79,
         "startChar": 5,
@@ -377,6 +509,30 @@
       "side": 1,
       "message": "Yes, that\u0027s my concern.\n\n\u003e appengine/swarming/proto/backend/go.chromium.org/luci/...\n\nThis sounds better.\n\nBtw, is `go.chromium.org/luci/` required?",
       "parentUuid": "a55b53ef_edfd0d70",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 82,
+        "endChar": 13
+      },
+      "revId": "98720e5d105d1f0a0fcbe3bbb70a775d27c38d24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30428cec_64420582",
+        "filename": "appengine/swarming/proto/api/internal/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-08T00:06:41Z",
+      "side": 1,
+      "message": "moved bb_backend directly into proto/\n\n\nsee line 41,\nthe protos all have `import go.chromium.org/luci/..../.*.proto`\nI didn\u0027t really want this script to change the content of each proto file.",
+      "parentUuid": "ec45ab02_73db2455",
       "range": {
         "startLine": 82,
         "startChar": 9,
