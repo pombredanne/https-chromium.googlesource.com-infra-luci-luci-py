@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88d5eefb_4aebed8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-11T03:41:28Z",
+      "side": 1,
+      "message": "I also updated the BQ schema on prod instances.",
+      "revId": "0404c7bdb93b4b1f0b9a826087aa12374d50f891",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
