@@ -409,6 +409,10 @@ def _yield_potential_tasks(bot_id):
           items.extend(i for i in r if i.queue_number)
           # Prime the next page, in case.
           futures[i] = next(yielders[i], None)
+        else:
+          logging.warning(
+              '_yield_potential_tasks(%s): no results from the yiedler for dimension hash %d',
+              bot_id, potential_dimensions_hashes[i])
 
     # That's going to be our search space for now.
     items.sort(key=_queue_number_order_priority)
