@@ -214,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f7a1baa0_379f9301",
+        "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-12T01:36:29Z",
+      "side": 1,
+      "message": "I think it assumes the cwd is on \u0027appengine/swarming/proto/\u0027.\nBut it won\u0027t work if it\u0027s executed in a different directory.\n\nThe action item is to make the path absolute rather than relative.",
+      "parentUuid": "482d2d62_4baa8d1d",
+      "range": {
+        "startLine": 73,
+        "startChar": 26,
+        "endLine": 73,
+        "endChar": 33
+      },
+      "revId": "9cc48fafa3be6795755d21e205e05b83ad807056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77851eb7_ba5ed614",
         "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
         "patchSetId": 16
