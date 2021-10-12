@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0597f095_50dea740",
+        "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-12T00:57:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44f607c9_571cb2fe",
+      "revId": "9cc48fafa3be6795755d21e205e05b83ad807056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5246316_d1e30005",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-10-08T01:44:07Z",
       "side": 1,
       "message": "no need to support python2?",
+      "revId": "9cc48fafa3be6795755d21e205e05b83ad807056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fa4e7d9_90f52203",
+        "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-12T00:57:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5246316_d1e30005",
       "revId": "9cc48fafa3be6795755d21e205e05b83ad807056",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -58,6 +94,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d16d37a8_06a1c78c",
+        "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-12T00:57:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d47423_23a1dcb7",
+      "range": {
+        "startLine": 30,
+        "startChar": 1,
+        "endLine": 35,
+        "endChar": 1
+      },
+      "revId": "9cc48fafa3be6795755d21e205e05b83ad807056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "910b1e2f_fe266270",
@@ -71,6 +131,30 @@
       "writtenOn": "2021-10-08T01:44:07Z",
       "side": 1,
       "message": "is this necessary?",
+      "range": {
+        "startLine": 41,
+        "startChar": 17,
+        "endLine": 41,
+        "endChar": 24
+      },
+      "revId": "9cc48fafa3be6795755d21e205e05b83ad807056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c07756f_20279d55",
+        "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-12T00:57:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "910b1e2f_fe266270",
       "range": {
         "startLine": 41,
         "startChar": 17,
@@ -106,6 +190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "482d2d62_4baa8d1d",
+        "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-12T00:57:42Z",
+      "side": 1,
+      "message": "can you clarify the expected action-item on my end?",
+      "parentUuid": "393d1d84_168f3f52",
+      "range": {
+        "startLine": 73,
+        "startChar": 26,
+        "endLine": 73,
+        "endChar": 33
+      },
+      "revId": "9cc48fafa3be6795755d21e205e05b83ad807056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77851eb7_ba5ed614",
         "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
         "patchSetId": 16
@@ -117,6 +225,24 @@
       "writtenOn": "2021-10-08T01:44:07Z",
       "side": 1,
       "message": "check\u003dTrue?",
+      "revId": "9cc48fafa3be6795755d21e205e05b83ad807056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "284fb2ad_3d3f500b",
+        "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-12T00:57:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77851eb7_ba5ed614",
       "revId": "9cc48fafa3be6795755d21e205e05b83ad807056",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
