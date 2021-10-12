@@ -169,6 +169,15 @@ MAX_AGE_SECS = 21*24*60*60
 
 _CAS_KVS_CACHE_THRESHOLD = 5 * 1024 * 1024 * 1024  # 5 GiB
 
+MISSING_MAC_ARM64_CIPD_PACKAGES = [
+    # TODO(crbug.com/1250425): buildbucket package is being migrated to bbagent.
+    'infra/tools/buildbucket/mac-arm64',
+    # TODO(crbug.com/1207808): Python scripts executed in Swarming tasks need to
+    # be migrated to Python3, or replace the legacy cpython package with the 3pp
+    # cpython package.
+    'infra/python/cpython/mac-arm64',
+]
+
 TaskData = collections.namedtuple(
     'TaskData',
     [
@@ -1256,6 +1265,11 @@ def _install_packages(run_dir, cipd_cache_dir, client, packages):
   """
   package_pins = [None]*len(packages)
   def insert_pin(path, name, version, idx):
+    # TODO(crbug.com/1186562):
+    # We are not going to prepare deprecated the mac-amd64 builds of the legacy
+    # CIPD packages. Fallback to mac-amd64 instead.
+    if name in MISSING_MAC_ARM64_CIPD_PACKAGES:
+      name = name.replace('mac-arm64', 'mac-amd64')
     package_pins[idx] = {
       'package_name': name,
       # swarming deals with 'root' as '.'
