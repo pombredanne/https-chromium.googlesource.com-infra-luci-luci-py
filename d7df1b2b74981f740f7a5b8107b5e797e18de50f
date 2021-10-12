@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6163171c_f3c5781c",
+        "filename": "appengine/swarming/proto/bb_backend/go.chromium.org/luci/common/proto/README.md",
+        "patchSetId": 17
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-12T02:33:38Z",
+      "side": 1,
+      "message": "no need to have duplicate line?",
+      "revId": "d7df1b2b74981f740f7a5b8107b5e797e18de50f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4715179c_dd6a87c6",
         "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
         "patchSetId": 17
