@@ -29,7 +29,8 @@ import unittest
 
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 BOT_DIR = os.path.join(APP_DIR, 'swarming_bot')
-CLIENT_DIR = os.path.join(APP_DIR, '..', '..', 'client')
+LUCI_DIR = os.path.dirname(os.dirname(APP_DIR))
+CLIENT_DIR = os.path.join(LUCI_DIR, 'client')
 sys.path.insert(0, CLIENT_DIR)
 sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party'))
 
@@ -51,6 +52,10 @@ import test_env_bot
 test_env_bot.setup_test_env()
 
 from api import os_utilities
+
+EXECUTABLE_SUFFIX = '.exe' if sys.platform == 'win32' else ''
+ISOLATE_CLI = os.path.join(LUCI_DIR, 'isolate', 'isolate' + EXECUTABLE_SUFFIX)
+CAS_CLI = os.path.join(LUCI_DIR, 'cas', 'cas' + EXECUTABLE_SUFFIX)
 
 # Use a variable because it is corrupting my text editor from the 80s.
 # One important thing to note is that this character U+1F310 is not in the BMP
@@ -83,18 +88,33 @@ def _script(content):
 
 class SwarmingClient(object):
 
-  def __init__(self, swarming_server, isolate_server, namespace, tmpdir):
+  def __init__(self, swarming_server, isolate_server, namespace, cas_server,
+               tmpdir):
     self._swarming_server = swarming_server
     self._isolate_server = isolate_server
     self._namespace = namespace
+    self._cas_server = cas_server
     self._tmpdir = tmpdir
     self._index = 0
 
+  def isolate_cas(self, isolate_path)
+    """Archives a .isolate file into the CAS server and returns the root digest.
+    """
+    args = [
+        '-cas-addr',
+        self._cas_server,
+        '-isolate',
+        isolate_path,
+    ]
+    pass
+
+  # TODO(crbug.com/1255535): Replace with isolate_cas().
   def isolate(self, isolate_path, isolated_path):
     """Archives a .isolate file into the isolate server and returns the isolated
     hash.
     """
     args = [
+        CAS_BIN,
         '--namespace',
         self._namespace,
         '-i',
@@ -590,6 +610,27 @@ class Test(unittest.TestCase):
       self.assertResults(summary, actual_summary)
       actual_files.pop('summary.json')
       self.assertEqual(files, actual_files)
+
+  def test_cas(self):
+    # Make an isolated file, archive it.
+    # Assert that the environment variable SWARMING_TASK_ID is set.
+    content = {
+        HELLO_WORLD + u'.py':
+            _script(u"""
+        # coding=utf-8
+        import os
+        import sys
+        print('hi')
+        assert os.environ.get("SWARMING_TASK_ID")
+        with open(os.path.join(sys.argv[1], u'💣.txt'), 'wb') as f:
+          f.write('test_isolated')
+        """),
+    }
+    # The problem here is that we don't know the isolated size yet, so we need
+    # to do this first.
+    name = 'isolated_task'
+    isolated_hash, isolated_size = self._archive(name, content,
+                                                 DEFAULT_ISOLATE_HELLO)
 
   def test_isolated(self):
     # Make an isolated file, archive it.
@@ -1718,7 +1759,10 @@ def main():
     bot.start()
     namespace = 'sha256-deflate'
     client = SwarmingClient(servers.swarming_server.url,
-                            servers.isolate_server.url, namespace, Test.tmpdir)
+                            servers.isolate_server.url,
+                            namespace,
+                            servers.cas_server_address
+                            Test.tmpdir)
     # Test cases only interact with the client; except for test_update_continue
     # which mutates the bot.
     Test.client = client
