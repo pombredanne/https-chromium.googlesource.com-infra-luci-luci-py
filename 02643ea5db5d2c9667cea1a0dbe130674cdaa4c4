@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0adc9d70_43801935",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-10-14T01:38:59Z",
+      "side": 1,
+      "message": "Sorry I didn\u0027t notice this change previously. But I think it is not correct:\n1. It broke some existing \"make compile\" calls (this is how I discovered it: I\u0027m trying to regenerate LUCI Config protos).\n\n2. The descriptors it forces one to generate are generally not correct. E.g. read the comment here: https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/components/components/config/proto/Makefile;l\u003d2?q\u003dcompile_proto.py\u0026ss\u003dchromium For example, this \"name\u003d\u0027swarming.proto\u0027\" here https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/proto/api/swarming_pb2.py;l\u003d21 should really be something like \"swarming/proto/api/swarming.proto\". Putting everything into the root directory is fragile (as soon as a process needs to use two different *.proto files that happen to have the same filename, stuff will break).\n\n3. This change broke the hack with \"cd ../../../ \u0026\u0026 tools/compile_proto.py\" that was used to \"place\" protos into correct locations in the registry.\n\nDo you remember why this change was needed?",
+      "revId": "02643ea5db5d2c9667cea1a0dbe130674cdaa4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
