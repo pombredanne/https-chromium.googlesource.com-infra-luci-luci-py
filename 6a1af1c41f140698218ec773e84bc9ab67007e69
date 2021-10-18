@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52961006_0facb581",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-18T02:07:57Z",
+      "side": 1,
+      "message": "I changed the target to the Dev ARM bot added recently https://chromium-swarm-dev.appspot.com/bot?id\u003dmac-382-h9",
+      "revId": "6a1af1c41f140698218ec773e84bc9ab67007e69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
