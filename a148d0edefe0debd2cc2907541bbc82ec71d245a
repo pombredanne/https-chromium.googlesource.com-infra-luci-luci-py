@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a1bdefa_bb01e2bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-19T10:49:17Z",
+      "side": 1,
+      "message": "Thanks.\n\nCan you run `make release` at the ui2/ dir to compile js?",
+      "revId": "a148d0edefe0debd2cc2907541bbc82ec71d245a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
