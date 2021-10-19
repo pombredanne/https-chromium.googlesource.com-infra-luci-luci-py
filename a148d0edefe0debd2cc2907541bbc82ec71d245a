@@ -16,6 +16,24 @@
       "message": "Thanks.\n\nCan you run `make release` at the ui2/ dir to compile js?",
       "revId": "a148d0edefe0debd2cc2907541bbc82ec71d245a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7c87262_b8ff62cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368699
+      },
+      "writtenOn": "2021-10-19T11:53:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a1bdefa_bb01e2bf",
+      "revId": "a148d0edefe0debd2cc2907541bbc82ec71d245a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
