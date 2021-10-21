@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b903cce_f1502474",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-21T10:56:09Z",
+      "side": 0,
+      "message": "luci-go swarming doesn\u0027t allow setting multiple dimension values for the same key.",
+      "range": {
+        "startLine": 468,
+        "startChar": 0,
+        "endLine": 474,
+        "endChar": 33
+      },
+      "revId": "f2ab59b0e757ac1e8f5ebc105786f521b2700003",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
