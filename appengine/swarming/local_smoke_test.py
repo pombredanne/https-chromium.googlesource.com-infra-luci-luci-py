@@ -29,7 +29,8 @@ import unittest
 
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 BOT_DIR = os.path.join(APP_DIR, 'swarming_bot')
-CLIENT_DIR = os.path.join(APP_DIR, '..', '..', 'client')
+LUCI_DIR = os.path.dirname(os.path.dirname(APP_DIR))
+CLIENT_DIR = os.path.join(LUCI_DIR, 'client')
 sys.path.insert(0, CLIENT_DIR)
 sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party'))
 
@@ -51,6 +52,10 @@ import test_env_bot
 test_env_bot.setup_test_env()
 
 from api import os_utilities
+
+EXECUTABLE_SUFFIX = '.exe' if sys.platform == 'win32' else ''
+ISOLATE_CLI = os.path.join(LUCI_DIR, 'luci-go', 'isolate' + EXECUTABLE_SUFFIX)
+SWARMING_CLI = os.path.join(LUCI_DIR, 'luci-go', 'swarming' + EXECUTABLE_SUFFIX)
 
 # Use a variable because it is corrupting my text editor from the 80s.
 # One important thing to note is that this character U+1F310 is not in the BMP
@@ -83,12 +88,17 @@ def _script(content):
 
 class SwarmingClient(object):
 
-  def __init__(self, swarming_server, isolate_server, namespace, tmpdir):
+  def __init__(self, swarming_server, isolate_server, namespace, cas_server,
+               tmpdir):
     self._swarming_server = swarming_server
     self._isolate_server = isolate_server
+    self._cas_server = cas_server
     self._namespace = namespace
     self._tmpdir = tmpdir
     self._index = 0
+
+  def ensure_logged_out(self):
+    assert not self._run_swarming('logout', []), 'swarming logout failed'
 
   def isolate(self, isolate_path, isolated_path):
     """Archives a .isolate file into the isolate server and returns the isolated
@@ -125,20 +135,21 @@ class SwarmingClient(object):
         dir=self._tmpdir, prefix='trigger_raw', suffix='.json')
     os.close(h)
     cmd = [
-        '--user',
+        '-S',
+        self._swarming_server,
+        '-user',
         'joe@localhost',
         '-d',
-        'pool',
-        'default',
-        '--dump-json',
+        'pool=default',
+        '-dump-json',
         tmp,
-        '--raw-cmd',
     ]
     cmd.extend(args)
-    assert not self._run_swarming('trigger', cmd), args
+    assert not self._run_swarming('trigger',
+                                  cmd), 'Failed to trigger a task. cmd=%s' % cmd
     with fs.open(tmp, 'rb') as f:
       data = json.load(f)
-      task_id = data['tasks'].popitem()[1]['task_id']
+      task_id = data['tasks'][0]['task_id']
       logging.debug('task_id = %s', task_id)
       return task_id
 
@@ -148,18 +159,19 @@ class SwarmingClient(object):
         dir=self._tmpdir, prefix='trigger_isolated', suffix='.json')
     os.close(h)
     cmd = [
-        '--user',
+        '-S',
+        self._swarming_server,
+        '-user',
         'joe@localhost',
         '-d',
-        'pool',
-        'default',
-        '--dump-json',
+        'pool=default',
+        '-dump-json',
         tmp,
-        '--task-name',
+        '-task-name',
         name,
         '-I',
         self._isolate_server,
-        '--namespace',
+        '-namespace',
         self._namespace,
         '-s',
         isolated_hash,
@@ -169,7 +181,7 @@ class SwarmingClient(object):
     assert not self._run_swarming('trigger', cmd)
     with fs.open(tmp, 'rb') as f:
       data = json.load(f)
-      task_id = data['tasks'].popitem()[1]['task_id']
+      task_id = data['tasks'][0]['task_id']
       logging.debug('task_id = %s', task_id)
       return task_id
 
@@ -188,7 +200,7 @@ class SwarmingClient(object):
     logging.debug('task_id = %s', task_id)
     return task_id
 
-  def task_collect(self, task_id, timeout=TIMEOUT_SECS):
+  def task_collect(self, task_id, timeout=TIMEOUT_SECS, wait=True):
     """Collects the results for a task.
 
     Returns:
@@ -196,25 +208,29 @@ class SwarmingClient(object):
       - output files as a dict
     """
     tmp = os.path.join(self._tmpdir, task_id + '.json')
-    tmpdir = unicode(os.path.join(self._tmpdir, task_id))
-    if os.path.isdir(tmpdir):
-      for i in range(100000):
-        t = '%s_%d' % (tmpdir, i)
-        if not os.path.isdir(t):
-          tmpdir = t
-          break
-    os.mkdir(tmpdir)
     # swarming.py collect will return the exit code of the task.
     args = [
-        '--task-summary-json',
+        '-S',
+        self._swarming_server,
+        '-cas-addr',
+        self._cas_server,
+        '-task-summary-json',
         tmp,
-        task_id,
-        '--task-output-dir',
-        tmpdir,
-        '--timeout',
-        str(timeout),
-        '--perf',
+        '-task-output-stdout',
+        'json',
+        '-output-dir',
+        self._tmpdir,
+        '-perf',
+        '-task-summary-python',
     ]
+    if wait:
+      args += [
+          '-timeout',
+          '%ds' % timeout,
+      ]
+    else:
+      args.append('-wait=false')
+    args.append(task_id)
     self._run_swarming('collect', args)
     with fs.open(tmp, 'rb') as f:
       data = f.read()
@@ -224,10 +240,11 @@ class SwarmingClient(object):
       print('Bad json:\n%s' % data, file=sys.stderr)
       raise
     file_outputs = {}
-    for root, _, files in fs.walk(tmpdir):
+    outdir = os.path.join(self._tmpdir, task_id)
+    for root, _, files in fs.walk(outdir):
       for i in files:
         p = os.path.join(root, i)
-        name = p[len(tmpdir) + 1:]
+        name = p[len(outdir) + 1:]
         with fs.open(p, 'rb') as f:
           file_outputs[name] = f.read()
     return summary, file_outputs
@@ -239,7 +256,7 @@ class SwarmingClient(object):
 
   def task_result(self, task_id):
     """Queries a task result without waiting for it to complete."""
-    # collect --timeout 0 now works the same.
+    # collect -timeout 0 now works the same.
     return json.loads(
         self._capture_swarming('query', ['task/%s/result' % task_id], ''))
 
@@ -253,8 +270,14 @@ class SwarmingClient(object):
     logging.info('swarming.py terminate returned %r', task_id)
     if not task_id:
       return 1
-    return self._run_swarming(
-        'collect', ['--timeout', str(TIMEOUT_SECS), task_id])
+    args = [
+        '-S',
+        self._swarming_server,
+        '-timeout',
+        '%ds' % TIMEOUT_SECS,
+        task_id,
+    ]
+    return self._run_swarming('collect', args)
 
   def query_bot(self):
     """Returns the bot's properties."""
@@ -290,12 +313,9 @@ class SwarmingClient(object):
       The process exit code.
     """
     cmd = [
-        sys.executable,
-        'swarming.py',
+        SWARMING_CLI,
         command,
-        '-S',
-        self._swarming_server,
-        '--verbose',
+        '-verbose',
     ] + args
     logging.debug('SwarmingClient._run_swarming: executing command. %s', cmd)
     with fs.open(self._rotate_logfile(), 'wb') as f:
@@ -367,8 +387,6 @@ def gen_expected(**kwargs):
       u'bot_id': unicode(socket.getfqdn().split('.', 1)[0]),
       u'current_task_slice': u'0',
       u'exit_code': u'0',
-      u'failure': False,
-      u'internal_failure': False,
       u'name': u'',
       u'output': u'hi\n',
       u'server_versions': [u'N/A'],
@@ -454,24 +472,16 @@ class Test(unittest.TestCase):
     } for k, v in sorted(self.dimensions.items()) if not k == 'python']
     return gen_expected(bot_dimensions=dims, **kwargs)
 
-  def test_raw_bytes_and_dupe_dimensions(self):
+  def test_raw_bytes(self):
     # A string of a letter 'A', UTF-8 BOM then UTF-16 BOM then UTF-EDBCDIC then
     # invalid UTF-8 and the letter 'B'. It is double escaped so it can be passed
     # down the shell.
-    #
-    # Leverage the occasion to also specify the same dimension key twice with
-    # different values, and ensure it works.
     invalid_bytes = 'A\\xEF\\xBB\\xBF\\xFE\\xFF\\xDD\\x73\\x66\\x73\\xc3\\x28B'
     args = [
-        '-T',
+        '-task-name',
         'non_utf8',
-        # It's pretty much guaranteed 'os' has at least two values.
         '-d',
-        'os',
-        self.dimensions['os'][0],
-        '-d',
-        'os',
-        self.dimensions['os'][1],
+        'os=%s' % self.dimensions['os'][0],
         '--',
         'python',
         '-u',
@@ -485,7 +495,6 @@ class Test(unittest.TestCase):
         tags=sorted([
             u'authenticated:bot:whitelisted-ip',
             u'os:' + self.dimensions['os'][0],
-            u'os:' + self.dimensions['os'][1],
             u'pool:default',
             u'priority:200',
             u'realm:none',
@@ -497,7 +506,7 @@ class Test(unittest.TestCase):
     self.assertOneTask(args, summary, {})
 
   def test_invalid_command(self):
-    args = ['-T', 'invalid', '--', 'unknown_invalid_command']
+    args = ['-task-name', 'invalid', '--', 'unknown_invalid_command']
     summary = self.gen_expected(
         name=u'invalid',
         exit_code=u'1',
@@ -512,9 +521,9 @@ class Test(unittest.TestCase):
   def test_hard_timeout(self):
     args = [
         # Need to flush to ensure it will be sent to the server.
-        '-T',
+        '-task-name',
         'hard_timeout',
-        '--hard-timeout',
+        '-hard-timeout',
         '1',
         '--',
         'python',
@@ -533,9 +542,9 @@ class Test(unittest.TestCase):
   def test_io_timeout(self):
     args = [
         # Need to flush to ensure it will be sent to the server.
-        '-T',
+        '-task-name',
         'io_timeout',
-        '--io-timeout',
+        '-io-timeout',
         '2',
         '--',
         'python',
@@ -555,7 +564,7 @@ class Test(unittest.TestCase):
 
     def get_cmd(name, exit_code):
       return [
-          '-T',
+          '-task-name',
           name,
           '--',
           'python',
@@ -593,7 +602,6 @@ class Test(unittest.TestCase):
       performance_stats = actual_summary['shards'][0].pop('performance_stats')
       self.assertPerformanceStatsEmpty(performance_stats)
       self.assertResults(summary, actual_summary)
-      actual_files.pop('summary.json')
       self.assertEqual(files, actual_files)
 
   def test_isolated(self):
@@ -627,11 +635,11 @@ class Test(unittest.TestCase):
             u'swarming.pool.version:pools_cfg_rev', u'user:joe@localhost'
         ])
     expected_files = {
-        os.path.join(u'0', u'💣.txt'.encode('utf-8')): 'test_isolated',
+        u'💣.txt': 'test_isolated',
     }
     _, outputs_ref, performance_stats = self._run_isolated(
         isolated_hash,
-        name, ['--raw-cmd', '--'] + DEFAULT_COMMAND + ['${ISOLATED_OUTDIR}'],
+        name, ['--'] + DEFAULT_COMMAND + ['${ISOLATED_OUTDIR}'],
         expected_summary,
         expected_files,
         deduped=False)
@@ -648,13 +656,19 @@ class Test(unittest.TestCase):
             u'items_cold': sorted(items_in),
             u'items_hot': [],
             u'num_items_cold': unicode(len(items_in)),
+            u'num_items_hot': u'0',
             u'total_bytes_items_cold': unicode(sum(items_in)),
+            u'total_bytes_items_hot': u'0',
         },
         u'isolated_upload': {
+            u'initial_number_items': u'0',
+            u'initial_size': u'0',
             u'items_cold': sorted(items_out),
             u'items_hot': [],
             u'num_items_cold': unicode(len(items_out)),
+            u'num_items_hot': u'0',
             u'total_bytes_items_cold': unicode(sum(items_out)),
+            u'total_bytes_items_hot': u'0',
         },
         u'cleanup': {},
     }
@@ -671,7 +685,7 @@ class Test(unittest.TestCase):
         import os
         import sys
         print(sys.argv[1])
-        assert "SWARMING_TASK_ID" not in os.environ
+        assert "SWARMING_TASK_ID" in os.environ
         # cwd is in base/
         cwd = os.path.realpath(os.getcwd())
         base = os.path.basename(cwd)
@@ -701,18 +715,16 @@ class Test(unittest.TestCase):
             u'swarming.pool.version:pools_cfg_rev', u'user:joe@localhost'
         ])
     expected_files = {
-        os.path.join('0', 'result.txt'): 'hey2',
-        os.path.join('0', 'FOO.txt'): u'bar💩'.encode('utf-8'),
+        'result.txt': 'hey2',
+        'FOO.txt': u'bar💩'.encode('utf-8'),
     }
-    # Use a --raw-cmd instead of a command in the isolated file. This is the
-    # future!
     _, outputs_ref, performance_stats = self._run_isolated(
         isolated_hash,
         name, [
-            '--raw-cmd', '--relative-cwd', 'base', '--env', 'FOO', u'bar💩',
-            '--env', 'SWARMING_TASK_ID', '', '--env-prefix', 'PATH',
-            'local/path', '--lower-priority', '--', 'python',
-            HELLO_WORLD + u'.py', u'hi💩', '${ISOLATED_OUTDIR}'
+            '-relative-cwd', 'base', '-env', 'FOO=bar💩', '-env',
+            'SWARMING_TASK_ID=""', '-env-prefix', 'PATH=local/path',
+            '-lower-priority', '--', 'python', HELLO_WORLD + u'.py', u'hi💩',
+            '${ISOLATED_OUTDIR}'
         ],
         expected_summary,
         expected_files,
@@ -734,13 +746,19 @@ class Test(unittest.TestCase):
             u'items_cold': sorted(items_in),
             u'items_hot': [],
             u'num_items_cold': unicode(len(items_in)),
+            u'num_items_hot': u'0',
             u'total_bytes_items_cold': unicode(sum(items_in)),
+            u'total_bytes_items_hot': u'0',
         },
         u'isolated_upload': {
+            u'initial_number_items': u'0',
+            u'initial_size': u'0',
             u'items_cold': sorted(items_out),
             u'items_hot': [],
             u'num_items_cold': unicode(len(items_out)),
+            u'num_items_hot': u'0',
             u'total_bytes_items_cold': unicode(sum(items_out)),
+            u'total_bytes_items_hot': u'0',
         },
         u'cleanup': {},
     }
@@ -785,8 +803,8 @@ class Test(unittest.TestCase):
     # Hard timeout is enforced by run_isolated, I/O timeout by task_runner.
     _, outputs_ref, performance_stats = self._run_isolated(
         isolated_hash,
-        name, ['--hard-timeout', '1', '--raw-cmd', '--'] + DEFAULT_COMMAND +
-        ['${ISOLATED_OUTDIR}'],
+        name,
+        ['-hard-timeout', '1', '--'] + DEFAULT_COMMAND + ['${ISOLATED_OUTDIR}'],
         expected_summary, {},
         deduped=False)
     self.assertIsNone(outputs_ref)
@@ -801,11 +819,19 @@ class Test(unittest.TestCase):
             u'items_cold': sorted(items_in),
             u'items_hot': [],
             u'num_items_cold': unicode(len(items_in)),
+            u'num_items_hot': u'0',
             u'total_bytes_items_cold': unicode(sum(items_in)),
+            u'total_bytes_items_hot': u'0',
         },
         u'isolated_upload': {
+            u'initial_number_items': u'0',
+            u'initial_size': u'0',
             u'items_cold': [],
             u'items_hot': [],
+            u'num_items_cold': u'0',
+            u'num_items_hot': u'0',
+            u'total_bytes_items_cold': u'0',
+            u'total_bytes_items_hot': u'0',
         },
         u'cleanup': {},
     }
@@ -854,14 +880,15 @@ class Test(unittest.TestCase):
             u'user:joe@localhost',
         ],
         state=u'TIMED_OUT')
+    expected_summary.pop('exit_code')
     expected_files = {
-        os.path.join('0', 'result.txt'): 'test_isolated_hard_timeout_grace',
+        'result.txt': 'test_isolated_hard_timeout_grace',
     }
     # Hard timeout is enforced by run_isolated, I/O timeout by task_runner.
     _, outputs_ref, performance_stats = self._run_isolated(
         isolated_hash,
-        name, ['--hard-timeout', '1', '--raw-cmd', '--'] + DEFAULT_COMMAND +
-        ['${ISOLATED_OUTDIR}'],
+        name,
+        ['-hard-timeout', '1', '--'] + DEFAULT_COMMAND + ['${ISOLATED_OUTDIR}'],
         expected_summary,
         expected_files,
         deduped=False)
@@ -878,13 +905,19 @@ class Test(unittest.TestCase):
             u'items_cold': sorted(items_in),
             u'items_hot': [],
             u'num_items_cold': unicode(len(items_in)),
+            u'num_items_hot': u'0',
             u'total_bytes_items_cold': unicode(sum(items_in)),
+            u'total_bytes_items_hot': u'0',
         },
         u'isolated_upload': {
+            u'initial_number_items': u'0',
+            u'initial_size': u'0',
             u'items_cold': sorted(items_out),
             u'items_hot': [],
             u'num_items_cold': unicode(len(items_out)),
+            u'num_items_hot': u'0',
             u'total_bytes_items_cold': unicode(sum(items_out)),
+            u'total_bytes_items_hot': u'0',
         },
         u'cleanup': {},
     }
@@ -910,8 +943,7 @@ class Test(unittest.TestCase):
         ])
     task_id, outputs_ref, performance_stats = self._run_isolated(
         isolated_hash,
-        name, ['--idempotent', '--raw-cmd', '--'] + DEFAULT_COMMAND +
-        ['${ISOLATED_OUTDIR}'],
+        name, ['--idempotent', '--'] + DEFAULT_COMMAND + ['${ISOLATED_OUTDIR}'],
         expected_summary, {},
         deduped=False)
     self.assertIsNone(outputs_ref)
@@ -926,11 +958,19 @@ class Test(unittest.TestCase):
             u'items_cold': sorted(items_in),
             u'items_hot': [],
             u'num_items_cold': unicode(len(items_in)),
+            u'num_items_hot': u'0',
             u'total_bytes_items_cold': unicode(sum(items_in)),
+            u'total_bytes_items_hot': u'0',
         },
         u'isolated_upload': {
+            u'initial_number_items': u'0',
+            u'initial_size': u'0',
             u'items_cold': [],
             u'items_hot': [],
+            u'num_items_cold': u'0',
+            u'num_items_hot': u'0',
+            u'total_bytes_items_cold': u'0',
+            u'total_bytes_items_hot': u'0',
         },
         u'cleanup': {},
     }
@@ -940,11 +980,11 @@ class Test(unittest.TestCase):
     expected_summary[u'name'] = u'idempotent_reuse2'
     expected_summary[u'cost_saved_usd'] = 0.02
     expected_summary[u'deduped_from'] = task_id[:-1] + u'1'
-    expected_summary[u'try_number'] = u'0'
+    expected_summary.pop(u'try_number')
     _, outputs_ref, performance_stats = self._run_isolated(
         isolated_hash,
-        'idempotent_reuse2', ['--idempotent', '--raw-cmd', '--'] +
-        DEFAULT_COMMAND + ['${ISOLATED_OUTDIR}'],
+        'idempotent_reuse2',
+        ['--idempotent', '--'] + DEFAULT_COMMAND + ['${ISOLATED_OUTDIR}'],
         expected_summary, {},
         deduped=True)
     self.assertIsNone(outputs_ref)
@@ -986,9 +1026,9 @@ class Test(unittest.TestCase):
       f.write('foobar')
     _, outputs_ref, performance_stats = self._run_isolated(
         isolated_hash,
-        name, ['--secret-bytes-path', tmp, '--raw-cmd', '--'] +
-        DEFAULT_COMMAND + ['${ISOLATED_OUTDIR}'],
-        expected_summary, {os.path.join('0', 'sekret'): 'foobar\n'},
+        name, ['--secret-bytes-path', tmp, '--'] + DEFAULT_COMMAND +
+        ['${ISOLATED_OUTDIR}'],
+        expected_summary, {'sekret': 'foobar\n'},
         deduped=False)
     result_isolated_size = self.assertOutputsRef(outputs_ref)
     items_out = [len('foobar\n'), result_isolated_size]
@@ -1003,13 +1043,19 @@ class Test(unittest.TestCase):
             u'items_cold': sorted(items_in),
             u'items_hot': [],
             u'num_items_cold': unicode(len(items_in)),
+            u'num_items_hot': u'0',
             u'total_bytes_items_cold': unicode(sum(items_in)),
+            u'total_bytes_items_hot': u'0',
         },
         u'isolated_upload': {
+            u'initial_number_items': u'0',
+            u'initial_size': u'0',
             u'items_cold': sorted(items_out),
             u'items_hot': [],
             u'num_items_cold': unicode(len(items_out)),
+            u'num_items_hot': u'0',
             u'total_bytes_items_cold': unicode(sum(items_out)),
+            u'total_bytes_items_hot': u'0',
         },
         u'cleanup': {},
     }
@@ -1050,8 +1096,8 @@ class Test(unittest.TestCase):
         ])
     _, outputs_ref, performance_stats = self._run_isolated(
         isolated_hash,
-        name, ['--named-cache', 'fuu', 'p/b', '--raw-cmd', '--'] +
-        DEFAULT_COMMAND + ['${ISOLATED_OUTDIR}/yo'],
+        name, ['-named-cache', 'fuu=p/b', '--'] + DEFAULT_COMMAND +
+        ['${ISOLATED_OUTDIR}/yo'],
         expected_summary, {},
         deduped=False)
     self.assertIsNone(outputs_ref)
@@ -1066,11 +1112,19 @@ class Test(unittest.TestCase):
             u'items_cold': sorted(items_in),
             u'items_hot': [],
             u'num_items_cold': unicode(len(items_in)),
+            u'num_items_hot': u'0',
             u'total_bytes_items_cold': unicode(sum(items_in)),
+            u'total_bytes_items_hot': u'0',
         },
         u'isolated_upload': {
+            u'initial_number_items': u'0',
+            u'initial_size': u'0',
             u'items_cold': [],
             u'items_hot': [],
+            u'num_items_cold': u'0',
+            u'num_items_hot': u'0',
+            u'total_bytes_items_cold': u'0',
+            u'total_bytes_items_hot': u'0',
         },
         u'cleanup': {},
     }
@@ -1096,9 +1150,9 @@ class Test(unittest.TestCase):
     }] + expected_summary['bot_dimensions'])
     _, outputs_ref, performance_stats = self._run_isolated(
         isolated_hash,
-        'cache_second', ['--named-cache', 'fuu', 'p/b', '--raw-cmd', '--'] +
-        DEFAULT_COMMAND + ['${ISOLATED_OUTDIR}/yo'],
-        expected_summary, {'0/yo': 'Yo!'},
+        'cache_second', ['-named-cache', 'fuu=p/b', '--'] + DEFAULT_COMMAND +
+        ['${ISOLATED_OUTDIR}/yo'],
+        expected_summary, {'yo': 'Yo!'},
         deduped=False)
     result_isolated_size = self.assertOutputsRef(outputs_ref)
     items_out = [3, result_isolated_size]
@@ -1113,14 +1167,20 @@ class Test(unittest.TestCase):
             u'items_cold': [],
             # Items are hot.
             u'items_hot': sorted(items_in),
+            u'num_items_cold': u'0',
             u'num_items_hot': unicode(len(items_in)),
+            u'total_bytes_items_cold': u'0',
             u'total_bytes_items_hot': unicode(sum(items_in)),
         },
         u'isolated_upload': {
+            u'initial_number_items': u'0',
+            u'initial_size': u'0',
             u'items_cold': sorted(items_out),
             u'items_hot': [],
             u'num_items_cold': unicode(len(items_out)),
+            u'num_items_hot': u'0',
             u'total_bytes_items_cold': unicode(sum(items_out)),
+            u'total_bytes_items_hot': u'0',
         },
         u'cleanup': {},
     }
@@ -1159,9 +1219,9 @@ class Test(unittest.TestCase):
       for i, priority in enumerate((9, 8, 6, 7, 8)):
         task_name = u'%d-p%d' % (i, priority)
         args = [
-            '-T',
+            '-task-name',
             task_name,
-            '--priority',
+            '-priority',
             str(priority),
             '--',
             'python',
@@ -1188,7 +1248,6 @@ class Test(unittest.TestCase):
       expected_summary = self.gen_expected(
           name=task_name, tags=sorted(t), output=u'%d\n' % priority)
       self.assertResults(expected_summary, actual_summary)
-      self.assertEqual(['summary.json'], actual_files.keys())
       results.append(
           (task_name, priority, task_id, actual_summary[u'shards'][0]))
 
@@ -1202,17 +1261,18 @@ class Test(unittest.TestCase):
     # Cancel a pending task. Triggering a task for an unknown dimension will
     # result in state NO_RESOURCE, so instead a dummy task is created to make
     # sure the bot cannot reap the second one.
-    args = ['-T', 'cancel_pending', '--', 'python', '-u', '-c', 'print(\'hi\')']
+    args = [
+        '-task-name', 'cancel_pending', '--', 'python', '-u', '-c',
+        'print(\'hi\')'
+    ]
     with self._make_wait_task('test_cancel_pending'):
       task_id = self.client.task_trigger_raw(args)
-      actual, actual_files = self.client.task_collect(task_id, timeout=-1)
+      actual, actual_files = self.client.task_collect(task_id, wait=False)
       self.assertEqual(u'PENDING', actual[u'shards'][0][u'state'])
       self.assertTrue(self.client.task_cancel(task_id, []))
-      self.assertEqual(['summary.json'], actual_files.keys())
-    actual, actual_files = self.client.task_collect(task_id, timeout=-1)
+    actual, actual_files = self.client.task_collect(task_id, wait=False)
     self.assertEqual(u'CANCELED', actual[u'shards'][0][u'state'],
                      actual[u'shards'][0])
-    self.assertEqual(['summary.json'], actual_files.keys())
 
   def test_kill_running(self):
     # Kill a running task. Make sure the target process handles the signal
@@ -1242,8 +1302,7 @@ class Test(unittest.TestCase):
     # Do not use self._run_isolated() here since we want to kill it, not wait
     # for it to complete.
     task_id = self.client.task_trigger_isolated(
-        isolated_hash, name,
-        ['--raw-cmd', '--'] + DEFAULT_COMMAND + ['${ISOLATED_OUTDIR}'])
+        isolated_hash, name, ['--'] + DEFAULT_COMMAND + ['${ISOLATED_OUTDIR}'])
 
     # Wait for the task to start on the bot.
     self._wait_for_state(task_id, u'PENDING', u'RUNNING')
@@ -1313,13 +1372,12 @@ class Test(unittest.TestCase):
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
             u'user:none',
-        ],
-        user=u'')
+        ])
+    expected_summary.pop('user')
     actual_summary, actual_files = self.client.task_collect(task_id)
     performance_stats = actual_summary['shards'][0].pop('performance_stats')
     self.assertPerformanceStatsEmpty(performance_stats)
     self.assertResults(expected_summary, actual_summary, deduped=False)
-    self.assertEqual(['summary.json'], actual_files.keys())
 
   def test_task_slice_fallback(self):
     # The first one shall be skipped.
@@ -1381,13 +1439,12 @@ class Test(unittest.TestCase):
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
             u'user:none',
-        ],
-        user=u'')
+        ])
+    expected_summary.pop(u'user')
     actual_summary, actual_files = self.client.task_collect(task_id)
     performance_stats = actual_summary['shards'][0].pop('performance_stats')
     self.assertPerformanceStatsEmpty(performance_stats)
     self.assertResults(expected_summary, actual_summary, deduped=False)
-    self.assertEqual(['summary.json'], actual_files.keys())
 
   def test_no_resource(self):
     request = {
@@ -1425,7 +1482,6 @@ class Test(unittest.TestCase):
     # Immediately cancelled.
     self.assertEqual(u'NO_RESOURCE', summary[u'state'])
     self.assertTrue(summary[u'abandoned_ts'])
-    self.assertEqual(['summary.json'], actual_files.keys())
 
   @contextlib.contextmanager
   def _make_wait_task(self, name):
@@ -1435,9 +1491,9 @@ class Test(unittest.TestCase):
     signal_file = os.path.join(self.tmpdir, name)
     fs.open(signal_file, 'wb').close()
     args = [
-        '-T',
+        '-task-name',
         'wait',
-        '--priority',
+        '-priority',
         '20',
         '--',
         'python',
@@ -1476,7 +1532,6 @@ class Test(unittest.TestCase):
     self.assertResults(
         self.gen_expected(name=u'wait', tags=tags, output=u'hi\nhi again\n'),
         actual_summary)
-    self.assertEqual(['summary.json'], actual_files.keys())
 
   def _run_isolated(self, isolated_hash, name, args, expected_summary,
                     expected_files, deduped):
@@ -1497,7 +1552,6 @@ class Test(unittest.TestCase):
     performance_stats = actual_summary[u'shards'][0].pop(
         'performance_stats', None)
     self.assertResults(expected_summary, actual_summary, deduped=deduped)
-    actual_files.pop('summary.json')
     self.assertEqual(expected_files, actual_files)
     return task_id, outputs_ref, performance_stats
 
@@ -1543,7 +1597,7 @@ class Test(unittest.TestCase):
       self.assertLess(0, result.pop(u'cost_saved_usd'))
     self.assertTrue(result.pop(u'created_ts'))
     self.assertTrue(result.pop(u'completed_ts'))
-    self.assertLess(0, result.pop(u'duration'))
+    self.assertLess(0, result.pop(u'duration', 0))
     task_id = result.pop(u'task_id')
     run_id = result.pop(u'run_id')
     self.assertTrue(task_id)
@@ -1576,7 +1630,6 @@ class Test(unittest.TestCase):
     performance_stats = actual_summary['shards'][0].pop('performance_stats')
     self.assertPerformanceStatsEmpty(performance_stats)
     bot_version = self.assertResults(expected_summary, actual_summary)
-    actual_files.pop('summary.json')
     self.assertEqual(expected_files, actual_files)
     return bot_version
 
@@ -1590,20 +1643,18 @@ class Test(unittest.TestCase):
 
   def assertPerformanceStatsEmpty(self, actual):
     self.assertLess(0, actual.pop(u'bot_overhead'))
-    self.assertLess(0, actual[u'cache_trim'].pop(u'duration'))
-    self.assertLessEqual(0, actual[u'named_caches_install'].pop(u'duration'))
-    self.assertLessEqual(0, actual[u'named_caches_uninstall'].pop(u'duration'))
-    self.assertLess(0, actual[u'cleanup'].pop(u'duration'))
+    self.assertLess(0, actual[u'cache_trim'].pop(u'duration', 0))
+    self.assertLessEqual(0, actual[u'named_caches_install'].pop(u'duration', 0))
+    self.assertLessEqual(0,
+                         actual[u'named_caches_uninstall'].pop(u'duration', 0))
+    self.assertLess(0, actual[u'cleanup'].pop(u'duration', 0))
     self.assertEqual(
         {
             u'cache_trim': {},
             u'package_installation': {},
             u'named_caches_install': {},
             u'named_caches_uninstall': {},
-            u'isolated_download': {
-                u'initial_number_items': u'0',
-                u'initial_size': u'0',
-            },
+            u'isolated_download': {},
             u'isolated_upload': {},
             u'cleanup': {},
         }, actual)
@@ -1611,12 +1662,13 @@ class Test(unittest.TestCase):
   def assertPerformanceStats(self, expected, actual):
     # These are not deterministic (or I'm too lazy to calculate the value).
     self.assertLess(0, actual.pop(u'bot_overhead'))
-    self.assertLess(0, actual[u'cache_trim'].pop(u'duration'))
-    self.assertLessEqual(0, actual[u'named_caches_install'].pop(u'duration'))
-    self.assertLessEqual(0, actual[u'named_caches_uninstall'].pop(u'duration'))
-    self.assertLess(0, actual[u'isolated_download'].pop(u'duration'))
-    self.assertLess(0, actual[u'isolated_upload'].pop(u'duration'))
-    self.assertLess(0, actual[u'cleanup'].pop(u'duration'))
+    self.assertLess(0, actual[u'cache_trim'].pop(u'duration', 0))
+    self.assertLessEqual(0, actual[u'named_caches_install'].pop(u'duration', 0))
+    self.assertLessEqual(0,
+                         actual[u'named_caches_uninstall'].pop(u'duration', 0))
+    self.assertLess(0, actual[u'isolated_download'].pop(u'duration', 0))
+    self.assertLess(0, actual[u'isolated_upload'].pop(u'duration', 0))
+    self.assertLess(0, actual[u'cleanup'].pop(u'duration', 0))
     for k in (u'isolated_download', u'isolated_upload'):
       for j in (u'items_cold', u'items_hot'):
         actual[k][j] = large.unpack(base64.b64decode(actual[k].get(j, '')))
@@ -1723,7 +1775,9 @@ def main():
     bot.start()
     namespace = 'default'
     client = SwarmingClient(servers.swarming_server.url,
-                            servers.isolate_server.url, namespace, Test.tmpdir)
+                            servers.isolate_server.url, namespace,
+                            servers.cas_server_address, Test.tmpdir)
+    client.ensure_logged_out()
     # Test cases only interact with the client; except for test_update_continue
     # which mutates the bot.
     Test.client = client
