@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80dbffff_39aa74e5",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1593,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-21T11:35:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cfa31f5_e1928556",
+      "range": {
+        "startLine": 1593,
+        "startChar": 46,
+        "endLine": 1593,
+        "endChar": 48
+      },
+      "revId": "42b754154633678e4122d4d3f3fc9daa7cefefa2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a506645_143cdbaa",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-10-21T11:12:11Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 1639,
+        "startChar": 0,
+        "endLine": 1643,
+        "endChar": 62
+      },
+      "revId": "42b754154633678e4122d4d3f3fc9daa7cefefa2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ac6008e_1fc79ee0",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1643,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-21T11:35:39Z",
+      "side": 1,
+      "message": "Done for assertLess.\n\nIt is necessary to pass assertLessEqual().",
+      "parentUuid": "7a506645_143cdbaa",
       "range": {
         "startLine": 1639,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53ebba63_b48b1318",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1664,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-21T11:35:39Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "a5c34ccc_88871742",
+      "range": {
+        "startLine": 1658,
+        "startChar": 0,
+        "endLine": 1664,
+        "endChar": 62
+      },
+      "revId": "42b754154633678e4122d4d3f3fc9daa7cefefa2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b4eca2a_9ec02a04",
@@ -100,6 +172,24 @@
       "writtenOn": "2021-10-21T11:12:11Z",
       "side": 1,
       "message": "why logout is necessary?",
+      "revId": "42b754154633678e4122d4d3f3fc9daa7cefefa2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c492fe2c_b13521f0",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1772,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-21T11:35:39Z",
+      "side": 1,
+      "message": "All requests in local_smoke_test.py are expected to be authenticated with allowed listed IP address.\nBut, when luci-go swarming logged in, it sends auth header to the local server which ends up with authenticated as jwata@google.com or your account.",
+      "parentUuid": "9b4eca2a_9ec02a04",
       "revId": "42b754154633678e4122d4d3f3fc9daa7cefefa2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
