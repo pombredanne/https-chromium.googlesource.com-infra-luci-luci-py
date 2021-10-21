@@ -228,6 +228,24 @@
       "parentUuid": "c492fe2c_b13521f0",
       "revId": "42b754154633678e4122d4d3f3fc9daa7cefefa2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dff3a714_15f18aff",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1772,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-21T11:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb8995d4_05597b24",
+      "revId": "42b754154633678e4122d4d3f3fc9daa7cefefa2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
