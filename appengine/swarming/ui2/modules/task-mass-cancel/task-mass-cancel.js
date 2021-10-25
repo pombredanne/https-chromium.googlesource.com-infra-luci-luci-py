@@ -8,6 +8,7 @@ import {html, render} from 'lit-html';
 import {jsonOrThrow} from 'common-sk/modules/jsonOrThrow';
 import {until} from 'lit-html/directives/until';
 
+import {floorSecond} from '../task-list/task-list-helpers';
 import {initPropertyFromAttrOrProperty} from '../util';
 
 // query.fromObject is more readable than just 'fromObject'
@@ -92,8 +93,11 @@ window.customElements.define('task-mass-cancel', class extends HTMLElement {
   }
 
   connectedCallback() {
-    initPropertyFromAttrOrProperty(this, 'auth_header');
+    initPropertyFromAttrOrProperty(this, 'end');
+    initPropertyFromAttrOrProperty(this, 'now');
+    initPropertyFromAttrOrProperty(this, 'start');
     initPropertyFromAttrOrProperty(this, 'tags');
+    initPropertyFromAttrOrProperty(this, 'auth_header');
     // Used for when default was loaded via attribute.
     if (typeof this.tags === 'string') {
       this.tags = this.tags.split(',');
@@ -108,59 +112,73 @@ window.customElements.define('task-mass-cancel', class extends HTMLElement {
     this.dispatchEvent(new CustomEvent('tasks-canceling-started', {bubbles: true}));
     this.render();
 
-    const payload = {
-      limit: CANCEL_BATCH_SIZE,
+    const queryParams = query.fromObject({
       tags: this.tags,
+      start: this.start,
+      end: floorSecond(this.now == 'true' ? Date.now() : this.end),
+      limit: 200, // see https://crbug.com/908423
+      fields: 'cursor,items/task_id',
+      state: 'PENDING',
+    });
+
+    const extra = {
+      headers: {'authorization': this.auth_header},
     };
 
-    if (this._both) {
-      payload.kill_running = true;
-    }
-
-    const options = {
-      headers: {
-        'authorization': this.auth_header,
-        'content-type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify(payload),
-    };
-
-    const maybeCancelMore = (json) => {
-      this._progress += parseInt(json.matched);
-      this.render();
-      if (json.cursor) {
-        const payload = {
-          limit: CANCEL_BATCH_SIZE,
-          tags: this.tags,
-          cursor: json.cursor,
-        };
-        if (this._both) {
-          payload.kill_running = true;
-        }
-        const options = {
-          headers: {
-            'authorization': this.auth_header,
-            'content-type': 'application/json',
-          },
-          method: 'POST',
-          body: JSON.stringify(payload),
-        };
-        fetch('/_ah/api/swarming/v1/tasks/cancel', options)
-            .then(jsonOrThrow)
-            .then(maybeCancelMore)
-            .catch((e) => fetchError(e, 'task-mass-cancel/cancel (paging)'));
-      } else {
-        this._finished = true;
-        this.render();
-        this.dispatchEvent(new CustomEvent('tasks-canceling-finished', {bubbles: true}));
-      }
-    };
-
-    fetch('/_ah/api/swarming/v1/tasks/cancel', options)
+    let tasks = [];
+    fetch(`/_ah/api/swarming/v1/tasks/list?${queryParams}`, extra)
         .then(jsonOrThrow)
-        .then(maybeCancelMore)
-        .catch((e) => fetchError(e, 'task-mass-cancel/cancel'));
+        .then((json) => {
+          const maybeLoadMore = (json) => {
+            tasks = tasks.concat(json.items);
+            this.render();
+            if (json.cursor) {
+              const queryParams = query.fromObject({
+                cursor: json.cursor,
+                tags: this.tags,
+                start: floorSecond(this.startTime),
+                end: floorSecond(this.now ? Date.now() : this.endTime),
+                limit: 200, // see https://crbug.com/908423
+                fields: 'cursor,items/task_id',
+                state: 'PENDING',
+              });
+              fetch(`/_ah/api/swarming/v1/tasks/list?${queryParams}`, extra)
+                  .then(jsonOrThrow)
+                  .then(maybeLoadMore)
+                  .catch((e) => fetchError(e, 'bot-mass-delete/list (paging)'));
+            } else {
+              // Now that we have the complete list of tasks (e.g. no paging left)
+              // cancel the tasks one at a time, updating this._progress to be the
+              // number completed.
+              const post = {
+                headers: {'authorization': this.auth_header},
+                method: 'POST',
+              };
+
+              if (this._both) {
+                post.kill_running = true;
+              }
+
+              const deleteNext = (tasks) => {
+                if (!tasks.length) {
+                  this._finished = true;
+                  this.render();
+                  this.dispatchEvent(new CustomEvent('tasks-canceling-finished', {bubbles: true}));
+                  return;
+                }
+                const toDelete = tasks.pop();
+                fetch(`/_ah/api/swarming/v1/task/${toDelete.task_id}/cancel`, post)
+                    .then(() => {
+                      this._progress++;
+                      this.render();
+                      deleteNext(tasks);
+                    }).catch((e) => fetchError(e, 'task-mass-cancel/cancel'));
+              };
+              deleteNext(tasks);
+            }
+          };
+          maybeLoadMore(json);
+        }).catch((e) => fetchError(e, 'task-mass-cancel/list'));
   }
 
   _count() {

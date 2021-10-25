@@ -1017,7 +1017,7 @@ describe('task-list', function() {
 
     it('counts correctly when cancelling', function(done) {
       jasmine.clock().uninstall(); // re-enable setTimeout
-      fetchMock.post('/_ah/api/swarming/v1/tasks/cancel', {'matched': 10});
+      fetchMock.post('glob:/_ah/api/swarming/v1/task/*/cancel', {'was_running': false, 'ok': true});
       loggedInTasklist((ele) => {
         ele._filters = ['pool-tag:Chrome'];
         ele.permissions.cancel_task = true;
@@ -1040,15 +1040,14 @@ describe('task-list', function() {
             fetchMock.flush(true).then(() => {
               expectNoUnmatchedCalls(fetchMock);
               let calls = fetchMock.calls(MATCHED, 'GET');
-              expect(calls).toHaveSize(0, 'Only posts');
+              expect(calls).toHaveSize(1, 'one list request');
               calls = fetchMock.calls(MATCHED, 'POST');
-              expect(calls).toHaveSize(1, '1 cancel request');
+              expect(calls).toHaveSize(20, `20 cancel request but ${calls.length}`);
               // calls is an array of 2-length arrays with the first element
               // being the string of the url and the second element being
               // the options that were passed in
               const cancelPost = calls[0];
-              expect(cancelPost[0]).toEqual('/_ah/api/swarming/v1/tasks/cancel');
-              expect(cancelPost[1].body).toEqual('{"limit":100,"tags":["pool:Chrome"]}');
+              expect(cancelPost[0]).toEqual('/_ah/api/swarming/v1/task/41df677202f20310/cancel');
 
               done();
             });
