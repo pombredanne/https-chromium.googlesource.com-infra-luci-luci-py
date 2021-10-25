@@ -11,6 +11,7 @@ describe('task-mass-cancel', function() {
   // try to import things multiple times.
   const {$, $$} = require('common-sk/modules/dom');
   const {customMatchers, expectNoUnmatchedCalls, mockAppGETs} = require('modules/test_util');
+  const {tasks_20} = require('modules/task-list/test_data');
   const {fetchMock, MATCHED, UNMATCHED} = require('fetch-mock');
   // A reusable HTML element in which we create our element under test.
   const container = document.createElement('div');
@@ -22,6 +23,8 @@ describe('task-mass-cancel', function() {
     mockAppGETs(fetchMock, {delete_bot: true});
 
     fetchMock.get('glob:/_ah/api/swarming/v1/tasks/count?*', {'count': 17});
+    fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*', tasks_20);
+    fetchMock.get('glob:/_ah/api/swarming/v1/task/*/cancel', {});
 
     // Everything else
     fetchMock.catch(404);

@@ -286,6 +286,9 @@ const template = (ele) => html`
     <div class='cancel content'>
       <task-mass-cancel
           .auth_header=${ele.auth_header}
+          .startTime=${ele.startTime}
+          .endTime=${ele.endTime}
+          .now=${ele.now}
           .tags=${tagsOnly(ele._filters).map(stripTagFromFilter)}></task-mass-cancel>
       <button class=goback tabindex=0
               @click=${ele._closePopup}
