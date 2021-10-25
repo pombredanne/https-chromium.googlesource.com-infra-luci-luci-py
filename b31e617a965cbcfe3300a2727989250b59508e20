@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16dcfeef_d8b35f45",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-25T12:46:10Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 5
+      },
+      "revId": "b31e617a965cbcfe3300a2727989250b59508e20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b1de7ff_a18daf78",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-25T12:46:10Z",
+      "side": 1,
+      "message": "- better to define after L134 to avoid indentation.\n- it\u0027s easier to separate logic for collecting task IDs and execute cancel\n\nIt would look like\n\nfetch(\".../tasks/list?...\")\n  .then(jsonOrThrow)\n  .then(loadMoreTasks)\n  .then(requestCancel)",
+      "range": {
+        "startLine": 138,
+        "startChar": 16,
+        "endLine": 138,
+        "endChar": 29
+      },
+      "revId": "b31e617a965cbcfe3300a2727989250b59508e20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76d6deb5_175ac94c",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-25T12:46:10Z",
+      "side": 1,
+      "message": "I wonder if rendering is necessary here.",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 26
+      },
+      "revId": "b31e617a965cbcfe3300a2727989250b59508e20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4769821f_d299f6b9",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-25T12:46:10Z",
+      "side": 1,
+      "message": "How about adding if not both?\n\nif (!this._both) {\n  queryPayload[\u0027state\u0027] \u003d \u0027PENDING\u0027\n}",
+      "range": {
+        "startLine": 152,
+        "startChar": 1,
+        "endLine": 155,
+        "endChar": 0
+      },
+      "revId": "b31e617a965cbcfe3300a2727989250b59508e20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed3c987e_b0c75f2d",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-25T12:46:10Z",
+      "side": 1,
+      "message": "task-mass-cancel",
+      "range": {
+        "startLine": 160,
+        "startChar": 47,
+        "endLine": 160,
+        "endChar": 62
+      },
+      "revId": "b31e617a965cbcfe3300a2727989250b59508e20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4f3017d_14bc5d15",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-25T12:46:10Z",
+      "side": 1,
+      "message": "Why did you change the API from /tasks/cancel to /task/{task_id}/cancel?\nIt would take long time to complete.",
+      "range": {
+        "startLine": 182,
+        "startChar": 44,
+        "endLine": 182,
+        "endChar": 76
+      },
+      "revId": "b31e617a965cbcfe3300a2727989250b59508e20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
