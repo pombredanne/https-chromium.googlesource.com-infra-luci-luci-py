@@ -735,10 +735,7 @@ class Containment(ndb.Model):
 
   def to_proto(self, out):
     """Converts self to a swarming_pb2.Containment."""
-    out.lower_priority = self.lower_priority
     out.containment_type = self.containment_type or 0
-    out.limit_processes = self.limit_processes or 0
-    out.limit_total_committed_memory = self.limit_total_committed_memory or 0
 
 
 class ResultDBCfg(ndb.Model):

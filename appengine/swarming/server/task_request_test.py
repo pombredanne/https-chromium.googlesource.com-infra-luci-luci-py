@@ -1123,10 +1123,7 @@ class TaskRequestApiTest(TestCase):
                 name=u'git_chromium', dest_path=u'git_cache'),
         ],
         containment=swarming_pb2.Containment(
-            lower_priority=True,
             containment_type=swarming_pb2.Containment.JOB_OBJECT,
-            limit_processes=1000,
-            limit_total_committed_memory=1024**3,
         ),
         command=[u'command1', u'arg1'],
         relative_cwd=u'subdir',
@@ -1290,10 +1287,7 @@ class TaskRequestApiTest(TestCase):
                 name=u'git_chromium', dest_path=u'git_cache'),
         ],
         containment=swarming_pb2.Containment(
-            lower_priority=True,
             containment_type=swarming_pb2.Containment.JOB_OBJECT,
-            limit_processes=1000,
-            limit_total_committed_memory=1024**3,
         ),
         command=[u'command1', u'arg1'],
         relative_cwd=u'subdir',

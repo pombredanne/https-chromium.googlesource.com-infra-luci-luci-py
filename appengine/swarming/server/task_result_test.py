@@ -826,8 +826,7 @@ class TaskResultApiTest(TestCase):
                                 dest_path=u'bin',
                             ),
                         ],
-                        containment=swarming_pb2.Containment(
-                            lower_priority=True),
+                        containment=swarming_pb2.Containment(),
                         command=[u'command1'],
                         dimensions=[
                             swarming_pb2.StringListPair(
@@ -1049,8 +1048,7 @@ class TaskResultApiTest(TestCase):
                                 dest_path=u'bin',
                             ),
                         ],
-                        containment=swarming_pb2.Containment(
-                            lower_priority=True),
+                        containment=swarming_pb2.Containment(),
                         command=[u'command1'],
                         dimensions=[
                             swarming_pb2.StringListPair(
