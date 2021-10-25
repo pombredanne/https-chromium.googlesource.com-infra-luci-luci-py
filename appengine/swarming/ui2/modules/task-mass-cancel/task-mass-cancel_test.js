@@ -11,6 +11,7 @@ describe('task-mass-cancel', function() {
   // try to import things multiple times.
   const {$, $$} = require('common-sk/modules/dom');
   const {customMatchers, expectNoUnmatchedCalls, mockAppGETs} = require('modules/test_util');
+  const {tasks_20} = require('modules/task-list/test_data');
   const {fetchMock, MATCHED, UNMATCHED} = require('fetch-mock');
   // A reusable HTML element in which we create our element under test.
   const container = document.createElement('div');
@@ -22,6 +23,8 @@ describe('task-mass-cancel', function() {
     mockAppGETs(fetchMock, {delete_bot: true});
 
     fetchMock.get('glob:/_ah/api/swarming/v1/tasks/count?*', {'count': 17});
+    fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*', tasks_20);
+    fetchMock.post('glob:/_ah/api/swarming/v1/task/*/cancel', {'was_running': false, 'ok': true});
 
     // Everything else
     fetchMock.catch(404);
@@ -37,7 +40,7 @@ describe('task-mass-cancel', function() {
   // calls the test callback with one element 'ele', a created <task-mass-cancel>.
   function createElement(test) {
     return window.customElements.whenDefined('task-mass-cancel').then(() => {
-      container.innerHTML = `<task-mass-cancel tags="pool:Chrome,os:Android" auth_header="fake"></task-mass-cancel>`;
+      container.innerHTML = `<task-mass-cancel start=10 end=20 now=false tags="pool:Chrome,os:Android" auth_header="fake"></task-mass-cancel>`;
       expect(container.firstElementChild).toBeTruthy();
       test(container.firstElementChild);
     });
@@ -80,8 +83,6 @@ describe('task-mass-cancel', function() {
 
   it('makes an API call to delete after clicking', function(done) {
     createElement((ele) => {
-      fetchMock.post('/_ah/api/swarming/v1/tasks/cancel', {matched: 22});
-
       let sawStartEvent = false;
       ele.addEventListener('tasks-canceling-started', () => {
         sawStartEvent = true;
@@ -91,8 +92,9 @@ describe('task-mass-cancel', function() {
         expect(sawStartEvent).toBeTruthy();
         expectNoUnmatchedCalls(fetchMock);
 
-        const calls = fetchMock.calls(MATCHED, 'POST');
-        expect(calls).toHaveSize(1, '1 to delete');
+        const calls = fetchMock.calls(MATCHED, 'GET');
+        expect(calls).toHaveSize(1, '1 to task list');
+        expect(calls[0][0]).toEqual('/_ah/api/swarming/v1/tasks/list?end=0&fields=cursor%2Citems%2Ftask_id&limit=200&start=10&state=PENDING&tags=os%3AAndroid&tags=pool%3AChrome');
         done();
       });
 
