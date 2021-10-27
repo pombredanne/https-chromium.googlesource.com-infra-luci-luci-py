@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f595b530_f4663bf7",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-27T06:45:30Z",
+      "side": 1,
+      "message": "better to do this in cancel_tasks()?\n\nFor sort\u003d\u0027created_ts\u0027, cancel_tasks() will need to take \u0027sort\u0027 argument.",
+      "range": {
+        "startLine": 104,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 79
+      },
+      "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dcea8385_bca0644d",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 6
