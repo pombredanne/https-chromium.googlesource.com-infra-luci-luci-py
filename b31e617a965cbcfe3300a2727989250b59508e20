@@ -137,6 +137,30 @@
       },
       "revId": "b31e617a965cbcfe3300a2727989250b59508e20",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4df14eaf_7f040cd1",
+        "filename": "appengine/swarming/ui2/modules/task-mass-cancel/task-mass-cancel.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-27T06:21:28Z",
+      "side": 1,
+      "message": "I found the way to support start/end in tasks cancel api, let me keep current implemention with https://crrev.com/c/3246780",
+      "parentUuid": "e4f3017d_14bc5d15",
+      "range": {
+        "startLine": 182,
+        "startChar": 44,
+        "endLine": 182,
+        "endChar": 76
+      },
+      "revId": "b31e617a965cbcfe3300a2727989250b59508e20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
