@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b57d82c_a3d1eb5f",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-27T08:10:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00c1cd67_3b56f079",
+      "range": {
+        "startLine": 656,
+        "startChar": 21,
+        "endLine": 656,
+        "endChar": 40
+      },
+      "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f595b530_f4663bf7",
@@ -84,6 +108,30 @@
       "writtenOn": "2021-10-27T07:41:23Z",
       "side": 1,
       "message": "Is it possible to use task_result._filter_query() with the order by key support?",
+      "range": {
+        "startLine": 99,
+        "startChar": 64,
+        "endLine": 106,
+        "endChar": 79
+      },
+      "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd7b79a4_5b09bdfc",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-27T08:10:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82461cf3_8a6737c2",
       "range": {
         "startLine": 99,
         "startChar": 64,
@@ -203,6 +251,30 @@
       "side": 1,
       "message": "Ah, I think the state parameter is redundant because there is kill_running.\nYou should use that flag to control the state filter.\n\ne.g. \n\n# handlers_endpoints.py\n\nif request.kill_running:\n  request.state \u003d PENDING_RUNNING\nelse:\n  request.state \u003d PENDING\n\nBut the problem is that the request is TasksCancelRequest...",
       "parentUuid": "43723858_e2e7ca02",
+      "range": {
+        "startLine": 1691,
+        "startChar": 44,
+        "endLine": 1691,
+        "endChar": 56
+      },
+      "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06c8ab85_e5c7c0d2",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1691,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-27T08:10:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "917edcd7_904cbe9f",
       "range": {
         "startLine": 1691,
         "startChar": 44,
