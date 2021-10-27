@@ -93,6 +93,30 @@
       },
       "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d508d8_08e9dbf0",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1691,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-27T07:24:58Z",
+      "side": 1,
+      "message": "It seems the state filter relies on the request.\nIf a caller specifies nothing, it will fetch all tasks that match to the condition, which include completed tasks too.\n\nLet me check the existing code more.",
+      "parentUuid": "e0048687_147d68e2",
+      "range": {
+        "startLine": 1691,
+        "startChar": 44,
+        "endLine": 1691,
+        "endChar": 56
+      },
+      "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
