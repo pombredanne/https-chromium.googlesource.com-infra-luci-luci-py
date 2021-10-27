@@ -7,6 +7,7 @@
 import logging
 
 from google.appengine.api import datastore_errors
+from google.appengine.datastore import datastore_query
 from google.appengine.ext import ndb
 from google.protobuf import empty_pb2
 
@@ -94,9 +95,17 @@ class TaskBackendAPIService(prpc_helpers.SwarmingPRPCService):
         pools += bot_management.get_pools_from_dimensions_flat(tr.tags)
     realms.check_tasks_cancel_acl(pools)
 
-    filter_node = task_result.TaskResultSummary.key.IN(result_keys)
-    task_scheduler.cancel_tasks(
-        len(task_ids), condition=filter_node, kill_running=True)
+    query = task_result.TaskResultSummary.query(
+    ).filter(task_result.TaskResultSummary.key.IN(result_keys)).filter(
+        ndb.OR(
+            task_result.TaskResultSummary.state == task_result.State.PENDING,
+            task_result.TaskResultSummary.state == task_result.State.RUNNING))
+
+    query = query.order(
+        datastore_query.PropertyOrder('__key__',
+                                      datastore_query.PropertyOrder.ASCENDING))
+
+    task_scheduler.cancel_tasks(len(task_ids), query)
 
     # CancelTasksResponse should return ALL tasks in `request.task_ids`
     # not just the tasks that are actually getting cancelled.
