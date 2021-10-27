@@ -610,6 +610,9 @@ class TasksCancelRequest(messages.Message):
   cursor = messages.StringField(2)
   limit = messages.IntegerField(3, default=100)
   kill_running = messages.BooleanField(4)
+  end = messages.FloatField(5)
+  start = messages.FloatField(6)
+  state = messages.EnumField(TaskStateQuery, 7, default='PENDING')
 
 
 ### Task-Related Responses
