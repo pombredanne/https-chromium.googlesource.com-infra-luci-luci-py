@@ -1775,11 +1775,12 @@ class TasksApiTest(BaseTest):
     self.mock(utils, 'enqueue_task', enqueue_task)
 
     self.set_as_admin()
-    response = self.call_api(
-        'cancel', body={
-            u'tags': [u'project:yay'],
-            'kill_running': True
-        })
+    response = self.call_api('cancel',
+                             body={
+                                 u'tags': [u'project:yay'],
+                                 'kill_running': True,
+                                 'state': 'PENDING_RUNNING',
+                             })
     expected = {
         u'matched': u'2',
         u'now': fmtdate(now_120),
