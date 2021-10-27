@@ -69,30 +69,29 @@ def get_protoc():
   return 'protoc.exe' if sys.platform == 'win32' else 'protoc'
 
 
-def compile_proto(proto_file, proto_path, output_path=None):
+def compile_proto(proto_file, proto_path, output_path):
   """Invokes 'protoc', compiling single *.proto file into *_pb2.py file.
 
   Args:
     proto_file: the file to compile.
     proto_path: the root of proto file directory tree.
     output_path: the root of the output directory tree.
-      Defaults to `proto_path`.
 
   Returns:
     The path of the generated _pb2.py file.
   """
-  output_path = output_path or proto_path
   cmd = [get_protoc()]
-  cmd.append('--proto_path=%s' % proto_path)
+  for path in proto_path.split(','):
+    cmd.append('--proto_path=%s' % proto_path)
+  # Reuse embedded google protobuf.
+  root = os.path.dirname(os.path.dirname(os.path.dirname(THIS_DIR)))
+  cmd.append('--proto_path=%s' % os.path.join(root, 'client', 'third_party'))
   cmd.append('--python_out=%s' % output_path)
   cmd.append('--prpc-python_out=%s' % output_path)
   cmd.append(proto_file)
   logging.debug('Running %s', cmd)
   env = os.environ.copy()
   env['PATH'] = os.pathsep.join([THIS_DIR, env.get('PATH', '')])
-  # Reuse embedded google protobuf.
-  root = os.path.dirname(os.path.dirname(os.path.dirname(THIS_DIR)))
-  env['PYTHONPATH'] = os.path.join(root, 'client', 'third_party')
   subprocess.check_call(cmd, env=env)
   return proto_file.replace('.proto', '_pb2.py').replace(proto_path,
                                                          output_path)
@@ -114,7 +113,7 @@ def check_proto_compiled(proto_file, proto_path):
   tmp_dir = tempfile.mkdtemp()
   try:
     try:
-      compiled = compile_proto(proto_file, proto_path, output_path=tmp_dir)
+      compiled = compile_proto(proto_file, proto_path, tmp_dir)
     except subprocess.CalledProcessError:
       return False
     return read(compiled) == read(expected_path)
@@ -122,13 +121,13 @@ def check_proto_compiled(proto_file, proto_path):
     shutil.rmtree(tmp_dir)
 
 
-def compile_all_files(root_dir, proto_path):
+def compile_all_files(root_dir, proto_path, output_path):
   """Compiles all *.proto files it recursively finds in |root_dir|."""
   root_dir = os.path.abspath(root_dir)
   success = True
   for path in find_proto_files(root_dir):
     try:
-      compile_proto(path, proto_path)
+      compile_proto(path, proto_path, output_path)
     except subprocess.CalledProcessError:
       print('Failed to compile: %s' % path[len(root_dir) + 1:], file=sys.stderr)
       success = False
@@ -182,6 +181,9 @@ def main(args, app_dir=None):
           'Used to calculate relative paths of proto files in the registry. '
           'Defaults to the input directory.'
       ))
+  parser.add_option('--output_path',
+                    help=('Root of the output directory tree. '
+                          'Default to the input directory.'))
 
   options, args = parser.parse_args(args)
   logging.basicConfig(level=logging.DEBUG if options.verbose else logging.ERROR)
@@ -220,11 +222,12 @@ def main(args, app_dir=None):
     return 1
 
   proto_path = os.path.abspath(options.proto_path or root_dir)
+  output_path = os.path.abspath(options.output_path or root_dir)
 
   if options.check:
     success = check_all_files(root_dir, proto_path)
   else:
-    success = compile_all_files(root_dir, proto_path)
+    success = compile_all_files(root_dir, proto_path, output_path)
 
   return int(not success)
 
