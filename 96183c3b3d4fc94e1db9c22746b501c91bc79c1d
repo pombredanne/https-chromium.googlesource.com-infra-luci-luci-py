@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33cad449_47a1c098",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-27T06:55:53Z",
+      "side": 1,
+      "message": "I prefer to have this here as _query_from_request\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/handlers_endpoints.py;l\u003d709;drc\u003d94f464363797fb67a535df96a1a6e0f6e71ac6c1\nadded query.order internally for handlers_endpoints.py.\n\nI\u0027d like to avoid applying order twice in that case.",
+      "parentUuid": "f595b530_f4663bf7",
+      "range": {
+        "startLine": 104,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 79
+      },
+      "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dcea8385_bca0644d",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 6
@@ -37,6 +61,30 @@
       "writtenOn": "2021-10-27T06:41:19Z",
       "side": 1,
       "message": "This isn\u0027t used in the query anymore?\nCan you apply PENDING (+ RUNNING) filter to the query in this function instead of doing it at handler_prpc?",
+      "range": {
+        "startLine": 1691,
+        "startChar": 44,
+        "endLine": 1691,
+        "endChar": 56
+      },
+      "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0048687_147d68e2",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1691,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-27T06:55:53Z",
+      "side": 1,
+      "message": "This is not used in query, but still used in payload passed to task queue.\n\nBut filter for pending was added in self._query_from_request(...) from handlers_endpoints.py and difficult to extract state from query here.\nAlso kill_running\u003dFalse prevents killing tasks that change its state to RUNNING after datastore_utils.fetch_page in L1700.\n\nSo I\u0027d like to keep both state filter in query and kill_running here for now.",
+      "parentUuid": "dcea8385_bca0644d",
       "range": {
         "startLine": 1691,
         "startChar": 44,
