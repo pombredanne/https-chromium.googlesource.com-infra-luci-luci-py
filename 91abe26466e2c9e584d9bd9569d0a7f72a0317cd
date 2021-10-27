@@ -16,6 +16,24 @@
       "message": "why not remove this?",
       "revId": "91abe26466e2c9e584d9bd9569d0a7f72a0317cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b72d65ef_2729e1dc",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1409819
+      },
+      "writtenOn": "2021-10-27T04:56:05Z",
+      "side": 1,
+      "message": "To remove this, I would need to change https://source.chromium.org/chromium/infra/infra/+/9c9355c6f0fd0b0f8ee5449ce7d9deaecf3b46a0:luci/appengine/swarming/handlers_bot.py;drc\u003d8189e0134c2fc461849bd060ea4ed837dbaf7788;l\u003d766 as well? I\u0027m not sure whether I should do that in this CL since I\u0027m modifying the API but not the ndb models?",
+      "parentUuid": "cd9f52c1_9a10b9ed",
+      "revId": "91abe26466e2c9e584d9bd9569d0a7f72a0317cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
