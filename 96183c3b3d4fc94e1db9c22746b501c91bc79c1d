@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00c1cd67_3b56f079",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-27T07:41:23Z",
+      "side": 1,
+      "message": "Maybe you can use task_result.get_result_summaries_query directly.\nThe \u0027state\u0027 argument will be \u0027pending\u0027 if kill_running\u003dFalse, otherwise \u0027pending_running\u0027. This way, you don\u0027t need \u0027state\u0027 option in the RPC.",
+      "range": {
+        "startLine": 656,
+        "startChar": 21,
+        "endLine": 656,
+        "endChar": 40
+      },
+      "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f595b530_f4663bf7",
         "filename": "appengine/swarming/handlers_prpc.py",
         "patchSetId": 6
@@ -41,6 +64,29 @@
       "range": {
         "startLine": 104,
         "startChar": 12,
+        "endLine": 106,
+        "endChar": 79
+      },
+      "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82461cf3_8a6737c2",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-27T07:41:23Z",
+      "side": 1,
+      "message": "Is it possible to use task_result._filter_query() with the order by key support?",
+      "range": {
+        "startLine": 99,
+        "startChar": 64,
         "endLine": 106,
         "endChar": 79
       },
