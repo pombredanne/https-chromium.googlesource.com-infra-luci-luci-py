@@ -97,7 +97,6 @@ StringListPair = collections.namedtuple(
 
 # See ../appengine/swarming/swarming_rpcs.py.
 Containment = collections.namedtuple('Containment', [
-    'lower_priority',
     'containment_type',
 ])
 
@@ -1192,7 +1191,6 @@ def process_trigger_options(parser, options, args):
       cipd_input=cipd_input,
       command=command,
       containment=Containment(
-          lower_priority=bool(options.lower_priority),
           containment_type=options.containment_type,
       ),
       relative_cwd=options.relative_cwd,

@@ -539,10 +539,10 @@ class BotApiTest(test_env_handlers.AppTestBase):
             },
             u'command': [u'python', u'run_test.py'],
             u'containment': {
-                u'lower_priority': True,
+                u'lower_priority': False,
                 u'containment_type': 2,
-                u'limit_processes': 1000,
-                u'limit_total_committed_memory': 1024**3,
+                u'limit_processes': None,
+                u'limit_total_committed_memory': None,
             },
             u'relative_cwd': u'de/ep',
             u'dimensions': {
@@ -618,10 +618,10 @@ class BotApiTest(test_env_handlers.AppTestBase):
             },
             u'command': [u'python', u'run_test.py'],
             u'containment': {
-                u'lower_priority': True,
+                u'lower_priority': False,
                 u'containment_type': 2,
-                u'limit_processes': 1000,
-                u'limit_total_committed_memory': 1024**3,
+                u'limit_processes': None,
+                u'limit_total_committed_memory': None,
             },
             u'relative_cwd': None,
             u'dimensions': {
@@ -697,10 +697,10 @@ class BotApiTest(test_env_handlers.AppTestBase):
             },
             u'command': [u'python', u'run_test.py'],
             u'containment': {
-                u'lower_priority': True,
+                u'lower_priority': False,
                 u'containment_type': 2,
-                u'limit_processes': 1000,
-                u'limit_total_committed_memory': 1024**3,
+                u'limit_processes': None,
+                u'limit_total_committed_memory': None,
             },
             u'relative_cwd': None,
             u'dimensions': {
@@ -819,10 +819,10 @@ class BotApiTest(test_env_handlers.AppTestBase):
             },
             u'command': [u'python', u'run_test.py'],
             u'containment': {
-                u'lower_priority': True,
+                u'lower_priority': False,
                 u'containment_type': 2,
-                u'limit_processes': 1000,
-                u'limit_total_committed_memory': 1024**3,
+                u'limit_processes': None,
+                u'limit_total_committed_memory': None,
             },
             u'relative_cwd': None,
             u'dimensions': {
@@ -1127,10 +1127,10 @@ class BotApiTest(test_env_handlers.AppTestBase):
             },
             u'command': ['python', '-c', 'print(1)'],
             u'containment': {
-                u'lower_priority': True,
+                u'lower_priority': False,
                 u'containment_type': 2,
-                u'limit_processes': 1000,
-                u'limit_total_committed_memory': 1024**3,
+                u'limit_processes': None,
+                u'limit_total_committed_memory': None,
             },
             u'relative_cwd': None,
             u'dimensions': {
