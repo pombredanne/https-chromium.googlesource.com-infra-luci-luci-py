@@ -34,6 +34,24 @@
       "parentUuid": "cd9f52c1_9a10b9ed",
       "revId": "91abe26466e2c9e584d9bd9569d0a7f72a0317cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dfdab54_9686546b",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-27T04:59:57Z",
+      "side": 1,
+      "message": "You can remove those too as there are no request using those fields.\n\nBut I\u0027m fine to remove those in separate CL if you want.",
+      "parentUuid": "b72d65ef_2729e1dc",
+      "revId": "91abe26466e2c9e584d9bd9569d0a7f72a0317cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
