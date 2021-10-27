@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1255b5c9_91a6ad6c",
+        "filename": "client/swarming.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-27T04:01:01Z",
+      "side": 0,
+      "message": "remove flag for this\nhttps://source.chromium.org/search?q\u003dlower-priority%20f:luci.*swarming\u0026sq\u003d\u0026ss\u003dchromium%2Finfra%2Finfra:luci%2F\n?",
+      "range": {
+        "startLine": 1195,
+        "startChar": 38,
+        "endLine": 1195,
+        "endChar": 52
+      },
+      "revId": "79d4ec074c122dc1ea3e1f311a5182601e0214a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
