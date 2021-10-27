@@ -117,6 +117,30 @@
       },
       "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43723858_e2e7ca02",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1691,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-27T07:27:48Z",
+      "side": 1,
+      "message": "You set the default to PENDING. But a caller can set anything, hmm.\nCan you limit it to PENDING or RUNNING state?",
+      "parentUuid": "a4d508d8_08e9dbf0",
+      "range": {
+        "startLine": 1691,
+        "startChar": 44,
+        "endLine": 1691,
+        "endChar": 56
+      },
+      "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
