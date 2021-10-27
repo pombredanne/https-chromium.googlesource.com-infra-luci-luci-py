@@ -141,6 +141,30 @@
       },
       "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "917edcd7_904cbe9f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1691,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-27T07:34:49Z",
+      "side": 1,
+      "message": "Ah, I think the state parameter is redundant because there is kill_running.\nYou should use that flag to control the state filter.\n\ne.g. \n\n# handlers_endpoints.py\n\nif request.kill_running:\n  request.state \u003d PENDING_RUNNING\nelse:\n  request.state \u003d PENDING\n\nBut the problem is that the request is TasksCancelRequest...",
+      "parentUuid": "43723858_e2e7ca02",
+      "range": {
+        "startLine": 1691,
+        "startChar": 44,
+        "endLine": 1691,
+        "endChar": 56
+      },
+      "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
