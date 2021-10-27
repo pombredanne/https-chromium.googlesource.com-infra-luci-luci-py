@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0fdad0c_93b4f317",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-27T06:41:19Z",
+      "side": 0,
+      "message": "+1\nGood to not generate ndb staff at handler:)",
+      "range": {
+        "startLine": 653,
+        "startChar": 0,
+        "endLine": 659,
+        "endChar": 0
+      },
+      "revId": "045ce2d2c3a219fecc512537af16c669f5461d5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

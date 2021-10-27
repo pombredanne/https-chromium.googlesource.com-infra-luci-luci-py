@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcea8385_bca0644d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1691,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-27T06:41:19Z",
+      "side": 1,
+      "message": "This isn\u0027t used in the query anymore?\nCan you apply PENDING (+ RUNNING) filter to the query in this function instead of doing it at handler_prpc?",
+      "range": {
+        "startLine": 1691,
+        "startChar": 44,
+        "endLine": 1691,
+        "endChar": 56
+      },
+      "revId": "96183c3b3d4fc94e1db9c22746b501c91bc79c1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
