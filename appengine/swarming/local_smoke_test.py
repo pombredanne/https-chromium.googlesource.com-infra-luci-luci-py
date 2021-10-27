@@ -125,7 +125,7 @@ class SwarmingClient(object):
     ]
     return self._run_isolateserver('download', args)
 
-  def task_trigger_raw(self, args):
+  def task_trigger(self, args):
     """Triggers a task and return the task id."""
     h, tmp = tempfile.mkstemp(
         dir=self._tmpdir, prefix='trigger_raw', suffix='.json')
@@ -177,20 +177,26 @@ class SwarmingClient(object):
       logging.debug('task_id = %s', task_id)
       return task_id
 
-  def task_trigger_post(self, request):
-    """Triggers a task with the very raw RPC and returns the task id.
-
-    It does an HTTP POST at tasks/new with the provided data in 'request'.
+  def task_trigger_raw(self, request):
+    """Triggers a task with the raw request and returns the task id.
     """
-    out = self._capture_swarming('post', ['tasks/new'], request)
-    try:
-      data = json.loads(out)
-    except ValueError:
-      logging.info('Data could not be decoded: %r', out)
-      return None
-    task_id = data['task_id']
-    logging.debug('task_id = %s', task_id)
-    return task_id
+    input_json = os.path.join(self._tmpdir, 'task_trigger_raw_input')
+    with fs.open(input_json, 'wb') as f:
+      json.dump({'requests': [request]}, f)
+    output_json = os.path.join(self._tmpdir, 'task_trigger_raw_output.json')
+    args = [
+        '-json-input',
+        input_json,
+        '-json-output',
+        output_json,
+    ]
+    ret = self._run_swarming('spawn-tasks', args)
+    assert ret == 0, 'Failed to spawn a task. args=%s' % args
+    with fs.open(output_json, 'rb') as f:
+      data = json.load(f)
+      task_id = data['tasks'][0]['task_id']
+      logging.debug('task_id = %s', task_id)
+      return task_id
 
   def task_collect(self,
                    task_id,
@@ -584,7 +590,7 @@ class Test(unittest.TestCase):
     ]
 
     # tuple(task_id, expectation)
-    running_tasks = [(self.client.task_trigger_raw(args), expected)
+    running_tasks = [(self.client.task_trigger(args), expected)
                      for args, expected in tasks]
 
     for task_id, (summary, files) in running_tasks:
@@ -1219,7 +1225,7 @@ class Test(unittest.TestCase):
             '-c',
             'print(\'%d\')' % priority,
         ]
-        tasks.append((task_name, priority, self.client.task_trigger_raw(args)))
+        tasks.append((task_name, priority, self.client.task_trigger(args)))
       # Ensure the tasks under test are pending.
       for task_name, priority, task_id in tasks:
         result = self.client.task_result(task_id)
@@ -1256,7 +1262,7 @@ class Test(unittest.TestCase):
         'print(\'hi\')'
     ]
     with self._make_wait_task('test_cancel_pending'):
-      task_id = self.client.task_trigger_raw(args)
+      task_id = self.client.task_trigger(args)
       result = self.client.task_result(task_id)
       self.assertEqual(u'PENDING', result[u'state'])
       self.assertTrue(self.client.task_cancel(task_id, []))
@@ -1316,39 +1322,45 @@ class Test(unittest.TestCase):
   def test_task_slice(self):
     request = {
         'name':
-            'task_slice',
+        'task_slice',
         'priority':
-            40,
+        '40',
+        'user':
+        'joe@localhost',
         'task_slices': [
             {
-                'expiration_secs': 120,
+                'expiration_secs': '120',
                 'properties': {
                     'command': ['python', '-c', 'print("first")'],
-                    'dimensions': [{
-                        'key': 'pool',
-                        'value': 'default',
-                    },],
-                    'grace_period_secs': 30,
-                    'execution_timeout_secs': 30,
-                    'io_timeout_secs': 30,
+                    'dimensions': [
+                        {
+                            'key': 'pool',
+                            'value': 'default',
+                        },
+                    ],
+                    'grace_period_secs': '30',
+                    'execution_timeout_secs': '30',
+                    'io_timeout_secs': '30',
                 },
             },
             {
-                'expiration_secs': 120,
+                'expiration_secs': '120',
                 'properties': {
                     'command': ['python', '-c', 'print("second")'],
-                    'dimensions': [{
-                        'key': 'pool',
-                        'value': 'default',
-                    },],
-                    'grace_period_secs': 30,
-                    'execution_timeout_secs': 30,
-                    'io_timeout_secs': 30,
+                    'dimensions': [
+                        {
+                            'key': 'pool',
+                            'value': 'default',
+                        },
+                    ],
+                    'grace_period_secs': '30',
+                    'execution_timeout_secs': '30',
+                    'io_timeout_secs': '30',
                 },
             },
         ],
     }
-    task_id = self.client.task_trigger_post(json.dumps(request))
+    task_id = self.client.task_trigger_raw(request)
     expected_summary = self.gen_expected(
         name=u'task_slice',
         output=u'first\n',
@@ -1360,9 +1372,8 @@ class Test(unittest.TestCase):
             u'service_account:none',
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev',
-            u'user:none',
+            u'user:joe@localhost',
         ])
-    expected_summary.pop('user')
     actual_summary, _ = self.client.task_collect(task_id)
     performance_stats = actual_summary['shards'][0].pop('performance_stats')
     self.assertPerformanceStatsEmpty(performance_stats)
@@ -1412,7 +1423,7 @@ class Test(unittest.TestCase):
             },
         ],
     }
-    task_id = self.client.task_trigger_post(json.dumps(request))
+    task_id = self.client.task_trigger_raw(request)
     expected_summary = self.gen_expected(
         name=u'task_slice_fallback',
         current_task_slice=u'1',
@@ -1465,7 +1476,7 @@ class Test(unittest.TestCase):
             },
         ],
     }
-    task_id = self.client.task_trigger_post(json.dumps(request))
+    task_id = self.client.task_trigger_raw(request)
     actual_summary, _ = self.client.task_collect(task_id)
     summary = actual_summary[u'shards'][0]
     # Immediately cancelled.
@@ -1494,7 +1505,7 @@ class Test(unittest.TestCase):
          '[time.sleep(0.1) for _ in range(100000) if os.path.exists(\'%s\')];'
          'print(\'hi again\')') % signal_file,
     ]
-    wait_task_id = self.client.task_trigger_raw(args)
+    wait_task_id = self.client.task_trigger(args)
     # Assert that the 'wait' task has started but not completed, otherwise
     # this defeats the purpose.
     self._wait_for_state(wait_task_id, u'PENDING', u'RUNNING')
@@ -1613,7 +1624,7 @@ class Test(unittest.TestCase):
 
   def assertOneTask(self, args, expected_summary, expected_files):
     """Runs a single task at a time."""
-    task_id = self.client.task_trigger_raw(args)
+    task_id = self.client.task_trigger(args)
     actual_summary, actual_files = self.client.task_collect(task_id)
     self.assertIsNotNone(actual_summary['shards'][0], actual_summary)
     performance_stats = actual_summary['shards'][0].pop('performance_stats')
