@@ -650,16 +650,10 @@ class SwarmingTasksService(remote.Service):
 
     now = utils.utcnow()
 
-    filter_nodes = None
-    if request.tags:
-      filter_nodes = task_result.TaskResultSummary.tags == request.tags[0]
-      for tag in request.tags[1:]:
-        filter_nodes = ndb.AND(filter_nodes,
-                               task_result.TaskResultSummary.tags == tag)
     try:
       cursor, results = task_scheduler.cancel_tasks(
           request.limit,
-          condition=filter_nodes,
+          query=self._query_from_request(request, sort='created_ts'),
           cursor=request.cursor,
           kill_running=bool(request.kill_running))
     except ValueError as e:
