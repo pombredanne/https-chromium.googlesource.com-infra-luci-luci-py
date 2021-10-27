@@ -1748,7 +1748,7 @@ class TasksApiTest(BaseTest):
     def enqueue_task(url, name, payload):
       self.assertEqual('/internal/taskqueue/important/tasks/cancel', url)
       self.assertEqual('cancel-tasks', name)
-      e = {'tasks': [pending_id], 'kill_running': False}
+      e = {'tasks': [pending_id], 'kill_running': True}
       self.assertEqual(e, json.loads(payload))
       return True
 
