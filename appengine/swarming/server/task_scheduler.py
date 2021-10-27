@@ -1712,7 +1712,8 @@ def cancel_tasks(limit, condition=None, cursor=None, kill_running=False):
   if results:
     payload = json.dumps({
         'tasks': [r.task_id for r in results],
-        'kill_running': kill_running,
+        # Ignore actual task state when killing the tasks.
+        'kill_running': True,
     })
     ok = utils.enqueue_task(
         '/internal/taskqueue/important/tasks/cancel',
