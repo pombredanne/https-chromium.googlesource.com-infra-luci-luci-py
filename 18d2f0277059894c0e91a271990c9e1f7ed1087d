@@ -141,6 +141,30 @@
       },
       "revId": "18d2f0277059894c0e91a271990c9e1f7ed1087d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8de423ad_4d286969",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1706,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-28T03:23:47Z",
+      "side": 1,
+      "message": "If this CL is submitted, kill_running is not given and we can\u0027t revert the CL.",
+      "parentUuid": "03b5a217_8572056d",
+      "range": {
+        "startLine": 1706,
+        "startChar": 9,
+        "endLine": 1706,
+        "endChar": 28
+      },
+      "revId": "18d2f0277059894c0e91a271990c9e1f7ed1087d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
