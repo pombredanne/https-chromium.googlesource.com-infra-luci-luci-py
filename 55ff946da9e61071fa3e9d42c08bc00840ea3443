@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2cbe69ce_ce137778",
+        "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-28T01:57:23Z",
+      "side": 1,
+      "message": "I see, then could you file an issue to Infra\u003eSDK about that?",
+      "parentUuid": "8bfa8e98_6a7c928d",
+      "revId": "55ff946da9e61071fa3e9d42c08bc00840ea3443",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c98e57c7_1d9157da",
         "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
         "patchSetId": 24
