@@ -236,6 +236,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4ed7e33_d16d601d",
+        "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-28T00:18:55Z",
+      "side": 1,
+      "message": "removed.",
+      "parentUuid": "f7a1baa0_379f9301",
+      "range": {
+        "startLine": 73,
+        "startChar": 26,
+        "endLine": 73,
+        "endChar": 33
+      },
+      "revId": "9cc48fafa3be6795755d21e205e05b83ad807056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77851eb7_ba5ed614",
@@ -284,6 +308,30 @@
       "writtenOn": "2021-10-08T01:44:07Z",
       "side": 1,
       "message": "this depends on cwd?",
+      "range": {
+        "startLine": 80,
+        "startChar": 7,
+        "endLine": 80,
+        "endChar": 52
+      },
+      "revId": "9cc48fafa3be6795755d21e205e05b83ad807056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f655bca_5fb38fd3",
+        "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-28T00:18:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5147734e_49ce8e1e",
       "range": {
         "startLine": 80,
         "startChar": 7,

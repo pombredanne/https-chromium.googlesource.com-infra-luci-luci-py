@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5479b018_5d5799ca",
+        "filename": "appengine/swarming/proto/bb_backend/go.chromium.org/luci/common/proto/README.md",
+        "patchSetId": 17
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-28T00:18:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6163171c_f3c5781c",
+      "revId": "d7df1b2b74981f740f7a5b8107b5e797e18de50f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4715179c_dd6a87c6",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-10-12T02:33:03Z",
       "side": 1,
       "message": "sort?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "d7df1b2b74981f740f7a5b8107b5e797e18de50f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38ad36c5_4da93f39",
+        "filename": "appengine/swarming/proto/bb_backend/update_taskbackend_protos.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-10-28T00:18:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4715179c_dd6a87c6",
       "range": {
         "startLine": 18,
         "startChar": 0,
