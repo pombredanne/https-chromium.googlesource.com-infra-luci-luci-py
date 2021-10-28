@@ -16,6 +16,24 @@
       "message": "this is invalid link?",
       "revId": "54ee1bfe1c8634c1eb9f65db7b7a15c2ac2bd870",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e2f2e3b_7845145a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-28T08:34:16Z",
+      "side": 1,
+      "message": "strange. fixed it.",
+      "parentUuid": "dda0c276_57efb686",
+      "revId": "54ee1bfe1c8634c1eb9f65db7b7a15c2ac2bd870",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
