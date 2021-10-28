@@ -37,7 +37,7 @@ describe('task-mass-cancel', function() {
   // calls the test callback with one element 'ele', a created <task-mass-cancel>.
   function createElement(test) {
     return window.customElements.whenDefined('task-mass-cancel').then(() => {
-      container.innerHTML = `<task-mass-cancel tags="pool:Chrome,os:Android" auth_header="fake"></task-mass-cancel>`;
+      container.innerHTML = `<task-mass-cancel start=10000 end=20000 tags="pool:Chrome,os:Android" auth_header="fake"></task-mass-cancel>`;
       expect(container.firstElementChild).toBeTruthy();
       test(container.firstElementChild);
     });
@@ -92,7 +92,10 @@ describe('task-mass-cancel', function() {
         expectNoUnmatchedCalls(fetchMock);
 
         const calls = fetchMock.calls(MATCHED, 'POST');
-        expect(calls).toHaveSize(1, '1 to delete');
+          expect(calls).toHaveSize(1, '1 to delete');
+          let req = calls[0];
+          expect(req[0]).toBe('/_ah/api/swarming/v1/tasks/cancel');
+          expect(req[1].body).toBe('{"limit":100,"tags":["os:Android","pool:Chrome"],"start":"10000","end":"20000"}');
         done();
       });
 
