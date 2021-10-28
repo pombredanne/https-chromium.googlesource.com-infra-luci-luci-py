@@ -117,6 +117,30 @@
       },
       "revId": "18d2f0277059894c0e91a271990c9e1f7ed1087d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03b5a217_8572056d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1706,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-10-28T03:07:49Z",
+      "side": 1,
+      "message": "\u003e Like this https://crrev.com/c/3246787 ?\n\nLGTM.\n\n\u003e But I think that is not easy to revert if we have submitted this CL.\n\nWhy? it\u0027s just 1 line change.",
+      "parentUuid": "f73226ae_2d2588bf",
+      "range": {
+        "startLine": 1706,
+        "startChar": 9,
+        "endLine": 1706,
+        "endChar": 28
+      },
+      "revId": "18d2f0277059894c0e91a271990c9e1f7ed1087d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
