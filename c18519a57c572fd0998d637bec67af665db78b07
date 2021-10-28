@@ -16,6 +16,24 @@
       "message": "CC: next CCI oncall ",
       "revId": "c18519a57c572fd0998d637bec67af665db78b07",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "949c1886_96fe87f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-10-28T08:31:39Z",
+      "side": 1,
+      "message": "I think it is better to CC oncall in deploy CL.",
+      "parentUuid": "ef6b4fe5_1d4e3378",
+      "revId": "c18519a57c572fd0998d637bec67af665db78b07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
