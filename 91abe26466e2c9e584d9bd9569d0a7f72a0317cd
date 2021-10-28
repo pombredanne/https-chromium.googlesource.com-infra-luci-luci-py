@@ -52,6 +52,24 @@
       "parentUuid": "b72d65ef_2729e1dc",
       "revId": "91abe26466e2c9e584d9bd9569d0a7f72a0317cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76f0b995_33799e2b",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1409819
+      },
+      "writtenOn": "2021-10-28T17:23:21Z",
+      "side": 1,
+      "message": "I see. Done in this CL.",
+      "parentUuid": "8dfdab54_9686546b",
+      "revId": "91abe26466e2c9e584d9bd9569d0a7f72a0317cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
