@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71d7786d_2f83a134",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-11-04T20:26:43Z",
+      "side": 1,
+      "message": "Actually it\u0027s only a problem first 10 min before the cron runs. So I can abandon this CL.",
+      "revId": "fb3e2794eaf015fb64c3f3dd89e41e3448dff7da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
