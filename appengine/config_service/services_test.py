@@ -88,8 +88,9 @@ class ProjectsTestCase(test_case.TestCase):
     )
 
   def test_get_metadata_async_not_found(self):
-    with self.assertRaises(services.DynamicMetadataError):
-      services.get_metadata_async('non-existent').get_result()
+    metadata = services.get_metadata_async('non-existent').get_result()
+    self.assertIsNotNone(metadata)
+    self.assertFalse(metadata.validation.patterns)
 
   def test_get_metadata_async_no_metadata(self):
     storage.ServiceDynamicMetadata(id='metadataless').put()

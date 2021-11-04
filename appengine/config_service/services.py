@@ -55,16 +55,10 @@ def _dict_to_dynamic_metadata(data):
 
 @ndb.tasklet
 def get_metadata_async(service_id):
-  """Returns service_config_pb2.ServiceDynamicMetadata for a service.
-
-  Raises:
-    DynamicMetadataError if metadata is not available or no such service.
-  """
-  entity = yield storage.ServiceDynamicMetadata.get_by_id_async(service_id)
-  if not entity:
-    raise DynamicMetadataError('No dynamic metadata for "%s"' % service_id)
+  """Returns service_config_pb2.ServiceDynamicMetadata for a service."""
   msg = service_config_pb2.ServiceDynamicMetadata()
-  if entity.metadata:
+  entity = yield storage.ServiceDynamicMetadata.get_by_id_async(service_id)
+  if entity and entity.metadata:
     msg.ParseFromString(entity.metadata)
   raise ndb.Return(msg)
 
