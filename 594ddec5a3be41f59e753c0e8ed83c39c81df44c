@@ -16,6 +16,29 @@
       "message": "It seems tests are failing after rebase.",
       "revId": "594ddec5a3be41f59e753c0e8ed83c39c81df44c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72e788c6_384f5e31",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-05T08:59:28Z",
+      "side": 1,
+      "message": "nit: no need to hold f for these line?",
+      "range": {
+        "startLine": 130,
+        "startChar": 6,
+        "endLine": 132,
+        "endChar": 26
+      },
+      "revId": "594ddec5a3be41f59e753c0e8ed83c39c81df44c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
