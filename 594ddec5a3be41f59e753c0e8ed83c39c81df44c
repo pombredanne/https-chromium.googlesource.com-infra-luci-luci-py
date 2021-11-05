@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e49b4f34_ff47e8f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-05T08:58:54Z",
+      "side": 1,
+      "message": "It seems tests are failing after rebase.",
+      "revId": "594ddec5a3be41f59e753c0e8ed83c39c81df44c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
