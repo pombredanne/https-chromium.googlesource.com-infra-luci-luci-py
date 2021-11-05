@@ -58,6 +58,7 @@ import optparse
 import os
 import platform
 import re
+import shutil
 import sys
 import tempfile
 import time
@@ -597,8 +598,6 @@ def _fetch_and_map_with_cas(cas_client, digest, instance, output_dir, cache_dir,
         'download',
         '-digest',
         digest,
-        '-cas-instance',
-        instance,
         # flags for cache.
         '-cache-dir',
         cache_dir,
@@ -614,6 +613,17 @@ def _fetch_and_map_with_cas(cas_client, digest, instance, output_dir, cache_dir,
         '-log-level',
         'info',
     ]
+
+    # When CAS_ADDRESS is set in test mode,
+    # Use it and ignore CAS instance option.
+    cas_addr = os.environ.get('CAS_ADDRESS')
+    if cas_addr:
+      cmd.extend([
+          '-cas-addr',
+          cas_addr,
+      ])
+    else:
+      cmd.extend(['-cas-instance', instance])
 
     if kvs_dir:
       cmd.extend(['-kvs-dir', kvs_dir])
@@ -849,8 +859,6 @@ def upload_outdir_with_cas(cas_client, cas_instance, outdir, tmp_dir):
     cmd = [
         cas_client,
         'archive',
-        '-cas-instance',
-        cas_instance,
         '-paths',
         # Format: <working directory>:<relative path to dir>
         outdir + ':',
@@ -860,6 +868,17 @@ def upload_outdir_with_cas(cas_client, cas_instance, outdir, tmp_dir):
         '-dump-stats-json',
         stats_json_path,
     ]
+
+    # When CAS_ADDRESS is set in test mode,
+    # Use it and ignore CAS instance option.
+    cas_addr = os.environ.get('CAS_ADDRESS')
+    if cas_addr:
+      cmd.extend([
+          '-cas-addr',
+          cas_addr,
+      ])
+    else:
+      cmd.extend(['-cas-instance', cas_instance])
 
     if sys.platform.startswith('linux'):
       # TODO(crbug.com/1243194): remove this after investigation.
@@ -1232,8 +1251,11 @@ CipdInfo = collections.namedtuple('CipdInfo', [
 
 
 @contextlib.contextmanager
-def noop_install_packages(_run_dir, _isolated_dir, _cas_dir, _nsjail_dir):
-  """Placeholder for 'install_client_and_packages' if cipd is disabled."""
+def copy_local_packages(_run_dir, _isolated_dir, cas_dir, _nsjail_dir):
+  """Copies CIPD packages from luci/luci-go dir."""
+  go_client_dir = os.environ.get('LUCI_GO_CLIENT_DIR')
+  assert go_client_dir, 'Please set LUCI_GO_CLIENT_DIR.'
+  shutil.copy2(os.path.join(go_client_dir, 'cas'), os.path.join(cas_dir, 'cas'))
   yield None
 
 
@@ -1467,6 +1489,7 @@ def create_option_parser():
 
   group = optparse.OptionGroup(parser,
                                'Data source - Content Addressed Storage')
+  group.add_option('--cas-address', help='CAS address for input/output files.')
   group.add_option(
       '--cas-instance', help='Full CAS instance name for input/output files.')
   group.add_option(
@@ -1804,7 +1827,7 @@ def main(args):
 
   cipd.validate_cipd_options(parser, options)
 
-  install_packages_fn = noop_install_packages
+  install_packages_fn = copy_local_packages
   tmp_cipd_cache_dir = None
   if options.cipd_enabled:
     cache_dir = options.cipd_cache
