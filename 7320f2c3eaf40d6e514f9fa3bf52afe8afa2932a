@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21b1b6a5_5923853b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-05T09:29:25Z",
+      "side": 1,
+      "message": "CQ will be fixed by https://crrev.com/c/3260976",
+      "revId": "7320f2c3eaf40d6e514f9fa3bf52afe8afa2932a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
