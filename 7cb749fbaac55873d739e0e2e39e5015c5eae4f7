@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeb80718_0076c372",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-05T08:54:17Z",
+      "side": 1,
+      "message": "The item size in the stats became always 3072  for some reason.\nBut it doesn\u0027t happen with CAS.\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3263846/1/appengine/swarming/local_smoke_test.py#671",
+      "range": {
+        "startLine": 625,
+        "startChar": 16,
+        "endLine": 625,
+        "endChar": 20
+      },
+      "revId": "7cb749fbaac55873d739e0e2e39e5015c5eae4f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
