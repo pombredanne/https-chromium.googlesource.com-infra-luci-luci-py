@@ -16,6 +16,24 @@
       "message": "Could you replace python in\nhttps://source.chromium.org/chromium/chromium/src/+/main:tools/infra/clobber_cache_utils.py;l\u003d47;drc\u003d02442ef0cb33cdbf2c38a70f2ea10263c5f81204\ntoo?",
       "revId": "4011895e4c094a5651dcb892eabd02f83f21ce95",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8d4317e_b5375a48",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-05T05:30:27Z",
+      "side": 1,
+      "message": "made https://crrev.com/c/3261502",
+      "parentUuid": "c20eea0d_0e55ad26",
+      "revId": "4011895e4c094a5651dcb892eabd02f83f21ce95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
