@@ -16,6 +16,23 @@
       "message": "Please CC to Swarming team next time.",
       "revId": "9103a3f1c0f3a5cf37df87ad409ca572402ca334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed7094b8_b85e419c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-05T05:17:00Z",
+      "side": 1,
+      "message": "This will be deployed in next release. http://g/luci-releases/v1EtMVPQCm4",
+      "revId": "9103a3f1c0f3a5cf37df87ad409ca572402ca334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
