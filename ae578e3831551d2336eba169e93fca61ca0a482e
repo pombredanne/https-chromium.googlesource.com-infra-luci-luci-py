@@ -96,6 +96,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d80b0df5_5be63044",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1238,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-08T03:17:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7a7bd7a0_6b7e1700",
+      "range": {
+        "startLine": 1238,
+        "startChar": 34,
+        "endLine": 1238,
+        "endChar": 52
+      },
+      "revId": "ae578e3831551d2336eba169e93fca61ca0a482e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c8062e2_f824fd0d",
