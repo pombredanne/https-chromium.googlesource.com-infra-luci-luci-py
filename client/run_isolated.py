@@ -619,14 +619,11 @@ def _fetch_and_map_with_cas(cas_client, digest, instance, output_dir, cache_dir,
     cas_addr = os.environ.get('RUN_ISOLATED_CAS_ADDRESS')
     if cas_addr:
       cmd.extend([
-        '-cas-addr',
-        cas_addr,
+          '-cas-addr',
+          cas_addr,
       ])
     else:
-      cmd.extend([
-        '-cas-instance',
-        instance
-      ])
+      cmd.extend(['-cas-instance', instance])
 
     if kvs_dir:
       cmd.extend(['-kvs-dir', kvs_dir])
@@ -877,14 +874,11 @@ def upload_outdir_with_cas(cas_client, cas_instance, outdir, tmp_dir):
     cas_addr = os.environ.get('RUN_ISOLATED_CAS_ADDRESS')
     if cas_addr:
       cmd.extend([
-        '-cas-addr',
-        cas_addr,
+          '-cas-addr',
+          cas_addr,
       ])
     else:
-      cmd.extend([
-        '-cas-instance',
-        cas_instance
-      ])
+      cmd.extend(['-cas-instance', cas_instance])
 
     if sys.platform.startswith('linux'):
       # TODO(crbug.com/1243194): remove this after investigation.
@@ -1497,6 +1491,7 @@ def create_option_parser():
 
   group = optparse.OptionGroup(parser,
                                'Data source - Content Addressed Storage')
+  group.add_option('--cas-address', help='CAS address for input/output files.')
   group.add_option(
       '--cas-instance', help='Full CAS instance name for input/output files.')
   group.add_option(

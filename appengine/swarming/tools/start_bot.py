@@ -48,7 +48,11 @@ class LocalBot(object):
   locally.
   """
 
-  def __init__(self, swarming_server_url, cas_addr, redirect, botdir,
+  def __init__(self,
+               swarming_server_url,
+               cas_addr,
+               redirect,
+               botdir,
                python=None):
     self._botdir = botdir
     self._swarming_server_url = swarming_server_url
