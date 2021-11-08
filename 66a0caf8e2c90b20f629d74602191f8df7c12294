@@ -34,6 +34,24 @@
       "parentUuid": "290a5106_e69a22a0",
       "revId": "66a0caf8e2c90b20f629d74602191f8df7c12294",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "950feaa1_bf98ed8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-08T02:44:47Z",
+      "side": 1,
+      "message": "We don\u0027t include this in https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/bot_archive.py;l\u003d62-69;drc\u003d7fc076805abdf77af678299d5db1a41690a2736f",
+      "parentUuid": "290a5106_e69a22a0",
+      "revId": "66a0caf8e2c90b20f629d74602191f8df7c12294",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
