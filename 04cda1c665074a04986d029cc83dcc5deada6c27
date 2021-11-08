@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d33d88de_2c3e78c0",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1265,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-08T03:41:45Z",
+      "side": 1,
+      "message": "You need to have .exe extention on Windows here.",
+      "range": {
+        "startLine": 1265,
+        "startChar": 44,
+        "endLine": 1265,
+        "endChar": 47
+      },
+      "revId": "04cda1c665074a04986d029cc83dcc5deada6c27",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
