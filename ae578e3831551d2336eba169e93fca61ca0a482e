@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26871cb8_5b5b016f",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1238,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-08T02:10:01Z",
+      "side": 1,
+      "message": "Is it fine to use luci-go/cas alwasy here?",
+      "range": {
+        "startLine": 1238,
+        "startChar": 34,
+        "endLine": 1238,
+        "endChar": 52
+      },
+      "revId": "ae578e3831551d2336eba169e93fca61ca0a482e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c8062e2_f824fd0d",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-08T02:10:01Z",
+      "side": 1,
+      "message": "env var?",
+      "range": {
+        "startLine": 1239,
+        "startChar": 54,
+        "endLine": 1239,
+        "endChar": 55
+      },
+      "revId": "ae578e3831551d2336eba169e93fca61ca0a482e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
