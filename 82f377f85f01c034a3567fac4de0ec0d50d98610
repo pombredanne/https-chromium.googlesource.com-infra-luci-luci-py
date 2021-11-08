@@ -52,6 +52,24 @@
       "parentUuid": "97bcc996_d01c8f10",
       "revId": "82f377f85f01c034a3567fac4de0ec0d50d98610",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd990921_e47b322d",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-08T03:39:05Z",
+      "side": 1,
+      "message": "I wasn\u0027t sure if run_isolated_test.py needs cas or not.\nBut it seems they are also integration tests that connect with fake isolate server.\n\nI updated it to use copy_local_packages, and set LUCI_GO_CLIENT_DIR as it will be necessary later.",
+      "parentUuid": "fde1c24a_bac7133a",
+      "revId": "82f377f85f01c034a3567fac4de0ec0d50d98610",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
