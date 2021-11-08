@@ -16,6 +16,24 @@
       "message": "this is not used?",
       "revId": "82f377f85f01c034a3567fac4de0ec0d50d98610",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97bcc996_d01c8f10",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-08T03:05:56Z",
+      "side": 1,
+      "message": "It\u0027s used in run_isolated_test.py. So I kept it for now.\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/client/tests/run_isolated_test.py;l\u003d328?q\u003df:run_isolated_test.py\u0026ss\u003dchromium",
+      "parentUuid": "cf20ea7d_e73c41ee",
+      "revId": "82f377f85f01c034a3567fac4de0ec0d50d98610",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a7bd7a0_6b7e1700",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1238,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-08T03:05:56Z",
+      "side": 1,
+      "message": "because run_isolateded_test.py doesn\u0027t set LUCI_GO_CLIENT_DIR env var.",
+      "parentUuid": "10924502_1c2371e9",
+      "range": {
+        "startLine": 1238,
+        "startChar": 34,
+        "endLine": 1238,
+        "endChar": 52
+      },
+      "revId": "ae578e3831551d2336eba169e93fca61ca0a482e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0c8062e2_f824fd0d",
         "filename": "client/run_isolated.py",
         "patchSetId": 2
