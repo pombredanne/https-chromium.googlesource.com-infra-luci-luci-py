@@ -719,8 +719,7 @@ class Test(unittest.TestCase):
     }
     self.assertPerformanceStats(expected_performance_stats, performance_stats)
 
-  def test_isolated_command(self):
-    # Command is specified in Swarming task, still with isolated file.
+  def test_command_env_with_cas(self):
     # Confirms that --relative-cwd, --env and --env-prefix work.
     content = {
         os.path.join(u'base', HELLO_WORLD + u'.py'):
@@ -746,11 +745,12 @@ class Test(unittest.TestCase):
     }
     isolate_content = "{'variables': {'files': ['%s']}}" % os.path.join(
         u'base', HELLO_WORLD + u'.py').encode('utf-8')
-    name = 'separate_cmd'
-    isolated_hash, isolated_size = self._archive(name, content, isolate_content)
-    items_in = [3584, isolated_size]
+    name = 'command_env'
+    digest, _ = self._archive(name, content, isolate_content, use_cas=True)
+    content_size = sum(len(c) for c in content.values())
+    items_in = [content_size]
     expected_summary = self.gen_expected(
-        name=u'separate_cmd',
+        name=u'command_env',
         output=u'hi💩\n%s\n' % os.sep.join(['$CWD', 'local', 'path']),
         tags=[
             u'authenticated:bot:whitelisted-ip', u'pool:default',
@@ -762,8 +762,8 @@ class Test(unittest.TestCase):
         'result.txt': 'hey2',
         'FOO.txt': u'bar💩'.encode('utf-8'),
     }
-    _, outputs_ref, performance_stats = self._run_isolated(
-        isolated_hash,
+    _, output_root, performance_stats = self._run_with_cas(
+        digest,
         name, [
             '-relative-cwd', 'base', '-env', 'FOO=bar💩', '-env',
             'SWARMING_TASK_ID=""', '-env-prefix', 'PATH=local/path', '--',
@@ -772,11 +772,11 @@ class Test(unittest.TestCase):
         expected_summary,
         expected_files,
         deduped=False)
-    result_isolated_size = self.assertOutputsRef(outputs_ref)
+    output_root_size = int(output_root['digest']['size_bytes'])
     items_out = [
         len('hey2'),
         len(u'bar💩'.encode('utf-8')),
-        result_isolated_size,
+        output_root_size,
     ]
     expected_performance_stats = {
         u'cache_trim': {},
