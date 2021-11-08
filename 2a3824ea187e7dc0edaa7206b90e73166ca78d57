@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09d1882e_75ddb3e2",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-08T09:56:09Z",
+      "side": 1,
+      "message": "no need to keep f open here?",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 20
+      },
+      "revId": "2a3824ea187e7dc0edaa7206b90e73166ca78d57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f803739e_33dafed1",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 1617,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-08T09:56:09Z",
+      "side": 1,
+      "message": "this is not explained in doc string?",
+      "range": {
+        "startLine": 1617,
+        "startChar": 20,
+        "endLine": 1617,
+        "endChar": 31
+      },
+      "revId": "2a3824ea187e7dc0edaa7206b90e73166ca78d57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
