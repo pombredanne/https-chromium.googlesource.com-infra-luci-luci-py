@@ -63,7 +63,6 @@ FILES = (
     'client/auth.py',
     'client/cipd.py',
     'client/isolate_storage.py',
-    'client/isolated_format.py',
     'client/isolateserver.py',
     'client/local_caching.py',
     'client/run_isolated.py',
