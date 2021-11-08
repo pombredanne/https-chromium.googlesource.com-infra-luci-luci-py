@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "605b2ec0_29540b3e",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1614,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-08T14:19:14Z",
+      "side": 1,
+      "message": "re.match?",
+      "range": {
+        "startLine": 1614,
+        "startChar": 15,
+        "endLine": 1614,
+        "endChar": 52
+      },
+      "revId": "29afad73491c0a28f85ac11e41ea7a6a5f8497e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
