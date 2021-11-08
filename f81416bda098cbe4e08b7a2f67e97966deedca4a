@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dc74217_c591e4f7",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-08T02:25:56Z",
+      "side": 1,
+      "message": "It is better to have prefix like \u0027RUN_ISOLATED_\u0027 to avoid env var collision?",
+      "range": {
+        "startLine": 618,
+        "startChar": 31,
+        "endLine": 618,
+        "endChar": 42
+      },
+      "revId": "f81416bda098cbe4e08b7a2f67e97966deedca4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
