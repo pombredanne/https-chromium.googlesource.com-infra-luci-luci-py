@@ -46,9 +46,11 @@ class LocalBot(object):
   locally.
   """
 
-  def __init__(self, swarming_server_url, redirect, botdir, python=None):
+  def __init__(self, swarming_server_url, cas_addr, redirect, botdir,
+               python=None):
     self._botdir = botdir
     self._swarming_server_url = swarming_server_url
+    self._cas_addr = cas_addr
     self._proc = None
     self._logs = {}
     self._redirect = redirect
@@ -94,6 +96,7 @@ class LocalBot(object):
       os.makedirs(tmpdir)
     env = os.environ.copy()
     env['TEMP'] = tmpdir
+    env['CAS_ADDRESS'] = self._cas_addr
     cmd = [self.python, bot_zip, 'start_slave', '--test-mode']
     if self._redirect:
       logs = os.path.join(self._botdir, 'logs')
