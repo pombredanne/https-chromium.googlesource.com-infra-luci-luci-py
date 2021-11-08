@@ -16,6 +16,24 @@
       "message": "Please also remove the reference from appengine/swarming/server/bot_archive.py",
       "revId": "66a0caf8e2c90b20f629d74602191f8df7c12294",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fe015a5_b316f01b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-08T02:44:37Z",
+      "side": 1,
+      "message": "Oops, it is isolated_format.py",
+      "parentUuid": "290a5106_e69a22a0",
+      "revId": "66a0caf8e2c90b20f629d74602191f8df7c12294",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
