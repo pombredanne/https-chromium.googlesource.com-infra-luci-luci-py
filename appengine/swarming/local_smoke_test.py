@@ -808,9 +808,8 @@ class Test(unittest.TestCase):
     self.assertPerformanceStats(expected_performance_stats, performance_stats)
 
   def test_hard_timeout_with_cas(self):
-    # Make an isolated file, archive it, have it time out. Similar to
-    # test_hard_timeout. The script doesn't handle signal so it failed the grace
-    # period.
+    # Similar to test_hard_timeout. The script doesn't handle signal so it
+    # failed the grace period.
     content = {
         HELLO_WORLD + u'.py':
         _script(u"""
@@ -895,12 +894,12 @@ class Test(unittest.TestCase):
     }
     self.assertPerformanceStats(expected_performance_stats, performance_stats)
 
-  def test_isolated_hard_timeout_grace(self):
-    # Make an isolated file, archive it, have it time out. Similar to
-    # test_hard_timeout. The script handles signal so it send results back.
+  def test_hard_timeout_grace_with_cas(self):
+    # Similar to test_hard_timeout. The script handles signal so it send
+    # results back.
     content = {
         HELLO_WORLD + u'.py':
-            _script(u"""
+        _script(u"""
         import os
         import signal
         import sys
@@ -916,15 +915,18 @@ class Test(unittest.TestCase):
         while not bit.wait(0.01):
           pass
         with open(os.path.join(sys.argv[1], 'result.txt'), 'wb') as f:
-          f.write('test_isolated_hard_timeout_grace')
+          f.write('test_hard_timeout_grace_with_cas')
         """ % ('SIGBREAK' if sys.platform == 'win32' else 'SIGTERM')),
     }
-    name = 'isolated_hard_timeout_grace'
-    isolated_hash, isolated_size = self._archive(name, content,
-                                                 DEFAULT_ISOLATE_HELLO)
-    items_in = [3072, isolated_size]
+    name = 'hard_timeout_grace'
+    digest, _ = self._archive(name,
+                              content,
+                              DEFAULT_ISOLATE_HELLO,
+                              use_cas=True)
+    content_size = sum(len(c) for c in content.values())
+    items_in = [content_size]
     expected_summary = self.gen_expected(
-        name=u'isolated_hard_timeout_grace',
+        name=u'hard_timeout_grace',
         output=u'hi\ngot signal 15\n',
         failure=True,
         tags=[
@@ -940,18 +942,18 @@ class Test(unittest.TestCase):
         state=u'TIMED_OUT')
     expected_summary.pop('exit_code')
     expected_files = {
-        'result.txt': 'test_isolated_hard_timeout_grace',
+        'result.txt': 'test_hard_timeout_grace_with_cas',
     }
     # Hard timeout is enforced by run_isolated, I/O timeout by task_runner.
-    _, outputs_ref, performance_stats = self._run_isolated(
-        isolated_hash,
+    _, output_root, performance_stats = self._run_with_cas(
+        digest,
         name,
         ['-hard-timeout', '1', '--'] + DEFAULT_COMMAND + ['${ISOLATED_OUTDIR}'],
         expected_summary,
         expected_files,
         deduped=False)
-    result_isolated_size = self.assertOutputsRef(outputs_ref)
-    items_out = [len('test_isolated_hard_timeout_grace'), result_isolated_size]
+    output_root_size = int(output_root['digest']['size_bytes'])
+    items_out = [len('test_hard_timeout_grace_with_cas'), output_root_size]
     expected_performance_stats = {
         u'cache_trim': {},
         u'package_installation': {},
