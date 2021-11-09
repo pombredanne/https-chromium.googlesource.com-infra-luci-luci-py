@@ -22,6 +22,30 @@
       },
       "revId": "0bb1fae848352d95da8d626dda945700b3ec95df",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "338660b2_4ccc1ddd",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-09T08:23:04Z",
+      "side": 1,
+      "message": "Hmm, I don\u0027t think so.\nCould you fix this or file a bug assign that to me and leaving TODO here?",
+      "parentUuid": "2141ff19_1caf3c7b",
+      "range": {
+        "startLine": 1299,
+        "startChar": 0,
+        "endLine": 1301,
+        "endChar": 33
+      },
+      "revId": "0bb1fae848352d95da8d626dda945700b3ec95df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
