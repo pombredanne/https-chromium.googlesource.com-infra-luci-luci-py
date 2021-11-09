@@ -16,6 +16,24 @@
       "message": "I think digest for empty dir is e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855/0\nand it is always there in cas?\nhttps://github.com/bazelbuild/remote-apis/blob/636121a32fa7b9114311374e4786597d8e7a69f3/build/bazel/remote/execution/v2/remote_execution.proto#L309",
       "revId": "0775a8bb128c1d1a237c40e40591ba40ec606027",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "396d5378_0bbce105",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-09T03:18:11Z",
+      "side": 1,
+      "message": "If I run archive command in an empty dir, the digest becomes `24b2420bc49d8b8fdc1d011a163708927532b37dc9f91d7d8d6877e3a86559ca/73`.\ne.g. \nhttps://cas-viewer-dev.appspot.com/projects/chromium-swarm-dev/instances/default_instance/blobs/24b2420bc49d8b8fdc1d011a163708927532b37dc9f91d7d8d6877e3a86559ca/73/tree\n\nI also can find the digest in Code Search. Is this expected?\nhttps://source.chromium.org/search?q\u003d24b2420bc49d8b8fdc1d011a163708927532b37dc9f91d7d8d6877e3a86559ca%2F73\u0026sq\u003d\u0026ss\u003dchromium",
+      "parentUuid": "4f33c231_62a22e0e",
+      "revId": "0775a8bb128c1d1a237c40e40591ba40ec606027",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
