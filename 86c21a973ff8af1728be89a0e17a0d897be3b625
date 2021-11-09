@@ -16,6 +16,23 @@
       "message": "cc\u0027ing folks that touched the code over the years.\n\nIt had a good run, but after 10 years, it was time to put it to sleep.\n\nThanks for the service, isolate!",
       "revId": "86c21a973ff8af1728be89a0e17a0d897be3b625",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c67a8e07_56b0bac7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-11-09T19:53:01Z",
+      "side": 1,
+      "message": "👋 farewell :)",
+      "revId": "86c21a973ff8af1728be89a0e17a0d897be3b625",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
