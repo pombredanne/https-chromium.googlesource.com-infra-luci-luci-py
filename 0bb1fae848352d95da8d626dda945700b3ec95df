@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2141ff19_1caf3c7b",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-09T08:12:22Z",
+      "side": 1,
+      "message": "Do we want to remove these stats?",
+      "range": {
+        "startLine": 1299,
+        "startChar": 0,
+        "endLine": 1301,
+        "endChar": 33
+      },
+      "revId": "0bb1fae848352d95da8d626dda945700b3ec95df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
