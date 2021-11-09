@@ -39,6 +39,30 @@
       },
       "revId": "ac7a7dc3c110d4b818438de146587b56f3a1f8b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "097342e3_bc72d012",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-09T06:35:42Z",
+      "side": 1,
+      "message": "I guess not. I\u0027m thinking to remove it after I replace all isolated tests.",
+      "parentUuid": "7fb9c121_cc4a14b7",
+      "range": {
+        "startLine": 1126,
+        "startChar": 12,
+        "endLine": 1126,
+        "endChar": 13
+      },
+      "revId": "ac7a7dc3c110d4b818438de146587b56f3a1f8b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
