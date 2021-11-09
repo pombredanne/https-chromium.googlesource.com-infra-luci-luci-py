@@ -16,6 +16,29 @@
       "message": "CQ should be fixed now",
       "revId": "ac7a7dc3c110d4b818438de146587b56f3a1f8b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fb9c121_cc4a14b7",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-09T06:27:13Z",
+      "side": 1,
+      "message": "will we use this if we pass use_cas\u003dTrue to self._archive?",
+      "range": {
+        "startLine": 1126,
+        "startChar": 12,
+        "endLine": 1126,
+        "endChar": 13
+      },
+      "revId": "ac7a7dc3c110d4b818438de146587b56f3a1f8b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
