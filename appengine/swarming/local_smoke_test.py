@@ -1141,9 +1141,12 @@ class Test(unittest.TestCase):
         """),
     }
     name = 'cache_first'
-    isolated_hash, isolated_size = self._archive(name, content,
-                                                 DEFAULT_ISOLATE_HELLO)
-    items_in = [3072, isolated_size]
+    digest, _ = self._archive(name,
+                              content,
+                              DEFAULT_ISOLATE_HELLO,
+                              use_cas=True)
+    content_size = sum(len(c) for c in content.values())
+    items_in = [content_size]
     expected_summary = self.gen_expected(
         name=u'cache_first',
         tags=[
@@ -1152,13 +1155,23 @@ class Test(unittest.TestCase):
             u'swarming.pool.template:none',
             u'swarming.pool.version:pools_cfg_rev', u'user:joe@localhost'
         ])
-    _, outputs_ref, performance_stats = self._run_isolated(
-        isolated_hash,
+    _, output_root, performance_stats = self._run_with_cas(
+        digest,
         name, ['-named-cache', 'fuu=p/b', '--'] + DEFAULT_COMMAND +
         ['${ISOLATED_OUTDIR}/yo'],
         expected_summary, {},
         deduped=False)
-    self.assertIsNone(outputs_ref)
+    expected_output = {
+        'cas_instance': 'projects/test/instances/default_instance',
+        'digest': {
+            'hash':
+            '24b2420bc49d8b8fdc1d011a163708927532b37dc9f91d7d8d6877e3a86559ca',
+            'size_bytes': '73',
+        },
+    }
+    self.assertEqual(output_root, expected_output)
+    output_root_size = int(output_root['digest']['size_bytes'])
+    items_out = [output_root_size]
     expected_performance_stats = {
         u'cache_trim': {},
         u'package_installation': {},
@@ -1177,11 +1190,11 @@ class Test(unittest.TestCase):
         u'isolated_upload': {
             u'initial_number_items': u'0',
             u'initial_size': u'0',
-            u'items_cold': [],
-            u'items_hot': [],
-            u'num_items_cold': u'0',
-            u'num_items_hot': u'0',
-            u'total_bytes_items_cold': u'0',
+            u'items_cold': sorted(items_out),
+            u'items_hot': [0],
+            u'num_items_cold': unicode(len(items_out)),
+            u'num_items_hot': u'1',
+            u'total_bytes_items_cold': unicode(sum(items_out)),
             u'total_bytes_items_hot': u'0',
         },
         u'cleanup': {},
@@ -1206,14 +1219,15 @@ class Test(unittest.TestCase):
         u'key': u'caches',
         u'value': [u'fuu']
     }] + expected_summary['bot_dimensions'])
-    _, outputs_ref, performance_stats = self._run_isolated(
-        isolated_hash,
+    _, output_root, performance_stats = self._run_with_cas(
+        digest,
         'cache_second', ['-named-cache', 'fuu=p/b', '--'] + DEFAULT_COMMAND +
         ['${ISOLATED_OUTDIR}/yo'],
         expected_summary, {'yo': 'Yo!'},
         deduped=False)
-    result_isolated_size = self.assertOutputsRef(outputs_ref)
-    items_out = [3, result_isolated_size]
+    output_root_size = int(output_root['digest']['size_bytes'])
+    prev_items_out = items_out
+    items_out = [len('Yo!'), output_root_size]
     expected_performance_stats = {
         u'cache_trim': {},
         u'package_installation': {},
@@ -1231,8 +1245,8 @@ class Test(unittest.TestCase):
             u'total_bytes_items_hot': unicode(sum(items_in)),
         },
         u'isolated_upload': {
-            u'initial_number_items': u'0',
-            u'initial_size': u'0',
+            u'initial_number_items': unicode(len(prev_items_out)),
+            u'initial_size': unicode(sum(prev_items_out)),
             u'items_cold': sorted(items_out),
             u'items_hot': [],
             u'num_items_cold': unicode(len(items_out)),
