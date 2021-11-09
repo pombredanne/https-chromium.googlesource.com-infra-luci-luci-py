@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b26eae6_5c9da762",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2021-11-09T14:29:43Z",
+      "side": 1,
+      "message": "cc\u0027ing folks that touched the code over the years.\n\nIt had a good run, but after 10 years, it was time to put it to sleep.\n\nThanks for the service, isolate!",
+      "revId": "86c21a973ff8af1728be89a0e17a0d897be3b625",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
