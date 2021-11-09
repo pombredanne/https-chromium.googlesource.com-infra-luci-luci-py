@@ -70,6 +70,24 @@
       "parentUuid": "966547a1_1098bc9e",
       "revId": "0775a8bb128c1d1a237c40e40591ba40ec606027",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f89ba53_9f259809",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-09T06:09:56Z",
+      "side": 1,
+      "message": "It seems the SDK\u0027s issue. https://crbug.com/1268267\nI added TODO, and will approach it separately.",
+      "parentUuid": "add77fb9_10c95310",
+      "revId": "0775a8bb128c1d1a237c40e40591ba40ec606027",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
