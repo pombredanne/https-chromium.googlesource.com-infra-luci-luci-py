@@ -55,7 +55,7 @@ import local_caching
 import swarmingserver_bot_fake
 
 def to_native_eol(s):
-  if six.PY3 and sys.platform == 'win32':
+  if sys.platform == 'win32':
     return s.replace('\n', '\r\n')
   return s
 
@@ -68,10 +68,8 @@ DISABLE_CIPD_FOR_TESTS = ['--cipd-enabled', 'false']
 EXIT_CODE_TERM = -signal.SIGTERM
 # Actually 0xc000013a, unsigned in python3 on windows
 if sys.platform == 'win32':
-  if six.PY3:
-    EXIT_CODE_TERM = 3221225786
-  else:
-    EXIT_CODE_TERM = -1073741510
+  EXIT_CODE_TERM = 3221225786
+
 
 def get_manifest(script=None, isolated=None, **kwargs):
   """Returns a task manifest similar to what the server sends back to the bot.
