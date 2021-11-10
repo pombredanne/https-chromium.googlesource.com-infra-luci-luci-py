@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "435d565c_84cddcbe",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-10T02:43:24Z",
+      "side": 1,
+      "message": "I just want to separate a CL for handlers_bot cleanup.",
+      "parentUuid": "2c14be9f_861e45f3",
+      "revId": "c3935d3733902944bcf3e3e5d8fcc1990e94449a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd1d9156_734fd88f",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-11-10T02:29:16Z",
       "side": 1,
       "message": "why not remove this now?",
+      "revId": "c3935d3733902944bcf3e3e5d8fcc1990e94449a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3c50382_59292b33",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-10T02:43:24Z",
+      "side": 1,
+      "message": "I think we will keep the Datastore field for old entities for a while.\nI need to consider how to drop it, though.",
+      "parentUuid": "dd1d9156_734fd88f",
       "revId": "c3935d3733902944bcf3e3e5d8fcc1990e94449a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
