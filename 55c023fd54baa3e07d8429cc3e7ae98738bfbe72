@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "128ceb9c_5a60a3b2",
+        "filename": "appengine/swarming/tools/start_servers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-10T11:42:17Z",
+      "side": 1,
+      "message": "call wait too",
+      "range": {
+        "startLine": 64,
+        "startChar": 11,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "55c023fd54baa3e07d8429cc3e7ae98738bfbe72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
