@@ -761,17 +761,7 @@ class TaskProperties(ndb.Model):
   embedded in a TaskSlice.
 
   This model is immutable.
-
-  New-style TaskProperties supports invocation of run_isolated. When this
-  behavior is desired, the member .inputs_ref with an .isolated field value must
-  be supplied. .extra_args can be supplied to pass extraneous arguments.
   """
-  # TODO(maruel): convert inputs_ref and _TaskResultCommon.outputs_ref as:
-  # - input = String which is the isolated input, if any
-  # - isolated_server = <server, metadata e.g. namespace> which is a
-  #   simplified version of FilesRef
-  # - _TaskResultCommon.output = String which is isolated output, if any.
-
   caches = ndb.LocalStructuredProperty(CacheEntry, repeated=True)
 
   # Command to run. This overrides the command in the isolated file if any.
@@ -781,16 +771,8 @@ class TaskProperties(ndb.Model):
   # in an isolated file, if any, else the root mapped directory.
   relative_cwd = ndb.StringProperty(indexed=False)
 
-  # DEPRECATED. Isolate server is being migrated to RBE-CAS.
+  # DEPRECATED. Isolate server has been migrated to RBE-CAS.
   # Use `cas_input_root` to specify the input root reference to CAS.
-  #
-  # Isolate server, namespace and input isolate hash.
-  #
-  # Despite its name, contains isolate server URL and namespace for isolated
-  # output too. See TODO at the top of this class.
-  # May be non-None even if task input is not isolated.
-  #
-  # Only inputs_ref.isolated or command can be specified.
   inputs_ref = ndb.LocalStructuredProperty(FilesRef)
 
   # Digest of the input root uploaded to RBE-CAS.
@@ -823,10 +805,6 @@ class TaskProperties(ndb.Model):
   # in the bot.
   execution_timeout_secs = ndb.IntegerProperty(
       validator=_validate_hard_timeout, required=True, indexed=False)
-
-  # Extra arguments to supply to the command `python run_isolated ...`. Can only
-  # be set if inputs_ref.isolated is set.
-  extra_args = ndb.StringProperty(repeated=True, indexed=False)
 
   # Grace period is the time between signaling the task it timed out and killing
   # the process. During this time the process should clean up itself as quickly
@@ -888,14 +866,12 @@ class TaskProperties(ndb.Model):
   def is_terminate(self):
     """If True, it is a terminate request."""
     # Check dimensions last because it's a bit slower.
-    return (not self.caches and not self.command and
-            not (self.inputs_ref and self.inputs_ref.isolated) and
-            not self.cipd_input and not self.env and not self.env_prefixes and
-            not self.execution_timeout_secs and not self.extra_args and
-            not self.grace_period_secs and not self.io_timeout_secs and
-            not self.idempotent and not self.outputs and
-            not self.has_secret_bytes and
-            self.dimensions_data.keys() == [u'id'])
+    return (not self.caches and not self.command and not self.cipd_input
+            and not self.env and not self.env_prefixes
+            and not self.execution_timeout_secs and not self.grace_period_secs
+            and not self.io_timeout_secs and not self.idempotent
+            and not self.outputs and not self.has_secret_bytes
+            and self.dimensions_data.keys() == [u'id'])
 
   def to_dict(self):
     out = super(TaskProperties, self).to_dict(exclude=['dimensions_data'])
@@ -905,8 +881,6 @@ class TaskProperties(ndb.Model):
 
   def to_proto(self, out):
     """Converts self to a swarming_pb2.TaskProperties."""
-    if self.inputs_ref:
-      self.inputs_ref.to_proto(out.cas_inputs)
     if self.cas_input_root:
       self.cas_input_root.to_proto(out.cas_input_root)
     if self.cipd_input:
@@ -923,8 +897,6 @@ class TaskProperties(ndb.Model):
       self.containment.to_proto(out.containment)
     if self.relative_cwd:
       out.relative_cwd = self.relative_cwd
-    if self.extra_args:
-      out.extra_args.extend(self.extra_args)
     out.has_secret_bytes = self.has_secret_bytes
     for key, values in sorted(self.dimensions.items()):
       v = out.dimensions.add()
@@ -963,41 +935,10 @@ class TaskProperties(ndb.Model):
     if not self.command:
       raise datastore_errors.BadValueError(u'\'command\' must be specified')
 
-    if self.extra_args:
-      raise datastore_errors.BadValueError(u'\'extra_args\' is deprecated: %s' %
-                                           self.extra_args)
-
     if not self.execution_timeout_secs:
       # Unlike I/O timeout, hard timeout is required.
       raise datastore_errors.BadValueError(
           u'\'execution_timeout_secs\' must be specified')
-
-    # Isolated input and CAS input can't be set at the same time.
-    if self.inputs_ref and self.cas_input_root:
-      raise datastore_errors.BadValueError(
-          'can\'t set both inputs_ref and cas_input_root')
-
-    # Isolated input and commands.
-    isolated_input = self.inputs_ref and self.inputs_ref.isolated
-    if not self.command and not isolated_input:
-      raise datastore_errors.BadValueError(
-          'use at least one of command or inputs_ref.isolated')
-    if self.command and self.extra_args:
-      raise datastore_errors.BadValueError(
-          'can\'t use both command and extra_args')
-    if self.extra_args and not isolated_input:
-      raise datastore_errors.BadValueError(
-          'extra_args require inputs_ref.isolated')
-    if self.inputs_ref:
-      # _pre_put_hook() doesn't recurse correctly into
-      # ndb.LocalStructuredProperty. Call the function manually.
-      self.inputs_ref._pre_put_hook()
-    if len(self.command) > 128:
-      raise datastore_errors.BadValueError(
-          'command can have up to 128 arguments')
-    if len(self.extra_args) > 128:
-      raise datastore_errors.BadValueError(
-          'extra_args can have up to 128 arguments')
 
     # Validate caches.
     if len(self.caches) > 32:
@@ -1916,13 +1857,14 @@ def validate_priority(priority):
 
 def validate_ping_tolerance(prop_name, ping_tolerance):
   # type: (str, int) -> None
-   """Throws BadValueError if ping_tolerance is not a valid value."""
-   if (ping_tolerance > _MAX_BOT_PING_TOLERANCE_SECS or
-       ping_tolerance < _MIN_BOT_PING_TOLERANCE_SECS):
-     raise datastore_errors.BadValueError(
-         '%s (%d) must range between %d and %d' %
-         (prop_name, ping_tolerance, _MIN_BOT_PING_TOLERANCE_SECS,
-          _MAX_BOT_PING_TOLERANCE_SECS))
+  """Throws BadValueError if ping_tolerance is not a valid value."""
+  if (ping_tolerance > _MAX_BOT_PING_TOLERANCE_SECS
+      or ping_tolerance < _MIN_BOT_PING_TOLERANCE_SECS):
+    raise datastore_errors.BadValueError(
+        '%s (%d) must range between %d and %d' %
+        (prop_name, ping_tolerance, _MIN_BOT_PING_TOLERANCE_SECS,
+         _MAX_BOT_PING_TOLERANCE_SECS))
+
 
 def validate_service_account(prop_name, service_account):
   # type: (str, str) -> None
