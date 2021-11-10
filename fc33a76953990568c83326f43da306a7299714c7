@@ -16,6 +16,24 @@
       "message": "Can you file a bug for removing py2 code?",
       "revId": "fc33a76953990568c83326f43da306a7299714c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba65c539_3c9df17d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-10T10:12:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a46a8905_de7bb437",
+      "revId": "fc33a76953990568c83326f43da306a7299714c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
