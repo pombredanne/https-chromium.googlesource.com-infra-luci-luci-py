@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2dd619b_731e06e2",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1410,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-10T06:30:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60ec65c5_c23124cd",
+      "range": {
+        "startLine": 1410,
+        "startChar": 46,
+        "endLine": 1410,
+        "endChar": 48
+      },
+      "revId": "5bbae3a7f4a3364bc5cf7fbee3fcf29f095f440d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50063c9f_d9b26e14",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2e19f82_8e80ac49",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1449,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-10T06:30:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50063c9f_d9b26e14",
+      "range": {
+        "startLine": 1449,
+        "startChar": 31,
+        "endLine": 1449,
+        "endChar": 33
+      },
+      "revId": "5bbae3a7f4a3364bc5cf7fbee3fcf29f095f440d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "445441ba_275d1141",
@@ -77,6 +125,30 @@
       "writtenOn": "2021-11-10T06:23:40Z",
       "side": 1,
       "message": "32?",
+      "range": {
+        "startLine": 1468,
+        "startChar": 52,
+        "endLine": 1468,
+        "endChar": 54
+      },
+      "revId": "5bbae3a7f4a3364bc5cf7fbee3fcf29f095f440d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c110e2e5_ac2968aa",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1468,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-10T06:30:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "445441ba_275d1141",
       "range": {
         "startLine": 1468,
         "startChar": 52,
