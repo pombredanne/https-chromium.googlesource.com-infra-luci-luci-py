@@ -546,7 +546,6 @@ class TaskRequestApiTest(TestCase):
         'env_prefixes': {
             u'PATH': [u'local/path']
         },
-        'extra_args': [],
         'execution_timeout_secs': 30,
         'grace_period_secs': 30,
         'has_secret_bytes': True,
@@ -664,7 +663,6 @@ class TaskRequestApiTest(TestCase):
         'env_prefixes': {
             u'PATH': [u'local/path']
         },
-        'extra_args': [],
         'execution_timeout_secs': 30,
         'grace_period_secs': 30,
         'idempotent': True,
@@ -787,7 +785,6 @@ class TaskRequestApiTest(TestCase):
         'env_prefixes': {
             u'PATH': [u'local/path']
         },
-        'extra_args': [],
         'execution_timeout_secs': 30,
         'grace_period_secs': 30,
         'idempotent': True,
@@ -1130,7 +1127,6 @@ class TaskRequestApiTest(TestCase):
         ),
         command=[u'command1', u'arg1'],
         relative_cwd=u'subdir',
-        # extra_args cannot be specified with command.
         # secret_bytes cannot be retrieved, but is included in properties_hash.
         has_secret_bytes=True,
         dimensions=[
@@ -1297,7 +1293,6 @@ class TaskRequestApiTest(TestCase):
         ),
         command=[u'command1', u'arg1'],
         relative_cwd=u'subdir',
-        # extra_args cannot be specified with command.
         # secret_bytes cannot be retrieved, but is included in properties_hash.
         has_secret_bytes=True,
         dimensions=[
@@ -1461,26 +1456,6 @@ class TaskRequestApiTest(TestCase):
     _gen_request(properties=_gen_properties(command=[u'python'] * 128)).put()
     with self.assertRaises(datastore_errors.BadValueError):
       _gen_request(properties=_gen_properties(command=[u'python'] * 129)).put()
-
-  def test_request_extra_args(self):
-    with self.assertRaises(datastore_errors.BadValueError):
-      _gen_request(
-          properties=_gen_properties(
-              command=[],
-              extra_args=[u'python'],
-              inputs_ref=task_request.FilesRef(
-                  isolated='deadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
-                  isolatedserver='http://localhost:1',
-                  namespace='default-gzip'))).put()
-    with self.assertRaises(datastore_errors.BadValueError):
-      _gen_request(
-          properties=_gen_properties(
-              command=[u'python'],
-              extra_args=[u'python'],
-              inputs_ref=task_request.FilesRef(
-                  isolated='deadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
-                  isolatedserver='http://localhost:1',
-                  namespace='default-gzip'))).put()
 
   def test_request_bad_cipd_input(self):
 
