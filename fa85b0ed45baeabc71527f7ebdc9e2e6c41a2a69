@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cab4968_38560b73",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-10T10:05:41Z",
+      "side": 1,
+      "message": "If you don\u0027t specify port or 0 in fakecas, net.Listen() automatically choses one.\nhttps://pkg.go.dev/net#Listen\nAnd it\u0027s possible to get the port number from a file or stdout.\n\nSo it can avoid conflicting with other ports. (not only other tests, but also other processes on the machine)\n\nWDYT?",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 0
+      },
+      "revId": "fa85b0ed45baeabc71527f7ebdc9e2e6c41a2a69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
