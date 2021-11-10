@@ -22,6 +22,30 @@
       },
       "revId": "fa85b0ed45baeabc71527f7ebdc9e2e6c41a2a69",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f337935_f811eebb",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-10T10:47:15Z",
+      "side": 1,
+      "message": "I see, let me implement such feature there then.",
+      "parentUuid": "3cab4968_38560b73",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 0
+      },
+      "revId": "fa85b0ed45baeabc71527f7ebdc9e2e6c41a2a69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
