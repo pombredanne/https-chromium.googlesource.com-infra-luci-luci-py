@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c14be9f_861e45f3",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-10T02:29:16Z",
+      "side": 1,
+      "message": "why not remove this in this CL?",
+      "revId": "c3935d3733902944bcf3e3e5d8fcc1990e94449a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd1d9156_734fd88f",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-10T02:29:16Z",
+      "side": 1,
+      "message": "why not remove this now?",
+      "revId": "c3935d3733902944bcf3e3e5d8fcc1990e94449a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
