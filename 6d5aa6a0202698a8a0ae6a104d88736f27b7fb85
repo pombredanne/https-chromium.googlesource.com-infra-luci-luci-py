@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63830c3c_ce0a726b",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-11T12:42:12Z",
+      "side": 0,
+      "message": "Why does this expectation change? Shouldn\u0027t it create state.json when initializing CAS cache dir?",
+      "range": {
+        "startLine": 366,
+        "startChar": 4,
+        "endLine": 366,
+        "endChar": 29
+      },
+      "revId": "6d5aa6a0202698a8a0ae6a104d88736f27b7fb85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

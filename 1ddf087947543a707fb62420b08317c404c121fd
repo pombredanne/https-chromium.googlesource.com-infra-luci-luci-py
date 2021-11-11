@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56767718_3ae6490d",
+        "filename": "client/tests/cas_util.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-11T12:42:12Z",
+      "side": 1,
+      "message": "Is this hash for local cache, rather than for CAS digest?\nIf the answer is yes, cache_hash may be appropriate.",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 12
+      },
+      "revId": "1ddf087947543a707fb62420b08317c404c121fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f7f51c1_eefde59f",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-11T12:42:12Z",
+      "side": 1,
+      "message": "Maybe, the copyright changed the hash?",
+      "revId": "1ddf087947543a707fb62420b08317c404c121fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
