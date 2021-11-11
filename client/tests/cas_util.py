@@ -4,6 +4,7 @@
 
 import logging
 import os
+import re
 import subprocess
 import tempfile
 import time
@@ -56,3 +57,8 @@ class LocalCAS(object):
       self._proc.terminate()
       self._proc.wait()
       self._log.close()
+
+
+def filter_out_go_logs(output):
+  return '\n'.join(
+      [o for o in output.split('\n') if not re.match('^.* \S+\.go:\d+\]', o)])
