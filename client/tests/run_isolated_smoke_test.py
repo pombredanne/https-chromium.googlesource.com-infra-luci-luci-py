@@ -31,28 +31,14 @@ from utils import file_path
 from utils import large
 
 
-_LUCI_GO = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(
-        os.path.abspath(__file__)))), 'luci-go')
+_SRC_DIR = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_LUCI_GO = os.path.join(_SRC_DIR, 'luci-go')
 
 OUTPUT_CONTENT = 'foooo'
 CONTENTS = {
     'file1.txt':
         b'File1\n',
-    'repeated_files.py':
-        textwrap.dedent("""
-      from __future__ import print_function
-      import os, sys
-      expected = ['file1.txt', 'file1_copy.txt', 'repeated_files.py']
-      actual = sorted(os.listdir(os.path.dirname(os.path.abspath(
-          __file__))))
-      if expected != actual:
-        print('Expected list doesn\\'t match:', file=sys.stderr)
-        print(
-            '%s\\n%s' % (','.join(expected), ','.join(actual)),
-            file=sys.stderr)
-        sys.exit(1)
-      print('Success')""").encode(),
     'max_path.py':
         textwrap.dedent("""
       from __future__ import print_function
@@ -100,14 +86,6 @@ CONTENTS['max_path.isolated'] = json.dumps({
     'files': {
         'a' * 200 + '/' + 'b' * 200: file_meta('file1.txt'),
         'max_path.py': file_meta('max_path.py'),
-    },
-}).encode()
-
-CONTENTS['repeated_files.isolated'] = json.dumps({
-    'files': {
-        'file1.txt': file_meta('file1.txt'),
-        'file1_copy.txt': file_meta('file1.txt'),
-        'repeated_files.py': file_meta('repeated_files.py'),
     },
 }).encode()
 
@@ -262,14 +240,23 @@ class RunIsolatedTest(unittest.TestCase):
     self.assertEqual('', err)
     self.assertEqual(0, returncode)
 
-  def _cmd_args(self, hash_value):
-    """Generates the standard arguments used with |hash_value| as the hash.
+  def _cmd_args(self, hash_or_digest):
+    """Generates the standard arguments used with |hash_or_digest| as the
+    isolated hash or digest.
 
     Returns a list of the required arguments.
     """
+    if '/' in hash_or_digest:
+      return [
+          '--cas-digest',
+          hash_or_digest,
+          '--cas-cache',
+          self._cas_cache_dir,
+      ]
+
     return [
         '--isolated',
-        hash_value,
+        hash_or_digest,
         '--cache',
         self._isolated_cache_dir,
         '--isolate-server',
@@ -277,6 +264,9 @@ class RunIsolatedTest(unittest.TestCase):
         '--namespace',
         'default',
     ]
+
+  def _test_dir(self, dirname):
+    return os.path.join(test_env.TESTS_DIR, 'data', dirname)
 
   def assertTreeModes(self, root, expected):
     """Compares the file modes of everything in |root| with |expected|.
@@ -306,22 +296,22 @@ class RunIsolatedTest(unittest.TestCase):
     self.assertEqual(0, returncode)
 
   def test_isolated_normal(self):
-    # Loads the .isolated from the store as a hash.
-    # Load an isolated file with the same content (same SHA-1), listed under two
-    # different names and ensure both are created.
-    isolated_hash = self._store('repeated_files.isolated')
+    # Upload files from test dir having files with the same content (same
+    # digest), listed under two different names and ensure both are created.
+    test_data = self._test_dir('repeated_files')
+    cas_digest = self._upload_to_cas(test_data)
     expected = [
-      'state.json',
-      self._store('file1.txt'),
-      self._store('repeated_files.py'),
+        'state.json',
+        cas_util.cas_hash(os.path.join(test_data, 'file1.txt')),
+        cas_util.cas_hash(os.path.join(test_data, 'repeated_files.py')),
     ]
 
     out, err, returncode = self._run(
-        self._cmd_args(isolated_hash) + ['--'] + CMD_REPEATED_FILES)
-    self.assertEqual('', err)
+        self._cmd_args(cas_digest) + ['--'] + CMD_REPEATED_FILES)
+    self.assertEqual('', cas_util.filter_out_go_logs(err))
     self.assertEqual('Success\n', out, out)
     self.assertEqual(0, returncode)
-    actual = list_files_tree(self._isolated_cache_dir)
+    actual = list_files_tree(self._cas_cache_dir)
     self.assertEqual(sorted(set(expected)), actual)
 
   def test_isolated_output(self):
@@ -361,18 +351,15 @@ class RunIsolatedTest(unittest.TestCase):
     actual = list_files_tree(self._isolated_cache_dir)
     self.assertEqual(sorted(set(expected)), actual)
 
-  def test_isolated_fail_empty(self):
-    isolated_hash = self._store_isolated({})
-    expected = ['state.json']
-    out, err, returncode = self._run(self._cmd_args(isolated_hash))
+  def test_isolated_fail_empty_args(self):
+    out, err, returncode = self._run([])
     self.assertEqual('', out)
-    self.assertIn(
-        '<No command was specified!>\n'
-        '<Please secify a command when triggering your Swarming task>\n',
-        err)
-    self.assertEqual(1, returncode)
+    self.assertEqual(
+        'Usage: run_isolated.py <options> [command to run or extra args]\n\n'
+        'run_isolated.py: error: command to run is required.\n', err)
+    self.assertEqual(2, returncode)
     actual = list_files_tree(self._isolated_cache_dir)
-    self.assertEqual(sorted(expected), actual)
+    self.assertEqual([], actual)
 
   def _test_corruption_common(self, new_content):
     isolated_hash = self._store('file_with_size.isolated')
@@ -520,17 +507,8 @@ class RunIsolatedTest(unittest.TestCase):
         list_files_tree(os.path.join(self._named_cache_dir, rel_path)))
 
   def test_cas_input(self):
-    # Prepare inputs on the remote CAS instance.
-    inputs_root = os.path.join(self.tempdir, 'cas_inputs')
-    os.makedirs(inputs_root)
-    # prepare files for `repeated_files.py` task.
-    for filename in ['repeated_files.py', 'file1.txt']:
-      write_content(os.path.join(inputs_root, filename), CONTENTS[filename])
-    # copy file1.txt.
-    shutil.copyfile(
-        os.path.join(inputs_root, 'file1.txt'),
-        os.path.join(inputs_root, 'file1_copy.txt'))
-    inputs_root_digest = self._upload_to_cas(inputs_root)
+    test_dir = self._test_dir('repeated_files')
+    inputs_root_digest = self._upload_to_cas(test_dir)
 
     # Path to the result json file.
     result_json = os.path.join(self.tempdir, 'run_isolated_result.json')
@@ -562,14 +540,15 @@ class RunIsolatedTest(unittest.TestCase):
     self.assertEqual(
         {
             'items_cold': [
-                len(CONTENTS['file1.txt']),
-                len(CONTENTS['repeated_files.py']),
+                os.path.getsize(os.path.join(test_dir, 'file1.txt')),
+                os.path.getsize(os.path.join(test_dir, 'repeated_files.py')),
             ],
-            'items_hot': None
+            'items_hot':
+            None
         }, download_stats)
     self.assertEqual([
+        '27015e21d523df80e3aee8235af58667764c8051d042c90d57fa4670516c659f',
         'ebea1137c5ece3f8a58f0e1a0da1411fe0a2648501419d190b3b154f3f191259',
-        'f0a8a1a7050bfae60a591d0cb7d74de2ef52963b9913253fc9ec7151aa5d421e',
         'state.json',
     ], list_files_tree(self._cas_cache_dir))
 
