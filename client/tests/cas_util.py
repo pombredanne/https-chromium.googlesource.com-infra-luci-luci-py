@@ -11,7 +11,6 @@ import time
 CLIENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LUCI_DIR = os.path.dirname(CLIENT_DIR)
 FAKECAS_BIN = os.path.join(LUCI_DIR, 'luci-go', 'fakecas')
-CAS_CLI = os.path.join(LUCI_DIR, 'luci-go', 'cas')
 
 
 class LocalCAS(object):
@@ -73,7 +72,7 @@ class LocalCAS(object):
         CAS_CLI,
         'archive',
         '-cas-addr',
-        self.address,
+        self.cas.address,
         '-paths',
         upload_dir + ':.',
         '-dump-digest',
@@ -90,6 +89,6 @@ class LocalCAS(object):
           'Failed to run cas archive. exit_code=%d, cmd="%s"\n%s' %
           (proc.returncode, ' '.join(cmd), out.decode('unicode-escape')))
     digest = None
-    with open(dump_digest) as f:
+    with fs.open(dump_json) as f:
       digest = f.read()
     return digest

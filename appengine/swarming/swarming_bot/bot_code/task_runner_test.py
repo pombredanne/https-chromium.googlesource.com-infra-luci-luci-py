@@ -16,6 +16,7 @@ import random
 import re
 import signal
 import string
+import subprocess
 import sys
 import tempfile
 import threading
@@ -32,6 +33,7 @@ ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(test_env_bot_code.BOT_DIR)))
 CLIENT_DIR = os.path.join(ROOT_DIR, 'client')
 LUCI_GO_CLIENT_DIR = os.path.join(ROOT_DIR, 'luci-go')
+CAS_CLI = os.path.join(LUCI_GO_CLIENT_DIR, 'cas')
 
 # Needed for local_caching, and others on Windows when symlinks are not enabled.
 sys.path.insert(0, CLIENT_DIR)
@@ -50,6 +52,7 @@ from utils import large
 from utils import logging_utils
 from utils import subprocess42
 from utils import tools
+import cas_util
 import isolateserver_fake
 import local_caching
 import swarmingserver_bot_fake
@@ -151,6 +154,11 @@ def load_and_run(server_url, work_dir, manifest, auth_params_file):
     return json.load(f)
 
 
+def _filter_out_go_client_logs(output):
+  return b'\n'.join(
+      [o for o in output.split(b'\n') if not re.match(b'^.* \S+\.go:\d+\]', o)])
+
+
 class FakeAuthSystem(object):
   local_auth_context = None
 
@@ -205,6 +213,7 @@ class TestTaskRunnerBase(auto_stub.TestCase):
     self.mock(remote_client, 'make_appengine_id', lambda *a: 42)
     self._server = None
     self._isolateserver = None
+    self._cas = None
 
   def tearDown(self):
     os.chdir(test_env_bot_code.BOT_DIR)
@@ -237,6 +246,18 @@ class TestTaskRunnerBase(auto_stub.TestCase):
     if not self._isolateserver:
       self._isolateserver = isolateserver_fake.FakeIsolateServer()
     return self._isolateserver
+
+  @property
+  def cas(self):
+    """Lazily starts an local CAS server."""
+    if not self._cas:
+      self._cas = cas_util.LocalCAS(tempfile.mkdtemp(prefix=u'local_cas'))
+      self._cas.start()
+      os.environ['RUN_ISOLATED_CAS_ADDRESS'] = self._cas.address
+      # TODO(crbug.com/1268267): uploading an empty dir produces non-empty
+      # digest for performance stats in tests to be consistent.
+      self._cas.archive_files({})
+    return self._cas
 
   def getTaskResults(self, task_id):
     """Returns a flattened task result."""
@@ -285,6 +306,15 @@ class TestTaskRunnerBase(auto_stub.TestCase):
         u'output': to_native_eol('hi\n').encode(),
         u'output_chunk_start': 0,
         u'task_id': task_id,
+        u'cas_output_root': {
+            'cas_instance': 'projects/test/instances/default_instance',
+            # TODO(crbug.com/1268267): it should be the empty digest.
+            'digest': {
+                'hash':
+                '24b2420bc49d8b8fdc1d011a163708927532b37dc9f91d7d8d6877e3a86559ca',
+                'size_bytes': 73,
+            },
+        }
     }
     for k, v in kwargs.items():
       if v is None:
@@ -1047,24 +1077,14 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
                         b'sys.exit(p.returncode)\n'),
         'grand_children.py': self.SCRIPT_SIGNAL_HANG.encode(),
     }
-    isolated = json.dumps({
-        'files': {
-            name: {
-                'h':
-                    self.isolateserver.add_content_compressed(
-                        'default-gzip', content),
-                's':
-                    len(content),
-            } for name, content in files.items()
-        },
-    })
-    isolated_digest = self.isolateserver.add_content_compressed(
-        'default-gzip', isolated.encode())
+    digest = self.cas.archive_files(files)
     manifest = get_manifest(
-        isolated={
-            'input': isolated_digest,
-            'namespace': 'default-gzip',
-            'server': self.isolateserver.url,
+        cas_input_root={
+            'cas_instance': 'projects/test/instances/default_instance',
+            'digest': {
+                'hash': digest.split('/')[0],
+                'size_bytes': digest.split('/')[1],
+            },
         },
         command=['python', '-u', 'parent.py'],
         # TODO(maruel): A bit cheezy, we'd want the I/O timeout to be just
