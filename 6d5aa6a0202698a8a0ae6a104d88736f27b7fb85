@@ -22,6 +22,30 @@
       },
       "revId": "6d5aa6a0202698a8a0ae6a104d88736f27b7fb85",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ae66718_94454139",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-12T05:51:32Z",
+      "side": 0,
+      "message": "cas cache is initialized only when cas client is run, but run_isolated fails before that.",
+      "parentUuid": "63830c3c_ce0a726b",
+      "range": {
+        "startLine": 366,
+        "startChar": 4,
+        "endLine": 366,
+        "endChar": 29
+      },
+      "revId": "6d5aa6a0202698a8a0ae6a104d88736f27b7fb85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
