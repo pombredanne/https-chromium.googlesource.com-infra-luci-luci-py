@@ -22,6 +22,30 @@
       },
       "revId": "ea5115d97d181d777f1ef394661fdb2dbf5aa869",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dc9badc_34abf67e",
+        "filename": "client/tests/cas_util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-12T07:23:35Z",
+      "side": 1,
+      "message": "thanks!",
+      "parentUuid": "552048e4_7ce29efd",
+      "range": {
+        "startLine": 74,
+        "startChar": 13,
+        "endLine": 74,
+        "endChar": 17
+      },
+      "revId": "ea5115d97d181d777f1ef394661fdb2dbf5aa869",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
