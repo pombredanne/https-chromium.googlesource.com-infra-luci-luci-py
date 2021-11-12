@@ -66,7 +66,12 @@ class LocalCAS(object):
     tmpdir = tempfile.mkdtemp()
     try:
       for path, content in files.items():
-        with open(os.path.join(tmpdir, path), 'wb') as f:
+        path = os.path.join(tmpdir, path)
+        pdir = os.path.dirname(path)
+        if not os.path.exists(pdir):
+          os.makedirs(pdir)
+
+        with open(path, 'wb') as f:
           f.write(content)
       return self.archive_dir(tmpdir)
     finally:
