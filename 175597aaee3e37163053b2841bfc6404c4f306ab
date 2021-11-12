@@ -22,6 +22,30 @@
       },
       "revId": "175597aaee3e37163053b2841bfc6404c4f306ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b2786df_16ce8550",
+        "filename": "appengine/swarming/local_smoke_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1611,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-12T06:48:34Z",
+      "side": 1,
+      "message": "\u0027in\u0027 does not avoid when actual[k] has key \u0027j\u0027, but value None.",
+      "parentUuid": "961f9ac7_724e0995",
+      "range": {
+        "startLine": 1611,
+        "startChar": 11,
+        "endLine": 1611,
+        "endChar": 39
+      },
+      "revId": "175597aaee3e37163053b2841bfc6404c4f306ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
