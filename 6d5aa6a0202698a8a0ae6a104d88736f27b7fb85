@@ -46,6 +46,30 @@
       },
       "revId": "6d5aa6a0202698a8a0ae6a104d88736f27b7fb85",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7717a0f2_1582bc4d",
+        "filename": "client/tests/run_isolated_smoke_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-12T05:53:16Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "9ae66718_94454139",
+      "range": {
+        "startLine": 366,
+        "startChar": 4,
+        "endLine": 366,
+        "endChar": 29
+      },
+      "revId": "6d5aa6a0202698a8a0ae6a104d88736f27b7fb85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
