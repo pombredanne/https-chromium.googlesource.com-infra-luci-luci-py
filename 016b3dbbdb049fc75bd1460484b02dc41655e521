@@ -22,6 +22,30 @@
       },
       "revId": "016b3dbbdb049fc75bd1460484b02dc41655e521",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2924d90_24f6ecb7",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-15T02:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aaffad40_fc326d2b",
+      "range": {
+        "startLine": 732,
+        "startChar": 53,
+        "endLine": 732,
+        "endChar": 58
+      },
+      "revId": "016b3dbbdb049fc75bd1460484b02dc41655e521",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
