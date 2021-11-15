@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaffad40_fc326d2b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-15T02:46:25Z",
+      "side": 1,
+      "message": "\u0027If it\u0027?",
+      "range": {
+        "startLine": 732,
+        "startChar": 53,
+        "endLine": 732,
+        "endChar": 58
+      },
+      "revId": "016b3dbbdb049fc75bd1460484b02dc41655e521",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
