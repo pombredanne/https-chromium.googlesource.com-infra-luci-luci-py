@@ -22,6 +22,30 @@
       },
       "revId": "9d7d1bab5de2bdc6dbc56cf0711c249024ea30e0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d447dbe_ee80af1b",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-15T12:22:24Z",
+      "side": 0,
+      "message": "I think new test doesn\u0027t need this as new test uses result json instead for this.",
+      "parentUuid": "004ff37a_5ac02107",
+      "range": {
+        "startLine": 1095,
+        "startChar": 0,
+        "endLine": 1101,
+        "endChar": 0
+      },
+      "revId": "9d7d1bab5de2bdc6dbc56cf0711c249024ea30e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
