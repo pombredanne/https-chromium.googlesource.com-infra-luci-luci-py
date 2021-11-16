@@ -529,10 +529,6 @@ class RunIsolatedTest(RunIsolatedTestBase):
           'bin': [('infra/tools/echo/linux-amd64', 'deadbeef' * 5),],
       }
       yield {
-          '': [('infra/tools/luci/isolated/linux-amd64',
-                run_isolated._LUCI_GO_REVISION)],
-      }
-      yield {
           '': [('infra/tools/luci/cas/linux-amd64',
                 run_isolated._LUCI_GO_REVISION)],
       }
@@ -590,7 +586,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     ret = run_isolated.main(cmd)
     self.assertEqual(0, ret)
 
-    self.assertEqual(4, len(self.popen_calls))
+    self.assertEqual(3, len(self.popen_calls))
 
     # Test cipd-ensure command for installing packages.
     cipd_ensure_cmd, _ = self.popen_calls[0]
@@ -618,7 +614,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
     self.assertTrue(fs.isfile(client_binary_file))
 
     # Test echo call.
-    echo_cmd, _ = self.popen_calls[3]
+    echo_cmd, _ = self.popen_calls[2]
     self.assertTrue(echo_cmd[0].endswith(
         os.path.sep + 'bin' + os.path.sep + 'echo' + cipd.EXECUTABLE_SUFFIX),
         echo_cmd[0])
@@ -692,7 +688,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
         os.path.join(cipd_cache, 'bin', 'cipd' + cipd.EXECUTABLE_SUFFIX))
     self.assertTrue(fs.isfile(client_binary_link))
 
-    env = self.popen_calls[2][1].pop('env')
+    env = self.popen_calls[1][1].pop('env')
     exec_path = self.ir_dir(u'a', 'bin', 'echo')
     if sys.platform == 'win32':
       exec_path += '.exe'
@@ -710,7 +706,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
             ),
         ],
         # Ignore `cipd ensure` for isolated client here.
-        self.popen_calls[2:])
+        self.popen_calls[1:])
 
     # Directory with cipd client is in front of PATH.
     path = env['PATH'].split(os.pathsep)
@@ -969,37 +965,6 @@ class RunIsolatedTest(RunIsolatedTestBase):
             },
         ),
     ], self.popen_calls)
-
-  def test_fetch_and_map_with_go_isolated(self):
-    # Sanity test for run_isolated._fetch_and_map_with_go_isolated(...).
-    _, options, _ = run_isolated.parse_args([])
-    cipd_server = 'https://chrome-infra-packages.appspot.com/'
-    storage = isolate_storage.IsolateServer(
-        isolate_storage.ServerRef(cipd_server, options.namespace))
-
-    def fake_wait(args, **kwargs):  # pylint: disable=unused-argument
-      for arg in args:
-        self.assertTrue(
-            isinstance(arg, str) or isinstance(arg.encode('utf-8'), str), arg)
-
-      json_path = args[args.index('-fetch-and-map-result-json') + 1]
-      with open(json_path, 'w') as json_file:
-        json.dump(
-            {
-                'isolated': {},
-                'items_cold': '',
-                'items_hot': '',
-                'initial_number_items': 0,
-                'initial_size': 0,
-            }, json_file)
-      return 0
-
-    self.popen_fakes.append(fake_wait)
-    stats = run_isolated._fetch_and_map_with_go_isolated(
-        'fake_isolated_hash', storage, 'fake_outdir', 'fake_cache_dir',
-        local_caching.CachePolicies(0, 0, 0, 0), 'fake/path/to/isolated',
-        'fake/path/to/tmp')
-    self.assertTrue(stats)
 
 
 class RunIsolatedTestRun(RunIsolatedTestBase):
