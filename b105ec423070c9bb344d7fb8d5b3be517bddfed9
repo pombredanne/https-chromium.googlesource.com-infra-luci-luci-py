@@ -62,6 +62,30 @@
       },
       "revId": "b105ec423070c9bb344d7fb8d5b3be517bddfed9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74294f0a_d4b00c64",
+        "filename": "appengine/config_service/admin.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-11-16T07:44:56Z",
+      "side": 1,
+      "message": "yeah, you mentioned in chat...",
+      "parentUuid": "a2da0584_00ed9ff6",
+      "range": {
+        "startLine": 59,
+        "startChar": 16,
+        "endLine": 59,
+        "endChar": 33
+      },
+      "revId": "b105ec423070c9bb344d7fb8d5b3be517bddfed9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
