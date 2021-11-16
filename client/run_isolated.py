@@ -118,7 +118,6 @@ _CAS_CLIENT_DIR = u'cc'
 _NSJAIL_DIR = u'ns'
 
 # TODO(tikuta): take these parameter from luci-config?
-ISOLATED_PACKAGE = 'infra/tools/luci/isolated/${platform}'
 _CAS_PACKAGE = 'infra/tools/luci/cas/${platform}'
 _LUCI_GO_REVISION = DEPS.deps['luci-go']['packages'][0]['version']
 _NSJAIL_PACKAGE = 'infra/3pp/tools/nsjail/${platform}'
@@ -657,61 +656,6 @@ def _fetch_and_map_with_cas(cas_client, digest, instance, output_dir, cache_dir,
     file_path.rmtree(profile_dir)
 
 
-def _fetch_and_map_with_go_isolated(isolated_hash, storage, outdir,
-                                    go_cache_dir, policies, isolated_client,
-                                    tmp_dir):
-  """
-  Fetches an isolated tree using go client, create the tree and returns
-  stats.
-  """
-  start = time.time()
-  server_ref = storage.server_ref
-  result_json_handle, result_json_path = tempfile.mkstemp(
-      prefix=u'fetch-and-map-result-', suffix=u'.json')
-  os.close(result_json_handle)
-  try:
-    cmd = [
-        isolated_client,
-        'download',
-        '-isolate-server',
-        server_ref.url,
-        '-namespace',
-        server_ref.namespace,
-        '-isolated',
-        isolated_hash,
-
-        # flags for cache
-        '-cache-dir',
-        go_cache_dir,
-        '-cache-max-items',
-        str(policies.max_items),
-        '-cache-max-size',
-        str(policies.max_cache_size),
-        '-cache-min-free-space',
-        str(policies.min_free_space),
-
-        # flags for output
-        '-output-dir',
-        outdir,
-        '-fetch-and-map-result-json',
-        result_json_path,
-    ]
-    _run_go_cmd_and_wait(cmd, tmp_dir)
-
-    with open(result_json_path) as json_file:
-      result_json = json.load(json_file)
-
-    return {
-        'duration': time.time() - start,
-        'items_cold': result_json['items_cold'],
-        'items_hot': result_json['items_hot'],
-        'initial_number_items': result_json['initial_number_items'],
-        'initial_size': result_json['initial_size'],
-    }
-  finally:
-    fs.remove(result_json_path)
-
-
 # TODO(crbug.com/932396): remove this function.
 def fetch_and_map(isolated_hash, storage, cache, outdir):
   """Fetches an isolated tree, create the tree and returns stats."""
@@ -1041,21 +985,10 @@ def map_and_run(data, constant_run_path):
 
       isolated_stats = result['stats'].setdefault('isolated', {})
       if data.isolated_hash:
-        if data.use_go_isolated:
-          stats = _fetch_and_map_with_go_isolated(
-              isolated_hash=data.isolated_hash,
-              storage=data.storage,
-              outdir=run_dir,
-              go_cache_dir=data.go_cache_dir,
-              policies=data.go_cache_policies,
-              isolated_client=go_isolated_client,
-              tmp_dir=tmp_dir)
-        else:
-          stats = fetch_and_map(
-              isolated_hash=data.isolated_hash,
-              storage=data.storage,
-              cache=data.isolate_cache,
-              outdir=run_dir)
+        stats = fetch_and_map(isolated_hash=data.isolated_hash,
+                              storage=data.storage,
+                              cache=data.isolate_cache,
+                              outdir=run_dir)
         isolated_stats['download'].update(stats)
 
       elif data.cas_digest:
@@ -1384,10 +1317,6 @@ def install_client_and_packages(run_dir, packages, service_url,
     if packages:
       package_pins = _install_packages(run_dir, cipd_cache_dir, client,
                                        packages)
-
-    # Install isolated client to |isolated_dir|.
-    _install_packages(isolated_dir, cipd_cache_dir, client,
-                      [('', ISOLATED_PACKAGE, _LUCI_GO_REVISION)])
 
     # Install cas client to |cas_dir|.
     _install_packages(cas_dir, cipd_cache_dir, client,
