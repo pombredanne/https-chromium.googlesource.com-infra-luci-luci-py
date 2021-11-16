@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f78f99c_f387389b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-11-16T00:46:57Z",
+      "side": 1,
+      "message": "PTAL. I\u0027m almost done landing my 26 migration CLs...\n\nNext steps would be to cleanup acl.cfg configs and the remove deprecated proto fields.",
+      "revId": "b105ec423070c9bb344d7fb8d5b3be517bddfed9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40adb875_d26d9e2a",
+        "filename": "appengine/config_service/acl_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-11-16T00:46:57Z",
+      "side": 1,
+      "message": "otherwise the return value can be None because \"None and False\" is None\nit trips the assert in test_can_read_config_sets_many",
+      "range": {
+        "startLine": 69,
+        "startChar": 13,
+        "endLine": 69,
+        "endChar": 17
+      },
+      "revId": "b105ec423070c9bb344d7fb8d5b3be517bddfed9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2da0584_00ed9ff6",
+        "filename": "appengine/config_service/admin.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-11-16T00:46:57Z",
+      "side": 1,
+      "message": "this stuff is used only during bootstrap, should be OK to require GAE-level admins here\n\n(also we should stop depending on it completely, it has some surprising logic...)",
+      "range": {
+        "startLine": 59,
+        "startChar": 16,
+        "endLine": 59,
+        "endChar": 33
+      },
+      "revId": "b105ec423070c9bb344d7fb8d5b3be517bddfed9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
