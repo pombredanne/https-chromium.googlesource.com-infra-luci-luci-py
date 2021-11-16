@@ -22,6 +22,30 @@
       },
       "revId": "3b4199952005285faedfc4079d48394d36668967",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb3d27ce_5305efeb",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1016,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-16T12:07:32Z",
+      "side": 0,
+      "message": "It seems so.",
+      "parentUuid": "687e4230_064b3514",
+      "range": {
+        "startLine": 1016,
+        "startChar": 9,
+        "endLine": 1016,
+        "endChar": 25
+      },
+      "revId": "3b4199952005285faedfc4079d48394d36668967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
