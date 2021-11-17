@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12954c53_22c13399",
+        "filename": "appengine/swarming/ui2/modules/util.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-17T05:30:01Z",
+      "side": 1,
+      "message": "why we use array here?",
+      "range": {
+        "startLine": 230,
+        "startChar": 16,
+        "endLine": 230,
+        "endChar": 17
+      },
+      "revId": "43eef11449806b94d9ffa9a3dc6d9564044918e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e5e9401_5bb8f54a",
+        "filename": "appengine/swarming/ui2/modules/util.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-17T05:30:01Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 233,
+        "startChar": 16,
+        "endLine": 233,
+        "endChar": 17
+      },
+      "revId": "43eef11449806b94d9ffa9a3dc6d9564044918e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39f6342a_3fd4cab1",
+        "filename": "appengine/swarming/ui2/modules/util.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-17T05:30:01Z",
+      "side": 1,
+      "message": "do we need to set this?",
+      "revId": "43eef11449806b94d9ffa9a3dc6d9564044918e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
