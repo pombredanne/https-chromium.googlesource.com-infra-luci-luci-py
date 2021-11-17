@@ -74,8 +74,6 @@ import six
 import DEPS
 import auth
 import cipd
-import isolate_storage
-import isolateserver
 import local_caching
 from libs import luci_context
 from utils import file_path
@@ -177,18 +175,6 @@ TaskData = collections.namedtuple(
         'command',
         # Relative directory to start command into.
         'relative_cwd',
-        # Hash of the .isolated file that must be retrieved to recreate the tree
-        # of files to run the target executable. The command specified in the
-        # .isolated is executed.  Mutually exclusive with command argument.
-        'isolated_hash',
-        # isolateserver.Storage instance to retrieve remote objects. This object
-        # has a reference to an isolateserver.StorageApi, which does the actual
-        # I/O.
-        'storage',
-        # isolateserver.LocalCache instance to keep from retrieving the same
-        # objects constantly by caching the objects retrieved. Can be on-disk or
-        # in-memory.
-        'isolate_cache',
         # Digest of the input root on RBE-CAS.
         'cas_digest',
         # Full CAS instance name.
@@ -650,25 +636,6 @@ def _fetch_and_map_with_cas(cas_client, digest, instance, output_dir, cache_dir,
     file_path.rmtree(profile_dir)
 
 
-# TODO(crbug.com/932396): remove this function.
-def fetch_and_map(isolated_hash, storage, cache, outdir):
-  """Fetches an isolated tree, create the tree and returns stats."""
-  start = time.time()
-  isolateserver.fetch_isolated(
-      isolated_hash=isolated_hash,
-      storage=storage,
-      cache=cache,
-      outdir=outdir,
-      use_symlinks=False)
-  hot = (collections.Counter(cache.used) -
-         collections.Counter(cache.added)).elements()
-  return {
-      'duration': time.time() - start,
-      'items_cold': base64.b64encode(large.pack(sorted(cache.added))).decode(),
-      'items_hot': base64.b64encode(large.pack(sorted(hot))).decode(),
-  }
-
-
 def link_outputs_to_outdir(run_dir, out_dir, outputs):
   """Links any named outputs to out_dir so they can be uploaded.
 
@@ -721,66 +688,6 @@ def copy_recursively(src, dst):
                       src, orig_src)
     else:
       logging.info("Couldn't collect output file %s: %s", src, e)
-
-
-def _upload_with_py(storage, out_dir):
-
-  def process_stats(f_st):
-    st = sorted(i.size for i in f_st)
-    return base64.b64encode(large.pack(st)).decode()
-
-  try:
-    results, f_cold, f_hot = isolateserver.archive_files_to_storage(
-        storage, [out_dir], None, verify_push=True)
-
-    isolated = list(results.values())[0]
-    cold = process_stats(f_cold)
-    hot = process_stats(f_hot)
-    return isolated, cold, hot
-
-  except isolateserver.Aborted:
-    # This happens when a signal SIGTERM was received while uploading data.
-    # There is 2 causes:
-    # - The task was too slow and was about to be killed anyway due to
-    #   exceeding the hard timeout.
-    # - The amount of data uploaded back is very large and took too much
-    #   time to archive.
-    sys.stderr.write('Received SIGTERM while uploading')
-    # Re-raise, so it will be treated as an internal failure.
-    raise
-
-
-def upload_out_dir(storage, out_dir):
-  """Uploads the results in |out_dir| back, if there is any.
-
-  Returns:
-    tuple(outputs_ref, stats)
-    - outputs_ref: a dict referring to the results archived back to the isolated
-          server, if applicable.
-    - stats: uploading stats.
-  """
-  # Upload out_dir and generate a .isolated file out of this directory. It is
-  # only done if files were written in the directory.
-  outputs_ref = None
-  cold = ''
-  hot = ''
-  start = time.time()
-
-  if fs.isdir(out_dir) and fs.listdir(out_dir):
-    with tools.Profiler('ArchiveOutput'):
-      isolated, cold, hot = _upload_with_py(storage, out_dir)
-      outputs_ref = {
-          'isolated': isolated,
-          'isolatedserver': storage.server_ref.url,
-          'namespace': storage.server_ref.namespace,
-      }
-
-  stats = {
-      'duration': time.time() - start,
-      'items_cold': cold,
-      'items_hot': hot,
-  }
-  return outputs_ref, stats
 
 
 def upload_outdir_with_cas(cas_client, cas_instance, outdir, tmp_dir):
@@ -867,17 +774,14 @@ def map_and_run(data, constant_run_path):
   Returns metadata about the result.
   """
 
-  if data.isolate_cache:
-    download_stats = {
-        #'duration': 0.,
-        'initial_number_items': len(data.isolate_cache),
-        'initial_size': data.isolate_cache.total_size,
-        #'items_cold': '<large.pack()>',
-        #'items_hot': '<large.pack()>',
-    }
-  else:
-    # TODO(tikuta): take stats from state.json in this case too.
-    download_stats = {}
+  # TODO(tikuta): take stats from state.json in this case too.
+  download_stats = {
+      #'duration': 0.,
+      # 'initial_number_items': len(data.cas_cache),
+      # 'initial_size': data.cas_cache.total_size,
+      #'items_cold': '<large.pack()>',
+      #'items_hot': '<large.pack()>',
+  }
 
   result = {
       'duration': None,
@@ -945,7 +849,7 @@ def map_and_run(data, constant_run_path):
   # storage should be normally set but don't crash if it is not. This can happen
   # as Swarming task can run without an isolate server.
   out_dir = None
-  if data.storage or use_cas:
+  if use_cas:
     out_dir = make_temp_dir(ISOLATED_OUT_DIR, data.root_dir)
   tmp_dir = make_temp_dir(ISOLATED_TMP_DIR, data.root_dir)
   cwd = run_dir
@@ -973,14 +877,8 @@ def map_and_run(data, constant_run_path):
         result['cipd_pins'] = cipd_info.pins
 
       isolated_stats = result['stats'].setdefault('isolated', {})
-      if data.isolated_hash:
-        stats = fetch_and_map(isolated_hash=data.isolated_hash,
-                              storage=data.storage,
-                              cache=data.isolate_cache,
-                              outdir=run_dir)
-        isolated_stats['download'].update(stats)
 
-      elif data.cas_digest:
+      if data.cas_digest:
         stats = _fetch_and_map_with_cas(
             cas_client=cas_client,
             digest=data.cas_digest,
@@ -1044,11 +942,7 @@ def map_and_run(data, constant_run_path):
           result['cas_output_root'], isolated_stats['upload'] = (
               upload_outdir_with_cas(cas_client, data.cas_instance, out_dir,
                                      tmp_dir))
-        else:
-          # This could use |go_isolated_client|, so make sure it runs when the
-          # CIPD package still exists.
-          result['outputs_ref'], isolated_stats['upload'] = (
-              upload_out_dir(data.storage, out_dir))
+
     # We successfully ran the command, set internal_failure back to
     # None (even if the command failed, it's not an internal error).
     result['internal_failure'] = None
@@ -1407,15 +1301,6 @@ def create_option_parser():
       help='Whether report exception during execution to isolate server. '
       'This flag should only be used in swarming bot.')
 
-  group = optparse.OptionGroup(parser, 'Data source - Isolate server')
-  # Deprecated. Isoate server is being migrated to RBE-CAS.
-  # Remove --isolated and isolate server options after migration.
-  group.add_option(
-      '-s', '--isolated',
-      help='Hash of the .isolated to grab from the isolate server.')
-  isolateserver.add_isolate_server_options(group)
-  parser.add_option_group(group)
-
   group = optparse.OptionGroup(parser,
                                'Data source - Content Addressed Storage')
   group.add_option(
@@ -1427,7 +1312,6 @@ def create_option_parser():
   parser.add_option_group(group)
 
   # Cache options.
-  isolateserver.add_cache_options(parser)
   add_cas_cache_options(parser)
 
   cipd.add_cipd_options(parser)
@@ -1498,6 +1382,19 @@ def add_cas_cache_options(parser):
       '--kvs-dir',
       default='',
       help='CAS cache dir using kvs for small files. Default=%default')
+  group.add_option(
+      '--max-cache-size',
+      type='int',
+      metavar='NNN',
+      default=50 * 1024 * 1024 * 1024,
+      help='Trim if the cache gets larger than this value, default=%default')
+  group.add_option(
+      '--min-free-space',
+      type='int',
+      metavar='NNN',
+      default=2 * 1024 * 1024 * 1024,
+      help='Trim if disk free space becomes lower than this value, '
+      'default=%default')
   parser.add_option_group(group)
 
 
@@ -1597,10 +1494,6 @@ def _calc_named_cache_hint(named_cache, named_caches):
 
 def _clean_cmd(parser, options, caches, root):
   """Cleanup cache dirs/files."""
-  if options.isolated:
-    parser.error('Can\'t use --isolated with --clean.')
-  if options.isolate_server:
-    parser.error('Can\'t use --isolate-server with --clean.')
   if options.json:
     parser.error('Can\'t use --json with --clean.')
   if options.named_caches:
@@ -1662,12 +1555,9 @@ def main(args):
   # TODO(maruel): CIPD caches should be defined at an higher level here too, so
   # they can be cleaned the same way.
 
-  isolate_cache = isolateserver.process_cache_options(options, trim=False)
   cas_cache = process_cas_cache_options(options)
 
   caches = []
-  if isolate_cache:
-    caches.append(isolate_cache)
   if cas_cache:
     caches.append(cas_cache)
   if named_cache:
@@ -1707,14 +1597,9 @@ def main(args):
 
   auth.process_auth_options(parser, options)
 
-  isolateserver.process_isolate_server_options(parser, options, False)
-  if ISOLATED_OUTDIR_PARAMETER in args and (not options.isolate_server and
-                                            not options.cas_instance):
+  if ISOLATED_OUTDIR_PARAMETER in args and not options.cas_instance:
     parser.error('%s in args requires --isolate-server or --cas-instance' %
                  ISOLATED_OUTDIR_PARAMETER)
-
-  if options.isolated and not options.isolate_server:
-    parser.error('--isolated requires --isolate-server')
 
   if options.root_dir:
     options.root_dir = six.text_type(os.path.abspath(options.root_dir))
@@ -1837,9 +1722,6 @@ def main(args):
   data = TaskData(
       command=command,
       relative_cwd=options.relative_cwd,
-      isolated_hash=options.isolated,
-      storage=None,
-      isolate_cache=isolate_cache,
       cas_instance=options.cas_instance,
       cas_digest=options.cas_digest,
       outputs=options.output,
@@ -1865,15 +1747,6 @@ def main(args):
       containment=containment,
       trim_caches_fn=trim_caches_fn)
   try:
-    if options.isolate_server:
-      server_ref = isolate_storage.ServerRef(
-          options.isolate_server, options.namespace)
-      storage = isolateserver.get_storage(server_ref)
-      with storage:
-        data = data._replace(storage=storage)
-        # Hashing schemes used by |storage| and |isolate_cache| MUST match.
-        assert storage.server_ref.hash_algo == server_ref.hash_algo
-        return run_tha_test(data, options.json)
     return run_tha_test(data, options.json)
   except (cipd.Error, local_caching.NamedCacheError,
           local_caching.NoMoreSpace) as ex:
