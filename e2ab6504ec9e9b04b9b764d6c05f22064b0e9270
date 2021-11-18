@@ -70,6 +70,30 @@
       },
       "revId": "e2ab6504ec9e9b04b9b764d6c05f22064b0e9270",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90d350ce_0e081d9f",
+        "filename": "client/local_caching.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-18T07:17:53Z",
+      "side": 1,
+      "message": "\u003e Is that all caches? or just some of them?\n\nAll cache.\n\n\u003e Since it\u0027s not security issue, I would just support both sha1 and sha256 to avoid evictions, though.\n\nBut there is no user of sha1 now for local cache, rather than for cipd client which is replaced in this CL.",
+      "parentUuid": "7cf17f7c_77ffeb99",
+      "range": {
+        "startLine": 797,
+        "startChar": 6,
+        "endLine": 797,
+        "endChar": 20
+      },
+      "revId": "e2ab6504ec9e9b04b9b764d6c05f22064b0e9270",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
