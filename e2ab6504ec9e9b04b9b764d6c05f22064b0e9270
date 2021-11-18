@@ -22,6 +22,30 @@
       },
       "revId": "e2ab6504ec9e9b04b9b764d6c05f22064b0e9270",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b771b3ba_d70e78c5",
+        "filename": "client/local_caching.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-18T07:07:22Z",
+      "side": 1,
+      "message": "I think so as sha1 file is considered invalid.",
+      "parentUuid": "aa21dabd_648d8436",
+      "range": {
+        "startLine": 797,
+        "startChar": 6,
+        "endLine": 797,
+        "endChar": 20
+      },
+      "revId": "e2ab6504ec9e9b04b9b764d6c05f22064b0e9270",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
