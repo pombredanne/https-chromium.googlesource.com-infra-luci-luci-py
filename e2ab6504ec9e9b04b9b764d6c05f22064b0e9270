@@ -94,6 +94,30 @@
       },
       "revId": "e2ab6504ec9e9b04b9b764d6c05f22064b0e9270",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b59c9e4_a31a10a7",
+        "filename": "client/local_caching.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-18T07:38:18Z",
+      "side": 1,
+      "message": "I was asking if it evicts all local caches or not.\nBut it seems only evicting cipd client?",
+      "parentUuid": "90d350ce_0e081d9f",
+      "range": {
+        "startLine": 797,
+        "startChar": 6,
+        "endLine": 797,
+        "endChar": 20
+      },
+      "revId": "e2ab6504ec9e9b04b9b764d6c05f22064b0e9270",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
