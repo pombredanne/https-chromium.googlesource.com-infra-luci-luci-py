@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa21dabd_648d8436",
+        "filename": "client/local_caching.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-18T07:05:56Z",
+      "side": 1,
+      "message": "Will it evict the old caches?",
+      "range": {
+        "startLine": 797,
+        "startChar": 6,
+        "endLine": 797,
+        "endChar": 20
+      },
+      "revId": "e2ab6504ec9e9b04b9b764d6c05f22064b0e9270",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
