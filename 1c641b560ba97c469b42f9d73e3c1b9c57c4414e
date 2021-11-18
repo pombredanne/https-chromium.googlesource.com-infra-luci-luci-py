@@ -16,6 +16,52 @@
       "message": "ping?",
       "revId": "1c641b560ba97c469b42f9d73e3c1b9c57c4414e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4b6e7c9_c36ce8a9",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-18T03:23:51Z",
+      "side": 1,
+      "message": "nit: rename it to upload_outdir.",
+      "range": {
+        "startLine": 705,
+        "startChar": 4,
+        "endLine": 705,
+        "endChar": 26
+      },
+      "revId": "1c641b560ba97c469b42f9d73e3c1b9c57c4414e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7659fde3_cdbb72b4",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-18T03:23:51Z",
+      "side": 1,
+      "message": "nit: renamed it to _fetch_and_map()",
+      "range": {
+        "startLine": 897,
+        "startChar": 16,
+        "endLine": 897,
+        "endChar": 39
+      },
+      "revId": "1c641b560ba97c469b42f9d73e3c1b9c57c4414e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
