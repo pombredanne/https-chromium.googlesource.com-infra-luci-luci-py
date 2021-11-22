@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07690b51_c9e9214b",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-22T09:41:08Z",
+      "side": 1,
+      "message": "better to use power of two?",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 8
+      },
+      "revId": "538c5a1bc31cffe89dc00d08a953d43bbd3c8a01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c8e2b59_6ce5c719",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-22T09:41:08Z",
+      "side": 1,
+      "message": "kind?",
+      "range": {
+        "startLine": 366,
+        "startChar": 8,
+        "endLine": 366,
+        "endChar": 17
+      },
+      "revId": "538c5a1bc31cffe89dc00d08a953d43bbd3c8a01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
