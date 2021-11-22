@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c23439dc_f9aeb3b8",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-22T14:35:52Z",
+      "side": 1,
+      "message": "Changed it to 8",
+      "parentUuid": "07690b51_c9e9214b",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 8
+      },
+      "revId": "538c5a1bc31cffe89dc00d08a953d43bbd3c8a01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c8e2b59_6ce5c719",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-11-22T09:41:08Z",
       "side": 1,
       "message": "kind?",
+      "range": {
+        "startLine": 366,
+        "startChar": 8,
+        "endLine": 366,
+        "endChar": 17
+      },
+      "revId": "538c5a1bc31cffe89dc00d08a953d43bbd3c8a01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad8428b9_d8fdb434",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-22T14:35:52Z",
+      "side": 1,
+      "message": "Thanks.\nI wonder why the added test didn\u0027t catch it...\nIt may magically work as they have the same queue_number property.",
+      "parentUuid": "2c8e2b59_6ce5c719",
       "range": {
         "startLine": 366,
         "startChar": 8,
