@@ -614,7 +614,8 @@ class Popen(subprocess.Popen):
       except OSError:
         self.kill()
         self.wait()
-    logging.info('crbug.com/1271827: before return')
+    logging.info('crbug.com/1271827: before return %s',
+                 traceback.format_stack())
 
   def duration(self):
     """Duration of the child process.
