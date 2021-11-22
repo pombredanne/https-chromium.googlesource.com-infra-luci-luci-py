@@ -1011,6 +1011,14 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     to_run.queue_number = None
     to_run.put()
 
+  def test_get_shard_kind(self):
+    k = task_to_run.get_shard_kind(0)
+    self.assertEqual(k.__name__, 'TaskToRunShard0')
+    self.assertTrue(issubclass(k, task_to_run.TaskToRun))
+
+    with self.assertRaises(AssertionError):
+      task_to_run.get_shard_kind(task_to_run.N_SHARDS)
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:
