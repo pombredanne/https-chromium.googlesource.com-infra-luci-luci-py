@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85213a47_0ce4c8d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1497962
+      },
+      "writtenOn": "2021-11-23T23:32:34Z",
+      "side": 1,
+      "message": "This CL might not actually fixed the dimensions for win11.\nThe os dimensions is got from http://cs/github/luci/luci-py/appengine/swarming/swarming_bot/api/os_utilities.py;l\u003d157;rcl\u003d58e03260488b6643daafea7cb7f6b3074a66e315 which is calling \nplatforms.win.get_os_version_names() -\u003e _get_os_numbers()\ninstead of the modification of get_os_version_number() here.",
+      "revId": "fe372367d0f419266b2148f834eac4185915ab1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
