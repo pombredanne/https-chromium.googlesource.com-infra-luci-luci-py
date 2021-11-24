@@ -1033,9 +1033,12 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     to_run.put()
 
   def test_get_shard_kind(self):
-    k = task_to_run.get_shard_kind(0)
-    self.assertEqual(k.__name__, 'TaskToRunShard0')
-    self.assertTrue(issubclass(k, task_to_run.TaskToRun))
+    k1 = task_to_run.get_shard_kind(0)
+    self.assertEqual(k1.__name__, 'TaskToRunShard0')
+    self.assertTrue(issubclass(k1, task_to_run.TaskToRun))
+
+    k2 = task_to_run.get_shard_kind(0)
+    self.assertEqual(k1, k2)
 
     with self.assertRaises(AssertionError):
       task_to_run.get_shard_kind(task_to_run.N_SHARDS)
