@@ -16,6 +16,24 @@
       "message": "why do you need this?",
       "revId": "0548d4ed79869972087ab00318ca4f03581ae531",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af23086a_41393ecd",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-24T15:07:20Z",
+      "side": 1,
+      "message": "get_shard_kind() created a new object every time when called.\nIt was a problem in test assertion because id()s were different.\n\nAnd it\u0027s not good to re-declare the same classes in general, and may have unexpected issues in ndb library.",
+      "parentUuid": "9a4feab7_c6772e0e",
+      "revId": "0548d4ed79869972087ab00318ca4f03581ae531",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
