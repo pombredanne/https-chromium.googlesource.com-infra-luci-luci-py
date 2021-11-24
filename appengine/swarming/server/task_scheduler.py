@@ -973,7 +973,7 @@ def _ensure_active_slice(request, task_slice_index):
   def run():
     logging.debug('_ensure_active_slice(%s, %d)', request.task_id,
                   task_slice_index)
-    to_runs = task_to_run.TaskToRun.query(ancestor=request.key).fetch()
+    to_runs = task_to_run.get_task_to_runs_by_request(request, task_slice_index)
     to_runs = [r for r in to_runs if r.queue_number]
     if to_runs:
       if len(to_runs) != 1:
