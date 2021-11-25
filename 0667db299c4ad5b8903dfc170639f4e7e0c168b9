@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "971d8259_eec4aaaf",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-25T01:44:43Z",
+      "side": 1,
+      "message": "better to avoid \u0027_\u0027 prefix?",
+      "range": {
+        "startLine": 718,
+        "startChar": 4,
+        "endLine": 718,
+        "endChar": 9
+      },
+      "revId": "0667db299c4ad5b8903dfc170639f4e7e0c168b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
