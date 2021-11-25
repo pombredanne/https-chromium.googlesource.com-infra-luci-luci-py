@@ -1918,21 +1918,22 @@ def task_expire_tasks(task_to_runs):
 
       to_runs = task_to_run.get_task_to_runs(request, task_slice_index)
       if len(to_runs) != 1:
-        # There should not be multiple TaskToRuns. But it needs to expire all
-        # of them.
-        logging.warning('Too many TaskToRuns. %s', to_runs)
+        # There should not be multiple TaskToRuns. In this case, it's not clear
+        # which TaskToRun to keep or expire.
+        logging.error('Too many TaskToRuns. %s', to_runs)
+        continue
 
-      for to_run in to_runs:
-        # execute task expiration
-        summary, new_to_run = _expire_task(to_run.key, request, inline=False)
-        if new_to_run:
-          # Expiring a TaskToRun for TaskSlice may reenqueue a new TaskToRun.
-          reenqueued += 1
-        elif summary:
-          killed.append(request)
-        else:
-          # It's not a big deal, the bot will continue running.
-          skipped += 1
+      to_run = to_runs[0]
+      # execute task expiration
+      summary, new_to_run = _expire_task(to_run.key, request, inline=False)
+      if new_to_run:
+        # Expiring a TaskToRun for TaskSlice may reenqueue a new TaskToRun.
+        reenqueued += 1
+      elif summary:
+        killed.append(request)
+      else:
+        # It's not a big deal, the bot will continue running.
+        skipped += 1
   finally:
     if killed:
       logging.info(
