@@ -973,8 +973,14 @@ def _ensure_active_slice(request, task_slice_index):
     to_runs = [r for r in to_runs if r.queue_number]
     if to_runs:
       if len(to_runs) != 1:
-        logging.warning('_ensure_active_slice: %s != 1 TaskToRuns',
-                        len(to_runs))
+        logging.warning('_ensure_active_slice: %s != 1 TaskToRuns. %s',
+                        len(to_runs), to_runs)
+        # Try to deactivate old TaskToRuns.
+        for to_run in to_runs:
+          to_run.queue_number = None
+          to_run.expiration_ts = None
+        ndb.put_multi(to_runs)
+        logging.warning('_ensure_active_slice: deactivated old TaskToRuns')
         return None, True
       assert len(to_runs) == 1, 'Too many pending TaskToRuns.'
 
