@@ -1917,6 +1917,7 @@ def task_expire_tasks(task_to_runs):
         continue
 
       to_runs = task_to_run.get_task_to_runs(request, task_slice_index)
+      to_runs = [r for r in to_runs if t.queue_number]
       if len(to_runs) != 1:
         # There should not be multiple TaskToRuns. But it needs to expire all
         # of them.
