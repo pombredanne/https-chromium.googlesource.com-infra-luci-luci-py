@@ -505,15 +505,12 @@ def _yield_potential_tasks(bot_id):
 ### Public API.
 
 
-def request_to_task_to_run_key(request,
-                               try_number,
-                               task_slice_index,
-                               use_shard=False):
+def request_to_task_to_run_key(request, try_number, task_slice_index):
   """Returns the ndb.Key for a TaskToRun from a TaskRequest."""
   assert 1 <= try_number <= 2, try_number
   assert 0 <= task_slice_index < request.num_task_slices
   h = request.task_slice(task_slice_index).properties.dimensions_hash
-  kind = get_shard_kind(h % N_SHARDS) if use_shard else TaskToRun
+  kind = get_shard_kind(h % N_SHARDS)
   return ndb.Key(kind, try_number | (task_slice_index << 4), parent=request.key)
 
 
@@ -553,11 +550,8 @@ def new_task_to_run(request, task_slice_index, use_shard=False):
   exp = request.created_ts + datetime.timedelta(seconds=offset)
   h = request.task_slice(task_slice_index).properties.dimensions_hash
   qn = _gen_queue_number(h, request.created_ts, request.priority)
-  kind = get_shard_kind(h % N_SHARDS) if use_shard else TaskToRun
-  key = request_to_task_to_run_key(request,
-                                   1,
-                                   task_slice_index,
-                                   use_shard=use_shard)
+  kind = get_shard_kind(h % N_SHARDS)
+  key = request_to_task_to_run_key(request, 1, task_slice_index)
   return kind(key=key, created_ts=created, queue_number=qn, expiration_ts=exp)
 
 
