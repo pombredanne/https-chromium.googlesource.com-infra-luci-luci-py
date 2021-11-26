@@ -52,16 +52,15 @@ def _get_task_to_run(now, request_key_id, slice_index, **kwargs):
   """Creates a TaskToRun."""
   request_key = ndb.Key('TaskRequest', request_key_id)
   try_number = 1
-  to_run_key = ndb.Key('_TaskToRunBase',
-                       try_number | (slice_index << 4),
-                       parent=request_key)
+  to_run_key = ndb.Key(
+      'TaskToRun', try_number | (slice_index << 4), parent=request_key)
   args = {
       'key': to_run_key,
       'created_ts': now,
       'queue_number': None,
   }
   args.update(kwargs)
-  return task_to_run._TaskToRunBase(**args)
+  return task_to_run.TaskToRun(**args)
 
 
 def _gen_bot_info(key_id, last_seen_ts, **kwargs):
