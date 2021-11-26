@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a5c1c73_c0ad42fc",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-26T05:52:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff09069f_3db540ee",
+      "range": {
+        "startLine": 55,
+        "startChar": 6,
+        "endLine": 55,
+        "endChar": 15
+      },
+      "revId": "5e0cb67d0503534db232997fad3ffa45dfefd109",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30763dea_fa685af2",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83af49bb_2a8fc4f3",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-26T05:52:53Z",
+      "side": 1,
+      "message": "There are a lot of places mention TaskToRun.\nI will make a CL to update TaskToRun -\u003e TaskToRunShard in comments.",
+      "parentUuid": "30763dea_fa685af2",
+      "range": {
+        "startLine": 178,
+        "startChar": 28,
+        "endLine": 178,
+        "endChar": 37
+      },
+      "revId": "5e0cb67d0503534db232997fad3ffa45dfefd109",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a27d318a_f0d3c4d0",
         "filename": "appengine/swarming/server/task_to_run_test.py",
         "patchSetId": 2
@@ -60,6 +108,30 @@
       "writtenOn": "2021-11-26T05:40:19Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 185,
+        "startChar": 28,
+        "endLine": 185,
+        "endChar": 37
+      },
+      "revId": "5e0cb67d0503534db232997fad3ffa45dfefd109",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db31d22c_ade67983",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-26T05:52:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a27d318a_f0d3c4d0",
       "range": {
         "startLine": 185,
         "startChar": 28,
