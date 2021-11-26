@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0497ca04_475293b5",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-26T05:19:48Z",
+      "side": 1,
+      "message": "I\u0027d like to avoid having this until when we need to have this.",
+      "revId": "ed2f3a9e1bcb45e3cbec68f74b3be1f588bd9d7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
