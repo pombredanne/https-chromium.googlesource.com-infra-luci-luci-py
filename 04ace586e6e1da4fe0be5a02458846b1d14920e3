@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcc67c48_7043e594",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-26T04:08:44Z",
+      "side": 1,
+      "message": "This is just a cleanup and a preparation. We don\u0027t need to deploy this in this quarter.",
+      "revId": "04ace586e6e1da4fe0be5a02458846b1d14920e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
