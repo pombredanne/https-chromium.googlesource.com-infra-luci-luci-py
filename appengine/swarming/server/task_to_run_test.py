@@ -174,17 +174,17 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     req.put()
     return req
 
-  def _gen_new_task_to_run(self, nb_task, use_shard=True, **kwargs):
+  def _gen_new_task_to_run(self, nb_task, **kwargs):
     """Returns TaskRequest, TaskToRun saved in the DB."""
     request = self.mkreq(nb_task, _gen_request(**kwargs))
-    to_run = task_to_run.new_task_to_run(request, 0, use_shard)
+    to_run = task_to_run.new_task_to_run(request, 0)
     to_run.put()
     return request, to_run
 
-  def _gen_new_task_to_run_slices(self, nb_task, use_shard=True, **kwargs):
+  def _gen_new_task_to_run_slices(self, nb_task, **kwargs):
     """Returns TaskRequest, TaskToRun saved in the DB."""
     request = self.mkreq(nb_task, _gen_request_slices(**kwargs))
-    to_run = task_to_run.new_task_to_run(request, 0, use_shard)
+    to_run = task_to_run.new_task_to_run(request, 0)
     to_run.put()
     return request, to_run
 
@@ -895,18 +895,22 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     ]
     self.assertEqual(expected, actual)
 
-  # TODO(crbug.com/1272390): Remove after migration.
   def test_yield_next_available_task_to_run_shard_migration(self):
     task_dimensions1 = {u'os': [u'Linux'], u'pool': [u'default']}
-    _request1, _task1 = self._gen_new_task_to_run(
-        1,
-        properties=_gen_properties(dimensions=task_dimensions1),
-        use_shard=False)
+    request1, _task1 = self._gen_new_task_to_run(
+        1, properties=_gen_properties(dimensions=task_dimensions1))
+    shard = request1.task_slice(
+        0).properties.dimensions_hash % task_to_run.N_SHARDS
+    self.assertEqual(len(task_to_run.get_shard_kind(shard).query().fetch()), 1)
+
+    # Simulate shard migration.
+    task_to_run.N_PREV_SHARDS = task_to_run.N_SHARDS
+    task_to_run.N_SHARDS += 1
+
     task_dimensions2 = {u'os': [u'Ubuntu'], u'pool': [u'default']}
     request2, _task2 = self._gen_new_task_to_run(
         1,
         properties=_gen_properties(dimensions=task_dimensions2))
-    self.assertEqual(len(task_to_run.TaskToRun.query().fetch()), 1)
     shard = request2.task_slice(
         0).properties.dimensions_hash % task_to_run.N_SHARDS
     self.assertEqual(len(task_to_run.get_shard_kind(shard).query().fetch()), 1)
@@ -973,15 +977,21 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
             'expiration_secs': 60,
             'properties': _gen_properties()
         }])
-    # task_to_run_legacy: already passed the expiration time.
-    _, to_run_legacy = self._gen_new_task_to_run_slices(
-        0,
-        use_shard=False,
-        created_ts=self.now - datetime.timedelta(days=1),
-        task_slices=[{
-            'expiration_secs': 60,
-            'properties': _gen_properties()
-        }])
+
+    # Simulate shard migration.
+    task_to_run.N_PREV_SHARDS = task_to_run.N_SHARDS
+    task_to_run.N_SHARDS += 1
+
+    # task_to_run_5: scheduled after changing N_SHARDS.
+    _, to_run_5 = self._gen_new_task_to_run_slices(0,
+                                                   created_ts=self.now -
+                                                   datetime.timedelta(days=1),
+                                                   task_slices=[{
+                                                       'expiration_secs':
+                                                       60,
+                                                       'properties':
+                                                       _gen_properties()
+                                                   }])
 
     bot_dimensions = {u'id': [u'bot1'], u'pool': [u'default']}
 
@@ -990,9 +1000,9 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
 
     actual = list(task_to_run.yield_expired_task_to_run())
 
-    # Only to_run_2 and to_run_3 and to_run_legacy should be yielded.
+    # Only to_run_2 and to_run_3 and to_run_5 should be yielded.
     # to_run_4 is too old and is ignored.
-    expected = [to_run_legacy, to_run_3, to_run_2]
+    expected = [to_run_5, to_run_3, to_run_2]
     self.assertEqual(expected, actual)
 
   def test_is_reapable(self):
@@ -1059,13 +1069,18 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
 
   def test_get_task_to_runs(self):
     request = self.mkreq(1, _gen_request())
-    to_run = task_to_run.new_task_to_run(request, 0)
-    to_run.put()
-    to_run_legacy = task_to_run.new_task_to_run(request, 0, use_shard=False)
-    to_run_legacy.put()
+    to_run1 = task_to_run.new_task_to_run(request, 0)
+    to_run1.put()
 
-    actual = task_to_run.get_task_to_runs(request, to_run.task_slice_index)
-    expected = [to_run, to_run_legacy]
+    # Simulate shard migration.
+    task_to_run.N_PREV_SHARDS = task_to_run.N_SHARDS
+    task_to_run.N_SHARDS += 1
+
+    to_run2 = task_to_run.new_task_to_run(request, 0)
+    to_run2.put()
+
+    actual = task_to_run.get_task_to_runs(request, 0)
+    expected = [to_run2, to_run1]
     self.assertEqual(expected, actual)
 
 
