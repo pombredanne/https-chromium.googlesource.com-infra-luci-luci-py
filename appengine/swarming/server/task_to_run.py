@@ -51,6 +51,8 @@ from server import task_request
 
 N_SHARDS = 16  # the number of TaskToRunShards
 
+N_PREV_SHARDS = None  # the previous number of TaskToRunShards
+
 
 class TaskToRun(ndb.Model):
   """Defines a TaskRequest ready to be scheduled on a bot.
@@ -361,7 +363,7 @@ def _yield_pages_async(q, size):
 
 def _get_task_to_run_query(dimensions_hash):
   """Returns a ndb.Query of TaskToRunShard within this dimensions_hash queue.
-     During migration, it returns two queries TaskToRun and TaskToRunShard.
+     During migration, it returns two queries for the prev and current shards.
   """
   # dimensions_hash should be 32 bits but on AppEngine, which is using 32 bits
   # python, it is silently upgraded to long.
@@ -375,11 +377,11 @@ def _get_task_to_run_query(dimensions_hash):
             kind.queue_number >= (dimensions_hash << 31),
             kind.queue_number < ((dimensions_hash + 1) << 31))
 
-  # TODO(crbug.com/1272390): Remove TaskToRun after migration.
-  return [
-      _query(k)
-      for k in [get_shard_kind(dimensions_hash % N_SHARDS), TaskToRun]
-  ]
+  shards = set([dimensions_hash % N_SHARDS])
+  # When changing N_SHARDS, it needs to query for the previous shard.
+  if N_PREV_SHARDS:
+    shards.add(dimensions_hash % N_PREV_SHARDS)
+  return [_query(get_shard_kind(s)) for s in shards]
 
 
 def _yield_potential_tasks(bot_id):
@@ -505,15 +507,12 @@ def _yield_potential_tasks(bot_id):
 ### Public API.
 
 
-def request_to_task_to_run_key(request,
-                               try_number,
-                               task_slice_index,
-                               use_shard=True):
+def request_to_task_to_run_key(request, try_number, task_slice_index):
   """Returns the ndb.Key for a TaskToRun from a TaskRequest."""
   assert 1 <= try_number <= 2, try_number
   assert 0 <= task_slice_index < request.num_task_slices
   h = request.task_slice(task_slice_index).properties.dimensions_hash
-  kind = get_shard_kind(h % N_SHARDS) if use_shard else TaskToRun
+  kind = get_shard_kind(h % N_SHARDS)
   return ndb.Key(kind, try_number | (task_slice_index << 4), parent=request.key)
 
 
@@ -535,7 +534,7 @@ def task_to_run_key_try_number(to_run_key):
   return to_run_key.integer_id() & 15
 
 
-def new_task_to_run(request, task_slice_index, use_shard=True):
+def new_task_to_run(request, task_slice_index):
   """Returns a fresh new TaskToRun for the task ready to be scheduled.
 
   Returns:
@@ -553,11 +552,8 @@ def new_task_to_run(request, task_slice_index, use_shard=True):
   exp = request.created_ts + datetime.timedelta(seconds=offset)
   h = request.task_slice(task_slice_index).properties.dimensions_hash
   qn = _gen_queue_number(h, request.created_ts, request.priority)
-  kind = get_shard_kind(h % N_SHARDS) if use_shard else TaskToRun
-  key = request_to_task_to_run_key(request,
-                                   1,
-                                   task_slice_index,
-                                   use_shard=use_shard)
+  kind = get_shard_kind(h % N_SHARDS)
+  key = request_to_task_to_run_key(request, 1, task_slice_index)
   return kind(key=key, created_ts=created, queue_number=qn, expiration_ts=exp)
 
 
@@ -693,14 +689,13 @@ def yield_expired_task_to_run():
                       kind.expiration_ts > cut_off,
                       default_options=ndb.QueryOptions(batch_size=256))
 
+  n_shards = N_SHARDS
+  if N_PREV_SHARDS and N_PREV_SHARDS > N_SHARDS:
+    n_shards = N_PREV_SHARDS
+
   total = 0
   try:
-    # TODO(crbug.com/1272390): remove after migration.
-    for task in _query(TaskToRun):
-      yield task
-      total += 1
-
-    for shard in range(N_SHARDS):
+    for shard in range(n_shards):
       for task in _query(get_shard_kind(shard)):
         yield task
         total += 1
@@ -709,19 +704,20 @@ def yield_expired_task_to_run():
 
 
 def get_task_to_runs(request, slice_until):
-  """Get TaskToRun and/or TaskToRunShard entities by TaskRequest"""
+  """Get TaskToRunShard entities by TaskRequest"""
   shards = set()
   for slice_index in range(slice_until + 1):
     if len(request.task_slices) <= slice_index:
       break
     h = request.task_slice(slice_index).properties.dimensions_hash
     shards.add(h % N_SHARDS)
+    # When changing N_SHARDS, it needs to query for the previous shard.
+    if N_PREV_SHARDS:
+      shards.add(h % N_PREV_SHARDS)
 
   to_runs = []
   for shard in shards:
     runs = get_shard_kind(shard).query(ancestor=request.key).fetch()
     to_runs.extend(runs)
 
-  # TODO(crbug.com/1272390): remove after migration.
-  to_runs.extend(TaskToRun.query(ancestor=request.key).fetch())
   return to_runs
