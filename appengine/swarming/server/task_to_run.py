@@ -51,6 +51,8 @@ from server import task_request
 
 N_SHARDS = 16  # the number of TaskToRunShards
 
+N_PREV_SHARDS = None  # the previous number of TaskToRunShards
+
 
 class TaskToRun(ndb.Model):
   """Defines a TaskRequest ready to be scheduled on a bot.
@@ -365,6 +367,8 @@ def _yield_pages_async(q, size):
 
 def _get_task_to_run_query(dimensions_hash):
   """Returns a ndb.Query of TaskToRunShard within this dimensions_hash queue.
+     During shard migration, it returns two queries for the prev and current
+     shards.
   """
   # dimensions_hash should be 32 bits but on AppEngine, which is using 32 bits
   # python, it is silently upgraded to long.
@@ -378,7 +382,11 @@ def _get_task_to_run_query(dimensions_hash):
             kind.queue_number >= (dimensions_hash << 31),
             kind.queue_number < ((dimensions_hash + 1) << 31))
 
-  return [_query(get_shard_kind(dimensions_hash % N_SHARDS))]
+  shards = set([dimensions_hash % N_SHARDS])
+  # When changing N_SHARDS, it needs to query for the previous shard.
+  if N_PREV_SHARDS:
+    shards.add(dimensions_hash % N_PREV_SHARDS)
+  return [_query(get_shard_kind(s)) for s in shards]
 
 
 def _yield_potential_tasks(bot_id):
@@ -686,9 +694,13 @@ def yield_expired_task_to_run():
                       kind.expiration_ts > cut_off,
                       default_options=ndb.QueryOptions(batch_size=256))
 
+  n_shards = N_SHARDS
+  if N_PREV_SHARDS and N_PREV_SHARDS > N_SHARDS:
+    n_shards = N_PREV_SHARDS
+
   total = 0
   try:
-    for shard in range(N_SHARDS):
+    for shard in range(n_shards):
       for task in _query(get_shard_kind(shard)):
         yield task
         total += 1
@@ -704,6 +716,9 @@ def get_task_to_runs(request, slice_until):
       break
     h = request.task_slice(slice_index).properties.dimensions_hash
     shards.add(h % N_SHARDS)
+    # When changing N_SHARDS, it needs to query for the previous shard.
+    if N_PREV_SHARDS:
+      shards.add(h % N_PREV_SHARDS)
 
   to_runs = []
   for shard in shards:
