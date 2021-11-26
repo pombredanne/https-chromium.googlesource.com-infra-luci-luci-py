@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff09069f_3db540ee",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-26T05:40:19Z",
+      "side": 1,
+      "message": "can we rename this to _TaskToRunBase?",
+      "range": {
+        "startLine": 55,
+        "startChar": 6,
+        "endLine": 55,
+        "endChar": 15
+      },
+      "revId": "5e0cb67d0503534db232997fad3ffa45dfefd109",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30763dea_fa685af2",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-26T05:40:19Z",
+      "side": 1,
+      "message": "update comment?",
+      "range": {
+        "startLine": 178,
+        "startChar": 28,
+        "endLine": 178,
+        "endChar": 37
+      },
+      "revId": "5e0cb67d0503534db232997fad3ffa45dfefd109",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a27d318a_f0d3c4d0",
+        "filename": "appengine/swarming/server/task_to_run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-11-26T05:40:19Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 185,
+        "startChar": 28,
+        "endLine": 185,
+        "endChar": 37
+      },
+      "revId": "5e0cb67d0503534db232997fad3ffa45dfefd109",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
