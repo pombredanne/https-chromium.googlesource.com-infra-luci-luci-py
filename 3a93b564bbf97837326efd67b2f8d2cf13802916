@@ -52,6 +52,24 @@
       "parentUuid": "504f8d01_f685e1c6",
       "revId": "3a93b564bbf97837326efd67b2f8d2cf13802916",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cd040db_01fc231c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-29T07:15:19Z",
+      "side": 1,
+      "message": "It seems the sorting is done on the browser side.\nSo no change is required.",
+      "parentUuid": "c69b0427_3491ecd7",
+      "revId": "3a93b564bbf97837326efd67b2f8d2cf13802916",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

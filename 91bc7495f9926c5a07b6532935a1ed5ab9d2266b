@@ -16,6 +16,24 @@
       "message": "I also want to get rid of (state, modified_ts) index.\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/index.yaml;l\u003d56;drc\u003d7342856c57781a2613e163fdac2316a14535db0d\n\nLet me update.",
       "revId": "91bc7495f9926c5a07b6532935a1ed5ab9d2266b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2cbcfbb_5c717af9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-29T07:15:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cccd4c1f_4f989ebc",
+      "revId": "91bc7495f9926c5a07b6532935a1ed5ab9d2266b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
