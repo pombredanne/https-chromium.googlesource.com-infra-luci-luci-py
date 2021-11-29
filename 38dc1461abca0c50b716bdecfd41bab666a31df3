@@ -22,6 +22,30 @@
       },
       "revId": "38dc1461abca0c50b716bdecfd41bab666a31df3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "599de0ca_9fb83087",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-29T05:16:19Z",
+      "side": 1,
+      "message": "Thank you for the report.\nI was also wondering what is the best deadline period because\nthere are other transactions in the bot poll API.\n\n- task expiration (up to 5 times)\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_scheduler.py;l\u003d1385;drc\u003d50362364cf72555c24d2eea100a3967a5958b639\n- bot event https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/handlers_bot.py;l\u003d698;drc\u003dd30be894fa7ae84415b733ba32152d2e850fa8af\n\nWhen the _reap_task() transaction takes 30sec/45sec, I guess other transactions also take long time.",
+      "parentUuid": "a7208222_55d5fcc9",
+      "range": {
+        "startLine": 317,
+        "startChar": 68,
+        "endLine": 317,
+        "endChar": 70
+      },
+      "revId": "38dc1461abca0c50b716bdecfd41bab666a31df3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
