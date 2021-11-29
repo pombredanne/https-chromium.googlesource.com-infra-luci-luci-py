@@ -94,6 +94,30 @@
       },
       "revId": "38dc1461abca0c50b716bdecfd41bab666a31df3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0b7685c_3c75b0a0",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-11-29T05:34:03Z",
+      "side": 1,
+      "message": "\u003e Hmm, then it is better to focus on optimization rather than setting adhoc deadline here?\n\nThe AppEngine deadline exceeded error for poll API itself is not problem. \nIt is problematic when it happens *during _bot_reap() transaction*.\nThis is for safety to avoid those situation when Datastore is busy. and I don\u0027t think this is adhoc.",
+      "parentUuid": "504f863c_e22e8652",
+      "range": {
+        "startLine": 317,
+        "startChar": 68,
+        "endLine": 317,
+        "endChar": 70
+      },
+      "revId": "38dc1461abca0c50b716bdecfd41bab666a31df3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
