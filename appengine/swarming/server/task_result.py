@@ -493,7 +493,7 @@ class _TaskResultCommon(ndb.Model):
 
   # Time when the bot becomes available. This will be used to calculate
   # overhead.
-  bot_idle_since_ts = ndb.DateTimeProperty()
+  bot_idle_since_ts = ndb.DateTimeProperty(indexed=False)
 
   # Active server version(s). Note that during execution, the active server
   # version may have changed, this list will list all versions seen as the task
