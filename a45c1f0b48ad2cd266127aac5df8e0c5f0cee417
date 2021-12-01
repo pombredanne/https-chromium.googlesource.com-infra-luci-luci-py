@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "314069bb_8d24a09a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1237795
+      },
+      "writtenOn": "2021-12-01T00:48:59Z",
+      "side": 1,
+      "message": "So it shows up in search:\nhttps://source.chromium.org/search?q\u003d1236848\u0026ss\u003dchromium%2Finfra%2Finfra:luci%2Fappengine%2Fswarming%2F",
+      "revId": "a45c1f0b48ad2cd266127aac5df8e0c5f0cee417",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
