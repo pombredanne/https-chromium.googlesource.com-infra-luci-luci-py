@@ -138,7 +138,6 @@ class TestProcessTaskRequest(test_case.TestCase):
                                   acl.can_schedule_high_priority_tasks(),
                                   task_request.TEMPLATE_AUTO)
     expected_tr.realms_enabled = False
-    expected_tr.service_account_token = 'tok'
 
     self.mock(realms, 'check_tasks_create_in_realm', lambda *_: False)
     self.mock(realms, 'check_pools_create_task', lambda *_: True)

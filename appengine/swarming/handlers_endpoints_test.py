@@ -1376,7 +1376,6 @@ class TasksApiTest(BaseTest):
     self.assertEqual('test:task_realm', req.realm)
     # Correctly initialized the service account state.
     self.assertEqual('service-account@example.com', req.service_account)
-    self.assertFalse(req.service_account_token)
 
   def test_new_ok_with_default_task_realm_not_enforced(self):
     self.mock(random, 'getrandbits', lambda _: 0x88)
@@ -1414,7 +1413,6 @@ class TasksApiTest(BaseTest):
     self.assertEqual('test:task_realm', req.realm)
     # Uses legacy service account token.
     self.assertEqual('service-account@example.com', req.service_account)
-    self.assertEqual('tok', req.service_account_token)
 
   def test_new_ok_with_default_task_realm_enforced(self):
     self.mock(random, 'getrandbits', lambda _: 0x88)
@@ -1457,7 +1455,6 @@ class TasksApiTest(BaseTest):
     self.assertEqual('test:task_realm', req.realm)
     # Correctly initialized the service account state.
     self.assertEqual('service-account@example.com', req.service_account)
-    self.assertFalse(req.service_account_token)
 
   def test_new_invalid_realm(self):
     request = self.create_new_request(
