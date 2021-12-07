@@ -17,7 +17,6 @@ import shlex
 import subprocess
 
 import distro
-import six
 
 from utils import tools
 
@@ -91,9 +90,9 @@ def _lspci():
 @tools.cached
 def _get_nvidia_version():
   try:
-    with open('/sys/module/nvidia/version', 'rb') as f:
+    with open('/sys/module/nvidia/version') as f:
       # Looks like '367.27'.
-      return six.ensure_text(f.read().strip())
+      return f.read().strip()
   except (IOError, OSError):
     return None
 
@@ -146,10 +145,10 @@ def get_os_version_number():
   if distro.id() == 'debian':
     # distro doesn't show minor version for debian.
     with open('/etc/debian_version') as f:
-      return six.text_type(f.read().strip())
+      return f.read().strip()
   # On Ubuntu it will return a string like '12.04'. On Raspbian, it will look
   # like '7.6'.
-  return six.text_type(distro.version(best=True))
+  return distro.version(best=True)
 
 
 def get_temperatures():
@@ -280,7 +279,7 @@ def get_gpu():
       version = _get_intel_version()
     ven_name, dev_name = gpu.ids_to_names(ven_id, ven_name, dev_id, dev_name)
 
-    dimensions.add(six.text_type(ven_id))
+    dimensions.add(ven_id)
     dimensions.add(u'%s:%s' % (ven_id, dev_id))
     if version:
       dimensions.add(u'%s:%s-%s' % (ven_id, dev_id, version))
@@ -315,13 +314,13 @@ def get_reboot_required():
 def get_ssd():
   """Returns a list of SSD disks."""
   try:
-    out = subprocess.check_output(['lsblk', '-d', '-o',
-                                   'name,rota']).splitlines()
+    out = subprocess.check_output(['lsblk', '-d', '-o', 'name,rota'],
+                                  text=True).splitlines()
     ssd = []
     for line in out:
-      match = re.match(br'(\w+)\s+(0|1)', line)
-      if match and match.group(2) == b'0':
-        ssd.append(six.ensure_text(match.group(1)))
+      match = re.match(r'(\w+)\s+(0|1)', line)
+      if match and match.group(2) == '0':
+        ssd.append(match.group(1))
     return tuple(sorted(ssd))
   except (OSError, subprocess.CalledProcessError) as e:
     logging.error('Failed to read disk info: %s', e)
@@ -386,8 +385,8 @@ def get_cpu_scaling_governor(cpu_num):
   ]
   for p in files:
     try:
-      with open(p, 'rb') as f:
-        return [six.ensure_text(f.read().strip())]
+      with open(p) as f:
+        return [f.read().strip()]
     except IOError:
       continue
   return None

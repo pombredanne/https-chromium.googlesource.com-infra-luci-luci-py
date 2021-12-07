@@ -10,7 +10,6 @@ import textwrap
 import unittest
 
 import mock
-import six
 
 import test_env_platforms
 test_env_platforms.setup_test_env()
@@ -242,7 +241,7 @@ class TestLinux(auto_stub.TestCase):
     self.mock_check_output.return_value = textwrap.dedent("""\
       NAME    ROTA
       nvme0n1    0
-    """).encode()
+    """)
     self.assertEqual(linux.get_ssd(), ('nvme0n1',))
 
   def test_get_gpu(self):
@@ -250,8 +249,7 @@ class TestLinux(auto_stub.TestCase):
     self.mock_check_output.return_value = textwrap.dedent("""\
       18:00.0 "VGA compatible controller [0300]" "NVIDIA Corporation [10de]" "GP107GL [Quadro P1000] [1cb1]" -ra1 "NVIDIA Corporation [10de]" "GP107GL [Quadro P1000] [11bc]"
     """).encode()
-    with mock.patch('six.moves.builtins.open',
-                    mock.mock_open(read_data=b'440.82')):
+    with mock.patch('builtins.open', mock.mock_open(read_data='440.82')):
       self.assertEqual(linux.get_gpu(),
                        (['10de', '10de:1cb1', '10de:1cb1-440.82'
                         ], ['Nvidia GP107GL [Quadro P1000] 440.82']))
@@ -263,7 +261,7 @@ class TestLinux(auto_stub.TestCase):
     self.assertEqual(linux._get_intel_version(), '1.2.3')
 
   def test_get_device_tree_compatible(self):
-    with mock.patch('%s.open' % six.moves.builtins.__name__) as mock_open:
+    with mock.patch('builtins.open') as mock_open:
       mock_open.return_value = io.BytesIO(b'foo,bar')
       self.assertEqual(linux.get_device_tree_compatible(),
                        sorted([u'foo', u'bar']))
