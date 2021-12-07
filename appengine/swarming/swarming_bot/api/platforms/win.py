@@ -259,7 +259,7 @@ def get_os_version_names():
   lookup = _WIN32_SERVER_NAMES if is_server else _WIN32_CLIENT_NAMES
   version_number, build_number = _get_os_numbers()
   marketing_name = lookup.get(version_number, version_number)
-  if version_number == u'10.0':
+  if version_number in (u'10.0', u'11.0'):
     rv = [marketing_name]
     # Windows 10 doesn't have service packs, the build number now is the
     # reference number. More discussion in
