@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d289285_f6a83cff",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-12-07T22:41:18Z",
+      "side": 1,
+      "message": "nit: use tuple?",
+      "range": {
+        "startLine": 262,
+        "startChar": 23,
+        "endLine": 262,
+        "endChar": 24
+      },
+      "revId": "21f8d5f7677804a38291c3bb77b7391ad8ca216c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
