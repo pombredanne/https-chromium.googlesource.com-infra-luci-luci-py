@@ -34,6 +34,24 @@
       "parentUuid": "b470edb7_1004be55",
       "revId": "570bd19b655097cb82d7648bc9bc3369585a8d18",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6b13572_b1770976",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1326157
+      },
+      "writtenOn": "2021-12-07T00:12:21Z",
+      "side": 1,
+      "message": "Yes: I was trying to start working with the swarming Pools proto, per https://docs.google.com/document/d/1ddsEKYTCh6nsNBZfa90vDEym5aoDASjetxtsk4puTy0/edit#. But I was unable to run `make` in the protos dir on TOT. This CL addresses that issue.",
+      "parentUuid": "d086c6c3_88fdbd3f",
+      "revId": "570bd19b655097cb82d7648bc9bc3369585a8d18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
