@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c371e7f8_b42f153c",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-12-07T11:45:07Z",
+      "side": 1,
+      "message": "remove this flag too?",
+      "range": {
+        "startLine": 49,
+        "startChar": 40,
+        "endLine": 49,
+        "endChar": 65
+      },
+      "revId": "f0fe0924f2649b226027cbdd34794ed1906417f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85cb726b_fadae474",
+        "filename": "appengine/swarming/test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-12-07T11:45:07Z",
+      "side": 1,
+      "message": "But mac CQ doesn\u0027t run local smoke test?\nI think it is fine to remove this.",
+      "revId": "f0fe0924f2649b226027cbdd34794ed1906417f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
