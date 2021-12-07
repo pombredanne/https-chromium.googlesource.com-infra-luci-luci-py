@@ -47,8 +47,11 @@ def run_tests_sequential():
       [abs_path('server/bot_groups_config_test.py')],
       [abs_path('server/resultdb_test.py')],
       [abs_path('local_smoke_test.py'), '--bot_python', 'vpython3'],
-      [abs_path('local_smoke_test.py')],
   ]
+
+  # TODO(crbug.com/1111688): Remove Python2 bot tests.
+  if sys.platform == 'darwin':
+    test_cmds.append([abs_path('local_smoke_test.py')])
 
   # execute test runner
   return sequential_test_runner.run_tests(test_cmds, python3=six.PY3)
