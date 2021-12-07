@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c90f9f1_0caaa1b5",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1497962
+      },
+      "writtenOn": "2021-12-07T22:47:44Z",
+      "side": 1,
+      "message": "We didn\u0027t do any modification in _get_os_numbers() (unlike get_os_version_number()), it\u0027s raw from windows. Are you sure windows would return 11.0 for version_number?",
+      "range": {
+        "startLine": 260,
+        "startChar": 33,
+        "endLine": 260,
+        "endChar": 48
+      },
+      "revId": "21f8d5f7677804a38291c3bb77b7391ad8ca216c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d289285_f6a83cff",
         "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
         "patchSetId": 1
