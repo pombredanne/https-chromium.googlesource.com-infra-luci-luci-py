@@ -8,8 +8,7 @@ import logging
 import sys
 import textwrap
 import unittest
-
-import mock
+from unittest import mock
 
 import test_env_platforms
 test_env_platforms.setup_test_env()
