@@ -106,6 +106,24 @@
       "parentUuid": "85c08906_5fc5de92",
       "revId": "19d4864a20ca1f5e3fbacc98bdafd1d4f2b2683c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7129ba0_c111393b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-12-08T05:15:59Z",
+      "side": 1,
+      "message": "Done.\nBut I realized that the Mac job fails importing win_test.py/linux_test.py.\n\nSo I keep \"import mock\" for now.",
+      "parentUuid": "81244488_2a8369a2",
+      "revId": "19d4864a20ca1f5e3fbacc98bdafd1d4f2b2683c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
