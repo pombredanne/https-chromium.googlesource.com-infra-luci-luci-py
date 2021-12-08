@@ -70,6 +70,24 @@
       "parentUuid": "c0c33f7c_4199a43c",
       "revId": "19d4864a20ca1f5e3fbacc98bdafd1d4f2b2683c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85c08906_5fc5de92",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-12-08T03:33:51Z",
+      "side": 1,
+      "message": "I see. Could you remove the test from mac then?",
+      "parentUuid": "5ea268f9_7cbe69f9",
+      "revId": "19d4864a20ca1f5e3fbacc98bdafd1d4f2b2683c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
