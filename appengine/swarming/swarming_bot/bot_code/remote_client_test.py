@@ -166,7 +166,6 @@ class TestRemoteClient(auto_stub.TestCase):
       ('mint_id_token', 'https://audience.example.com'),
   )
   def test_mint_token_transient_err(self, method, arg):
-    c = remote_client.RemoteClientNative('http://localhost:1', None,
                                          'localhost', '/')
 
     def mocked_call(*_args, **_kwargs):
