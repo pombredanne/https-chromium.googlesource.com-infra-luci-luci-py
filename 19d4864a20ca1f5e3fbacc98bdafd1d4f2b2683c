@@ -52,6 +52,24 @@
       "parentUuid": "8256c3ea_46b601af",
       "revId": "19d4864a20ca1f5e3fbacc98bdafd1d4f2b2683c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ea268f9_7cbe69f9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-12-08T03:28:35Z",
+      "side": 1,
+      "message": "osx_test.py runs only on Mac.\nI don\u0027t know what benefit we get from running on cross platforms, though.\n\nI guess it was necessary because only Linux CQ was running.\nBut now we have Windows/Mac CQ jobs.\n\nSo it\u0027s fine to not run those tests on different platforms, IMO.\nWDYT?",
+      "parentUuid": "c0c33f7c_4199a43c",
+      "revId": "19d4864a20ca1f5e3fbacc98bdafd1d4f2b2683c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
