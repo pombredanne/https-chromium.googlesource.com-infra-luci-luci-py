@@ -16,6 +16,24 @@
       "message": "You need to wait this until when we stop using python2",
       "revId": "19d4864a20ca1f5e3fbacc98bdafd1d4f2b2683c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8256c3ea_46b601af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2021-12-08T03:00:47Z",
+      "side": 1,
+      "message": "Does win_test.py need to run on Mac?",
+      "parentUuid": "dbc3d8e0_999507e4",
+      "revId": "19d4864a20ca1f5e3fbacc98bdafd1d4f2b2683c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
