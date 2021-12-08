@@ -5,15 +5,15 @@
 
 import logging
 import os
+import plistlib
 import sys
 import textwrap
 import unittest
+from unittest import mock
 
 # TODO(github.com/wolever/parameterized/issues/91)
 # use parameterized after the bug is resolved.
 from nose2.tools import params
-import mock
-import six
 
 import test_env_platforms
 test_env_platforms.setup_test_env()
@@ -44,7 +44,7 @@ class TestOsx(unittest.TestCase):
     self.mock_check_output.return_value = textwrap.dedent("""\
       Xcode 11.5
       Build version 11E608c
-    """).encode()
+    """)
     self.mock_listdir.side_effect = [
         # os.listdir('/Applications')
         ['Google Chrome.app', 'Safari.app', 'Xcode.app'],
@@ -66,11 +66,11 @@ class TestOsx(unittest.TestCase):
         textwrap.dedent("""\
         Xcode 11.5
         Build version abcd
-      """).encode(),
+      """),
         textwrap.dedent("""\
         Xcode 11.4
         Build version efgh
-      """).encode(),
+      """),
     ]
     self.mock_listdir.side_effect = [
         # os.listdir('/Applications')
@@ -84,35 +84,35 @@ class TestOsx(unittest.TestCase):
     self.mock_check_output.return_value = textwrap.dedent("""\
       Xcode 11.5
       Build version 11E608c
-    """).encode()
+    """)
 
     version = osx.get_current_xcode_version()
     self.assertEqual(version, ('11.5', '11E608c'))
 
   def test_get_ios_device_ids(self):
-    self.mock_check_output.return_value = b'1234abcd\n'
+    self.mock_check_output.return_value = '1234abcd\n'
     self.assertEqual(osx.get_ios_device_ids(), ['1234abcd'])
 
   def test_get_ios_version(self):
-    self.mock_check_output.return_value = b'13.5\n'
+    self.mock_check_output.return_value = '13.5\n'
     self.assertEqual(osx.get_ios_version('1234abcd'), '13.5')
 
   def test_get_ios_device_type(self):
-    self.mock_check_output.return_value = b'iPhone12,1\n'
+    self.mock_check_output.return_value = 'iPhone12,1\n'
     self.assertEqual(osx.get_ios_device_type('1234abcd'), 'iPhone12,1')
 
   def test_get_hardware_model_string(self):
-    self.mock_check_output.return_value = b'MacBookPro15,1\n'
+    self.mock_check_output.return_value = 'MacBookPro15,1\n'
     hw_model = osx.get_hardware_model_string()
     self.assertEqual(hw_model, 'MacBookPro15,1')
 
   def test_get_os_version_number(self):
-    self.mock_check_output.return_value = b'10.15.5\n'
+    self.mock_check_output.return_value = '10.15.5\n'
     os_version = osx.get_os_version_number()
     self.assertEqual(os_version, '10.15.5')
 
   def test_get_os_build_version(self):
-    self.mock_check_output.return_value = b'19F101\n'
+    self.mock_check_output.return_value = '19F101\n'
     build_version = osx.get_os_build_version()
     self.assertEqual(build_version, '19F101')
 
@@ -291,7 +291,7 @@ class TestOsx(unittest.TestCase):
         machdep.cpu.tlb.data.small_level1: 64
         machdep.cpu.address_bits.physical: 39
         machdep.cpu.address_bits.virtual: 48
-    """).encode()
+    """)
 
     expected = {
         u'vendor': u'GenuineIntel',
@@ -486,7 +486,7 @@ class TestOsx(unittest.TestCase):
   def test_generate_launchd_plist(self):
     plist_data = osx.generate_launchd_plist(['echo', 'hi'], os.getcwd(),
                                             'org.swarm.bot.plist')
-    plist = osx._read_plist(plist_data.encode())
+    plist = plistlib.loads(plist_data.encode())
     self.assertEqual(plist['Label'], 'org.swarm.bot.plist')
     self.assertEqual(plist['Program'], 'echo')
     self.assertEqual(plist['ProgramArguments'], ['echo', 'hi'])
