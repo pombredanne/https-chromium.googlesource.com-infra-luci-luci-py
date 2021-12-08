@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbc3d8e0_999507e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-12-08T02:51:51Z",
+      "side": 1,
+      "message": "You need to wait this until when we stop using python2",
+      "revId": "19d4864a20ca1f5e3fbacc98bdafd1d4f2b2683c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
