@@ -15,8 +15,6 @@ import struct
 import subprocess
 import time
 
-import six
-
 from utils import tools
 
 from api.platforms import common
@@ -286,8 +284,6 @@ def _SMC_read_key(conn, key):
   # Call with SMC_CMD_READ_BYTES.
   val = _SMC_Value(size=outdata.keyInfo.size)
   packed = struct.pack('>i', outdata.keyInfo.type)
-  if six.PY2:
-    packed = map(ord, packed)
   for i, x in enumerate(packed):
     val.type[i] = x
   # pylint: disable=attribute-defined-outside-init
@@ -328,7 +324,7 @@ def _SMC_get_value(conn, key):
 def _get_system_profiler(data_type):
   """Returns an XML about the system display properties."""
   out = subprocess.check_output(['system_profiler', data_type, '-xml'])
-  plist = _read_plist(out)
+  plist = plistlib.loads(out)
   return plist[0].get('_items', [])
 
 
@@ -368,10 +364,10 @@ def _get_xcode_version(xcode_app):
                             'xcodebuild')
   if os.path.exists(xcodebuild):
     try:
-      out = subprocess.check_output([xcodebuild, '-version'])
+      out = subprocess.check_output([xcodebuild, '-version'],
+                                    universal_newlines=True).splitlines()
     except subprocess.CalledProcessError:
       return None
-    out = out.decode('utf-8').splitlines()
     return out[0].split()[-1], out[1].split()[-1]
 
 
@@ -380,22 +376,15 @@ def _get_physical_disks_info():
   """Return the disk info for all the physical disks"""
   try:
     out = subprocess.check_output(['diskutil', 'list', '-plist', 'physical'])
-    pl = _read_plist(out)
+    pl = plistlib.loads(out)
     disk_info = {}
     for disk in pl['WholeDisks']:
       out = subprocess.check_output(['diskutil', 'info', '-plist', disk])
-      disk_info[six.ensure_text(disk)] = _read_plist(out)
+      disk_info[disk.encode()] = plistlib.loads(out)
     return disk_info
   except (OSError, subprocess.CalledProcessError) as e:
     logging.error('Failed to read disk info: %s', e)
     return {}
-
-
-def _read_plist(data):
-  if six.PY2:
-    return plistlib.readPlistFromString(data)
-  else:
-    return plistlib.loads(data)
 
 
 ## Public API.
@@ -432,10 +421,10 @@ def get_xcode_versions():
 def get_current_xcode_version():
   """Returns the active version of Xcode."""
   try:
-    out = subprocess.check_output(['xcodebuild', '-version'])
+    out = subprocess.check_output(['xcodebuild', '-version'],
+                                  universal_newlines=True).splitlines()
   except (OSError, subprocess.CalledProcessError):
     return None
-  out = out.decode('utf-8').splitlines()
   return out[0].split()[-1], out[1].split()[-1]
 
 
@@ -446,8 +435,8 @@ def get_ios_device_ids():
   See http://libimobiledevice.org.
   """
   try:
-    out = subprocess.check_output(['idevice_id', '--list']).splitlines()
-    return list(map(six.ensure_text, out))
+    return subprocess.check_output(['idevice_id', '--list'],
+                                   universal_newlines=True).splitlines()
   except (OSError, subprocess.CalledProcessError):
     return []
 
@@ -463,9 +452,10 @@ def get_ios_version(udid):
   """
   try:
     out = subprocess.check_output(
-        ['ideviceinfo', '-k', 'ProductVersion', '-u', udid]).splitlines()
+        ['ideviceinfo', '-k', 'ProductVersion', '-u', udid],
+        universal_newlines=True).splitlines()
     if len(out) == 1:
-      return six.ensure_text(out[0])
+      return out[0]
   except (OSError, subprocess.CalledProcessError):
     pass
 
@@ -482,9 +472,10 @@ def get_ios_device_type(udid):
   """
   try:
     out = subprocess.check_output(
-        ['ideviceinfo', '-k', 'ProductType', '-u', udid]).splitlines()
+        ['ideviceinfo', '-k', 'ProductType', '-u', udid],
+        universal_newlines=True).splitlines()
     if len(out) == 1:
-      return six.ensure_text(out[0])
+      return out[0]
   except (OSError, subprocess.CalledProcessError):
     pass
 
@@ -497,8 +488,8 @@ def get_hardware_model_string():
     A string like Macmini5,3 or MacPro6,1.
   """
   try:
-    return six.ensure_text(
-        subprocess.check_output(['sysctl', '-n', 'hw.model']).rstrip())
+    return subprocess.check_output(['sysctl', '-n', 'hw.model'],
+                                   universal_newlines=True).rstrip()
   except (OSError, subprocess.CalledProcessError):
     return None
 
@@ -510,8 +501,8 @@ def get_os_version_number():
   Returns:
     Version as a string like '10.12.4'
   """
-  return six.ensure_text(
-      subprocess.check_output(['sw_vers', '-productVersion']).strip())
+  return subprocess.check_output(['sw_vers', '-productVersion'],
+                                 universal_newlines=True).strip()
 
 
 def get_os_build_version():
@@ -520,9 +511,10 @@ def get_os_build_version():
   Returns:
     Build version as a string like '19F101'
   """
-  out = subprocess.check_output(['sysctl', '-n', 'kern.osversion']).splitlines()
+  out = subprocess.check_output(['sysctl', '-n', 'kern.osversion'],
+                                universal_newlines=True).splitlines()
   assert len(out) == 1, out
-  return six.ensure_text(out[0])
+  return out[0]
 
 
 def get_audio():
@@ -564,10 +556,10 @@ def get_gpu():
         ven_id = match.group(1)
 
     # Looks like: u'4.0.20 [3.2.8]'
-    version = six.text_type(card.get('spdisplays_gmux-version', u''))
+    version = card.get('spdisplays_gmux-version', u'')
 
     # VMWare doesn't set it.
-    dev_name = six.text_type(card.get('sppci_model', u''))
+    dev_name = card.get('sppci_model', u'')
     ven_name = ''
     if dev_name:
       # The first word is pretty much always the company name on OSX.
@@ -588,7 +580,7 @@ def get_gpu():
       ven_id = u'UNKNOWN'
     ven_name, dev_name = gpu.ids_to_names(ven_id, ven_name, dev_id, dev_name)
 
-    dimensions.add(six.text_type(ven_id))
+    dimensions.add(ven_id)
     dimensions.add(u'%s:%s' % (ven_id, dev_id))
     if version:
       match = re.search(r'([0-9.]+) \[([0-9.]+)\]', version)
@@ -605,7 +597,8 @@ def get_gpu():
 def get_cpuinfo():
   """Returns CPU information."""
   values = common._safe_parse(
-      subprocess.check_output(['sysctl', 'machdep.cpu']).decode())
+      subprocess.check_output(['sysctl', 'machdep.cpu'],
+                              universal_newlines=True))
   # http://unix.stackexchange.com/questions/43539/what-do-the-flags-in-proc-cpuinfo-mean
   info = {
       u'flags':
@@ -675,7 +668,7 @@ def get_monitor_hidpi():
     is_hidpi(card['spdisplays_ndrvs'])
     for card in _get_system_profiler('SPDisplaysDataType')
     if 'spdisplays_ndrvs' in card)
-  return six.text_type(int(hidpi))
+  return int(hidpi)
 
 
 @tools.cached
@@ -778,7 +771,7 @@ def get_ssd():
   ssd = []
   for disk, disk_info in _get_physical_disks_info().items():
     if disk_info.get('SolidState'):
-      ssd.append(disk)
+      ssd.append(disk.decode())
   return tuple(sorted(ssd))
 
 
@@ -788,7 +781,7 @@ def get_disks_model():
   models = []
   for _, disk_info in _get_physical_disks_info().items():
     if disk_info['MediaName']:
-      models.append(six.ensure_text(disk_info['MediaName']))
+      models.append(disk_info['MediaName'])
   return tuple(sorted(models))
 
 
