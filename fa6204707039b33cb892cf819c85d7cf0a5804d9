@@ -52,6 +52,24 @@
       "parentUuid": "fe67f152_c664e32c",
       "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ac1838f_22e12beb",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1326157
+      },
+      "writtenOn": "2021-12-09T23:49:22Z",
+      "side": 1,
+      "message": "Sounds good to me. I didn\u0027t realize that each project had a scoped service account.\n\nI\u0027ll upload a new CL reflect that idea. Do you know where I can find what that service account is named?",
+      "parentUuid": "e50f47ef_557df0e1",
+      "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
