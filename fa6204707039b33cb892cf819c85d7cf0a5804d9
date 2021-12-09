@@ -34,6 +34,24 @@
       "parentUuid": "f60ebc38_74d9164d",
       "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e50f47ef_557df0e1",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-12-09T22:33:23Z",
+      "side": 1,
+      "message": "I\u0027m meaning that only the Swarming service (ideally using your project\u0027s scoped service account) would have permission to write to the topic; there\u0027s no need to include any additional token.",
+      "parentUuid": "fe67f152_c664e32c",
+      "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
