@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f60ebc38_74d9164d",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-12-09T21:53:05Z",
+      "side": 1,
+      "message": "I think it would be better to just rely on pubsub ACLs for this. This auth_token wouldn\u0027t serve much purpose here because it would be committed to the infradata repo and thus visible to a bunch of people.",
+      "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
