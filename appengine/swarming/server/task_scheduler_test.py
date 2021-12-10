@@ -2796,9 +2796,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
       self.check_schedule_request_acl(
           properties=_gen_properties(dimensions={u'pool': [u'some-pool']}),
           service_account='bad@example.com')
-    self.assertIn(
-        'Is allowed_service_account or allowed_service_account_group specified '
-        'in pools.cfg?', str(ctx.exception))
+    self.assertIn('Is allowed_service_account specified in pools.cfg?',
+                  str(ctx.exception))
 
   def test_check_schedule_request_acl_caller(self):
     # the functionality is already  tested by
