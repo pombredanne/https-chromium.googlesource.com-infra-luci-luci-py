@@ -669,17 +669,6 @@ def _is_allowed_to_schedule(pool_cfg):
   return False
 
 
-def _is_allowed_service_account(service_account, pool_cfg):
-  """True if given service account email is permitted to be used in the pool."""
-  if service_account in pool_cfg.service_accounts:
-    logging.info(
-        'Service account "%s" is allowed in the pool "%s" by being listed '
-        'explicitly in pools.cfg', service_account, pool_cfg.name)
-    return True
-
-  return False
-
-
 def _bot_update_tx(run_result_key, bot_id, output, output_chunk_start,
                    exit_code, duration, hard_timeout, io_timeout, cost_usd,
                    cas_output_root, cipd_pins, need_cancel, performance_stats,
@@ -1142,12 +1131,11 @@ def check_schedule_request_acl_service_account(request, pool_cfg):
   # they are always allowed. We care when the service account is a real email.
   has_service_account = service_accounts_utils.is_service_account(
       request.service_account)
-  if (has_service_account and
-      not _is_allowed_service_account(request.service_account, pool_cfg)):
+  if has_service_account:
     raise auth.AuthorizationError(
         'Task service account "%s" as specified in the task request is not '
-        'allowed to be used in the pool "%s". Is allowed_service_account '
-        'specified in pools.cfg?' % (request.service_account, request.pool))
+        'allowed to be used in the pool "%s".' %
+        (request.service_account, request.pool))
 
 
 def schedule_request(request,
