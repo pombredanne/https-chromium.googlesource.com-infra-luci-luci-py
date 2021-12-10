@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2bdb98d_564ed595",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-12-10T00:09:54Z",
+      "side": 1,
+      "message": "+vadimsh",
+      "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f60ebc38_74d9164d",
@@ -86,6 +103,24 @@
       "side": 1,
       "message": "Additionally, do you know where I can find an example of that service account being used in current Swarming code? That would save me a day of reading code as I write the new Pub/Sub message publishing.",
       "parentUuid": "7ac1838f_22e12beb",
+      "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff60902b_f60c63dd",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-12-10T00:09:54Z",
+      "side": 1,
+      "message": "The service accounts are all defined in https://chrome-internal.googlesource.com/infradata/config/+/refs/heads/main/configs/luci-config/projects.cfg#600. It looks like the \"chromeos\" project still doesn\u0027t have one set :(. We can add one, but we\u0027ll need to set aside a day to ensure that this scoped account has access to everything that the current plethora of different LUCI service accounts currently have access to.\n\nHowever on the swarming side, you can use the project-scoped account by passing the LUCI project name as the \"project_id\" field to net.json_request_async (or one of the other methods: https://chromium.googlesource.com/infra/luci/luci-py/+/HEAD/appengine/components/components/net.py). Every pool additionally has an associated realm (https://chrome-internal.googlesource.com/infradata/config/+/refs/heads/main/configs/chromium-swarm/pools.cfg), and the bit before the \":\" is the LUCI project id to which that realm (and pool) belongs.",
+      "parentUuid": "9d2a47e5_cd3ee1ae",
       "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
