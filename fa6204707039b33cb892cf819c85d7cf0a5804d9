@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2765fc1c_0b6de27f",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1326157
+      },
+      "writtenOn": "2021-12-13T18:53:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b70ba45b_cd1e42d5",
+      "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0baa5ce1_1c401d45",
@@ -81,6 +99,54 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56b54e46_35570aaf",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1326157
+      },
+      "writtenOn": "2021-12-13T18:53:58Z",
+      "side": 1,
+      "message": "Done, and replicated in proto/api/swarming.proto (from which I copied this comment)",
+      "parentUuid": "8d5e7bf3_e4eb5332",
+      "range": {
+        "startLine": 159,
+        "startChar": 28,
+        "endLine": 159,
+        "endChar": 30
+      },
+      "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a18101f0_6a1aa20f",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1326157
+      },
+      "writtenOn": "2021-12-13T18:53:58Z",
+      "side": 1,
+      "message": "Done, and replicated in proto/api/swarming.proto (from which I copied this comment)",
+      "parentUuid": "0baa5ce1_1c401d45",
+      "range": {
+        "startLine": 159,
+        "startChar": 16,
+        "endLine": 159,
+        "endChar": 18
+      },
+      "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3eea0d8b_7bf483ee",
@@ -94,6 +160,24 @@
       "writtenOn": "2021-12-10T05:35:44Z",
       "side": 1,
       "message": "have an empty line above?",
+      "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0beffb0_5646ed85",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1326157
+      },
+      "writtenOn": "2021-12-13T18:53:58Z",
+      "side": 1,
+      "message": "Obsolete, since in the latest patch set this message only has one field.",
+      "parentUuid": "3eea0d8b_7bf483ee",
       "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -201,6 +285,24 @@
       "side": 1,
       "message": "The service accounts are all defined in https://chrome-internal.googlesource.com/infradata/config/+/refs/heads/main/configs/luci-config/projects.cfg#600. It looks like the \"chromeos\" project still doesn\u0027t have one set :(. We can add one, but we\u0027ll need to set aside a day to ensure that this scoped account has access to everything that the current plethora of different LUCI service accounts currently have access to.\n\nHowever on the swarming side, you can use the project-scoped account by passing the LUCI project name as the \"project_id\" field to net.json_request_async (or one of the other methods: https://chromium.googlesource.com/infra/luci/luci-py/+/HEAD/appengine/components/components/net.py). Every pool additionally has an associated realm (https://chrome-internal.googlesource.com/infradata/config/+/refs/heads/main/configs/chromium-swarm/pools.cfg), and the bit before the \":\" is the LUCI project id to which that realm (and pool) belongs.",
       "parentUuid": "9d2a47e5_cd3ee1ae",
+      "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d1036b9_f33cc330",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1326157
+      },
+      "writtenOn": "2021-12-13T18:53:58Z",
+      "side": 1,
+      "message": "Got it. Thank you for all the info and links; this will be really helpful.\n\nLet\u0027s create a scoped service account for ChromeOS. That can happen in parallel with the Swarming development. I\u0027ve found some seemingly relevant documentation (http://go/luci/onboarding/service_account). I\u0027ll poke around and see if I can be self-sufficient.",
+      "parentUuid": "ff60902b_f60c63dd",
       "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
