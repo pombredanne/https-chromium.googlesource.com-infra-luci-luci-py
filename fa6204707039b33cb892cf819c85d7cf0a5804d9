@@ -305,6 +305,24 @@
       "parentUuid": "ff60902b_f60c63dd",
       "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9f3492d_3b293486",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1326157
+      },
+      "writtenOn": "2021-12-13T21:14:30Z",
+      "side": 1,
+      "message": "In the above documentation, I see that there are a few types of service accounts bot identity and task identity. I *think* that what we want is bot identity. Would you agree?",
+      "parentUuid": "8d1036b9_f33cc330",
+      "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
