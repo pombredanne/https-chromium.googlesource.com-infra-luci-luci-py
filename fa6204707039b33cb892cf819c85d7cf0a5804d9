@@ -323,6 +323,24 @@
       "parentUuid": "8d1036b9_f33cc330",
       "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d34eddda_b6dc165d",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1326157
+      },
+      "writtenOn": "2021-12-13T21:17:05Z",
+      "side": 1,
+      "message": "nvm, found a bit of documentation at the top of infradata/.../luci-config/projects.cfg.\n\nHow critical is it that the service account has access to everything that other LUCI service accounts have access to? Can we lazily give it access later based on need?",
+      "parentUuid": "f9f3492d_3b293486",
+      "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
