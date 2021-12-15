@@ -377,6 +377,24 @@
       "parentUuid": "9618bd78_878693d8",
       "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b912714_e6aa0571",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-12-15T20:58:11Z",
+      "side": 1,
+      "message": "I think the best course of action would be to implement this for project scoped accounts (i.e. drop this field) and then we set up a project scoped account in January.\n\nNote, too, that I\u0027m not the real owner for this code (tikuta@, jojwang@, jwata@ would be the real owners).\n\nSince the prod freeze happens in ~today, there\u0027s no way that you\u0027re going to be able to develop, test and deploy this before January anyway. If you really really really want to work on this, I would make a stack of CLs implementing this whole feature which can be reviewed over the break.",
+      "parentUuid": "093a233c_115c3fa0",
+      "revId": "fa6204707039b33cb892cf819c85d7cf0a5804d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
