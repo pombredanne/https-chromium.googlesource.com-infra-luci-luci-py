@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d6c7f93_c4b37fb7",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-12-16T02:08:53Z",
+      "side": 1,
+      "message": "\u003e I decided not to complicate it and just store binding and conditions (essentially) as defined, and check them in same form they were defined (e.g. if there are 100 eligible bindings with different conditions, HasPermission will make 100 condition checks, even if some of them are redundant\n\nsgtm, though I do worry that wacky user-supplied bindings could impact our services\u0027 performance (\"why is GetBuild so slow!?\" -\u003e \"well, you have 10k conditional bindings defined...\")\n\nHowever, I guess that the library really only needs to check conditions which match one of the principals, so maybe it\u0027s never going to get that bad?",
+      "parentUuid": "a6862d12_e70af629",
+      "revId": "9253056162edf30aaf912f9b38ad242143275cbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2dc56c9f_fecd5a2a",
