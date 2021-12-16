@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9277ea2_cefd0811",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-12-16T00:35:47Z",
+      "side": 1,
+      "message": "lgtm w/ questions",
+      "revId": "9253056162edf30aaf912f9b38ad242143275cbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51bc947c_f73bdb83",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-12-16T00:35:47Z",
+      "side": 1,
+      "message": "is it OK to have multiple bindings with the same role++principals but different conditions?",
+      "revId": "9253056162edf30aaf912f9b38ad242143275cbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dc56c9f_fecd5a2a",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-12-16T00:35:47Z",
+      "side": 1,
+      "message": "will this always be 1:1 or should it permit 1:N values?",
+      "revId": "9253056162edf30aaf912f9b38ad242143275cbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28d2cdae_71746aeb",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-12-16T00:35:47Z",
+      "side": 1,
+      "message": "nit: ... and is documented ...",
+      "revId": "9253056162edf30aaf912f9b38ad242143275cbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ca00052_8ad76cb3",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-12-16T00:35:47Z",
+      "side": 1,
+      "message": "probably worth indicating that this is an OR list of values?",
+      "revId": "9253056162edf30aaf912f9b38ad242143275cbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
