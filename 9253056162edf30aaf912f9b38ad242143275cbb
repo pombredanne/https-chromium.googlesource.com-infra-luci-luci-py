@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6862d12_e70af629",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-12-16T01:02:07Z",
+      "side": 1,
+      "message": "Yes, each separate binding is independently \"activated\" based on its conditions. Having several similar bindings with different conditions is a way to implement OR operations.\n\nI considered teaching lucicfg or luci_auth realms normalization code to do simplification and dedupping, but it seems to be non-trivial (https://en.wikipedia.org/wiki/Logic_optimization#Boolean_expression_minimization). Considering we expect to support CEL rules at some point, I decided not to complicate it and just store binding and conditions (essentially) as defined, and check them in same form they were defined (e.g. if there are 100 eligible bindings with different conditions, HasPermission will make 100 condition checks, even if some of them are redundant).",
+      "parentUuid": "51bc947c_f73bdb83",
+      "revId": "9253056162edf30aaf912f9b38ad242143275cbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2dc56c9f_fecd5a2a",
@@ -48,6 +66,24 @@
       "writtenOn": "2021-12-16T00:35:47Z",
       "side": 1,
       "message": "will this always be 1:1 or should it permit 1:N values?",
+      "revId": "9253056162edf30aaf912f9b38ad242143275cbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d69c8c97_bcc164cb",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-12-16T01:02:07Z",
+      "side": 1,
+      "message": "Condition is a function `Cond(\u003cset of attributes as (k,v) pairs\u003e) \u003d\u003e bool`. In particular CEL conditions will essentially just be `string cel_expr`, since a single CEL expression can read multiple different attributes at once.\n\nI decided not to put any limits on AttributeRestriction either. It does exactly what it says in the doc: \n1. Multiple conditions in `conditions` are ANDed together.\n2. AttributeRestriction(name, values) is \"any((name, val) in attrs for val in values)\".\n\nIn particular, if we ever decide to support multi-valued attributes for some reason, we\u0027ll be able to express things like `(\"a\", b\") is subset of attributes.attr` as:\n\n  conditions {\n    restrict: \"attributes.attr\"\n    values: \"a\"\n  }\n  conditions {\n    restrict: \"attributes.attr\"\n    values: \"b\"\n  }\n  \nI have no plan to have multi-valued attributes yet though. So not explicitly mentioning this in the doc.",
+      "parentUuid": "2dc56c9f_fecd5a2a",
       "revId": "9253056162edf30aaf912f9b38ad242143275cbb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -69,6 +105,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87c03f3f_3f2b67cb",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-12-16T01:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28d2cdae_71746aeb",
+      "revId": "9253056162edf30aaf912f9b38ad242143275cbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ca00052_8ad76cb3",
@@ -82,6 +136,24 @@
       "writtenOn": "2021-12-16T00:35:47Z",
       "side": 1,
       "message": "probably worth indicating that this is an OR list of values?",
+      "revId": "9253056162edf30aaf912f9b38ad242143275cbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ecc4315_37e80625",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-12-16T01:02:07Z",
+      "side": 1,
+      "message": "Tried to reformulate the comment.",
+      "parentUuid": "1ca00052_8ad76cb3",
       "revId": "9253056162edf30aaf912f9b38ad242143275cbb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
