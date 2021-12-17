@@ -30,8 +30,8 @@ import subprocess
 import sys
 import tempfile
 import time
-
-import six
+import urllib.error
+import urllib.parse
 
 from utils import tools
 tools.force_local_third_party()
@@ -39,7 +39,6 @@ tools.force_local_third_party()
 # third_party/
 import httplib2
 from oauth2client import client
-from six.moves import urllib
 
 from api import platforms
 from utils import file_path
@@ -190,7 +189,7 @@ def get_python_versions():
       # Use sys.version instead of sys.version_info to keep
       # additional biuld information after micro version.
       # e.g. 3.8.0+chromium.8
-      six.ensure_text(sys.version.split()[0]),
+      sys.version.split()[0],
   ]
 
 
@@ -238,7 +237,7 @@ def get_cpu_type():
     return u'arm64'
   if machine == 'mips64':
     return u'mips'
-  return six.ensure_text(machine)
+  return machine
 
 
 @tools.cached
@@ -342,7 +341,7 @@ def get_ip():
     # network system to figure out an IP interface to use.
     try:
       s.connect(('8.8.8.8', 80))
-      return six.ensure_text(s.getsockname()[0])
+      return s.getsockname()[0]
     except socket.error:
       # Can raise "error: [Errno 10051] A socket operation was attempted to an
       # unreachable network" if the network is still booting up. We don't want
@@ -365,7 +364,7 @@ def get_hostname():
     meta = platforms.gce.get_metadata() or {}
     hostname = meta.get('instance', {}).get('hostname')
     if hostname:
-      return six.ensure_text(hostname)
+      return hostname
 
   # Windows enjoys putting random case in there. Enforces lower case for sanity.
   hostname = socket.getfqdn().lower()
@@ -374,7 +373,7 @@ def get_hostname():
     # address reversed, which is not useful. Get the base hostname as defined by
     # the host itself instead of the FQDN since the returned FQDN is useless.
     hostname = socket.gethostname()
-  return six.ensure_text(hostname)
+  return hostname
 
 
 @tools.cached
@@ -564,13 +563,13 @@ def get_machine_type():
     if best_fit is None or delta < best_fit[0]:
       best_fit = (delta, prefix)
   prefix = best_fit[1]
-  machine_type = prefix + six.text_type(cores)
+  machine_type = prefix + str(cores)
   if machine_type not in GCE_MACHINE_COST_HOUR_US:
     # Try a best fit.
     logging.info('Failed to find a good machine_type match: %s', machine_type)
     for i in (16, 8, 4, 2):
       if cores > i:
-        machine_type = prefix + six.text_type(i)
+        machine_type = prefix + str(i)
         break
     else:
       if cores == 1:
@@ -936,7 +935,7 @@ def get_state_all_devices_android(devices):
 def get_dimensions():
   """Returns the default dimensions."""
   dimensions = {
-      u'cores': [six.ensure_text(str(get_num_processors()))],
+      u'cores': [str(get_num_processors())],
       u'cpu': get_cpu_dimensions(),
       u'gpu': get_gpu()[0],
       u'id': [get_hostname_short()],
@@ -949,7 +948,7 @@ def get_dimensions():
   # Conditional dimensions:
   id_override = os.environ.get('SWARMING_BOT_ID')
   if id_override:
-    dimensions[u'id'] = [six.ensure_text(id_override)]
+    dimensions[u'id'] = [id_override]
 
   caches = get_named_caches_info()
   if caches:
@@ -991,7 +990,7 @@ def get_dimensions():
     else:
       dimensions[u'inside_docker'] = [u'1', inside_docker]
 
-    dimensions[u'kvm'] = [six.text_type(int(platforms.linux.get_kvm()))]
+    dimensions[u'kvm'] = [str(int(platforms.linux.get_kvm()))]
 
     comp = platforms.linux.get_device_tree_compatible()
     if comp:
@@ -1061,12 +1060,12 @@ def get_state():
       u'audio': get_audio(),
       u'cpu_name': get_cpuinfo().get(u'name'),
       u'cost_usd_hour': get_cost_hour(),
-      u'cwd': file_path.get_native_path_case(six.ensure_text(os.getcwd())),
+      u'cwd': file_path.get_native_path_case(os.getcwd()),
       u'disks': get_disks_info(),
       # Only including a subset of the environment variable, as state is not
       # designed to sustain large load at the moment.
       u'env': {
-          u'PATH': six.ensure_text(os.environ[u'PATH']),
+          u'PATH': os.environ[u'PATH'],
       },
       u'gpu': get_gpu()[1],
       u'hostname': get_hostname(),
@@ -1074,16 +1073,16 @@ def get_state():
       u'nb_files_in_temp': nb_files_in_temp,
       u'pid': os.getpid(),
       u'python': {
-          u'executable': six.ensure_text(sys.executable),
+          u'executable': sys.executable,
           u'packages': get_python_packages(),
-          u'version': six.ensure_text(sys.version),
+          u'version': sys.version,
       },
       u'ram': get_physical_ram(),
       u'running_time': int(round(time.time() - _STARTED_TS)),
       u'ssd': list(get_ssd()),
       u'started_ts': int(round(_STARTED_TS)),
       u'uptime': int(round(get_uptime())),
-      u'user': six.ensure_text(getpass.getuser()),
+      u'user': getpass.getuser(),
   }
   if get_reboot_required():
     state[u'reboot_required'] = True
@@ -1104,7 +1103,7 @@ def get_state():
 
     docker_host_hostname = os.environ.get('DOCKER_HOST_HOSTNAME')
     if docker_host_hostname:
-      state[u'docker_host_hostname'] = six.ensure_text(docker_host_hostname)
+      state[u'docker_host_hostname'] = docker_host_hostname
 
   # Put an arbitrary limit on the amount of junk that can stay in TEMP.
   if nb_files_in_temp == 'N/A':

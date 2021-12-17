@@ -20,7 +20,6 @@ import mock
 # TODO(github.com/wolever/parameterized/issues/91)
 # use parameterized after the bug is resolved.
 from nose2.tools import params
-import six
 
 import test_env_api
 test_env_api.setup_test_env()
@@ -92,10 +91,7 @@ class TestOsUtilities(auto_stub.TestCase):
     self.assertGreater(len(values), 1)
 
   def test_get_cpu_dimensions_mips(self):
-    if six.PY2:
-      self.mock(sys, 'platform', 'linux2')
-    else:
-      self.mock(sys, 'platform', 'linux')
+    self.mock(sys, 'platform', 'linux')
     self.mock(platform, 'machine', lambda: 'mips64')
     self.mock(os_utilities, 'get_cpuinfo',
               lambda: {u'name': 'Cavium Octeon II V0.1'})
@@ -125,16 +121,6 @@ class TestOsUtilities(auto_stub.TestCase):
       actual = os_utilities._parse_intel_model(i)
       self.assertEqual(expected, actual)
 
-  @unittest.skipUnless(six.PY2, 'Python2 only')
-  def test_get_python_versions_py2(self):
-    versions = os_utilities.get_python_versions()
-    self.assertEqual(len(versions), 3)
-    self.assertEqual(versions[0], u'2')
-    self.assertEqual(versions[1], u'2.7')
-    # we don't know which micro version we use in test.
-    self.assertRegexpMatches(versions[2], u'2.7.[0-9]+')
-
-  @unittest.skipUnless(six.PY3, 'Python3 only')
   def test_get_python_versions_py3(self):
     versions = os_utilities.get_python_versions()
     self.assertEqual(len(versions), 3)
@@ -176,10 +162,10 @@ class TestOsUtilities(auto_stub.TestCase):
   def test_get_dimensions(self):
     dimensions = os_utilities.get_dimensions()
     for key, values in dimensions.items():
-      self.assertIsInstance(key, six.text_type)
+      self.assertIsInstance(key, str)
       self.assertIsInstance(values, list)
       for value in values:
-        self.assertIsInstance(value, six.text_type)
+        self.assertIsInstance(value, str)
     actual = set(dimensions)
     # Only set when the process is running in a properly configured GUI context.
     actual.discard(u'locale')
@@ -223,7 +209,7 @@ class TestOsUtilities(auto_stub.TestCase):
     dimensions = os_utilities.get_dimensions()
     self.assertIsInstance(dimensions[u'id'], list)
     self.assertEqual(len(dimensions[u'id']), 1)
-    self.assertIsInstance(dimensions[u'id'][0], six.text_type)
+    self.assertIsInstance(dimensions[u'id'][0], str)
     self.assertEqual(dimensions[u'id'][0], u'customid')
 
   def test_get_state(self):
