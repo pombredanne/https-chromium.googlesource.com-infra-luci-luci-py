@@ -129,8 +129,25 @@ message Pool {
 
   // Realm name to use for tasks if they don't have a realm associated.
   string default_task_realm = 12;
+
+  // If task_completion_pubsub is specified, then whenever a task is completed,
+  // Swarming will publish a message to this Pub/Sub with info about the task
+  // and bot.
+  // This is in addition to the more general Pub/Sub (see proto.api.swarming
+  // .TaskRequest.pubsub_notification), which applies to all pools. Having a
+  // pool-specific Pub/Sub allows project subscribers to collect info about
+  // some tasks without seeing info about other projects.
+  PubSub task_completion_pubsub = 13;
 }
 
+// PubSub is a Cloud Pub/Sub topic to send task updates to.
+// The uploading user will be the project's scoped service account.
+// For additional usage notes, see proto/api/swarming.proto's PubSub message.
+message PubSub {
+  // Full topic name to post task state updates to, e.g.
+  // "projects/<project_id>/topics/<topic_id>".
+  string topic = 1;
+}
 
 // Defines who can schedule tasks in a pool.
 message Schedulers {
