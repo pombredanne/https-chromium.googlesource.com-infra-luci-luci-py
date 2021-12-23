@@ -1401,24 +1401,32 @@ class RealmsTest(test_case.TestCase):
 
     # Match.
     self.logs['info'] = []
-    api.has_permission_dryrun(PERM0, ['proj:@root'], True, ID1, 'admin', 'bug')
+    api.has_permission_dryrun(
+        PERM0, ['proj:@root'], True, ID1,
+        admin_group='admin', tracking_bug='bug')
     self.assert_logs('info',
         "bug: has_permission_dryrun('luci.dev.testing0', ['proj:@root'], "
         "'user:1@example.com'), authdb=0: match - ALLOW")
     self.logs['info'] = []
-    api.has_permission_dryrun(PERM1, ['proj:@root'], False, ID1, 'admin', 'bug')
+    api.has_permission_dryrun(
+        PERM1, ['proj:@root'], False, ID1,
+        admin_group='admin', tracking_bug='bug')
     self.assert_logs('info',
         "bug: has_permission_dryrun('luci.dev.testing1', ['proj:@root'], "
         "'user:1@example.com'), authdb=0: match - DENY")
 
     # Mismatch.
     self.logs['warning'] = []
-    api.has_permission_dryrun(PERM0, ['proj:@root'], False, ID1, 'admin', 'bug')
+    api.has_permission_dryrun(
+        PERM0, ['proj:@root'], False, ID1,
+        admin_group='admin', tracking_bug='bug')
     self.assert_logs('warning',
         "bug: has_permission_dryrun('luci.dev.testing0', ['proj:@root'], "
         "'user:1@example.com'), authdb=0: mismatch - got ALLOW, want DENY")
     self.logs['warning'] = []
-    api.has_permission_dryrun(PERM1, ['proj:@root'], True, ID1, 'admin', 'bug')
+    api.has_permission_dryrun(
+        PERM1, ['proj:@root'], True, ID1,
+        admin_group='admin', tracking_bug='bug')
     self.assert_logs('warning',
         "bug: has_permission_dryrun('luci.dev.testing1', ['proj:@root'], "
         "'user:1@example.com'), authdb=0: mismatch - got DENY, want ALLOW")
@@ -1426,14 +1434,17 @@ class RealmsTest(test_case.TestCase):
     # Admin match.
     self.logs['info'] = []
     api.has_permission_dryrun(
-        PERM0, ['proj:@root'], True, ADMIN, 'admin', 'bug')
+        PERM0, ['proj:@root'], True, ADMIN,
+        admin_group='admin', tracking_bug='bug')
     self.assert_logs('info',
         "bug: has_permission_dryrun('luci.dev.testing0', ['proj:@root'], "
         "'user:admin@example.com'), authdb=0: match - ADMIN_ALLOW")
 
     # Blow up.
     self.logs['exception'] = []
-    api.has_permission_dryrun(PERM1, ['@root'], True, ID1, 'admin', 'bug')
+    api.has_permission_dryrun(
+        PERM1, ['@root'], True, ID1,
+        admin_group='admin', tracking_bug='bug')
     self.assert_logs('exception',
         "bug: has_permission_dryrun('luci.dev.testing1', ['@root'], "
         "'user:1@example.com'), authdb=0: exception ValueError, want ALLOW")
