@@ -22,6 +22,30 @@
       },
       "revId": "e06d061c10af43ae2c1cb191a3c7075630ae4daf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51b00d4a_15b2f569",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-01-06T04:52:51Z",
+      "side": 1,
+      "message": "It returns bytes now. So I fixed the document.",
+      "parentUuid": "4c8607dd_25d8e8fb",
+      "range": {
+        "startLine": 209,
+        "startChar": 10,
+        "endLine": 209,
+        "endChar": 31
+      },
+      "revId": "e06d061c10af43ae2c1cb191a3c7075630ae4daf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
