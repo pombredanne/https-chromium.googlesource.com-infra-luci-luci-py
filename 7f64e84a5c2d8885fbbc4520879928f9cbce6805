@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbe91741_40f35957",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-01-06T05:08:37Z",
+      "side": 1,
+      "message": "I added a command to the description.",
+      "parentUuid": "d26b033b_58470aec",
+      "revId": "7f64e84a5c2d8885fbbc4520879928f9cbce6805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "faa3471d_31cb9c93",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-01-06T04:21:03Z",
       "side": 1,
       "message": "There are still u prefixes like this?",
+      "range": {
+        "startLine": 177,
+        "startChar": 17,
+        "endLine": 177,
+        "endChar": 20
+      },
+      "revId": "7f64e84a5c2d8885fbbc4520879928f9cbce6805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de600f73_5af62e4b",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-01-06T05:08:37Z",
+      "side": 1,
+      "message": "I missed some patterns. \nI removed more u literals by the following command.\n\n\u003e find . -type f | xargs sed -i \"s/\\([ {(\\[]\\)u\u0027/\\1\u0027/g\"",
+      "parentUuid": "faa3471d_31cb9c93",
       "range": {
         "startLine": 177,
         "startChar": 17,
