@@ -44,7 +44,7 @@ def _padded_b64_decode(data):
 def _raw_metadata_request(path):
   """Sends a request to metadata.google.internal, retrying on errors.
 
-  Returns raw response as bytes or None if not running on GCE or if the metadata
+  Returns raw response as str or None if not running on GCE or if the metadata
   server is unreachable (after multiple attempts). Logs errors internally.
 
   Args:
@@ -305,15 +305,15 @@ def get_cpuinfo():
   cpu_name = None
   vendor = None
   if cpu_platform.startswith(u'Intel '):
-    cpu_name = u'Intel(R) Xeon(R) CPU %s GCE' % cpu_platform[len(u'Intel '):]
-    vendor = u'GenuineIntel'
+    cpu_name = 'Intel(R) Xeon(R) CPU %s GCE' % cpu_platform[len(u'Intel '):]
+    vendor = 'GenuineIntel'
   elif cpu_platform.startswith(u'AMD '):
-    cpu_name = u'%s GCE' % cpu_platform
-    vendor = u'AuthenticAMD'
+    cpu_name = '%s GCE' % cpu_platform
+    vendor = 'AuthenticAMD'
   assert cpu_name is not None, cpu_platform
   return {
-      u'name': cpu_name,
-      u'vendor': vendor,
+      'name': cpu_name,
+      'vendor': vendor,
   }
 
 
