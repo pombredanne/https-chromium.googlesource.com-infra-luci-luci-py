@@ -22,6 +22,30 @@
       },
       "revId": "7266538b0693362e734e3d82e3db8259bc0a1ff9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55cf0b19_5dc263c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-01-06T05:15:36Z",
+      "side": 1,
+      "message": "It only fails on the backend deployment.\nSo it should be a transient failure or something else.\nI will reland the CL.",
+      "parentUuid": "ef2e8d1a_70cef301",
+      "range": {
+        "startLine": 11,
+        "startChar": 18,
+        "endLine": 11,
+        "endChar": 184
+      },
+      "revId": "7266538b0693362e734e3d82e3db8259bc0a1ff9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
