@@ -30,8 +30,8 @@ import subprocess
 import sys
 import tempfile
 import time
-
-import six
+import urllib.error
+import urllib.parse
 
 from utils import tools
 tools.force_local_third_party()
@@ -39,7 +39,6 @@ tools.force_local_third_party()
 # third_party/
 import httplib2
 from oauth2client import client
-from six.moves import urllib
 
 from api import platforms
 from utils import file_path
@@ -48,53 +47,52 @@ from utils import fs
 
 # https://cloud.google.com/compute/pricing#machinetype
 GCE_MACHINE_COST_HOUR_US = {
-    u'n1-standard-1': 0.050,
-    u'n1-standard-2': 0.100,
-    u'n1-standard-4': 0.200,
-    u'n1-standard-8': 0.400,
-    u'n1-standard-16': 0.800,
-    u'n1-standard-32': 1.600,
-    u'f1-micro': 0.008,
-    u'g1-small': 0.027,
-    u'n1-highmem-2': 0.126,
-    u'n1-highmem-4': 0.252,
-    u'n1-highmem-8': 0.504,
-    u'n1-highmem-16': 1.008,
-    u'n1-highmem-32': 2.016,
-    u'n1-highcpu-2': 0.076,
-    u'n1-highcpu-4': 0.152,
-    u'n1-highcpu-8': 0.304,
-    u'n1-highcpu-16': 0.608,
-    u'n1-highcpu-32': 1.216,
+    'n1-standard-1': 0.050,
+    'n1-standard-2': 0.100,
+    'n1-standard-4': 0.200,
+    'n1-standard-8': 0.400,
+    'n1-standard-16': 0.800,
+    'n1-standard-32': 1.600,
+    'f1-micro': 0.008,
+    'g1-small': 0.027,
+    'n1-highmem-2': 0.126,
+    'n1-highmem-4': 0.252,
+    'n1-highmem-8': 0.504,
+    'n1-highmem-16': 1.008,
+    'n1-highmem-32': 2.016,
+    'n1-highcpu-2': 0.076,
+    'n1-highcpu-4': 0.152,
+    'n1-highcpu-8': 0.304,
+    'n1-highcpu-16': 0.608,
+    'n1-highcpu-32': 1.216,
 }
 
 # https://cloud.google.com/compute/pricing#machinetype
 GCE_MACHINE_COST_HOUR_EUROPE_ASIA = {
-    u'n1-standard-1': 0.055,
-    u'n1-standard-2': 0.110,
-    u'n1-standard-4': 0.220,
-    u'n1-standard-8': 0.440,
-    u'n1-standard-16': 0.880,
-    u'n1-standard-32': 1.760,
-    u'f1-micro': 0.009,
-    u'g1-small': 0.030,
-    u'n1-highmem-2': 0.139,
-    u'n1-highmem-4': 0.278,
-    u'n1-highmem-8': 0.556,
-    u'n1-highmem-16': 1.112,
-    u'n1-highmem-32': 2.224,
-    u'n1-highcpu-2': 0.084,
-    u'n1-highcpu-4': 0.168,
-    u'n1-highcpu-8': 0.336,
-    u'n1-highcpu-16': 0.672,
-    u'n1-highcpu-32': 1.344,
+    'n1-standard-1': 0.055,
+    'n1-standard-2': 0.110,
+    'n1-standard-4': 0.220,
+    'n1-standard-8': 0.440,
+    'n1-standard-16': 0.880,
+    'n1-standard-32': 1.760,
+    'f1-micro': 0.009,
+    'g1-small': 0.030,
+    'n1-highmem-2': 0.139,
+    'n1-highmem-4': 0.278,
+    'n1-highmem-8': 0.556,
+    'n1-highmem-16': 1.112,
+    'n1-highmem-32': 2.224,
+    'n1-highcpu-2': 0.084,
+    'n1-highcpu-4': 0.168,
+    'n1-highcpu-8': 0.336,
+    'n1-highcpu-16': 0.672,
+    'n1-highcpu-32': 1.344,
 }
 
-
 GCE_RAM_GB_PER_CORE_RATIOS = {
-  0.9: u'n1-highcpu-',
-  3.75: u'n1-standard-',
-  6.5: u'n1-highmem-',
+    0.9: 'n1-highcpu-',
+    3.75: 'n1-standard-',
+    6.5: 'n1-highmem-',
 }
 
 
@@ -185,12 +183,12 @@ def get_python_versions():
   """Returns the values to use for 'python' dimension as a list."""
   v = sys.version_info
   return [
-      u'%s' % v.major,
-      u'%s.%s' % (v.major, v.minor),
+      '%s' % v.major,
+      '%s.%s' % (v.major, v.minor),
       # Use sys.version instead of sys.version_info to keep
       # additional biuld information after micro version.
       # e.g. 3.8.0+chromium.8
-      six.ensure_text(sys.version.split()[0]),
+      sys.version.split()[0],
   ]
 
 
@@ -204,10 +202,10 @@ def get_os_name():
     Windows, Mac, Ubuntu, Raspbian, etc.
   """
   value = {
-    'cygwin': u'Windows',
-    # TODO(maruel): 'Mac' is an historical accident, it should be named 'OSX'.
-    'darwin': u'Mac',
-    'win32': u'Windows',
+      'cygwin': 'Windows',
+      # TODO(maruel): 'Mac' is an historical accident, it should be named 'OSX'.
+      'darwin': 'Mac',
+      'win32': 'Windows',
   }.get(sys.platform)
   if value:
     return value
@@ -233,12 +231,12 @@ def get_cpu_type():
   if sys.platform == 'win32' and not machine:
     machine = platforms.win.get_cpu_type_with_wmi()
   if machine in ('amd64', 'x86_64', 'i386', 'i686'):
-    return u'x86'
+    return 'x86'
   if machine == 'aarch64':
-    return u'arm64'
+    return 'arm64'
   if machine == 'mips64':
-    return u'mips'
-  return six.ensure_text(machine)
+    return 'mips'
+  return machine
 
 
 @tools.cached
@@ -253,8 +251,8 @@ def get_cpu_bitness():
   independent of the kernel bitness.
   """
   if sys.platform in ('darwin', 'win32') and platform.machine().endswith('64'):
-    return u'64'
-  return u'64' if sys.maxsize > 2**32 else u'32'
+    return '64'
+  return '64' if sys.maxsize > 2**32 else '32'
 
 
 def _parse_intel_model(name):
@@ -284,23 +282,20 @@ def get_cpu_dimensions():
   cpu_type = get_cpu_type()
   bitness = get_cpu_bitness()
   info = get_cpuinfo()
-  out = [
-    cpu_type,
-    u'%s-%s' % (cpu_type, bitness)
-  ]
+  out = [cpu_type, '%s-%s' % (cpu_type, bitness)]
   if 'avx2' in info.get(u'flags', []):
     out.append(u'%s-%s-%s' % (cpu_type, bitness, 'avx2'))
 
-  vendor = info.get(u'vendor') or u''
-  name = info.get(u'name') or u''
-  if u'GenuineIntel' == vendor:
+  vendor = info.get(u'vendor') or ''
+  name = info.get(u'name') or ''
+  if 'GenuineIntel' == vendor:
     model = _parse_intel_model(name)
     if model:
       out.append(u'%s-%s-%s' % (cpu_type, bitness, model.replace(' ', '_')))
   elif cpu_type.startswith(u'arm'):
     if name:
       out.append(u'%s-%s-%s' % (cpu_type, bitness, name.replace(' ', '_')))
-    if cpu_type != u'arm':
+    if cpu_type != 'arm':
       out.append(u'arm')
       out.append(u'arm-' + bitness)
   elif cpu_type.startswith(u'mips'):
@@ -342,14 +337,14 @@ def get_ip():
     # network system to figure out an IP interface to use.
     try:
       s.connect(('8.8.8.8', 80))
-      return six.ensure_text(s.getsockname()[0])
+      return s.getsockname()[0]
     except socket.error:
       # Can raise "error: [Errno 10051] A socket operation was attempted to an
       # unreachable network" if the network is still booting up. We don't want
       # this function to crash.
       if i == max_tries - 1:
         # Can't determine the IP.
-        return u'0.0.0.0'
+        return '0.0.0.0'
       time.sleep(0.05)
     finally:
       s.close()
@@ -365,7 +360,7 @@ def get_hostname():
     meta = platforms.gce.get_metadata() or {}
     hostname = meta.get('instance', {}).get('hostname')
     if hostname:
-      return six.ensure_text(hostname)
+      return hostname
 
   # Windows enjoys putting random case in there. Enforces lower case for sanity.
   hostname = socket.getfqdn().lower()
@@ -374,7 +369,7 @@ def get_hostname():
     # address reversed, which is not useful. Get the base hostname as defined by
     # the host itself instead of the FQDN since the returned FQDN is useless.
     hostname = socket.gethostname()
-  return six.ensure_text(hostname)
+  return hostname
 
 
 @tools.cached
@@ -564,23 +559,23 @@ def get_machine_type():
     if best_fit is None or delta < best_fit[0]:
       best_fit = (delta, prefix)
   prefix = best_fit[1]
-  machine_type = prefix + six.text_type(cores)
+  machine_type = prefix + str(cores)
   if machine_type not in GCE_MACHINE_COST_HOUR_US:
     # Try a best fit.
     logging.info('Failed to find a good machine_type match: %s', machine_type)
     for i in (16, 8, 4, 2):
       if cores > i:
-        machine_type = prefix + six.text_type(i)
+        machine_type = prefix + str(i)
         break
     else:
       if cores == 1:
         # There's no n1-highcpu-1 nor n1-highmem-1.
         if ram_gb < 1.7:
-          machine_type = u'f1-micro'
+          machine_type = 'f1-micro'
         elif ram_gb < 3.75:
-          machine_type = u'g1-small'
+          machine_type = 'g1-small'
         else:
-          machine_type = u'n1-standard-1'
+          machine_type = 'n1-standard-1'
       else:
         logging.info('Failed to find a fit: %s', machine_type)
 
@@ -594,7 +589,7 @@ def get_locale():
   """Returns the OS's UI active locale."""
   locales = locale.getdefaultlocale()
   if locales[0]:
-    return u'.'.join(locales)
+    return '.'.join(locales)
 
 
 def get_uptime():
@@ -649,12 +644,12 @@ def get_cipd_cache_info():
   try:
     items = 0
     total = 0
-    root = os.path.join(u'cipd_cache', u'cache', u'instances')
+    root = os.path.join(u'cipd_cache', 'cache', 'instances')
     for i in os.listdir(root):
-      if i != u'state.db':
+      if i != 'state.db':
         items += 1
         total += os.stat(os.path.join(root, i)).st_size
-    return {u'items': items, u'size': total}
+    return {u'items': items, 'size': total}
   except (IOError, OSError):
     return {}
   return 0
@@ -680,7 +675,7 @@ def get_named_caches_info():
   #
   # but hey, the following code is 5 lines...
   try:
-    with open(os.path.join(u'c', u'state.json'), 'rb') as f:
+    with open(os.path.join(u'c', 'state.json'), 'rb') as f:
       return dict(json.load(f)['items'])
   except (IOError, KeyError, OSError, TypeError, ValueError):
     return {}
@@ -936,26 +931,26 @@ def get_state_all_devices_android(devices):
 def get_dimensions():
   """Returns the default dimensions."""
   dimensions = {
-      u'cores': [six.ensure_text(str(get_num_processors()))],
-      u'cpu': get_cpu_dimensions(),
-      u'gpu': get_gpu()[0],
-      u'id': [get_hostname_short()],
-      u'os': get_os_values(),
+      'cores': [str(get_num_processors())],
+      'cpu': get_cpu_dimensions(),
+      'gpu': get_gpu()[0],
+      'id': [get_hostname_short()],
+      'os': get_os_values(),
       # This value is frequently overridden by bots.cfg via luci-config.
-      u'pool': [u'default'],
-      u'python': get_python_versions(),
+      'pool': [u'default'],
+      'python': get_python_versions(),
   }
 
   # Conditional dimensions:
   id_override = os.environ.get('SWARMING_BOT_ID')
   if id_override:
-    dimensions[u'id'] = [six.ensure_text(id_override)]
+    dimensions[u'id'] = [id_override]
 
   caches = get_named_caches_info()
   if caches:
     dimensions[u'caches'] = sorted(caches)
 
-  if u'none' not in dimensions[u'gpu']:
+  if 'none' not in dimensions[u'gpu']:
     hidpi = get_monitor_hidpi()
     if hidpi:
       dimensions[u'hidpi'] = hidpi
@@ -991,7 +986,7 @@ def get_dimensions():
     else:
       dimensions[u'inside_docker'] = [u'1', inside_docker]
 
-    dimensions[u'kvm'] = [six.text_type(int(platforms.linux.get_kvm()))]
+    dimensions[u'kvm'] = [str(int(platforms.linux.get_kvm()))]
 
     comp = platforms.linux.get_device_tree_compatible()
     if comp:
@@ -1058,32 +1053,32 @@ def get_state():
   except OSError:
     nb_files_in_temp = 'N/A'
   state = {
-      u'audio': get_audio(),
-      u'cpu_name': get_cpuinfo().get(u'name'),
-      u'cost_usd_hour': get_cost_hour(),
-      u'cwd': file_path.get_native_path_case(six.ensure_text(os.getcwd())),
-      u'disks': get_disks_info(),
+      'audio': get_audio(),
+      'cpu_name': get_cpuinfo().get(u'name'),
+      'cost_usd_hour': get_cost_hour(),
+      'cwd': file_path.get_native_path_case(os.getcwd()),
+      'disks': get_disks_info(),
       # Only including a subset of the environment variable, as state is not
       # designed to sustain large load at the moment.
-      u'env': {
-          u'PATH': six.ensure_text(os.environ[u'PATH']),
+      'env': {
+          'PATH': os.environ[u'PATH'],
       },
-      u'gpu': get_gpu()[1],
-      u'hostname': get_hostname(),
-      u'ip': get_ip(),
-      u'nb_files_in_temp': nb_files_in_temp,
-      u'pid': os.getpid(),
-      u'python': {
-          u'executable': six.ensure_text(sys.executable),
-          u'packages': get_python_packages(),
-          u'version': six.ensure_text(sys.version),
+      'gpu': get_gpu()[1],
+      'hostname': get_hostname(),
+      'ip': get_ip(),
+      'nb_files_in_temp': nb_files_in_temp,
+      'pid': os.getpid(),
+      'python': {
+          'executable': sys.executable,
+          'packages': get_python_packages(),
+          'version': sys.version,
       },
-      u'ram': get_physical_ram(),
-      u'running_time': int(round(time.time() - _STARTED_TS)),
-      u'ssd': list(get_ssd()),
-      u'started_ts': int(round(_STARTED_TS)),
-      u'uptime': int(round(get_uptime())),
-      u'user': six.ensure_text(getpass.getuser()),
+      'ram': get_physical_ram(),
+      'running_time': int(round(time.time() - _STARTED_TS)),
+      'ssd': list(get_ssd()),
+      'started_ts': int(round(_STARTED_TS)),
+      'uptime': int(round(get_uptime())),
+      'user': getpass.getuser(),
   }
   if get_reboot_required():
     state[u'reboot_required'] = True
@@ -1104,7 +1099,7 @@ def get_state():
 
     docker_host_hostname = os.environ.get('DOCKER_HOST_HOSTNAME')
     if docker_host_hostname:
-      state[u'docker_host_hostname'] = six.ensure_text(docker_host_hostname)
+      state[u'docker_host_hostname'] = docker_host_hostname
 
   # Put an arbitrary limit on the amount of junk that can stay in TEMP.
   if nb_files_in_temp == 'N/A':

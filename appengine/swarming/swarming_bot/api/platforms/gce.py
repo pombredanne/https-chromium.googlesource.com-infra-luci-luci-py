@@ -305,15 +305,15 @@ def get_cpuinfo():
   cpu_name = None
   vendor = None
   if cpu_platform.startswith(u'Intel '):
-    cpu_name = u'Intel(R) Xeon(R) CPU %s GCE' % cpu_platform[len(u'Intel '):]
-    vendor = u'GenuineIntel'
+    cpu_name = 'Intel(R) Xeon(R) CPU %s GCE' % cpu_platform[len(u'Intel '):]
+    vendor = 'GenuineIntel'
   elif cpu_platform.startswith(u'AMD '):
-    cpu_name = u'%s GCE' % cpu_platform
-    vendor = u'AuthenticAMD'
+    cpu_name = '%s GCE' % cpu_platform
+    vendor = 'AuthenticAMD'
   assert cpu_name is not None, cpu_platform
   return {
-      u'name': cpu_name,
-      u'vendor': vendor,
+      'name': cpu_name,
+      'vendor': vendor,
   }
 
 
