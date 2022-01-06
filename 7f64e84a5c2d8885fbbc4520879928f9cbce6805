@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d26b033b_58470aec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-01-06T04:21:03Z",
+      "side": 1,
+      "message": "how did you remove u literal?",
+      "revId": "7f64e84a5c2d8885fbbc4520879928f9cbce6805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faa3471d_31cb9c93",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-01-06T04:21:03Z",
+      "side": 1,
+      "message": "There are still u prefixes like this?",
+      "range": {
+        "startLine": 177,
+        "startChar": 17,
+        "endLine": 177,
+        "endChar": 20
+      },
+      "revId": "7f64e84a5c2d8885fbbc4520879928f9cbce6805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
