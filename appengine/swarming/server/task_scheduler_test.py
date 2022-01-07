@@ -2639,9 +2639,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def mock_pool_config(self,
                        name,
-                       scheduling_users=None,
-                       scheduling_groups=None,
-                       trusted_delegatees=None,
                        external_schedulers=None):
     self._known_pools = self._known_pools or set()
     self._known_pools.add(name)
@@ -2651,12 +2648,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         return pools_config.init_pool_config(
             name=name,
             rev='rev',
-            scheduling_users=frozenset(scheduling_users or []),
-            scheduling_groups=frozenset(scheduling_groups or []),
-            trusted_delegatees={
-                peer: pools_config.TrustedDelegatee(peer, frozenset(tags))
-                for peer, tags in (trusted_delegatees or {}).items()
-            },
             external_schedulers=external_schedulers,
         )
       return None

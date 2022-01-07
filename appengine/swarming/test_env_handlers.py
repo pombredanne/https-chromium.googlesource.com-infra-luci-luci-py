@@ -176,16 +176,6 @@ class AppTestBase(test_case.TestCase):
                   pools_config.init_pool_config(
                       name='template',
                       rev='pools_cfg_rev',
-                      scheduling_users=frozenset([
-                          # See setUp above. We just duplicate the first ACL
-                          # layer here
-                          auth.Identity(auth.IDENTITY_USER,
-                                        'super-admin@example.com'),
-                          auth.Identity(auth.IDENTITY_USER,
-                                        'admin@example.com'),
-                          auth.Identity(auth.IDENTITY_USER, 'priv@example.com'),
-                          auth.Identity(auth.IDENTITY_USER, 'user@example.com'),
-                      ]),
                       realm='test:pool/default',
                       default_task_realm=default_task_realm,
                       enforced_realm_permissions=enforced_realm_permissions or
@@ -213,16 +203,6 @@ class AppTestBase(test_case.TestCase):
                   pools_config.init_pool_config(
                       name='default',
                       rev='pools_cfg_rev',
-                      scheduling_users=frozenset([
-                          # See setUp above. We just duplicate the first ACL
-                          # layer here
-                          auth.Identity(auth.IDENTITY_USER,
-                                        'super-admin@example.com'),
-                          auth.Identity(auth.IDENTITY_USER,
-                                        'admin@example.com'),
-                          auth.Identity(auth.IDENTITY_USER, 'priv@example.com'),
-                          auth.Identity(auth.IDENTITY_USER, 'user@example.com'),
-                      ]),
                       realm='test:pool/default',
                       default_task_realm=default_task_realm,
                       enforced_realm_permissions=enforced_realm_permissions or
