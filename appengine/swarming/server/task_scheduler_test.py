@@ -2642,7 +2642,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                        scheduling_users=None,
                        scheduling_groups=None,
                        trusted_delegatees=None,
-                       service_accounts=None,
                        external_schedulers=None):
     self._known_pools = self._known_pools or set()
     self._known_pools.add(name)
@@ -2658,7 +2657,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                 peer: pools_config.TrustedDelegatee(peer, frozenset(tags))
                 for peer, tags in (trusted_delegatees or {}).items()
             },
-            service_accounts=frozenset(service_accounts or []),
             external_schedulers=external_schedulers,
         )
       return None
@@ -2760,26 +2758,18 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
       self.check_schedule_request_acl(
           properties=_gen_properties(dimensions={u'pool': [u'some-pool']}))
 
-  def test_check_schedule_request_acl_good_service_acc(self):
+  def test_check_schedule_request_acl_service_acc(self):
     self.mock_pool_config(
-        'some-pool',
-        scheduling_users=[auth_testing.DEFAULT_MOCKED_IDENTITY],
-        service_accounts=['good@example.com'])
-    self.check_schedule_request_acl(
-        properties=_gen_properties(dimensions={u'pool': [u'some-pool']}),
-        service_account='good@example.com')
-
-  def test_check_schedule_request_acl_bad_service_acc(self):
-    self.mock_pool_config(
-        'some-pool',
-        scheduling_users=[auth_testing.DEFAULT_MOCKED_IDENTITY],
-        service_accounts=['good@example.com'])
+        'some-pool', scheduling_users=[auth_testing.DEFAULT_MOCKED_IDENTITY])
     with self.assertRaises(auth.AuthorizationError) as ctx:
       self.check_schedule_request_acl(
           properties=_gen_properties(dimensions={u'pool': [u'some-pool']}),
-          service_account='bad@example.com')
-    self.assertIn('Is allowed_service_account specified in pools.cfg?',
-                  str(ctx.exception))
+          service_account='account@example.com')
+
+    self.assertEqual(
+        'Task service account "account@example.com" as specified in the task'
+        ' request is not allowed to be used in the pool "some-pool".',
+        str(ctx.exception))
 
   def test_check_schedule_request_acl_caller(self):
     # the functionality is already  tested by
