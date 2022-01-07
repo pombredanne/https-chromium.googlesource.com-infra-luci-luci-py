@@ -2651,12 +2651,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         return pools_config.init_pool_config(
             name=name,
             rev='rev',
-            scheduling_users=frozenset(scheduling_users or []),
-            scheduling_groups=frozenset(scheduling_groups or []),
-            trusted_delegatees={
-                peer: pools_config.TrustedDelegatee(peer, frozenset(tags))
-                for peer, tags in (trusted_delegatees or {}).items()
-            },
             external_schedulers=external_schedulers,
         )
       return None

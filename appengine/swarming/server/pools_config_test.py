@@ -30,17 +30,6 @@ TEST_CONFIG = pools_pb2.PoolsCfg(
     pool=[
         pools_pb2.Pool(
             name=['pool_name', 'another_name'],
-            schedulers=pools_pb2.Schedulers(
-                user=['user:a@example.com', 'b@example.com'],
-                group=['group1', 'group2'],
-                trusted_delegation=[
-                    pools_pb2.TrustedDelegation(
-                        peer_id='delegatee@example.com',
-                        require_any_of=pools_pb2.TrustedDelegation.TagList(
-                            tag=['k:tag1', 'k:tag2'],),
-                    ),
-                ],
-            ),
             realm='test:pool/realm',
             enforced_realm_permissions=[
                 realms_pb2.REALM_PERMISSION_POOLS_CREATE_TASK,
@@ -98,18 +87,6 @@ class PoolsConfigTest(test_case.TestCase):
     expected1 = pools_config.init_pool_config(
         name=u'pool_name',
         rev='rev',
-        scheduling_users=frozenset([
-            auth.Identity('user', 'b@example.com'),
-            auth.Identity('user', 'a@example.com'),
-        ]),
-        scheduling_groups=frozenset([u'group2', u'group1']),
-        trusted_delegatees={
-            auth.Identity('user', 'delegatee@example.com'):
-                pools_config.TrustedDelegatee(
-                    peer_id=auth.Identity('user', 'delegatee@example.com'),
-                    required_delegation_tags=frozenset([u'k:tag1', u'k:tag2']),
-                ),
-        },
         realm='test:pool/realm',
         enforced_realm_permissions=frozenset(
             [realms_pb2.REALM_PERMISSION_POOLS_CREATE_TASK]),
@@ -196,98 +173,6 @@ class PoolsConfigTest(test_case.TestCase):
     ])
     self.validator_test(cfg, [
         'pool #1 (abc): pool "abc" was already declared',
-    ])
-
-  def test_bad_scheduling_user(self):
-    cfg = pools_pb2.PoolsCfg(pool=[
-        pools_pb2.Pool(
-            name=['abc'],
-            schedulers=pools_pb2.Schedulers(user=['not valid email'],)),
-    ])
-    self.validator_test(cfg, [
-      'pool #0 (abc): bad user value "not valid email" - '
-      'Identity has invalid format: not valid email',
-    ])
-
-  def test_bad_scheduling_group(self):
-    cfg = pools_pb2.PoolsCfg(pool=[
-        pools_pb2.Pool(
-            name=['abc'], schedulers=pools_pb2.Schedulers(group=['!!!'],)),
-    ])
-    self.validator_test(cfg, [
-      'pool #0 (abc): bad group name "!!!"',
-    ])
-
-  def test_no_delegatee_peer_id(self):
-    cfg = pools_pb2.PoolsCfg(pool=[
-        pools_pb2.Pool(
-            name=['abc'],
-            schedulers=pools_pb2.Schedulers(
-                trusted_delegation=[pools_pb2.TrustedDelegation()],)),
-    ])
-    self.validator_test(cfg, [
-        'pool #0 (abc): trusted_delegation #0 (): "peer_id" is required',
-    ])
-
-  def test_bad_delegatee_peer_id(self):
-    cfg = pools_pb2.PoolsCfg(pool=[
-        pools_pb2.Pool(
-            name=['abc'],
-            schedulers=pools_pb2.Schedulers(
-                trusted_delegation=[
-                    pools_pb2.TrustedDelegation(peer_id='not valid email',)
-                ],)),
-    ])
-    self.validator_test(cfg, [
-        'pool #0 (abc): trusted_delegation #0 (not valid email): bad peer_id '
-        'value "not valid email" - Identity has invalid format: '
-        'not valid email',
-    ])
-
-  def test_duplicate_delegatee_peer_id(self):
-    cfg = pools_pb2.PoolsCfg(pool=[
-        pools_pb2.Pool(
-            name=['abc'],
-            schedulers=pools_pb2.Schedulers(
-                trusted_delegation=[
-                    pools_pb2.TrustedDelegation(peer_id='a@example.com'),
-                    pools_pb2.TrustedDelegation(peer_id='a@example.com'),
-                ],)),
-    ])
-    self.validator_test(cfg, [
-        'pool #0 (abc): trusted_delegation #0 (a@example.com): peer '
-        '"a@example.com" was specified twice',
-    ])
-
-  def test_wildcard_delegation_tag_ok(self):
-    cfg = pools_pb2.PoolsCfg(pool=[
-      pools_pb2.Pool(name=['abc'], schedulers=pools_pb2.Schedulers(
-        trusted_delegation=[pools_pb2.TrustedDelegation(
-          peer_id='a@example.com',
-          require_any_of=pools_pb2.TrustedDelegation.TagList(
-            tag=['k:tag1/*'],
-          ),
-        )],
-      )),
-    ])
-    self.validator_test(cfg, [])
-
-  def test_bad_delegation_tag(self):
-    cfg = pools_pb2.PoolsCfg(pool=[
-        pools_pb2.Pool(
-            name=['abc'],
-            schedulers=pools_pb2.Schedulers(
-                trusted_delegation=[
-                    pools_pb2.TrustedDelegation(
-                        peer_id='a@example.com',
-                        require_any_of=pools_pb2.TrustedDelegation.TagList(
-                            tag=['not kv'],),
-                    )
-                ],)),
-    ])
-    self.validator_test(cfg, [
-        'pool #0 (abc): trusted_delegation #0 (a@example.com): bad tag #0 '
-        '"not kv" - must be <key>:<value>',
     ])
 
   def test_bad_pool_realm(self):
