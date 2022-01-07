@@ -609,23 +609,6 @@ def _is_allowed_to_schedule(pool_cfg):
   """True if the current caller is allowed to schedule tasks in the pool."""
   caller_id = auth.get_current_identity()
 
-  # Listed directly?
-  if caller_id in pool_cfg.scheduling_users:
-    logging.info(
-        'Caller "%s" is allowed to schedule tasks in the pool "%s" by being '
-        'specified directly in the pool config', caller_id.to_bytes(),
-        pool_cfg.name)
-    return True
-
-  # Listed through a group?
-  for group in pool_cfg.scheduling_groups:
-    if auth.is_group_member(group, caller_id):
-      logging.info(
-          'Caller "%s" is allowed to schedule tasks in the pool "%s" by being '
-          'referenced via the group "%s" in the pool config',
-          caller_id.to_bytes(), pool_cfg.name, group)
-      return True
-
   # Using delegation?
   delegation_token = auth.get_delegation_token()
   if not delegation_token:

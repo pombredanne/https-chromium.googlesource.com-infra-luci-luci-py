@@ -37,12 +37,6 @@ PoolConfig = collections.namedtuple(
         'name',
         # Revision of pools.cfg file this config came from.
         'rev',
-        # Set of auth.Identity that can schedule jobs in the pool.
-        'scheduling_users',
-        # Set of group names with users that can schedule jobs in the pool.
-        'scheduling_groups',
-        # Map {auth.Identity of a delegatee => TrustedDelegatee tuple}.
-        'trusted_delegatees',
         # Pool realm.
         'realm',
         # Set of enforced realm permission enums.
@@ -65,9 +59,6 @@ def init_pool_config(**kwargs):
   args = {
       'name': None,
       'rev': None,
-      'scheduling_users': frozenset(),
-      'scheduling_groups': frozenset(),
-      'trusted_delegatees': {},
       'realm': None,
       'enforced_realm_permissions': frozenset(),
       'default_task_realm': None,
@@ -505,19 +496,6 @@ def _resolve_external_schedulers(external_schedulers):
       for e in external_schedulers)
 
 
-def _to_ident(s):
-  if ':' not in s:
-    s = 'user:' + s
-  return auth.Identity.from_bytes(s)
-
-
-def _validate_ident(ctx, title, s):
-  try:
-    return _to_ident(s)
-  except ValueError as exc:
-    ctx.error('bad %s value "%s" - %s', title, s, exc)
-
-
 def _validate_realm(ctx, title, s):
   try:
     auth.validate_realm_name(str(s))
@@ -590,14 +568,6 @@ def _fetch_pools_config():
       pools[name] = init_pool_config(
           name=name,
           rev=rev,
-          scheduling_users=frozenset(_to_ident(u) for u in msg.schedulers.user),
-          scheduling_groups=frozenset(msg.schedulers.group),
-          trusted_delegatees={
-              _to_ident(d.peer_id): TrustedDelegatee(
-                  peer_id=_to_ident(d.peer_id),
-                  required_delegation_tags=frozenset(d.require_any_of.tag))
-              for d in msg.schedulers.trusted_delegation
-          },
           realm=msg.realm if msg.realm else None,
           default_task_realm=(msg.default_task_realm
                               if msg.default_task_realm else None),
@@ -652,31 +622,6 @@ def _validate_pools_cfg(cfg, ctx):
       # REALM_PERMISSION_POOLS_CREATE_TASK
       # REALM_PERMISSION_TASKS_ACT_AS
 
-      # Validate schedulers.user.
-      for u in msg.schedulers.user:
-        _validate_ident(ctx, 'user', u)
-
-      # Validate schedulers.group.
-      for g in msg.schedulers.group:
-        if not auth.is_valid_group_name(g):
-          ctx.error('bad group name "%s"', g)
-
-      # Validate schedulers.trusted_delegation.
-      seen_peers = set()
-      for d in msg.schedulers.trusted_delegation:
-        with ctx.prefix('trusted_delegation #%d (%s): ', i, d.peer_id):
-          if not d.peer_id:
-            ctx.error('"peer_id" is required')
-          else:
-            peer_id = _validate_ident(ctx, 'peer_id', d.peer_id)
-            if peer_id in seen_peers:
-              ctx.error('peer "%s" was specified twice', d.peer_id)
-            elif peer_id:
-              seen_peers.add(peer_id)
-          for i, tag in enumerate(d.require_any_of.tag):
-            if ':' not in tag:
-              ctx.error('bad tag #%d "%s" - must be <key>:<value>', i, tag)
-
       # Validate external schedulers.
       for i, es in enumerate(msg.external_schedulers):
         if not es.address:
@@ -705,11 +650,6 @@ def bootstrap_dev_server_acls():
               init_pool_config(
                   name='default',
                   rev='pools_cfg_rev',
-                  scheduling_users=frozenset([
-                      auth.Identity(auth.IDENTITY_USER,
-                                    'smoke-test@example.com'),
-                      auth.Identity(auth.IDENTITY_BOT, 'whitelisted-ip'),
-                  ]),
               ),
       },
       (None, None),
