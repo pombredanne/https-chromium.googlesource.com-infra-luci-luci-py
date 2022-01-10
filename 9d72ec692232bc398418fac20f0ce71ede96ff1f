@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c389a14_2111c50f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-01-10T22:27:17Z",
+      "side": 1,
+      "message": "PTAL, added tests.\n\nNote that I decided to support only dict{k:v} attributes at this level to avoid dealing with multidicts in the public API, since we don\u0027t actually need multi-value attribute checks yet. They will be easy to add if needed, since the core protocol supports them.",
+      "revId": "9d72ec692232bc398418fac20f0ce71ede96ff1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
