@@ -46,10 +46,6 @@ if sys.platform == 'win32':
 elif sys.platform == 'darwin':
   from utils import macos
 
-# TODO(crbug.com/1111688): PermissionError doesn't exist in Python2.
-if six.PY2:
-  PermissionError = OSError
-
 if sys.platform == 'win32':
   class LUID(ctypes.Structure):
     _fields_ = [
@@ -110,7 +106,6 @@ if sys.platform == 'win32':
     assert isinstance(drive_letter, six.text_type)
     # Guesswork. QueryDosDeviceW never returns the required number of bytes.
     chars = 1024
-    drive_letter = drive_letter
     p = wintypes.create_unicode_buffer(chars)
     if not windll.kernel32.QueryDosDeviceW(drive_letter, p, chars):
       err = ctypes.GetLastError()

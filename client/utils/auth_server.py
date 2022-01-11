@@ -429,7 +429,7 @@ class _HTTPServer(socketserver.ThreadingMixIn, BaseHTTPServer.HTTPServer):
     BaseHTTPServer.HTTPServer.serve_forever(
         self, poll_interval or self.poll_interval)
 
-  def handle_error(self, request, client_address):
+  def handle_error(self, _request, _client_address):
     """Overrides default handle_error that dumbs stuff to stdout."""
     logging.exception('local auth server: Exception happened')
 

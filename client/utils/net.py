@@ -94,10 +94,12 @@ class NetError(IOError):
     self.inner_exc = inner_exc
 
 
+# pylint: disable=redefined-builtin
 class TimeoutError(NetError):
   """Timeout while reading HTTP response."""
 
 
+# pylint: disable=redefined-builtin
 class ConnectionError(NetError):
   """Failed to connect to the server."""
 

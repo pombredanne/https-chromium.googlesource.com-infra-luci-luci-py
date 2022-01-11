@@ -52,17 +52,14 @@ class LockWithAssert(object):
 
 class ThreadPoolError(Exception):
   """Base class for exceptions raised by ThreadPool."""
-  pass
 
 
 class ThreadPoolEmpty(ThreadPoolError):
   """Trying to get task result from a thread pool with no pending tasks."""
-  pass
 
 
 class ThreadPoolClosed(ThreadPoolError):
   """Trying to do something with a closed thread pool."""
-  pass
 
 
 class ThreadPool(object):
