@@ -122,6 +122,7 @@ disable=
   next-method-called,
   no-absolute-import,
   no-init,
+  no-member,
   no-name-in-module,
   no-self-argument,
   no-self-use,
