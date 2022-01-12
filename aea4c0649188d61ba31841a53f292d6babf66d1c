@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e674b885_4e94c68b",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-01-12T06:00:57Z",
+      "side": 1,
+      "message": "no need to have this?",
+      "range": {
+        "startLine": 1006,
+        "startChar": 27,
+        "endLine": 1006,
+        "endChar": 30
+      },
+      "revId": "aea4c0649188d61ba31841a53f292d6babf66d1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c856cfcd_a4920179",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1150,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-01-12T06:00:57Z",
+      "side": 1,
+      "message": "this is not necessary now?",
+      "range": {
+        "startLine": 1150,
+        "startChar": 31,
+        "endLine": 1150,
+        "endChar": 70
+      },
+      "revId": "aea4c0649188d61ba31841a53f292d6babf66d1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff24ca26_814341f2",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-01-12T06:00:57Z",
+      "side": 1,
+      "message": "this is not necessary now?",
+      "revId": "aea4c0649188d61ba31841a53f292d6babf66d1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b4a4699_41db611b",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1173,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-01-12T06:00:57Z",
+      "side": 1,
+      "message": "better to store only excinfo.value now?",
+      "revId": "aea4c0649188d61ba31841a53f292d6babf66d1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
