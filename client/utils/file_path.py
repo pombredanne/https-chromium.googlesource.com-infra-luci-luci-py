@@ -24,7 +24,6 @@ import time
 
 from utils import fs
 from utils import subprocess42
-from utils import tools
 
 # Types of action accepted by link_file().
 HARDLINK, HARDLINK_WITH_FALLBACK, SYMLINK, SYMLINK_WITH_FALLBACK, COPY = range(
