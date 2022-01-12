@@ -41,7 +41,6 @@ sys.path.insert(0, os.path.join(CLIENT_DIR, 'third_party'))
 from utils import fs
 from utils import file_path
 from utils import large
-from utils import subprocess42
 from tools import start_bot
 from tools import start_servers
 
@@ -121,7 +120,7 @@ class SwarmingClient(object):
     logging.debug('SwarmingClient.isolate: executing command. %s', cmd)
     with fs.open(self._rotate_logfile(), 'wb') as f:
       f.write('\nRunning: %s\n' % ' '.join(cmd))
-      p = subprocess42.Popen(cmd, stdout=f, stderr=f)
+      p = subprocess.Popen(cmd, stdout=f, stderr=f)
       p.communicate()
     assert p.returncode == 0, ('Failed to isolate files. exit_code=%d, cmd=%s' %
                                (p.returncode, cmd))
@@ -336,7 +335,7 @@ class SwarmingClient(object):
     with fs.open(self._rotate_logfile(), 'wb') as f:
       f.write('\nRunning: %s\n' % ' '.join(cmd))
       f.flush()
-      p = subprocess42.Popen(cmd, stdout=f, stderr=f)
+      p = subprocess.Popen(cmd, stdout=f, stderr=f)
       p.communicate()
       return p.returncode
 
@@ -1733,11 +1732,7 @@ def main():
     if client.terminate(bot.bot_id) != 0:
       print('swarming terminate failed', file=sys.stderr)
       failed = True
-    try:
-      bot.wait(10)
-    except subprocess42.TimeoutExpired:
-      print('Bot is still alive after swarming terminate', file=sys.stderr)
-      failed = True
+    bot.wait()
   except KeyboardInterrupt:
     print('<Ctrl-C>', file=sys.stderr)
     failed = True
