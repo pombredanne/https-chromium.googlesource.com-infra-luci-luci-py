@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbc182fd_8fa9883c",
+        "filename": "client/tests/lru_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-01-12T00:44:21Z",
+      "side": 1,
+      "message": "this is redundant with L73?",
+      "revId": "173627a1ef99188ba26bb7788604e64f414c88ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ab5c8d2_71cd54fc",
+        "filename": "client/tests/lru_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-01-12T00:44:21Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "173627a1ef99188ba26bb7788604e64f414c88ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b108c0e5_a15d90c8",
+        "filename": "client/utils/net.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-01-12T00:44:21Z",
+      "side": 1,
+      "message": "Better to append this in L98?\nDoes this apply to all lines below?",
+      "revId": "173627a1ef99188ba26bb7788604e64f414c88ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
