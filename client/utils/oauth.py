@@ -4,11 +4,10 @@
 
 """OAuth2 related utilities and implementation of browser based login flow."""
 
-from __future__ import print_function
-
 import base64
 import collections
 import datetime
+import http.server
 import json
 import logging
 import optparse
@@ -17,6 +16,7 @@ import socket
 import sys
 import threading
 import time
+import urllib.parse
 import webbrowser
 
 from utils import tools
@@ -37,8 +37,6 @@ from pyasn1.codec.der import decoder
 from pyasn1.type import univ
 import requests
 import rsa
-import six
-from six.moves import BaseHTTPServer, urllib
 
 from libs import luci_context
 
@@ -472,11 +470,7 @@ def _monkey_patch_oauth2client_locked_file():
   for a few ms, there's a risk of one getting the lock of another instance, and
   this raises, particularly on Windows. Workaround by enforcing retry.
   """
-  if six.PY2:
-    # Python2 does not allow to replace __defaults__.
-    locked_file.LockedFile.open_and_lock.__func__.func_defaults = (60, 0.05)
-  else:
-    locked_file.LockedFile.open_and_lock.__defaults__ = (60, 0.05)
+  locked_file.LockedFile.open_and_lock.__defaults__ = (60, 0.05)
 
 
 # Service account related code.
@@ -780,7 +774,7 @@ def _validate_luci_context_access_token(access_token):
   return False
 
 
-class ClientRedirectServer(BaseHTTPServer.HTTPServer):
+class ClientRedirectServer(http.server.HTTPServer):
   """A server to handle OAuth 2.0 redirects back to localhost.
 
   Waits for a single request and parses the query parameters
@@ -789,7 +783,7 @@ class ClientRedirectServer(BaseHTTPServer.HTTPServer):
   query_params = {}
 
 
-class ClientRedirectHandler(BaseHTTPServer.BaseHTTPRequestHandler):
+class ClientRedirectHandler(http.server.BaseHTTPRequestHandler):
   """A handler for OAuth 2.0 redirects back to localhost.
 
   Waits for a single request and parses the query parameters
