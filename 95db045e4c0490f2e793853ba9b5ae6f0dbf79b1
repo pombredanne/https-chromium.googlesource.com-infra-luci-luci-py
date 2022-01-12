@@ -22,6 +22,30 @@
       },
       "revId": "95db045e4c0490f2e793853ba9b5ae6f0dbf79b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9fb601e_3cfd624f",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-01-12T07:29:40Z",
+      "side": 1,
+      "message": "I\u0027m not sure because callers can pass any `args` to Popen() at this moment. So they can include bytes.\n\nBut, the unit tests looks fine without these conversions.\nLet\u0027s see how it works.",
+      "parentUuid": "1de9e9fd_1691522e",
+      "range": {
+        "startLine": 475,
+        "startChar": 4,
+        "endLine": 476,
+        "endChar": 36
+      },
+      "revId": "95db045e4c0490f2e793853ba9b5ae6f0dbf79b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
