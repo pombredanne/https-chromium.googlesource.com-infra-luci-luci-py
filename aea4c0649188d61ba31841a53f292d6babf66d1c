@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95bd8d3f_9139abd2",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-01-12T06:48:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e674b885_4e94c68b",
+      "range": {
+        "startLine": 1006,
+        "startChar": 27,
+        "endLine": 1006,
+        "endChar": 30
+      },
+      "revId": "aea4c0649188d61ba31841a53f292d6babf66d1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c856cfcd_a4920179",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-01-12T06:00:57Z",
       "side": 1,
       "message": "this is not necessary now?",
+      "range": {
+        "startLine": 1150,
+        "startChar": 31,
+        "endLine": 1150,
+        "endChar": 70
+      },
+      "revId": "aea4c0649188d61ba31841a53f292d6babf66d1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59e49cd6_7dcbbd46",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1150,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-01-12T06:48:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c856cfcd_a4920179",
       "range": {
         "startLine": 1150,
         "startChar": 31,
@@ -64,6 +112,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84780482_bd5c4164",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-01-12T06:48:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff24ca26_814341f2",
+      "revId": "aea4c0649188d61ba31841a53f292d6babf66d1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b4a4699_41db611b",
@@ -77,6 +143,24 @@
       "writtenOn": "2022-01-12T06:00:57Z",
       "side": 1,
       "message": "better to store only excinfo.value now?",
+      "revId": "aea4c0649188d61ba31841a53f292d6babf66d1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb4821ad_243c25f9",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1173,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-01-12T06:48:18Z",
+      "side": 1,
+      "message": "It seems `path` is also used in the logs. e.g. at L1213, L1232 ...",
+      "parentUuid": "1b4a4699_41db611b",
       "revId": "aea4c0649188d61ba31841a53f292d6babf66d1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
