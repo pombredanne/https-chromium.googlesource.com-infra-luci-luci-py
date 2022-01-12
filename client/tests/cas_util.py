@@ -13,10 +13,6 @@ import time
 
 import six
 
-# Mutates sys.path.
-import test_env
-
-from utils import fs
 
 CLIENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LUCI_DIR = os.path.dirname(CLIENT_DIR)
@@ -75,14 +71,14 @@ class LocalCAS:
       for path, content in files.items():
         path = six.text_type(os.path.join(tmpdir, path))
         pdir = os.path.dirname(path)
-        if not fs.exists(pdir):
-          fs.makedirs(pdir)
+        if not os.path.exists(pdir):
+          os.makedirs(pdir)
 
-        with fs.open(path, 'wb') as f:
+        with open(path, 'wb') as f:
           f.write(content)
       return self.archive_dir(tmpdir)
     finally:
-      fs.rmtree(six.text_type(tmpdir))
+      shutil.rmtree(six.text_type(tmpdir))
 
   def archive_dir(self, upload_dir):
     """Uploads directory to the local CAS server"""
