@@ -16,6 +16,24 @@
       "message": "Hmm, this seems necessary.\nhttps://screenshot.googleplex.com/72gRhdro37rrxUD\n\nBut I\u0027m wondering about the content of env vars.",
       "revId": "369a7f2e64168722ae7894216a154cc1f8e0df57",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "942ead03_adf34596",
+        "filename": "client/utils/subprocess42.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-01-12T10:55:05Z",
+      "side": 0,
+      "message": "It seems the error happened on Windows. Will check it.",
+      "parentUuid": "170ffdb1_bc46135f",
+      "revId": "369a7f2e64168722ae7894216a154cc1f8e0df57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
