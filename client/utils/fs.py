@@ -3,8 +3,8 @@
 # that can be found in the LICENSE file.
 
 """Wraps os, os.path and shutil functions to work around MAX_PATH on Windows."""
-from __future__ import division
 
+import builtins
 import inspect
 import os
 import re
@@ -14,10 +14,6 @@ import sys
 
 from utils import tools
 tools.force_local_third_party()
-
-# third_party/
-import six
-from six.moves import builtins
 
 if sys.platform == 'win32':
   import ctypes
@@ -357,21 +353,14 @@ else:
   def extend(path):
     """Path extending is not needed on POSIX."""
     assert os.path.isabs(path), path
-    assert isinstance(path, six.text_type), "%s, type: %s" % (path, type(path))
-    if six.PY2:
-      # In python2, default filesystem encoding may be 'ascii'.
-      # So does encode here to avoid UnicodeEncodeError.
-      return path.encode('utf-8')
+    assert isinstance(path, str), "%s, type: %s" % (path, type(path))
     return path
 
 
   def trim(path):
     """Path mangling is not needed on POSIX."""
     assert os.path.isabs(path), path
-    if six.PY2:
-      assert isinstance(path, str), "%s, type: %s" % (path, type(path))
-      return path.decode('utf-8')
-    assert isinstance(path, six.text_type), "%s, type: %s" % (path, type(path))
+    assert isinstance(path, str), "%s, type: %s" % (path, type(path))
     return path
 
 
@@ -384,8 +373,6 @@ else:
 
 
   def readlink(path):
-    if six.PY2:
-      return os.readlink(extend(path)).decode('utf-8')
     return os.readlink(extend(path))
 
 
