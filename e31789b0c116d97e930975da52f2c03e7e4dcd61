@@ -22,6 +22,30 @@
       },
       "revId": "e31789b0c116d97e930975da52f2c03e7e4dcd61",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8edb6698_8c055806",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-01-13T02:12:39Z",
+      "side": 1,
+      "message": "Good point. removed them.",
+      "parentUuid": "75fc4e39_f86e07dc",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 239,
+        "endChar": 26
+      },
+      "revId": "e31789b0c116d97e930975da52f2c03e7e4dcd61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
