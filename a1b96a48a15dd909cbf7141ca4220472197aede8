@@ -46,6 +46,30 @@
       },
       "revId": "a1b96a48a15dd909cbf7141ca4220472197aede8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e790f290_d3aab6e9",
+        "filename": "client/utils/net.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-01-13T03:48:01Z",
+      "side": 1,
+      "message": "Ah, encoder can accept other than str nor bytse.",
+      "parentUuid": "e9dadc56_29aff9b6",
+      "range": {
+        "startLine": 403,
+        "startChar": 19,
+        "endLine": 403,
+        "endChar": 23
+      },
+      "revId": "a1b96a48a15dd909cbf7141ca4220472197aede8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
