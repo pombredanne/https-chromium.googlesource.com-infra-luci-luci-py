@@ -22,6 +22,30 @@
       },
       "revId": "a1b96a48a15dd909cbf7141ca4220472197aede8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9dadc56_29aff9b6",
+        "filename": "client/utils/net.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-01-13T03:44:08Z",
+      "side": 1,
+      "message": "In the original code, bytes is not possible as it\u0027s returned at L397.\nI changed the condition checks in this CL.",
+      "parentUuid": "5d33643b_ac9692c3",
+      "range": {
+        "startLine": 403,
+        "startChar": 19,
+        "endLine": 403,
+        "endChar": 23
+      },
+      "revId": "a1b96a48a15dd909cbf7141ca4220472197aede8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
