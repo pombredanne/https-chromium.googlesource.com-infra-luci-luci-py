@@ -22,6 +22,30 @@
       },
       "revId": "c1840a4e40c71bdd42b39d123690cfe53d8f39a9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46ea4044_d563f297",
+        "filename": "client/libs/luci_context/luci_context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-01-13T06:01:36Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "46c79718_c8efc88f",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "c1840a4e40c71bdd42b39d123690cfe53d8f39a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
