@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46c79718_c8efc88f",
+        "filename": "client/libs/luci_context/luci_context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-01-13T03:51:41Z",
+      "side": 1,
+      "message": "This function becomes identity function now?",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "c1840a4e40c71bdd42b39d123690cfe53d8f39a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
