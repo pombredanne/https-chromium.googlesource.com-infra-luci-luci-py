@@ -22,8 +22,6 @@ import sys
 import tempfile
 import threading
 
-import six
-
 _LOGGER = logging.getLogger(__name__)
 
 # ENV_KEY is the environment variable that we look for to find out where the
@@ -67,8 +65,6 @@ def _to_utf8(obj):
     return {_to_utf8(key): _to_utf8(value) for key, value in obj.items()}
   if isinstance(obj, list):
     return [_to_utf8(item) for item in obj]
-  if six.PY2 and isinstance(obj, six.text_type):
-    return obj.encode('utf-8')
   return obj
 
 
@@ -79,7 +75,7 @@ def _to_encodable(obj):
     }
   if isinstance(obj, list):
     return [_to_encodable(item) for item in obj]
-  if isinstance(obj, six.binary_type):
+  if isinstance(obj, bytes):
     return obj.decode('utf-8')
   return obj
 
@@ -113,8 +109,6 @@ def _initial_load():
 
   ctx_path = os.environ.get(ENV_KEY)
   if ctx_path:
-    if six.PY2:
-      ctx_path = ctx_path.decode(sys.getfilesystemencoding())
     _LOGGER.debug('Loading LUCI_CONTEXT: %r', ctx_path)
     try:
       with open(ctx_path, 'r') as f:
@@ -141,7 +135,7 @@ def _read_full():
 def _mutate(section_values):
   new_val = read_full()
   changed = False
-  for section, value in six.iteritems(section_values):
+  for section, value in section_values.items():
     if value is None:
       if new_val.pop(section, None) is not None:
         changed = True
@@ -251,10 +245,7 @@ def write(_leak=False, _tmpdir=None, **section_values):
       try:
         old_value = _CUR_CONTEXT
         old_envvar = os.environ.get(ENV_KEY, None)
-        if six.PY2:
-          os.environ[ENV_KEY] = name.encode(sys.getfilesystemencoding())
-        else:
-          os.environ[ENV_KEY] = name
+        os.environ[ENV_KEY] = name
         _CUR_CONTEXT = new_val
         yield
       finally:
