@@ -28,7 +28,7 @@ def pack(values):
   if not values:
     return b''
   last = 0
-  max_value = long(2)**63 if sys.version_info.major == 2 else 2**63
+  max_value = 2**63
   assert 0 <= values[0] < max_value, 'Values must be between 0 and 2**63'
   assert 0 <= values[-1] < max_value, 'Values must be between 0 and 2**63'
   for value in values:
@@ -59,12 +59,8 @@ def unpack(data):
   base = 1
   last = 0
   for d in zlib.decompress(data):
-    if sys.version_info.major == 2:
-      val_byte = ord(d)
-    else:
-      val_byte = d
-    value += (val_byte & 0x7F) * base
-    if val_byte & 0x80:
+    value += (d & 0x7F) * base
+    if d & 0x80:
       base <<= 7
     else:
       out.append(value + last)
