@@ -266,6 +266,61 @@ def expand_luci_gae_vars(body, app_id):
   return sub(body)
 
 
+def expand_files_with_luci_gae_vars(mods):
+  """Expands YAML files with luci_gae_vars and persists them as new files.
+
+        Args:
+            mods: A slice of ModuleFile objects
+
+        Returns:
+            A tuple of:
+              A slice of ModileFile objects which contain expanded
+              body and have paths to new files.
+
+              A slice of strings which contains paths to temporarily written
+              files. This is to allow the caller to delete them.
+
+        Throws:
+            ValueError is expansion failed.
+    """
+  expanded_mods = []
+  tmp_files = []  # Files this function modified.
+
+  # 'gcloud' breaks on 'application' and 'version' fields in app.yaml.
+  # Deletev them. Eventually all app.yaml must be updated to not specify
+  # 'application' or 'version'. Additionally, handle luci_gae_vars
+  # sections by reading vars from them and substituting their values into
+  # the rest of the YAML, see expand_luci_gae_vars helper.
+  for m in mods:
+    modified = m.data.copy()
+    modified.pop('application', None)
+    modified.pop('version', None)
+    try:
+      expanded_body = expand_luci_gae_vars(modified, self.app_id)
+    except ValueError as exc:
+      raise ValueError('Bad %s: %s' % (os.path.basename(m.path), exc))
+    if expanded_body == m.data:
+      expanded_mods.append(m)  # the original YAML doesn't need expansion
+    else:
+      if 'application' in m.data or 'version' in m.data:
+        logging.error('Remove "application" and "version" from %s', m.path)
+      # Need to write a new version in same directory, so all paths are
+      # relative.
+      fnm = os.path.basename(m.path)
+      new_path = os.path.join(os.path.dirname(m.path), '._gae_py_' + fnm)
+      new_body = json.dumps(modified,
+                            sort_keys=True,
+                            indent=2,
+                            separators=(',', ': '))
+      logging.debug('Replacing "%s" with\n%s', fnm, new_body)
+      with open(new_path, 'w') as f:
+        f.write(new_body)  # JSON is YAML
+      expanded_mods.append(ModuleFile(path=new_path, data=expanded_body))
+      tmp_files.append(new_path)
+
+  return expanded_mods, tmp_files
+
+
 def is_app_dir(path):
   """Returns True if |path| is structure like GAE app directory."""
   try:
@@ -551,38 +606,7 @@ class Application(object):
     hacked = []
 
     try:
-      # Will contain a list of ModuleFile describing YAMLs to deploy.
-      service_yamls = []
-
-      # 'gcloud' barfs at 'application' and 'version' fields in app.yaml. Hack
-      # them away. Eventually all app.yaml must be updated to not specify
-      # 'application' or 'version'. Additionally, handle hacky luci_gae_vars
-      # sections by reading vars from them and substituting their values into
-      # the rest of the YAML, see expand_luci_gae_vars.
-      for m in mods:
-        modified = m.data.copy()
-        modified.pop('application', None)
-        modified.pop('version', None)
-        try:
-          modified = expand_luci_gae_vars(modified, self.app_id)
-        except ValueError as exc:
-          raise ValueError('Bad %s: %s' % (os.path.basename(m.path), exc))
-        if modified == m.data:
-          service_yamls.append(m)  # the original YAML is good enough
-        else:
-          if 'application' in m.data or 'version' in m.data:
-            logging.error('Remove "application" and "version" from %s', m.path)
-          # Need to write a hacked version in same directory, so all paths are
-          # relative.
-          fnm = os.path.basename(m.path)
-          hacked_path = os.path.join(os.path.dirname(m.path), '._gae_py_' + fnm)
-          hacked_body = json.dumps(
-              modified, sort_keys=True, indent=2, separators=(',', ': '))
-          logging.debug('Replacing "%s" with\n%s', fnm, hacked_body)
-          with open(hacked_path, 'w') as f:
-            f.write(hacked_body)  # JSON is YAML, so whatever
-          service_yamls.append(ModuleFile(path=hacked_path, data=modified))
-          hacked.append(hacked_path)  # to know what to delete later
+      service_yamls, hacked = expand_files_with_luci_gae_vars(mods)
 
       # Deploy services first.
       if os.getenv('GAE_PY_USE_CLOUDBUILDHELPER') != '1':
@@ -647,21 +671,41 @@ class Application(object):
     Returns:
       Instance of subprocess.Popen.
     """
-    cmd = [
-      sys.executable,
-      os.path.join(self._gae_sdk, 'dev_appserver.py'),
-      '--application', self.app_id,
-      '--skip_sdk_update_check=yes',
-      '--require_indexes=yes',
-    ] + self.service_yamls
-    if self.dispatch_yaml:
-      cmd += [self.dispatch_yaml]
-    cmd += args
-    if open_ports:
-      cmd.extend(('--host', '0.0.0.0', '--admin_host', '0.0.0.0'))
-    if self._verbose:
-      cmd.extend(('--log_level', 'debug'))
-    return subprocess.Popen(cmd, cwd=self.app_dir, **kwargs)
+    mods = []
+    sbp = None
+    try:
+      for m in sorted(self.services):
+        mods.append(self._services[m])
+    except KeyError as e:
+      raise ValueError('Unknown service: %s' % e)
+
+    tmp_files = []
+    try:
+      service_yamls, tmp_files = expand_files_with_luci_gae_vars(mods)
+
+      cmd = [
+          sys.executable,
+          os.path.join(self._gae_sdk, 'dev_appserver.py'),
+          '--application',
+          self.app_id,
+          '--skip_sdk_update_check=yes',
+          '--require_indexes=yes',
+      ] + [service_yamls.pop('default').path
+           ] + [m.path for m in service_yamls.values()]
+
+      if self.dispatch_yaml:
+        cmd += [self.dispatch_yaml]
+      cmd += args
+      if open_ports:
+        cmd.extend(('--host', '0.0.0.0', '--admin_host', '0.0.0.0'))
+      if self._verbose:
+        cmd.extend(('--log_level', 'debug'))
+      sbp = subprocess.Popen(cmd, cwd=self.app_dir, **kwargs)
+    finally:
+      for f in tmp_files:
+        os.remove(f)
+
+    return sbp
 
   def run_dev_appserver(self, args, open_ports=False):
     """Runs the application locally via dev_appserver.py.
