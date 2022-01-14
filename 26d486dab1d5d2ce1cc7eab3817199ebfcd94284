@@ -46,6 +46,30 @@
       },
       "revId": "26d486dab1d5d2ce1cc7eab3817199ebfcd94284",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16c15b33_e71e30b0",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1351423
+      },
+      "writtenOn": "2022-01-14T22:10:44Z",
+      "side": 1,
+      "message": "Ahh yes. Thanks for catching this!",
+      "parentUuid": "54809010_a04857ee",
+      "range": {
+        "startLine": 606,
+        "startChar": 34,
+        "endLine": 606,
+        "endChar": 35
+      },
+      "revId": "26d486dab1d5d2ce1cc7eab3817199ebfcd94284",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
