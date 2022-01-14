@@ -22,6 +22,30 @@
       },
       "revId": "26d486dab1d5d2ce1cc7eab3817199ebfcd94284",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54809010_a04857ee",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-01-14T18:26:27Z",
+      "side": 1,
+      "message": "In `expand_files_with_luci_gae_vars`, the line:\n```\nexpanded_mods.append(ModuleFile(path\u003dnew_path, data\u003dnew_body))\n```\nstores the new_body as the data value, but it looks like new_body is a json.dumps, a string. Elsewhere it looks like data is some kind of yaml return value, presumably with a `get` method:\n```\ndata \u003d yaml.safe_load(f)\n```\n\nI might be totally wrong, I\u0027m not familiar with the yaml_module that\u0027s loaded here",
+      "parentUuid": "47b260d9_e50d3e5d",
+      "range": {
+        "startLine": 606,
+        "startChar": 34,
+        "endLine": 606,
+        "endChar": 35
+      },
+      "revId": "26d486dab1d5d2ce1cc7eab3817199ebfcd94284",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
