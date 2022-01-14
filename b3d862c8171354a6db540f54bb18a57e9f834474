@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a944015_b56f2e7b",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-01-14T01:40:03Z",
+      "side": 1,
+      "message": "nit: please format it consistently with other doc strings (less indentation, 2 spaces, etc)",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 43
+      },
+      "revId": "b3d862c8171354a6db540f54bb18a57e9f834474",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75133a30_f1681e24",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-01-14T01:40:03Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 290,
+        "startChar": 4,
+        "endLine": 290,
+        "endChar": 11
+      },
+      "revId": "b3d862c8171354a6db540f54bb18a57e9f834474",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75746843_29f50a66",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-01-14T01:40:03Z",
+      "side": 1,
+      "message": "mods \u003d list(self._services.values())\n  \nOr just get rid of it and pass `self._services.values()` directly to expand_files_with_luci_gae_vars",
+      "range": {
+        "startLine": 676,
+        "startChar": 4,
+        "endLine": 680,
+        "endChar": 49
+      },
+      "revId": "b3d862c8171354a6db540f54bb18a57e9f834474",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6a38663_9a2ae781",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-01-14T01:40:03Z",
+      "side": 1,
+      "message": "I\u0027m not sure what happens here... service_yamls is a list, this pop will raise errors. Also why?",
+      "range": {
+        "startLine": 693,
+        "startChar": 8,
+        "endLine": 694,
+        "endChar": 55
+      },
+      "revId": "b3d862c8171354a6db540f54bb18a57e9f834474",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc5f26f4_11f960cf",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-01-14T01:40:03Z",
+      "side": 1,
+      "message": "This is racy and most likely will not work, it will delete files before they are even read by the subprocesses. The function probably needs to return a tuple (subprocess, cleanup callback), with the expectation that the caller will call the cleanup callback when they are done with the subprocess.\n\nThere are only two callers: run_dev_appserver (calling cleanup there is trivial), and LocalApplication, where cleanup needs to happen in stop() https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/components/tool_support/local_app.py;l\u003d196?q\u003dspawn_dev_appserver\u0026ss\u003dchromium\n\nI\u0027d also prefer if expand_files_with_luci_gae_vars returns this cleanup callback, so callers don\u0027t need to bother knowing what this cleanup actually does.",
+      "range": {
+        "startLine": 703,
+        "startChar": 0,
+        "endLine": 706,
+        "endChar": 20
+      },
+      "revId": "b3d862c8171354a6db540f54bb18a57e9f834474",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
