@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a9bb5b9_23e0989e",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-01-15T01:04:07Z",
+      "side": 1,
+      "message": "nit:\n\n  return subprocess.Popen(cmd, cwd\u003dself.app_dir, **kwargs), cleanup",
+      "range": {
+        "startLine": 694,
+        "startChar": 4,
+        "endLine": 696,
+        "endChar": 23
+      },
+      "revId": "198f9de91d2cb09f4fdbc43537ec4887ffd42b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
