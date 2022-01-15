@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8752b32e_982a5be6",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1351423
+      },
+      "writtenOn": "2022-01-15T01:01:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f009b23_4069484c",
+      "range": {
+        "startLine": 280,
+        "startChar": 5,
+        "endLine": 280,
+        "endChar": 11
+      },
+      "revId": "32d9f681ad64a66d3553bb9e7bccc5425858e53a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2bf50089_99adb3d1",
@@ -71,6 +95,30 @@
       "writtenOn": "2022-01-15T00:42:35Z",
       "side": 1,
       "message": "nit: minus 2 spaces of ident. \"Args\" should be on the same column as \"\"\"",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 38
+      },
+      "revId": "32d9f681ad64a66d3553bb9e7bccc5425858e53a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8c2de50_e84288b8",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1351423
+      },
+      "writtenOn": "2022-01-15T01:01:21Z",
+      "side": 1,
+      "message": "I\u0027m sure I ran the formatter thingy and it patched something. Anyway, updated. lmk",
+      "parentUuid": "2bf50089_99adb3d1",
       "range": {
         "startLine": 272,
         "startChar": 0,
@@ -104,6 +152,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b530d36c_84d2abbe",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1351423
+      },
+      "writtenOn": "2022-01-15T01:01:21Z",
+      "side": 1,
+      "message": "welp -_-",
+      "parentUuid": "38bce4cf_5ea68bc8",
+      "range": {
+        "startLine": 674,
+        "startChar": 0,
+        "endLine": 676,
+        "endChar": 18
+      },
+      "revId": "32d9f681ad64a66d3553bb9e7bccc5425858e53a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd0312be_e357cd7e",
@@ -127,6 +199,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74d887b7_10b22663",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1351423
+      },
+      "writtenOn": "2022-01-15T01:01:21Z",
+      "side": 1,
+      "message": "ptal",
+      "parentUuid": "fd0312be_e357cd7e",
+      "range": {
+        "startLine": 680,
+        "startChar": 4,
+        "endLine": 681,
+        "endChar": 75
+      },
+      "revId": "32d9f681ad64a66d3553bb9e7bccc5425858e53a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76ee618a_1e72c417",
@@ -140,6 +236,30 @@
       "writtenOn": "2022-01-15T00:42:35Z",
       "side": 1,
       "message": "nit:\n\n  try:\n    return sbp.wait()\n  finally:\n    cleanup()\n    \nOtherwise I suspect it will not cleanup on Ctrl+C",
+      "range": {
+        "startLine": 714,
+        "startChar": 4,
+        "endLine": 715,
+        "endChar": 13
+      },
+      "revId": "32d9f681ad64a66d3553bb9e7bccc5425858e53a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d304d2e7_f5fb4cb3",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1351423
+      },
+      "writtenOn": "2022-01-15T01:01:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76ee618a_1e72c417",
       "range": {
         "startLine": 714,
         "startChar": 4,
