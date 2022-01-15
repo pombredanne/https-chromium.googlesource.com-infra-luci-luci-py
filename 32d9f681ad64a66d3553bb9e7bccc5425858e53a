@@ -33,6 +33,121 @@
       "message": "Verified that patching this in allows monorail\u0027s `make serve` to function",
       "revId": "32d9f681ad64a66d3553bb9e7bccc5425858e53a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f009b23_4069484c",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-01-15T00:42:35Z",
+      "side": 1,
+      "message": "Raises",
+      "range": {
+        "startLine": 280,
+        "startChar": 5,
+        "endLine": 280,
+        "endChar": 11
+      },
+      "revId": "32d9f681ad64a66d3553bb9e7bccc5425858e53a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bf50089_99adb3d1",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-01-15T00:42:35Z",
+      "side": 1,
+      "message": "nit: minus 2 spaces of ident. \"Args\" should be on the same column as \"\"\"",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 38
+      },
+      "revId": "32d9f681ad64a66d3553bb9e7bccc5425858e53a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38bce4cf_5ea68bc8",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-01-15T00:42:35Z",
+      "side": 1,
+      "message": "nit: these are not necessary, just\n\n  expanded_mods, cleanup \u003d expand_files_with_luci_gae_vars(\n      self._services.values(), self.app_id)",
+      "range": {
+        "startLine": 674,
+        "startChar": 0,
+        "endLine": 676,
+        "endChar": 18
+      },
+      "revId": "32d9f681ad64a66d3553bb9e7bccc5425858e53a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd0312be_e357cd7e",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-01-15T00:42:35Z",
+      "side": 1,
+      "message": "if both callers of expand_files_with_luci_gae_vars do it, better to move this logic to expand_files_with_luci_gae_vars",
+      "range": {
+        "startLine": 680,
+        "startChar": 4,
+        "endLine": 681,
+        "endChar": 75
+      },
+      "revId": "32d9f681ad64a66d3553bb9e7bccc5425858e53a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76ee618a_1e72c417",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-01-15T00:42:35Z",
+      "side": 1,
+      "message": "nit:\n\n  try:\n    return sbp.wait()\n  finally:\n    cleanup()\n    \nOtherwise I suspect it will not cleanup on Ctrl+C",
+      "range": {
+        "startLine": 714,
+        "startChar": 4,
+        "endLine": 715,
+        "endChar": 13
+      },
+      "revId": "32d9f681ad64a66d3553bb9e7bccc5425858e53a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
