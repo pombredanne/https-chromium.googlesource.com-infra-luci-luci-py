@@ -22,6 +22,30 @@
       },
       "revId": "198f9de91d2cb09f4fdbc43537ec4887ffd42b59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d89aaba6_fa4b103b",
+        "filename": "appengine/components/tool_support/gae_sdk_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1351423
+      },
+      "writtenOn": "2022-01-15T01:08:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a9bb5b9_23e0989e",
+      "range": {
+        "startLine": 694,
+        "startChar": 4,
+        "endLine": 696,
+        "endChar": 23
+      },
+      "revId": "198f9de91d2cb09f4fdbc43537ec4887ffd42b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
