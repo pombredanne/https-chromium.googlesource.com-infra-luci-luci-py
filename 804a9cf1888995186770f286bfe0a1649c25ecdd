@@ -16,6 +16,23 @@
       "message": "PTAL and LGTM. ",
       "revId": "804a9cf1888995186770f286bfe0a1649c25ecdd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a83a9ab_6d2b2c17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1180206
+      },
+      "writtenOn": "2022-01-29T03:13:08Z",
+      "side": 1,
+      "message": "Would it be ok to submit this with No-Presubmit: true?\n\nFailing on diff presubmit. ",
+      "revId": "804a9cf1888995186770f286bfe0a1649c25ecdd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
