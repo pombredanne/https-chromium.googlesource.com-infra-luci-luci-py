@@ -325,6 +325,61 @@ class TestMetrics(test_case.TestCase):
         ts_mon_metrics._tasks_slice_expiration_delay.get(
             fields=dict(fields, slice_index=0)).sum)
 
+  def test_on_task_status_change_pubsub_notify_latency(self):
+    tags = [
+        'project:test_project',
+        'subproject:test_subproject',
+        'pool:test_pool',
+        'buildername:test_builder',
+        'name:some_tests',
+    ]
+
+    summary = _gen_task_result_summary(self.now,
+                                       1,
+                                       tags=tags,
+                                       expiration_delay=1,
+                                       state=task_result.State.KILLED)
+
+    latency = 0.5
+    ts_mon_metrics.on_task_status_change_pubsub_notify_latency(summary, latency)
+
+    fields = {
+        'project_id': 'test_project',
+        'pool': 'test_pool',
+        'status': task_result.State.to_string(task_result.State.KILLED)
+    }
+
+    self.assertEqual(
+        0.5,
+        ts_mon_metrics._task_state_change_pubsub_latencies.get(
+            fields=fields).sum)
+
+    latency = 0.25
+    ts_mon_metrics.on_task_status_change_pubsub_notify_latency(summary, latency)
+
+    self.assertEqual(
+        0.75,
+        ts_mon_metrics._task_state_change_pubsub_latencies.get(
+            fields=fields).sum)
+
+    fields2 = fields.copy()
+    fields2['status'] = task_result.State.to_string(task_result.State.TIMED_OUT)
+    summary.state = task_result.State.TIMED_OUT
+
+    latency = 0.3
+    ts_mon_metrics.on_task_status_change_pubsub_notify_latency(summary, latency)
+
+    self.assertEqual(
+        0.3,
+        ts_mon_metrics._task_state_change_pubsub_latencies.get(
+            fields=fields2).sum)
+
+    # shouldn't change due to differing task status
+    self.assertEqual(
+        0.75,
+        ts_mon_metrics._task_state_change_pubsub_latencies.get(
+            fields=fields).sum)
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:
