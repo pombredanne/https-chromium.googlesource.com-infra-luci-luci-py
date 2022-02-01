@@ -47,9 +47,15 @@ _TARGET_FIELDS = {
 
 # Custom bucketer with 12% resolution in the range of 1..10**5. Used for job
 # cycle times.
-_bucketer = gae_ts_mon.GeometricBucketer(growth_factor=10**0.05,
+_bucketer = gae_ts_mon.GeometricBucketer(growth_factor=5**0.05,
                                          num_finite_buckets=100)
 
+# Custom bucketer with 2% resolution in the range of 0.1...1.0. Used for
+# pubsub latency measurements.
+# roughly speaking measurements range between 0.15s and 0.3s
+_pubsub_bucketer = gae_ts_mon.GeometricBucketer(growth_factor=10**0.01,
+                                                num_finite_buckets=100,
+                                                scale=0.1)
 # Regular (instance-local) metrics: jobs/completed and jobs/durations.
 # Both have the following metric fields:
 # - project_id: e.g. 'chromium'.
@@ -233,6 +239,24 @@ _bot_auth_successes = gae_ts_mon.CounterMetric(
         gae_ts_mon.StringField('auth_method'),
         gae_ts_mon.StringField('condition'),
     ])
+
+
+# Global metric. Metric fields:
+# - project_id: e.g. 'chromium'.
+# - pool: e.g. 'skia'.
+# - status: e.g. 'TIMEOUT'.
+_task_state_change_pubsub_latencies = gae_ts_mon.CumulativeDistributionMetric(
+    'swarming/tasks/state_change_pubsub_notify_latencies',
+    'Latency of pubsub notification when backend receives task_update',
+    [
+        gae_ts_mon.StringField('project_id'),
+        gae_ts_mon.StringField('pool'),
+        gae_ts_mon.StringField('status')
+    ],
+    # TODO(justinluong): Investigate params of exponential bucketer,
+    # may need to tune this
+    bucketer=_pubsub_bucketer,
+)
 
 
 ### Private stuff.
@@ -502,6 +526,17 @@ def set_global_metrics(kind, payload=None):
     _set_executors_metrics(payload)
   else:
     logging.error('set_global_metrics(kind=%s): unknown kind.', kind)
+
+
+def on_task_status_change_pubsub_notify_latency(summary, latency):
+  if latency is None:
+    return
+
+  fields = _extract_job_fields(_tags_to_dict(summary.tags))
+  fields['status'] = task_result.State.to_string(summary.state)
+  fields.pop('spec_name', None)
+  fields.pop('subproject_id', None)
+  _task_state_change_pubsub_latencies.add(latency, fields=fields)
 
 
 def initialize():
