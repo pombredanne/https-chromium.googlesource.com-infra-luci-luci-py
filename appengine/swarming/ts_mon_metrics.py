@@ -235,6 +235,24 @@ _bot_auth_successes = gae_ts_mon.CounterMetric(
     ])
 
 
+# Global metric. Metric fields:
+# - project_id: e.g. 'chromium'.
+# - pool: e.g. 'skia'.
+# - status: e.g. 'TIMEOUT'.
+_task_state_change_pubsub_latencies = gae_ts_mon.CumulativeDistributionMetric(
+    'swarming/tasks/state_change_pubsub_notify_latencies',
+    'Latency of pubsub notification when backend receives task_update',
+    [
+        gae_ts_mon.StringField('project_id'),
+        gae_ts_mon.StringField('pool'),
+        gae_ts_mon.StringField('status')
+    ],
+    # TODO(justinluong): Investigate params of exponential bucketer,
+    # may need to tune this
+    bucketer=_bucketer,
+)
+
+
 ### Private stuff.
 
 
@@ -502,6 +520,17 @@ def set_global_metrics(kind, payload=None):
     _set_executors_metrics(payload)
   else:
     logging.error('set_global_metrics(kind=%s): unknown kind.', kind)
+
+
+def on_task_status_change_pubsub_notify_latency(summary, latency):
+  if latency is None:
+    return
+
+  fields = _extract_job_fields(_tags_to_dict(summary.tags))
+  fields['status'] = task_result.State.to_string(summary.state)
+  fields.pop('spec_name', None)
+  fields.pop('subproject_id', None)
+  _task_state_change_pubsub_latencies.add(latency, fields=fields)
 
 
 def initialize():
