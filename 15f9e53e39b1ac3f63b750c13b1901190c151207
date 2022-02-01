@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4b13779_a264ddf5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2022-02-01T20:30:23Z",
+      "side": 1,
+      "message": "Vadim, based on the OWNERS file, your chromium account is an owner, rather than your google account.\n\nhttps://chromium.googlesource.com/infra/luci/luci-py/+/refs/changes/28/3428228/2/client/OWNERS",
+      "revId": "15f9e53e39b1ac3f63b750c13b1901190c151207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
