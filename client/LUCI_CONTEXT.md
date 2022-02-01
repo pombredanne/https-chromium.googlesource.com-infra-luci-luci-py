@@ -249,3 +249,13 @@ message Deadline {
   double grace_period = 2 [json_name = "grace_period"];
 }
 ```
+
+## `buildbucket`
+
+This section describes data to update a buildbucket build.
+
+```proto
+message Buildbucket {
+  string build_token = 1;   // required in all mutation requests
+}
+```
