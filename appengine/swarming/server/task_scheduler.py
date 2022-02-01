@@ -14,6 +14,7 @@ import logging
 import math
 import random
 import time
+from infra_libs import ts_mon
 import urlparse
 
 from google.appengine.api import app_identity
@@ -450,7 +451,7 @@ def _copy_summary(src, dst, skip_list):
   dst.populate(**kwargs)
 
 
-def _maybe_pubsub_notify_now(result_summary, request):
+def _maybe_pubsub_notify_now(result_summary, request, start_time):
   """Examines result_summary and sends task completion PubSub message.
 
   Does it only if result_summary indicates a task in some finished state and
@@ -475,6 +476,13 @@ def _maybe_pubsub_notify_now(result_summary, request):
     except pubsub.Error:
       logging.exception('Fatal error when sending PubSub notification')
       return True # do not retry it
+    finally:
+      now = utils.time_time()
+      latency = now - start_time
+      ts_mon_metrics.on_task_status_change_pubsub_notify_latency(
+          result_summary, latency)
+      logging.debug('Updating ts_mon_metric pubsub with latency: %f (%f - %f)',
+                    latency, now, start_time)
   return True
 
 
@@ -1385,7 +1393,8 @@ def bot_reap_task(bot_dimensions, bot_version):
 
 def bot_update_task(run_result_key, bot_id, output, output_chunk_start,
                     exit_code, duration, hard_timeout, io_timeout, cost_usd,
-                    cas_output_root, cipd_pins, performance_stats, canceled):
+                    cas_output_root, cipd_pins, performance_stats, canceled,
+                    start_time):
   """Updates a TaskRunResult and TaskResultSummary, along TaskOutputChunk.
 
   Arguments:
@@ -1473,8 +1482,11 @@ def bot_update_task(run_result_key, bot_id, output, output_chunk_start,
   if error:
     logging.error('Task %s %s', packed, error)
     return None
+
+  update_pubsub_success = _maybe_pubsub_notify_now(smry, request, start_time)
+
   # Caller must retry if PubSub enqueue fails.
-  if not _maybe_pubsub_notify_now(smry, request):
+  if not update_pubsub_success:
     return None
   if smry.state not in task_result.State.STATES_RUNNING:
     ok = utils.enqueue_task(
