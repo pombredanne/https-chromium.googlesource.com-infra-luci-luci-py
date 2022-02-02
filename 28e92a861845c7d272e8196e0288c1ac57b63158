@@ -34,6 +34,24 @@
       "parentUuid": "32e54292_a1a50ecf",
       "revId": "28e92a861845c7d272e8196e0288c1ac57b63158",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb61fbce_05a3ab84",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-02T03:29:43Z",
+      "side": 1,
+      "message": "Could you follow http://go/cl-descriptions ?",
+      "parentUuid": "8dfcfa5d_b17e9993",
+      "revId": "28e92a861845c7d272e8196e0288c1ac57b63158",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
