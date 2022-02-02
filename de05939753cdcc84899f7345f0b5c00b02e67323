@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5643fb41_6cd9178c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-02T05:12:38Z",
+      "side": 1,
+      "message": "Add bug label like `Bug: b/???`",
+      "revId": "de05939753cdcc84899f7345f0b5c00b02e67323",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f926bbc3_006236bb",
         "filename": "appengine/swarming/ts_mon_metrics.py",
         "patchSetId": 12
