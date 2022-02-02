@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0f10fcb_f501fab3",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-02T06:21:54Z",
+      "side": 1,
+      "message": "Do not mix block for standard and third party package import\nhttps://google.github.io/styleguide/pyguide.html#313-imports-formatting",
+      "revId": "580bd5cc6ca8abd9051ec14acaa5a5c48100dddb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa0d5380_881de403",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1401,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-02T06:21:54Z",
+      "side": 1,
+      "message": "update comment?",
+      "revId": "580bd5cc6ca8abd9051ec14acaa5a5c48100dddb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c16ab76_d2fac942",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-02T06:21:54Z",
+      "side": 1,
+      "message": "no need to change here?",
+      "revId": "580bd5cc6ca8abd9051ec14acaa5a5c48100dddb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ddc5f88_4a0917d0",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1629,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-02T06:21:54Z",
+      "side": 1,
+      "message": "use assertIsNone for comparison with None?\nhttps://docs.python.org/2.7/library/unittest.html#unittest.TestCase.assertIsNone",
+      "range": {
+        "startLine": 1629,
+        "startChar": 9,
+        "endLine": 1629,
+        "endChar": 20
+      },
+      "revId": "580bd5cc6ca8abd9051ec14acaa5a5c48100dddb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
