@@ -469,11 +469,17 @@ def _maybe_pubsub_notify_now(result_summary, request):
     try:
       _pubsub_notify(task_id, request.pubsub_topic, request.pubsub_auth_token,
                      request.pubsub_userdata)
-    except pubsub.TransientError:
+      ts_mon_metrics.on_task_status_change_pubsub_publish_success(
+          result_summary)
+    except pubsub.TransientError as e:
       logging.exception('Transient error when sending PubSub notification')
+      ts_mon_metrics.on_task_status_change_pubsub_publish_failure(
+          result_summary, e.inner.status_code)
       return False
-    except pubsub.Error:
+    except pubsub.Error as e:
       logging.exception('Fatal error when sending PubSub notification')
+      ts_mon_metrics.on_task_status_change_pubsub_publish_failure(
+          result_summary, e.inner.status_code)
       return True # do not retry it
   return True
 
