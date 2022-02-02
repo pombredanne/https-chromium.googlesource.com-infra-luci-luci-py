@@ -16,6 +16,24 @@
       "message": "revise commit message?",
       "revId": "28e92a861845c7d272e8196e0288c1ac57b63158",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dfcfa5d_b17e9993",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-02T03:26:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32e54292_a1a50ecf",
+      "revId": "28e92a861845c7d272e8196e0288c1ac57b63158",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
