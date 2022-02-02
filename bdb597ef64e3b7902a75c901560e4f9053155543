@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d405a9_dc019d42",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-02T05:24:42Z",
+      "side": 1,
+      "message": "is this http status code?",
+      "range": {
+        "startLine": 255,
+        "startChar": 4,
+        "endLine": 255,
+        "endChar": 14
+      },
+      "revId": "bdb597ef64e3b7902a75c901560e4f9053155543",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfa6dafd_d718ccdb",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-02T05:24:42Z",
+      "side": 1,
+      "message": "this has status too?",
+      "range": {
+        "startLine": 479,
+        "startChar": 4,
+        "endLine": 479,
+        "endChar": 13
+      },
+      "revId": "bdb597ef64e3b7902a75c901560e4f9053155543",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
