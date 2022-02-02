@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f362600a_a42697cf",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-02T05:33:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f926bbc3_006236bb",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 8
+      },
+      "revId": "de05939753cdcc84899f7345f0b5c00b02e67323",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec613157_f1782288",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7b17af2_623bff9e",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-02T05:33:24Z",
+      "side": 1,
+      "message": "Apologies remnants of some old thinking. The default bucketer should not have changed",
+      "parentUuid": "ec613157_f1782288",
+      "range": {
+        "startLine": 50,
+        "startChar": 41,
+        "endLine": 50,
+        "endChar": 54
+      },
+      "revId": "de05939753cdcc84899f7345f0b5c00b02e67323",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdbb5f0f_8fdbd3c0",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-02-02T04:24:09Z",
       "side": 1,
       "message": "_task_state_change_pubsub_notify_latencies ?",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 35
+      },
+      "revId": "de05939753cdcc84899f7345f0b5c00b02e67323",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "facf050b_c7ea43c2",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-02T05:33:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdbb5f0f_8fdbd3c0",
       "range": {
         "startLine": 248,
         "startChar": 0,
