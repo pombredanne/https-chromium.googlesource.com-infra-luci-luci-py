@@ -117,6 +117,30 @@
       },
       "revId": "bdb597ef64e3b7902a75c901560e4f9053155543",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e8f0942_17638d97",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-02T22:57:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a53018a7_076fdc14",
+      "range": {
+        "startLine": 479,
+        "startChar": 4,
+        "endLine": 479,
+        "endChar": 13
+      },
+      "revId": "bdb597ef64e3b7902a75c901560e4f9053155543",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

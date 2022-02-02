@@ -16,6 +16,24 @@
       "message": "add tracking bug?",
       "revId": "25c5da35bd994838ea5c095ee232d9cfd7112a4a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a625e63e_7d2a68ae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-02T22:57:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0174be1f_97e4e590",
+      "revId": "25c5da35bd994838ea5c095ee232d9cfd7112a4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
