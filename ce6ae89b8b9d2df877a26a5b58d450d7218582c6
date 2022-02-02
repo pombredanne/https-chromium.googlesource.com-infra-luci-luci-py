@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "001a3012_7aa1e624",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 1415,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-02T07:14:30Z",
+      "side": 1,
+      "message": "make a line fit within 80 chars\nhttps://google.github.io/styleguide/pyguide.html#32-line-length",
+      "revId": "ce6ae89b8b9d2df877a26a5b58d450d7218582c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6be7be6_695cf39b",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-02T07:14:30Z",
+      "side": 1,
+      "message": "period?",
+      "range": {
+        "startLine": 55,
+        "startChar": 56,
+        "endLine": 55,
+        "endChar": 61
+      },
+      "revId": "ce6ae89b8b9d2df877a26a5b58d450d7218582c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4810ddbf_91969851",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-02T07:14:30Z",
+      "side": 1,
+      "message": "R",
+      "range": {
+        "startLine": 55,
+        "startChar": 2,
+        "endLine": 55,
+        "endChar": 3
+      },
+      "revId": "ce6ae89b8b9d2df877a26a5b58d450d7218582c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85c6281c_0ad0a07a",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-02T07:14:30Z",
+      "side": 1,
+      "message": "We don\u0027t pass None latency here?",
+      "range": {
+        "startLine": 544,
+        "startChar": 0,
+        "endLine": 545,
+        "endChar": 10
+      },
+      "revId": "ce6ae89b8b9d2df877a26a5b58d450d7218582c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
