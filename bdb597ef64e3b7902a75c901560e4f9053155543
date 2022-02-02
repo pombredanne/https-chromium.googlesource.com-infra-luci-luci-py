@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "538aeffe_14185c78",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-02T07:33:28Z",
+      "side": 1,
+      "message": "Yes. Name has been updated.",
+      "parentUuid": "a4d405a9_dc019d42",
+      "range": {
+        "startLine": 255,
+        "startChar": 4,
+        "endLine": 255,
+        "endChar": 14
+      },
+      "revId": "bdb597ef64e3b7902a75c901560e4f9053155543",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfa6dafd_d718ccdb",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-02T05:24:42Z",
       "side": 1,
       "message": "this has status too?",
+      "range": {
+        "startLine": 479,
+        "startChar": 4,
+        "endLine": 479,
+        "endChar": 13
+      },
+      "revId": "bdb597ef64e3b7902a75c901560e4f9053155543",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88589720_76e5c3c2",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-02T07:33:28Z",
+      "side": 1,
+      "message": "Not that I\u0027m aware of? The test cases don\u0027t seem to indicate the status is stored with the tags:\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_scheduler_test.py;l\u003d228",
+      "parentUuid": "cfa6dafd_d718ccdb",
       "range": {
         "startLine": 479,
         "startChar": 4,
