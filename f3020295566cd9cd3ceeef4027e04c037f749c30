@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ede7a2a1_a3784e99",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-03T01:30:40Z",
+      "side": 1,
+      "message": "pubsub.Error is not re-raised here?",
+      "revId": "f3020295566cd9cd3ceeef4027e04c037f749c30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
