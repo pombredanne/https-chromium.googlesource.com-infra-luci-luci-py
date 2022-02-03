@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4adc52a8_2edfcdeb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-03T01:21:30Z",
+      "side": 1,
+      "message": "Could you use -d option when you upload change e.g. `git cl upload -d`?",
+      "revId": "db2292cb14acdf3c7b0b8945e9cc47dc4e1ae15a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e830a5c4_720f0740",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1150,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-03T01:21:30Z",
+      "side": 1,
+      "message": "period?",
+      "range": {
+        "startLine": 1150,
+        "startChar": 59,
+        "endLine": 1150,
+        "endChar": 66
+      },
+      "revId": "db2292cb14acdf3c7b0b8945e9cc47dc4e1ae15a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a861fa55_34efd8de",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1416,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-03T01:21:30Z",
+      "side": 1,
+      "message": "period?",
+      "range": {
+        "startLine": 1416,
+        "startChar": 10,
+        "endLine": 1416,
+        "endChar": 21
+      },
+      "revId": "db2292cb14acdf3c7b0b8945e9cc47dc4e1ae15a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7709fcce_30a095e6",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-03T01:21:30Z",
+      "side": 1,
+      "message": "better to add unit (ms?) in description.",
+      "range": {
+        "startLine": 251,
+        "startChar": 5,
+        "endLine": 251,
+        "endChar": 12
+      },
+      "revId": "db2292cb14acdf3c7b0b8945e9cc47dc4e1ae15a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
