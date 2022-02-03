@@ -34,6 +34,24 @@
       "parentUuid": "ede7a2a1_a3784e99",
       "revId": "f3020295566cd9cd3ceeef4027e04c037f749c30",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87098aeb_f22e9ac4",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-03T04:53:16Z",
+      "side": 1,
+      "message": "that sounds good.",
+      "parentUuid": "ef682972_55d84310",
+      "revId": "f3020295566cd9cd3ceeef4027e04c037f749c30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
