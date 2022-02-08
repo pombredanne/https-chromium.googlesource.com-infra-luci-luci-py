@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "995547a5_0702dfea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-08T05:41:02Z",
+      "side": 1,
+      "message": "could you follow go/cl-descriptions#firstline ?",
+      "revId": "9a943d98a714b3027ee1704f49b8e1b439c1ea45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
