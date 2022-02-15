@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0345a9a6_9e0004ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-15T01:12:49Z",
+      "side": 1,
+      "message": "Don\u0027t give self CR+1.",
+      "revId": "ae6688f8bf1d784289e418c77953eb0b1e466f2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "632fba5a_314d15bf",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-15T01:12:49Z",
+      "side": 1,
+      "message": "If we use 200 here, upper bound of this metrics becomes (10**0.01)**200 \u003d 100?",
+      "range": {
+        "startLine": 58,
+        "startChar": 67,
+        "endLine": 58,
+        "endChar": 70
+      },
+      "revId": "ae6688f8bf1d784289e418c77953eb0b1e466f2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
