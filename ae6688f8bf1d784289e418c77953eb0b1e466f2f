@@ -63,6 +63,30 @@
       },
       "revId": "ae6688f8bf1d784289e418c77953eb0b1e466f2f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a37b077e_e502723e",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-15T01:23:29Z",
+      "side": 1,
+      "message": "Ah, I see. Thanks.",
+      "parentUuid": "9ed1f738_15d38ca7",
+      "range": {
+        "startLine": 58,
+        "startChar": 67,
+        "endLine": 58,
+        "endChar": 70
+      },
+      "revId": "ae6688f8bf1d784289e418c77953eb0b1e466f2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
