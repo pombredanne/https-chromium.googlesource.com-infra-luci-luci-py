@@ -315,7 +315,7 @@ def json_request_async(url,
   try:
     response = json.loads(response.lstrip(")]}'\n"))
   except ValueError as e:
-    raise Error('Bad JSON response: %s' % e, None, response)
+    raise Error('Bad JSON response: %s' % e, 400, response)
   raise ndb.Return(response)
 
 
