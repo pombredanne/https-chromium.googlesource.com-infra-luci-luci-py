@@ -395,8 +395,9 @@ class NetTest(test_case.TestCase):
             'url': 'http://localhost/123'
         }, Response(200, 'not a json', {})),
     ])
-    with self.assertRaises(net.Error):
+    with self.assertRaises(net.Error) as e:
       net.json_request('http://localhost/123')
+    self.assertEqual(400, e.exception.status_code)
 
 
 if __name__ == '__main__':
