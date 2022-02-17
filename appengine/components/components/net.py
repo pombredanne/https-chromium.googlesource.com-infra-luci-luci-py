@@ -233,7 +233,7 @@ def request_async(
 
   raise _error_class_for_status(last_status_code)(
       'Failed to call %s after %d attempts' % (url, max_attempts),
-      response.status_code if response else None,
+      response.status_code if response else 500,
       response.content if response else None,
       headers=response.headers if response else None)
 
