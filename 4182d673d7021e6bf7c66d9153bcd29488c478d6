@@ -189,6 +189,30 @@
       },
       "revId": "4182d673d7021e6bf7c66d9153bcd29488c478d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "255cc009_c782a6d1",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-02-17T05:40:05Z",
+      "side": 1,
+      "message": "In other places we seem to be using 9xx to indicate client side errors:\nhttps://source.chromium.org/chromium/_/chromium/infra/luci/luci-py/+/7bfd5cdcad7a98ef1ded0845c021b442a7ff9f4f:appengine/third_party/gae_ts_mon/common/http_metrics.py;l\u003d9",
+      "parentUuid": "1ae4b496_e93421c0",
+      "range": {
+        "startLine": 318,
+        "startChar": 45,
+        "endLine": 318,
+        "endChar": 48
+      },
+      "revId": "4182d673d7021e6bf7c66d9153bcd29488c478d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
