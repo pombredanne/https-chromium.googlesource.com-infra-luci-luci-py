@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48281f1a_c80c20c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-02-17T23:47:23Z",
+      "side": 1,
+      "message": "I\u0027m reviving this CL as a part of http://b/207421681.",
+      "revId": "82eaa460c2abce0f5cd8887f9133ff07e8faa4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
