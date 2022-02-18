@@ -16,6 +16,7 @@ from components import auth
 from components import utils
 from components.auth import delegation
 from components.auth import tokens
+from infra_libs.ts_mon.common import http_metrics
 
 EMAIL_SCOPE = 'https://www.googleapis.com/auth/userinfo.email'
 
@@ -233,7 +234,7 @@ def request_async(
 
   raise _error_class_for_status(last_status_code)(
       'Failed to call %s after %d attempts' % (url, max_attempts),
-      response.status_code if response else None,
+      response.status_code if response else 500,
       response.content if response else None,
       headers=response.headers if response else None)
 
@@ -315,7 +316,8 @@ def json_request_async(url,
   try:
     response = json.loads(response.lstrip(")]}'\n"))
   except ValueError as e:
-    raise Error('Bad JSON response: %s' % e, None, response)
+    raise Error('Bad JSON response: %s' % e, http_metrics.STATUS_ERROR,
+                response)
   raise ndb.Return(response)
 
 
