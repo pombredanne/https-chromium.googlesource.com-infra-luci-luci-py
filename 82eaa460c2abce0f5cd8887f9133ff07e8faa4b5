@@ -16,6 +16,23 @@
       "message": "I\u0027m reviving this CL as a part of http://b/207421681.",
       "revId": "82eaa460c2abce0f5cd8887f9133ff07e8faa4b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20320d15_de43d1c2",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-18T06:18:18Z",
+      "side": 1,
+      "message": "Could you make separate CL for this fix?",
+      "revId": "82eaa460c2abce0f5cd8887f9133ff07e8faa4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
