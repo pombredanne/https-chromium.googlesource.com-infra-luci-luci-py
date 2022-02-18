@@ -596,8 +596,8 @@ def on_task_status_change_pubsub_publish_failure(summary, http_status_code):
 def initialize():
   # These metrics are the ones that are reset everything they are flushed.
   gae_ts_mon.register_global_metrics([
-      _executors_pool,
       _executors_status,
+      _executors_pool,
       _jobs_active,
       _jobs_max_pending_duration,
       _jobs_pending_durations,
