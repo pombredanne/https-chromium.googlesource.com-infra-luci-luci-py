@@ -99,6 +99,24 @@
       "parentUuid": "db28193c_c981eccc",
       "revId": "2eb2049b7a3c7c9c225d87a4ea8ef688a79d9d1b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "704dcabf_7e78e521",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-02-18T18:48:54Z",
+      "side": 1,
+      "message": "Since this is pretty early on we don\u0027t have any code in place using this but we are hoping to use an existing, and in use,  LUCI function(http://shortn/_BxyMmF85Ly).\n\nFor project details please go to go/cheaper-testplanfiltering-proposal. This doc has the full reasoning and plan for this work.",
+      "parentUuid": "43ce38ff_4217021f",
+      "revId": "2eb2049b7a3c7c9c225d87a4ea8ef688a79d9d1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
