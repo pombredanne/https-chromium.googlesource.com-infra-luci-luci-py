@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67be39af_912fbdc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-18T02:06:15Z",
+      "side": 1,
+      "message": "Fix CQ?",
+      "revId": "17a444a6900444466c7b32a39046ff0bc6ceb7c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb1dee1c_bf46bf43",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-18T02:06:15Z",
+      "side": 1,
+      "message": "why not use http_metrics.STATUS_ERROR here?",
+      "range": {
+        "startLine": 237,
+        "startChar": 44,
+        "endLine": 237,
+        "endChar": 47
+      },
+      "revId": "17a444a6900444466c7b32a39046ff0bc6ceb7c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
