@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0caea1b5_eef5212d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-18T03:25:26Z",
+      "side": 1,
+      "message": "Seems to be caused by importing http_metrics. Still looking into it.",
+      "parentUuid": "67be39af_912fbdc7",
+      "revId": "17a444a6900444466c7b32a39046ff0bc6ceb7c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bb1dee1c_bf46bf43",
         "filename": "appengine/components/components/net.py",
         "patchSetId": 7
@@ -31,6 +49,30 @@
       "writtenOn": "2022-02-18T02:06:15Z",
       "side": 1,
       "message": "why not use http_metrics.STATUS_ERROR here?",
+      "range": {
+        "startLine": 237,
+        "startChar": 44,
+        "endLine": 237,
+        "endChar": 47
+      },
+      "revId": "17a444a6900444466c7b32a39046ff0bc6ceb7c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d63087bf_a8bb1e69",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-18T03:25:26Z",
+      "side": 1,
+      "message": "Why not http_metrics.STATUS_TIMEOUT? It seems to me this code path is taken after multiple client requests have been made and all have timed out?\nor is this more generic?",
+      "parentUuid": "bb1dee1c_bf46bf43",
       "range": {
         "startLine": 237,
         "startChar": 44,
