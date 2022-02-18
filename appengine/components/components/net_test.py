@@ -16,7 +16,9 @@ from google.appengine.ext import ndb
 
 from components import auth
 from components import net
+from infra_libs.ts_mon.common import http_metrics
 from test_support import test_case
+
 
 Response = collections.namedtuple('Response', 'status_code content headers')
 
@@ -198,8 +200,9 @@ class NetTest(test_case.TestCase):
             'url': 'http://localhost/123'
         }, Response(200, 'response body', {})),
     ])
-    with self.assertRaises(net.Error):
+    with self.assertRaises(net.Error) as e:
       net.request('http://localhost/123', max_attempts=2)
+    self.assertEqual(500, e.exception.status_code)
 
   def test_404(self):
     self.mock_urlfetch([
@@ -395,8 +398,9 @@ class NetTest(test_case.TestCase):
             'url': 'http://localhost/123'
         }, Response(200, 'not a json', {})),
     ])
-    with self.assertRaises(net.Error):
+    with self.assertRaises(net.Error) as e:
       net.json_request('http://localhost/123')
+    self.assertEqual(http_metrics.STATUS_ERROR, e.exception.status_code)
 
 
 if __name__ == '__main__':
