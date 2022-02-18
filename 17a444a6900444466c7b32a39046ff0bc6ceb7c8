@@ -81,6 +81,30 @@
       },
       "revId": "17a444a6900444466c7b32a39046ff0bc6ceb7c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1f8e10d_a616e1fc",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-18T03:38:32Z",
+      "side": 1,
+      "message": "Ah, then I think it is better to use last_status_code here and set http_metrics.STATUS_TIMEOUT to last_status_code when timeout happens.",
+      "parentUuid": "d63087bf_a8bb1e69",
+      "range": {
+        "startLine": 237,
+        "startChar": 44,
+        "endLine": 237,
+        "endChar": 47
+      },
+      "revId": "17a444a6900444466c7b32a39046ff0bc6ceb7c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
