@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f45a8537_21179ae6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-18T08:05:53Z",
+      "side": 1,
+      "message": "Not sure how to resolve, test cases don\u0027t seem to like importing gae_ts_mon or infra_libs. \n\nBetter to just hard code the status_code, no point to introduce constants for the http_status_code now.",
+      "parentUuid": "0caea1b5_eef5212d",
+      "revId": "17a444a6900444466c7b32a39046ff0bc6ceb7c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb1dee1c_bf46bf43",
@@ -97,6 +115,30 @@
       "side": 1,
       "message": "Ah, then I think it is better to use last_status_code here and set http_metrics.STATUS_TIMEOUT to last_status_code when timeout happens.",
       "parentUuid": "d63087bf_a8bb1e69",
+      "range": {
+        "startLine": 237,
+        "startChar": 44,
+        "endLine": 237,
+        "endChar": 47
+      },
+      "revId": "17a444a6900444466c7b32a39046ff0bc6ceb7c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a19f59ca_ba4d33cd",
+        "filename": "appengine/components/components/net.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-18T08:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1f8e10d_a616e1fc",
       "range": {
         "startLine": 237,
         "startChar": 44,
