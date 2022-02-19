@@ -98,6 +98,30 @@
       },
       "revId": "82eaa460c2abce0f5cd8887f9133ff07e8faa4b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16c96b94_9023bd8e",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-02-19T18:59:56Z",
+      "side": 1,
+      "message": "I was meaning that this proto file should document that, or point to somewhere else (not an internal doc or bugtracker) where it\u0027s documented :)",
+      "parentUuid": "d578759b_d9ba7c5c",
+      "range": {
+        "startLine": 134,
+        "startChar": 58,
+        "endLine": 134,
+        "endChar": 62
+      },
+      "revId": "82eaa460c2abce0f5cd8887f9133ff07e8faa4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
