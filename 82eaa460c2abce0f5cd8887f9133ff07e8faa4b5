@@ -74,6 +74,30 @@
       },
       "revId": "82eaa460c2abce0f5cd8887f9133ff07e8faa4b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d578759b_d9ba7c5c",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-02-19T00:38:47Z",
+      "side": 1,
+      "message": "The message info were looking for is what is defined in the schema section of go/cheaper-testplanfiltering-proposal. All of the columns described look to be standard swarming info so hopefully this is a feasible goal.\n\nAccording to http://b/207421681#comment2 it looks like some of if not all of that info may be provided already but we\u0027d need to start gathering the messages to verify.",
+      "parentUuid": "ab6abdc4_3b4adb96",
+      "range": {
+        "startLine": 134,
+        "startChar": 58,
+        "endLine": 134,
+        "endChar": 62
+      },
+      "revId": "82eaa460c2abce0f5cd8887f9133ff07e8faa4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
