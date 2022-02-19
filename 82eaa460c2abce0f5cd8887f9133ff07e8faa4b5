@@ -51,6 +51,29 @@
       "parentUuid": "20320d15_de43d1c2",
       "revId": "82eaa460c2abce0f5cd8887f9133ff07e8faa4b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab6abdc4_3b4adb96",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-02-19T00:13:33Z",
+      "side": 1,
+      "message": "Can you precisely define \u0027info\u0027 (probably just a pointer to the documentation on the pubsub notification contents)",
+      "range": {
+        "startLine": 134,
+        "startChar": 58,
+        "endLine": 134,
+        "endChar": 62
+      },
+      "revId": "82eaa460c2abce0f5cd8887f9133ff07e8faa4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
