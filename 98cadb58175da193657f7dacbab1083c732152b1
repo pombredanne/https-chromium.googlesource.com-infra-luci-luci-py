@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c811e01e_3648ef74",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-21T04:33:01Z",
+      "side": 1,
+      "message": "I feel it is better to return 0 in this case.",
+      "range": {
+        "startLine": 675,
+        "startChar": 13,
+        "endLine": 675,
+        "endChar": 34
+      },
+      "revId": "98cadb58175da193657f7dacbab1083c732152b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d75f442_018a470c",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-21T04:33:01Z",
+      "side": 1,
+      "message": "better to have this outside of transaction.",
+      "revId": "98cadb58175da193657f7dacbab1083c732152b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ed90338_01e8e5ee",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-21T04:33:01Z",
+      "side": 1,
+      "message": "I think this should be called outside of transaction.",
+      "revId": "98cadb58175da193657f7dacbab1083c732152b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bceb484_d058574d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-21T04:33:01Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "98cadb58175da193657f7dacbab1083c732152b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26274cec_d766ec81",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-21T04:33:01Z",
+      "side": 1,
+      "message": "I think this doesn\u0027t need ms resolution.",
+      "range": {
+        "startLine": 305,
+        "startChar": 17,
+        "endLine": 305,
+        "endChar": 19
+      },
+      "revId": "98cadb58175da193657f7dacbab1083c732152b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
