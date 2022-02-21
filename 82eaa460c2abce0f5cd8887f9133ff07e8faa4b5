@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e016de99_14feec3f",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-21T00:39:12Z",
+      "side": 1,
+      "message": "Yes, but this itself is self contained improvement?",
+      "parentUuid": "8212da9d_cada4d96",
+      "revId": "82eaa460c2abce0f5cd8887f9133ff07e8faa4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ab6abdc4_3b4adb96",
         "filename": "appengine/swarming/proto/config/pools.proto",
         "patchSetId": 5
