@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3877db4_ab6206e4",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-21T04:21:04Z",
+      "side": 1,
+      "message": "Agreed. Removed. I had some tests prior, but I guess second precision is enough to verify the metrics are updating.",
+      "parentUuid": "9b2ffef9_6d4b2c41",
+      "range": {
+        "startLine": 26,
+        "startChar": 33,
+        "endLine": 26,
+        "endChar": 45
+      },
+      "revId": "676a03aa4447b7da0435f31d4eb66ccc98c54841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a426538_af875fe7",
