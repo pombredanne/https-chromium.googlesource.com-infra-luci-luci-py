@@ -123,6 +123,7 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
           result_summary.current_task_slice, request.num_task_slices,
           to_run.task_id, to_run.task_slice_index, to_run.try_number)
 
+  orig_summary_state = result_summary.state
   if not new_to_run:
     # There's no fallback, giving up.
     if result_summary.try_number:
@@ -150,6 +151,8 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
       result_summary, request, es_cfg, transactional=True)
   for f in futures:
     f.check_success()
+  if result_summary.state != orig_summary_state:
+    ts_mon_metrics.on_task_status_change_scheduler_latency(result_summary)
 
   return result_summary, new_to_run
 
@@ -299,6 +302,7 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request,
     if result_summary.state != orig_summary_state:
       _maybe_taskupdate_notify_via_tq(
           result_summary, request, es_cfg, transactional=True)
+      ts_mon_metrics.on_task_status_change_scheduler_latency(result_summary)
     return run_result, secret_bytes
 
   # Add it to the negative cache *before* running the transaction. This will
@@ -855,6 +859,7 @@ def _cancel_task_tx(request, result_summary, kill_running, bot_id, now, es_cfg,
   if not result_summary.can_be_canceled:
     return False, was_running
 
+  orig_summary_state = result_summary.state
   entities = [result_summary]
   if not was_running:
     if bot_id:
@@ -899,6 +904,8 @@ def _cancel_task_tx(request, result_summary, kill_running, bot_id, now, es_cfg,
       result_summary, request, es_cfg, transactional=True)
   for f in futures:
     f.check_success()
+  if orig_summary_state != result_summary.state:
+    ts_mon_metrics.on_task_status_change_scheduler_latency(result_summary)
   return True, was_running
 
 
@@ -1266,6 +1273,7 @@ def schedule_request(request,
   if result_summary.state != task_result.State.PENDING:
     _maybe_taskupdate_notify_via_tq(
         result_summary, request, es_cfg, transactional=False)
+    ts_mon_metrics.on_task_status_change_scheduler_latency(result_summary)
   return result_summary
 
 
