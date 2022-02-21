@@ -90,7 +90,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     }
 
     now = datetime.datetime(2019, 01, 02, 03)
-    test_case.mock_now(self, now, 0)
+    test_case.mock_now(self, now, 0, 0)
 
   # Test helpers.
   def _req_dim_prpc(self, key, value, exp_secs=None):

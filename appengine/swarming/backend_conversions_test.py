@@ -46,7 +46,7 @@ class TestBackendConversions(test_case.TestCase):
   def setUp(self):
     super(TestBackendConversions, self).setUp()
     now = datetime.datetime(2019, 01, 02, 03)
-    test_case.mock_now(self, now, 0)
+    test_case.mock_now(self, now, 0, 0)
 
   def test_compute_task_request(self):
     exec_secs = 180

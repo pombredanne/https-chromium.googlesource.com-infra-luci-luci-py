@@ -33,7 +33,7 @@ class TestProcessTaskRequest(test_case.TestCase):
   def setUp(self):
     super(TestProcessTaskRequest, self).setUp()
     now = datetime.datetime(2019, 01, 02, 03)
-    test_case.mock_now(self, now, 0)
+    test_case.mock_now(self, now, 0, 0)
 
     self._known_pools = None
 
@@ -162,7 +162,8 @@ class TestCheckIdenticalRequest(test_case.TestCase):
 
   def setUp(self):
     super(TestCheckIdenticalRequest, self).setUp()
-    self.now = test_case.mock_now(self, datetime.datetime(2019, 01, 02, 03), 0)
+    self.now = test_case.mock_now(self, datetime.datetime(2019, 01, 02, 03), 0,
+                                  0)
 
   def test_cache_hit(self):
     func = mock.Mock(return_value='ok')
@@ -190,7 +191,7 @@ class TestCheckIdenticalRequest(test_case.TestCase):
     func.assert_called_once()
 
     # the cache just got expired.
-    self.mock_now(self.now, 10 * 60)
+    self.mock_now(self.now, 10 * 60, 0)
     func.reset_mock()
 
     self.assertEqual(('ok', False),
