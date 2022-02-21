@@ -45,6 +45,30 @@
       },
       "revId": "676a03aa4447b7da0435f31d4eb66ccc98c54841",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "060c8c2b_3fd77582",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1251,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-21T04:19:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a426538_af875fe7",
+      "range": {
+        "startLine": 1251,
+        "startChar": 20,
+        "endLine": 1251,
+        "endChar": 54
+      },
+      "revId": "676a03aa4447b7da0435f31d4eb66ccc98c54841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
