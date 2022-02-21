@@ -662,7 +662,8 @@ class _TaskResultCommon(ndb.Model):
 
     Returns None if not started yet or if the task was deduped from another one.
     """
-    if not self.deduped_from and self.started_ts:
+    #if not self.deduped_from and self.started_ts:
+    if self.started_ts:
       return self.started_ts - self.created_ts
     return None
 
@@ -672,7 +673,7 @@ class _TaskResultCommon(ndb.Model):
     Similar to .pending except that its return value is not deterministic.
     """
     if self.deduped_from:
-      return None
+      return now - self.created_ts
     return (self.started_ts or now) - self.created_ts
 
   @property

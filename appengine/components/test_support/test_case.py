@@ -23,12 +23,12 @@ from depot_tools import auto_stub
 # pylint: disable=W0212
 
 
-def mock_now(test, now, seconds):
+def mock_now(test, now, seconds, milliseconds):
   """Mocks utcnow() and ndb properties.
 
   In particular handles when auto_now and auto_now_add are used.
   """
-  now = now + datetime.timedelta(seconds=seconds)
+  now = now + datetime.timedelta(seconds=seconds, milliseconds=milliseconds)
   test.mock(utils, 'utcnow', lambda: now)
   test.mock(ndb.DateTimeProperty, '_now', lambda _: now)
   test.mock(ndb.DateProperty, '_now', lambda _: now.date())
@@ -117,8 +117,8 @@ class TestCase(auto_stub.TestCase):
     finally:
       super(TestCase, self).tearDown()
 
-  def mock_now(self, now, seconds=0):
-    return mock_now(self, now, seconds)
+  def mock_now(self, now, seconds=0, milliseconds=0):
+    return mock_now(self, now, seconds, milliseconds)
 
   def mock_milliseconds_since_epoch(self, milliseconds):
     self.mock(utils, "milliseconds_since_epoch", lambda: milliseconds)
