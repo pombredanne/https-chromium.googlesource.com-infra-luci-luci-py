@@ -907,7 +907,7 @@ message TaskRequest {
 // information.
 message PubSub {
   // Full topic name to post task state updates to, e.g.
-  // "projects/<id>/topics/<id>".
+  // "projects/<project_id>/topics/<topic_id>".
   string topic = 1;
   // Secret string to put into "auth_token" attribute of PubSub messages.
   //
