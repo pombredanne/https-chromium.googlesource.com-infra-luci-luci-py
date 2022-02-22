@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b7899d63_b7ae8309",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-22T07:51:40Z",
+      "side": 1,
+      "message": "I don\u0027t agree. If we do this we may as well disregard the DEDUPED condition.\nThere is still some overhead associated with finding a duplicate request which we should be including: \nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_scheduler.py;l\u003d1159",
+      "parentUuid": "c811e01e_3648ef74",
+      "range": {
+        "startLine": 675,
+        "startChar": 13,
+        "endLine": 675,
+        "endChar": 34
+      },
+      "revId": "98cadb58175da193657f7dacbab1083c732152b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1d75f442_018a470c",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 6
@@ -37,6 +61,24 @@
       "writtenOn": "2022-02-21T04:33:01Z",
       "side": 1,
       "message": "better to have this outside of transaction.",
+      "revId": "98cadb58175da193657f7dacbab1083c732152b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a987eeb_bb447f2a",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-22T07:51:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d75f442_018a470c",
       "revId": "98cadb58175da193657f7dacbab1083c732152b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -58,6 +100,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0753d2b6_fb2b3908",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-22T07:51:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ed90338_01e8e5ee",
+      "revId": "98cadb58175da193657f7dacbab1083c732152b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bceb484_d058574d",
@@ -75,6 +135,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97f680ea_c467764b",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-22T07:51:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bceb484_d058574d",
+      "revId": "98cadb58175da193657f7dacbab1083c732152b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26274cec_d766ec81",
@@ -88,6 +166,30 @@
       "writtenOn": "2022-02-21T04:33:01Z",
       "side": 1,
       "message": "I think this doesn\u0027t need ms resolution.",
+      "range": {
+        "startLine": 305,
+        "startChar": 17,
+        "endLine": 305,
+        "endChar": 19
+      },
+      "revId": "98cadb58175da193657f7dacbab1083c732152b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47d84e02_4b5bb9f6",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-02-22T07:51:40Z",
+      "side": 1,
+      "message": "I don\u0027t agree. Fractional seconds aren\u0027t supported by ts_mon so we can\u0027t measure anything below \u003c1s. I looked at the P01 pending time and it averages 350ms. \n\nhttps://console.cloud.google.com/bigquery?sq\u003d575346572923:8aeb59af713c4b9fbb902ca34804a2fd",
+      "parentUuid": "26274cec_d766ec81",
       "range": {
         "startLine": 305,
         "startChar": 17,
