@@ -71,6 +71,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b5f2540_d761f7a6",
+        "filename": "appengine/swarming/proto/api/swarming.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-02-22T21:36:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e016de99_14feec3f",
+      "revId": "82eaa460c2abce0f5cd8887f9133ff07e8faa4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab6abdc4_3b4adb96",
@@ -132,6 +150,30 @@
       "side": 1,
       "message": "I was meaning that this proto file should document that, or point to somewhere else (not an internal doc or bugtracker) where it\u0027s documented :)",
       "parentUuid": "d578759b_d9ba7c5c",
+      "range": {
+        "startLine": 134,
+        "startChar": 58,
+        "endLine": 134,
+        "endChar": 62
+      },
+      "revId": "82eaa460c2abce0f5cd8887f9133ff07e8faa4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d7e8151_dab014dd",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-02-22T21:36:39Z",
+      "side": 1,
+      "message": "I added a few things which are expected in this message. The goal of this additional pubsub message is supposed to be for anyone to add their own topic and message definitions so we didn\u0027t want to lock it down for our needs only.",
+      "parentUuid": "16c96b94_9023bd8e",
       "range": {
         "startLine": 134,
         "startChar": 58,
