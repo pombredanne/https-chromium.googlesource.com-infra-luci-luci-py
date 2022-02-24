@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d54885c_aedd9d2a",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-24T03:25:19Z",
+      "side": 1,
+      "message": "better to have just after getting result_summary?",
+      "revId": "1459f5ef6ce3b8db692b8412e5a62a960e2318ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b473069f_d76bda37",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-24T03:25:19Z",
+      "side": 1,
+      "message": "input doesn\u0027t have result summary?",
+      "range": {
+        "startLine": 862,
+        "startChar": 33,
+        "endLine": 862,
+        "endChar": 60
+      },
+      "revId": "1459f5ef6ce3b8db692b8412e5a62a960e2318ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4105c451_04209975",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-24T03:25:19Z",
+      "side": 1,
+      "message": "this can be actual_request?",
+      "range": {
+        "startLine": 717,
+        "startChar": 16,
+        "endLine": 717,
+        "endChar": 48
+      },
+      "revId": "1459f5ef6ce3b8db692b8412e5a62a960e2318ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2845dcb_cb6bc1f2",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1222,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-24T03:25:19Z",
+      "side": 1,
+      "message": "I prefer to avoid using kwargs here.",
+      "range": {
+        "startLine": 1222,
+        "startChar": 22,
+        "endLine": 1222,
+        "endChar": 28
+      },
+      "revId": "1459f5ef6ce3b8db692b8412e5a62a960e2318ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f242ba28_cbd9ec0d",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 2314,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-24T03:25:19Z",
+      "side": 1,
+      "message": "better to have this line just under the declaration of `expected`?",
+      "revId": "1459f5ef6ce3b8db692b8412e5a62a960e2318ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

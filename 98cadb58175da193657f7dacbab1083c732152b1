@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd265feb_409adbae",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-24T03:25:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b7899d63_b7ae8309",
+      "range": {
+        "startLine": 675,
+        "startChar": 13,
+        "endLine": 675,
+        "endChar": 34
+      },
+      "revId": "98cadb58175da193657f7dacbab1083c732152b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d75f442_018a470c",
@@ -190,6 +214,30 @@
       "side": 1,
       "message": "I don\u0027t agree. Fractional seconds aren\u0027t supported by ts_mon so we can\u0027t measure anything below \u003c1s. I looked at the P01 pending time and it averages 350ms. \n\nhttps://console.cloud.google.com/bigquery?sq\u003d575346572923:8aeb59af713c4b9fbb902ca34804a2fd",
       "parentUuid": "26274cec_d766ec81",
+      "range": {
+        "startLine": 305,
+        "startChar": 17,
+        "endLine": 305,
+        "endChar": 19
+      },
+      "revId": "98cadb58175da193657f7dacbab1083c732152b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "308999d0_70708c1b",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-24T03:25:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "47d84e02_4b5bb9f6",
       "range": {
         "startLine": 305,
         "startChar": 17,
