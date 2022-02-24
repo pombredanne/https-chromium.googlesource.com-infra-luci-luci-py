@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eedf2ca9_e85aa5fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1529882
+      },
+      "writtenOn": "2022-02-24T12:04:51Z",
+      "side": 1,
+      "message": "I\u0027m not familiar with the bot code, but it appears ok so I\u0027ll give LGTM.\n\nWhile this extra logging is helpful, I\u0027m pretty sure that this is actually a server-side issue and the bot did what it was told. See my latest comments on crbug/1298318",
+      "revId": "5ba2c15821ccd6c0cb24b355e9b13a3041d63d1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
