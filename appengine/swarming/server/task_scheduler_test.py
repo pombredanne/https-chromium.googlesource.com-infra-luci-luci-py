@@ -2376,7 +2376,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         modified_ts=abandoned_ts,
         state=State.EXPIRED)
     self.assertEqual(expected, result_summary.key.get().to_dict())
-    self.assertEqual(1, len(pub_sub_calls))  # pubsub completion notification
+    self.assertEqual(1, len(pub_sub_calls))   # pubsub completion notification
 
   def test_cron_handle_bot_died(self):
     pub_sub_calls = self.mock_pub_sub()
