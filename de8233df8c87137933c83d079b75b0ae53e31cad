@@ -16,6 +16,75 @@
       "message": "Problem with windows-10 tests, I don\u0027t think its caused by my changes since its common amongst other CLs. Still investigating...",
       "revId": "de8233df8c87137933c83d079b75b0ae53e31cad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a9f6665_3cb066c5",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-28T02:56:09Z",
+      "side": 1,
+      "message": "update?",
+      "range": {
+        "startLine": 493,
+        "startChar": 2,
+        "endLine": 493,
+        "endChar": 11
+      },
+      "revId": "de8233df8c87137933c83d079b75b0ae53e31cad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12dd32ff_401e7c91",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1048,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-28T02:56:09Z",
+      "side": 1,
+      "message": "update?",
+      "range": {
+        "startLine": 1048,
+        "startChar": 2,
+        "endLine": 1048,
+        "endChar": 11
+      },
+      "revId": "de8233df8c87137933c83d079b75b0ae53e31cad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fbc16db_93caaf4f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-28T02:56:09Z",
+      "side": 1,
+      "message": "why not make this mandatory argument?",
+      "range": {
+        "startLine": 1151,
+        "startChar": 21,
+        "endLine": 1151,
+        "endChar": 31
+      },
+      "revId": "de8233df8c87137933c83d079b75b0ae53e31cad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
