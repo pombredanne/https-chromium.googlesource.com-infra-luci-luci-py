@@ -157,6 +157,30 @@
       },
       "revId": "de8233df8c87137933c83d079b75b0ae53e31cad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b630d5ac_ddcbc539",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-02-28T06:03:20Z",
+      "side": 1,
+      "message": "I think it is better to make this non-optional as we don\u0027t forget to pass start_time when we have new place calling this function.",
+      "parentUuid": "761d6161_91bee8c2",
+      "range": {
+        "startLine": 1151,
+        "startChar": 21,
+        "endLine": 1151,
+        "endChar": 31
+      },
+      "revId": "de8233df8c87137933c83d079b75b0ae53e31cad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
