@@ -511,7 +511,7 @@ class TestTaskRunner(TestTaskRunnerBase):
                 'size_bytes': digest.split('/')[1],
             },
         },
-        command=['python', 'parent.py'],
+        command=['python3', 'parent.py'],
     )
     actual = load_and_run(self.server.url, self.work_dir, manifest, None)
     expected = {
