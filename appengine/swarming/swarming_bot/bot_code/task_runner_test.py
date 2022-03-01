@@ -52,8 +52,8 @@ import local_caching
 import swarmingserver_bot_fake
 
 def to_native_eol(s):
-  if sys.platform == 'win32':
-    return s.replace('\n', '\r\n')
+  #if sys.platform == 'win32':
+  #  return s.replace('\n', '\r\n')
   return s
 
 def gen_task_id():
