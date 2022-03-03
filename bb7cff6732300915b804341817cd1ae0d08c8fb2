@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9982d35c_a002496e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-03T07:16:23Z",
+      "side": 1,
+      "message": "bug label?",
+      "revId": "bb7cff6732300915b804341817cd1ae0d08c8fb2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "ee0e1cc3_21ce9108",
@@ -14,6 +31,40 @@
       "writtenOn": "2022-03-03T07:09:36Z",
       "side": 1,
       "message": "Ignore patchset 2 (I pushed from the wrong branch with the same issue no.). Review diff between patchset 1 and patchset 3. ",
+      "revId": "bb7cff6732300915b804341817cd1ae0d08c8fb2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e7a976d_848e6366",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-03T07:16:23Z",
+      "side": 1,
+      "message": "this is not used?",
+      "revId": "bb7cff6732300915b804341817cd1ae0d08c8fb2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "052c8453_10f69f28",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-03T07:16:23Z",
+      "side": 1,
+      "message": "I think it is better to declare this around try block.",
       "revId": "bb7cff6732300915b804341817cd1ae0d08c8fb2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
