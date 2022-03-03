@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a372e41a_fc01f2c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-03T23:51:27Z",
+      "side": 1,
+      "message": "Review diff between Patchset 1 and Patchset 5.",
+      "revId": "5768b7d5eb9b32139a6e7cf5164cc00a92491b17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "849ecc93_aebf1236",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-03T23:51:27Z",
+      "side": 1,
+      "message": "We\u0027ll remove these conditional checks and debug statements once we can confirm things are functioning correctly.",
+      "revId": "5768b7d5eb9b32139a6e7cf5164cc00a92491b17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
