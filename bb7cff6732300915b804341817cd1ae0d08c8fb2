@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "bbe0dd9b_3822d11a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-03T07:29:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9982d35c_a002496e",
+      "revId": "bb7cff6732300915b804341817cd1ae0d08c8fb2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ee0e1cc3_21ce9108",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -52,6 +70,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0ac2b2d_23edc842",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-03T07:29:55Z",
+      "side": 1,
+      "message": "It\u0027s used, but its further down. Llike the other one, I\u0027ll move it adjacent to try-except block.",
+      "parentUuid": "3e7a976d_848e6366",
+      "revId": "bb7cff6732300915b804341817cd1ae0d08c8fb2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "052c8453_10f69f28",
@@ -65,6 +101,24 @@
       "writtenOn": "2022-03-03T07:16:23Z",
       "side": 1,
       "message": "I think it is better to declare this around try block.",
+      "revId": "bb7cff6732300915b804341817cd1ae0d08c8fb2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36136af6_b3a3f1e1",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-03T07:29:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "052c8453_10f69f28",
       "revId": "bb7cff6732300915b804341817cd1ae0d08c8fb2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
