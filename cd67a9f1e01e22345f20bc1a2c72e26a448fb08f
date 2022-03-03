@@ -16,6 +16,23 @@
       "message": "Get this patch into CQ first before PubSub metrics.",
       "revId": "cd67a9f1e01e22345f20bc1a2c72e26a448fb08f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fc303d2_a08d89c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-03T06:45:00Z",
+      "side": 1,
+      "message": "Could you make reland CL by reverting https://crrev.com/c/3499248 ?",
+      "revId": "cd67a9f1e01e22345f20bc1a2c72e26a448fb08f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
