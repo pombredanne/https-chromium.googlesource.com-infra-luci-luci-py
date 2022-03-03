@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "463cb96d_b674f8c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-03T06:43:08Z",
+      "side": 1,
+      "message": "Get this patch into CQ first before PubSub metrics.",
+      "revId": "cd67a9f1e01e22345f20bc1a2c72e26a448fb08f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
