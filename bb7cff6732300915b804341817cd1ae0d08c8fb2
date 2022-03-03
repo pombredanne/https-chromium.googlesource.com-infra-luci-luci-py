@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee0e1cc3_21ce9108",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-03T07:09:36Z",
+      "side": 1,
+      "message": "Ignore patchset 2 (I pushed from the wrong branch with the same issue no.). Review diff between patchset 1 and patchset 3. ",
+      "revId": "bb7cff6732300915b804341817cd1ae0d08c8fb2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
