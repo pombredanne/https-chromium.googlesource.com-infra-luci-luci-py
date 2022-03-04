@@ -74,6 +74,48 @@
       "parentUuid": "849ecc93_aebf1236",
       "revId": "5768b7d5eb9b32139a6e7cf5164cc00a92491b17",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9491e168_6b6ba563",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-04T04:08:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d37ad891_b9e9c612",
+      "revId": "5768b7d5eb9b32139a6e7cf5164cc00a92491b17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8029ff1e_c9497765",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-04T04:08:45Z",
+      "side": 1,
+      "message": "Not a concern. An empty string wont break ts_mon_metrics but a None type will. I only checked start_time because it can be 0.",
+      "parentUuid": "045bc28f_4a7affc0",
+      "range": {
+        "startLine": 570,
+        "startChar": 40,
+        "endLine": 570,
+        "endChar": 48
+      },
+      "revId": "5768b7d5eb9b32139a6e7cf5164cc00a92491b17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
