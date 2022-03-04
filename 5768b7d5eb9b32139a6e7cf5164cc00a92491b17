@@ -33,6 +33,47 @@
       "message": "We\u0027ll remove these conditional checks and debug statements once we can confirm things are functioning correctly.",
       "revId": "5768b7d5eb9b32139a6e7cf5164cc00a92491b17",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "045bc28f_4a7affc0",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-04T03:49:57Z",
+      "side": 1,
+      "message": "why not compare with None for tagas and state?",
+      "range": {
+        "startLine": 570,
+        "startChar": 40,
+        "endLine": 570,
+        "endChar": 48
+      },
+      "revId": "5768b7d5eb9b32139a6e7cf5164cc00a92491b17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d37ad891_b9e9c612",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-04T03:49:57Z",
+      "side": 1,
+      "message": "Could you leave TODO following http://go/tott/579 ?",
+      "parentUuid": "849ecc93_aebf1236",
+      "revId": "5768b7d5eb9b32139a6e7cf5164cc00a92491b17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
