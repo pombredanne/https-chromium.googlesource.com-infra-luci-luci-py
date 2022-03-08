@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f71d88f2_a46a8dab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1496407
+      },
+      "writtenOn": "2022-03-08T02:44:59Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "1eedfd76_2abf1bcb",
+      "revId": "410196b070f5c029a1eb27addae85bed774903c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46104a23_34f3fe31",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-03-08T02:41:37Z",
       "side": 1,
       "message": "You don\u0027t have any issue having context of this CL?",
+      "revId": "410196b070f5c029a1eb27addae85bed774903c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a75dbdf2_d0b0f9cf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1496407
+      },
+      "writtenOn": "2022-03-08T02:44:59Z",
+      "side": 1,
+      "message": "No, I am editing the CL in Git source Editor? Thought it might easier this way.",
+      "parentUuid": "46104a23_34f3fe31",
       "revId": "410196b070f5c029a1eb27addae85bed774903c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
