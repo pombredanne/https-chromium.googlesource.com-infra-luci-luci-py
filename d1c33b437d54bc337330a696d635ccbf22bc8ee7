@@ -87,6 +87,24 @@
       "message": "do unit tests need to be updated?",
       "revId": "d1c33b437d54bc337330a696d635ccbf22bc8ee7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f004729e_c3bb2fc9",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1496407
+      },
+      "writtenOn": "2022-03-08T02:40:29Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "95feb4cc_836f4401",
+      "revId": "d1c33b437d54bc337330a696d635ccbf22bc8ee7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
