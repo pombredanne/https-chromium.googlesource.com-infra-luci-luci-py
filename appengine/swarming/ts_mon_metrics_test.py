@@ -216,6 +216,7 @@ class TestMetrics(test_case.TestCase):
         'pool:test_pool',
         'buildername:test_builder',
         'name:some_tests',
+        'device_type:some_device',
     ]
     summary_running = _gen_task_result_summary(self.now, 1, tags=tags)
     summary_running.state = task_result.State.RUNNING
@@ -270,6 +271,7 @@ class TestMetrics(test_case.TestCase):
     self.assertFalse(
         ts_mon_metrics._jobs_running.get(
             fields=jobs_fields, target_fields=jobs_target_fields))
+    jobs_fields['device_type'] = 'some_device'
     jobs_fields['status'] = 'running'
     self.assertEqual(
         1,
