@@ -16,6 +16,24 @@
       "message": "Could you explain why you need to add this?",
       "revId": "d1c33b437d54bc337330a696d635ccbf22bc8ee7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b116c7b_dcae7edf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1496407
+      },
+      "writtenOn": "2022-03-08T01:54:40Z",
+      "side": 1,
+      "message": "We want to be alerted when tasks are pending for a long time by device_type and be able to recover capacity quickly. Currently, we don\u0027t have monitoring by device_type regarding pending times. This would allow us to have more visibility in managing our capacity and be able respond to outage quickly.",
+      "parentUuid": "be95aebf_1cb6dae2",
+      "revId": "d1c33b437d54bc337330a696d635ccbf22bc8ee7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
