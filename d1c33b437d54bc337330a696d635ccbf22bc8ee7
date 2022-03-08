@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a0062cfb_e5c642e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-08T02:04:08Z",
+      "side": 1,
+      "message": "Better to write such explanation in description.\n\nAlso I\u0027m not so happy to add customer specific label in Swarming.\nIs it possible to use different pool per device?",
+      "parentUuid": "9b116c7b_dcae7edf",
+      "revId": "d1c33b437d54bc337330a696d635ccbf22bc8ee7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95feb4cc_836f4401",
         "filename": "appengine/swarming/ts_mon_metrics.py",
         "patchSetId": 2
