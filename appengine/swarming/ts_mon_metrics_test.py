@@ -216,6 +216,7 @@ class TestMetrics(test_case.TestCase):
         'pool:test_pool',
         'buildername:test_builder',
         'name:some_tests',
+        'device_type:some_device',
     ]
     summary_running = _gen_task_result_summary(self.now, 1, tags=tags)
     summary_running.state = task_result.State.RUNNING
@@ -260,6 +261,7 @@ class TestMetrics(test_case.TestCase):
         'subproject_id': 'test_subproject',
         'pool': 'test_pool',
         'spec_name': 'test_builder',
+        'device_type': 'some_device',
     }
     jobs_target_fields = dict(ts_mon_metrics._TARGET_FIELDS)
     jobs_target_fields['hostname'] = 'autogen:test_bot1'
