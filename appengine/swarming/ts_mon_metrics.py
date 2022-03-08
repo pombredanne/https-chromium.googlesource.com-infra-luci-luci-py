@@ -235,6 +235,7 @@ _jobs_max_pending_duration = gae_ts_mon.FloatMetric(
         gae_ts_mon.StringField('subproject_id'),
         gae_ts_mon.StringField('pool'),
         gae_ts_mon.StringField('status'),
+        gae_ts_mon.StringField('device_type'),
     ])
 
 
@@ -514,6 +515,7 @@ def _extract_job_fields(tags_dict):
       'subproject_id': tags_dict.get('subproject', ''),
       'pool': tags_dict.get('pool', ''),
       'spec_name': spec_name,
+      'device_type': tags_dict.get('device_type', ''),
   }
   return fields
 
