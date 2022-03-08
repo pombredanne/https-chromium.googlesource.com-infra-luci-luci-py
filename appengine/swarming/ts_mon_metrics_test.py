@@ -216,6 +216,7 @@ class TestMetrics(test_case.TestCase):
         'pool:test_pool',
         'buildername:test_builder',
         'name:some_tests',
+        'device_type:some_device',
     ]
     summary_running = _gen_task_result_summary(self.now, 1, tags=tags)
     summary_running.state = task_result.State.RUNNING
@@ -286,6 +287,7 @@ class TestMetrics(test_case.TestCase):
         ts_mon_metrics._jobs_pending_durations.get(
             fields=jobs_fields,
             target_fields=ts_mon_metrics._TARGET_FIELDS).sum)
+    jobs_fields['device_type'] = 'some_device'
     self.assertEqual(
         600,
         ts_mon_metrics._jobs_max_pending_duration.get(
