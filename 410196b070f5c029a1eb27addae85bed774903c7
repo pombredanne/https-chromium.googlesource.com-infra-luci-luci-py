@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eedfd76_2abf1bcb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-08T02:41:37Z",
+      "side": 1,
+      "message": "Better to wrap one line to 72 characters.\nhttps://chromium.googlesource.com/chromium/src/+/main/docs/contributing.md#Uploading-a-change-for-review",
+      "revId": "410196b070f5c029a1eb27addae85bed774903c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46104a23_34f3fe31",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-08T02:41:37Z",
+      "side": 1,
+      "message": "You don\u0027t have any issue having context of this CL?",
+      "revId": "410196b070f5c029a1eb27addae85bed774903c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
