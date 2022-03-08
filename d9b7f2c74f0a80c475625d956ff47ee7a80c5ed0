@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "295ee8a9_68fcfec3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1496407
+      },
+      "writtenOn": "2022-03-08T03:09:42Z",
+      "side": 1,
+      "message": "We want to respect your monitoring set up. We have explored other options to get good monitoring (not delayed and consistent with swarming), but none of it was as optimal as directly getting swarming monitoring. We totally understand this might be a more specific field to add, we are fully committed in resolving any concerns around it. ",
+      "revId": "d9b7f2c74f0a80c475625d956ff47ee7a80c5ed0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

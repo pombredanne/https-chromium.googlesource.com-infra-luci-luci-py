@@ -105,6 +105,24 @@
       "parentUuid": "3304d78f_9b8ed940",
       "revId": "410196b070f5c029a1eb27addae85bed774903c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ddeece6_b9e31355",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1496407
+      },
+      "writtenOn": "2022-03-08T03:09:42Z",
+      "side": 1,
+      "message": "go/tq-infra-legacy-alerts\nWe are replacing our older alerts with alerts that more actionable. Task pending time by device is a direct SLO we want to monitor, and it\u0027s something our team can directly action on. We want to be able to monitor capacity across our different devices by adding this field, and keep pending times low to improve user experience.\nThis metrics would also be used for our future capacity planning (go/tq-capacity-manager).",
+      "parentUuid": "3fc1bd10_5c7beeb4",
+      "revId": "410196b070f5c029a1eb27addae85bed774903c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
