@@ -123,6 +123,24 @@
       "parentUuid": "3fc1bd10_5c7beeb4",
       "revId": "410196b070f5c029a1eb27addae85bed774903c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1426a128_c373068e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-08T03:19:48Z",
+      "side": 1,
+      "message": "If you don\u0027t have issue for the project, I recommend to have that to track the work there.",
+      "parentUuid": "5ddeece6_b9e31355",
+      "revId": "410196b070f5c029a1eb27addae85bed774903c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
