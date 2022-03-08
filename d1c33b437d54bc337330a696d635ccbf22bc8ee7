@@ -54,6 +54,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d953f776_73efe9fc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1496407
+      },
+      "writtenOn": "2022-03-08T02:31:35Z",
+      "side": 1,
+      "message": "Added the desriptions.\ndevice_type is quite common, https://chrome-swarming.appspot.com/botlist?c\u003did\u0026c\u003dtask\u0026c\u003ddevice_type\u0026c\u003dos\u0026c\u003dpool\u0026c\u003dstatus\u0026d\u003dasc\u0026k\u003ddevice_type\u0026s\u003did.\nWe have considered adding pools, but the overhead to manage pools is high. Here we are adding a field that could be empty for others. Why would it be an issue?\nWe really want to do this the right way upstream wise, and not hack around a missing field in monitoring itself.",
+      "parentUuid": "a0062cfb_e5c642e1",
+      "revId": "d1c33b437d54bc337330a696d635ccbf22bc8ee7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95feb4cc_836f4401",
