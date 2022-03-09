@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb251e28_3d607e51",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-09T06:11:38Z",
+      "side": 1,
+      "message": "Could you check current latency from logs to set better upper limit for metrics?",
+      "revId": "43db63ace06bfd23307775d5b076b7d454a12159",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
