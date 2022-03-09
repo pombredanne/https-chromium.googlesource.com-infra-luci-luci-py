@@ -51,6 +51,24 @@
       "message": "Where is this metric field populated?",
       "revId": "9095a96e65b8d7a4e22e8af992dd2e8576d02908",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5847cbd_5d7d6ae2",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-09T04:05:33Z",
+      "side": 1,
+      "message": "It comes from the _extract_job_fields() function, which in turn comes from the tags found in TaskResultSummary. Might be worth checking that the device_type can actually be obtained from there.",
+      "parentUuid": "58c83f17_98141b06",
+      "revId": "9095a96e65b8d7a4e22e8af992dd2e8576d02908",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
