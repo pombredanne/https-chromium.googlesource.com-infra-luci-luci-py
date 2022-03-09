@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81c82222_a2d5c730",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1496407
+      },
+      "writtenOn": "2022-03-09T07:50:10Z",
+      "side": 1,
+      "message": "Only applied device_type labels to duration and max_duration metrics, which is grouped together in the code. I changed as little as possible without losing too much readability. Thanks so much again for your help!",
+      "parentUuid": "2bdf8c4f_ef5b5070",
+      "revId": "9095a96e65b8d7a4e22e8af992dd2e8576d02908",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58c83f17_98141b06",
