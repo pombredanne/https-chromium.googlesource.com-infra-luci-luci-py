@@ -16,6 +16,24 @@
       "message": "Could you check current latency from logs to set better upper limit for metrics?",
       "revId": "43db63ace06bfd23307775d5b076b7d454a12159",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd34f2c4_320e7867",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-09T08:22:54Z",
+      "side": 1,
+      "message": "Highest I could find is ~66s. I\u0027ve set the upperbound to 100s (just to make the numbers nice).\n\nhttps://screenshot.googleplex.com/8YfhQyo5o4WAmAi",
+      "parentUuid": "eb251e28_3d607e51",
+      "revId": "43db63ace06bfd23307775d5b076b7d454a12159",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
