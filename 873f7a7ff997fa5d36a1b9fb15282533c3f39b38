@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "07136689_be8907e4",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-14T03:03:00Z",
+      "side": 1,
+      "message": "I think 0 or negative value happened due to lack of steady clock in appengine runtime. And in that case, I think the value can be approximated to 0. If we ignore such values, that changes aggregated latencies like p50, p90. And I think that is not better calculation than approximation to 0.",
+      "parentUuid": "776054f1_6bc748fc",
+      "revId": "873f7a7ff997fa5d36a1b9fb15282533c3f39b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "47bd2f3b_3d1d4b24",
         "filename": "appengine/swarming/ts_mon_metrics.py",
         "patchSetId": 1

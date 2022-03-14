@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd702a7d_da1ca5b2",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-14T03:03:00Z",
+      "side": 1,
+      "message": "better to log now (or started_ts) and created_ts?",
+      "revId": "f57156c365a520793ee7a745027843c7d22ea75d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3a35380_bf5d5f64",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-14T03:03:00Z",
+      "side": 1,
+      "message": "better to log now and start_time?",
+      "revId": "f57156c365a520793ee7a745027843c7d22ea75d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
