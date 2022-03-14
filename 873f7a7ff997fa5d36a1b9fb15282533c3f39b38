@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "592f14d8_1fa9d4bb",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-14T01:23:37Z",
+      "side": 1,
+      "message": "Could you have check for this in where we calculate lantecy instead of here?",
+      "revId": "873f7a7ff997fa5d36a1b9fb15282533c3f39b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b1a8909_464906c7",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-14T01:23:37Z",
+      "side": 1,
+      "message": "I think it is better to record this as 0.",
+      "revId": "873f7a7ff997fa5d36a1b9fb15282533c3f39b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47bd2f3b_3d1d4b24",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-14T01:23:37Z",
+      "side": 1,
+      "message": "Is it possible to log now and scheduled time inside this function if latency becomes negative?",
+      "range": {
+        "startLine": 628,
+        "startChar": 26,
+        "endLine": 628,
+        "endChar": 37
+      },
+      "revId": "873f7a7ff997fa5d36a1b9fb15282533c3f39b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35880e94_e1ea1c31",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-14T01:23:37Z",
+      "side": 1,
+      "message": "I think it is better to record this as 0.",
+      "revId": "873f7a7ff997fa5d36a1b9fb15282533c3f39b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
