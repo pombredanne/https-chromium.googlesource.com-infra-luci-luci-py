@@ -89,6 +89,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c49118b5_e45b7797",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-14T04:54:41Z",
+      "side": 1,
+      "message": "hmmm, I think I see what you are getting it. I suppose that the clock skew will affect all latency measurements and positive latencies will be lower than usual, so the negative values will be included in the (-inf, x) bucket if we choose to make them 0. I guess if they are negative they are likely to fall in that bucket even without the clock skew issue. I\u0027ve changed it to record 0.",
+      "parentUuid": "07136689_be8907e4",
+      "revId": "873f7a7ff997fa5d36a1b9fb15282533c3f39b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47bd2f3b_3d1d4b24",
