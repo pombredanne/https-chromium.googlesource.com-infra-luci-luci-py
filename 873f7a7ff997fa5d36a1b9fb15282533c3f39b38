@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "314bd589_22aa8dd1",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-14T02:46:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "592f14d8_1fa9d4bb",
+      "revId": "873f7a7ff997fa5d36a1b9fb15282533c3f39b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b1a8909_464906c7",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-03-14T01:23:37Z",
       "side": 1,
       "message": "I think it is better to record this as 0.",
+      "revId": "873f7a7ff997fa5d36a1b9fb15282533c3f39b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "776054f1_6bc748fc",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-14T02:46:34Z",
+      "side": 1,
+      "message": "I don\u0027t agree. In practice it\u0027s impossible to 0 or negative latencies, they should be thrown out, as they are garbage values. We\u0027ll have SLOs defined based of these latency measurement and if we encounter too many of these negative latencies it will skew the distribution and mask true latency problems with scheduling and/or PubSub.",
+      "parentUuid": "3b1a8909_464906c7",
       "revId": "873f7a7ff997fa5d36a1b9fb15282533c3f39b38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -60,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d69705e2_e5c8a4f2",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-14T02:46:34Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "47bd2f3b_3d1d4b24",
+      "range": {
+        "startLine": 628,
+        "startChar": 26,
+        "endLine": 628,
+        "endChar": 37
+      },
+      "revId": "873f7a7ff997fa5d36a1b9fb15282533c3f39b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35880e94_e1ea1c31",
         "filename": "appengine/swarming/ts_mon_metrics.py",
         "patchSetId": 1
@@ -71,6 +131,24 @@
       "writtenOn": "2022-03-14T01:23:37Z",
       "side": 1,
       "message": "I think it is better to record this as 0.",
+      "revId": "873f7a7ff997fa5d36a1b9fb15282533c3f39b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93a0ce54_7c284f8a",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-14T02:46:34Z",
+      "side": 1,
+      "message": "See above.",
+      "parentUuid": "35880e94_e1ea1c31",
       "revId": "873f7a7ff997fa5d36a1b9fb15282533c3f39b38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
