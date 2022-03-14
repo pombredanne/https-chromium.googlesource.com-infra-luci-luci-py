@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01ad248f_bfa4688d",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 684,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-14T06:33:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4c7404d_8811aa09",
+      "range": {
+        "startLine": 684,
+        "startChar": 44,
+        "endLine": 684,
+        "endChar": 47
+      },
+      "revId": "e96d9bf47acfab1875efc398728caf140cb0957b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5ff9fe9_efc9daa9",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b54cc99e_8ab12639",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-14T06:33:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5ff9fe9_efc9daa9",
+      "range": {
+        "startLine": 685,
+        "startChar": 22,
+        "endLine": 685,
+        "endChar": 25
+      },
+      "revId": "e96d9bf47acfab1875efc398728caf140cb0957b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6059e10_c58a32b9",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-03-14T05:58:32Z",
       "side": 1,
       "message": "better to set latency to 0 after L594 and show debug log always?",
+      "range": {
+        "startLine": 600,
+        "startChar": 23,
+        "endLine": 600,
+        "endChar": 26
+      },
+      "revId": "e96d9bf47acfab1875efc398728caf140cb0957b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "981e3469_050afb0c",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-03-14T06:33:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6059e10_c58a32b9",
       "range": {
         "startLine": 600,
         "startChar": 23,
