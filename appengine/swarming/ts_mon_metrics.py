@@ -606,7 +606,6 @@ def on_task_status_change_pubsub_notify_latency(tags, state, latency):
   fields = _extract_pubsub_job_fields(_tags_to_dict(tags), state)
   _task_state_change_pubsub_notify_latencies.add(latency, fields=fields)
 
-
 def on_task_status_change_pubsub_publish_success(tags, state):
   fields = _extract_pubsub_job_fields(_tags_to_dict(tags), state)
   _task_state_change_pubsub_notify_count.increment(fields=fields)
@@ -621,8 +620,10 @@ def on_task_status_change_pubsub_publish_failure(tags, state, http_status_code):
 def on_task_status_change_scheduler_latency(summary):
   fields = _extract_pubsub_job_fields(_tags_to_dict(summary.tags),
                                       summary.state)
-  latency = round(summary.pending_now(utils.utcnow()).total_seconds() * 1000)
-  _task_state_change_schedule_latencies.add(latency, fields=fields)
+  latency = summary.pending_now(utils.utcnow())
+  if latency:
+    _task_state_change_schedule_latencies.add(
+      round(latency.total_seconds() * 1000), fields=fields)
 
 
 def initialize():

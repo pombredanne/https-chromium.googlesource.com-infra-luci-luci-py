@@ -670,10 +670,18 @@ class _TaskResultCommon(ndb.Model):
     """Returns the timedelta the task spent pending to be scheduled as of now.
 
     Similar to .pending except that its return value is not deterministic.
+
+    Returns None if the timedelta is negative.
     """
     if self.deduped_from:
-      return now - self.created_ts
-    return (self.started_ts or now) - self.created_ts
+      diff = now - self.created_ts
+    else:
+      diff = (self.started_ts or now) - self.created_ts
+    if diff < datetime.timedelta(0):
+      logging.warning("Pending time (%ds) should not be negative",
+                      diff.total_seconds())
+      return None
+    return diff
 
   @property
   def request(self):
