@@ -74,6 +74,7 @@ from google.appengine import runtime
 from google.appengine.api import datastore_errors
 from google.appengine.datastore import datastore_query
 from google.appengine.ext import ndb
+from google.protobuf.json_format import MessageToJson
 
 from components import datastore_utils
 from components import utils
@@ -1637,6 +1638,10 @@ def task_bq_run(start, end):
     seen.update(e.task_id for e in entities)
     total += len(rows)
     bq_state.send_to_bq('task_results_run', rows)
+    pubsub.publish_multi(
+        'task_results_run',
+        {index: MessageToJson(result)
+         for index, result in rows})
 
   return total
 
@@ -1674,6 +1679,10 @@ def task_bq_summary(start, end):
     seen.update(e.task_id for e in entities)
     total += len(rows)
     bq_state.send_to_bq('task_results_summary', rows)
+    pubsub.publish_multi(
+        'task_results_summary',
+        {index: MessageToJson(summary)
+         for index, summary in rows})
 
   return total
 
