@@ -9,6 +9,7 @@ import logging
 import sys
 import unittest
 
+
 from parameterized import parameterized
 
 import test_env
@@ -20,6 +21,7 @@ from google.protobuf import timestamp_pb2
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
 
+from components import net
 from components import utils
 from test_support import test_case
 
@@ -31,7 +33,6 @@ from server import task_queues
 
 
 _VERSION = unicode(hashlib.sha256().hexdigest())
-
 
 def _bot_event(bot_id=None,
                external_ip='8.8.4.4',
@@ -145,6 +146,66 @@ def _gen_bot_event(**kwargs):
 
 
 class BotManagementTest(test_case.TestCase):
+
+  # Mocks network calls done duing pupsub.publish()
+  def mock_pubsub_requests(self):
+    requests = [
+        # First attempt. Encounters 404 due to non-existing topic.
+        {
+            'url': 'https://pubsub.googleapis.com/v1/projects'
+            '/chromeos-swarming/topics/bot_events:publish',
+            'method': 'POST',
+            'payload': {
+                'attributes': {
+                    'a': 1,
+                    'b': 2
+                },
+                'data': 'bXNn',
+            },
+            'response': net.NotFoundError('topic not found', 404, ''),
+        },
+        # Creates the topic.
+        {
+            'url': 'https://pubsub.googleapis.com/v1/'
+            'projects/chromeos-swarming/topics/bot_events',
+            'method': 'PUT',
+            'payload': None,
+        },
+        # Second attempt, succeeds.
+        {
+            'url': 'https://pubsub.googleapis.com/v1/'
+            'projects/chromeos-swarming/topics/bot_events:publish',
+            'method': 'POST',
+            'payload': {
+                'attributes': {
+                    'a': 1,
+                    'b': 2
+                },
+                'data': 'bXNn',
+            },
+        },
+    ]
+
+    def mocked_request(url, method, payload, scopes):
+      self.assertEqual(['https://www.googleapis.com/auth/pubsub'], scopes)
+      request = {
+          'method': method,
+          'payload': payload,
+          'url': url,
+      }
+      if not requests:  # pragma: no cover
+        self.fail('Unexpected request:\n%r' % request)
+      expected = requests.pop(0)
+      response = expected.pop('response', None)
+      if isinstance(response, net.Error):
+        raise response
+      future = ndb.Future()
+      future.set_result(response)
+      return future
+
+    self.mock(net, 'json_request_async', mocked_request)
+    return requests
+
   APP_DIR = test_env.APP_DIR
 
   def setUp(self):
@@ -687,6 +748,7 @@ class BotManagementTest(test_case.TestCase):
     # Empty, nothing is done.
     start = utils.utcnow()
     end = start+datetime.timedelta(seconds=60)
+    self.mock_pubsub_requests()
     self.assertEqual(0, bot_management.task_bq_events(start, end))
 
   def test_task_bq_events(self):
@@ -721,14 +783,18 @@ class BotManagementTest(test_case.TestCase):
     self.mock_now(self.now, 20)
     _bot_event(event_type='request_sleep')  # not stored
     self.mock_now(self.now, 21)
+
     _bot_event(event_type='request_task', task_id='12311', task_name='yo')
     self.mock_now(self.now, 22)
-    _bot_event(event_type='task_update', task_id='12311') # not stored
+    _bot_event(event_type='task_update', task_id='12311')  # not stored
     self.mock_now(self.now, 23)
     _bot_event(event_type='task_completed', task_id='12311')
     self.mock_now(self.now, 24)
     _bot_event(event_type='request_sleep')  # stored
     end = self.mock_now(self.now, 25)
+
+    # Mock pubsub calls
+    self.mock_pubsub_requests()
 
     # normal request_sleep is not streamed.
     bot_management.task_bq_events(start, end)

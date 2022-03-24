@@ -174,24 +174,28 @@ class Ereporter2OnErrorTest(test_case.TestCase):
     # It happens this value is hardcoded on time.
     request_id = u'7357B3D7091D'
     expected = [
-      {
-        'args': [],
-        'created_ts': self._now,
-        'endpoint': u'/',
-        'method': u'GET',
-        'params': {u'foo': u'bar'},
-        'request_id': request_id,
-        'source': u'unknown',
-      },
-      {
-        'args': [],
-        'created_ts': self._now,
-        'endpoint': u'/',
-        'method': u'POST',
-        'params': {u'foo': [u'bar', u'baz']},
-        'request_id': request_id,
-        'source': u'unknown',
-      },
+        {
+            'args': [],
+            'created_ts': self._now,
+            'endpoint': u'/',
+            'method': u'GET',
+            'params': {
+                u'foo': u'bar'
+            },
+            'request_id': request_id,
+            'source': u'unknown',
+        },
+        {
+            'args': [],
+            'created_ts': self._now,
+            'endpoint': u'/',
+            'method': u'POST',
+            'params': {
+                u'foo': [u'bar', u'baz']
+            },
+            'request_id': request_id,
+            'source': u'unknown',
+        },
     ]
     self.assertEqual(expected, actual)
 
