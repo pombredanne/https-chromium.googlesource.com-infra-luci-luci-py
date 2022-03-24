@@ -20,6 +20,7 @@ from google.appengine.ext import ndb
 import webtest
 
 import handlers_backend
+from components import pubsub
 from components import utils
 from server import bot_management
 from server import task_queues
@@ -31,6 +32,10 @@ class BackendTest(test_env_handlers.AppTestBase):
   # These test fail with 'AppError: Bad response: 500 Internal Server Error'
   # Need to run in sequential_test_runner.py
   no_run = 1
+
+  def mock_pubsub_requests(self):
+    self.mock(pubsub, 'publish_multi', lambda _topic, _message: None)
+    return None
 
   def _GetRoutes(self, prefix):
     """Returns the list of all routes handled."""
@@ -61,6 +66,8 @@ class BackendTest(test_env_handlers.AppTestBase):
     return self._enqueue_task_async_orig(*args, **kwargs)
 
   def test_crons(self):
+    # Mock the response to pub/sub calls made in bot_management
+    self.mock_pubsub_requests()
     # Tests all the cron tasks are securely handled.
     prefix = '/internal/cron/'
     cron_job_urls = [r.template for r in self._GetRoutes(prefix)]

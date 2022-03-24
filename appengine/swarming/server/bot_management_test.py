@@ -20,6 +20,7 @@ from google.protobuf import timestamp_pb2
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
 
+from components import pubsub
 from components import utils
 from test_support import test_case
 
@@ -151,6 +152,10 @@ class BotManagementTest(test_case.TestCase):
     super(BotManagementTest, self).setUp()
     self.now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
     self.mock_now(self.now)
+
+  def mock_pubsub_requests(self):
+    self.mock(pubsub, 'publish_multi', lambda _topic, _message: None)
+    return None
 
   def test_all_apis_are_tested(self):
     actual = frozenset(i[5:] for i in dir(self) if i.startswith('test_'))
@@ -687,6 +692,7 @@ class BotManagementTest(test_case.TestCase):
     # Empty, nothing is done.
     start = utils.utcnow()
     end = start+datetime.timedelta(seconds=60)
+    self.mock_pubsub_requests()
     self.assertEqual(0, bot_management.task_bq_events(start, end))
 
   def test_task_bq_events(self):
@@ -729,6 +735,9 @@ class BotManagementTest(test_case.TestCase):
     self.mock_now(self.now, 24)
     _bot_event(event_type='request_sleep')  # stored
     end = self.mock_now(self.now, 25)
+
+    # Mock pubsub calls
+    self.mock_pubsub_requests()
 
     # normal request_sleep is not streamed.
     bot_management.task_bq_events(start, end)

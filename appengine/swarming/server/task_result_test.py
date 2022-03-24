@@ -27,6 +27,7 @@ from google.appengine.ext import ndb
 import webtest
 
 from components import auth_testing
+from components import pubsub
 from components import utils
 from test_support import test_case
 
@@ -148,6 +149,10 @@ class TaskResultApiTest(TestCase):
     self.now = datetime.datetime(2014, 1, 2, 3, 4, 5, 6)
     self.mock_now(self.now)
     self.mock(random, 'getrandbits', lambda _: 0x88)
+
+  def mock_pubsub_requests(self):
+    self.mock(pubsub, 'publish_multi', lambda _topic, _message: None)
+    return None
 
   def assertEntities(self, expected, entity_model):
     self.assertEqual(expected, get_entities(entity_model))
@@ -1083,6 +1088,7 @@ class TaskResultApiTest(TestCase):
     # Empty, nothing is done.
     start = utils.utcnow()
     end = start + datetime.timedelta(seconds=60)
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_run(start, end))
 
   def test_task_bq_run(self):
@@ -1111,6 +1117,7 @@ class TaskResultApiTest(TestCase):
     run_result_4.modified_ts = utils.utcnow()
     run_result_4.put()
 
+    self.mock_pubsub_requests()
     self.assertEqual(2, task_result.task_bq_run(start, end))
     self.assertEqual(1, len(payloads), payloads)
     actual_rows = payloads[0]
@@ -1131,6 +1138,7 @@ class TaskResultApiTest(TestCase):
     run_result.put()
     end = self.mock_now(self.now, 60)
 
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_run(start, end))
     self.assertEqual(0, len(payloads), payloads)
 
@@ -1147,6 +1155,7 @@ class TaskResultApiTest(TestCase):
     self.assertIsNone(run_result.key.get().completed_ts)
     end = self.mock_now(self.now, 60)
 
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_run(start, end))
     self.assertEqual(0, len(payloads), payloads)
 
@@ -1154,6 +1163,7 @@ class TaskResultApiTest(TestCase):
     # Empty, nothing is done.
     start = utils.utcnow()
     end = start + datetime.timedelta(seconds=60)
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_summary(start, end))
 
   def test_task_bq_summary(self):
@@ -1182,6 +1192,7 @@ class TaskResultApiTest(TestCase):
     result_4.modified_ts = utils.utcnow()
     result_4.put()
 
+    self.mock_pubsub_requests()
     self.assertEqual(2, task_result.task_bq_summary(start, end))
     self.assertEqual(1, len(payloads), payloads)
     actual_rows = payloads[0]
@@ -1202,6 +1213,7 @@ class TaskResultApiTest(TestCase):
     result.put()
     end = self.mock_now(self.now, 60)
 
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_summary(start, end))
     self.assertEqual(0, len(payloads), payloads)
 
@@ -1215,6 +1227,7 @@ class TaskResultApiTest(TestCase):
     result.put()
     end = self.mock_now(self.now, 60)
 
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_summary(start, end))
     self.assertEqual(0, len(payloads), payloads)
 
@@ -1232,6 +1245,7 @@ class TaskResultApiTest(TestCase):
     self.assertIsNone(result.key.get().completed_ts)
     end = self.mock_now(self.now, 60)
 
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_summary(start, end))
     self.assertEqual(0, len(payloads), payloads)
 
