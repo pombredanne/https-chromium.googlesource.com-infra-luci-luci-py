@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45d319a7_106e3893",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-03-24T06:33:13Z",
+      "side": 1,
+      "message": "This uses NET_CONNECTION_TIMEOUT_SEC",
+      "revId": "549337f699bed7f9eb1c5db5ac7330d44bb7884f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
