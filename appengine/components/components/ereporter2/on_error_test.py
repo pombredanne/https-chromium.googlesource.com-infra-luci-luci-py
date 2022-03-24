@@ -174,7 +174,7 @@ class Ereporter2OnErrorTest(test_case.TestCase):
     # It happens this value is hardcoded on time.
     request_id = u'7357B3D7091D'
     expected = [
-      {
+        {
         'args': [],
         'created_ts': self._now,
         'endpoint': u'/',
