@@ -16,6 +16,7 @@ from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 
 from components import endpoints_webapp2
+from components import net
 from components import utils
 from depot_tools import auto_stub
 
@@ -155,7 +156,6 @@ class TestCase(auto_stub.TestCase):
             continue
           self.assertEqual('POST', task['method'])
           logging.info('Task: %s', task['url'])
-
           self._post_task(task, **kwargs)
           self._taskqueue_stub.DeleteTask(queue['name'], task['name'])
           ran += 1
