@@ -66,9 +66,11 @@ from google.appengine import runtime
 from google.appengine.api import datastore_errors
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
+from google.protobuf.json_format import MessageToJson
 
 from components import datastore_utils
 from components import utils
+from components import pubsub
 from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
 from server import bq_state
 from server import config
@@ -1012,5 +1014,9 @@ def task_bq_events(start, end):
   while more:
     entities, cursor, more = q.fetch_page(500, start_cursor=cursor)
     total += len(entities)
-    bq_state.send_to_bq('bot_events', [_convert(e) for e in entities])
+    rows = [_convert(e) for e in entities]
+    bq_state.send_to_bq('bot_events', rows)
+    pubsub.publish_multi('projects/chromeos-swarming/topics/bot_events',
+                         {index: MessageToJson(event)
+                          for index, event in rows})
   return total
