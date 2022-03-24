@@ -145,6 +145,30 @@ def _gen_bot_event(**kwargs):
 
 
 class BotManagementTest(test_case.TestCase):
+
+  # Mocks network calls done duing pupsub.publish()
+  def mock_pubsub_requests(self, requests):
+    def mocked_request(url, method, payload, scopes):
+      self.assertEqual(['https://www.googleapis.com/auth/pubsub'], scopes)
+      request = {
+          'method': method,
+          'payload': payload,
+          'url': url,
+      }
+      if not requests:  # pragma: no cover
+        self.fail('Unexpected request:\n%r' % request)
+      expected = requests.pop(0)
+      response = expected.pop('response', None)
+      self.assertEqual(expected, request)
+      if isinstance(response, net.Error):
+        raise response
+      future = ndb.Future()
+      future.set_result(response)
+      return future
+
+    self.mock(net, 'json_request_async', mocked_request)
+    return requests
+
   APP_DIR = test_env.APP_DIR
 
   def setUp(self):
@@ -729,6 +753,52 @@ class BotManagementTest(test_case.TestCase):
     self.mock_now(self.now, 24)
     _bot_event(event_type='request_sleep')  # stored
     end = self.mock_now(self.now, 25)
+
+    # Mock pubsub calls
+    self.mock_requests([
+        # First attempt. Encounters 404 due to non-existing topic.
+        {
+            'url':
+            'https://pubsub.googleapis.com/v1/projects/chromeos-swarming/topics/bot_events:publish',
+            'method': 'POST',
+            'payload': {
+                'messages': [
+                    {
+                        'attributes': {
+                            'a': 1,
+                            'b': 2
+                        },
+                        'data': 'bXNn',
+                    },
+                ],
+            },
+            'response': net.NotFoundError('topic not found', 404, ''),
+        },
+        # Creates the topic.
+        {
+            'url':
+            'https://pubsub.googleapis.com/v1/projects/chromeos-swarming/topics/bot_events',
+            'method': 'PUT',
+            'payload': None,
+        },
+        # Second attempt, succeeds.
+        {
+            'url':
+            'https://pubsub.googleapis.com/v1/projects/chromeos-swarming/topics/bot_events:publish',
+            'method': 'POST',
+            'payload': {
+                'messages': [
+                    {
+                        'attributes': {
+                            'a': 1,
+                            'b': 2
+                        },
+                        'data': 'bXNn',
+                    },
+                ],
+            },
+        },
+    ])
 
     # normal request_sleep is not streamed.
     bot_management.task_bq_events(start, end)
