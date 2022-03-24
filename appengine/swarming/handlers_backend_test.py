@@ -13,6 +13,7 @@ import unittest
 
 # Sets up environment.
 import test_env_handlers
+from test_support import pubsub_mock
 
 import webapp2
 from google.appengine.ext import ndb
@@ -61,6 +62,8 @@ class BackendTest(test_env_handlers.AppTestBase):
     return self._enqueue_task_async_orig(*args, **kwargs)
 
   def test_crons(self):
+    # Mock the response to pub/sub calls made in bot_management
+    pubsub_mock.mock_pubsub_requests(self.mock)
     # Tests all the cron tasks are securely handled.
     prefix = '/internal/cron/'
     cron_job_urls = [r.template for r in self._GetRoutes(prefix)]
