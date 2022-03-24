@@ -15,7 +15,7 @@ COMPONENTS_DIR = os.path.join(LUCI_DIR, 'appengine', 'components')
 def main():
   sys.path.insert(0, COMPONENTS_DIR)
 
-  return run_tests_parralel() or run_tests_sequential()
+  return run_tests_parralel() # or run_tests_sequential()
 
 
 def run_tests_parralel():

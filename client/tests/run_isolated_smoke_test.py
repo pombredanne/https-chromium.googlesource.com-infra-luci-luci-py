@@ -70,9 +70,9 @@ CONTENTS = {
 }
 
 
-CMD_REPEATED_FILES = ['python', 'repeated_files.py']
+CMD_REPEATED_FILES = ['python3', 'repeated_files.py']
 
-CMD_OUTPUT = ['python', 'output.py', '${ISOLATED_OUTDIR}/foo.txt']
+CMD_OUTPUT = ['python3', 'output.py', '${ISOLATED_OUTDIR}/foo.txt']
 
 _repeated_files = {
     'file1.txt': CONTENTS['file1.txt'],
@@ -119,6 +119,7 @@ def tree_modes(root):
 
 def load_isolated_stats(stats_json_path, key):
   actual = json.loads(read_content(stats_json_path))
+  logging.error("loaded json: %s", actual)
   stats = actual['stats']['isolated'].get(key)
   for k in ['items_cold', 'items_hot']:
     if not stats[k]:
@@ -457,9 +458,11 @@ class RunIsolatedTest(unittest.TestCase):
           result_json,
           '--',
       ] + CMD_REPEATED_FILES
-      out, _, ret = self._run(args)
+      out, err, ret = self._run(args)
 
       if expected_retcode == 0:
+        logging.info("out: %s", out)
+        logging.info("err: %s", err)
         self.assertEqual('Success\n', out)
       self.assertEqual(expected_retcode, ret)
 
@@ -537,6 +540,8 @@ class RunIsolatedTest(unittest.TestCase):
 
     self.assertEqual(0, ret,
                      "stdout\n%s\nstderr\n%s\nret: %d" % (out, err, ret))
+    logging.error('out: %s', out)
+    logging.error('err: %s', err)
     upload_stats = load_isolated_stats(result_json, 'upload')
     upload_size = upload_stats['items_cold'][0]
     self.assertEqual(len(OUTPUT_CONTENT), upload_size)
