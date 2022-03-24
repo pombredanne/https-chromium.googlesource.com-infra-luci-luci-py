@@ -20,6 +20,7 @@ from google.appengine.ext import ndb
 import webtest
 
 import handlers_backend
+from components import net
 from components import utils
 from server import bot_management
 from server import task_queues
@@ -31,6 +32,59 @@ class BackendTest(test_env_handlers.AppTestBase):
   # These test fail with 'AppError: Bad response: 500 Internal Server Error'
   # Need to run in sequential_test_runner.py
   no_run = 1
+
+
+
+  # Mocks network calls done duing pupsub.publish()
+  def mock_pubsub_requests(self):
+    requests = [
+        {
+            'url': 'https://pubsub.googleapis.com/v1/'
+            'projects/some-project/topics/some-topic:publish',
+            'method': 'POST',
+            'payload': {
+                'attributes': {
+                    'a': 1,
+                    'b': 2
+                },
+                'data': 'bXNn',
+            },
+        },
+    ]
+
+    def mocked_request(url, method, payload, scopes):
+      requests = [
+          {
+              'url': 'https://pubsub.googleapis.com/v1/'
+              'projects/some-project/topics/some-topic:publish',
+              'method': 'POST',
+              'payload': {
+                  'attributes': {
+                      'a': 1,
+                      'b': 2
+                  },
+                  'data': 'bXNn',
+              },
+          },
+      ]
+      self.assertEqual(['https://www.googleapis.com/auth/pubsub'], scopes)
+      request = {
+          'method': method,
+          'payload': payload,
+          'url': url,
+      }
+      if not requests:  # pragma: no cover
+        self.fail('Unexpected request:\n%r' % request)
+      expected = requests.pop(0)
+      response = expected.pop('response', None)
+      if isinstance(response, net.Error):
+        raise response
+      future = ndb.Future()
+      future.set_result(response)
+      return future
+
+    self.mock(net, 'json_request_async', mocked_request)
+    return requests
 
   def _GetRoutes(self, prefix):
     """Returns the list of all routes handled."""
@@ -61,6 +115,8 @@ class BackendTest(test_env_handlers.AppTestBase):
     return self._enqueue_task_async_orig(*args, **kwargs)
 
   def test_crons(self):
+    # Mock the response to pub/sub calls made in bot_management
+    self.mock_pubsub_requests()
     # Tests all the cron tasks are securely handled.
     prefix = '/internal/cron/'
     cron_job_urls = [r.template for r in self._GetRoutes(prefix)]
