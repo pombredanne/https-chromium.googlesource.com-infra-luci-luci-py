@@ -1637,6 +1637,9 @@ def task_bq_run(start, end):
     seen.update(e.task_id for e in entities)
     total += len(rows)
     bq_state.send_to_bq('task_results_run', rows)
+    pubsub.publish_multi('task_results_run',
+                         {index: result
+                          for index, result in rows})
 
   return total
 
@@ -1674,6 +1677,9 @@ def task_bq_summary(start, end):
     seen.update(e.task_id for e in entities)
     total += len(rows)
     bq_state.send_to_bq('task_results_summary', rows)
+    pubsub.publish_multi('task_results_summary',
+                         {index: summary
+                          for index, summary in rows})
 
   return total
 
