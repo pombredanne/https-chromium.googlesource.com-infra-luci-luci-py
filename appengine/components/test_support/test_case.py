@@ -16,6 +16,7 @@ from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 
 from components import endpoints_webapp2
+from components import net
 from components import utils
 from depot_tools import auto_stub
 
@@ -117,6 +118,65 @@ class TestCase(auto_stub.TestCase):
     finally:
       super(TestCase, self).tearDown()
 
+  # Mocks network calls done duing pupsub.publish()
+  def mock_pubsub_requests(self):
+    requests = [
+        # First attempt. Encounters 404 due to non-existing topic.
+        {
+            'url': 'https://pubsub.googleapis.com/v1/projects'
+            '/some-project/topics/some-topic:publish',
+            'method': 'POST',
+            'payload': {
+                'attributes': {
+                    'a': 1,
+                    'b': 2
+                },
+                'data': 'bXNn',
+            },
+            'response': net.NotFoundError('topic not found', 404, ''),
+        },
+        # Creates the topic.
+        {
+            'url': 'https://pubsub.googleapis.com/v1/'
+            'projects/some-project/topics/some-topic',
+            'method': 'PUT',
+            'payload': None,
+        },
+        # Second attempt, succeeds.
+        {
+            'url': 'https://pubsub.googleapis.com/v1/'
+            'projects/some-project/topics/some-topic:publish',
+            'method': 'POST',
+            'payload': {
+                'attributes': {
+                    'a': 1,
+                    'b': 2
+                },
+                'data': 'bXNn',
+            },
+        },
+    ]
+
+    def mocked_request(url, method, payload, scopes):
+      self.assertEqual(['https://www.googleapis.com/auth/pubsub'], scopes)
+      request = {
+          'method': method,
+          'payload': payload,
+          'url': url,
+      }
+      if not requests:  # pragma: no cover
+        self.fail('Unexpected request:\n%r' % request)
+      expected = requests.pop(0)
+      response = expected.pop('response', None)
+      if isinstance(response, net.Error):
+        raise response
+      future = ndb.Future()
+      future.set_result(response)
+      return future
+
+    self.mock(net, 'json_request_async', mocked_request)
+    return requests
+
   def mock_now(self, now, seconds=0):
     return mock_now(self, now, seconds)
 
@@ -155,7 +215,7 @@ class TestCase(auto_stub.TestCase):
             continue
           self.assertEqual('POST', task['method'])
           logging.info('Task: %s', task['url'])
-
+          self.mock_pubsub_requests()
           self._post_task(task, **kwargs)
           self._taskqueue_stub.DeleteTask(queue['name'], task['name'])
           ran += 1
