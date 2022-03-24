@@ -74,9 +74,11 @@ from google.appengine import runtime
 from google.appengine.api import datastore_errors
 from google.appengine.datastore import datastore_query
 from google.appengine.ext import ndb
+from google.protobuf import json_format
 
 from components import datastore_utils
 from components import utils
+from components import pubsub
 from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
 from server import bq_state
 from server import large
@@ -1637,6 +1639,11 @@ def task_bq_run(start, end):
     seen.update(e.task_id for e in entities)
     total += len(rows)
     bq_state.send_to_bq('task_results_run', rows)
+    pubsub.publish_multi(
+        'projects/chromeos-swarming/topics/task_results_run', {
+            str(index): json_format.MessageToJson(result[1])
+            for index, result in enumerate(rows)
+        })
 
   return total
 
@@ -1674,6 +1681,11 @@ def task_bq_summary(start, end):
     seen.update(e.task_id for e in entities)
     total += len(rows)
     bq_state.send_to_bq('task_results_summary', rows)
+    pubsub.publish_multi(
+        'projects/chromeos-swarming/topics/task_results_summary', {
+            str(index): json_format.MessageToJson(summary[1])
+            for index, summary in enumerate(rows)
+        })
 
   return total
 
