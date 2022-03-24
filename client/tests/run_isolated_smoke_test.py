@@ -119,6 +119,7 @@ def tree_modes(root):
 
 def load_isolated_stats(stats_json_path, key):
   actual = json.loads(read_content(stats_json_path))
+  logging.info("loaded json: %s", actual)
   stats = actual['stats']['isolated'].get(key)
   for k in ['items_cold', 'items_hot']:
     if not stats[k]:
@@ -457,9 +458,11 @@ class RunIsolatedTest(unittest.TestCase):
           result_json,
           '--',
       ] + CMD_REPEATED_FILES
-      out, _, ret = self._run(args)
+      out, err, ret = self._run(args)
 
       if expected_retcode == 0:
+        logging.info("out: %s", out)
+        logging.info("err: %s", err)
         self.assertEqual('Success\n', out)
       self.assertEqual(expected_retcode, ret)
 
