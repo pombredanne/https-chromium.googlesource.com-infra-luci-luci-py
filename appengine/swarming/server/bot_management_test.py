@@ -13,6 +13,7 @@ from parameterized import parameterized
 
 import test_env
 test_env.setup_test_env()
+from test_support import pubsub_mock
 
 from google.protobuf import struct_pb2
 from google.protobuf import timestamp_pb2
@@ -687,6 +688,7 @@ class BotManagementTest(test_case.TestCase):
     # Empty, nothing is done.
     start = utils.utcnow()
     end = start+datetime.timedelta(seconds=60)
+    pubsub_mock.mock_pubsub_requests(self.assertEqual, self.mock)
     self.assertEqual(0, bot_management.task_bq_events(start, end))
 
   def test_task_bq_events(self):
@@ -729,6 +731,9 @@ class BotManagementTest(test_case.TestCase):
     self.mock_now(self.now, 24)
     _bot_event(event_type='request_sleep')  # stored
     end = self.mock_now(self.now, 25)
+
+    # Mock pubsub calls
+    pubsub_mock.mock_pubsub_requests(self.assertEqual, self.mock)
 
     # normal request_sleep is not streamed.
     bot_management.task_bq_events(start, end)
