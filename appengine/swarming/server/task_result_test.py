@@ -19,7 +19,7 @@ import test_env
 test_env.setup_test_env()
 
 from google.protobuf import duration_pb2
-
+from google.protobuf.json_format import MessageToJson
 from google.appengine.api import datastore_errors
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
@@ -27,6 +27,7 @@ from google.appengine.ext import ndb
 import webtest
 
 from components import auth_testing
+from components import net
 from components import utils
 from test_support import test_case
 
@@ -151,6 +152,65 @@ class TaskResultApiTest(TestCase):
 
   def assertEntities(self, expected, entity_model):
     self.assertEqual(expected, get_entities(entity_model))
+
+  # Mocks network calls done duing pupsub.publish()
+  def mock_pubsub_requests(self):
+    requests = [
+        # First attempt. Encounters 404 due to non-existing topic.
+        {
+            'url': 'https://pubsub.googleapis.com/v1/projects'
+            '/chromeos-swarming/topics/bot_events:publish',
+            'method': 'POST',
+            'payload': {
+                'attributes': {
+                    'a': 1,
+                    'b': 2
+                },
+                'data': 'bXNn',
+            },
+            'response': net.NotFoundError('topic not found', 404, ''),
+        },
+        # Creates the topic.
+        {
+            'url': 'https://pubsub.googleapis.com/v1/'
+            'projects/chromeos-swarming/topics/bot_events',
+            'method': 'PUT',
+            'payload': None,
+        },
+        # Second attempt, succeeds.
+        {
+            'url': 'https://pubsub.googleapis.com/v1/'
+            'projects/chromeos-swarming/topics/bot_events:publish',
+            'method': 'POST',
+            'payload': {
+                'attributes': {
+                    'a': 1,
+                    'b': 2
+                },
+                'data': 'bXNn',
+            },
+        },
+    ]
+
+    def mocked_request(url, method, payload, scopes):
+      self.assertEqual(['https://www.googleapis.com/auth/pubsub'], scopes)
+      request = {
+          'method': method,
+          'payload': payload,
+          'url': url,
+      }
+      if not requests:  # pragma: no cover
+        self.fail('Unexpected request:\n%r' % request)
+      expected = requests.pop(0)
+      response = expected.pop('response', None)
+      if isinstance(response, net.Error):
+        raise response
+      future = ndb.Future()
+      future.set_result(response)
+      return future
+
+    self.mock(net, 'json_request_async', mocked_request)
+    return requests
 
   def _gen_summary(self, **kwargs):
     """Returns TaskResultSummary.to_dict()."""
@@ -1083,6 +1143,7 @@ class TaskResultApiTest(TestCase):
     # Empty, nothing is done.
     start = utils.utcnow()
     end = start + datetime.timedelta(seconds=60)
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_run(start, end))
 
   def test_task_bq_run(self):
@@ -1111,6 +1172,7 @@ class TaskResultApiTest(TestCase):
     run_result_4.modified_ts = utils.utcnow()
     run_result_4.put()
 
+    self.mock_pubsub_requests()
     self.assertEqual(2, task_result.task_bq_run(start, end))
     self.assertEqual(1, len(payloads), payloads)
     actual_rows = payloads[0]
@@ -1131,6 +1193,7 @@ class TaskResultApiTest(TestCase):
     run_result.put()
     end = self.mock_now(self.now, 60)
 
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_run(start, end))
     self.assertEqual(0, len(payloads), payloads)
 
@@ -1147,6 +1210,7 @@ class TaskResultApiTest(TestCase):
     self.assertIsNone(run_result.key.get().completed_ts)
     end = self.mock_now(self.now, 60)
 
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_run(start, end))
     self.assertEqual(0, len(payloads), payloads)
 
@@ -1154,6 +1218,7 @@ class TaskResultApiTest(TestCase):
     # Empty, nothing is done.
     start = utils.utcnow()
     end = start + datetime.timedelta(seconds=60)
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_summary(start, end))
 
   def test_task_bq_summary(self):
@@ -1182,6 +1247,7 @@ class TaskResultApiTest(TestCase):
     result_4.modified_ts = utils.utcnow()
     result_4.put()
 
+    self.mock_pubsub_requests()
     self.assertEqual(2, task_result.task_bq_summary(start, end))
     self.assertEqual(1, len(payloads), payloads)
     actual_rows = payloads[0]
@@ -1202,6 +1268,7 @@ class TaskResultApiTest(TestCase):
     result.put()
     end = self.mock_now(self.now, 60)
 
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_summary(start, end))
     self.assertEqual(0, len(payloads), payloads)
 
@@ -1215,6 +1282,7 @@ class TaskResultApiTest(TestCase):
     result.put()
     end = self.mock_now(self.now, 60)
 
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_summary(start, end))
     self.assertEqual(0, len(payloads), payloads)
 
@@ -1232,6 +1300,7 @@ class TaskResultApiTest(TestCase):
     self.assertIsNone(result.key.get().completed_ts)
     end = self.mock_now(self.now, 60)
 
+    self.mock_pubsub_requests()
     self.assertEqual(0, task_result.task_bq_summary(start, end))
     self.assertEqual(0, len(payloads), payloads)
 
