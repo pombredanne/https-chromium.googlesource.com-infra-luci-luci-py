@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e1f4a674_e34422a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-03-25T16:31:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a048707_238c6443",
+      "range": {
+        "startLine": 7,
+        "startChar": 57,
+        "endLine": 7,
+        "endChar": 65
+      },
+      "revId": "beecc05db11bf9b45e3ccb3726ccf6c78e191597",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "2e71f15d_1d7d30c9",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -54,6 +78,24 @@
       "writtenOn": "2022-03-25T16:14:41Z",
       "side": 1,
       "message": "I\u0027m not seeing code to create the topic if it\u0027s missing; does the pubsub module do that automatically?\n\nDo the tests need to be updated?\n\n+tikuta fyi",
+      "revId": "beecc05db11bf9b45e3ccb3726ccf6c78e191597",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6094b006_8d567c11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-03-25T16:31:07Z",
+      "side": 1,
+      "message": "pubsub.publish_multi() does this automatically.\nhttp://shortn/_gby1db9L12\n\nI am unsure about the testing. Any advice here would be super helpful!",
+      "parentUuid": "c7b27709_923e14f0",
       "revId": "beecc05db11bf9b45e3ccb3726ccf6c78e191597",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
