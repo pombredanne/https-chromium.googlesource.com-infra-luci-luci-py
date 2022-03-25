@@ -22,6 +22,30 @@
       },
       "revId": "d9b489801f0615f83c879b8c6fbf43c907ca681a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d3fa9fd_dc5b0e90",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1644,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-03-25T23:04:53Z",
+      "side": 1,
+      "message": "Is entities a protobuf message? I wasn\u0027t able to find it\u0027s type while searching around. I figured we\u0027d want the protobuf message object made in _convert(). I remember you saying the data gets massaged in the convert function so I might just be misunderstanding the code.",
+      "parentUuid": "f703b2f8_05b8c73a",
+      "range": {
+        "startLine": 1644,
+        "startChar": 30,
+        "endLine": 1644,
+        "endChar": 34
+      },
+      "revId": "d9b489801f0615f83c879b8c6fbf43c907ca681a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
