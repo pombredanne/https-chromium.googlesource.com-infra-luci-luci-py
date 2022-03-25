@@ -33,6 +33,24 @@
       "message": "I wouldn\u0027t publish the BQ rows, but instead the real protobuf messages (i.e. jsonpb encode them and then send them). The _convert function is massaging the proto message in some ways to make it compatible with BQ, but this massaging is somewhat implementation specific.\n\n(same comment applies to the other locations as well)",
       "revId": "20281ed2437aef3f2d78a0c80dbeb9b64d972092",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1c1dc60_54f2b91f",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1018,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-03-25T20:50:15Z",
+      "side": 1,
+      "message": "Is there any library that LUCI prefers? I believe this google library seems to solve the issue:\n\nhttps://github.com/protocolbuffers/protobuf/blob/master/python/google/protobuf/json_format.py#L90",
+      "parentUuid": "6f8196d3_5b595fe3",
+      "revId": "20281ed2437aef3f2d78a0c80dbeb9b64d972092",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
