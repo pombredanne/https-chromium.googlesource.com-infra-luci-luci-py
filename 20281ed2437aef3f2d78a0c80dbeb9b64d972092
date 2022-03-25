@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "805f3b0d_f553ba12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-03-25T20:12:07Z",
+      "side": 1,
+      "message": "vadimsh fyi",
+      "revId": "20281ed2437aef3f2d78a0c80dbeb9b64d972092",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f8196d3_5b595fe3",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1018,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-03-25T20:12:07Z",
+      "side": 1,
+      "message": "I wouldn\u0027t publish the BQ rows, but instead the real protobuf messages (i.e. jsonpb encode them and then send them). The _convert function is massaging the proto message in some ways to make it compatible with BQ, but this massaging is somewhat implementation specific.\n\n(same comment applies to the other locations as well)",
+      "revId": "20281ed2437aef3f2d78a0c80dbeb9b64d972092",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
