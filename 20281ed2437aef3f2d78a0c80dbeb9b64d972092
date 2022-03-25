@@ -51,6 +51,24 @@
       "parentUuid": "6f8196d3_5b595fe3",
       "revId": "20281ed2437aef3f2d78a0c80dbeb9b64d972092",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fe4eef5_8682e877",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1018,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-03-25T21:18:32Z",
+      "side": 1,
+      "message": "Yes, that\u0027s the way to encode JSONPB",
+      "parentUuid": "d1c1dc60_54f2b91f",
+      "revId": "20281ed2437aef3f2d78a0c80dbeb9b64d972092",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
