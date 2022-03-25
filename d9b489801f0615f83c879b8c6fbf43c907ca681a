@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f703b2f8_05b8c73a",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1644,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-03-25T22:38:38Z",
+      "side": 1,
+      "message": "this should be entities, not rows?",
+      "range": {
+        "startLine": 1644,
+        "startChar": 30,
+        "endLine": 1644,
+        "endChar": 34
+      },
+      "revId": "d9b489801f0615f83c879b8c6fbf43c907ca681a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
