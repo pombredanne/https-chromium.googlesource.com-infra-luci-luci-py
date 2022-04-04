@@ -28,7 +28,7 @@ def run_tests(python3=False, plugins=None):
   if python3:
     plugins.append('py3filter')
 
-  # fix_encoding
+  # fix encoding
   sys.path.insert(0, CLIENT_THIRD_PARTY_DIR)
   from depot_tools import fix_encoding
   fix_encoding.fix_encoding()
