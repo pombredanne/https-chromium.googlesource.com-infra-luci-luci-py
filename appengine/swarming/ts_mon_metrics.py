@@ -258,7 +258,6 @@ _task_state_change_pubsub_notify_count = gae_ts_mon.CounterMetric(
     'swarming/tasks/state_change_pubsub_notify_count',
     'Count of successful pubsub transactions',
     [
-        gae_ts_mon.StringField('project_id'),
         gae_ts_mon.StringField('pool'),
         gae_ts_mon.StringField('status')
     ],
@@ -273,7 +272,6 @@ _task_state_change_pubsub_notify_error_count = gae_ts_mon.CounterMetric(
     'swarming/tasks/state_change_pubsub_notify_error_count',
     'Count of failed pubsub transactions',
     [
-        gae_ts_mon.StringField('project_id'),
         gae_ts_mon.StringField('pool'),
         gae_ts_mon.StringField('status'),
         gae_ts_mon.IntegerField('http_status_code'),
@@ -290,7 +288,6 @@ _task_state_change_pubsub_notify_latencies = \
     'swarming/tasks/state_change_pubsub_notify_latencies',
     'Latency (in ms) of pubsub notification when backend receives task_update',
     [
-        gae_ts_mon.StringField('project_id'),
         gae_ts_mon.StringField('pool'),
         gae_ts_mon.StringField('status')
     ],
@@ -306,7 +303,6 @@ _task_state_change_schedule_latencies = \
     'swarming/tasks/state_change_scheduling_latencies',
     'Latency (in ms) of task scheduling request',
     [
-        gae_ts_mon.StringField('project_id'),
         gae_ts_mon.StringField('pool'),
         gae_ts_mon.StringField('status')
     ],
@@ -533,7 +529,6 @@ def _extract_pubsub_job_fields(tags_dict, status):
     status: A task_result.State
   """
   fields = {
-      'project_id': tags_dict.get('project', ''),
       'pool': tags_dict.get('pool', ''),
       'status': task_result.State.to_string(status)
   }
