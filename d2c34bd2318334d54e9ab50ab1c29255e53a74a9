@@ -16,6 +16,24 @@
       "message": "better to use \u0027Bug:\u0027\nhttp://b/222417647",
       "revId": "d2c34bd2318334d54e9ab50ab1c29255e53a74a9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbde7202_9bd651d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-04-05T02:13:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4fc9364_cd12e00c",
+      "revId": "d2c34bd2318334d54e9ab50ab1c29255e53a74a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
