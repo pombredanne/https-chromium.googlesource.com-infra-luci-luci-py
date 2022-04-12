@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9129b3f4_c682498a",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-04-12T16:43:13Z",
+      "side": 1,
+      "message": "Yes, the mocks for swarming should be in the swarming tests. (maybe you just forgot to revert this file after moving the mocks?)",
+      "parentUuid": "1ae2cbfb_6ba1a8b1",
+      "revId": "35a0b0ebd5bae6a1566c3b41eb0ac349af2ccb50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68475431_168c2112",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 16

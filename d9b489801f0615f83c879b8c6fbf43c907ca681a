@@ -46,6 +46,30 @@
       },
       "revId": "d9b489801f0615f83c879b8c6fbf43c907ca681a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4afbd715_ad4c93ee",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1644,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-04-12T16:43:13Z",
+      "side": 1,
+      "message": "I was thinking in terms of other services where the entities are protos and the protos are the source of truth; in Swarming the source of truth is the datastore model and they\u0027re converted to protos.",
+      "parentUuid": "1d3fa9fd_dc5b0e90",
+      "range": {
+        "startLine": 1644,
+        "startChar": 30,
+        "endLine": 1644,
+        "endChar": 34
+      },
+      "revId": "d9b489801f0615f83c879b8c6fbf43c907ca681a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
