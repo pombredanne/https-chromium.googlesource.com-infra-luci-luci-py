@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ae2cbfb_6ba1a8b1",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-12T00:27:15Z",
+      "side": 1,
+      "message": "I feel this file is not appropriate place to have Swarming specific code.",
+      "revId": "35a0b0ebd5bae6a1566c3b41eb0ac349af2ccb50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68475431_168c2112",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-12T00:27:15Z",
+      "side": 1,
+      "message": "sort?",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 29
+      },
+      "revId": "35a0b0ebd5bae6a1566c3b41eb0ac349af2ccb50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "159cd994_b29d539e",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 1020,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-12T00:27:15Z",
+      "side": 1,
+      "message": "do not hardcode project id",
+      "range": {
+        "startLine": 1020,
+        "startChar": 18,
+        "endLine": 1020,
+        "endChar": 35
+      },
+      "revId": "35a0b0ebd5bae6a1566c3b41eb0ac349af2ccb50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d722ec5_e08dbf24",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-12T00:27:15Z",
+      "side": 1,
+      "message": "https://google.github.io/styleguide/pyguide.html#22-imports\ndo not import individual classes or functions.",
+      "revId": "35a0b0ebd5bae6a1566c3b41eb0ac349af2ccb50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "781d5fc7_37242ef5",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-12T00:27:15Z",
+      "side": 1,
+      "message": "sort",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 29
+      },
+      "revId": "35a0b0ebd5bae6a1566c3b41eb0ac349af2ccb50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7189c3c8_ae4d9ef6",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 1643,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-12T00:27:15Z",
+      "side": 1,
+      "message": "do not hard code project id",
+      "range": {
+        "startLine": 1643,
+        "startChar": 18,
+        "endLine": 1643,
+        "endChar": 35
+      },
+      "revId": "35a0b0ebd5bae6a1566c3b41eb0ac349af2ccb50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c801fb88_b20e7dd1",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 1685,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-12T00:27:15Z",
+      "side": 1,
+      "message": "do not hard code project id",
+      "range": {
+        "startLine": 1685,
+        "startChar": 18,
+        "endLine": 1685,
+        "endChar": 35
+      },
+      "revId": "35a0b0ebd5bae6a1566c3b41eb0ac349af2ccb50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d06328e_4e2feba4",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-12T00:27:15Z",
+      "side": 1,
+      "message": "sort",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 36
+      },
+      "revId": "35a0b0ebd5bae6a1566c3b41eb0ac349af2ccb50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
