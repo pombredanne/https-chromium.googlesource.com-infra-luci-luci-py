@@ -99,6 +99,30 @@
       },
       "revId": "0643603a97c796bb2dff43c92b5982adf3e05f6f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ed40651_6b49f6b5",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 1174,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-04-12T21:43:32Z",
+      "side": 1,
+      "message": "So there\u0027s a setup method already but none of the modified test\u0027s use it. I could add it in there and then call it but not sure what implication it would have on the test\u0027s themselves.",
+      "parentUuid": "0b4f4146_d132119f",
+      "range": {
+        "startLine": 1174,
+        "startChar": 9,
+        "endLine": 1174,
+        "endChar": 29
+      },
+      "revId": "0643603a97c796bb2dff43c92b5982adf3e05f6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
