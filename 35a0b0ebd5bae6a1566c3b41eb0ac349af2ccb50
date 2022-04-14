@@ -128,6 +128,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c92bd6a0_ae5aea96",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-04-14T04:04:37Z",
+      "side": 1,
+      "message": "I\u0027m not seeing how this file calls bot_management though? I don\u0027t see anything in this file which imports anything from swarming..",
+      "parentUuid": "a0500cc2_34355f20",
+      "revId": "35a0b0ebd5bae6a1566c3b41eb0ac349af2ccb50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68475431_168c2112",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 16
