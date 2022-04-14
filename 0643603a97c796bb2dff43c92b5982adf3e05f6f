@@ -165,6 +165,30 @@
       },
       "revId": "0643603a97c796bb2dff43c92b5982adf3e05f6f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "365765fc_d10ee7cf",
+        "filename": "appengine/swarming/server/task_result_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 1174,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-04-14T23:57:02Z",
+      "side": 1,
+      "message": "The pub/sub code has been moved to it\u0027s own test_support file. This removed the duplication of code that was present before.",
+      "parentUuid": "92b22aa9_6550a1cf",
+      "range": {
+        "startLine": 1174,
+        "startChar": 9,
+        "endLine": 1174,
+        "endChar": 29
+      },
+      "revId": "0643603a97c796bb2dff43c92b5982adf3e05f6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

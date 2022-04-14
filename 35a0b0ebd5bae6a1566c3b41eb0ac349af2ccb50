@@ -162,6 +162,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41f55fc7_7a603eac",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-04-14T23:57:02Z",
+      "side": 1,
+      "message": "Removed the swarming specific parts.",
+      "parentUuid": "09c8ba3d_7574eaa9",
+      "revId": "35a0b0ebd5bae6a1566c3b41eb0ac349af2ccb50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68475431_168c2112",
