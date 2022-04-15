@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ace8dc5_f1ee7c3e",
+        "filename": "appengine/components/test_support/pubsub_mock.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-15T02:24:00Z",
+      "side": 1,
+      "message": "If content of request in this mock is not important, might be fine to make this smaller function or nop function like\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/resultdb_test.py;l\u003d46;drc\u003d5713ed3a13f2e278f404493ffa816b5481abd1ce\n?",
+      "revId": "86bc829dfaf27f530a80660b21462438b1229482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d414fb3b_fa26fad5",
+        "filename": "appengine/components/test_support/pubsub_mock.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-15T02:24:00Z",
+      "side": 1,
+      "message": "Write like\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/components/components/net.py;l\u003d249;drc\u003dddba527418208feec55f2df0396b4e946d693d64\n?\n\nuse ndb.tasklet, return value with raise ndb.Retrun(...)?",
+      "revId": "86bc829dfaf27f530a80660b21462438b1229482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63893bd7_88e60c8e",
+        "filename": "appengine/components/test_support/pubsub_mock.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-15T02:24:00Z",
+      "side": 1,
+      "message": "why not use requests in L12?",
+      "revId": "86bc829dfaf27f530a80660b21462438b1229482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10acc091_274dfe00",
+        "filename": "appengine/components/test_support/pubsub_mock.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-15T02:24:00Z",
+      "side": 1,
+      "message": "No need to have this block?\nThis code never runs?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 52
+      },
+      "revId": "86bc829dfaf27f530a80660b21462438b1229482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1db924d_414ed69b",
+        "filename": "appengine/components/test_support/pubsub_mock.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-15T02:24:00Z",
+      "side": 1,
+      "message": "This is always None?",
+      "revId": "86bc829dfaf27f530a80660b21462438b1229482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
