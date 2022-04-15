@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89c802b0_a2edcf09",
+        "filename": "appengine/components/test_support/pubsub_mock.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-04-15T19:14:53Z",
+      "side": 1,
+      "message": "I\u0027ve gone through and made the function smaller. Functionally it\u0027s testing the same thing. This being whether or not a request is being made to pub/sub.",
+      "parentUuid": "8ace8dc5_f1ee7c3e",
+      "revId": "86bc829dfaf27f530a80660b21462438b1229482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d414fb3b_fa26fad5",
@@ -35,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f99c8d18_b999fe1a",
+        "filename": "appengine/components/test_support/pubsub_mock.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-04-15T19:14:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d414fb3b_fa26fad5",
+      "revId": "86bc829dfaf27f530a80660b21462438b1229482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63893bd7_88e60c8e",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-04-15T02:24:00Z",
       "side": 1,
       "message": "why not use requests in L12?",
+      "revId": "86bc829dfaf27f530a80660b21462438b1229482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d8e50de_42871c7d",
+        "filename": "appengine/components/test_support/pubsub_mock.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-04-15T19:14:53Z",
+      "side": 1,
+      "message": "`handlers_backend_test.py` was for some reason broken when results wasn\u0027t duplicated. They\u0027ve both been removed as they weren\u0027t really being used.",
+      "parentUuid": "63893bd7_88e60c8e",
       "revId": "86bc829dfaf27f530a80660b21462438b1229482",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -75,6 +129,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bef9d3c4_9c95357d",
+        "filename": "appengine/components/test_support/pubsub_mock.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-04-15T19:14:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10acc091_274dfe00",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 52
+      },
+      "revId": "86bc829dfaf27f530a80660b21462438b1229482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1db924d_414ed69b",
@@ -88,6 +166,24 @@
       "writtenOn": "2022-04-15T02:24:00Z",
       "side": 1,
       "message": "This is always None?",
+      "revId": "86bc829dfaf27f530a80660b21462438b1229482",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73f1c3cd_e5070413",
+        "filename": "appengine/components/test_support/pubsub_mock.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-04-15T19:14:53Z",
+      "side": 1,
+      "message": "Yeah it looks like it was always none. I\u0027ve gotten rid of these.",
+      "parentUuid": "b1db924d_414ed69b",
       "revId": "86bc829dfaf27f530a80660b21462438b1229482",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
