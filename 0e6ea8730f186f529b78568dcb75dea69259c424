@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b0da4ec_736ce24c",
+        "filename": "appengine/swarming/doc/Design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-04-18T05:45:20Z",
+      "side": 1,
+      "message": "Ah, I see.\nI agree that it\u0027s fine to use them here.",
+      "parentUuid": "03d2fd8a_e512d6eb",
+      "range": {
+        "startLine": 64,
+        "startChar": 41,
+        "endLine": 64,
+        "endChar": 66
+      },
+      "revId": "0e6ea8730f186f529b78568dcb75dea69259c424",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55970e8a_492b47b3",
