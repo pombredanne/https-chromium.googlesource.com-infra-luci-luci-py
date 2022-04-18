@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9eb11352_6b62aa2f",
+        "filename": "appengine/swarming/doc/Detailed-Design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-04-18T19:33:35Z",
+      "side": 1,
+      "message": "nit:\nIt\u0027s not specific to 3.6.\n\"python3.6+\" would be appropriate?",
+      "range": {
+        "startLine": 217,
+        "startChar": 5,
+        "endLine": 217,
+        "endChar": 15
+      },
+      "revId": "fe54ec91908e889ca645995b47259dd378351540",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
