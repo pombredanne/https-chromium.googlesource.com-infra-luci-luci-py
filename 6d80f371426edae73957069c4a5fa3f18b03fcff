@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c82f215_bf2694ba",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 1020,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-18T05:49:48Z",
+      "side": 1,
+      "message": "I think it is fine to mock this as we don\u0027t want to test publich_multi itself?",
+      "range": {
+        "startLine": 1020,
+        "startChar": 11,
+        "endLine": 1020,
+        "endChar": 24
+      },
+      "revId": "6d80f371426edae73957069c4a5fa3f18b03fcff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
