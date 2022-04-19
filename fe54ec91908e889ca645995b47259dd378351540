@@ -22,6 +22,30 @@
       },
       "revId": "fe54ec91908e889ca645995b47259dd378351540",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1c46e8f_e117783a",
+        "filename": "appengine/swarming/doc/Detailed-Design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-19T01:48:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9eb11352_6b62aa2f",
+      "range": {
+        "startLine": 217,
+        "startChar": 5,
+        "endLine": 217,
+        "endChar": 15
+      },
+      "revId": "fe54ec91908e889ca645995b47259dd378351540",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
