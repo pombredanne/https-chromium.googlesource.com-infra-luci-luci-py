@@ -34,6 +34,24 @@
       "parentUuid": "7bb080e9_864930a1",
       "revId": "06d3502eab428ad5ca0d90f65969e142fc899f59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcfa3617_307dd156",
+        "filename": "appengine/components/test_support/pubsub_mock.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-19T03:03:05Z",
+      "side": 1,
+      "message": "\u003e Would it be useful to keep in case someone later wanted to expand upon a pubsub mock? \n\u003e \n\nWe can expand function when that is necessary, but I don\u0027t think that is worth doing now.\n\n\u003e Also this was brought out of an inline function as an offline request from Robbie to make the code a bit more concise.\n\nI think current function is too small compared to function in the patchset you got Robbie\u0027s request.",
+      "parentUuid": "16e76d20_7d5dd03d",
+      "revId": "06d3502eab428ad5ca0d90f65969e142fc899f59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
