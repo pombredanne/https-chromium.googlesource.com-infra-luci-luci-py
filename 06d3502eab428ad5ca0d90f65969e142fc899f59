@@ -52,6 +52,24 @@
       "parentUuid": "16e76d20_7d5dd03d",
       "revId": "06d3502eab428ad5ca0d90f65969e142fc899f59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a260839_71ba424c",
+        "filename": "appengine/components/test_support/pubsub_mock.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-04-19T03:16:41Z",
+      "side": 1,
+      "message": "Fair enough. I\u0027ve moved them out to be class functions within each of the respective test files.",
+      "parentUuid": "bcfa3617_307dd156",
+      "revId": "06d3502eab428ad5ca0d90f65969e142fc899f59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
