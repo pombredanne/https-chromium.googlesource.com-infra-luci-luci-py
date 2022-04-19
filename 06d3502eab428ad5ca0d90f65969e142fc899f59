@@ -16,6 +16,24 @@
       "message": "You can inline this function in each test. \nI don\u0027t think we need to have this in separate file.",
       "revId": "06d3502eab428ad5ca0d90f65969e142fc899f59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16e76d20_7d5dd03d",
+        "filename": "appengine/components/test_support/pubsub_mock.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-04-19T02:57:16Z",
+      "side": 1,
+      "message": "Would it be useful to keep in case someone later wanted to expand upon a pubsub mock? \n\nAlso this was brought out of an inline function as an offline request from Robbie to make the code a bit more concise.",
+      "parentUuid": "7bb080e9_864930a1",
+      "revId": "06d3502eab428ad5ca0d90f65969e142fc899f59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
