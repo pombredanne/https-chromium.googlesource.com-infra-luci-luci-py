@@ -151,10 +151,10 @@ class TaskResultApiTest(TestCase):
     self.mock_now(self.now)
     self.mock(random, 'getrandbits', lambda _: 0x88)
     self.sMock = auto_stub.SimpleMock(self)
-    self.sMock._register_call(caller_name="pubsub.publish_multi")
+    self.sMock._register_call(caller_name="pubsub.publish")
 
   def mock_pubsub_requests(self):
-    self.mock(pubsub, 'publish_multi', lambda _topic, _message: None)
+    self.mock(pubsub, 'publish', lambda _topic, _message: None)
     return None
 
   def assertEntities(self, expected, entity_model):

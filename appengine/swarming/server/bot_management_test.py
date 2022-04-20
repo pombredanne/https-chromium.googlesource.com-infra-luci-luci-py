@@ -154,10 +154,10 @@ class BotManagementTest(test_case.TestCase):
     self.now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
     self.mock_now(self.now)
     self.sMock = auto_stub.SimpleMock(self)
-    self.sMock._register_call(caller_name="pubsub.publish_multi")
+    self.sMock._register_call(caller_name="pubsub.publish")
 
   def mock_pubsub_requests(self):
-    self.mock(pubsub, 'publish_multi', lambda _topic, _message: None)
+    self.mock(pubsub, 'publish', lambda _topic, _message: None)
     return None
 
   def test_all_apis_are_tested(self):
