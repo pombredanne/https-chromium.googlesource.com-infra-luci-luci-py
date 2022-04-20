@@ -1632,6 +1632,7 @@ def task_bq_run(start, end):
     e.to_proto(out, append_root_ids=True)
     return (e.task_id, out)
 
+
   total = 0
   seen = set()
 
@@ -1653,7 +1654,7 @@ def task_bq_run(start, end):
     pubsub.publish_multi(
         'projects/%s/topics/task_results_run' %
         (app_identity.get_application_id()),
-        ((json_format.MessageToJson(result), None)
+        ((json_format.MessageToJson(result), _pool_attribute(summary))
          for _task_id, result in rows))
   return total
 
@@ -1694,7 +1695,7 @@ def task_bq_summary(start, end):
     pubsub.publish_multi(
         'projects/%s/topics/task_results_summary' %
         (app_identity.get_application_id()),
-        ((json_format.MessageToJson(summary), None)
+        ((json_format.MessageToJson(summary), _pool_attribute(summary))
          for _task_id, summary in rows))
   return total
 
@@ -1728,3 +1729,15 @@ def fetch_task_results(task_ids):
         task_results[i] = more_results.pop(0)
 
   return task_results
+
+
+def _pool_attribute(task_result):
+  """Extracts the used pool from a swarming_pb2.TaskResult.
+
+  Returns `{"pool": <the pool>}` or None if no pool was found.
+  """
+  task_slice = task_result.request.task_slices[task_result.current_task_slice]
+  for dim in task_slice.properties.dimensions:
+    if dim.key == "pool":
+      return {"pool": dim.value[0]}
+  return None
