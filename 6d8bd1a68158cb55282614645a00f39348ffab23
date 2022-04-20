@@ -33,6 +33,24 @@
       "message": "I think it\u0027s probably worth asserting that this is _actully_ called when it\u0027s expected (though the _contents_ of the call aren\u0027t important to check)",
       "revId": "6d8bd1a68158cb55282614645a00f39348ffab23",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2961bad6_c13185a7",
+        "filename": "appengine/swarming/handlers_backend_test.py",
+        "patchSetId": 33
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-04-20T15:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43fd713c_cbb6f28e",
+      "revId": "6d8bd1a68158cb55282614645a00f39348ffab23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
