@@ -1650,12 +1650,11 @@ def task_bq_run(start, end):
     seen.update(e.task_id for e in entities)
     total += len(rows)
     bq_state.send_to_bq('task_results_run', rows)
+
+    message = {json_format.MessageToJson(event[1]): None for event in rows}
     pubsub.publish_multi(
         'projects/%s/topics/task_results_run' %
-        (app_identity.get_application_id()), {
-            str(index): json_format.MessageToJson(result[1])
-            for index, result in enumerate(rows)
-        })
+        (app_identity.get_application_id()), message)
 
   return total
 
@@ -1693,12 +1692,11 @@ def task_bq_summary(start, end):
     seen.update(e.task_id for e in entities)
     total += len(rows)
     bq_state.send_to_bq('task_results_summary', rows)
+
+    message = {json_format.MessageToJson(event[1]): None for event in rows}
     pubsub.publish_multi(
         'projects/%s/topics/task_results_summary' %
-        (app_identity.get_application_id()), {
-            str(index): json_format.MessageToJson(summary[1])
-            for index, summary in enumerate(rows)
-        })
+        (app_identity.get_application_id()), message)
 
   return total
 

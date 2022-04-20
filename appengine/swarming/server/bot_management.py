@@ -1017,9 +1017,8 @@ def task_bq_events(start, end):
     total += len(entities)
     rows = [_convert(e) for e in entities]
     bq_state.send_to_bq('bot_events', rows)
+    message = {json_format.MessageToJson(event[1]): None for event in rows}
     pubsub.publish_multi(
-        'projects/%s/topics/bot_events' % (app_identity.get_application_id()), {
-            str(index): json_format.MessageToJson(event[1])
-            for index, event in enumerate(rows)
-        })
+        'projects/%s/topics/bot_events' % (app_identity.get_application_id()),
+        message)
   return total
