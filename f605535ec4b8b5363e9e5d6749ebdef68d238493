@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee2d8baa_e44012c0",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1023,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-04-20T23:46:21Z",
+      "side": 1,
+      "message": "this is a bit questionable, but I think since multi-pool bots are meant to be a transitional state, this should be OK?",
+      "range": {
+        "startLine": 1023,
+        "startChar": 27,
+        "endLine": 1023,
+        "endChar": 28
+      },
+      "revId": "f605535ec4b8b5363e9e5d6749ebdef68d238493",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
