@@ -16,6 +16,24 @@
       "message": "Discussing offline; this doesn\u0027t look right, since a big clump of bot events would be published as a single message",
       "revId": "a65705ce77ba5771579e06c793b40435becb7cfa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "774f5788_0ad0c818",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-04-20T21:06:04Z",
+      "side": 1,
+      "message": "This patch should include the correct message generation of {bot_event_msg: attributes}",
+      "parentUuid": "ec2c9d93_7dc13bda",
+      "revId": "a65705ce77ba5771579e06c793b40435becb7cfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
