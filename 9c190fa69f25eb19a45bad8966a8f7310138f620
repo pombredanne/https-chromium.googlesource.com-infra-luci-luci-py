@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1931a2f2_b546de91",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1697,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-04-20T21:15:01Z",
+      "side": 1,
+      "message": "Please change `publish_multi` to accept a list of pairs `[(message, attributes)]` instead. Constructing a dict is a total waste of time and it may be incorrect if two events happen to be identical.\n\nIt looks like publish_multi was dead code before, your CL is the one caller of it, it should not be hard to change it to accept a list of pairs.",
+      "range": {
+        "startLine": 1697,
+        "startChar": 11,
+        "endLine": 1697,
+        "endChar": 24
+      },
+      "revId": "9c190fa69f25eb19a45bad8966a8f7310138f620",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
