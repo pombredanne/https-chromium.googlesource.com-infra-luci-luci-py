@@ -22,6 +22,30 @@
       },
       "revId": "01cdc2d7831656f06fcbda10128f38a616c8e5dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ff54ebe_173196bd",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1022,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-04-20T21:46:46Z",
+      "side": 1,
+      "message": "Yeah I think it does",
+      "parentUuid": "058bb4a5_407980dc",
+      "range": {
+        "startLine": 1022,
+        "startChar": 27,
+        "endLine": 1022,
+        "endChar": 32
+      },
+      "revId": "01cdc2d7831656f06fcbda10128f38a616c8e5dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
