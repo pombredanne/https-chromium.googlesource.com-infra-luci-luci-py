@@ -12,7 +12,3 @@ Second, make sure the current user that runs the swarming bot is member of
 plugdev. If not, run:
 
     sudo gpasswd -a username plugdev
-
-
-http://wiki.cyanogenmod.org/w/UDEV has a nice list of most android devices, the
-sample file only contain the PCI vendor ID for Google/Nexus devices.
