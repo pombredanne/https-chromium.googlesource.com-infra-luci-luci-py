@@ -35,7 +35,7 @@ class BackendTest(test_env_handlers.AppTestBase):
   no_run = 1
 
   def mock_pubsub_requests(self):
-    self.mock(pubsub, 'publish_multi', lambda _topic, _message: None)
+    self.mock(pubsub, 'publish', lambda _topic, _message, _attributes: None)
     return None
 
   def _GetRoutes(self, prefix):
