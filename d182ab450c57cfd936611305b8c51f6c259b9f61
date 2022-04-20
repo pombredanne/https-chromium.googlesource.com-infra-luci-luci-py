@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bce8a04_a78fd08c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-04-20T19:03:52Z",
+      "side": 1,
+      "message": "It fails to publish with HTTP 400 response code from PubSub: https://paste.googleplex.com/5759345166909440\n\n",
+      "revId": "d182ab450c57cfd936611305b8c51f6c259b9f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
