@@ -16,6 +16,24 @@
       "message": "These 400s look like they\u0027re from the version prior to this CL? Unless you\u0027re also reverting that one?",
       "revId": "3d80064caecb80c87c5c277bcae6d3e70e7afbfb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41d1d032_5188af1d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-21T05:27:18Z",
+      "side": 1,
+      "message": "Yes, I reverted previous CL too.",
+      "parentUuid": "7c9b9851_2d549a77",
+      "revId": "3d80064caecb80c87c5c277bcae6d3e70e7afbfb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
