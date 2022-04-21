@@ -32,6 +32,7 @@ class BackendTest(test_env_handlers.AppTestBase):
   # Need to run in sequential_test_runner.py
   no_run = 1
 
+
   def _GetRoutes(self, prefix):
     """Returns the list of all routes handled."""
     return [
@@ -79,7 +80,6 @@ class BackendTest(test_env_handlers.AppTestBase):
           '403 Forbidden\n\nAccess was denied to this resource.\n\n '
           'Only internal cron jobs can do this  ',
           response.body)
-    # The actual number doesn't matter, just make sure they are unqueued.
     self.execute_tasks()
 
   def test_cron_monitoring_bots_aggregate_dimensions(self):
