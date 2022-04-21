@@ -16,6 +16,24 @@
       "message": "could you address\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3550036/35/appengine/swarming/handlers_backend_test.py#50\n?",
       "revId": "ef1b330472d82643258e7ffec9a0e7ae347bf292",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b9fbe27_27d3a366",
+        "filename": "appengine/swarming/handlers_backend_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-04-21T21:07:07Z",
+      "side": 1,
+      "message": "yeah, my bad. Is there a specific reason why that method is preferred? They accomplish the same goal.",
+      "parentUuid": "f679baaf_f8a353d8",
+      "revId": "ef1b330472d82643258e7ffec9a0e7ae347bf292",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
