@@ -34,6 +34,24 @@
       "parentUuid": "f679baaf_f8a353d8",
       "revId": "ef1b330472d82643258e7ffec9a0e7ae347bf292",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97684a8c_0df2cba7",
+        "filename": "appengine/swarming/handlers_backend_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-22T00:50:55Z",
+      "side": 1,
+      "message": "We copied auto_stub.py from depot_tools, but depot_tools doesn\u0027t have the file anymore.\nhttps://source.chromium.org/search?q\u003df:auto_stub.py\u0026sq\u003d\n\nSo I don\u0027t want to introduce new usage of such deprecated file.",
+      "parentUuid": "5b9fbe27_27d3a366",
+      "revId": "ef1b330472d82643258e7ffec9a0e7ae347bf292",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
