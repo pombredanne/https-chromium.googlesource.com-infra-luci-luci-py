@@ -70,6 +70,24 @@
       "parentUuid": "97684a8c_0df2cba7",
       "revId": "ef1b330472d82643258e7ffec9a0e7ae347bf292",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5f5f9a4_89a0573b",
+        "filename": "appengine/swarming/handlers_backend_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-22T00:58:00Z",
+      "side": 1,
+      "message": "We are already using mock package some places\nhttps://source.chromium.org/search?q\u003dimport.*mock%20f:appengine%2Fswarming.*py$\u0026sq\u003d\nand I prefer to use standard package than deprecated one.",
+      "parentUuid": "040499f0_1c3fd0fc",
+      "revId": "ef1b330472d82643258e7ffec9a0e7ae347bf292",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
