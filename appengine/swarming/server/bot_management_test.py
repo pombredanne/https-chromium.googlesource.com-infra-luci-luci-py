@@ -161,6 +161,68 @@ class BotManagementTest(test_case.TestCase):
     missing = expected - actual
     self.assertFalse(missing)
 
+  def test_BotEvent_proto_idle(self):
+    event_key = _bot_event(event_type=u'request_sleep',
+                           bot_id=u'id1',
+                           dimensions={
+                               u'id': [u'id1'],
+                           })
+    actual = swarming_pb2.BotEvent()
+    event_key.get().to_proto(actual)
+    expected = swarming_pb2.BotEvent(
+        event=swarming_pb2.INSTRUCT_IDLE,
+        bot=swarming_pb2.Bot(
+            bot_id=u'id1',
+            dimensions=[
+                swarming_pb2.StringListPair(key=u'id', values=[u'id1']),
+            ],
+            status=swarming_pb2.IDLE,
+            info=swarming_pb2.BotInfo(
+                supplemental=struct_pb2.Struct(
+                    fields={
+                        u'ram': struct_pb2.Value(number_value=65),
+                    }),
+                version=_VERSION,
+                external_ip=u'8.8.4.4',
+                authenticated_as=u'bot:id1.domain',
+            ),
+        ),
+    )
+    expected.event_time.FromDatetime(self.now)
+    self.assertEqual(unicode(expected), unicode(actual))
+
+  def test_BotEvent_proto_busy(self):
+    event_key = _bot_event(event_type=u'request_task',
+                           task_id=u'task1',
+                           bot_id=u'id1',
+                           dimensions={
+                               u'id': [u'id1'],
+                           })
+    actual = swarming_pb2.BotEvent()
+    event_key.get().to_proto(actual)
+    expected = swarming_pb2.BotEvent(
+        event=swarming_pb2.INSTRUCT_START_TASK,
+        bot=swarming_pb2.Bot(
+            bot_id=u'id1',
+            current_task_id=u'task1',
+            dimensions=[
+                swarming_pb2.StringListPair(key=u'id', values=[u'id1']),
+            ],
+            status=swarming_pb2.BUSY,
+            info=swarming_pb2.BotInfo(
+                supplemental=struct_pb2.Struct(
+                    fields={
+                        u'ram': struct_pb2.Value(number_value=65),
+                    }),
+                version=_VERSION,
+                external_ip=u'8.8.4.4',
+                authenticated_as=u'bot:id1.domain',
+            ),
+        ),
+    )
+    expected.event_time.FromDatetime(self.now)
+    self.assertEqual(unicode(expected), unicode(actual))
+
   def test_BotEvent_proto_empty(self):
     # Assert that it doesn't throw on empty entity.
     actual = swarming_pb2.BotEvent()
