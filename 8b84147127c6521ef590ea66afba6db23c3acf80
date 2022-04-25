@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59b621a9_4940a753",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-25T00:50:51Z",
+      "side": 1,
+      "message": "nit: mock is still third party library in python2, so better to import this in the same block with parameterized.",
+      "revId": "8b84147127c6521ef590ea66afba6db23c3acf80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
