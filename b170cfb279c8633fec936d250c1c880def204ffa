@@ -16,6 +16,24 @@
       "message": "Do not give your CR+1?",
       "revId": "b170cfb279c8633fec936d250c1c880def204ffa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1537db0e_b943def3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-04-26T02:02:13Z",
+      "side": 1,
+      "message": "Sorry. I was about to click Auto-Submit.",
+      "parentUuid": "18554e1d_1dda8212",
+      "revId": "b170cfb279c8633fec936d250c1c880def204ffa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
