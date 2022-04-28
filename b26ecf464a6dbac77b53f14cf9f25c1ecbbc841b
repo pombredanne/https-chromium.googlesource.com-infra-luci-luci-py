@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b6d8f66_42f255f9",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page-helpers.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-04-28T02:13:25Z",
+      "side": 1,
+      "message": "Is this paren redundant?",
+      "range": {
+        "startLine": 78,
+        "startChar": 30,
+        "endLine": 78,
+        "endChar": 31
+      },
+      "revId": "b26ecf464a6dbac77b53f14cf9f25c1ecbbc841b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
