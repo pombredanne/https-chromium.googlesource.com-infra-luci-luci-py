@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88f78ec3_edc7c578",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-05-04T18:13:12Z",
+      "side": 1,
+      "message": "I\u0027m OOO until Monday, I\u0027ll let Robbie finish reviewing.",
+      "revId": "b4837006d3e12e9dfe75263a32ea6f8a11a818d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dced7cf8_0c6ec406",
@@ -31,6 +48,30 @@
       "writtenOn": "2022-05-04T17:58:38Z",
       "side": 1,
       "message": "imo we should _strongly_ consider just directly using the current service account without any delegation. The delegation feature is only necessary for the current \u0027shared\u0027 setup (and even then not really; we could directly set IAM policy on the prodxmon endpoint in the shared cloud project to accept monitoring API rpcs from another cloud project\u0027s service accounts)",
+      "range": {
+        "startLine": 139,
+        "startChar": 17,
+        "endLine": 139,
+        "endChar": 50
+      },
+      "revId": "b4837006d3e12e9dfe75263a32ea6f8a11a818d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fe970b7_a40c5ca3",
+        "filename": "appengine/third_party/gae_ts_mon/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-05-04T18:13:12Z",
+      "side": 1,
+      "message": "\u003e even then not really; we could directly set IAM policy on the prodxmon endpoint in the shared cloud project to accept monitoring API rpcs from another cloud project\u0027s service accounts\n\n(No, we couldn\u0027t. Calling prodx API from a service account belonging to project A requires the API to be enabled in project A. There\u0027s also no project-scoped prodx resources to being with, there\u0027s no way to \"call prodx in project A using service account in project B\" because there\u0027s no notion of \"prodx in project A\").",
+      "parentUuid": "210400ae_303c6e43",
       "range": {
         "startLine": 139,
         "startChar": 17,
