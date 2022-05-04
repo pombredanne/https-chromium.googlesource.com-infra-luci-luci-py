@@ -7,6 +7,7 @@ import logging
 import os
 import sys
 import time
+from gae_ts_mon.shared import DEFAULT_PRODXMON_SERVICE_ACCOUNT_EMAIL
 
 # Not all apps enable flask. If the import fails, the app wouldn't be able to
 # pass an instance of Flask() to gae_ts_mon.initialize(). If flask is not
@@ -71,7 +72,8 @@ def initialize(
     app,
     is_enabled_fn=None,
     cron_module='default',  # pylint: disable=unused-argument
-    is_local_unittest=None):
+    is_local_unittest=None,
+    prodxmon_service_account=DEFAULT_PRODXMON_SERVICE_ACCOUNT_EMAIL):
   """Instruments webapp2 `app` with gae_ts_mon metrics.
 
   Instruments all the endpoints in `app` with basic metrics.
@@ -132,11 +134,11 @@ def initialize(
     interface.state.global_monitor = monitors.DebugMonitor()
   else:
     logging.debug('Using https monitor %s with %s', shared.PRODXMON_ENDPOINT,
-                  shared.PRODXMON_SERVICE_ACCOUNT_EMAIL)
+                  prodxmon_service_account)
     interface.state.global_monitor = monitors.HttpsMonitor(
         shared.PRODXMON_ENDPOINT,
         monitors.DelegateServiceAccountCredentials(
-            shared.PRODXMON_SERVICE_ACCOUNT_EMAIL,
+            prodxmon_service_account,
             monitors.AppengineCredentials()))
 
   interface.register_global_metrics([shared.appengine_default_version])
