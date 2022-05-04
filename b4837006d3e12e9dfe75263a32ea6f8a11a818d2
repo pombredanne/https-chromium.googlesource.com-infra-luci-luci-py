@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dced7cf8_0c6ec406",
+        "filename": "appengine/third_party/gae_ts_mon/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-05-04T17:58:38Z",
+      "side": 1,
+      "message": "need to update doc",
+      "revId": "b4837006d3e12e9dfe75263a32ea6f8a11a818d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "210400ae_303c6e43",
+        "filename": "appengine/third_party/gae_ts_mon/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-05-04T17:58:38Z",
+      "side": 1,
+      "message": "imo we should _strongly_ consider just directly using the current service account without any delegation. The delegation feature is only necessary for the current \u0027shared\u0027 setup (and even then not really; we could directly set IAM policy on the prodxmon endpoint in the shared cloud project to accept monitoring API rpcs from another cloud project\u0027s service accounts)",
+      "range": {
+        "startLine": 139,
+        "startChar": 17,
+        "endLine": 139,
+        "endChar": 50
+      },
+      "revId": "b4837006d3e12e9dfe75263a32ea6f8a11a818d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
