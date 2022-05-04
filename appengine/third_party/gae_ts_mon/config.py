@@ -71,7 +71,8 @@ def initialize(
     app,
     is_enabled_fn=None,
     cron_module='default',  # pylint: disable=unused-argument
-    is_local_unittest=None):
+    is_local_unittest=None,
+    prodxmon_service_account=shared.PRODXMON_SERVICE_ACCOUNT_EMAIL):
   """Instruments webapp2 `app` with gae_ts_mon metrics.
 
   Instruments all the endpoints in `app` with basic metrics.
@@ -132,11 +133,11 @@ def initialize(
     interface.state.global_monitor = monitors.DebugMonitor()
   else:
     logging.debug('Using https monitor %s with %s', shared.PRODXMON_ENDPOINT,
-                  shared.PRODXMON_SERVICE_ACCOUNT_EMAIL)
+                  prodxmon_service_account)
     interface.state.global_monitor = monitors.HttpsMonitor(
         shared.PRODXMON_ENDPOINT,
         monitors.DelegateServiceAccountCredentials(
-            shared.PRODXMON_SERVICE_ACCOUNT_EMAIL,
+            prodxmon_service_account,
             monitors.AppengineCredentials()))
 
   interface.register_global_metrics([shared.appengine_default_version])
