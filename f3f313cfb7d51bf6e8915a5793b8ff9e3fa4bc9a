@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "310c415b_eebe1a83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2022-05-05T18:57:23Z",
+      "side": 1,
+      "message": "Please don\u0027t make a change in third_party/gae_ts_mon directly. [1] is the canonical place of gae_ts_mon. Please make your change in [1] first, and then roll it out to third_party, like [2] did.\n\n[1]: https://source.chromium.org/chromium/infra/infra/+/main:appengine_module/gae_ts_mon/;bpv\u003d1 is the canonical place of gae_ts_mon.\n[2]: https://crrev.com/c/1145483",
+      "revId": "f3f313cfb7d51bf6e8915a5793b8ff9e3fa4bc9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c483bb93_d27d5af5",
         "filename": "appengine/third_party/gae_ts_mon/README.md",
         "patchSetId": 7
