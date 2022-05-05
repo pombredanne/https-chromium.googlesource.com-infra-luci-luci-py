@@ -44,6 +44,11 @@
        which is equivalent to `lambda: True`. The callback is called on every
        metrics flush, and takes effect immediately. Make sure the callback is
        efficient, or it will slow down your requests.
+     - `prodxmon_service_account`: the service account which will be used for
+       authentication with Prod X Mon. This is the service account which has the
+       role "roles/prodx.metricPublisher" added to it. This is only required for
+       applications which share a Service Account used to authenticate with
+       Prod X Mon.
 
 1.  Instrument all Cloud Endpoint methods if you have any by adding a decorator:
 
@@ -52,7 +57,17 @@
         def your_method(self, request):
           ...
 
-1.  Give your app's service account permission to send metrics to the API.
+1.  Give your app's service account permission to send metrics to the API. 
+    There are two ways to do this, the latter has been deprecated.
+
+    Recommended    
+    You need to follow the go/monapi-onboarding to allow the project to send
+    metrics to Prod X Mon. It is advised to use the default App Engine service
+    account to include the role "roles/prodx.metricPublisher" and in the 
+    `gae_ts_mon.initialize` method you'll need to set `prodxmon_service_account` 
+    argument to None.
+
+    Deprecated
     You need the email address of your app's "App Engine default service
     account" from the `IAM & Admin` page in the cloud console.  It'll look
     something like `app-id@appspot.gserviceaccount.com`.
@@ -62,6 +77,9 @@
     by selecting it from the list and clicking "Permissions".
     If you see an error "You do not have viewing permissions for the selected
     resource.", then please ask the current chrome-trooper to do it for you.
+    You'll then need to pass in the Service Account
+    `app-engine-metric-publishers@prodx-mon-chrome-infra.google.com.iam.gserviceaccount.com`
+    in the `gae_ts_mon.initialize` method (see above).
 
 1.  You also need to enable the Google Identity and Access Management (IAM) API
     for your project if it's not enabled already.
