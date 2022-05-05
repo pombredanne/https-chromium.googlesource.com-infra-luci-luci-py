@@ -66,12 +66,15 @@ def _internal_callback():
     shared.appengine_default_version.set(
         modules.get_default_version(module_name), target_fields=target_fields)
 
-
+# TODO(crbug.com/monorail/1322775) Remove prodxmon_service_account parameter
+# once all gae_ts_mon apps have migrated away from the shared
+# prodx-mon-chrome-infra service account
 def initialize(
     app,
     is_enabled_fn=None,
     cron_module='default',  # pylint: disable=unused-argument
-    is_local_unittest=None):
+    is_local_unittest=None,
+    prodxmon_service_account=shared.PRODXMON_SERVICE_ACCOUNT_EMAIL):
   """Instruments webapp2 `app` with gae_ts_mon metrics.
 
   Instruments all the endpoints in `app` with basic metrics.
@@ -83,6 +86,9 @@ def initialize(
       This allows apps to turn monitoring on or off dynamically, per app.
     cron_module (str): DEPRECATED. This param is noop.
     is_local_unittest (bool or None): whether we are running in a unittest.
+    prodxmon_service_account (str or None): Service account to use for
+      authentication with Prod X Mon. If None, the default App Engine service
+      account is used.
   """
   if is_local_unittest is None:  # pragma: no cover
     # Since gae_ts_mon.initialize is called at module-scope by appengine apps,
@@ -131,14 +137,18 @@ def initialize(
     logging.debug('Using debug monitor')
     interface.state.global_monitor = monitors.DebugMonitor()
   else:
-    logging.debug('Using https monitor %s with %s', shared.PRODXMON_ENDPOINT,
-                  shared.PRODXMON_SERVICE_ACCOUNT_EMAIL)
+    if prodxmon_service_account:
+      monitor = monitors.DelegateServiceAccountCredentials(
+              prodxmon_service_account,
+              monitors.AppengineCredentials())
+    else:
+      # AppengineCredentials uses default service account if not specified, 
+      prodxmon_service_account = app_identity.get_service_account_name()
+      monitor = monitors.AppengineCredentials()
     interface.state.global_monitor = monitors.HttpsMonitor(
-        shared.PRODXMON_ENDPOINT,
-        monitors.DelegateServiceAccountCredentials(
-            shared.PRODXMON_SERVICE_ACCOUNT_EMAIL,
-            monitors.AppengineCredentials()))
-
+        shared.PRODXMON_ENDPOINT, monitor)
+    logging.debug('Using https monitor %s with %s', shared.PRODXMON_ENDPOINT,
+                  prodxmon_service_account)
   interface.register_global_metrics([shared.appengine_default_version])
   interface.register_global_metrics_callback(
       shared.INTERNAL_CALLBACK_NAME, _internal_callback)
