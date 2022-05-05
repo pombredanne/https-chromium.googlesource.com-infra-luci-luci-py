@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb80e876_6db48c16",
+        "filename": "appengine/third_party/gae_ts_mon/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-05-05T07:08:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dced7cf8_0c6ec406",
+      "revId": "b4837006d3e12e9dfe75263a32ea6f8a11a818d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "210400ae_303c6e43",
@@ -96,6 +114,30 @@
       "side": 1,
       "message": "Bah, I keep forgetting that cloud apis have implicit project scope via magic 😞.\n\nThe other bit though (about not using delegation) still holds though (i.e. we set up prodx api within e.g. chromium-swarm, then chromium-swarm just uses that directly without delegation))",
       "parentUuid": "9fe970b7_a40c5ca3",
+      "range": {
+        "startLine": 139,
+        "startChar": 17,
+        "endLine": 139,
+        "endChar": 50
+      },
+      "revId": "b4837006d3e12e9dfe75263a32ea6f8a11a818d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c92a5ca1_79241487",
+        "filename": "appengine/third_party/gae_ts_mon/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-05-05T07:08:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5fbe627_2902bff4",
       "range": {
         "startLine": 139,
         "startChar": 17,

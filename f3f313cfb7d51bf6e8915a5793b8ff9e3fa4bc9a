@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32a60e3f_4129d06d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-05-05T07:08:27Z",
+      "side": 1,
+      "message": "Tested on chromium-swarm-dev.",
+      "revId": "f3f313cfb7d51bf6e8915a5793b8ff9e3fa4bc9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
