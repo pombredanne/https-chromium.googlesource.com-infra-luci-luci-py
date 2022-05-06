@@ -16,6 +16,24 @@
       "message": "could you add simple test for this?",
       "revId": "435f392a373e2d20efe93799ebaf606cdd8897b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01834516_f6efb4f8",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1117044
+      },
+      "writtenOn": "2022-05-06T16:44:49Z",
+      "side": 1,
+      "message": "Yes, sorry.  I assumed since it was just returning something from another module it wasn\u0027t necessary.  Done.",
+      "parentUuid": "2317cd64_f112f1b9",
+      "revId": "435f392a373e2d20efe93799ebaf606cdd8897b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
