@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2317cd64_f112f1b9",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/linux.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-05-06T00:45:14Z",
+      "side": 1,
+      "message": "could you add simple test for this?",
+      "revId": "435f392a373e2d20efe93799ebaf606cdd8897b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
