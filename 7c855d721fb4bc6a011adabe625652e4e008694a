@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e4357d6_1e18cae2",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1117044
+      },
+      "writtenOn": "2022-05-09T13:37:24Z",
+      "side": 1,
+      "message": "Snuck in an alphabetize when I originally put the kernel line here.",
+      "revId": "7c855d721fb4bc6a011adabe625652e4e008694a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
