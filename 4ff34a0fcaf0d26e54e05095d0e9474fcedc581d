@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4515b56_037f2210",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-05-10T07:27:41Z",
+      "side": 1,
+      "message": "Is there a performance benefit with DeleteFile?\nIf so, how about try DeleteFile, and fallback to os.unlink()?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "4ff34a0fcaf0d26e54e05095d0e9474fcedc581d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
