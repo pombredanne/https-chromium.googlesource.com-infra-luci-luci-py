@@ -249,7 +249,7 @@ if sys.platform == 'win32':
     path = extend(path)
     # pylint: disable=undefined-variable
     # isdir is generated dynamically.
-    if isdir(path):
+    if isdir(path) or islink(path):
       if not RemoveDirectory(path):
         # pylint: disable=undefined-variable
         raise WindowsError('unlink(%r): could not remove directory: %s' %

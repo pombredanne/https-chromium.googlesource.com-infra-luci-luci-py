@@ -170,6 +170,14 @@ class FSTest(unittest.TestCase):
     with self.assertRaises(OSError):
       fs.readlink(os.path.join(self.tempdir, 'not_there'))
 
+  def test_remove_invalid_symlink(self):
+    dirpath = os.path.join(self.tempdir, 'dir')
+    os.makedirs(dirpath)
+    dst = os.path.join(self.tempdir, 'dst')
+    os.symlink(dirpath, dst)
+    os.removedirs(dirpath)
+    fs.remove(dst)
+
 
 if __name__ == '__main__':
   test_env.main()
