@@ -22,9 +22,6 @@ if sys.platform == 'win32':
   CreateSymbolicLinkW.argtypes = (
       wintypes.LPCWSTR, wintypes.LPCWSTR, wintypes.DWORD)
   CreateSymbolicLinkW.restype = wintypes.BOOL
-  DeleteFile = windll.kernel32.DeleteFileW
-  DeleteFile.argtypes = (wintypes.LPCWSTR,)
-  DeleteFile.restype = wintypes.BOOL
   GetFileAttributesW = windll.kernel32.GetFileAttributesW
   GetFileAttributesW.argtypes = (wintypes.LPCWSTR,)
   GetFileAttributesW.restype = wintypes.DWORD
@@ -241,8 +238,6 @@ if sys.platform == 'win32':
     Useful material:
     CreateSymbolicLinkW:
       https://msdn.microsoft.com/library/windows/desktop/aa363866.aspx
-    DeleteFileW:
-      https://msdn.microsoft.com/en-us/library/windows/desktop/aa363915(v=vs.85).aspx
     RemoveDirectoryW:
       https://msdn.microsoft.com/en-us/library/windows/desktop/aa365488(v=vs.85).aspx
     """
@@ -255,10 +250,7 @@ if sys.platform == 'win32':
         raise WindowsError('unlink(%r): could not remove directory: %s' %
                            (path, ctypes.GetLastError()))
     else:
-      if not DeleteFile(path):
-        # pylint: disable=undefined-variable
-        raise WindowsError('unlink(%r): could not delete file: %s' %
-                           (path, ctypes.GetLastError()))
+      os.unlink(path)
 
 
   def readlink(path):
