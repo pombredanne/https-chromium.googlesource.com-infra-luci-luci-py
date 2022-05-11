@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e01471cf_44a3d481",
+        "filename": "client/utils/fs.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-05-11T03:03:09Z",
+      "side": 1,
+      "message": "nit: It might be useful to leave warning logs here.",
+      "revId": "11e241eaf26a474533c5816d104661f5d19fa8d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
