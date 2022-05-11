@@ -255,10 +255,11 @@ if sys.platform == 'win32':
         raise WindowsError('unlink(%r): could not remove directory: %s' %
                            (path, ctypes.GetLastError()))
     else:
-      if not DeleteFile(path):
-        # pylint: disable=undefined-variable
-        raise WindowsError('unlink(%r): could not delete file: %s' %
-                           (path, ctypes.GetLastError()))
+      if DeleteFile(path):
+        return
+
+      # fallback to unlink if it fails to call DeleteFile.
+      os.unlink(path)
 
 
   def readlink(path):
