@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7742349c_3cbac2e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-05-12T00:39:07Z",
+      "side": 1,
+      "message": "Tested on chromium-swarm-dev: https://pantheon.corp.google.com/apis/api/prodxmon-wbl-pa.googleapis.com/metrics?project\u003dchromium-swarm-dev\u0026pageState\u003d(%22duration%22:(%22groupValue%22:%22PT1H%22,%22customValue%22:null))",
+      "revId": "19053de95f3e42002b6d429709850346416faae5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
