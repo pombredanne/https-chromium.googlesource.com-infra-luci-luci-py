@@ -16,6 +16,98 @@
       "message": "Why this is experiment?",
       "revId": "6bdb46def77f30e738b460a28208b79b2774878c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ac5f40e_d0832c47",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2022-05-13T02:42:03Z",
+      "side": 1,
+      "message": "It\u0027s possible that the try block didn\u0027t list all the possible exceptions. Hence, it\u0027s safer to initialize this with False and set it to True only on success.\n\ni.e.,\n```\nsuccess \u003d False\ntry:\n  pubsub.publish(...)\n  success \u003d True\nExcept A:\n  ...\nExcept B:\n  ...\nfinally:\n  ...\n```",
+      "range": {
+        "startLine": 567,
+        "startChar": 2,
+        "endLine": 567,
+        "endChar": 16
+      },
+      "revId": "6bdb46def77f30e738b460a28208b79b2774878c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58454af2_5c036062",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2022-05-13T02:42:03Z",
+      "side": 1,
+      "message": "None is not a valid value for the field. It\u0027s possible that some exceptions are not caught by the below Except blocks, and it would cause None to be reported into the error metric field.\n\n1) consider initializing it with a valid value, like 0. Even if tsmon-lib treats None as the type-default value, it\u0027s still better to set it with 0 explicitly for readability.\n2) consider setting http_status_code with 200 on success, too.\nAt this level of abstraction, it\u0027s not obvious that on_task_status_change_pubsub_update_metrics() will use http_status_code only for error metrics at L601. That\u0027s not obvious from the method name, either.\n\ne.g.,\n```\nhttp_status_code \u003d 0\ntry:\n  pubsub.publish(...)\n  http_status_code \u003d 200\nexcept ...:\n  http_status_code \u003d e.inner.status_code\nexcept ...:\n  http_status_code \u003d e.inner.status_code\nfinally:\n  ...\n  ```",
+      "range": {
+        "startLine": 568,
+        "startChar": 2,
+        "endLine": 568,
+        "endChar": 25
+      },
+      "revId": "6bdb46def77f30e738b460a28208b79b2774878c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "060a3c1a_0e0d6b92",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2022-05-13T02:42:03Z",
+      "side": 1,
+      "message": "It\u0027s not necessary to track success and errors in separate metrics. It could be done as follow.\n\n- add \"metric:http_status_code\" into \"swarming/tasks/state_change_pubsub_notify_count\"\n- calculate the ratio in a way like below.\n\n````\n# error QPS\nerrQPS \u003d fetch(metric\u003d\"..notify_count\") | m.Filter(m.FIELDS[\"metric:http_status_code\"] !\u003d 200) | Rate(..)\n\n# total QPS\ntotQPS \u003d fetch(metric\u003d\"..notify_count\") | Rate(...)\n\n(errQPS, totalQPS) | m.Join() | m.Point(m.VAL[0]/m.VAL[1])\n```",
+      "range": {
+        "startLine": 597,
+        "startChar": 2,
+        "endLine": 602,
+        "endChar": 0
+      },
+      "revId": "6bdb46def77f30e738b460a28208b79b2774878c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ec17655_58c061fc",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2022-05-13T02:42:03Z",
+      "side": 1,
+      "message": "remove; unnecessary blank lines.",
+      "range": {
+        "startLine": 613,
+        "startChar": 0,
+        "endLine": 615,
+        "endChar": 0
+      },
+      "revId": "6bdb46def77f30e738b460a28208b79b2774878c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
