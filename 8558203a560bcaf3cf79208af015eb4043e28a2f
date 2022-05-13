@@ -34,6 +34,24 @@
       "parentUuid": "d1f9119c_c32da363",
       "revId": "8558203a560bcaf3cf79208af015eb4043e28a2f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce1d2eb0_884d1001",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1518,
+      "author": {
+        "id": 1002162
+      },
+      "writtenOn": "2022-05-13T00:28:06Z",
+      "side": 1,
+      "message": "Where would that be? Wouldn\u0027t this code execute and reboot though?",
+      "parentUuid": "d1f9119c_c32da363",
+      "revId": "8558203a560bcaf3cf79208af015eb4043e28a2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
