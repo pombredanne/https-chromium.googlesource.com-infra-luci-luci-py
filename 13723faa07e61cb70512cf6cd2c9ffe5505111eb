@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "988db7dc_32c30f27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-13T17:09:17Z",
+      "side": 1,
+      "message": "Could you add the bug number to the commit message?",
+      "revId": "13723faa07e61cb70512cf6cd2c9ffe5505111eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
