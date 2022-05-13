@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fcd16c3d_14033531",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-05-13T03:49:46Z",
+      "side": 1,
+      "message": "This was recommended by Scott Lee.\n\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3627689",
+      "parentUuid": "7d019120_fbc30976",
+      "revId": "6bdb46def77f30e738b460a28208b79b2774878c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ac5f40e_d0832c47",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 3
@@ -31,6 +49,30 @@
       "writtenOn": "2022-05-13T02:42:03Z",
       "side": 1,
       "message": "It\u0027s possible that the try block didn\u0027t list all the possible exceptions. Hence, it\u0027s safer to initialize this with False and set it to True only on success.\n\ni.e.,\n```\nsuccess \u003d False\ntry:\n  pubsub.publish(...)\n  success \u003d True\nExcept A:\n  ...\nExcept B:\n  ...\nfinally:\n  ...\n```",
+      "range": {
+        "startLine": 567,
+        "startChar": 2,
+        "endLine": 567,
+        "endChar": 16
+      },
+      "revId": "6bdb46def77f30e738b460a28208b79b2774878c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48c25017_9a784b51",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-05-13T03:49:46Z",
+      "side": 1,
+      "message": "On this note, I will add another catch all exception to log the error, just as an experiment to see if we get anything that was not handled (which might explain not getting pubsub errors).",
+      "parentUuid": "3ac5f40e_d0832c47",
       "range": {
         "startLine": 567,
         "startChar": 2,
@@ -64,6 +106,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "876deac5_76544f1b",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-05-13T03:49:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58454af2_5c036062",
+      "range": {
+        "startLine": 568,
+        "startChar": 2,
+        "endLine": 568,
+        "endChar": 25
+      },
+      "revId": "6bdb46def77f30e738b460a28208b79b2774878c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "060a3c1a_0e0d6b92",
@@ -87,6 +153,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93ad75e8_f265f933",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-05-13T03:49:46Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "060a3c1a_0e0d6b92",
+      "range": {
+        "startLine": 597,
+        "startChar": 2,
+        "endLine": 602,
+        "endChar": 0
+      },
+      "revId": "6bdb46def77f30e738b460a28208b79b2774878c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ec17655_58c061fc",
@@ -100,6 +190,30 @@
       "writtenOn": "2022-05-13T02:42:03Z",
       "side": 1,
       "message": "remove; unnecessary blank lines.",
+      "range": {
+        "startLine": 613,
+        "startChar": 0,
+        "endLine": 615,
+        "endChar": 0
+      },
+      "revId": "6bdb46def77f30e738b460a28208b79b2774878c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78cda256_536ca9a3",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-05-13T03:49:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ec17655_58c061fc",
       "range": {
         "startLine": 613,
         "startChar": 0,
