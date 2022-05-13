@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96cdeb75_f3c84898",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-05-13T04:16:52Z",
+      "side": 1,
+      "message": "I see, but I don\u0027t think we need to revert refactoring CL.",
+      "parentUuid": "fcd16c3d_14033531",
+      "revId": "6bdb46def77f30e738b460a28208b79b2774878c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ac5f40e_d0832c47",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 3
