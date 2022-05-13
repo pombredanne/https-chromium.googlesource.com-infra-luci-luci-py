@@ -16,6 +16,24 @@
       "message": "This affects all bots.\nCan you set this sleep in your bot_config?",
       "revId": "8558203a560bcaf3cf79208af015eb4043e28a2f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c45a7e0_9e195c67",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1518,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-05-13T00:26:02Z",
+      "side": 1,
+      "message": "This is a code path that should rarely be hit, and when it happens (anywhere) it is nice to have 5 min to debug.",
+      "parentUuid": "d1f9119c_c32da363",
+      "revId": "8558203a560bcaf3cf79208af015eb4043e28a2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
