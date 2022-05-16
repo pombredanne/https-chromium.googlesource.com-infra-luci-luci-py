@@ -34,6 +34,24 @@
       "parentUuid": "1469ce3a_0fb72940",
       "revId": "4295f874e2f31390d7f8c63c6f79442c16038a80",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffe4720b_58ea233d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-05-16T07:47:10Z",
+      "side": 0,
+      "message": "I see, could you add such context in description?\nThen we can understand why you made this modification more easily.",
+      "parentUuid": "eeafbe9f_aec62aee",
+      "revId": "4295f874e2f31390d7f8c63c6f79442c16038a80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
