@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1469ce3a_0fb72940",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-05-16T07:08:49Z",
+      "side": 0,
+      "message": "Doesn\u0027t this show e.innter.status_code?",
+      "revId": "4295f874e2f31390d7f8c63c6f79442c16038a80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
