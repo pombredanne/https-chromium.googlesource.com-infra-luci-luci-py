@@ -16,6 +16,24 @@
       "message": "Doesn\u0027t this show e.innter.status_code?",
       "revId": "4295f874e2f31390d7f8c63c6f79442c16038a80",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eeafbe9f_aec62aee",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-05-16T07:44:05Z",
+      "side": 0,
+      "message": "My understanding is that loggin.exception displays the __str__ of the exception. In this case pubsub.TransientError and pubsub.Error is constructed with the __str__ of the inner, which doesn\u0027t always display all the instance vars.\n\nThese two logging lines aren\u0027t important anyway, because the retrying means we never hit this code path (at least for the last 2 months). I just want to be absolutely certain of the http_status_code in the case we miraculous get an error. \n\nA bit of context, we have an unknown http_status_code metric field (take a look at the FAILURE). I want to find out what it corresponds to. http://shortn/_1IEXt6R2tK",
+      "parentUuid": "1469ce3a_0fb72940",
+      "revId": "4295f874e2f31390d7f8c63c6f79442c16038a80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
