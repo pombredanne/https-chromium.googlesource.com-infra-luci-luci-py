@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fd465ad_b9bbbfb0",
+        "filename": "appengine/components/components/endpoints_flask/OWNERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-05-16T07:28:24Z",
+      "side": 1,
+      "message": "Our team will likely need to own this directory. Could you make the four of us OWNERS? I think we should also get approval from the previous owners. Nodir left Google, but we could ask Sana (smut@) for a quick review.",
+      "revId": "f634983a3f22953636e6a48ba89a2b89e970bcc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b369ecd1_13184a7a",
+        "filename": "appengine/components/components/endpoints_flask/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-05-16T07:28:24Z",
+      "side": 1,
+      "message": "Possibly as a follow-up: rename all references from webapp2 to Flask.",
+      "range": {
+        "startLine": 4,
+        "startChar": 38,
+        "endLine": 4,
+        "endChar": 45
+      },
+      "revId": "f634983a3f22953636e6a48ba89a2b89e970bcc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
