@@ -25,7 +25,6 @@ PROTOCOL = protojson.EndpointsProtoJson()
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
-
 def decode_field(field, value):
   """Like PROTOCOL.decode_field, but also supports booleans."""
   if isinstance(field, messages.BooleanField):
@@ -121,7 +120,7 @@ def path_handler(api_class, api_method, service_path):
         req.check_initialized()
       except (messages.DecodeError, messages.ValidationError, ValueError) as ex:
         response_body = json.dumps({'error': {'message': ex.message}})
-        self.response.set_status(httplib.BAD_REQUEST)
+        self.response.set_status(http_client.BAD_REQUEST)
       else:
         try:
           res = api_method(api, req)
@@ -161,7 +160,7 @@ def path_handler(api_class, api_method, service_path):
 
 
 def api_routes(api_classes, base_path='/_ah/api', regex='[^/]+'):
-  """Creates webapp2 routes for the given Endpoints v1 services.
+  """Creates routes for the given Endpoints v1 services.
 
   Args:
     api_classes: A list of protorpc.remote.Service classes to create routes for.
@@ -170,7 +169,9 @@ def api_routes(api_classes, base_path='/_ah/api', regex='[^/]+'):
     regex: Regular expression to allow in path parameters.
 
   Returns:
-    A list of webapp2.Routes.
+    A list of tuples, each consisting of three parts: a URL rule string,
+    a function that handles the given endpoint, and an optional list of strings
+    of acceptable HTTP methods.
   """
   routes = []
 
@@ -188,12 +189,12 @@ def api_routes(api_classes, base_path='/_ah/api', regex='[^/]+'):
       t = posixpath.join(api_base_path, method_path)
       http_method = info.http_method.upper() or 'POST'
       handler = path_handler(api_class, method, api_base_path)
-      routes.append(webapp2.Route(t, handler, methods=[http_method]))
+      routes.append((t, handler, [http_method]))
       templates.add(t)
 
     # Add routes for HTTP OPTIONS (to add CORS headers) for each method.
     for t in sorted(templates):
-      routes.append(webapp2.Route(t, CorsHandler, methods=['OPTIONS']))
+      routes.append((t, CorsHandler, ['OPTIONS']))
 
   # Add generic routes.
   routes.extend([
@@ -268,10 +269,10 @@ def discovery_service_route(api_classes, base_path):
     base_path: The base path under which all service paths exist.
 
   Returns:
-    A webapp2.Route.
+    A tuple containing a URL string and a path.
   """
-  return webapp2.Route('%s/discovery/v1/apis/<name>/<version>/rest' % base_path,
-                       discovery_handler_factory(api_classes, base_path))
+  return ('%s/discovery/v1/apis/<name>/<version>/rest' % base_path,
+          discovery_handler_factory(api_classes, base_path))
 
 
 def directory_handler_factory(api_classes, base_path):
@@ -284,6 +285,8 @@ def directory_handler_factory(api_classes, base_path):
 
   Returns:
     A webapp2.RequestHandler.
+
+    #TODO: make this return a Flask handler function
   """
 
   class DirectoryHandler(webapp2.RequestHandler):
@@ -310,10 +313,10 @@ def directory_service_route(api_classes, base_path):
     base_path: The base path under which all service paths exist.
 
   Returns:
-    A webapp2.Route.
+    A tuple containing a URL string and a path.
   """
-  return webapp2.Route('%s/discovery/v1/apis' % base_path,
-                       directory_handler_factory(api_classes, base_path))
+  return (('%s/discovery/v1/apis' % base_path,
+           directory_handler_factory(api_classes, base_path)))
 
 
 def explorer_proxy_route(base_path):
@@ -323,7 +326,7 @@ def explorer_proxy_route(base_path):
     base_path: The base path under which all service paths exist.
 
   Returns:
-    A webapp2.Route.
+    A tuple containing a URL string and a path.
   """
 
   class ProxyHandler(webapp2.RequestHandler):
@@ -337,7 +340,7 @@ def explorer_proxy_route(base_path):
   template.bootstrap({
       'adapter': os.path.join(THIS_DIR, 'templates'),
   })
-  return webapp2.Route('%s/static/proxy.html' % base_path, ProxyHandler)
+  return (('%s/static/proxy.html' % base_path, ProxyHandler))
 
 
 def explorer_redirect_route(base_path):
@@ -347,7 +350,7 @@ def explorer_redirect_route(base_path):
     base_path: The base path under which all service paths exist.
 
   Returns:
-    A webapp2.Route.
+    A tuple containing a URL string and a path.
   """
 
   class RedirectHandler(webapp2.RequestHandler):
@@ -358,4 +361,4 @@ def explorer_redirect_route(base_path):
       self.redirect('https://apis-explorer.appspot.com/apis-explorer'
                     '/?base=https://%s%s' % (host, base_path))
 
-  return webapp2.Route('%s/explorer' % base_path, RedirectHandler)
+  return (('%s/explorer' % base_path, RedirectHandler))
