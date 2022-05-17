@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65962180_5d0bcbe5",
+        "filename": "appengine/components/components/endpoints_flask/OWNERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-05-17T17:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fd465ad_b9bbbfb0",
+      "revId": "f634983a3f22953636e6a48ba89a2b89e970bcc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7cf2c7da_cd04a55b",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-05-16T15:18:58Z",
       "side": 1,
       "message": "update the description?",
+      "revId": "f634983a3f22953636e6a48ba89a2b89e970bcc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a6dcb87_c0c6a7fd",
+        "filename": "appengine/components/components/endpoints_flask/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-05-17T17:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cf2c7da_cd04a55b",
       "revId": "f634983a3f22953636e6a48ba89a2b89e970bcc7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
