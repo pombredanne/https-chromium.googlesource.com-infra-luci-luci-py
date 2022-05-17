@@ -22,6 +22,30 @@
       },
       "revId": "e4479c04603411fe14b53bfe858d71ea5ce675b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d55ac5a1_219b41b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-05-17T06:34:24Z",
+      "side": 1,
+      "message": "Ahhh I see, because we added the extra field, the old metric wouldn\u0027t contain the new one. Thanks.",
+      "parentUuid": "8c204e41_224533d0",
+      "range": {
+        "startLine": 9,
+        "startChar": 24,
+        "endLine": 9,
+        "endChar": 61
+      },
+      "revId": "e4479c04603411fe14b53bfe858d71ea5ce675b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
