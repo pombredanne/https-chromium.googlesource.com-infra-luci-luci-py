@@ -16,6 +16,24 @@
       "message": "why do you need to change formatting style?",
       "revId": "5dd6094a9369de818d203cee86f3d55108b76aa9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a809086e_7a8dd7bc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-05-18T03:45:13Z",
+      "side": 1,
+      "message": "This actually would conserve the formatting style. Currently the names are being converted to lowerCamelCase since this is not set. This is changing the schema of the json.\n\nDocs:\nhttps://googleapis.dev/python/protobuf/latest/google/protobuf/json_format.html",
+      "parentUuid": "bc6cc9bd_20020ea4",
+      "revId": "5dd6094a9369de818d203cee86f3d55108b76aa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
