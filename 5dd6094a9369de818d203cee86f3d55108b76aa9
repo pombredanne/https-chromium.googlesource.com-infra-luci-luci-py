@@ -34,6 +34,24 @@
       "parentUuid": "bc6cc9bd_20020ea4",
       "revId": "5dd6094a9369de818d203cee86f3d55108b76aa9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fefd85f1_a41bb479",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-05-18T04:00:25Z",
+      "side": 1,
+      "message": "I know this changes naming schema, but want to know why your application doesn\u0027t like current naming style.\n\nI think it is recommended to follow\nhttps://google.github.io/styleguide/jsoncstyleguide.xml?showone\u003dProperty_Name_Format#Property_Name_Format\nfor json.",
+      "parentUuid": "a809086e_7a8dd7bc",
+      "revId": "5dd6094a9369de818d203cee86f3d55108b76aa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
