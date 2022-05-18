@@ -16,6 +16,24 @@
       "message": "lgtm (thank you for doing this, the jsonpb naming scheme is bonkers, much better to just use the defined field names)",
       "revId": "26a4248c1c5c071dc3fe1f6bb144e4149cfb1c39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4b253d3_6bdd64dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-05-18T16:00:34Z",
+      "side": 1,
+      "message": "of course no problem!",
+      "parentUuid": "7a853048_c1696fcc",
+      "revId": "26a4248c1c5c071dc3fe1f6bb144e4149cfb1c39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
