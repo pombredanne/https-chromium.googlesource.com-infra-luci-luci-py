@@ -52,6 +52,24 @@
       "parentUuid": "a809086e_7a8dd7bc",
       "revId": "5dd6094a9369de818d203cee86f3d55108b76aa9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b12d8d61_de1fff29",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-05-18T04:14:08Z",
+      "side": 1,
+      "message": "It creates confusion determining which names have changed. The bot_events table does not follow the lowerCamelCase style so each variable name would need to be changed to account for the different naming scheme.\n\nchromeos-swarming.bot_events:\nhttps://console.cloud.google.com/bigquery?d\u003dswarming\u0026p\u003dchromeos-swarming\u0026page\u003dtable\u0026t\u003dbot_events\u0026project\u003dchromeos-swarming\u0026ws\u003d!1m5!1m4!4m3!1schromeos-swarming!2sswarming!3sbot_events",
+      "parentUuid": "fefd85f1_a41bb479",
+      "revId": "5dd6094a9369de818d203cee86f3d55108b76aa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
