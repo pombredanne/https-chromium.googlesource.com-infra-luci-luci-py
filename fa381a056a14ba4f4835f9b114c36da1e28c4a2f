@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e9388b2_4ea4e4d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-18T20:20:01Z",
+      "side": 1,
+      "message": "Given the number of changes to the interface, I\u0027m surprised that the tests do not need to be updated. I wonder whether we ought to update the tests too so that the interface changes are tested properly?",
+      "revId": "fa381a056a14ba4f4835f9b114c36da1e28c4a2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59ff2932_30d2c837",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-18T20:20:01Z",
+      "side": 1,
+      "message": "Are we still using this import?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 14
+      },
+      "revId": "fa381a056a14ba4f4835f9b114c36da1e28c4a2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26d337a4_080de622",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-18T20:20:01Z",
+      "side": 1,
+      "message": "If this is no longer a request body, could we rename this variable to something relevant?",
+      "range": {
+        "startLine": 54,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 6
+      },
+      "revId": "fa381a056a14ba4f4835f9b114c36da1e28c4a2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ce64094_f264acd4",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-18T20:20:01Z",
+      "side": 1,
+      "message": "Could the TODOs include either:\na) link to an issue, this could be the umbrella tracking issue or a new one you file\nb) your ldap",
+      "range": {
+        "startLine": 72,
+        "startChar": 42,
+        "endLine": 72,
+        "endChar": 47
+      },
+      "revId": "fa381a056a14ba4f4835f9b114c36da1e28c4a2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34c9f3e8_3a689188",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-18T20:20:01Z",
+      "side": 1,
+      "message": "Does this need an import?",
+      "range": {
+        "startLine": 124,
+        "startChar": 33,
+        "endLine": 124,
+        "endChar": 44
+      },
+      "revId": "fa381a056a14ba4f4835f9b114c36da1e28c4a2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3ac6802_a1028744",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-18T20:20:01Z",
+      "side": 1,
+      "message": "Do we need double parentheses here and on line 198?",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 48
+      },
+      "revId": "fa381a056a14ba4f4835f9b114c36da1e28c4a2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cf7cc30_d8f92eb8",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-18T20:20:01Z",
+      "side": 1,
+      "message": "This method\u0027s documentation was updated to return `A tuple containing a URL string and a path.` Do these methods need to specify an HTTP method?",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 54
+      },
+      "revId": "fa381a056a14ba4f4835f9b114c36da1e28c4a2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91b0f393_86a1c169",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-18T20:20:01Z",
+      "side": 1,
+      "message": "This looks like too many parentheses or I have misunderstood this line?",
+      "range": {
+        "startLine": 344,
+        "startChar": 0,
+        "endLine": 344,
+        "endChar": 61
+      },
+      "revId": "fa381a056a14ba4f4835f9b114c36da1e28c4a2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4b5533c_da939302",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-18T20:20:01Z",
+      "side": 1,
+      "message": "This looks like too many parentheses or I have misunderstood this line?",
+      "range": {
+        "startLine": 365,
+        "startChar": 0,
+        "endLine": 365,
+        "endChar": 55
+      },
+      "revId": "fa381a056a14ba4f4835f9b114c36da1e28c4a2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
