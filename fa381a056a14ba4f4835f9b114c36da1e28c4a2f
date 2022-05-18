@@ -133,6 +133,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd015d23_a50fa2b0",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-05-18T23:32:54Z",
+      "side": 1,
+      "message": "I believe they are needed here: one set to define a tuple and one set to call the function.",
+      "parentUuid": "b3ac6802_a1028744",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 48
+      },
+      "revId": "fa381a056a14ba4f4835f9b114c36da1e28c4a2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4cf7cc30_d8f92eb8",
@@ -152,6 +176,23 @@
         "endLine": 202,
         "endChar": 54
       },
+      "revId": "fa381a056a14ba4f4835f9b114c36da1e28c4a2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42f98cc3_361fb6e8",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-05-18T23:32:54Z",
+      "side": 1,
+      "message": "nit: extra parentheses",
       "revId": "fa381a056a14ba4f4835f9b114c36da1e28c4a2f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
