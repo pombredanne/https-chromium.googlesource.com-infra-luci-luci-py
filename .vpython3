@@ -11,6 +11,11 @@ wheel: <
  version: "version:5.5.chromium.2"
 >
 
+wheel: <
+  name: "infra/python/wheels/flask-py2_py3"
+  version: "version:1.0.2"
+>
+
 # required by nose2
 wheel: <
  name: "infra/python/wheels/funcsigs-py2_py3"
