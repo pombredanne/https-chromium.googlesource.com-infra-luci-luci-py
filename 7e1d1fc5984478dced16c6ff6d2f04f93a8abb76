@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "659b6bfa_a6a987be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-05-19T21:29:04Z",
+      "side": 1,
+      "message": "You\u0027d also need to update .vpython for Python 2",
+      "revId": "7e1d1fc5984478dced16c6ff6d2f04f93a8abb76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
