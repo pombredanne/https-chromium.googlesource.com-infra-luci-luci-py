@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "129418c7_72cdc13d",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1530767
+      },
+      "writtenOn": "2022-05-19T18:08:05Z",
+      "side": 1,
+      "message": "i think it should be request.args",
+      "revId": "4b4f39754fdd54d91f6393aac6f4aba0cdb3b124",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
