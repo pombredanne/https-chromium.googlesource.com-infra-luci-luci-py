@@ -14,6 +14,7 @@ from protorpc import messages
 from protorpc import remote
 import endpoints
 import webapp2
+from flask import Flask
 
 from test_support import test_case
 import adapter
@@ -46,21 +47,21 @@ class EndpointsService(remote.Service):
     raise endpoints.ForbiddenException('access denied')
 
 
-class EndpointsWebapp2TestCase(test_case.TestCase):
+class EndpointsFlaskTestCase(test_case.TestCase):
   def test_decode_message_post(self):
-    request = webapp2.Request(
+    request = Flask.Request(  #TODO(msriniv): flask.request
         {
             'QUERY_STRING': 's2=b',
         },
         method='POST',
-        body='{"s": "a"}',
+        data='{"s": "a"}',
     )
     msg = adapter.decode_message(EndpointsService.post.remote, request)
     self.assertEqual(msg.s, 'a')
     self.assertEqual(msg.s2, None)  # because it is not a ResourceContainer.
 
   def test_decode_message_get(self):
-    request = webapp2.Request(
+    request = webapp2.Request(  #TODO(msriniv): flask.request
         {
             'QUERY_STRING': 's=a',
         },
@@ -72,7 +73,7 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
     self.assertEqual(msg.s2, 'b')
 
   def test_decode_message_get_resource_container(self):
-    request = webapp2.Request(
+    request = webapp2.Request(  #TODO(msriniv): flask.request
         {
             'QUERY_STRING': 's=a',
         },
@@ -88,9 +89,11 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
     self.assertEqual(rc.x, 'c')
 
   def test_handle_403(self):
+    #TODO(msriniv): Flask.app('EndpointsService')
     app = webapp2.WSGIApplication(adapter.api_routes([EndpointsService],
                                                      '/_ah/api'),
                                   debug=True)
+    #TODO(msriniv): flask.request
     request = webapp2.Request.blank('/_ah/api/Service/v1/post_403')
     request.method = 'POST'
     response = request.get_response(app)
@@ -102,8 +105,7 @@ class EndpointsWebapp2TestCase(test_case.TestCase):
     })
 
   def test_api_routes(self):
-    routes = sorted(
-        [r.template for r in adapter.api_routes([EndpointsService])])
+    routes = sorted([r[0] for r in adapter.api_routes([EndpointsService])])
     self.assertEqual(
         routes,
         [
