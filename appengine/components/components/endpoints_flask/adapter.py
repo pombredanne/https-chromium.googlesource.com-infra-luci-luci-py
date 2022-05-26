@@ -14,6 +14,7 @@ from endpoints import protojson
 from protorpc import message_types
 from protorpc import messages
 from protorpc import remote
+import flask
 import webapp2
 
 from components import template
@@ -102,63 +103,68 @@ def path_handler(api_class, api_method, service_path):
   # Why return a class? Because webapp2 explicitly checks if handler that we
   # passed to Route is a class.
 
-  class Handler(webapp2.RequestHandler):
-    def dispatch(self):
-      add_cors_headers(self.response.headers)
+  # flask.request stuff
 
-      api = api_class()
-      api.initialize_request_state(
-          remote.HttpRequestState(remote_host=None,
-                                  remote_address=self.request.remote_addr,
-                                  server_host=self.request.host,
-                                  server_port=self.request.server_port,
-                                  http_method=self.request.method,
-                                  service_path=service_path,
-                                  headers=self.request.headers.items()))
+  response = flask.make_response()
+  status = 200
+  content_type = ''
+  #TODO: set status and content_type in the actual response
 
-      try:
-        req = decode_message(api_method.remote, self.request)
-        # Check that required fields are populated.
-        req.check_initialized()
-      except (messages.DecodeError, messages.ValidationError, ValueError) as ex:
-        response_body = json.dumps({'error': {'message': ex.message}})
-        self.response.set_status(http_client.BAD_REQUEST)
+  add_cors_headers(response.headers)
+
+  api = api_class()
+  api.initialize_request_state(
+      remote.HttpRequestState(remote_host=None,
+                              remote_address=flask.request.remote_addr,
+                              server_host=flask.request.host,
+                              server_port=flask.request.server_port,
+                              http_method=flask.request.method,
+                              service_path=service_path,
+                              headers=flask.request.headers.items()))
+
+  try:
+    req = decode_message(api_method.remote, flask.request)
+    # Check that required fields are populated.
+    req.check_initialized()
+  except (messages.DecodeError, messages.ValidationError, ValueError) as ex:
+    response_body = json.dumps({'error': {'message': ex.message}})
+    status = http_client.BAD_REQUEST
+  else:
+    try:
+      res = api_method(api, req)
+    except endpoints.ServiceException as ex:
+      response_body = json.dumps({'error': {'message': ex.message}})
+      status = ex.http_status
+    else:
+      if isinstance(res, message_types.VoidMessage):
+        status = 204
+        response_body = None
       else:
-        try:
-          res = api_method(api, req)
-        except endpoints.ServiceException as ex:
-          response_body = json.dumps({'error': {'message': ex.message}})
-          self.response.set_status(ex.http_status)
-        else:
-          if isinstance(res, message_types.VoidMessage):
-            self.response.set_status(204)
-            response_body = None
-          else:
-            response_body = PROTOCOL.encode_message(res)
-            if self.request.get('fields'):
-              try:
-                # PROTOCOL.encode_message checks that the message is initialized
-                # before dumping it directly to JSON string. Therefore we can't
-                # mask the protocol buffer (if masking removes a required field
-                # then encode_message will fail). Instead, call encode_message
-                # first, then load the JSON string into a dict, mask the dict,
-                # and dump it back to JSON.
-                response_body = json.dumps(
-                    partial.mask(json.loads(response_body),
-                                 self.request.get('fields')))
-              except (partial.ParsingError, ValueError) as e:
-                # Log the error but return the full response.
-                logging.warning('Ignoring erroneous field mask %r: %s',
-                                self.request.get('fields'), e)
+        response_body = PROTOCOL.encode_message(res)
+        if flask.request.get('fields'):
+          try:
+            # PROTOCOL.encode_message checks that the message is initialized
+            # before dumping it directly to JSON string. Therefore we can't
+            # mask the protocol buffer (if masking removes a required field
+            # then encode_message will fail). Instead, call encode_message
+            # first, then load the JSON string into a dict, mask the dict,
+            # and dump it back to JSON.
+            response_body = json.dumps(
+                partial.mask(json.loads(response_body),
+                             flask.request.get('fields')))
+          except (partial.ParsingError, ValueError) as e:
+            # Log the error but return the full response.
+            logging.warning('Ignoring erroneous field mask %r: %s',
+                            flask.request.get('fields'), e)
 
-      if self.response.status_int != 204:
-        self.response.content_type = 'application/json; charset=utf-8'
-        self.response.out.write(response_body)
-      else:
-        # webob sets content_type to text/html by default.
-        self.response.content_type = ''
-
-  return Handler
+  if status != 204:
+    content_type = 'application/json; charset=utf-8'
+    response.out.write(response_body)
+  else:
+    # webob sets content_type to text/html by default.
+    content_type = ''
+  response = flask.make_response(response_body, status)
+  return response
 
 
 def api_routes(api_classes, base_path='/_ah/api', regex='[^/]+'):
