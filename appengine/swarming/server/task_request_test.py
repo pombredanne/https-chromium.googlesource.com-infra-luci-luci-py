@@ -421,25 +421,21 @@ class TaskRequestApiTest(TestCase):
 
   def test_new_request_key(self):
     for _ in range(3):
-      delta = utils.utcnow() - task_request._BEGINING_OF_THE_WORLD
-      now = int(round(delta.total_seconds() * 1000.))
       key = task_request.new_request_key()
       # Remove the XOR.
       key_id = key.integer_id() ^ task_pack.TASK_REQUEST_KEY_ID_MASK
-      timestamp = key_id >> 20
-      randomness = (key_id >> 4) & 0xFFFF
+      randomness = (key_id >> 4)
       version = key_id & 0xF
-      self.assertLess(abs(timestamp - now), 1000)
       self.assertEqual(1, version)
       if randomness:
         break
     else:
       self.fail('Failed to find randomness')
 
-  def test_new_request_key_zero(self):
+  def test_new_request_key(self):
 
     def getrandbits(i):
-      self.assertEqual(i, 16)
+      self.assertEqual(i, 59)
       return 0x7766
 
     self.mock(random, 'getrandbits', getrandbits)
@@ -447,42 +443,11 @@ class TaskRequestApiTest(TestCase):
     key = task_request.new_request_key()
     # Remove the XOR.
     key_id = key.integer_id() ^ task_pack.TASK_REQUEST_KEY_ID_MASK
-    #   00000000000 7766 1
-    #     ^          ^   ^
-    #     |          |   |
-    #  since 2010    | schema version
-    #                |
-    #               rand
+    #   000000000007766 1
+    #          ^        ^
+    #          |        |
+    #        rand    schema version
     self.assertEqual('0x0000000000077661', '0x%016x' % key_id)
-
-  def test_new_request_key_end(self):
-
-    def getrandbits(i):
-      self.assertEqual(i, 16)
-      return 0x7766
-
-    self.mock(random, 'getrandbits', getrandbits)
-    days_until_end_of_the_world = 2**43 / 24. / 60. / 60. / 1000.
-    num_days = int(days_until_end_of_the_world)
-    # Remove 1ms to not overflow.
-    num_seconds = ((days_until_end_of_the_world - num_days) * 24. * 60. * 60. -
-                   0.001)
-    self.assertEqual(101806, num_days)
-    self.assertEqual(278, int(num_days / 365.3))
-    now = (
-        task_request._BEGINING_OF_THE_WORLD +
-        datetime.timedelta(days=num_days, seconds=num_seconds))
-    self.mock_now(now)
-    key = task_request.new_request_key()
-    # Remove the XOR.
-    key_id = key.integer_id() ^ task_pack.TASK_REQUEST_KEY_ID_MASK
-    #   7ffffffffff 7766 1
-    #     ^          ^   ^
-    #     |          |   |
-    #  since 2010    | schema version
-    #                |
-    #               rand
-    self.assertEqual('0x7ffffffffff77661', '0x%016x' % key_id)
 
   def test_validate_request_key(self):
     task_request.validate_request_key(task_pack.unpack_request_key('11'))
@@ -890,11 +855,6 @@ class TaskRequestApiTest(TestCase):
 
   def test_TaskRequest_to_proto(self):
     # Try to set as much things as possible to exercise most code paths.
-    def getrandbits(i):
-      self.assertEqual(i, 16)
-      return 0x7766
-
-    self.mock(random, 'getrandbits', getrandbits)
     self.mock_now(task_request._BEGINING_OF_THE_WORLD)
 
     # Grand parent entity must have a valid key id and be stored.
@@ -955,6 +915,12 @@ class TaskRequestApiTest(TestCase):
         pubsub_userdata=u'obscure_reference',
     )
     # Necessary to have a valid task_id:
+
+    def getrandbits(i):
+      self.assertEqual(i, 59)
+      return 0x7766
+
+    self.mock(random, 'getrandbits', getrandbits)
     request.key = task_request.new_request_key()
     # Necessary to attach a secret to the request:
     request.put()
@@ -1034,12 +1000,12 @@ class TaskRequestApiTest(TestCase):
         ],
         user=u'Jesus',
         # Hierarchy.
-        task_id=u'7d0776610',
+        task_id=u'776610',
         parent_task_id=parent.task_id,
         parent_run_id=parent_run_id,
         # Notification. auth_token cannot be retrieved.
-        pubsub_notification=swarming_pb2.PubSub(
-            topic=u'projects/a/topics/abc', userdata=u'obscure_reference'),
+        pubsub_notification=swarming_pb2.PubSub(topic=u'projects/a/topics/abc',
+                                                userdata=u'obscure_reference'),
     )
 
     actual = swarming_pb2.TaskRequest()
@@ -1712,24 +1678,10 @@ class TaskRequestApiTest(TestCase):
     task_request.validate_package_version('version', '7')
 
 
-  def test_datetime_to_request_base_id(self):
-    now = datetime.datetime(2012, 1, 2, 3, 4, 5, 123456)
-    self.assertEqual(0xeb5313d0300000,
-                     task_request.datetime_to_request_base_id(now))
-
   def test_convert_to_request_key(self):
     """Indirectly tested by API."""
-    now = datetime.datetime(2012, 1, 2, 3, 4, 5, 123456)
-    key = task_request.convert_to_request_key(now)
-    self.assertEqual(9157134072765480958, key.id())
-
-  def test_request_key_to_datetime(self):
-    key = ndb.Key(task_request.TaskRequest, 0x7f14acec2fcfffff)
-    # Resolution is only kept at millisecond level compared to
-    # datetime_to_request_base_id() by design.
-    self.assertEqual(
-        datetime.datetime(2012, 1, 2, 3, 4, 5, 123000),
-        task_request.request_key_to_datetime(key))
+    self.assertEqual(9223372036854286750,
+                     task_request.convert_to_request_key(0x7766).id())
 
   def test_request_id_to_key(self):
     # Simple XOR.
@@ -1809,12 +1761,6 @@ class TaskRequestApiTest(TestCase):
     self.assertEqual(0, task_request.task_bq(start, end))
 
   def test_task_bq(self):
-
-    def getrandbits(i):
-      self.assertEqual(i, 16)
-      return 0x7766
-
-    self.mock(random, 'getrandbits', getrandbits)
     payloads = []
 
     def send_to_bq(table_name, rows):

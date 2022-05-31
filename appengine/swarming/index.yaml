@@ -36,6 +36,19 @@ indexes:
   - name: failure
   - name: state
 
+- kind: TaskResultSummary
+  properties:
+  - name: state
+  - name: tags
+  - name: created_ts
+    direction: desc
+
+- kind: TaskResultSummary
+  properties:
+  - name: state
+  - name: created_ts
+    direction: desc
+
 - kind: TaskRunResult
   properties:
   - name: bot_id
