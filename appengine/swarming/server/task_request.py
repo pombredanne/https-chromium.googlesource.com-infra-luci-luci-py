@@ -1519,8 +1519,8 @@ def new_request_key():
   reason is that increasing key id values are in decreasing timestamp order.
   """
   # TODO(maruel): Use real randomness.
-  suffix = random.getrandbits(16)
-  return convert_to_request_key(utils.utcnow(), suffix)
+  request_id = random.getrandbits(60)
+  return convert_to_request_key(request_id)
 
 
 def request_key_to_datetime(request_key):
@@ -1536,22 +1536,9 @@ def request_key_to_datetime(request_key):
   return _BEGINING_OF_THE_WORLD + datetime.timedelta(seconds=offset_ms)
 
 
-def datetime_to_request_base_id(now):
-  """Converts a datetime into a TaskRequest key base value.
-
-  Used for query order().
-  """
-  if now < _BEGINING_OF_THE_WORLD:
-    raise ValueError('Time %s is set to before %s' %
-                     (now, _BEGINING_OF_THE_WORLD))
-  delta = now - _BEGINING_OF_THE_WORLD
-  return int(round(delta.total_seconds() * 1000.)) << 20
-
-
-def convert_to_request_key(date, suffix=0):
-  assert 0 <= suffix <= 0xffff
-  request_id_base = datetime_to_request_base_id(date)
-  return request_id_to_key(int(request_id_base | suffix << 4 | 0x1))
+def convert_to_request_key(request_id_base):
+  assert 0 <= request_id_base <= 0xfffffffffffffff
+  return request_id_to_key(int(request_id_base | 0x1))
 
 
 def request_id_to_key(request_id):
