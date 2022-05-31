@@ -592,6 +592,7 @@ def _pubsub_notify(task_id, topic, auth_token, userdata, tags, state,
       latency = 0
     logging.debug('Updating ts_mon_metric pubsub with latency: %dms (%d - %d)',
                   latency, now, start_time)
+    http_status_code = 0
     ts_mon_metrics.on_task_status_change_pubsub_update_metrics(
         tags, state, http_status_code, latency)
 
