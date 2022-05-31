@@ -211,7 +211,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     expected_kind = 'TaskToRunShard%d' % shard
     # Ensures that the hash value is constant for the same input.
     self.assertEqual(
-        ndb.Key('TaskRequest', 0x7bddaa9d777ff77e, expected_kind, 1),
+        ndb.Key('TaskRequest', 0x7ffffffffffff77e, expected_kind, 1),
         task_to_run.request_to_task_to_run_key(request, 1, 0))
 
   def test_gen_queue_number(self):
@@ -345,7 +345,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     to_run = task_to_run.new_task_to_run(request, 0)
     self.assertEqual(1, to_run.try_number)
     self.assertEqual(1, task_to_run.task_to_run_key_try_number(to_run.key))
-    self.assertEqual('4225562888008811', to_run.task_id)
+    self.assertEqual('8811', to_run.task_id)
 
   def test_new_task_to_run_list(self):
     self.mock(random, 'getrandbits', lambda _: 0x12)
@@ -386,7 +386,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
             'created_ts': self.now,
             'expiration_ts': self.now + datetime.timedelta(seconds=31),
             'expiration_delay': None,
-            'request_key': '0x7bddaa9d777ffdce',
+            'request_key': '0x7ffffffffffffdce',
             # Lower priority value means higher priority.
             'queue_number': '0x1a3aa663153d248e',
             'task_slice_index': 0,
@@ -396,7 +396,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
             'created_ts': self.now,
             'expiration_ts': self.now + datetime.timedelta(seconds=31),
             'expiration_delay': None,
-            'request_key': '0x7bddaa9d777ffede',
+            'request_key': '0x7ffffffffffffede',
             'queue_number': '0x1a3aa66317bd248e',
             'task_slice_index': 0,
             'try_number': 1,

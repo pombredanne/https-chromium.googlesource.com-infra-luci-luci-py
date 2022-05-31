@@ -1496,62 +1496,30 @@ def create_termination_task(bot_id, wait_for_capacity):
 def new_request_key():
   """Returns a valid ndb.Key for this entity.
 
-  Task id is a 64 bits integer represented as a string to the user:
-  - 1 highest order bits set to 0 to keep value positive.
-  - 43 bits is time since _BEGINING_OF_THE_WORLD at 1ms resolution.
-    It is good for 2**43 / 365.3 / 24 / 60 / 60 / 1000 = 278 years or 2010+278 =
-    2288. The author will be dead at that time.
-  - 16 bits set to a random value or a server instance specific value. Assuming
-    an instance is internally consistent with itself, it can ensure to not reuse
-    the same 16 bits in two consecutive requests and/or throttle itself to one
-    request per millisecond.
-    Using random value reduces to 2**-15 the probability of collision on exact
-    same timestamp at 1ms resolution, so a maximum theoretical rate of 65536000
-    requests/sec but an effective rate in the range of ~64k requests/sec without
-    much transaction conflicts. We should be fine.
+  Task id is a 63 bits integer represented as a string to the user:
+  - The first 59 bits are randomly selected.
   - 4 bits set to 0x1. This is to represent the 'version' of the entity schema.
     Previous version had 0. Note that this value is XOR'ed in the DB so it's
     stored as 0xE. When the TaskRequest entity tree is modified in a breaking
     way that affects the packing and unpacking of task ids, this value should be
     bumped.
 
+  The max length of ndb key is 63 bits.
+  See _MAX_LONG in
+  https://cloud.google.com/appengine/docs/standard/python/refdocs/modules/google/appengine/ext/ndb/key
+
   The key id is this value XORed with task_pack.TASK_REQUEST_KEY_ID_MASK. The
-  reason is that increasing key id values are in decreasing timestamp order.
+  historical reason was that increasing key id values are in decreasing timestamp order.
+  TODO: remove XOR logics as it does not rely on the key ordering anymore.
   """
   # TODO(maruel): Use real randomness.
-  suffix = random.getrandbits(16)
-  return convert_to_request_key(utils.utcnow(), suffix)
+  request_id = random.getrandbits(59)
+  return convert_to_request_key(request_id)
 
 
-def request_key_to_datetime(request_key):
-  """Converts a TaskRequest.key to datetime.
-
-  See new_request_key() for more details.
-  """
-  if request_key.kind() != 'TaskRequest':
-    raise ValueError('Expected key to TaskRequest, got %s' % request_key.kind())
-  # Ignore lowest 20 bits.
-  xored = request_key.integer_id() ^ task_pack.TASK_REQUEST_KEY_ID_MASK
-  offset_ms = (xored >> 20) / 1000.
-  return _BEGINING_OF_THE_WORLD + datetime.timedelta(seconds=offset_ms)
-
-
-def datetime_to_request_base_id(now):
-  """Converts a datetime into a TaskRequest key base value.
-
-  Used for query order().
-  """
-  if now < _BEGINING_OF_THE_WORLD:
-    raise ValueError('Time %s is set to before %s' %
-                     (now, _BEGINING_OF_THE_WORLD))
-  delta = now - _BEGINING_OF_THE_WORLD
-  return int(round(delta.total_seconds() * 1000.)) << 20
-
-
-def convert_to_request_key(date, suffix=0):
-  assert 0 <= suffix <= 0xffff
-  request_id_base = datetime_to_request_base_id(date)
-  return request_id_to_key(int(request_id_base | suffix << 4 | 0x1))
+def convert_to_request_key(request_id_base):
+  assert 0 <= request_id_base <= 0xfffffffffffffff
+  return request_id_to_key(int(request_id_base << 4 | 0x1))
 
 
 def request_id_to_key(request_id):
@@ -1932,8 +1900,8 @@ def cron_delete_old_task_requests():
   tasks_succeeded = 0
   tasks_failed = 0
   end_ts = start - _OLD_TASK_REQUEST_CUT_OFF
-  first = None
-  last = None
+  first_ts = None
+  last_ts = None
   try:
     # Key ordering is by most recent first. We want the reverse, delete the
     # oldest first. That would require ordering by -TaskRequest.key, which would
@@ -1943,6 +1911,7 @@ def cron_delete_old_task_requests():
     # Using a keys_only request is eventually consistent, which is normally
     # risky. Here this is fine because this is year+ old entities, so the index
     # should be consistent. :)
+    #TODO(jwata): order by created_ts
     q = TaskRequest.query(default_options=opt).filter(
         TaskRequest.created_ts <= end_ts)
     cursor = None
@@ -1953,9 +1922,11 @@ def cron_delete_old_task_requests():
         break
       total += len(keys)
       data = {u'task_ids': [task_pack.pack_request_key(k) for k in keys]}
-      if not first:
-        first = keys[0]
-      last = keys[-1]
+      if not first_ts:
+        first = keys[0].get()
+        first_ts = first.created_ts if first else None
+      last = keys[-1].get()
+      last_ts = last.created_ts if last else None
       ok = utils.enqueue_task(
           '/internal/taskqueue/cleanup/tasks/delete',
           'delete-tasks',
@@ -1968,9 +1939,6 @@ def cron_delete_old_task_requests():
       if not more:
         break
   finally:
-    first_ts = request_key_to_datetime(first) if first else None
-    last_ts = request_key_to_datetime(last) if last else None
-
     def _format_ts(t):
       # datetime.datetime
       return t.strftime(u'%Y-%m-%d %H:%M') if t else 'N/A'

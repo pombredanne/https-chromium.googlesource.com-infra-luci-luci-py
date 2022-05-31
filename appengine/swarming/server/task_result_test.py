@@ -147,7 +147,13 @@ class TaskResultApiTest(TestCase):
     super(TaskResultApiTest, self).setUp()
     self.now = datetime.datetime(2014, 1, 2, 3, 4, 5, 6)
     self.mock_now(self.now)
-    self.mock(random, 'getrandbits', lambda _: 0x88)
+
+    self.getrandbits_called = 0
+    def getrandbits(_):
+      self.getrandbits_called += 1
+      return 0x87 + self.getrandbits_called
+
+    self.mock(random, 'getrandbits', getrandbits)
 
   def assertEntities(self, expected, entity_model):
     self.assertEqual(expected, get_entities(entity_model))
@@ -174,7 +180,7 @@ class TaskResultApiTest(TestCase):
         'failure': False,
         # Constant due to the mock of both utils.utcnow() and
         # random.getrandbits().
-        'id': '1d69b9f088008810',
+        'id': '8810',
         'internal_failure': False,
         'modified_ts': None,
         'name': u'Request name',
@@ -222,7 +228,7 @@ class TaskResultApiTest(TestCase):
         'failure': False,
         # Constant due to the mock of both utils.utcnow() and
         # random.getrandbits().
-        'id': '1d69b9f088008811',
+        'id': '8811',
         'internal_failure': False,
         'killing': None,
         'modified_ts': None,
@@ -402,7 +408,7 @@ class TaskResultApiTest(TestCase):
     with mock.patch('server.resultdb.finalize_invocation_async',
                     mock.Mock(side_effect=nop_async)) as mocked:
       summary.put()
-      mocked.assert_called_once_with('1d69b9f088008811', 'secret')
+      mocked.assert_called_once_with('8811', 'secret')
 
   def test_result_summary_post_hook_sends_metric_at_no_resource_failure(self):
     request = _gen_request()
@@ -875,7 +881,7 @@ class TaskResultApiTest(TestCase):
             authenticated=u"user:mocked@example.com",
             tags=[
                 u"authenticated:user:mocked@example.com",
-                u'parent_task_id:1d69b9f470008811',
+                u'parent_task_id:8b11',
                 u'pool:default',
                 u'priority:50',
                 u'realm:none',
@@ -885,9 +891,9 @@ class TaskResultApiTest(TestCase):
                 u'user:Jesus',
             ],
             user=u'Jesus',
-            task_id=u'1d69b9f858008810',
-            parent_task_id='1d69b9f470008810',
-            parent_run_id='1d69b9f470008811',
+            task_id=u'8c10',
+            parent_task_id='8b10',
+            parent_run_id='8b11',
         ),
         duration=duration_pb2.Duration(seconds=1),
         state=swarming_pb2.TIMED_OUT,
@@ -905,8 +911,8 @@ class TaskResultApiTest(TestCase):
         ),
         server_versions=[u'v1a'],
         children_task_ids=[u'12310'],
-        task_id=u'1d69b9f858008810',
-        run_id=u'1d69b9f858008811',
+        task_id=u'8c10',
+        run_id=u'8c11',
         cipd_pins=swarming_pb2.CIPDPins(
             server=u'http://localhost:2',
             client_package=swarming_pb2.CIPDPackage(
@@ -997,10 +1003,10 @@ class TaskResultApiTest(TestCase):
     self.assertEqual(unicode(expected), unicode(actual))
 
     # Make sure the root task id is the grand parent.
-    self.assertEqual(u'1d69b9f088008810', grand_parent.task_id)
-    self.assertEqual(u'1d69b9f088008811', grand_parent_run_id)
+    self.assertEqual(u'8910', grand_parent.task_id)
+    self.assertEqual(u'8911', grand_parent_run_id)
     # Confirming that the parent and grand parent have different task ID.
-    self.assertEqual(u'1d69b9f470008810', parent.task_id)
+    self.assertEqual(u'8b10', parent.task_id)
     self.assertEqual(expected.request.parent_task_id, parent.task_id)
     actual = swarming_pb2.TaskResult()
     expected.request.root_task_id = grand_parent.task_id
@@ -1261,7 +1267,7 @@ class TaskResultApiTest(TestCase):
 
     results = task_result.fetch_task_results([
         running_res.task_id, pending_res.task_id, running_res_cache.task_id,
-        pending_res_cache.task_id, '1d69b9f088008812'
+        pending_res_cache.task_id, '8812'
     ])
 
     self.assertEqual(
