@@ -8,8 +8,8 @@ import json
 import sys
 import unittest
 
-import swarming_test_env
-swarming_test_env.setup_test_env()
+# Setups environment.
+import test_env_handlers
 
 from google.appengine.ext import ndb
 import webapp2
@@ -80,7 +80,7 @@ def _gen_bot_info(key_id, last_seen_ts, **kwargs):
   return bot_management.BotInfo(**args)
 
 
-class TestMetrics(test_case.TestCase):
+class TestMetrics(test_env_handlers.AppTestBase):
 
   def setUp(self):
     super(TestMetrics, self).setUp()

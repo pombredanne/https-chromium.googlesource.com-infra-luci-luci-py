@@ -196,7 +196,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     return self._enqueue_async_orig(*args, **kwargs)
 
   def _getrandbits(self, bits):
-    self.assertEqual(16, bits)
+    self.assertEqual(59, bits)
     self._random += 1
     return self._random
 
@@ -570,7 +570,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     old_gen_new_keys = self.mock(task_scheduler, '_gen_new_keys', self.fail)
     self._register_bot(0, self.bot_dimensions)
     result_summary_1 = self._quick_schedule(1)
-    self.assertEqual('1d69b9f088002a10', result_summary_1.task_id)
+    self.assertEqual('2a10', result_summary_1.task_id)
 
     def _gen_new_keys(result_summary, to_run, secret_bytes, build_token):
       self.assertTrue(result_summary)
@@ -588,7 +588,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # This leads into a constant TaskRequest key id, leading to conflict in
     # datastore_utils.insert(), which causes a call to _gen_new_keys().
     result_summary_2 = self._quick_schedule(0)
-    self.assertEqual('1d69b9f088002b10', result_summary_2.task_id)
+    self.assertEqual('2b10', result_summary_2.task_id)
 
   def test_schedule_request_new_key_idempotent(self):
     # Ensure that _gen_new_keys work by generating deterministic key, but in the
@@ -597,7 +597,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.mock_milliseconds_since_epoch(100)
     self.mock(random, 'getrandbits', lambda _bits: 42)
     task_id_1 = self._task_ran_successfully(1, 0)
-    self.assertEqual('1d69b9f088002a11', task_id_1)
+    self.assertEqual('2a11', task_id_1)
 
     def _gen_new_keys(result_summary, to_run, secret_bytes, build_token):
       self.assertTrue(result_summary)
@@ -623,7 +623,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                 wait_for_capacity=False),
         ],
         pubsub_topic='projects/abc/topics/def')
-    self.assertEqual('1d69b9f088002b10', result_summary_2.task_id)
+    self.assertEqual('2b10', result_summary_2.task_id)
     self.assertEqual(State.COMPLETED, result_summary_2.state)
     self.assertEqual(task_id_1, result_summary_2.deduped_from)
     expected = [
@@ -631,7 +631,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             'directly',
             {
                 'attributes': None,
-                'message': '{"task_id":"1d69b9f088002b10"}',
+                'message': '{"task_id":"2b10"}',
                 'topic': u'projects/abc/topics/def',
             },
         ),
@@ -659,7 +659,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             'directly',
             {
                 'attributes': None,
-                'message': '{"task_id":"1d69b9f088008910"}',
+                'message': '{"task_id":"8910"}',
                 'topic': u'projects/abc/topics/def',
             },
         ),
@@ -698,15 +698,13 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                                                        0,
                                                        enable_resultdb=True)
       mock_call.assert_called_once_with(
-          '1d69b9f088008911', 'infra:try',
-          datetime.datetime(2014, 1, 3, 3, 5, 35, 6))
+          '8911', 'infra:try', datetime.datetime(2014, 1, 3, 3, 5, 35, 6))
 
     self.assertEqual(
         result_summary.resultdb_info,
         task_result.ResultDBInfo(
             hostname='test-resultdb-server.com',
-            invocation=(
-                'invocations/task-test-swarming.appspot.com-1d69b9f088008911')))
+            invocation=('invocations/task-test-swarming.appspot.com-8911')))
     self.assertEqual(result_summary.request_key.get().resultdb_update_token,
                      'resultdb-update-token')
 
@@ -808,16 +806,14 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
       result_summary = task_scheduler.schedule_request(request,
                                                        0,
                                                        enable_resultdb=True)
-      mock_call.assert_called_once_with('1d69b9f088008911', 'infra:try',
-                                        mock.ANY)
+      mock_call.assert_called_once_with('8911', 'infra:try', mock.ANY)
 
     with mock.patch('server.resultdb.finalize_invocation_async',
                     mock.Mock(side_effect=self.nop_async)) as mock_call:
       to_run_key = task_to_run.request_to_task_to_run_key(request, 1, 0)
       self.mock_now(self.now, 60)
       task_scheduler._expire_task(to_run_key, request, True, 0)
-      mock_call.assert_called_once_with('1d69b9f088008911',
-                                        u'resultdb-update-token')
+      mock_call.assert_called_once_with('8911', u'resultdb-update-token')
 
     self.assertEqual(1, self.execute_tasks())
 
@@ -1317,7 +1313,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self._task_deduped(1,
                        new_ts,
                        task_id,
-                       '1d8dc670a0008a10',
+                       '8a10',
                        created_ts=utils.utcnow() -
                        datetime.timedelta(seconds=1))
     self.assertEqual(
@@ -1354,7 +1350,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self._task_deduped(1,
                        new_ts,
                        task_id,
-                       '1d8dc670a0008a10',
+                       '8a10',
                        created_ts=utils.utcnow() -
                        datetime.timedelta(seconds=1))
     self.assertEqual(
@@ -1398,13 +1394,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # Third task is deduped against second task. That ensures ordering works
     # correctly.
     third_ts = self.mock_now(self.now, 20)
-    self._task_deduped(
-        0,
-        third_ts,
-        task_id,
-        '1d69ba3ea8008b10',
-        now=second_ts,
-        bot_dimensions_cached=True)
+    self._task_deduped(0,
+                       third_ts,
+                       task_id,
+                       '8b10',
+                       now=second_ts,
+                       bot_dimensions_cached=True)
 
   def test_task_idempotent_second_slice(self):
     # A task will dedupe against a second slice, and skip the first slice.
@@ -1513,8 +1508,9 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # The TaskRequest was enqueued, the TaskResultSummary was created but no
     # TaskRunResult exist yet since the task was not scheduled on any bot.
     result_summary, run_results = _get_results(result_summary.request_key)
-    expected = self._gen_result_summary_pending(
-        created_ts=created_ts, id='1d69b9f088008910', modified_ts=created_ts)
+    expected = self._gen_result_summary_pending(created_ts=created_ts,
+                                                id='8910',
+                                                modified_ts=created_ts)
     self.assertEqual(expected, result_summary.to_dict())
     self.assertEqual([], run_results)
 
@@ -1526,16 +1522,15 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(result_summary.request_key.get(), reaped_request)
     self.assertTrue(run_result)
     result_summary, run_results = _get_results(result_summary.request_key)
-    expected = self._gen_result_summary_reaped(
-        created_ts=created_ts,
-        costs_usd=[0.0],
-        id='1d69b9f088008910',
-        modified_ts=reaped_ts,
-        started_ts=reaped_ts)
+    expected = self._gen_result_summary_reaped(created_ts=created_ts,
+                                               costs_usd=[0.0],
+                                               id='8910',
+                                               modified_ts=reaped_ts,
+                                               started_ts=reaped_ts)
     self.assertEqual(expected, result_summary.to_dict())
     expected = [
         self._gen_run_result(
-            id='1d69b9f088008911',
+            id='8911',
             modified_ts=reaped_ts,
             started_ts=reaped_ts,
             dead_after_ts=reaped_ts +
@@ -1587,7 +1582,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         created_ts=created_ts,
         duration=3.0,
         exit_code=0,
-        id='1d69b9f088008910',
+        id='8910',
         modified_ts=done_ts,
         cas_output_root={
             'cas_instance': u'projects/test/instances/default_instance',
@@ -1605,7 +1600,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                              cost_usd=0.1,
                              duration=3.0,
                              exit_code=0,
-                             id='1d69b9f088008911',
+                             id='8911',
                              modified_ts=done_ts,
                              cas_output_root={
                                  'cas_instance':
@@ -1628,28 +1623,26 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         _bot_update_task(run_result.key, exit_code=1, duration=0.1))
     result_summary, run_results = _get_results(run_result.request_key)
 
-    expected = self._gen_result_summary_reaped(
-        completed_ts=self.now,
-        costs_usd=[0.1],
-        duration=0.1,
-        exit_code=1,
-        failure=True,
-        id='1d69b9f088008910',
-        started_ts=self.now,
-        state=State.COMPLETED,
-        try_number=1)
+    expected = self._gen_result_summary_reaped(completed_ts=self.now,
+                                               costs_usd=[0.1],
+                                               duration=0.1,
+                                               exit_code=1,
+                                               failure=True,
+                                               id='8910',
+                                               started_ts=self.now,
+                                               state=State.COMPLETED,
+                                               try_number=1)
     self.assertEqual(expected, result_summary.to_dict())
 
     expected = [
-        self._gen_run_result(
-            completed_ts=self.now,
-            cost_usd=0.1,
-            duration=0.1,
-            exit_code=1,
-            failure=True,
-            id='1d69b9f088008911',
-            started_ts=self.now,
-            state=State.COMPLETED),
+        self._gen_run_result(completed_ts=self.now,
+                             cost_usd=0.1,
+                             duration=0.1,
+                             exit_code=1,
+                             failure=True,
+                             id='8911',
+                             started_ts=self.now,
+                             state=State.COMPLETED),
     ]
     self.assertEqual(expected, [t.to_dict() for t in run_results])
     self.assertEqual(1, self.execute_tasks())
@@ -1770,28 +1763,26 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             duration=0.1,
             hard_timeout=hard,
             io_timeout=io))
-    expected = self._gen_result_summary_reaped(
-        completed_ts=self.now,
-        costs_usd=[0.1],
-        duration=0.1,
-        exit_code=0,
-        failure=True,
-        id='1d69b9f088008910',
-        started_ts=self.now,
-        state=State.TIMED_OUT,
-        try_number=1)
+    expected = self._gen_result_summary_reaped(completed_ts=self.now,
+                                               costs_usd=[0.1],
+                                               duration=0.1,
+                                               exit_code=0,
+                                               failure=True,
+                                               id='8910',
+                                               started_ts=self.now,
+                                               state=State.TIMED_OUT,
+                                               try_number=1)
     self.assertEqual(expected, run_result.result_summary_key.get().to_dict())
 
-    expected = self._gen_run_result(
-        completed_ts=self.now,
-        cost_usd=0.1,
-        duration=0.1,
-        exit_code=0,
-        failure=True,
-        id='1d69b9f088008911',
-        started_ts=self.now,
-        state=State.TIMED_OUT,
-        try_number=1)
+    expected = self._gen_run_result(completed_ts=self.now,
+                                    cost_usd=0.1,
+                                    duration=0.1,
+                                    exit_code=0,
+                                    failure=True,
+                                    id='8911',
+                                    started_ts=self.now,
+                                    state=State.TIMED_OUT,
+                                    try_number=1)
     self.assertEqual(expected, run_result.key.get().to_dict())
     self.assertEqual(1, self.execute_tasks())
 
@@ -1925,21 +1916,19 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
     self.assertEqual(
         None, task_scheduler.bot_terminate_task(run_result.key, 'localhost', 0))
-    expected = self._gen_result_summary_reaped(
-        abandoned_ts=self.now,
-        completed_ts=self.now,
-        costs_usd=[0.],
-        id='1d69b9f088008910',
-        internal_failure=True,
-        started_ts=self.now,
-        state=State.BOT_DIED)
+    expected = self._gen_result_summary_reaped(abandoned_ts=self.now,
+                                               completed_ts=self.now,
+                                               costs_usd=[0.],
+                                               id='8910',
+                                               internal_failure=True,
+                                               started_ts=self.now,
+                                               state=State.BOT_DIED)
     self.assertEqual(expected, run_result.result_summary_key.get().to_dict())
-    expected = self._gen_run_result(
-        abandoned_ts=self.now,
-        completed_ts=self.now,
-        id='1d69b9f088008911',
-        internal_failure=True,
-        state=State.BOT_DIED)
+    expected = self._gen_run_result(abandoned_ts=self.now,
+                                    completed_ts=self.now,
+                                    id='8911',
+                                    internal_failure=True,
+                                    state=State.BOT_DIED)
     self.assertEqual(expected, run_result.key.get().to_dict())
     self.assertEqual(1, self.execute_tasks())
     self.assertEqual(2, len(pub_sub_calls))  # RUNNING -> BOT_DIED
@@ -1969,7 +1958,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         abandoned_ts=self.now,
         completed_ts=self.now,
         costs_usd=[0.],
-        id='1d69b9f088008910',
+        id='8910',
         internal_failure=True,
         started_ts=self.now,
         state=State.KILLED,
@@ -1983,7 +1972,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     expected = self._gen_run_result(
         abandoned_ts=self.now,
         completed_ts=self.now,
-        id='1d69b9f088008911',
+        id='8911',
         internal_failure=True,
         state=State.KILLED,
         killing=False,
@@ -2004,9 +1993,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_bot_terminate_task_wrong_bot(self):
     run_result = self._quick_reap(1, 0)
-    expected = (
-        'Bot bot1 sent task kill for task 1d69b9f088008911 owned by bot '
-        'localhost')
+    expected = ('Bot bot1 sent task kill for task 8911 owned by bot '
+                'localhost')
     err = task_scheduler.bot_terminate_task(run_result.key, 'bot1', 0)
     self.assertEqual(expected, err)
 
@@ -2351,13 +2339,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(1, len(tasks))
     self.assertEqual(2, self.execute_tasks())  # +1 for a notify task execution
     self.assertEqual([], task_result.TaskRunResult.query().fetch())
-    expected = self._gen_result_summary_pending(
-        abandoned_ts=abandoned_ts,
-        completed_ts=abandoned_ts,
-        expiration_delay=1,
-        id='1d69b9f088008910',
-        modified_ts=abandoned_ts,
-        state=State.EXPIRED)
+    expected = self._gen_result_summary_pending(abandoned_ts=abandoned_ts,
+                                                completed_ts=abandoned_ts,
+                                                expiration_delay=1,
+                                                id='8910',
+                                                modified_ts=abandoned_ts,
+                                                state=State.EXPIRED)
     self.assertEqual(expected, result_summary.key.get().to_dict())
 
     latency = ((request.expiration_ts - self.now).total_seconds() + 1) * 1000.0
@@ -2480,13 +2467,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(1, len(tasks))
     self.execute_tasks()
     self.assertEqual([], task_result.TaskRunResult.query().fetch())
-    expected = self._gen_result_summary_pending(
-        abandoned_ts=abandoned_ts,
-        completed_ts=abandoned_ts,
-        expiration_delay=1,
-        id='1d69b9f088008910',
-        modified_ts=abandoned_ts,
-        state=State.EXPIRED)
+    expected = self._gen_result_summary_pending(abandoned_ts=abandoned_ts,
+                                                completed_ts=abandoned_ts,
+                                                expiration_delay=1,
+                                                id='8910',
+                                                modified_ts=abandoned_ts,
+                                                state=State.EXPIRED)
     self.assertEqual(expected, result_summary.key.get().to_dict())
     self.assertEqual(1, len(pub_sub_calls))  # pubsub completion notification
 
@@ -2538,24 +2524,22 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             fields=_get_fields(status=status, http_status_code=200)).sum)
 
     # Refresh and compare:
-    expected = self._gen_result_summary_reaped(
-        abandoned_ts=now_1,
-        completed_ts=now_1,
-        costs_usd=[0.],
-        id='1d69b9f088008910',
-        internal_failure=True,
-        modified_ts=now_1,
-        started_ts=now_0,
-        state=State.BOT_DIED,
-        try_number=1)
+    expected = self._gen_result_summary_reaped(abandoned_ts=now_1,
+                                               completed_ts=now_1,
+                                               costs_usd=[0.],
+                                               id='8910',
+                                               internal_failure=True,
+                                               modified_ts=now_1,
+                                               started_ts=now_0,
+                                               state=State.BOT_DIED,
+                                               try_number=1)
     self.assertEqual(expected, run_result.result_summary_key.get().to_dict())
-    expected = self._gen_run_result(
-        abandoned_ts=now_1,
-        completed_ts=now_1,
-        id='1d69b9f088008911',
-        internal_failure=True,
-        modified_ts=now_1,
-        state=State.BOT_DIED)
+    expected = self._gen_run_result(abandoned_ts=now_1,
+                                    completed_ts=now_1,
+                                    id='8911',
+                                    internal_failure=True,
+                                    modified_ts=now_1,
+                                    state=State.BOT_DIED)
     self.assertEqual(expected, run_result.key.get().to_dict())
 
     self.assertEqual(0, self.execute_tasks())
@@ -2600,24 +2584,22 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             fields=_get_fields(status=status, http_status_code=200)).sum)
 
     # Refresh and compare:
-    expected = self._gen_result_summary_reaped(
-        abandoned_ts=now_1,
-        completed_ts=now_1,
-        costs_usd=[0.],
-        id='1d69b9f088008910',
-        internal_failure=True,
-        modified_ts=now_1,
-        started_ts=now_0,
-        state=State.BOT_DIED,
-        try_number=1)
+    expected = self._gen_result_summary_reaped(abandoned_ts=now_1,
+                                               completed_ts=now_1,
+                                               costs_usd=[0.],
+                                               id='8910',
+                                               internal_failure=True,
+                                               modified_ts=now_1,
+                                               started_ts=now_0,
+                                               state=State.BOT_DIED,
+                                               try_number=1)
     self.assertEqual(expected, run_result.result_summary_key.get().to_dict())
-    expected = self._gen_run_result(
-        abandoned_ts=now_1,
-        completed_ts=now_1,
-        id='1d69b9f088008911',
-        internal_failure=True,
-        modified_ts=now_1,
-        state=task_result.State.BOT_DIED)
+    expected = self._gen_run_result(abandoned_ts=now_1,
+                                    completed_ts=now_1,
+                                    id='8911',
+                                    internal_failure=True,
+                                    modified_ts=now_1,
+                                    state=task_result.State.BOT_DIED)
     self.assertEqual(expected, run_result.key.get().to_dict())
 
     self.assertEqual(0, self.execute_tasks())
@@ -2716,13 +2698,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     # Refresh and compare:
     # The interesting point here is that even though the task is PENDING, it has
     # worker information from the initial BOT_DIED task.
-    expected = self._gen_run_result(
-        abandoned_ts=now_1,
-        completed_ts=now_1,
-        id='1d69b9f088008911',
-        internal_failure=True,
-        modified_ts=now_1,
-        state=State.BOT_DIED)
+    expected = self._gen_run_result(abandoned_ts=now_1,
+                                    completed_ts=now_1,
+                                    id='8911',
+                                    internal_failure=True,
+                                    modified_ts=now_1,
+                                    state=State.BOT_DIED)
     self.assertEqual(expected, run_result.key.get().to_dict())
     expected = self._gen_result_summary_reaped(
         abandoned_ts=now_1,
@@ -2731,7 +2712,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         bot_id=u'localhost',
         completed_ts=now_1,
         costs_usd=[0.],
-        id='1d69b9f088008910',
+        id='8910',
         internal_failure=True,
         modified_ts=now_1,
         started_ts=now_0,
@@ -2764,8 +2745,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.mock_now(
         self.now + datetime.timedelta(seconds=request.bot_ping_tolerance_secs),
         601)
-    self.assertEqual((['1d69b9f088008911'], 0),
-                     task_scheduler.cron_handle_bot_died(0))
+    self.assertEqual((['8911'], 0), task_scheduler.cron_handle_bot_died(0))
 
   def test_cron_handle_bot_died_killing(self):
     # Test first retry, then success.
