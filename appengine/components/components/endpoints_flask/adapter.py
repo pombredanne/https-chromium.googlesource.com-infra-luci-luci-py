@@ -98,10 +98,7 @@ class CorsHandler(webapp2.RequestHandler):
 
 
 def path_handler(api_class, api_method, service_path):
-  """Returns a webapp2.RequestHandler subclass for the API methods."""
-
-  # Why return a class? Because webapp2 explicitly checks if handler that we
-  # passed to Route is a class.
+  """Returns a flask.Response object."""
 
   status = 200
   content_type = ''
@@ -231,7 +228,7 @@ def api_server(api_classes, base_path='/_ah/api', regex='[^/]+'):
   return webapp2.WSGIApplication(api_routes(api_classes, base_path, regex))
 
 
-def discovery_handler_factory(api_classes, base_path):
+def discovery_handler(api_classes, base_path, name, version):
   """Returns a discovery request handler which knows about the given services.
 
   Args:
@@ -248,23 +245,20 @@ def discovery_handler_factory(api_classes, base_path):
     service_map[(api_class.api_info.name,
                  api_class.api_info.version)].append(api_class)
 
-  class DiscoveryHandler(webapp2.RequestHandler):
-    """Returns a discovery document for known services."""
+    host = flask.request.headers['Host']
+    services = service_map.get((name, version))
+    if not services:
+      flask.abort(404)
 
-    def get(self, name, version):
-      host = self.request.headers['Host']
-      services = service_map.get((name, version))
-      if not services:
-        self.abort(404, 'Not Found')
-
-      self.response.headers['Content-Type'] = 'application/json'
-      json.dump(discovery.generate(services, host, base_path),
-                self.response,
-                indent=2,
-                sort_keys=True,
-                separators=(',', ':'))
-
-  return DiscoveryHandler
+    headers = []
+    headers['Content-Type'] = 'application/json'
+    response_body = ''
+    json.dump(discovery.generate(services, host, base_path),
+              response_body,
+              indent=2,
+              sort_keys=True,
+              separators=(',', ':'))
+  return flask.Response(response_body, headers=headers)
 
 
 def discovery_service_route(api_classes, base_path):
@@ -279,7 +273,7 @@ def discovery_service_route(api_classes, base_path):
     A tuple containing a URL string and a path.
   """
   return ('%s/discovery/v1/apis/<name>/<version>/rest' % base_path,
-          discovery_handler_factory(api_classes, base_path))
+          discovery_handler(api_classes, base_path))
 
 
 def directory_handler_factory(api_classes, base_path):
