@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0066855_62cd82b6",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-31T22:34:43Z",
+      "side": 1,
+      "message": "Delete?",
+      "range": {
+        "startLine": 103,
+        "startChar": 2,
+        "endLine": 105,
+        "endChar": 0
+      },
+      "revId": "79e5508ec25619d22cf16c74b1cc4e787e4951fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96a099ce_609d0f8c",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-31T22:34:43Z",
+      "side": 1,
+      "message": "Is there an equivalent constant we can use from `http_client`?",
+      "range": {
+        "startLine": 106,
+        "startChar": 11,
+        "endLine": 106,
+        "endChar": 14
+      },
+      "revId": "79e5508ec25619d22cf16c74b1cc4e787e4951fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2354e8e_d5dff501",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-31T22:34:43Z",
+      "side": 1,
+      "message": "We could probably move the comment about webob content type up to here? Or we could move this variable declaration to closer to where it is used?",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 19
+      },
+      "revId": "79e5508ec25619d22cf16c74b1cc4e787e4951fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4842292_0827abd4",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-05-31T22:34:43Z",
+      "side": 1,
+      "message": "We should see if `http_client` offers a reasonable constant for this",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 20
+      },
+      "revId": "79e5508ec25619d22cf16c74b1cc4e787e4951fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
