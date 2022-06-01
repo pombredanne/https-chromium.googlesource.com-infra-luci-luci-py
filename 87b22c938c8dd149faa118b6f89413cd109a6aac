@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e397ac99_8013dd80",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-01T08:07:11Z",
+      "side": 1,
+      "message": "I think what we want the function to return is actually another function (similar to how the old function returned a dynamically generated class).",
+      "revId": "87b22c938c8dd149faa118b6f89413cd109a6aac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "696518a8_5e7445a9",
         "filename": "appengine/components/components/endpoints_flask/adapter.py",
         "patchSetId": 5
