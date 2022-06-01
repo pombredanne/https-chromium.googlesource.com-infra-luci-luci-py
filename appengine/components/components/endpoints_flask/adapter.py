@@ -14,6 +14,7 @@ from endpoints import protojson
 from protorpc import message_types
 from protorpc import messages
 from protorpc import remote
+import flask
 import webapp2
 
 from components import template
@@ -99,66 +100,64 @@ class CorsHandler(webapp2.RequestHandler):
 def path_handler(api_class, api_method, service_path):
   """Returns a webapp2.RequestHandler subclass for the API methods."""
 
-  # Why return a class? Because webapp2 explicitly checks if handler that we
-  # passed to Route is a class.
+  status = http_client.OK
+  # webob sets content_type to text/html by default.
+  content_type = ''
 
-  class Handler(webapp2.RequestHandler):
-    def dispatch(self):
-      add_cors_headers(self.response.headers)
+  headers = []
+  add_cors_headers(headers)
 
-      api = api_class()
-      api.initialize_request_state(
-          remote.HttpRequestState(remote_host=None,
-                                  remote_address=self.request.remote_addr,
-                                  server_host=self.request.host,
-                                  server_port=self.request.server_port,
-                                  http_method=self.request.method,
-                                  service_path=service_path,
-                                  headers=self.request.headers.items()))
+  api = api_class()
+  api.initialize_request_state(
+      remote.HttpRequestState(remote_host=None,
+                              remote_address=flask.request.remote_addr,
+                              server_host=flask.request.host,
+                              server_port=flask.request.server_port,
+                              http_method=flask.request.method,
+                              service_path=service_path,
+                              headers=flask.request.headers.items()))
 
-      try:
-        req = decode_message(api_method.remote, self.request)
-        # Check that required fields are populated.
-        req.check_initialized()
-      except (messages.DecodeError, messages.ValidationError, ValueError) as ex:
-        response_body = json.dumps({'error': {'message': ex.message}})
-        self.response.set_status(http_client.BAD_REQUEST)
+  try:
+    req = decode_message(api_method.remote, flask.request)
+    # Check that required fields are populated.
+    req.check_initialized()
+  except (messages.DecodeError, messages.ValidationError, ValueError) as ex:
+    response_body = json.dumps({'error': {'message': ex.message}})
+    status = http_client.BAD_REQUEST
+  else:
+    try:
+      res = api_method(api, req)
+    except endpoints.ServiceException as ex:
+      response_body = json.dumps({'error': {'message': ex.message}})
+      status = ex.http_status
+    else:
+      if isinstance(res, message_types.VoidMessage):
+        status = http_client.NO_CONTENT
+        response_body = None
       else:
-        try:
-          res = api_method(api, req)
-        except endpoints.ServiceException as ex:
-          response_body = json.dumps({'error': {'message': ex.message}})
-          self.response.set_status(ex.http_status)
-        else:
-          if isinstance(res, message_types.VoidMessage):
-            self.response.set_status(204)
-            response_body = None
-          else:
-            response_body = PROTOCOL.encode_message(res)
-            if self.request.get('fields'):
-              try:
-                # PROTOCOL.encode_message checks that the message is initialized
-                # before dumping it directly to JSON string. Therefore we can't
-                # mask the protocol buffer (if masking removes a required field
-                # then encode_message will fail). Instead, call encode_message
-                # first, then load the JSON string into a dict, mask the dict,
-                # and dump it back to JSON.
-                response_body = json.dumps(
-                    partial.mask(json.loads(response_body),
-                                 self.request.get('fields')))
-              except (partial.ParsingError, ValueError) as e:
-                # Log the error but return the full response.
-                logging.warning('Ignoring erroneous field mask %r: %s',
-                                self.request.get('fields'), e)
+        response_body = PROTOCOL.encode_message(res)
+        if flask.request.get('fields'):
+          try:
+            # PROTOCOL.encode_message checks that the message is initialized
+            # before dumping it directly to JSON string. Therefore we can't
+            # mask the protocol buffer (if masking removes a required field
+            # then encode_message will fail). Instead, call encode_message
+            # first, then load the JSON string into a dict, mask the dict,
+            # and dump it back to JSON.
+            response_body = json.dumps(
+                partial.mask(json.loads(response_body),
+                             flask.request.get('fields')))
+          except (partial.ParsingError, ValueError) as e:
+            # Log the error but return the full response.
+            logging.warning('Ignoring erroneous field mask %r: %s',
+                            flask.request.get('fields'), e)
 
-      if self.response.status_int != 204:
-        self.response.content_type = 'application/json; charset=utf-8'
-        self.response.out.write(response_body)
-      else:
-        # webob sets content_type to text/html by default.
-        self.response.content_type = ''
-
-  return Handler
+  if status != 204:
+    content_type = 'application/json; charset=utf-8'
+  return flask.Response(response_body,
+                        mimetype=content_type,
+                        status=status,
+                        headers=headers)
 
 
 def api_routes(api_classes, base_path='/_ah/api', regex='[^/]+'):
@@ -278,7 +277,7 @@ def discovery_service_route(api_classes, base_path):
           discovery_handler_factory(api_classes, base_path))
 
 
-def directory_handler_factory(api_classes, base_path):
+def directory_handler(api_classes, base_path):
   """Returns a directory request handler which knows about the given services.
 
   Args:
@@ -287,22 +286,18 @@ def directory_handler_factory(api_classes, base_path):
     base_path: The base path under which all service paths exist.
 
   Returns:
-    A webapp2.RequestHandler.
+    A flask.Response object.
   """
-
-  class DirectoryHandler(webapp2.RequestHandler):
-    """Returns a directory list for known services."""
-
-    def get(self):
-      host = self.request.headers['Host']
-      self.response.headers['Content-Type'] = 'application/json'
-      json.dump(discovery.directory(api_classes, host, base_path),
-                self.response,
-                indent=2,
-                sort_keys=True,
-                separators=(',', ':'))
-
-  return DirectoryHandler
+  host = flask.request.headers['Host']
+  headers = []
+  headers['Content-Type'] = 'application/json'
+  response_body = ''
+  json.dump(discovery.directory(api_classes, host, base_path),
+            response_body,
+            indent=2,
+            sort_keys=True,
+            separators=(',', ':'))
+  return flask.Response(response_body, headers=headers)
 
 
 def directory_service_route(api_classes, base_path):
@@ -317,7 +312,7 @@ def directory_service_route(api_classes, base_path):
     A tuple containing a URL string and a path.
   """
   return ('%s/discovery/v1/apis' % base_path,
-          directory_handler_factory(api_classes, base_path))
+          directory_handler(api_classes, base_path))
 
 
 def explorer_proxy_route(base_path):
