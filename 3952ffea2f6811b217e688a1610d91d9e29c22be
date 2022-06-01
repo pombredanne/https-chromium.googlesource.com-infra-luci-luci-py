@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f332de7_13fb690f",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-01T23:14:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff1f9b8c_b05ed715",
+      "revId": "3952ffea2f6811b217e688a1610d91d9e29c22be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ffa8e6b_39e340a5",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-06-01T19:32:16Z",
       "side": 1,
       "message": "Since Flask takes care of the jsonification automatically, it\u0027d just be\n`return discovery.generate(services, host, base_path)`",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 260,
+        "endChar": 0
+      },
+      "revId": "3952ffea2f6811b217e688a1610d91d9e29c22be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed4f5026_e4aef2c3",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-01T23:14:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ffa8e6b_39e340a5",
       "range": {
         "startLine": 254,
         "startChar": 0,
