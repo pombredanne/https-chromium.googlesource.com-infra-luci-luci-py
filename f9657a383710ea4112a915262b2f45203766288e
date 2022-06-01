@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6da79fda_dcaa6ff7",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-01T08:23:59Z",
+      "side": 1,
+      "message": "Believe the function should return a Flask request handler function.",
+      "revId": "f9657a383710ea4112a915262b2f45203766288e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a08f1b40_4f1e73e0",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-01T08:23:59Z",
+      "side": 1,
+      "message": "Declare using a dict or list literal rather than declaring and then modifying.",
+      "revId": "f9657a383710ea4112a915262b2f45203766288e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35e819a6_baf969e9",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-01T08:23:59Z",
+      "side": 1,
+      "message": "I think `json.dump()` expects a file pointer as an argument. `json.dumps()` to produce a string.\n\nBut also I believe you may be able to just return a Python dict here and Flask will do the json stuff for you:\nhttps://stackoverflow.com/a/13089975",
+      "revId": "f9657a383710ea4112a915262b2f45203766288e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
