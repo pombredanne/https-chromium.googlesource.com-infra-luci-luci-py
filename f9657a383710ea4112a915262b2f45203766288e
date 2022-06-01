@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2a300bd_e7d1573c",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-01T18:45:07Z",
+      "side": 1,
+      "message": "I\u0027m not completely sure if this is the correct way to do this, so let me know if I\u0027m on the right track.",
+      "parentUuid": "6da79fda_dcaa6ff7",
+      "revId": "f9657a383710ea4112a915262b2f45203766288e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a08f1b40_4f1e73e0",
@@ -35,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b46ed30_92edea0f",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-01T18:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a08f1b40_4f1e73e0",
+      "revId": "f9657a383710ea4112a915262b2f45203766288e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35e819a6_baf969e9",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-06-01T08:23:59Z",
       "side": 1,
       "message": "I think `json.dump()` expects a file pointer as an argument. `json.dumps()` to produce a string.\n\nBut also I believe you may be able to just return a Python dict here and Flask will do the json stuff for you:\nhttps://stackoverflow.com/a/13089975",
+      "revId": "f9657a383710ea4112a915262b2f45203766288e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33e73aaf_de785701",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-01T18:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35e819a6_baf969e9",
       "revId": "f9657a383710ea4112a915262b2f45203766288e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
