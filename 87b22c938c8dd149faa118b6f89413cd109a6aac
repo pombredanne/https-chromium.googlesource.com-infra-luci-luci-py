@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e96c2a54_1dae6c21",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-01T23:05:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd171893_6dfcbc72",
+      "revId": "87b22c938c8dd149faa118b6f89413cd109a6aac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ff6d480_4e880acc",
@@ -49,6 +67,24 @@
       "writtenOn": "2022-06-01T08:16:37Z",
       "side": 1,
       "message": "`headers` is declared to be a list but `add_cors_headers()` expects dict.",
+      "revId": "87b22c938c8dd149faa118b6f89413cd109a6aac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79f9dd61_e41e6a81",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-01T23:05:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ff6d480_4e880acc",
       "revId": "87b22c938c8dd149faa118b6f89413cd109a6aac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -72,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99777da4_4351a466",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-01T23:05:37Z",
+      "side": 1,
+      "message": "I\u0027ll make a follow-up change for this.",
+      "parentUuid": "696518a8_5e7445a9",
+      "revId": "87b22c938c8dd149faa118b6f89413cd109a6aac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4a774054_7c9ec5d9",
         "filename": "appengine/components/components/endpoints_flask/adapter.py",
         "patchSetId": 5
@@ -83,6 +137,24 @@
       "writtenOn": "2022-06-01T08:04:03Z",
       "side": 1,
       "message": "Think these are `flask.request.values[\u0027remote_addr\u0027]`",
+      "revId": "87b22c938c8dd149faa118b6f89413cd109a6aac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bf7e737_61735e55",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-01T23:05:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a774054_7c9ec5d9",
       "revId": "87b22c938c8dd149faa118b6f89413cd109a6aac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -100,6 +172,24 @@
       "writtenOn": "2022-06-01T08:04:03Z",
       "side": 1,
       "message": "If we just return here, we could remove the `else`, reducing the nesting level of the entire rest of the method and simplifying the logic. Same with the next two `else`s.",
+      "revId": "87b22c938c8dd149faa118b6f89413cd109a6aac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52924b36_e6ef0d69",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-01T23:05:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "557073c2_ec766451",
       "revId": "87b22c938c8dd149faa118b6f89413cd109a6aac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
