@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "696518a8_5e7445a9",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-01T08:04:03Z",
+      "side": 1,
+      "message": "Prefer that the `add_cors_headers()` function returns the result rather than modifying its argument. Maybe for a follow-up since it also affects other users of `add_cors_headers()`",
+      "revId": "87b22c938c8dd149faa118b6f89413cd109a6aac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a774054_7c9ec5d9",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-01T08:04:03Z",
+      "side": 1,
+      "message": "Think these are `flask.request.values[\u0027remote_addr\u0027]`",
+      "revId": "87b22c938c8dd149faa118b6f89413cd109a6aac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "557073c2_ec766451",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-01T08:04:03Z",
+      "side": 1,
+      "message": "If we just return here, we could remove the `else`, reducing the nesting level of the entire rest of the method and simplifying the logic. Same with the next two `else`s.",
+      "revId": "87b22c938c8dd149faa118b6f89413cd109a6aac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
