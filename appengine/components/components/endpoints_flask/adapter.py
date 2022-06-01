@@ -277,7 +277,7 @@ def discovery_service_route(api_classes, base_path):
           discovery_handler_factory(api_classes, base_path))
 
 
-def directory_handler_factory(api_classes, base_path):
+def directory_handler(api_classes, base_path):
   """Returns a directory request handler which knows about the given services.
 
   Args:
@@ -286,22 +286,18 @@ def directory_handler_factory(api_classes, base_path):
     base_path: The base path under which all service paths exist.
 
   Returns:
-    A webapp2.RequestHandler.
+    A flask.Response object.
   """
-
-  class DirectoryHandler(webapp2.RequestHandler):
-    """Returns a directory list for known services."""
-
-    def get(self):
-      host = self.request.headers['Host']
-      self.response.headers['Content-Type'] = 'application/json'
-      json.dump(discovery.directory(api_classes, host, base_path),
-                self.response,
-                indent=2,
-                sort_keys=True,
-                separators=(',', ':'))
-
-  return DirectoryHandler
+  host = flask.request.headers['Host']
+  headers = []
+  headers['Content-Type'] = 'application/json'
+  response_body = ''
+  json.dump(discovery.directory(api_classes, host, base_path),
+            response_body,
+            indent=2,
+            sort_keys=True,
+            separators=(',', ':'))
+  return flask.Response(response_body, headers=headers)
 
 
 def directory_service_route(api_classes, base_path):
@@ -316,7 +312,7 @@ def directory_service_route(api_classes, base_path):
     A tuple containing a URL string and a path.
   """
   return ('%s/discovery/v1/apis' % base_path,
-          directory_handler_factory(api_classes, base_path))
+          directory_handler(api_classes, base_path))
 
 
 def explorer_proxy_route(base_path):
