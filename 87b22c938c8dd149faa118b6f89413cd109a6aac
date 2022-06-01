@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd171893_6dfcbc72",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-01T08:11:33Z",
+      "side": 1,
+      "message": "To clarify, path_handler previously returned a webapp2.RequestHandler class, but now returns a Flask request handler function, which takes no arguments. We can\u0027t use path_handler itself because it takes in 3 arguments. So we dynamically generate a function inside the path_handler function that binds the 3 arguments to the generated function. (Sorry if this isn\u0027t a super clear explanation, maybe we can also go over it in person)",
+      "parentUuid": "e397ac99_8013dd80",
+      "revId": "87b22c938c8dd149faa118b6f89413cd109a6aac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "696518a8_5e7445a9",
         "filename": "appengine/components/components/endpoints_flask/adapter.py",
         "patchSetId": 5
