@@ -18,6 +18,7 @@ import urlparse
 
 from google.appengine.api import app_identity
 from google.appengine.api import datastore_errors
+from google.appengine.datastore import datastore_query
 from google.appengine.ext import ndb
 
 from components import auth
@@ -1738,6 +1739,10 @@ def cancel_tasks(limit, query, cursor=None):
     handlers_exceptions.InternalException if cancel request could not be
         enqueued.
   """
+  # Override ordering by __key__ which is required for _MultiQuery with cursors.
+  query = query.order(
+      datastore_query.PropertyOrder('__key__',
+                                    datastore_query.PropertyOrder.ASCENDING))
   results, cursor = datastore_utils.fetch_page(query, limit, cursor)
 
   if results:

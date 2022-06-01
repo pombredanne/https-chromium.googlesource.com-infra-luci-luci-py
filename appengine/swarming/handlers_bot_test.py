@@ -1628,7 +1628,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
             'message':
                 u'Bot: https://test-swarming.appspot.com/restricted/bot/bot1\n'
                 'Task failed: '
-                'https://test-swarming.appspot.com/user/task/5cee488008811\nOh',
+                'https://test-swarming.appspot.com/user/task/8811\nOh',
             'source': 'bot',
         },
     ]

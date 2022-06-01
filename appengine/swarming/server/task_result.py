@@ -69,6 +69,7 @@ import datetime
 import logging
 import random
 import re
+import sys
 
 from google.appengine import runtime
 from google.appengine.api import app_identity
@@ -1410,19 +1411,8 @@ def _sort_property(sort):
   """Returns a datastore_query.PropertyOrder based on 'sort'."""
   if sort not in ('created_ts', 'completed_ts', 'abandoned_ts', 'started_ts'):
     raise ValueError('Unexpected sort %r' % sort)
-  if sort == 'created_ts':
-    return datastore_query.PropertyOrder(
-        '__key__', datastore_query.PropertyOrder.ASCENDING)
   return datastore_query.PropertyOrder(
       sort, datastore_query.PropertyOrder.DESCENDING)
-
-
-def _datetime_to_key(date):
-  """Converts a datetime.datetime to a ndb.Key to a task_request.TaskRequest."""
-  if not date:
-    return None
-  assert isinstance(date, datetime.datetime), date
-  return task_request.convert_to_request_key(date)
 
 
 ### Public API.
@@ -1430,14 +1420,10 @@ def _datetime_to_key(date):
 
 def filter_query(cls, q, start, end, sort, state):
   """Filters a query by creation time, state and order."""
-  # Inequalities are <= and >= because keys are in reverse chronological
-  # order.
-  start_key = _datetime_to_key(start)
-  if start_key:
-    q = q.filter(TaskRunResult.key <= start_key)
-  end_key = _datetime_to_key(end)
-  if end_key:
-    q = q.filter(TaskRunResult.key >= end_key)
+  if start:
+    q = q.filter(TaskResultSummary.created_ts >= start)
+  if end:
+    q = q.filter(TaskResultSummary.created_ts <= end)
   q = q.order(_sort_property(sort))
 
   if sort != 'created_ts' and (start or end):

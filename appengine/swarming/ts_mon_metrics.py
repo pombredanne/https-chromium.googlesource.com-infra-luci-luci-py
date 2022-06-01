@@ -9,7 +9,7 @@ import datetime
 import json
 import logging
 
-from google.appengine.datastore.datastore_query import Cursor
+from google.appengine.datastore import datastore_query
 
 from components import utils
 import gae_ts_mon
@@ -309,9 +309,13 @@ def _set_jobs_metrics(payload):
   jobs_max_pending_durations = defaultdict(
       lambda: 0.0)
 
-  query_iter = task_result.get_result_summaries_query(
-      None, None, 'created_ts', 'pending_running', None).iter(
-      produce_cursors=True, start_cursor=params.cursor)
+  q = task_result.get_result_summaries_query(None, None, 'created_ts',
+                                             'pending_running', None)
+  # Override ordering by __key__ which is required for _MultiQuery with cursors.
+  query_iter = q.order(
+      datastore_query.PropertyOrder(
+          '__key__', datastore_query.PropertyOrder.ASCENDING)).iter(
+              produce_cursors=True, start_cursor=params.cursor)
 
   while query_iter.has_next():
     runtime = (utils.utcnow() - params.start_time).total_seconds()
@@ -435,7 +439,7 @@ class _ShardParams(object):
     try:
       params = json.loads(payload)
       if params['cursor']:
-        self.cursor = Cursor(urlsafe=params['cursor'])
+        self.cursor = datestore_query.Cursor(urlsafe=params['cursor'])
       self.task_start = datetime.datetime.strptime(
           params['task_start'], utils.DATETIME_FORMAT)
       self.task_count = params['task_count']

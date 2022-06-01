@@ -555,7 +555,7 @@ class AppTestBase(test_case.TestCase):
     out = {
         u'authenticated': u'user:user@example.com',
         u'expiration_secs': u'86400',
-        u'task_id': u'5cee488008810',
+        u'task_id': u'8810',
         u'name': u'job1',
         u'priority': u'20',
         u'service_account': u'none',
@@ -653,7 +653,7 @@ class AppTestBase(test_case.TestCase):
         u'failure': False,
         u'internal_failure': False,
         u'name': u'job1',
-        u'run_id': u'5cee488008811',
+        u'run_id': u'8811',
         u'server_versions': [u'v1a'],
         u'state': u'COMPLETED',
         u'tags': [
@@ -666,7 +666,7 @@ class AppTestBase(test_case.TestCase):
             u'swarming.pool.template:no_config',
             u'user:joe@localhost',
         ],
-        u'task_id': u'5cee488008810',
+        u'task_id': u'8810',
         u'try_number': u'0',
         u'user': u'joe@localhost',
     }
@@ -701,10 +701,10 @@ class AppTestBase(test_case.TestCase):
         u'failure': False,
         u'internal_failure': False,
         u'name': u'job1',
-        u'run_id': u'5cee488008811',
+        u'run_id': u'8811',
         u'server_versions': [u'v1a'],
         u'state': u'RUNNING',
-        u'task_id': u'5cee488008811',
+        u'task_id': u'8811',
         u'try_number': u'1',
     }
     out.update((unicode(k), v) for k, v in kwargs.items())

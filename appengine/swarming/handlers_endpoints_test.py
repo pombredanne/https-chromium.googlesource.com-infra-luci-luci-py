@@ -423,7 +423,7 @@ class TasksApiTest(BaseTest):
     self.assertEqual(expected, response.json)
 
     request.evaluate_only = False
-    expected[u'task_id'] = u'5cee488008810'
+    expected[u'task_id'] = u'8810'
     expected[u'request'][u'task_id'] = task_id
     expected[u'task_result'] = {
         u'abandoned_ts': u'2010-01-02T03:04:05',
@@ -448,7 +448,7 @@ class TasksApiTest(BaseTest):
             u'swarming.pool.version:pools_cfg_rev',
             u'user:joe@localhost',
         ],
-        u'task_id': u'5cee488008810',
+        u'task_id': u'8810',
         u'user': u'joe@localhost',
     }
     response = self.call_api('new', body=message_to_dict(request))
@@ -539,7 +539,7 @@ class TasksApiTest(BaseTest):
                     },
                 ]),
         u'task_id':
-            u'5cee488008810',
+            u'8810',
         u'task_result': {
             u'abandoned_ts': u'2010-01-02T03:04:05',
             u'completed_ts': u'2010-01-02T03:04:05',
@@ -563,7 +563,7 @@ class TasksApiTest(BaseTest):
                 u'swarming.pool.version:pools_cfg_rev',
                 u'user:joe@localhost',
             ],
-            u'task_id': u'5cee488008810',
+            u'task_id': u'8810',
             u'user': u'joe@localhost',
         },
     }
@@ -748,7 +748,7 @@ class TasksApiTest(BaseTest):
         cost_saved_usd=0.1,
         created_ts=fmtdate(now_30),
         duration=0.1,
-        deduped_from=u'5cee488008811',
+        deduped_from=u'8811',
         exit_code=u'0',
         modified_ts=fmtdate(now_30),
         name=u'job2',
@@ -862,7 +862,7 @@ class TasksApiTest(BaseTest):
                     u'user:joe@localhost',
                 ]),
         u'task_id':
-            u'5cee488008810',
+            u'8810',
         u'task_result': {
             u'abandoned_ts': u'2010-01-02T03:04:05',
             u'completed_ts': u'2010-01-02T03:04:05',
@@ -886,7 +886,7 @@ class TasksApiTest(BaseTest):
                 u'swarming.pool.version:pools_cfg_rev',
                 u'user:joe@localhost',
             ],
-            u'task_id': u'5cee488008810',
+            u'task_id': u'8810',
             u'user': u'joe@localhost',
         },
     }
@@ -927,7 +927,7 @@ class TasksApiTest(BaseTest):
                     },
                 ]),
         u'task_id':
-            u'5cee488008810',
+            u'8810',
         u'task_result': {
             u'abandoned_ts': u'2010-01-02T03:04:05',
             u'completed_ts': u'2010-01-02T03:04:05',
@@ -951,7 +951,7 @@ class TasksApiTest(BaseTest):
                 u'swarming.pool.version:pools_cfg_rev',
                 u'user:joe@localhost',
             ],
-            u'task_id': u'5cee488008810',
+            u'task_id': u'8810',
             u'user': u'joe@localhost',
         },
     }
@@ -997,7 +997,7 @@ class TasksApiTest(BaseTest):
                     },
                 ]),
         u'task_id':
-            u'5cee488008810',
+            u'8810',
         u'task_result': {
             u'abandoned_ts': u'2010-01-02T03:04:05',
             u'completed_ts': u'2010-01-02T03:04:05',
@@ -1021,7 +1021,7 @@ class TasksApiTest(BaseTest):
                 u'swarming.pool.version:pools_cfg_rev',
                 u'user:joe@localhost',
             ],
-            u'task_id': u'5cee488008810',
+            u'task_id': u'8810',
             u'user': u'joe@localhost',
         },
     }
@@ -1080,7 +1080,7 @@ class TasksApiTest(BaseTest):
                     },
                 ]),
         u'task_id':
-            u'5cee488008810',
+            u'8810',
         u'task_result': {
             u'abandoned_ts': u'2010-01-02T03:04:05',
             u'completed_ts': u'2010-01-02T03:04:05',
@@ -1104,7 +1104,7 @@ class TasksApiTest(BaseTest):
                 u'swarming.pool.version:pools_cfg_rev',
                 u'user:joe@localhost',
             ],
-            u'task_id': u'5cee488008810',
+            u'task_id': u'8810',
             u'user': u'joe@localhost',
         },
     }
@@ -1208,7 +1208,7 @@ class TasksApiTest(BaseTest):
     self.assertEqual(expected, response.json)
 
     request.evaluate_only = False
-    expected[u'task_id'] = u'5cee488008810'
+    expected[u'task_id'] = u'8810'
     expected[u'request'][u'task_id'] = task_id
     expected[u'task_result'] = {
         u'abandoned_ts': u'2010-01-02T03:04:05',
@@ -1233,7 +1233,7 @@ class TasksApiTest(BaseTest):
             u'swarming.pool.version:pools_cfg_rev',
             u'user:joe@localhost',
         ],
-        u'task_id': u'5cee488008810',
+        u'task_id': u'8810',
         u'user': u'joe@localhost',
     }
 
@@ -1320,7 +1320,7 @@ class TasksApiTest(BaseTest):
             u'execution_timeout_secs': 30,
         })
     response = self.call_api('new', body=message_to_dict(request), status=200)
-    self.assertEqual(u'5cee488008810', response.json[u'task_id'])
+    self.assertEqual(u'8810', response.json[u'task_id'])
 
   def fail_on_using_legacy_acls(self):
 
@@ -1353,7 +1353,7 @@ class TasksApiTest(BaseTest):
         service_account='service-account@example.com',
         realm='test:task_realm')
     response = self.call_api('new', body=message_to_dict(request), status=200)
-    self.assertEqual(u'5cee488008810', response.json[u'task_id'])
+    self.assertEqual(u'8810', response.json[u'task_id'])
 
     # Get the produced TaskRequest.
     key, _ = task_pack.get_request_and_result_keys(response.json[u'task_id'])
@@ -1385,7 +1385,7 @@ class TasksApiTest(BaseTest):
             u'execution_timeout_secs': 30,
         })
     response = self.call_api('new', body=message_to_dict(request), status=200)
-    self.assertEqual(u'5cee488008810', response.json[u'task_id'])
+    self.assertEqual(u'8810', response.json[u'task_id'])
 
     # Get the produced TaskRequest.
     key, _ = task_pack.get_request_and_result_keys(response.json[u'task_id'])
@@ -1425,7 +1425,7 @@ class TasksApiTest(BaseTest):
         },
         service_account='service-account@example.com')
     response = self.call_api('new', body=message_to_dict(request), status=200)
-    self.assertEqual(u'5cee488008810', response.json[u'task_id'])
+    self.assertEqual(u'8810', response.json[u'task_id'])
 
     # Get the produced TaskRequest.
     key, _ = task_pack.get_request_and_result_keys(response.json[u'task_id'])
@@ -1490,7 +1490,7 @@ class TasksApiTest(BaseTest):
     rKey, sKey = task_pack.get_request_and_result_keys(task_id)
     request, summary = rKey.get(), sKey.get()
     self.assertEqual('test:task_realm', request.realm)
-    self.assertEqual('invocations/task-test-swarming.appspot.com-5cee488008811',
+    self.assertEqual('invocations/task-test-swarming.appspot.com-8811',
                      summary.resultdb_info.invocation)
 
   def test_new_ok_with_resultdb_and_default_task_realm(self):
@@ -1530,7 +1530,7 @@ class TasksApiTest(BaseTest):
     rKey, sKey = task_pack.get_request_and_result_keys(task_id)
     request, summary = rKey.get(), sKey.get()
     self.assertEqual('test:task_realm', request.realm)
-    self.assertEqual('invocations/task-test-swarming.appspot.com-5cee488008811',
+    self.assertEqual('invocations/task-test-swarming.appspot.com-8811',
                      summary.resultdb_info.invocation)
 
   def _prepare_mass_cancel(self):
@@ -1953,12 +1953,12 @@ class TasksApiTest(BaseTest):
         completed_ts=fmtdate(self.now),
         cost_saved_usd=0.1,
         created_ts=fmtdate(now_60),
-        deduped_from=u'5cee488008811',
+        deduped_from=u'8811',
         duration=0.1,
         exit_code=u'0',
         modified_ts=fmtdate(now_60),
         name=u'second',
-        run_id=u'5cee488008811',
+        run_id=u'8811',
         started_ts=fmtdate(self.now),
         tags=[
             u'authenticated:user:user@example.com',
@@ -2047,11 +2047,11 @@ class TaskApiTest(BaseTest):
     # notification has been sent.
     expected = [
         {
-            'payload': '{"auth_token":null,"task_id":"5cee488008810",'
+            'payload': '{"auth_token":null,"task_id":"8810",'
                        '"topic":"projects/abc/topics/def","userdata":"blah"}',
             'queue_name': 'pubsub',
             'transactional': True,
-            'url': '/internal/taskqueue/pubsub/5cee488008810',
+            'url': '/internal/taskqueue/pubsub/8810',
         },
     ]
 
@@ -2279,7 +2279,7 @@ class TaskApiTest(BaseTest):
             u'swarming.pool.version:pools_cfg_rev',
             u'user:joe@localhost',
         ],
-        u'task_id': u'5cee488008810',
+        u'task_id': u'8810',
         u'user': u'joe@localhost',
     }
     self.assertEqual(expected, response.json)
@@ -2517,6 +2517,7 @@ class QueuesApiTest(BaseTest):
             ],
         })
     self.mock_now(self.now, 1)
+    self.mock(random, 'getrandbits', lambda _: 0x89)
     self.client_create_task_raw(
         properties={
             u'dimensions': [
@@ -2531,6 +2532,7 @@ class QueuesApiTest(BaseTest):
             ],
         })
     self.mock_now(self.now, 2)
+    self.mock(random, 'getrandbits', lambda _: 0x8a)
     self.client_create_task_raw(
         properties={
             u'dimensions': [
@@ -2546,9 +2548,11 @@ class QueuesApiTest(BaseTest):
         })
     # A termination task.
     self.mock_now(self.now, 3)
+    self.mock(random, 'getrandbits', lambda _: 0x8b)
     self.set_as_bot()
     self.bot_poll()
     self.mock_now(self.now, 4)
+    self.mock(random, 'getrandbits', lambda _: 0x8c)
     self.set_as_privileged_user()
     self.endpoint_call(handlers_endpoints.SwarmingBotService, 'terminate',
                        {'bot_id': 'bot1'})
@@ -2558,6 +2562,7 @@ class QueuesApiTest(BaseTest):
 
     # Only three are returned, in two pages due to limit=2.
     self.mock_now(self.now, 5)
+    self.mock(random, 'getrandbits', lambda _: 0x8d)
     expected = {
         u'items': [
             {
@@ -3275,10 +3280,10 @@ class BotApiTest(BaseTest):
                 modified_ts=fmtdate(now_1),
                 name=u'philbert',
                 performance_stats=self.gen_perf_stats(),
-                run_id=u'5cee870005511',
+                run_id=u'5511',
                 started_ts=fmtdate(now_1),
                 state=u'COMPLETED',
-                task_id=u'5cee870005511'),
+                task_id=u'5511'),
         ],
         u'now': fmtdate(now_1),
     }
@@ -3390,7 +3395,7 @@ class BotApiTest(BaseTest):
                 u'external_ip': unicode(self.source_ip),
                 u'quarantined': False,
                 u'state': state,
-                u'task_id': u'5cee488008811',
+                u'task_id': u'8811',
                 u'ts': fmtdate(now_60),
                 u'version': unicode(self.bot_version),
             },
@@ -3401,7 +3406,7 @@ class BotApiTest(BaseTest):
                 u'external_ip': unicode(self.source_ip),
                 u'quarantined': False,
                 u'state': state,
-                u'task_id': u'5cee488008811',
+                u'task_id': u'8811',
                 u'ts': fmtdate(self.now),
                 u'version': unicode(self.bot_version),
             },
@@ -3445,7 +3450,7 @@ class BotApiTest(BaseTest):
 
     self.set_as_admin()
     response = self.call_api('terminate', body={'bot_id': 'bot1'})
-    self.assertEqual({u'task_id': u'5cee488008810'}, response.json)
+    self.assertEqual({u'task_id': u'8810'}, response.json)
 
   def test_terminate_privileged_user(self):
     self.set_as_bot()
@@ -3454,7 +3459,7 @@ class BotApiTest(BaseTest):
 
     self.set_as_privileged_user()
     response = self.call_api('terminate', body={'bot_id': 'bot1'})
-    self.assertEqual({u'task_id': u'5cee488008810'}, response.json)
+    self.assertEqual({u'task_id': u'8810'}, response.json)
 
   def test_terminate_user(self):
     self.set_as_bot()
