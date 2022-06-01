@@ -684,12 +684,8 @@ def get_named_caches_info():
 def get_python_packages():
   """Returns the list of third party python packages."""
   try:
-    # --disable-pip-version-check is only supported in v6.0 and we still have
-    # bots running very old versions. Use the environment variable instead.
-    env = os.environ.copy()
-    env['PIP_DISABLE_PIP_VERSION_CHECK'] = '1'
-    cmd = ['pip', 'freeze']
-    return subprocess.check_output(cmd, env=env).decode('utf-8').splitlines()
+    cmd = ['pip', 'freeze', '--disable-pip-version-check', '--no-cache-dir']
+    return subprocess.check_output(cmd).decode('utf-8').splitlines()
   except (subprocess.CalledProcessError, OSError):
     return None
 
