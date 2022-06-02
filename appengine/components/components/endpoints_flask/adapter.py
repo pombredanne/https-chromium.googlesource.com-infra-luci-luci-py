@@ -99,8 +99,6 @@ class CorsHandler(webapp2.RequestHandler):
 
 
 def path_handler(api_class, api_method, service_path):
-  """Returns a webapp2.RequestHandler subclass for the API methods."""
-
   # Why return a class? Because webapp2 explicitly checks if handler that we
   # passed to Route is a class.
 
@@ -160,7 +158,6 @@ def path_handler(api_class, api_method, service_path):
         # webob sets content_type to text/html by default.
         self.response.content_type = ''
 
-  return Handler
 
 
 def api_routes(api_classes, base_path='/_ah/api', regex='[^/]+'):
@@ -286,22 +283,14 @@ def directory_handler_factory(api_classes, base_path):
     base_path: The base path under which all service paths exist.
 
   Returns:
-    A webapp2.RequestHandler.
+    A Flask request handler.
   """
 
-  class DirectoryHandler(webapp2.RequestHandler):
-    """Returns a directory list for known services."""
+  def directory_handler():
+    host = flask.request.headers['Host']
+    return discovery.directory(api_classes, host, base_path)
 
-    def get(self):
-      host = self.request.headers['Host']
-      self.response.headers['Content-Type'] = 'application/json'
-      json.dump(discovery.directory(api_classes, host, base_path),
-                self.response,
-                indent=2,
-                sort_keys=True,
-                separators=(',', ':'))
-
-  return DirectoryHandler
+  return directory_handler
 
 
 def directory_service_route(api_classes, base_path):
