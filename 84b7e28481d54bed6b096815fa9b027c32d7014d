@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f340e9ef_32f0e1ff",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-02T17:31:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3d715ae_9cf5ccb9",
+      "revId": "84b7e28481d54bed6b096815fa9b027c32d7014d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d72a382_dcdd182f",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-06-02T01:02:02Z",
       "side": 1,
       "message": "Would also need to update this call.",
+      "revId": "84b7e28481d54bed6b096815fa9b027c32d7014d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00eb9b89_7b4e41f4",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-02T17:31:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d72a382_dcdd182f",
       "revId": "84b7e28481d54bed6b096815fa9b027c32d7014d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
