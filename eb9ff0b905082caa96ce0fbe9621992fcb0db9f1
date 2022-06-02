@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e12e91f_8e01ccf9",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-02T05:23:15Z",
+      "side": 1,
+      "message": "Careful, in the original code the `mimetype` is `\u0027application/json; charset\u003dutf-8\u0027` in this scenario, not `\u0027\u0027`",
+      "revId": "eb9ff0b905082caa96ce0fbe9621992fcb0db9f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bb76209_2b47fe53",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-02T05:23:15Z",
+      "side": 1,
+      "message": "I think you might be able to do:\n```\nresponse \u003d {\u0027error\u0027: {\u0027message\u0027: ex.message}}\nreturn response, http_client.BAD_REQUEST, cors_headers()\n```\nAnd similarly below.\n\nThe Flask documentation says that a Python dict will automatically be `jsonify`ed and the appropriate mimetype set. And that you can return a tuple of `(response, status, headers)`. So we can specify all of the things in just the return value.\nhttps://flask.palletsprojects.com/en/2.1.x/quickstart/#about-responses",
+      "revId": "eb9ff0b905082caa96ce0fbe9621992fcb0db9f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0deed6bd_e5985a94",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-02T05:23:15Z",
+      "side": 1,
+      "message": "You could return in this scenario too, and reduce the nesting level of the remainder of the function.\n\n(The design pattern of checking for an error condition and then returning is called a Guard Clause. I really like these because they simplify the logic considerably. The two try/except/return blocks above, as well as this one, would still be considered Guard Clauses even if they look a little bit different.)\nhttps://refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html",
+      "revId": "eb9ff0b905082caa96ce0fbe9621992fcb0db9f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
