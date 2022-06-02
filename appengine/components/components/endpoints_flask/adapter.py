@@ -15,6 +15,7 @@ from protorpc import message_types
 from protorpc import messages
 from protorpc import remote
 import webapp2
+import flask
 
 from components import template
 
@@ -83,17 +84,20 @@ def decode_message(remote_method_info, request):
   return result
 
 
-def add_cors_headers(headers):
-  headers['Access-Control-Allow-Origin'] = '*'
-  headers['Access-Control-Allow-Headers'] = (
-      'Origin, Authorization, Content-Type, Accept, User-Agent')
-  headers['Access-Control-Allow-Methods'] = ('DELETE, GET, OPTIONS, POST, PUT')
+def add_cors_headers():
+  headers = {
+      'Access-Control-Allow-Origin':
+      '*',
+      'Access-Control-Allow-Headers':
+      ('Origin, Authorization, Content-Type, Accept, User-Agent'),
+      'Access-Control-Allow-Methods': ('DELETE, GET, OPTIONS, POST, PUT')
+  }
+  return headers
 
 
-class CorsHandler(webapp2.RequestHandler):
-  # TODO: make this work with a flask handler function, remove self references
-  def options(self, *_args, **_kwargs):
-    add_cors_headers(self.response.headers)
+def cors_handler():
+  headers = add_cors_headers()
+  return flask.Response(headers=headers)
 
 
 def path_handler(api_class, api_method, service_path):
@@ -104,7 +108,7 @@ def path_handler(api_class, api_method, service_path):
 
   class Handler(webapp2.RequestHandler):
     def dispatch(self):
-      add_cors_headers(self.response.headers)
+      self.response.headers = add_cors_headers()
 
       api = api_class()
       api.initialize_request_state(
@@ -197,7 +201,7 @@ def api_routes(api_classes, base_path='/_ah/api', regex='[^/]+'):
 
     # Add routes for HTTP OPTIONS (to add CORS headers) for each method.
     for t in sorted(templates):
-      routes.append((t, CorsHandler, ['OPTIONS']))
+      routes.append((t, cors_handler, ['OPTIONS']))
 
   # Add generic routes.
   routes.extend([
