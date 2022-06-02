@@ -22,6 +22,30 @@
       },
       "revId": "ae11346cdb2afdc6394663bd704294fdbed2d083",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b640eff_79aa5df0",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-02T19:51:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37481a0e_21b18e4d",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 16
+      },
+      "revId": "ae11346cdb2afdc6394663bd704294fdbed2d083",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
