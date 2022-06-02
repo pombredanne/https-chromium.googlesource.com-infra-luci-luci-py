@@ -14,6 +14,7 @@ from endpoints import protojson
 from protorpc import message_types
 from protorpc import messages
 from protorpc import remote
+import flask
 import webapp2
 
 from components import template
@@ -236,7 +237,7 @@ def discovery_handler_factory(api_classes, base_path):
     base_path: The base path under which all service paths exist.
 
   Returns:
-    A webapp2.RequestHandler.
+    A Flask request handler function.
   """
   # Create a map of (name, version) => [services...].
   service_map = collections.defaultdict(list)
@@ -244,23 +245,15 @@ def discovery_handler_factory(api_classes, base_path):
     service_map[(api_class.api_info.name,
                  api_class.api_info.version)].append(api_class)
 
-  class DiscoveryHandler(webapp2.RequestHandler):
-    """Returns a discovery document for known services."""
+  def discovery_handler(name, version):
+    host = flask.request.headers['Host']
+    services = service_map.get((name, version))
+    if not services:
+      flask.abort(404)
 
-    def get(self, name, version):
-      host = self.request.headers['Host']
-      services = service_map.get((name, version))
-      if not services:
-        self.abort(404, 'Not Found')
+    return discovery.generate(services, host, base_path)
 
-      self.response.headers['Content-Type'] = 'application/json'
-      json.dump(discovery.generate(services, host, base_path),
-                self.response,
-                indent=2,
-                sort_keys=True,
-                separators=(',', ':'))
-
-  return DiscoveryHandler
+  return discovery_handler
 
 
 def discovery_service_route(api_classes, base_path):
