@@ -46,6 +46,30 @@
       },
       "revId": "64e2f276cf52ed6f23c6a34fbff726ab41bad641",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de669315_6eb58734",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-02T19:35:50Z",
+      "side": 1,
+      "message": "That looks right. Note that it\u0027s a `**` argument, which in Python collects all the remaining keyword arguments. So the syntax for passing in the arguments would be:\n```\nflask.render_template(\u0027adapter/proxy.html\u0027, base_path\u003dbase_path)\n```\nOR\n```\nflask.render_template(\u0027adapter/proxy.html\u0027, **{\u0027base_path\u0027: base_path})\n```",
+      "parentUuid": "d9f2a342_9c4ebb77",
+      "range": {
+        "startLine": 337,
+        "startChar": 48,
+        "endLine": 337,
+        "endChar": 79
+      },
+      "revId": "64e2f276cf52ed6f23c6a34fbff726ab41bad641",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
