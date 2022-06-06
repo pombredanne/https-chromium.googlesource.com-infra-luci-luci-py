@@ -3,69 +3,65 @@
 # # Use of this source code is governed under the Apache License, Version 2.0
 # # that can be found in the LICENSE file.
 
-# import json
-# import sys
-# import unittest
+import json
+import sys
+import unittest
 
-# from test_support import test_env
-# test_env.setup_test_env()
+from test_support import test_env
+test_env.setup_test_env()
 
-# from protorpc import messages
-# from protorpc import remote
-# import endpoints
-# import webapp2
+from protorpc import messages
+from protorpc import remote
+import endpoints
+import mock
+import webapp2
+import flask
 
-# from test_support import test_case
-# import adapter
+from test_support import test_case
+import adapter
 
-# class Msg(messages.Message):
-#   s = messages.StringField(1)
-#   s2 = messages.StringField(2)
+app = flask.Flask(__name__)
 
-# CONTAINER = endpoints.ResourceContainer(Msg, x=messages.StringField(3))
 
-# @endpoints.api('Service', 'v1')
-# class EndpointsService(remote.Service):
-#   @endpoints.method(Msg, Msg)
-#   def post(self, _request):
-#     return Msg()
+class Msg(messages.Message):
+  s = messages.StringField(1)
+  s2 = messages.StringField(2)
 
-#   @endpoints.method(Msg, Msg, http_method='GET')
-#   def get(self, _request):
-#     return Msg()
 
-#   @endpoints.method(CONTAINER, Msg, http_method='GET')
-#   def get_container(self, _request):
-#     return Msg()
+CONTAINER = endpoints.ResourceContainer(Msg, x=messages.StringField(3))
 
-#   @endpoints.method(Msg, Msg)
-#   def post_403(self, _request):
-#     raise endpoints.ForbiddenException('access denied')
 
-# class EndpointsFlaskTestCase(test_case.TestCase):
-#   def test_decode_message_post(self):
-#     request = webapp2.Request(
-#         {
-#             'QUERY_STRING': 's2=b',
-#         },
-#         method='POST',
-#         body='{"s": "a"}',
-#     )
-#     msg = adapter.decode_message(EndpointsService.post.remote, request)
-#     self.assertEqual(msg.s, 'a')
-#     self.assertEqual(msg.s2, None)  # because it is not a ResourceContainer.
+@endpoints.api('Service', 'v1')
+class EndpointsService(remote.Service):
+  @endpoints.method(Msg, Msg)
+  def post(self, _request):
+    return Msg()
 
-#   def test_decode_message_get(self):
-#     request = webapp2.Request(
-#         {
-#             'QUERY_STRING': 's=a',
-#         },
-#         method='GET',
-#         route_kwargs={'s2': 'b'},
-#     )
-#     msg = adapter.decode_message(EndpointsService.get.remote, request)
-#     self.assertEqual(msg.s, 'a')
-#     self.assertEqual(msg.s2, 'b')
+  @endpoints.method(Msg, Msg, http_method='GET')
+  def get(self, _request):
+    return Msg()
+
+  @endpoints.method(CONTAINER, Msg, http_method='GET')
+  def get_container(self, _request):
+    return Msg()
+
+  @endpoints.method(Msg, Msg)
+  def post_403(self, _request):
+    raise endpoints.ForbiddenException('access denied')
+
+
+class EndpointsFlaskTestCase(test_case.TestCase):
+  def test_decode_message_post(self):
+    with app.test_request_context(data={"s": "a"}, method='POST'):
+      msg = adapter.decode_message(EndpointsService.post.remote, flask.request)
+      self.assertEqual(msg.s, 'a')
+      self.assertEqual(msg.s2, None)  # because it is not a ResourceContainer.
+
+  def test_decode_message_get(self):
+    with app.test_request_context('s=a', data={"s2": "b"}, method='GET'):
+      msg = adapter.decode_message(EndpointsService.get.remote, flask.request)
+      self.assertEqual(msg.s, 'a')
+      self.assertEqual(msg.s2, 'b')
 
 #   def test_decode_message_get_resource_container(self):
 #     request = webapp2.Request(
@@ -156,7 +152,7 @@
 #     response = request.get_response(app)
 #     self.assertEqual(response.status, '302 Moved Temporarily')
 
-# if __name__ == '__main__':
-#   if '-v' in sys.argv:
-#     unittest.TestCase.maxDiff = None
-#   unittest.main()
+if __name__ == '__main__':
+  if '-v' in sys.argv:
+    unittest.TestCase.maxDiff = None
+  unittest.main()
