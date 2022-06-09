@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d050e80d_33c2ffa0",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-09T18:10:20Z",
+      "side": 1,
+      "message": "This used to be `get_all` in https://crsrc.org/i/luci/appengine/components/components/endpoints_webapp2/adapter.py;l\u003d78. This looks like it should be the Flask equivalent of `getlist`?\n\nhttps://flask.palletsprojects.com/en/2.1.x/api/#flask.Request.values\nhttps://werkzeug.palletsprojects.com/en/2.1.x/datastructures/#werkzeug.datastructures.MultiDict.getlist",
+      "range": {
+        "startLine": 83,
+        "startChar": 32,
+        "endLine": 83,
+        "endChar": 35
+      },
+      "revId": "2c92bb480a815a404476c6578a5e1c51ddf23dff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b582533a_747ac8f3",
+        "filename": "appengine/components/components/endpoints_flask/adapter_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-09T18:10:20Z",
+      "side": 1,
+      "message": "Could we expand the test\u0027s request.values to verify that we decode repeated values?",
+      "range": {
+        "startLine": 62,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 29
+      },
+      "revId": "2c92bb480a815a404476c6578a5e1c51ddf23dff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28d5fd90_f8dd1b0b",
+        "filename": "appengine/components/components/endpoints_flask/adapter_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-09T18:10:20Z",
+      "side": 1,
+      "message": "Is this supposed to be in a # TODO?",
+      "range": {
+        "startLine": 123,
+        "startChar": 22,
+        "endLine": 123,
+        "endChar": 47
+      },
+      "revId": "2c92bb480a815a404476c6578a5e1c51ddf23dff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
