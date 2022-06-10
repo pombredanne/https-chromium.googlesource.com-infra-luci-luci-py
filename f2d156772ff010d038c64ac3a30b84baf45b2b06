@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "390db0f2_0b00e2c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-10T17:44:34Z",
+      "side": 1,
+      "message": "Compared with https://diff.googleplex.com/#key\u003dwoa96wSU3x9q",
+      "revId": "f2d156772ff010d038c64ac3a30b84baf45b2b06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb634493_bc5ac613",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-10T17:44:34Z",
+      "side": 1,
+      "message": "Should this be in the `handler` kwarg?",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 31
+      },
+      "revId": "f2d156772ff010d038c64ac3a30b84baf45b2b06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a8a3b03_b6c7fe61",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-10T17:44:34Z",
+      "side": 1,
+      "message": "Do we need a new line after this?",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 7
+      },
+      "revId": "f2d156772ff010d038c64ac3a30b84baf45b2b06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d0b7fa5_8fcf7752",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-10T17:44:34Z",
+      "side": 1,
+      "message": "Could we fix this formatting?",
+      "range": {
+        "startLine": 327,
+        "startChar": 0,
+        "endLine": 327,
+        "endChar": 8
+      },
+      "revId": "f2d156772ff010d038c64ac3a30b84baf45b2b06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb7404c2_2918589c",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-10T17:44:34Z",
+      "side": 1,
+      "message": "s/pRcphandler/pRpcHandler/g",
+      "range": {
+        "startLine": 332,
+        "startChar": 10,
+        "endLine": 332,
+        "endChar": 21
+      },
+      "revId": "f2d156772ff010d038c64ac3a30b84baf45b2b06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
