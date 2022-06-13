@@ -45,6 +45,29 @@
       },
       "revId": "71d6c092b02e485a7f71aa224bc5663caf023321",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b412697a_ab5f390a",
+        "filename": "appengine/components/components/endpoints_flask/adapter_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-13T20:48:31Z",
+      "side": 1,
+      "message": "Style guide nit: only import modules, not classes.\n`from werkzeug import datastructures`\n`datastructures.CombinedMultiDict`",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 64
+      },
+      "revId": "71d6c092b02e485a7f71aa224bc5663caf023321",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
