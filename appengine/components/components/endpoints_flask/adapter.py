@@ -182,6 +182,7 @@ def api_routes(api_classes, base_path='/_ah/api', regex='[^/]+'):
     for t in sorted(templates):
       routes.append((t, cors_handler, ['OPTIONS']))
 
+  logging.critical(base_path)
   # Add generic routes.
   routes.extend([
       directory_service_route(api_classes, base_path),
