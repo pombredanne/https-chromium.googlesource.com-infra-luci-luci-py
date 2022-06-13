@@ -33,6 +33,24 @@
       "message": "Uh... really? This is an actual bug that was fixed....",
       "revId": "b5c817b0aae2b159b3e54fd15fcc8bb8b37f386c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a091bcf1_f4cad408",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1456797
+      },
+      "writtenOn": "2022-06-13T21:58:51Z",
+      "side": 1,
+      "message": "after speaking with Vadim my understanding is that if we\u0027re reverting the other CL this one will need to be reverted as well or else qs will only will have 10s to respond versus 60s if we revert this.",
+      "parentUuid": "d0d1b84d_845b69f0",
+      "revId": "b5c817b0aae2b159b3e54fd15fcc8bb8b37f386c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
