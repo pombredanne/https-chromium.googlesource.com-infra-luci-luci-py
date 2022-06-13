@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45afc009_10ee48b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1272455
+      },
+      "writtenOn": "2022-06-13T05:09:01Z",
+      "side": 1,
+      "message": "PTAL, not sure if I\u0027ve picked all of the right entities here. (in particular not sure if I should\u0027ve also included AuthDBSnapshotShard)",
+      "revId": "142ff3b0f2d41d1a1178e5c50d1dbe8ec7e1c47a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
