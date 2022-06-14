@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "700c28cc_dc36cad4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-06-14T00:36:01Z",
+      "side": 1,
+      "message": "Two issues:\n\n1. `flask` is not available in all places where this code runs and adding it there would be complicated (and unnecessary). Tests failures is one consequence.\n2. There seems to be an awful lot of copy-pasta.\n\nFor (1) I propose to move flask-specific code into flask_server.py and in __init__.py [1] do something like:\n\n```\n  try:\n    import flask\n  except ImportError:\n    pass\n  else:\n    from .flask_server import FlaskServer\n```\n\nThen code that needs flask handlers should make sure `flask` library is available and then instantiate the server as `prpc.FlaskServer(...)`.\n\nUnless you want to support both webapp2 and flask in the exact same process using exact same server object?\n\nFor (2), please try to refactor code to reduce duplication.\n\n[1]: https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/components/components/prpc/__init__.py",
+      "revId": "36603ed8e8c73922cc648f8531cd26454d200f34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
