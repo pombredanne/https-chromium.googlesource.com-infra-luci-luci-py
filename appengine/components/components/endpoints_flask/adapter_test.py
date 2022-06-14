@@ -13,6 +13,8 @@ import unittest
 from protorpc import messages
 from protorpc import remote
 import endpoints
+import flask
+import logging
 import mock
 
 from test_support import test_case
@@ -84,19 +86,19 @@ class EndpointsFlaskTestCase(test_case.TestCase):
     self.assertEqual(rc.s2, 'b')
     self.assertEqual(rc.x, 'c')
 
-#   def test_handle_403(self):
-#     app = webapp2.WSGIApplication(adapter.api_routes([EndpointsService],
-#                                                      '/_ah/api'),
-#                                   debug=True)
-#     request = webapp2.Request.blank('/_ah/api/Service/v1/post_403')
-#     request.method = 'POST'
-#     response = request.get_response(app)
-#     self.assertEqual(response.status_int, 403)
-#     self.assertEqual(json.loads(response.body), {
-#         'error': {
-#             'message': 'access denied',
-#         },
-#     })
+  def test_handle_403(self):
+    logging.critical(adapter.api_routes([EndpointsService]))
+    app = flask.Flask('/_ah/api')
+    request = mock.MagicMock()
+    request.url = '/_ah/api/Service/v1/post_403'
+    request.method = 'POST'
+    response = request.get_response(app)
+    self.assertEqual(response.status_int, 403)
+    self.assertEqual(json.loads(response.body), {
+        'error': {
+            'message': 'access denied',
+        },
+    })
 
 #   def test_api_routes(self):
 #     routes = sorted(
