@@ -16,6 +16,24 @@
       "message": "PTAL, not sure if I\u0027ve picked all of the right entities here. (in particular not sure if I should\u0027ve also included AuthDBSnapshotShard)",
       "revId": "142ff3b0f2d41d1a1178e5c50d1dbe8ec7e1c47a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f228f3ab_e7bfa2b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-06-14T19:28:51Z",
+      "side": 1,
+      "message": "Here\u0027s a list of entities touched by go code: https://source.chromium.org/search?q\u003d%22$kind%22\u0026ss\u003dchromium%2Finfra%2Finfra:go%2Fsrc%2Fgo.chromium.org%2Fluci%2Fauth_service%2F\n\nIIRC AuthDBSnapshotShard is not used by auth_service itself. It is used by its Python clients to hold the authdb blob.",
+      "parentUuid": "45afc009_10ee48b9",
+      "revId": "142ff3b0f2d41d1a1178e5c50d1dbe8ec7e1c47a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
