@@ -81,6 +81,30 @@
       },
       "revId": "6cd9e125c1018c4ad66ac9fe6a341d50ba4c6f56",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f8c8f18_a3eca50e",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-06-15T20:44:18Z",
+      "side": 1,
+      "message": "I think either the script needs to assert that it\u0027s running under py3 (in which case \u0027input\u0027 is fine), or it should have something like this. Otherwise it\u0027s potentially dangerous (because \u0027input\u0027 in py2 is equivalent to `eval(raw_input(...))`, which we don\u0027t want. Probably also it will break if a user types something like `5`)",
+      "parentUuid": "7c6b5069_f2573342",
+      "range": {
+        "startLine": 524,
+        "startChar": 5,
+        "endLine": 524,
+        "endChar": 50
+      },
+      "revId": "6cd9e125c1018c4ad66ac9fe6a341d50ba4c6f56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
