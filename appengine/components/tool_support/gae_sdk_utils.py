@@ -903,9 +903,9 @@ def confirm(text, app, version, services=None, default_yes=False):
   print('  Version:   %s' % version)
   print('  Services:  %s' % ', '.join(services or app.services))
   if default_yes:
-    return raw_input('Continue? [Y/n] ') not in ('n', 'N')
+    return input('Continue? [Y/n] ') not in ('n', 'N')
   else:
-    return raw_input('Continue? [y/N] ') in ('y', 'Y')
+    return input('Continue? [y/N] ') in ('y', 'Y')
 
 
 def is_gcloud_auth_set():

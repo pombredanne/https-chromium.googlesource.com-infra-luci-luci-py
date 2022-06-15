@@ -625,7 +625,7 @@ def _run_oauth_dance(urlhost, config):
         return None
       code = httpd.query_params['code']
     else:
-      code = raw_input('Enter verification code: ').strip()
+      code = input('Enter verification code: ').strip()
   except KeyboardInterrupt:
     err('Canceled.')
     return None
