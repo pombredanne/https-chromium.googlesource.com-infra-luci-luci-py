@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd22b9b7_d6b81138",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-06-15T20:35:16Z",
+      "side": 1,
+      "message": "lgtm, though I don\u0027t recognize any of this code. The comment is on some purported 2/3 compatibility thing. IIUC `input` in python2 was intrinsically unsafe under all circumstances (it implied doing an eval() on the user input), so it would be good to make sure these scripts are ONLY called with python3 now.",
+      "revId": "6cd9e125c1018c4ad66ac9fe6a341d50ba4c6f56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45261154_5b96bbcf",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-06-15T20:35:16Z",
+      "side": 1,
+      "message": "hm...",
+      "range": {
+        "startLine": 524,
+        "startChar": 5,
+        "endLine": 524,
+        "endChar": 50
+      },
+      "revId": "6cd9e125c1018c4ad66ac9fe6a341d50ba4c6f56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
