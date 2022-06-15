@@ -105,6 +105,30 @@
       },
       "revId": "6cd9e125c1018c4ad66ac9fe6a341d50ba4c6f56",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab6ac13d_0b4147e2",
+        "filename": "appengine/components/tools/gae.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1306133
+      },
+      "writtenOn": "2022-06-15T20:48:50Z",
+      "side": 1,
+      "message": "Ok, Since none of these script had common inputs that i wanted to touch, I added to private function to all of them.",
+      "parentUuid": "5f8c8f18_a3eca50e",
+      "range": {
+        "startLine": 524,
+        "startChar": 5,
+        "endLine": 524,
+        "endChar": 50
+      },
+      "revId": "6cd9e125c1018c4ad66ac9fe6a341d50ba4c6f56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
