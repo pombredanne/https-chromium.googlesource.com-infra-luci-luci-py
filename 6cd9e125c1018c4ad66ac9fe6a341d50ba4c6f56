@@ -54,6 +54,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd10e6eb_78b6c02e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1306133
+      },
+      "writtenOn": "2022-06-15T21:33:23Z",
+      "side": 1,
+      "message": "Calling the swarming API to get bot status and send terminate commands as needed.",
+      "parentUuid": "9e81964c_4e08dfa7",
+      "revId": "6cd9e125c1018c4ad66ac9fe6a341d50ba4c6f56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45261154_5b96bbcf",
