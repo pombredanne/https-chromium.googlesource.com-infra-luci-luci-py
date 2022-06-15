@@ -885,6 +885,15 @@ def process_sdk_options(parser, options):
     parser.error(str(e))
 
 
+def _raw_input(prompt):
+  """Get raw input in a Python 2&3 compatible way."""
+  # pylint: disable=input-builtin,raw_input-builtin
+  if sys.version_info.major >= 3:
+    return input(prompt)
+  else:
+    return raw_input(prompt)
+
+
 def confirm(text, app, version, services=None, default_yes=False):
   """Asks a user to confirm the action related to GAE app.
 
@@ -903,9 +912,9 @@ def confirm(text, app, version, services=None, default_yes=False):
   print('  Version:   %s' % version)
   print('  Services:  %s' % ', '.join(services or app.services))
   if default_yes:
-    return raw_input('Continue? [Y/n] ') not in ('n', 'N')
+    return _raw_input('Continue? [Y/n] ') not in ('n', 'N')
   else:
-    return raw_input('Continue? [y/N] ') in ('y', 'Y')
+    return _raw_input('Continue? [y/N] ') in ('y', 'Y')
 
 
 def is_gcloud_auth_set():
