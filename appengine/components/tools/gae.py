@@ -526,7 +526,7 @@ def _raw_input(prompt):
   if sys.version_info.major >= 3:
     return input(prompt)
   else:
-    return raw_input(prompt)
+    return input(prompt)
 
 
 def main(args):

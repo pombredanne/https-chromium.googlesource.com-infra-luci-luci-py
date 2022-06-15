@@ -69,7 +69,7 @@ def work(user, dev_filters):
   print('***')
   sys.stdout.write(content)
   print('***')
-  raw_input('Press enter to continue or Ctrl-C to cancel.')
+  input('Press enter to continue or Ctrl-C to cancel.')
 
   handle, filepath = tempfile.mkstemp(
       prefix='swarming_bot_udev', suffix='.rules')
