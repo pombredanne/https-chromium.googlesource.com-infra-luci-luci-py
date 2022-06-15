@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e81964c_4e08dfa7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-06-15T21:15:10Z",
+      "side": 1,
+      "message": "\u003e auth to the swarming service with the swarming.py client.\n\nI believe swarming.py client is deprecated in favor of the Go-based client. What do you use swarming.py client for?",
+      "parentUuid": "7e825741_8a811309",
+      "revId": "6cd9e125c1018c4ad66ac9fe6a341d50ba4c6f56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45261154_5b96bbcf",
