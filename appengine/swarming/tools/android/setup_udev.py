@@ -62,6 +62,15 @@ def write_udev_rule(filepath):
   print('Wrote %d bytes successfully to %s' % (len(content), RULE_FILE))
 
 
+def _raw_input(prompt):
+  """Get raw input in a Python 2&3 compatible way."""
+  # pylint: disable=input-builtin,raw_input-builtin
+  if sys.version_info.major >= 3:
+    return input(prompt)
+  else:
+    return raw_input(prompt)
+
+
 def work(user, dev_filters):
   """The guts of this script."""
   content = gen_udev_rule(user, dev_filters)
@@ -69,7 +78,7 @@ def work(user, dev_filters):
   print('***')
   sys.stdout.write(content)
   print('***')
-  raw_input('Press enter to continue or Ctrl-C to cancel.')
+  _raw_input('Press enter to continue or Ctrl-C to cancel.')
 
   handle, filepath = tempfile.mkstemp(
       prefix='swarming_bot_udev', suffix='.rules')

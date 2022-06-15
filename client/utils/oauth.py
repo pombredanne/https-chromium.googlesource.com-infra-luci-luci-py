@@ -550,6 +550,15 @@ def _make_signed_jwt(payload, pkey):
 # usage of _fetch_service_config, our command line arguments, and so on.
 
 
+def _raw_input(prompt):
+  """Get raw input in a Python 2&3 compatible way."""
+  # pylint: disable=input-builtin,raw_input-builtin
+  if sys.version_info.major >= 3:
+    return input(prompt)
+  else:
+    return raw_input(prompt)
+
+
 def _run_oauth_dance(urlhost, config):
   """Perform full OAuth2 dance with the browser."""
   def out(s):
@@ -625,7 +634,7 @@ def _run_oauth_dance(urlhost, config):
         return None
       code = httpd.query_params['code']
     else:
-      code = raw_input('Enter verification code: ').strip()
+      code = _raw_input('Enter verification code: ').strip()
   except KeyboardInterrupt:
     err('Canceled.')
     return None
