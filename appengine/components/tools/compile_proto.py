@@ -1,11 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
 """Compiles all *.proto files it finds into *_pb2.py."""
-
-from __future__ import print_function
 
 import logging
 import optparse
@@ -153,7 +151,7 @@ def get_protoc_version():
   cmd = [get_protoc(), '--version']
   try:
     logging.debug('Running %s', cmd)
-    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, text=True)
     out, _ = proc.communicate()
     if proc.returncode:
       logging.debug('protoc --version returned %d', proc.returncode)
