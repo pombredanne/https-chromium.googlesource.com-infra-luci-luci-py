@@ -26,6 +26,29 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "821284c0_9d99c19a",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-06-16T16:57:26Z",
+      "side": 1,
+      "message": "I realized this might need to be `supportsGzipCompression`. But I\u0027m not sure... There is already `config_set` above, so I guess I\u0027ll leave it snake case.\n\nThe sending side encodes this *proto* message using `json.NewEncoder(w).Encode(\u0026meta)`, ugh...",
+      "range": {
+        "startLine": 57,
+        "startChar": 7,
+        "endLine": 57,
+        "endChar": 32
+      },
+      "revId": "d833d0e9529ed52513d832d890e0c52739be052f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "7f15ebfe_2c0a7f29",
         "filename": "appengine/config_service/services.py",
         "patchSetId": 3
@@ -37,6 +60,30 @@
       "writtenOn": "2022-06-16T06:51:40Z",
       "side": 1,
       "message": "✨magic✨",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 52
+      },
+      "revId": "d833d0e9529ed52513d832d890e0c52739be052f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "329f6e14_86ba3ea4",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-06-16T16:57:26Z",
+      "side": 1,
+      "message": "I just copied json_async_request implementation. I suspect nothing is really sending this prefix in luci-config validation protocol, but who knows.",
+      "parentUuid": "7f15ebfe_2c0a7f29",
       "range": {
         "startLine": 114,
         "startChar": 0,
