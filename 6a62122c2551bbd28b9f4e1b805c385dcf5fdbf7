@@ -16,6 +16,23 @@
       "message": "I had to return future import, since pylint is pylinting as python2 and I don\u0027t have enough yak shaving capability to go deeper now.",
       "revId": "6a62122c2551bbd28b9f4e1b805c385dcf5fdbf7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78616a18_68ab0fdb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-06-16T01:29:10Z",
+      "side": 1,
+      "message": "I give up.",
+      "revId": "6a62122c2551bbd28b9f4e1b805c385dcf5fdbf7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
