@@ -25,7 +25,12 @@ from components.prpc import encoding
 from components.prpc import headers
 from components.prpc.codes import StatusCode
 from components.prpc.context import ServicerContext
+from components.prpc.flaskServer import FlaskServerHandler
 
+try:
+  import flask
+except ImportError:
+  flask = None
 
 __all__ = [
   'HandlerCallDetails',
@@ -35,7 +40,7 @@ __all__ = [
 
 # pylint: disable=pointless-string-statement
 
-_PRPC_TO_HTTP_STATUS = {
+PRPC_TO_HTTP_STATUS = {
   StatusCode.OK: httplib.OK,
   StatusCode.CANCELLED: httplib.NO_CONTENT,
   StatusCode.INVALID_ARGUMENT: httplib.BAD_REQUEST,
@@ -156,6 +161,10 @@ class Server(object):
             methods=['POST', 'OPTIONS'])
     ]
 
+  def get_flask_routes(self, prefix=''):
+    return [('%s/prpc/<service>/<method>' % prefix, self._flaskhandler(),
+             ['POST', 'OPTIONS'])]
+
   def _handler(self):
     """Returns a RequestHandler class with access to this server's data."""
 
@@ -181,7 +190,7 @@ class Server(object):
           self.response.headers['Access-Control-Allow-Origin'] = origin
           self.response.headers['Vary'] = 'Origin'
           self.response.headers['Access-Control-Allow-Credentials'] = 'true'
-        self.response.status = _PRPC_TO_HTTP_STATUS[context._code]
+        self.response.status = PRPC_TO_HTTP_STATUS[context._code]
         self.response.headers['X-Prpc-Grpc-Code'] = str(context._code.value)
         self.response.headers['Access-Control-Expose-Headers'] = (
             'X-Prpc-Grpc-Code')
@@ -309,6 +318,17 @@ class Server(object):
           self.response.headers['Access-Control-Max-Age'] = '600'
 
     return Handler
+
+  def _flaskhandler(self):
+    # Returns a FlaskRequestHandlerFunction with
+    # access to this server's data.
+
+    # Alias self as server here for readability.
+    server = self
+    if flask:
+      return FlaskServerHandler(server=server, flask=flask).pRcpHandler
+    else:
+      return None
 
   def _run_interceptors(self, request, context, call_details, handler, idx):
     """Runs the request via interceptors chain starting from given index.
