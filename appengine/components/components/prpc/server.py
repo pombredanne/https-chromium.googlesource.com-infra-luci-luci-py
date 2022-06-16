@@ -25,7 +25,12 @@ from components.prpc import encoding
 from components.prpc import headers
 from components.prpc.codes import StatusCode
 from components.prpc.context import ServicerContext
+from components.prpc.flaskServer import FlaskServerHandler
 
+try:
+  import flask
+except ImportError:
+  flask = None
 
 __all__ = [
   'HandlerCallDetails',
@@ -155,6 +160,10 @@ class Server(object):
             handler=self._handler(),
             methods=['POST', 'OPTIONS'])
     ]
+
+  def get_flask_routes(self, prefix=''):
+    return [('%s/prpc/<service>/<method>' % prefix, self._flaskhandler(),
+             ['POST', 'OPTIONS'])]
 
   def _handler(self):
     """Returns a RequestHandler class with access to this server's data."""
@@ -309,6 +318,17 @@ class Server(object):
           self.response.headers['Access-Control-Max-Age'] = '600'
 
     return Handler
+
+  def _flaskhandler(self):
+    # Returns a FlaskRequestHandlerFunction with
+    # access to this server's data.
+
+    # Alias self as server here for readability.
+    server = self
+    if flask:
+      return FlaskServerHandler(server=server, flask=flask).pRcpHandler
+    else:
+      return None
 
   def _run_interceptors(self, request, context, call_details, handler, idx):
     """Runs the request via interceptors chain starting from given index.
