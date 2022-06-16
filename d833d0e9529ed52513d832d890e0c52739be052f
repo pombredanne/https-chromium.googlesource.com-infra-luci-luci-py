@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52553fe1_36e6fbb7",
+        "filename": "appengine/components/components/config/endpoint.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-06-16T06:51:40Z",
+      "side": 1,
+      "message": "protorpc was _such a bad idea_ :(",
+      "range": {
+        "startLine": 94,
+        "startChar": 30,
+        "endLine": 94,
+        "endChar": 53
+      },
+      "revId": "d833d0e9529ed52513d832d890e0c52739be052f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f15ebfe_2c0a7f29",
+        "filename": "appengine/config_service/services.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-06-16T06:51:40Z",
+      "side": 1,
+      "message": "✨magic✨",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 52
+      },
+      "revId": "d833d0e9529ed52513d832d890e0c52739be052f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
