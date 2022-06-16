@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c604e99_9987e268",
+        "filename": "appengine/components/components/endpoints_flask/adapter_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-16T21:15:41Z",
+      "side": 1,
+      "message": "I thought Flask URLs needed to be unique? Perhaps I\u0027m misunderstanding the test/comment here?",
+      "range": {
+        "startLine": 104,
+        "startChar": 14,
+        "endLine": 104,
+        "endChar": 38
+      },
+      "revId": "422b401a713ed46d154f046bc23befa667ba689c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
