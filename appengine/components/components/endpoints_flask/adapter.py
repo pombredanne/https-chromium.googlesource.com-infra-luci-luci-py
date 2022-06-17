@@ -175,10 +175,11 @@ def api_routes(api_classes, base_path='/_ah/api', regex='[^/]+'):
       t = posixpath.join(api_base_path, method_path)
       http_method = info.http_method.upper() or 'POST'
       handler = path_handler_factory(api_class, method, api_base_path)
-      routes.append((t + "/options", method_path, handler, [http_method]))
+      routes.append((t, method_path, handler, [http_method]))
 
       # Add routes for HTTP OPTIONS (to add CORS headers) for each method.
-      routes.append((t, method_path + "_options", cors_handler, ['OPTIONS']))
+      routes.append(
+          (t + "/options", method_path + "_options", cors_handler, ['OPTIONS']))
       templates.add(t)
 
   # Add generic routes.
@@ -206,6 +207,7 @@ def api_server(api_classes, base_path='/_ah/api', regex='[^/]+'):
   app = flask.Flask(__name__)
   routes = api_routes(api_classes, base_path, regex)
   for r in routes:
+    logging.critical(r)
     app.add_url_rule(r[0], endpoint=r[1], view_func=r[2], methods=r[3])
   return app
 

@@ -14,6 +14,7 @@ from protorpc import messages
 from protorpc import remote
 import endpoints
 import flask
+import logging
 import mock
 
 from test_support import test_case
@@ -46,6 +47,7 @@ class EndpointsService(remote.Service):
 
   @endpoints.method(Msg, Msg)
   def post_403(self, _request):
+    logging.critical("fsdfsdf")
     return flask.Flask.make_response(('error', 403, []))
 
 
@@ -85,16 +87,16 @@ class EndpointsFlaskTestCase(test_case.TestCase):
     self.assertEqual(rc.s2, 'b')
     self.assertEqual(rc.x, 'c')
 
-  # def test_handle_403(self):
-  #   app = adapter.api_server([EndpointsService], base_path='/_ah/api')
-  #   with app.test_client() as client:
-  #     response = client.post('/_ah/api/Service/v1/post_403')
-  #   self.assertEqual(response.status, 403)
-  #   self.assertEqual(json.loads(response.body), {
-  #       'error': {
-  #           'message': 'access denied',
-  #       },
-  #   })
+  def test_handle_403(self):
+    app = adapter.api_server([EndpointsService], base_path='/_ah/api')
+    with app.test_client() as client:
+      response = client.post('/_ah/api/Service/v1/post_403')
+    self.assertEqual(response.status, 403)
+    self.assertEqual(json.loads(response.body), {
+        'error': {
+            'message': 'access denied',
+        },
+    })
 
   def test_api_routes(self):
     routes = sorted([r[0] for r in adapter.api_routes([EndpointsService])])
