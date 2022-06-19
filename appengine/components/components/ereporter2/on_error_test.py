@@ -219,7 +219,7 @@ class Ereporter2OnErrorTestNoAuth(test_case.TestCase):
       'env': None,
       'exception_type': None,
       'hostname': None,
-      'identity': None,
+      'identity': u'user:joe@example.com',
       'message': u'Dang',
       'method': None,
       'os': None,
