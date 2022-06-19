@@ -100,7 +100,7 @@ class Ereporter2OnErrorTest(test_case.TestCase):
       'env': None,
       'exception_type': None,
       'hostname': None,
-      'identity': None,
+      'identity': u'user:a@example.com',
       'message': None,
       'method': None,
       'os': None,
