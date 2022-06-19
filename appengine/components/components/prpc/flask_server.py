@@ -1,60 +1,57 @@
-# Copyright 2017 The LUCI Authors. All rights reserved.
+# Copyright 2022 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-"""A stripped-down implementation of the gRPC interface for Python on AppEngine.
-
-The Server class itself also provides the bulk of the implementation which
-actually runs on AppEngine (and therefore couldn't include Cython). It acts
-as a webapp2.RequestHandler, and exposes a .get_routes() method for the host
-application to call.
-
-https://github.com/grpc/grpc/tree/master/src/python/grpcio/grpc
-"""
-
-from components.prpc.server_base import ServerBase
 import logging
-import webapp2
 
 # Helpers are in separate modules so this one exposes only the public interface.
 from components.prpc import encoding
 from components.prpc import headers
 from components.prpc.codes import StatusCode
 from components.prpc.context import ServicerContext
+from components.prpc.server_base import ServerBase
+
+try:
+  import flask
+except ImportError:
+  flask = type('flask', (object), {
+      "reqeust": object,
+      "make_response": function
+  })
 
 
-class Server(ServerBase):
-  """
-    Implement a webapp2.RequestHandler, and get_routes() method for the host
-    application to call.
-  """
-
+class FlaskServer(ServerBase):
   def get_routes(self, prefix=''):
-    """Returns a list of webapp2.Route for all the routes the API handles."""
-    return [
-        webapp2.Route(
-            '%s/prpc/<service>/<method>' % prefix,
-            handler=self._handler(),
-            methods=['POST', 'OPTIONS'])
-    ]
+    return [('%s/prpc/<service>/<method>' % prefix, self._flaskhandler(),
+             ['POST', 'OPTIONS'])]
 
-  def _handler(self):
-    """Returns a RequestHandler class with access to this server's data."""
-
-    # Alias self as server here for readability.
+  def _flaskhandler(self):
     server = self
 
-    class Handler(webapp2.RequestHandler):
+    class FlaskHandler(object):
+      def __init__(self):
+        self.request = flask.request
+        self.response = None
+
+      def pRcphandler(self, service, method):
+        self.response = flask.make_response()
+
+        if self.request.method == 'POST':
+          self.post(service, method)
+        elif self.request.method == 'OPTIONS':
+          self.options(service, method)
+
+        return self.response
 
       def post(self, service, method):
-        """Writes body and headers of webapp2.Response.
+        """Writes body and headers of flask.Response.
 
         Args:
           service: the service being targeted by this pRPC call.
           method: the method being invoked by this pRPC call.
 
         Returns:
-          response: a webapp2.Response.
+          response: a flask.Response.
         """
         context = ServicerContext()
         content = self._handle(context, service, method)
@@ -63,7 +60,7 @@ class Server(ServerBase):
           self.response.headers['Access-Control-Allow-Origin'] = origin
           self.response.headers['Vary'] = 'Origin'
           self.response.headers['Access-Control-Allow-Credentials'] = 'true'
-        self.response.status = server._PRPC_TO_HTTP_STATUS[context._code]
+        self.response.status_code = server._PRPC_TO_HTTP_STATUS[context._code]
         self.response.headers['X-Prpc-Grpc-Code'] = str(context._code.value)
         self.response.headers['Access-Control-Expose-Headers'] = (
             'X-Prpc-Grpc-Code')
@@ -71,14 +68,14 @@ class Server(ServerBase):
         if content is not None:
           self.response.headers['Content-Type'] = encoding.Encoding.media_type(
               context._response_encoding)
-          self.response.out.write(content)
+          self.response.response = content
         elif context._details is not None:
           # webapp2 will automatically encode strings as utf-8.
           # http://webapp2.readthedocs.io/en/latest/guide/response.html
           #
           # TODO(nodir,mknyszek): Come up with an actual test for this.
           self.response.headers['Content-Type'] = 'text/plain; charset=utf-8'
-          self.response.out.write(context._details)
+          self.response.response = context._details
         return self.response
 
       def _handle(self, context, service, method):
@@ -119,7 +116,7 @@ class Server(ServerBase):
         request = request_message()
         try:
           decoder = encoding.get_decoder(parsed_headers.content_type)
-          decoder(self.request.body, request)
+          decoder(self.request.values, request)
         except Exception as e:
           logging.warning('Failed to decode request: %s', e, exc_info=True)
           context.set_code(StatusCode.INVALID_ARGUMENT)
@@ -142,8 +139,8 @@ class Server(ServerBase):
         try:
           # TODO(nodir,mknyszek): Poll for context to hit timeout or be
           # canceled.
-          response = server._run_interceptors(
-              request, context, call_details, handler, 0)
+          response = server._run_interceptors(request, context, call_details,
+                                              handler, 0)
         except Exception:
           logging.exception('Service implementation threw an exception')
           context.set_code(StatusCode.INTERNAL)
@@ -190,4 +187,4 @@ class Server(ServerBase):
               'OPTIONS, POST'
           self.response.headers['Access-Control-Max-Age'] = '600'
 
-    return Handler
+    return FlaskHandler.pRcphandler
