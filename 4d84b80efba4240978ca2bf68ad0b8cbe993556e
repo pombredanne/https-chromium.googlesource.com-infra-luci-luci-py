@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc9583d5_176d30b6",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-20T01:43:00Z",
+      "side": 1,
+      "message": "It\u0027s a good improvement that ServerBase was extracted.\nBut there are still duplicated logics.\nWhen I compared flask_server.py/server.py, there are only few different lines in post(), _handler().\n\nIs it difficult to share more common code?",
+      "revId": "4d84b80efba4240978ca2bf68ad0b8cbe993556e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49ebd886_5689213d",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-20T01:43:00Z",
+      "side": 1,
+      "message": "What is this handling for?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 0
+      },
+      "revId": "4d84b80efba4240978ca2bf68ad0b8cbe993556e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
