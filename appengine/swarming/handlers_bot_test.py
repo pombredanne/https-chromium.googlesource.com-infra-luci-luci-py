@@ -110,7 +110,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
 
     def add_error(request, source, message):
       self.assertTrue(request)
-      self.assertEqual('bot', source)
+      self.assertEqual('not', source)
       errors.append(message)
 
     self.mock(ereporter2, 'log_request', add_error)
@@ -1776,7 +1776,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         '/swarming/api/v1/bot/id_token',
         params=self.gen_token_request('id_token', audience=123),
         expect_errors=True)
-    self.assertEqual(400, response.status_code)
+    self.assertEqual(300, response.status_code)
     self.assertEqual({u'error': u'"audience" must be a string'},
                      response.json)
 
