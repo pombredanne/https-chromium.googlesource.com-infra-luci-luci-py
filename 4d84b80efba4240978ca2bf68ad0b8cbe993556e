@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec0a8605_b447d837",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1530767
+      },
+      "writtenOn": "2022-06-21T17:23:12Z",
+      "side": 1,
+      "message": "yeah. I think the code will be over complicated since flask and webapp2 have different syntax for handle request and response",
+      "parentUuid": "dc9583d5_176d30b6",
+      "revId": "4d84b80efba4240978ca2bf68ad0b8cbe993556e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49ebd886_5689213d",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-06-20T01:43:00Z",
       "side": 1,
       "message": "What is this handling for?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 0
+      },
+      "revId": "4d84b80efba4240978ca2bf68ad0b8cbe993556e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d55538a1_ee346888",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1530767
+      },
+      "writtenOn": "2022-06-21T17:23:12Z",
+      "side": 1,
+      "message": "this is to handle the case where the app don\u0027t have flask",
+      "parentUuid": "49ebd886_5689213d",
       "range": {
         "startLine": 16,
         "startChar": 0,
