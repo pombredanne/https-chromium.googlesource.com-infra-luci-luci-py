@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3a07c65_50a67f62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-21T23:18:52Z",
+      "side": 1,
+      "message": "Could you update the commit message ",
+      "revId": "d6a5b7a417f29ece89ee221cb14b1106f735c2fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fca71cd4_5b853538",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-21T23:18:52Z",
+      "side": 1,
+      "message": "Does this mean that we should have routes that look something like `/foo_options`? Should these be reflected in the `test_api_routes` method?",
+      "range": {
+        "startLine": 181,
+        "startChar": 24,
+        "endLine": 181,
+        "endChar": 49
+      },
+      "revId": "d6a5b7a417f29ece89ee221cb14b1106f735c2fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02704d3e_e5861a33",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-21T23:18:52Z",
+      "side": 1,
+      "message": "It looks like the return deviates from this comment?\n\nSame comment on other `Returns` doc strings",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 47
+      },
+      "revId": "d6a5b7a417f29ece89ee221cb14b1106f735c2fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
