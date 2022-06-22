@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4c3210b0_195b1541",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-22T19:50:17Z",
+      "side": 1,
+      "message": "This modifies the URL, I thought we weren\u0027t modifying any URLs in this change",
+      "range": {
+        "startLine": 178,
+        "startChar": 22,
+        "endLine": 178,
+        "endChar": 35
+      },
+      "revId": "d6a5b7a417f29ece89ee221cb14b1106f735c2fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fca71cd4_5b853538",
         "filename": "appengine/components/components/endpoints_flask/adapter.py",
         "patchSetId": 9
@@ -36,6 +59,53 @@
         "startChar": 24,
         "endLine": 181,
         "endChar": 49
+      },
+      "revId": "d6a5b7a417f29ece89ee221cb14b1106f735c2fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98e00a21_472e175a",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-22T19:50:17Z",
+      "side": 1,
+      "message": "One option might be to create a shared static endpoint for `cors_handler` and have all the routes reference that one endpoint. See [1] for more details on how this works.\n```\nroutes.append((t, \u0027cors_handler\u0027, None, [\u0027OPTIONS\u0027]))\n\n# In api_server()\napp.view_functions[\u0027cors_handler\u0027] \u003d cors_handler\n```\nThat might reduce the risk of name collisions and involves fewer overall mappings, but does create more ties between different sections of the code.\n\nSeparate routes for each `options` handler is fine too, either way works.\n\n[1] https://stackoverflow.com/questions/64693712/what-is-the-endpoint-parameter-for-app-route-used-for",
+      "parentUuid": "fca71cd4_5b853538",
+      "range": {
+        "startLine": 181,
+        "startChar": 24,
+        "endLine": 181,
+        "endChar": 49
+      },
+      "revId": "d6a5b7a417f29ece89ee221cb14b1106f735c2fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea7addd4_f028a776",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-22T19:50:17Z",
+      "side": 1,
+      "message": "nit: slightly prefer tuple destructuring over indexing the tuple:\n```\nfor rule, endpoint, view_func, methods in routes:\n  app.add_url_rule(rule, endpoint\u003dendpoint, view_func\u003dview_func, methods\u003dmethods)\n```\nThe reasons are that you\u0027ll get stronger typechecking guarantees this way (the type of each element of the tuple is checked independently) and it\u0027s a little clearer what each element of the tuple is for.",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 0
       },
       "revId": "d6a5b7a417f29ece89ee221cb14b1106f735c2fa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
