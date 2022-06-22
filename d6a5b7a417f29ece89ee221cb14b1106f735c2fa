@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "453c95a6_4987a0a2",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-22T23:56:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c3210b0_195b1541",
+      "range": {
+        "startLine": 178,
+        "startChar": 22,
+        "endLine": 178,
+        "endChar": 35
+      },
+      "revId": "d6a5b7a417f29ece89ee221cb14b1106f735c2fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fca71cd4_5b853538",
@@ -88,6 +112,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf9ccec7_c737d474",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-22T23:56:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98e00a21_472e175a",
+      "range": {
+        "startLine": 181,
+        "startChar": 24,
+        "endLine": 181,
+        "endChar": 49
+      },
+      "revId": "d6a5b7a417f29ece89ee221cb14b1106f735c2fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea7addd4_f028a776",
@@ -111,6 +159,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "619cba02_1f32a1cc",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-22T23:56:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea7addd4_f028a776",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 0
+      },
+      "revId": "d6a5b7a417f29ece89ee221cb14b1106f735c2fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02704d3e_e5861a33",
@@ -124,6 +196,30 @@
       "writtenOn": "2022-06-21T23:18:52Z",
       "side": 1,
       "message": "It looks like the return deviates from this comment?\n\nSame comment on other `Returns` doc strings",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 47
+      },
+      "revId": "d6a5b7a417f29ece89ee221cb14b1106f735c2fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "943f43a5_3c2730a8",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-22T23:56:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02704d3e_e5861a33",
       "range": {
         "startLine": 250,
         "startChar": 0,
