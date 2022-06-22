@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9459b5b2_4d5c72c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-06-22T23:46:22Z",
+      "side": 1,
+      "message": "Please approve and submit this first: https://critique.corp.google.com/cl/456638246",
+      "revId": "9cda5d9341d76f2fe02f2bbd4f63576860037493",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
