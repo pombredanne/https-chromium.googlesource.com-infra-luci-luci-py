@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30fc31d9_cdf2063c",
+        "filename": "appengine/components/components/prpc/__init__.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-22T22:55:23Z",
+      "side": 1,
+      "message": "This file is used to export declarations to library users. I think we want to export FlaskServer instead of ServerBase.",
+      "range": {
+        "startLine": 5,
+        "startChar": 45,
+        "endLine": 5,
+        "endChar": 55
+      },
+      "revId": "1b8ee074786e03341cb196bbfd3c212e1491dd9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "138469cc_1013ba41",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-22T22:55:23Z",
+      "side": 1,
+      "message": "Is this declaration for unit testing? Could you add a comment?",
+      "revId": "1b8ee074786e03341cb196bbfd3c212e1491dd9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "718a8031_0d0472be",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-22T22:55:23Z",
+      "side": 1,
+      "message": "request",
+      "range": {
+        "startLine": 18,
+        "startChar": 7,
+        "endLine": 18,
+        "endChar": 14
+      },
+      "revId": "1b8ee074786e03341cb196bbfd3c212e1491dd9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a52a469e_51cd0718",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-22T22:55:23Z",
+      "side": 1,
+      "message": "I\u0027m not certain if `flask.request` will be bound correctly outside of the context of handling a Flask request. Would it be better to refactor this code to not involve an extra `FlaskHandler` class?",
+      "range": {
+        "startLine": 33,
+        "startChar": 23,
+        "endLine": 33,
+        "endChar": 36
+      },
+      "revId": "1b8ee074786e03341cb196bbfd3c212e1491dd9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5c5c8f6_e4afd27a",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-22T22:55:23Z",
+      "side": 1,
+      "message": "prpcHandler",
+      "range": {
+        "startLine": 36,
+        "startChar": 10,
+        "endLine": 36,
+        "endChar": 21
+      },
+      "revId": "1b8ee074786e03341cb196bbfd3c212e1491dd9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb55283d_da064b89",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-22T22:55:23Z",
+      "side": 1,
+      "message": "`self.response`",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 30
+      },
+      "revId": "1b8ee074786e03341cb196bbfd3c212e1491dd9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
