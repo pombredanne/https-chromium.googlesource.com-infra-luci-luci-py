@@ -101,6 +101,7 @@ PASSLIST = (
     'cas_cache',
     'cipd_cache',
     'logs',
+    'quarantined.txt',
     'swarming.lck',
     'swarming_bot.1.zip',
     'swarming_bot.2.zip',
