@@ -138,6 +138,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f144095e_1e5b2c92",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-23T16:37:34Z",
+      "side": 1,
+      "message": "msriniv@: Is there a benefit to using the shared static endpoint instead of separate routes for each options handler?",
+      "parentUuid": "bf9ccec7_c737d474",
+      "range": {
+        "startLine": 181,
+        "startChar": 24,
+        "endLine": 181,
+        "endChar": 49
+      },
+      "revId": "d6a5b7a417f29ece89ee221cb14b1106f735c2fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea7addd4_f028a776",
         "filename": "appengine/components/components/endpoints_flask/adapter.py",
         "patchSetId": 9
