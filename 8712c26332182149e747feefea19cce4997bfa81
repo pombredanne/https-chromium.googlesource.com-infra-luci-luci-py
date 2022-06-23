@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce2905f3_c3120007",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-23T18:16:03Z",
+      "side": 1,
+      "message": "It would be `\u0027cors_handler\u0027`",
+      "range": {
+        "startLine": 181,
+        "startChar": 24,
+        "endLine": 181,
+        "endChar": 36
+      },
+      "revId": "8712c26332182149e747feefea19cce4997bfa81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7cdf9030_27fa482d",
         "filename": "appengine/components/components/endpoints_flask/adapter.py",
         "patchSetId": 12
@@ -19,6 +42,46 @@
         "startChar": 0,
         "endLine": 182,
         "endChar": 22
+      },
+      "revId": "8712c26332182149e747feefea19cce4997bfa81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8c21fca_de6804b4",
+        "filename": "appengine/components/components/endpoints_flask/adapter_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-23T18:16:03Z",
+      "side": 1,
+      "message": "We probably shouldn\u0027t make this change. The purpose of the `endpoints_flask` library is to be a translation layer between the endpoints API and Flask. This part of the test lies purely in the endpoints API realm, not the Flask realm.\n\nWhile this change might make the test pass, the users of the library are relying on the endpoints API to remain the same, so this change to the test could cause it to no longer reflect the actual usage of the library.",
+      "revId": "8712c26332182149e747feefea19cce4997bfa81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf80d5aa_46f75a6a",
+        "filename": "appengine/components/components/endpoints_flask/adapter_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-23T18:16:03Z",
+      "side": 1,
+      "message": "Similar to the other comment:\n`[route for route, _, _, _ in adapter.api_routes()]`",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 0
       },
       "revId": "8712c26332182149e747feefea19cce4997bfa81",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"

@@ -70,6 +70,30 @@
       },
       "revId": "422b401a713ed46d154f046bc23befa667ba689c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2776b0cd_7deb0e17",
+        "filename": "appengine/components/components/endpoints_flask/adapter_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-23T18:16:03Z",
+      "side": 1,
+      "message": "Flask URLs do not need to be unique. Flask endpoints need to be unique. I believe the old comment was still correct.",
+      "parentUuid": "b7655eec_d9128728",
+      "range": {
+        "startLine": 104,
+        "startChar": 14,
+        "endLine": 104,
+        "endChar": 38
+      },
+      "revId": "422b401a713ed46d154f046bc23befa667ba689c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
