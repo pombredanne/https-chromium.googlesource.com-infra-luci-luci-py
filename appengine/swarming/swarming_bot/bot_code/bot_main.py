@@ -101,6 +101,9 @@ PASSLIST = (
     'cas_cache',
     'cipd_cache',
     'logs',
+    # Prevent tasks from running until snoopy (data provenance) is ready.
+    # This file is managed by puppet based on the state of the bot.
+    'snoopy_quarantined.txt',
     'swarming.lck',
     'swarming_bot.1.zip',
     'swarming_bot.2.zip',
