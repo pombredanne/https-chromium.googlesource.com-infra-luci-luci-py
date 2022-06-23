@@ -94,6 +94,30 @@
       },
       "revId": "422b401a713ed46d154f046bc23befa667ba689c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eed51676_0609aabd",
+        "filename": "appengine/components/components/endpoints_flask/adapter_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-23T23:17:53Z",
+      "side": 1,
+      "message": "The workaround was the change to the way `/options` URLs were handled, but that\u0027s been fixed now.",
+      "parentUuid": "2776b0cd_7deb0e17",
+      "range": {
+        "startLine": 104,
+        "startChar": 14,
+        "endLine": 104,
+        "endChar": 38
+      },
+      "revId": "422b401a713ed46d154f046bc23befa667ba689c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

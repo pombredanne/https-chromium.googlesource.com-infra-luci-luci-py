@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b84a79aa_06da3652",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-23T23:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce2905f3_c3120007",
+      "range": {
+        "startLine": 181,
+        "startChar": 24,
+        "endLine": 181,
+        "endChar": 36
+      },
+      "revId": "8712c26332182149e747feefea19cce4997bfa81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7cdf9030_27fa482d",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-23T16:37:34Z",
       "side": 1,
       "message": "Do we intend to move the this line after the `routes.append` call?",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 22
+      },
+      "revId": "8712c26332182149e747feefea19cce4997bfa81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "243055c0_415904db",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-23T23:17:53Z",
+      "side": 1,
+      "message": "I don\u0027t think it matters either way, as `t` isn\u0027t modified at all during either of the calls.",
+      "parentUuid": "7cdf9030_27fa482d",
       "range": {
         "startLine": 182,
         "startChar": 0,
@@ -64,6 +112,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fb1c594_13a2f5a1",
+        "filename": "appengine/components/components/endpoints_flask/adapter_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-23T23:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8c21fca_de6804b4",
+      "revId": "8712c26332182149e747feefea19cce4997bfa81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf80d5aa_46f75a6a",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-06-23T18:16:03Z",
       "side": 1,
       "message": "Similar to the other comment:\n`[route for route, _, _, _ in adapter.api_routes()]`",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 0
+      },
+      "revId": "8712c26332182149e747feefea19cce4997bfa81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e79cb94_e9bb586f",
+        "filename": "appengine/components/components/endpoints_flask/adapter_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-06-23T23:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf80d5aa_46f75a6a",
       "range": {
         "startLine": 101,
         "startChar": 0,
