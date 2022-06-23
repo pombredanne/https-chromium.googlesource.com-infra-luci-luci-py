@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "444925ac_3a462653",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-23T10:40:42Z",
+      "side": 1,
+      "message": "It\u0027s not clean, but we could override a response writer.\n\n```\n# ServerBase\nclass ServerBase:\n  def _post_response_body_writer(self, response, body):\n    raise NotImplementedError\n  \n  def post(...):\n    ...\n    self._post_response_body_writer(response, body)\n    return response\n\n# Webapp2Server\nclass Webapp2Server(...):\n  def _post_response_body_writer(self, response, body):\n    response.out.write(body)\n \n  def _handler(...)\n    ...\n    class Handler(webapp2.RequestHandler):\n      def post(...)\n         return server.post(...)\n    \n      def options(...)\n          return server.options(...)\n\n\n# FlaskServer\nclass FlaskServer(...):\n  def _post_response_body_writer(self, body):\n    self.response.response \u003d body\n  \n  def _handler(self, service, method):\n    ...\n    self.post(...)\n    ...\n    self.options(...)\n    \n    return response\n  \n```",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 0
+      },
+      "revId": "61b9ba04128aafd8c3fd75dcfcd2c796c7321c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "789b1ba2_fd1329a9",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-23T10:40:42Z",
+      "side": 1,
+      "message": "Should be more specific. Webapp2Server would be appropriate?",
+      "range": {
+        "startLine": 26,
+        "startChar": 6,
+        "endLine": 26,
+        "endChar": 12
+      },
+      "revId": "61b9ba04128aafd8c3fd75dcfcd2c796c7321c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60411b85_97ffe696",
+        "filename": "appengine/components/components/prpc/server_base.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-23T10:40:42Z",
+      "side": 1,
+      "message": "maybe just \"options()\" or \"_options()\"?",
+      "range": {
+        "startLine": 275,
+        "startChar": 6,
+        "endLine": 275,
+        "endChar": 46
+      },
+      "revId": "61b9ba04128aafd8c3fd75dcfcd2c796c7321c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4edf70ec_f493cc04",
+        "filename": "appengine/components/components/prpc/server_base.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-23T10:40:42Z",
+      "side": 1,
+      "message": "Similar to options(), maybe \"post()\" or \"_post()\"?",
+      "range": {
+        "startLine": 292,
+        "startChar": 6,
+        "endLine": 292,
+        "endChar": 43
+      },
+      "revId": "61b9ba04128aafd8c3fd75dcfcd2c796c7321c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
