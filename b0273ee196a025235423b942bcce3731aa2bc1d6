@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ad7bb6b_11e18e1d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-06-23T02:11:08Z",
+      "side": 1,
+      "message": "Hmm, is it possible to have this file out side of bot directory?\n\nI feel having this file in this list is not good separation of swarming and other layers.",
+      "revId": "b0273ee196a025235423b942bcce3731aa2bc1d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
