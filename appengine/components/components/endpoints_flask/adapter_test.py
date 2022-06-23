@@ -14,6 +14,7 @@ from protorpc import messages
 from protorpc import remote
 import endpoints
 import flask
+import logging
 import mock
 
 from test_support import test_case
@@ -44,9 +45,10 @@ class EndpointsService(remote.Service):
   def get_container(self, _request):
     return Msg()
 
-  @endpoints.method(Msg, Msg)
+  @endpoints.method(Msg, Msg, http_method='POST', path='post_403')
   def post_403(self, _request):
-    return flask.Flask.make_response(('error', 403, []))
+    #logging.critical("fsdfsdf")
+    flask.abort(403)
 
 
 class EndpointsFlaskTestCase(test_case.TestCase):
@@ -85,16 +87,16 @@ class EndpointsFlaskTestCase(test_case.TestCase):
     self.assertEqual(rc.s2, 'b')
     self.assertEqual(rc.x, 'c')
 
-  # def test_handle_403(self):
-  #   app = adapter.api_server([EndpointsService], base_path='/_ah/api')
-  #   with app.test_client() as client:
-  #     response = client.post('/_ah/api/Service/v1/post_403')
-  #   self.assertEqual(response.status, 403)
-  #   self.assertEqual(json.loads(response.body), {
-  #       'error': {
-  #           'message': 'access denied',
-  #       },
-  #   })
+  def test_handle_403(self):
+    app = adapter.api_server([EndpointsService], base_path='/_ah/api')
+    with app.test_client() as client:
+      response = client.post('/_ah/api/Service/v1/post_403')
+    self.assertEqual(response.status, '403 FORBIDDEN')
+    # self.assertEqual(json.loads(response.body), {
+    #     'error': {
+    #         'message': 'access denied',
+    #     },
+    # })
 
   def test_api_routes(self):
     routes = sorted([
@@ -120,12 +122,11 @@ class EndpointsFlaskTestCase(test_case.TestCase):
         ])
 
   # def test_discovery_routing(self):
-  #   app = adapter.api_server([EndpointsService], base_path='/_ah/api')
+  #   app = adapter.api_server([EndpointsService],
+  #                            base_path='/_ah/api')
   #   with app.test_client() as client:
-  #   request = webapp2.Request.blank('/api/discovery/v1/apis/Service/v1/rest')
-  #   request.method = 'GET'
-  #   response = json.loads(request.get_response(app).body)
-  #   self.assertEqual(response['id'], 'Service:v1')
+  #     response = client.get('/_ah/api/discovery/v1/apis/Service/v1/rest')
+  #   self.assertEqual(response.body, 'Service:v1')
 
 
 #   def test_directory_routing(self):

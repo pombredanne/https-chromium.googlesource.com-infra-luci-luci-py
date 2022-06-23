@@ -104,13 +104,13 @@ def path_handler_factory(api_class, api_method, service_path):
     api.initialize_request_state(
         remote.HttpRequestState(
             remote_host=None,
-            remote_address=flask.request.values['remote_addr'],
-            server_host=flask.request.values['host'],
-            server_port=flask.request.values['server_port'],
-            http_method=flask.request.values['method'],
+            remote_address=flask.request.remote_addr,
+            server_host=flask.request.host,
+            #TODO(msriniv): figure out how to handle port
+            http_method=flask.request.method,
             service_path=service_path,
             headers=flask.request.headers.items()))
-
+    logging.critical("after")
     try:
       req = decode_message(api_method.remote, flask.request)
       # Check that required fields are populated.
@@ -178,7 +178,7 @@ def api_routes(api_classes, base_path='/_ah/api', regex='[^/]+'):
       routes.append((t, method_path, handler, [http_method]))
 
       # Add routes for HTTP OPTIONS (to add CORS headers) for each method.
-      routes.append((t, cors_handler, None, ['OPTIONS']))
+      routes.append((t, 'cors_handler', None, ['OPTIONS']))
       templates.add(t)
 
   # Add generic routes.
@@ -205,11 +205,9 @@ def api_server(api_classes, base_path='/_ah/api', regex='[^/]+'):
   """
   app = flask.Flask(__name__)
   routes = api_routes(api_classes, base_path, regex)
-  for rule, endpoint, view_func, methods in routes:
-    app.add_url_rule(rule,
-                     endpoint=endpoint,
-                     view_func=view_func,
-                     methods=methods)
+  for r in routes:
+    # logging.critical(r)
+    app.add_url_rule(r[0], endpoint=r[1], view_func=r[2], methods=r[3])
   app.view_functions['cors_handler'] = cors_handler
   return app
 
