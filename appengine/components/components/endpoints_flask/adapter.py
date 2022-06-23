@@ -9,6 +9,7 @@ import json
 import logging
 import os
 import posixpath
+import pprint
 
 from endpoints import protojson
 from protorpc import message_types
@@ -100,17 +101,20 @@ def path_handler_factory(api_class, api_method, service_path):
   def path_handler():
     headers = CORS_HEADERS
 
+    split_host = flask.request.host.split(":")
+    port = '80'
+    if len(split_host) > 1:
+      port = split_host[1]
+
     api = api_class()
     api.initialize_request_state(
-        remote.HttpRequestState(
-            remote_host=None,
-            remote_address=flask.request.values['remote_addr'],
-            server_host=flask.request.values['host'],
-            server_port=flask.request.values['server_port'],
-            http_method=flask.request.values['method'],
-            service_path=service_path,
-            headers=flask.request.headers.items()))
-
+        remote.HttpRequestState(remote_host=None,
+                                remote_address=flask.request.remote_addr,
+                                server_host=flask.request.host,
+                                server_port=port,
+                                http_method=flask.request.method,
+                                service_path=service_path,
+                                headers=flask.request.headers.items()))
     try:
       req = decode_message(api_method.remote, flask.request)
       # Check that required fields are populated.
@@ -178,7 +182,7 @@ def api_routes(api_classes, base_path='/_ah/api', regex='[^/]+'):
       routes.append((t, method_path, handler, [http_method]))
 
       # Add routes for HTTP OPTIONS (to add CORS headers) for each method.
-      routes.append((t, cors_handler, None, ['OPTIONS']))
+      routes.append((t, 'cors_handler', None, ['OPTIONS']))
       templates.add(t)
 
   # Add generic routes.
@@ -205,11 +209,9 @@ def api_server(api_classes, base_path='/_ah/api', regex='[^/]+'):
   """
   app = flask.Flask(__name__)
   routes = api_routes(api_classes, base_path, regex)
-  for rule, endpoint, view_func, methods in routes:
-    app.add_url_rule(rule,
-                     endpoint=endpoint,
-                     view_func=view_func,
-                     methods=methods)
+  for r in routes:
+    # logging.critical(r)
+    app.add_url_rule(r[0], endpoint=r[1], view_func=r[2], methods=r[3])
   app.view_functions['cors_handler'] = cors_handler
   return app
 
@@ -237,7 +239,8 @@ def discovery_handler_factory(api_classes, base_path):
     if not services:
       flask.abort(404)
 
-    return discovery.generate(services, host, base_path)
+    x = discovery.generate(services, host, base_path)
+    return flask.jsonify(x)
 
   return discovery_handler
 
@@ -272,7 +275,8 @@ def directory_handler_factory(api_classes, base_path):
 
   def directory_handler():
     host = flask.request.headers['Host']
-    return discovery.directory(api_classes, host, base_path)
+    x = discovery.directory(api_classes, host, base_path)
+    return flask.jsonify(x)
 
   return directory_handler
 
@@ -303,14 +307,17 @@ def explorer_proxy_route(base_path):
   """
 
   def proxy_handler():
+    logging.critical("proxy handler")
     """Returns a proxy capable of handling requests from API explorer."""
 
-    return flask.render_template('adapter/proxy.html', base_path=base_path)
+    return template.render('adapter/proxy.html',
+                           params={'base_path': base_path})
 
   template.bootstrap({
       'adapter': os.path.join(THIS_DIR, 'templates'),
   })
 
+  logging.critical("proxy route")
   return ('%s/static/proxy.html' % base_path, 'proxy_handler', proxy_handler,
           ['GET'])
 
@@ -329,8 +336,8 @@ def explorer_redirect_route(base_path):
     """Returns a handler redirecting to the API explorer."""
 
     host = flask.request.headers['Host']
-    flask.redirect('https://apis-explorer.appspot.com/apis-explorer'
-                   '/?base=https://%s%s' % (host, base_path))
+    return flask.redirect('https://apis-explorer.appspot.com/apis-explorer'
+                          '/?base=https://%s%s' % (host, base_path))
 
   return ('%s/explorer' % base_path, 'redirect_handler', redirect_handler,
           ['GET'])
