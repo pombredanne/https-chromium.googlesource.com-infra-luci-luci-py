@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57dbae7e_87f9ab6e",
+        "filename": "appengine/config_service/gitiles_import.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-06-24T23:09:25Z",
+      "side": 1,
+      "message": "will this have enough context (e.g. file name?)\n\ncould you make a parallel blob_futures_names?",
+      "revId": "2ebc08ba230af238b1bff7299c2df5f295e0d299",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
