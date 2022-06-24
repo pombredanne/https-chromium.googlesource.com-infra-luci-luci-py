@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bd16738_a9533c23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-24T18:54:28Z",
+      "side": 1,
+      "message": "Happy to review again once the CL pulls in changes from parent CL",
+      "revId": "3508e7100968e50a749b998a95cb342d812cb9ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ae041e5_9e058780",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-24T18:54:28Z",
+      "side": 1,
+      "message": "Delete?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 13
+      },
+      "revId": "3508e7100968e50a749b998a95cb342d812cb9ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba6a52dc_7bbd859c",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-24T18:54:28Z",
+      "side": 1,
+      "message": "Why hardcode this port instead of using the request values?",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 15
+      },
+      "revId": "3508e7100968e50a749b998a95cb342d812cb9ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19d41a5f_7b4d05c7",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-24T18:54:28Z",
+      "side": 1,
+      "message": "Could we remove all the debugging logging calls?",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 25
+      },
+      "revId": "3508e7100968e50a749b998a95cb342d812cb9ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b683aa9_f7d2e4c5",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2022-06-24T18:54:28Z",
+      "side": 1,
+      "message": "We should use a more descriptive variable name. Or why not wrap the discovery call in the jsonify call?",
+      "range": {
+        "startLine": 242,
+        "startChar": 4,
+        "endLine": 242,
+        "endChar": 5
+      },
+      "revId": "3508e7100968e50a749b998a95cb342d812cb9ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
