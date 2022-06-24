@@ -95,6 +95,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ced97d35_69fa9c4f",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-24T01:44:23Z",
+      "side": 1,
+      "message": "I see.\n\nThere are only 3 apps, though.\nhttps://source.chromium.org/search?q\u003d%22prpc.Server(%22%20language:python\u0026sq\u003d",
+      "parentUuid": "0d5b2b25_ec2e6254",
+      "range": {
+        "startLine": 26,
+        "startChar": 6,
+        "endLine": 26,
+        "endChar": 12
+      },
+      "revId": "61b9ba04128aafd8c3fd75dcfcd2c796c7321c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60411b85_97ffe696",
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "it will be confused with the webapp2 post function and flask post function. since I want to provide the ability for user to either overwrite it just have their own func",
       "parentUuid": "4edf70ec_f493cc04",
+      "range": {
+        "startLine": 292,
+        "startChar": 6,
+        "endLine": 292,
+        "endChar": 43
+      },
+      "revId": "61b9ba04128aafd8c3fd75dcfcd2c796c7321c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e45e68da_237192a7",
+        "filename": "appengine/components/components/prpc/server_base.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-24T01:44:23Z",
+      "side": 1,
+      "message": "I don\u0027t think we are going to use the Python components more widely since we recommend using Golang for new apps. Swarming and Monorail will be last users.\nSo you don\u0027t need flexibility here.",
+      "parentUuid": "70edae2a_d42fe85d",
       "range": {
         "startLine": 292,
         "startChar": 6,
