@@ -1,4 +1,4 @@
-# endpoints_webapp2/
+# endpoints_flask/
 
 `endpoints_flask` is a package which implements Cloud Endpoints v1 over
 Flask routes by acting as an adapter. This directory has been copied and
