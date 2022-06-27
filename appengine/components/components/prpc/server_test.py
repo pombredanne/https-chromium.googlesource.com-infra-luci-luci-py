@@ -15,6 +15,7 @@ test_env.setup_test_env()
 
 import webapp2
 import webtest
+import flask
 
 from test_support import test_case
 
@@ -22,6 +23,7 @@ from google.protobuf import empty_pb2
 
 from components.prpc import encoding
 from components.prpc import server
+from components.prpc import flask_server
 from components.prpc.test import test_pb2
 from components.prpc.test import test_prpc_pb2
 
@@ -462,6 +464,64 @@ class InterceptorsTestCase(test_case.TestCase):
     resp = self.call_echo(app, 123, return_raw_resp=True)
     self.assertEqual(resp.status_int, 403)
     self.assertTrue('FAIL' in resp.body)
+
+
+class PRPCFlaskServerTestCase(test_case.TestCase):
+  def setUp(self):
+    super(PRPCFlaskServerTestCase, self).setUp()
+    s = flask_server.FlaskServer()
+    self.service = TestServicer()
+    s.add_service(self.service)
+    routes = s.get_routes()
+    self.app = flask.Flask('test_app')
+    self.app.config['TESTING'] = True
+    self.app.add_url_rule(routes[0], view_func=routes[1], methods=routes[2])
+
+    self.allowed_origins = ['allowed.com', 'allowed-2.com']
+
+    explicit_origins_s = server.Server(allowed_origins=self.allowed_origins)
+    explicit_origins_s.add_service(self.service)
+    real_explicit_origins_app = webapp2.WSGIApplication(
+        explicit_origins_s.get_routes(), debug=True)
+    self.explicit_origins_app = webtest.TestApp(
+        real_explicit_origins_app,
+        extra_environ={'REMOTE_ADDR': '::ffff:127.0.0.1'},
+    )
+
+  def make_headers(self, enc):
+    return {
+        'Content-Type': enc[1],
+        'Accept': enc[1],
+    }
+
+  def test_context(self):
+    calls = []
+
+    def rpc_callback(_request, context):
+      calls.append({
+          'peer': context.peer(),
+          'is_active': context.is_active(),
+          'time_remaining': context.time_remaining(),
+      })
+
+    self.service.give_callback = rpc_callback
+
+    headers = self.make_headers(encoding.Encoding.BINARY)
+    req = test_pb2.GiveRequest(m=3333)
+    raw_resp = self.app.test_client().post(
+        '/prpc/test.Test/Give',
+        data=req.SerializeToString(),
+        headers=headers,
+    ).data
+    self.assertEqual(len(raw_resp), 0)
+
+    self.assertEqual(calls, [
+        {
+            'is_active': True,
+            'peer': 'ipv6:[::ffff:127.0.0.1]',
+            'time_remaining': None,
+        },
+    ])
 
 
 if __name__ == '__main__':
