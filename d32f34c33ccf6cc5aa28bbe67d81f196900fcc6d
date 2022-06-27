@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10fb7e2e_f71c3df5",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 41
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-06-27T22:51:09Z",
+      "side": 1,
+      "message": "Please import only stuff that is actually used.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 70
+      },
+      "revId": "d32f34c33ccf6cc5aa28bbe67d81f196900fcc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f22549c1_ae693f64",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 41
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-06-27T22:51:09Z",
+      "side": 1,
+      "message": "I assume this is some Flask magic (what appears to be a global variable representing a per-thread request).",
+      "range": {
+        "startLine": 32,
+        "startChar": 14,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "d32f34c33ccf6cc5aa28bbe67d81f196900fcc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c52b2300_defd23aa",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 41
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-06-27T22:51:09Z",
+      "side": 1,
+      "message": "these methods are not very useful, just call `self._post_handler` and `self._options_handler` directly\n\nTheir presence just raises more questions like \"why does _post returns response, which appears to be ignored\".",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 19
+      },
+      "revId": "d32f34c33ccf6cc5aa28bbe67d81f196900fcc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e314baae_e31f8699",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 41
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-06-27T22:51:09Z",
+      "side": 1,
+      "message": "nit: move this down to other prpc imports",
+      "revId": "d32f34c33ccf6cc5aa28bbe67d81f196900fcc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04835a39_9b5da915",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 41
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-06-27T22:51:09Z",
+      "side": 1,
+      "message": "Same here. Many (all?) of these imports are unused.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 51
+      },
+      "revId": "d32f34c33ccf6cc5aa28bbe67d81f196900fcc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
