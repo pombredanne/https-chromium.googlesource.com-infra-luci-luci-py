@@ -119,6 +119,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd7f3a75_be34a88f",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1530767
+      },
+      "writtenOn": "2022-06-27T19:40:54Z",
+      "side": 1,
+      "message": "but it means I\u0027ve to update everywhere else together LOL....prefer to do it in another CL if needed",
+      "parentUuid": "ced97d35_69fa9c4f",
+      "range": {
+        "startLine": 26,
+        "startChar": 6,
+        "endLine": 26,
+        "endChar": 12
+      },
+      "revId": "61b9ba04128aafd8c3fd75dcfcd2c796c7321c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60411b85_97ffe696",
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "I don\u0027t think we are going to use the Python components more widely since we recommend using Golang for new apps. Swarming and Monorail will be last users.\nSo you don\u0027t need flexibility here.",
       "parentUuid": "70edae2a_d42fe85d",
+      "range": {
+        "startLine": 292,
+        "startChar": 6,
+        "endLine": 292,
+        "endChar": 43
+      },
+      "revId": "61b9ba04128aafd8c3fd75dcfcd2c796c7321c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "207ae0e2_917206bf",
+        "filename": "appengine/components/components/prpc/server_base.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1530767
+      },
+      "writtenOn": "2022-06-27T19:40:54Z",
+      "side": 1,
+      "message": "Good to know",
+      "parentUuid": "e45e68da_237192a7",
       "range": {
         "startLine": 292,
         "startChar": 6,
