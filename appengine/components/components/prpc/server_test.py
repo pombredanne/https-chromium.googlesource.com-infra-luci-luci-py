@@ -15,6 +15,7 @@ test_env.setup_test_env()
 
 import webapp2
 import webtest
+import flask
 
 from test_support import test_case
 
@@ -22,6 +23,7 @@ from google.protobuf import empty_pb2
 
 from components.prpc import encoding
 from components.prpc import server
+from components.prpc import flask_server
 from components.prpc.test import test_pb2
 from components.prpc.test import test_prpc_pb2
 
@@ -463,6 +465,136 @@ class InterceptorsTestCase(test_case.TestCase):
     self.assertEqual(resp.status_int, 403)
     self.assertTrue('FAIL' in resp.body)
 
+
+class PRPCFlaskServerTestCase(test_case.TestCase):
+  def setUp(self):
+    super(PRPCFlaskServerTestCase, self).setUp()
+    s = flask_server.FlaskServer()
+    self.service = TestServicer()
+    s.add_service(self.service)
+    routes = s.get_routes()
+    self.app = flask.Flask('test_app')
+    self.app.config['TESTING'] = True
+    for route in routes:
+      self.app.add_url_rule(route[0], view_func=route[1], methods=route[2])
+
+    self.allowed_origins = ['allowed.com', 'allowed-2.com']
+
+    explicit_origins_s = server.Server(allowed_origins=self.allowed_origins)
+    explicit_origins_s.add_service(self.service)
+    real_explicit_origins_app = webapp2.WSGIApplication(
+        explicit_origins_s.get_routes(), debug=True)
+    self.explicit_origins_app = webtest.TestApp(
+        real_explicit_origins_app,
+        extra_environ={'REMOTE_ADDR': '::ffff:127.0.0.1'},
+    )
+
+  def make_headers(self, enc):
+    return {
+        'Content-Type': enc[1],
+        'Accept': enc[1],
+    }
+
+  def check_headers(self, headers, prpc_code, origin=None):
+    if origin is not None:
+      self.assertEqual(headers['Access-Control-Allow-Origin'], origin)
+      self.assertEqual(headers['Vary'], 'Origin')
+      self.assertEqual(headers['Access-Control-Allow-Credentials'], 'true')
+    self.assertEqual(headers['X-Content-Type-Options'], 'nosniff')
+    self.assertEqual(headers['X-Prpc-Grpc-Code'], str(prpc_code.value))
+    self.assertEqual(
+        headers['Access-Control-Expose-Headers'],
+        ('X-Prpc-Grpc-Code'),
+    )
+
+  def check_echo(self, enc):
+    headers = self.make_headers(enc)
+    headers['Origin'] = 'example.com'
+    encoder = encoding.get_encoder(enc)
+    req = test_pb2.EchoRequest()
+    req.r.m = 94049
+    encoded_req = encoder(req)
+    if enc == encoding.Encoding.JSON:
+      encoded_req = encoded_req[4:]
+    http_resp = self.app.test_client().post(
+        '/prpc/test.Test/Echo',
+        data=encoded_req,
+        headers=headers,
+    )
+    self.check_headers(
+        http_resp.headers,
+        server.StatusCode.OK,
+        origin='example.com',
+    )
+    self.assertEqual(http_resp.status_code, httplib.OK)
+    raw_resp = http_resp.data
+    resp = test_pb2.EchoResponse()
+    decoder = encoding.get_decoder(enc)
+    if enc == encoding.Encoding.JSON:
+      raw_resp = raw_resp[4:]
+    decoder(raw_resp, resp)
+
+    self.assertEqual(len(resp.response), 2)
+    self.assertEqual(resp.response[0], 'hello!')
+    self.assertEqual(resp.response[1], '94049')
+
+  def test_context(self):
+    calls = []
+
+    def rpc_callback(_request, context):
+      calls.append({
+          'peer': context.peer(),
+          'is_active': context.is_active(),
+          'time_remaining': context.time_remaining(),
+      })
+
+    self.service.give_callback = rpc_callback
+
+    headers = self.make_headers(encoding.Encoding.BINARY)
+    req = test_pb2.GiveRequest(m=3333)
+    raw_resp = self.app.test_client().post(
+        '/prpc/test.Test/Give',
+        data=req.SerializeToString(),
+        headers=headers,
+    ).data
+    self.assertEqual(len(raw_resp), 0)
+
+    self.assertEqual(calls, [
+        {
+            'is_active': True,
+            'peer': 'ipv4:127.0.0.1',
+            'time_remaining': None,
+        },
+    ])
+
+  def test_servicer_persistence(self):
+    """Basic test which ensures the servicer state persists."""
+
+    headers = self.make_headers(encoding.Encoding.BINARY)
+    req = test_pb2.GiveRequest(m=3333)
+    raw_resp = self.app.post(
+        '/prpc/test.Test/Give',
+        data=req.SerializeToString(),
+        headers=headers,
+    ).data
+    self.assertEqual(len(raw_resp), 0)
+
+    req = empty_pb2.Empty()
+    raw_resp = self.app.test_client().post(
+        '/prpc/test.Test/Take',
+        data=req.SerializeToString(),
+        headers=headers,
+    ).data
+    resp = test_pb2.TakeResponse()
+    test_pb2.TakeResponse.ParseFromString(resp, raw_resp)
+    self.assertEqual(resp.k, 3333)
+
+  def test_echo_encodings(self):
+    """Basic test which checks Echo service works with different encodings."""
+
+    self.check_echo(encoding.Encoding.BINARY)
+    self.check_echo(encoding.Encoding.JSON)
+    self.check_echo(encoding.Encoding.TEXT)
 
 if __name__ == '__main__':
   if '-v' in sys.argv:
