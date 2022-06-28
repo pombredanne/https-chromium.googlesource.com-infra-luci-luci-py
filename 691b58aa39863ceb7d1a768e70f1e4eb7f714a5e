@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db324ef3_6e66b563",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1530767
+      },
+      "writtenOn": "2022-06-28T04:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1c73d8d_a3123b39",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 0
+      },
+      "revId": "691b58aa39863ceb7d1a768e70f1e4eb7f714a5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc14ec0a_8ae38a6b",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e89f4462_3dfde511",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1530767
+      },
+      "writtenOn": "2022-06-28T04:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc14ec0a_8ae38a6b",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 0
+      },
+      "revId": "691b58aa39863ceb7d1a768e70f1e4eb7f714a5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50fe7ab8_a9774893",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-06-28T00:55:46Z",
       "side": 1,
       "message": "Are the test cases same with PRPCServerTestCase?\nIf so, please consider sharing test cases to avoid duplications.\n\nDoes the following refactoring work?\n```\nclass PRPCServerTestCaseBase(test_case.TestCase):\n  # test cases and common helpers \n\nclass PRPCWebapp2TestCase(PRPCServerTestCaseBase):\n  def setUp(self):\n     # do webapp2 specific setup.\n\nclass PRPCFlaskServerTestCase(PRPCServerTestCaseBase):\n  def setUp(self):\n     # do flask specific setup.\n```",
+      "range": {
+        "startLine": 470,
+        "startChar": 6,
+        "endLine": 470,
+        "endChar": 29
+      },
+      "revId": "691b58aa39863ceb7d1a768e70f1e4eb7f714a5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dae87ad_a528c088",
+        "filename": "appengine/components/components/prpc/server_test.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1530767
+      },
+      "writtenOn": "2022-06-28T04:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50fe7ab8_a9774893",
       "range": {
         "startLine": 470,
         "startChar": 6,
