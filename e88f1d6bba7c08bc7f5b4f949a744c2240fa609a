@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7db1bb0_4c5d230c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 57
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530767
+      },
+      "writtenOn": "2022-06-28T09:34:24Z",
+      "side": 1,
+      "message": "have discuss with Junji and resolve all comments",
+      "revId": "e88f1d6bba7c08bc7f5b4f949a744c2240fa609a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16f95ee5_55545f09",
@@ -14,6 +31,30 @@
       "writtenOn": "2022-06-28T05:48:27Z",
       "side": 1,
       "message": "Why do you need to pass self.app instead of accessing self.app inside get_respose()?",
+      "range": {
+        "startLine": 122,
+        "startChar": 15,
+        "endLine": 123,
+        "endChar": 17
+      },
+      "revId": "e88f1d6bba7c08bc7f5b4f949a744c2240fa609a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "773beee0_88a6e7ba",
+        "filename": "appengine/components/components/prpc/server_test.py",
+        "patchSetId": 57
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1530767
+      },
+      "writtenOn": "2022-06-28T09:34:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16f95ee5_55545f09",
       "range": {
         "startLine": 122,
         "startChar": 15,
