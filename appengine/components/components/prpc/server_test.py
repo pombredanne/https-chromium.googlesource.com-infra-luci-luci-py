@@ -15,13 +15,16 @@ test_env.setup_test_env()
 
 import webapp2
 import webtest
+import flask
 
 from test_support import test_case
 
 from google.protobuf import empty_pb2
 
 from components.prpc import encoding
-from components.prpc import server
+from components.prpc import flask_server
+from components.prpc import webapp2_server
+from components.prpc import server_base
 from components.prpc.test import test_pb2
 from components.prpc.test import test_prpc_pb2
 
@@ -65,49 +68,19 @@ class BadTestServicer(object):
     return None  # no respose and no status code
 
 
-class PRPCServerTestCase(test_case.TestCase):
+class PRPCServerTestCaseBase(test_case.TestCase):
   def setUp(self):
-    super(PRPCServerTestCase, self).setUp()
-    s = server.Server()
-    self.service = TestServicer()
-    s.add_service(self.service)
-    real_app = webapp2.WSGIApplication(s.get_routes(), debug=True)
-    self.app = webtest.TestApp(
-        real_app,
-        extra_environ={'REMOTE_ADDR': '::ffff:127.0.0.1'},
-    )
-    bad_s = server.Server()
-    bad_s.add_service(BadTestServicer())
-    real_bad_app = webapp2.WSGIApplication(bad_s.get_routes(), debug=True)
-    self.bad_app = webtest.TestApp(
-        real_bad_app,
-        extra_environ={'REMOTE_ADDR': '192.192.192.192'},
-    )
-
+    super(PRPCServerTestCaseBase, self).setUp()
     self.allowed_origins = ['allowed.com', 'allowed-2.com']
-
-    explicit_origins_s = server.Server(allowed_origins=self.allowed_origins)
-    explicit_origins_s.add_service(self.service)
-    real_explicit_origins_app = webapp2.WSGIApplication(
-        explicit_origins_s.get_routes(), debug=True)
-    self.explicit_origins_app = webtest.TestApp(
-        real_explicit_origins_app,
-        extra_environ={'REMOTE_ADDR': '::ffff:127.0.0.1'},
-    )
-
-    no_cors_s = server.Server(allow_cors=False)
-    no_cors_s.add_service(self.service)
-    real_no_cors_app = webapp2.WSGIApplication(
-        no_cors_s.get_routes(), debug=True)
-    self.no_cors_app = webtest.TestApp(
-        real_no_cors_app,
-        extra_environ={'REMOTE_ADDR': '::ffff:127.0.0.1'},
-    )
+    self.service = TestServicer()
+    self.bad_app = None
+    self.explicit_origins_app = None
+    self.no_cors_app = None
 
   def make_headers(self, enc):
     return {
-      'Content-Type': enc[1],
-      'Accept': enc[1],
+        'Content-Type': enc[1],
+        'Accept': enc[1],
     }
 
   def check_headers(self, headers, prpc_code, origin=None):
@@ -122,6 +95,21 @@ class PRPCServerTestCase(test_case.TestCase):
         ('X-Prpc-Grpc-Code'),
     )
 
+  def get_response(self,
+                   app,
+                   url,
+                   data=None,
+                   headers='',
+                   request_type='POST',
+                   expect_errors=False):
+    return None
+
+  def get_response_body(self, response):
+    return None
+
+  def get_response_status(self, response):
+    return None
+
   def check_echo(self, enc):
     headers = self.make_headers(enc)
     headers['Origin'] = 'example.com'
@@ -131,29 +119,32 @@ class PRPCServerTestCase(test_case.TestCase):
     encoded_req = encoder(req)
     if enc == encoding.Encoding.JSON:
       encoded_req = encoded_req[4:]
-    http_resp = self.app.post(
+    http_resp = self.get_response(
+        self.app,
         '/prpc/test.Test/Echo',
         encoded_req,
         headers,
     )
-    self.check_headers(
-        http_resp.headers,
-        server.StatusCode.OK,
-        origin='example.com',
-    )
-    self.assertEqual(http_resp.status_int, httplib.OK)
-    raw_resp = http_resp.body
-    resp = test_pb2.EchoResponse()
-    decoder = encoding.get_decoder(enc)
-    if enc == encoding.Encoding.JSON:
-      raw_resp = raw_resp[4:]
-    decoder(raw_resp, resp)
+    if http_resp is not None:
+      self.check_headers(
+          http_resp.headers,
+          server_base.StatusCode.OK,
+          origin='example.com',
+      )
 
-    self.assertEqual(len(resp.response), 2)
-    self.assertEqual(resp.response[0], 'hello!')
-    self.assertEqual(resp.response[1], '94049')
+      self.assertEqual(self.get_response_status(http_resp), httplib.OK)
+      raw_resp = self.get_response_body(http_resp)
+      resp = test_pb2.EchoResponse()
+      decoder = encoding.get_decoder(enc)
+      if enc == encoding.Encoding.JSON:
+        raw_resp = raw_resp[4:]
+      decoder(raw_resp, resp)
 
-  def test_context(self):
+      self.assertEqual(len(resp.response), 2)
+      self.assertEqual(resp.response[0], 'hello!')
+      self.assertEqual(resp.response[1], '94049')
+
+  def check_context(self, expect_calls):
     calls = []
     def rpc_callback(_request, context):
       calls.append({
@@ -165,42 +156,42 @@ class PRPCServerTestCase(test_case.TestCase):
 
     headers = self.make_headers(encoding.Encoding.BINARY)
     req = test_pb2.GiveRequest(m=3333)
-    raw_resp = self.app.post(
+    raw_resp = self.get_response(
+        self.app,
         '/prpc/test.Test/Give',
         req.SerializeToString(),
         headers,
-    ).body
-    self.assertEqual(len(raw_resp), 0)
+    )
 
-    self.assertEqual(calls, [
-      {
-        'is_active': True,
-        'peer': 'ipv6:[::ffff:127.0.0.1]',
-        'time_remaining': None,
-      },
-    ])
+    if raw_resp is not None:
+      raw_resp_body = self.get_response_body(raw_resp)
+      self.assertEqual(len(raw_resp_body), 0)
+
+      self.assertEqual(calls, expect_calls)
 
   def test_servicer_persistence(self):
     """Basic test which ensures the servicer state persists."""
 
     headers = self.make_headers(encoding.Encoding.BINARY)
     req = test_pb2.GiveRequest(m=3333)
-    raw_resp = self.app.post(
-        '/prpc/test.Test/Give',
-        req.SerializeToString(),
-        headers,
-    ).body
-    self.assertEqual(len(raw_resp), 0)
+    resp = self.get_response(self.app, '/prpc/test.Test/Give',
+                             req.SerializeToString(), headers)
+    if resp is not None:
+      raw_resp = self.get_response_body(resp)
+      self.assertEqual(len(raw_resp), 0)
 
     req = empty_pb2.Empty()
-    raw_resp = self.app.post(
+    resp = self.get_response(
+        self.app,
         '/prpc/test.Test/Take',
         req.SerializeToString(),
         headers,
-    ).body
-    resp = test_pb2.TakeResponse()
-    test_pb2.TakeResponse.ParseFromString(resp, raw_resp)
-    self.assertEqual(resp.k, 3333)
+    )
+    if resp is not None:
+      raw_resp = self.get_response_body(resp)
+      resp = test_pb2.TakeResponse()
+      test_pb2.TakeResponse.ParseFromString(resp, raw_resp)
+      self.assertEqual(resp.k, 3333)
 
   def test_echo_encodings(self):
     """Basic test which checks Echo service works with different encodings."""
@@ -209,89 +200,106 @@ class PRPCServerTestCase(test_case.TestCase):
     self.check_echo(encoding.Encoding.JSON)
     self.check_echo(encoding.Encoding.TEXT)
 
-  def test_bad_headers(self):
+  def call_with_bad_headers(self, headers):
     """Make sure the server gives a reasonable response for bad headers."""
 
     req = test_pb2.GiveRequest(m=825800)
-    resp = self.app.post(
+    resp = self.get_response(
+        self.app,
         '/prpc/test.Test/Give',
         req.SerializeToString(),
-        {},
+        headers,
         expect_errors=True,
     )
-    self.assertEqual(resp.status_int, httplib.BAD_REQUEST)
-    self.check_headers(resp.headers, server.StatusCode.INVALID_ARGUMENT)
+    if resp is not None:
+      self.assertEqual(self.get_response_status(resp), httplib.BAD_REQUEST)
+      self.check_headers(resp.headers, server_base.StatusCode.INVALID_ARGUMENT)
 
   def test_bad_service(self):
     """Make sure the server handles an unknown service."""
 
     req = test_pb2.GiveRequest(m=825800)
-    resp = self.app.post(
+    resp = self.get_response(
+        self.app,
         '/prpc/IDontExist/Give',
         req.SerializeToString(),
         self.make_headers(encoding.Encoding.BINARY),
         expect_errors=True,
     )
-    self.assertEqual(resp.status_int, httplib.NOT_IMPLEMENTED)
-    self.check_headers(resp.headers, server.StatusCode.UNIMPLEMENTED)
+    if resp is not None:
+      self.assertEqual(self.get_response_status(resp), httplib.NOT_IMPLEMENTED)
+      self.check_headers(resp.headers, server_base.StatusCode.UNIMPLEMENTED)
 
   def test_bad_method(self):
     """Make sure the server handles an unknown method."""
 
     req = test_pb2.GiveRequest(m=825800)
-    resp = self.app.post(
+    resp = self.get_response(
+        self.app,
         '/prpc/test.Test/IDontExist',
         req.SerializeToString(),
         self.make_headers(encoding.Encoding.BINARY),
         expect_errors=True,
     )
-    self.assertEqual(resp.status_int, httplib.NOT_IMPLEMENTED)
-    self.check_headers(resp.headers, server.StatusCode.UNIMPLEMENTED)
+    if resp is not None:
+      self.assertEqual(self.get_response_status(resp), httplib.NOT_IMPLEMENTED)
+      self.check_headers(resp.headers, server_base.StatusCode.UNIMPLEMENTED)
 
   def test_bad_app(self):
     """Make sure the server handles a bad servicer implementation."""
 
     req = test_pb2.GiveRequest(m=825800)
-    resp = self.bad_app.post(
+    resp = self.get_response(
+        self.bad_app,
         '/prpc/test.Test/Give',
         req.SerializeToString(),
         self.make_headers(encoding.Encoding.BINARY),
         expect_errors=True,
     )
-    self.assertEqual(resp.status_int, httplib.INTERNAL_SERVER_ERROR)
-    self.check_headers(resp.headers, server.StatusCode.INTERNAL)
+    if resp is not None:
+      self.assertEqual(self.get_response_status(resp),
+                       httplib.INTERNAL_SERVER_ERROR)
+      self.check_headers(resp.headers, server_base.StatusCode.INTERNAL)
 
     req = empty_pb2.Empty()
-    resp = self.bad_app.post(
+    resp = self.get_response(
+        self.bad_app,
         '/prpc/test.Test/Take',
         req.SerializeToString(),
         self.make_headers(encoding.Encoding.BINARY),
         expect_errors=True,
     )
-    self.assertEqual(resp.status_int, httplib.INTERNAL_SERVER_ERROR)
-    self.check_headers(resp.headers, server.StatusCode.INTERNAL)
+    if resp is not None:
+      self.assertEqual(self.get_response_status(resp),
+                       httplib.INTERNAL_SERVER_ERROR)
+      self.check_headers(resp.headers, server_base.StatusCode.INTERNAL)
 
     req = test_pb2.EchoRequest()
-    resp = self.bad_app.post(
+    resp = self.get_response(
+        self.bad_app,
         '/prpc/test.Test/Echo',
         req.SerializeToString(),
         self.make_headers(encoding.Encoding.BINARY),
         expect_errors=True,
     )
-    self.assertEqual(resp.status_int, httplib.INTERNAL_SERVER_ERROR)
-    self.check_headers(resp.headers, server.StatusCode.INTERNAL)
+    if resp is not None:
+      self.assertEqual(self.get_response_status(resp),
+                       httplib.INTERNAL_SERVER_ERROR)
+      self.check_headers(resp.headers, server_base.StatusCode.INTERNAL)
 
   def test_bad_request(self):
     """Make sure the server handles a malformed request."""
 
-    resp = self.app.post(
+    resp = self.get_response(
+        self.app,
         '/prpc/test.Test/Give',
         'asdfjasdhlkiqwuebweo',
         self.make_headers(encoding.Encoding.BINARY),
         expect_errors=True,
     )
-    self.assertEqual(resp.status_int, httplib.BAD_REQUEST)
-    self.check_headers(resp.headers, server.StatusCode.INVALID_ARGUMENT)
+    if resp is not None:
+      self.assertEqual(self.get_response_status(resp), httplib.BAD_REQUEST)
+      self.check_headers(resp.headers, server_base.StatusCode.INVALID_ARGUMENT)
 
   def test_options_no_cors(self):
     """Make sure the server can reject CORs."""
@@ -299,15 +307,18 @@ class PRPCServerTestCase(test_case.TestCase):
     options_headers = self.make_headers(encoding.Encoding.BINARY)
     options_headers['origin'] = origin
 
-    no_cors_resp = self.no_cors_app.options('/prpc/test.Test/Give',
-                                            options_headers)
-    no_cors_headers = no_cors_resp.headers
-    self.assertIsNone(no_cors_headers.get('Access-Control-Allow-Origin'))
-    self.assertIsNone(no_cors_headers.get('Very'))
-    self.assertIsNone(no_cors_headers.get('Access-Control-Allow-Credentials'))
-    self.assertIsNone(no_cors_headers.get('Access-Control-Allow-Headers'))
-    self.assertIsNone(no_cors_headers.get('Access-Control-Allow-Methods'))
-    self.assertIsNone(no_cors_headers.get('Access-Control-Max-Age'))
+    no_cors_resp = self.get_response(self.no_cors_app,
+                                     '/prpc/test.Test/Give',
+                                     headers=options_headers,
+                                     request_type='OPTIONS')
+    if no_cors_resp is not None:
+      no_cors_headers = no_cors_resp.headers
+      self.assertIsNone(no_cors_headers.get('Access-Control-Allow-Origin'))
+      self.assertIsNone(no_cors_headers.get('Very'))
+      self.assertIsNone(no_cors_headers.get('Access-Control-Allow-Credentials'))
+      self.assertIsNone(no_cors_headers.get('Access-Control-Allow-Headers'))
+      self.assertIsNone(no_cors_headers.get('Access-Control-Allow-Methods'))
+      self.assertIsNone(no_cors_headers.get('Access-Control-Max-Age'))
 
   def test_options_allowed_origins(self):
     """Make sure the server only allows allowlisted origins is specified."""
@@ -316,34 +327,40 @@ class PRPCServerTestCase(test_case.TestCase):
     options_headers = self.make_headers(encoding.Encoding.BINARY)
     options_headers['origin'] = allowed_origin
 
-    allowed_resp = self.explicit_origins_app.options('/prpc/test.Test/Give',
-                                                     options_headers)
-    allowed_headers = allowed_resp.headers
-    self.assertEqual(allowed_headers['Access-Control-Allow-Origin'],
-                     allowed_origin)
-    self.assertEqual(allowed_headers['Vary'], 'Origin')
-    self.assertEqual(allowed_headers['Access-Control-Allow-Credentials'],
-                     'true')
-    self.assertEqual(allowed_headers['Access-Control-Allow-Headers'],
-                     'Origin, Content-Type, Accept, Authorization')
-    self.assertEqual(allowed_headers['Access-Control-Allow-Methods'],
-                     'OPTIONS, POST')
-    self.assertEqual(allowed_headers['Access-Control-Max-Age'], '600')
+    allowed_resp = self.get_response(self.explicit_origins_app,
+                                     '/prpc/test.Test/Give',
+                                     headers=options_headers,
+                                     request_type='OPTIONS')
+    if allowed_resp is not None:
+      allowed_headers = allowed_resp.headers
+      self.assertEqual(allowed_headers['Access-Control-Allow-Origin'],
+                       allowed_origin)
+      self.assertEqual(allowed_headers['Vary'], 'Origin')
+      self.assertEqual(allowed_headers['Access-Control-Allow-Credentials'],
+                       'true')
+      self.assertEqual(allowed_headers['Access-Control-Allow-Headers'],
+                       'Origin, Content-Type, Accept, Authorization')
+      self.assertEqual(allowed_headers['Access-Control-Allow-Methods'],
+                       'OPTIONS, POST')
+      self.assertEqual(allowed_headers['Access-Control-Max-Age'], '600')
 
     # Check we block origins not found in server.allowed_origins if
     # server.allowed_origins is not empty.
     options_headers = self.make_headers(encoding.Encoding.BINARY)
     options_headers['origin'] = 'NotOkaySite.com'
 
-    blocked_resp = self.explicit_origins_app.options('/prpc/test.Test/Give',
-                                                     options_headers)
-    blocked_headers = blocked_resp.headers
-    self.assertIsNone(blocked_headers.get('Access-Control-Allow-Origin'))
-    self.assertIsNone(blocked_headers.get('Very'))
-    self.assertIsNone(blocked_headers.get('Access-Control-Allow-Credentials'))
-    self.assertIsNone(blocked_headers.get('Access-Control-Allow-Headers'))
-    self.assertIsNone(blocked_headers.get('Access-Control-Allow-Methods'))
-    self.assertIsNone(blocked_headers.get('Access-Control-Max-Age'))
+    blocked_resp = self.get_response(self.explicit_origins_app,
+                                     '/prpc/test.Test/Give',
+                                     headers=options_headers,
+                                     request_type='OPTIONS')
+    if blocked_resp is not None:
+      blocked_headers = blocked_resp.headers
+      self.assertIsNone(blocked_headers.get('Access-Control-Allow-Origin'))
+      self.assertIsNone(blocked_headers.get('Very'))
+      self.assertIsNone(blocked_headers.get('Access-Control-Allow-Credentials'))
+      self.assertIsNone(blocked_headers.get('Access-Control-Allow-Headers'))
+      self.assertIsNone(blocked_headers.get('Access-Control-Allow-Methods'))
+      self.assertIsNone(blocked_headers.get('Access-Control-Max-Age'))
 
   def test_options_allow_cors(self):
     """Make sure the server can allow CORs."""
@@ -351,21 +368,94 @@ class PRPCServerTestCase(test_case.TestCase):
     options_headers = self.make_headers(encoding.Encoding.BINARY)
     options_headers['origin'] = origin
 
-    cors_resp = self.app.options('/prpc/test.Test/Give', options_headers)
-    cors_headers = cors_resp.headers
-    self.assertEqual(cors_headers['Access-Control-Allow-Origin'], origin)
-    self.assertEqual(cors_headers['Vary'], 'Origin')
-    self.assertEqual(cors_headers['Access-Control-Allow-Credentials'], 'true')
-    self.assertEqual(cors_headers['Access-Control-Allow-Headers'],
-                     'Origin, Content-Type, Accept, Authorization')
-    self.assertEqual(cors_headers['Access-Control-Allow-Methods'],
-                     'OPTIONS, POST')
-    self.assertEqual(cors_headers['Access-Control-Max-Age'], '600')
+    cors_resp = self.get_response(self.app,
+                                  '/prpc/test.Test/Give',
+                                  headers=options_headers,
+                                  request_type='OPTIONS')
+    if cors_resp is not None:
+      cors_headers = cors_resp.headers
+      self.assertEqual(cors_headers['Access-Control-Allow-Origin'], origin)
+      self.assertEqual(cors_headers['Vary'], 'Origin')
+      self.assertEqual(cors_headers['Access-Control-Allow-Credentials'], 'true')
+      self.assertEqual(cors_headers['Access-Control-Allow-Headers'],
+                       'Origin, Content-Type, Accept, Authorization')
+      self.assertEqual(cors_headers['Access-Control-Allow-Methods'],
+                       'OPTIONS, POST')
+      self.assertEqual(cors_headers['Access-Control-Max-Age'], '600')
+
+
+class PRPCServerTestCase(PRPCServerTestCaseBase):
+  def setUp(self):
+    super(PRPCServerTestCase, self).setUp()
+
+    s = webapp2_server.Webapp2Server()
+    s.add_service(self.service)
+    real_app = webapp2.WSGIApplication(s.get_routes(), debug=True)
+    self.app = webtest.TestApp(
+        real_app,
+        extra_environ={'REMOTE_ADDR': '::ffff:127.0.0.1'},
+    )
+
+    bad_s = webapp2_server.Webapp2Server()
+    bad_s.add_service(BadTestServicer())
+    real_bad_app = webapp2.WSGIApplication(bad_s.get_routes(), debug=True)
+    self.bad_app = webtest.TestApp(
+        real_bad_app,
+        extra_environ={'REMOTE_ADDR': '192.192.192.192'},
+    )
+
+    explicit_origins_s = webapp2_server.Webapp2Server(
+        allowed_origins=self.allowed_origins)
+    explicit_origins_s.add_service(self.service)
+    real_explicit_origins_app = webapp2.WSGIApplication(
+        explicit_origins_s.get_routes(), debug=True)
+    self.explicit_origins_app = webtest.TestApp(
+        real_explicit_origins_app,
+        extra_environ={'REMOTE_ADDR': '::ffff:127.0.0.1'},
+    )
+
+    no_cors_s = webapp2_server.Webapp2Server(allow_cors=False)
+    no_cors_s.add_service(self.service)
+    real_no_cors_app = webapp2.WSGIApplication(no_cors_s.get_routes(),
+                                               debug=True)
+    self.no_cors_app = webtest.TestApp(
+        real_no_cors_app,
+        extra_environ={'REMOTE_ADDR': '::ffff:127.0.0.1'},
+    )
+
+  def get_response(self,
+                   app,
+                   url,
+                   data=None,
+                   headers='',
+                   request_type='POST',
+                   expect_errors=False):
+    if request_type == 'OPTIONS':
+      return app.options(url, headers)
+    return app.post(url, data, headers, expect_errors=expect_errors)
+
+  def get_response_body(self, response):
+    return response.body
+
+  def get_response_status(self, response):
+    return response.status_int
+
+  def test_context(self):
+    return self.check_context([
+        {
+            'is_active': True,
+            'peer': 'ipv6:[::ffff:127.0.0.1]',
+            'time_remaining': None,
+        },
+    ])
+
+  def test_bad_headers(self):
+    self.call_with_bad_headers({})
 
 
 class InterceptorsTestCase(test_case.TestCase):
   def make_test_server_app(self, servicer, interceptors):
-    s = server.Server()
+    s = webapp2_server.Webapp2Server()
     s.add_service(servicer)
     for interceptor in interceptors:
       s.add_interceptor(interceptor)
@@ -451,7 +541,7 @@ class InterceptorsTestCase(test_case.TestCase):
       try:
         return cont(request, context, details)
       except Error as exc:
-        context.set_code(server.StatusCode.PERMISSION_DENIED)
+        context.set_code(server_base.StatusCode.PERMISSION_DENIED)
         context.set_details(exc.message)
 
     def inner(request, context, details, cont):
@@ -462,6 +552,81 @@ class InterceptorsTestCase(test_case.TestCase):
     resp = self.call_echo(app, 123, return_raw_resp=True)
     self.assertEqual(resp.status_int, 403)
     self.assertTrue('FAIL' in resp.body)
+
+
+class PRPCFlaskServerTestCase(PRPCServerTestCaseBase):
+  def setUp(self):
+    super(PRPCFlaskServerTestCase, self).setUp()
+
+    s = flask_server.FlaskServer()
+    s.add_service(self.service)
+    routes = s.get_routes()
+    self.app = flask.Flask('test_app')
+    self.app.config['TESTING'] = True
+    for route in routes:
+      self.app.add_url_rule(route[0], view_func=route[1], methods=route[2])
+
+    bad_s = flask_server.FlaskServer()
+    bad_s.add_service(BadTestServicer())
+    bad_s_routes = bad_s.get_routes()
+    self.bad_app = flask.Flask('test_bad_app')
+    self.bad_app.config['TESTING'] = True
+    for route in bad_s_routes:
+      self.bad_app.add_url_rule(route[0], view_func=route[1], methods=route[2])
+
+    explicit_origins_s = flask_server.FlaskServer(
+        allowed_origins=self.allowed_origins)
+    explicit_origins_s.add_service(self.service)
+    explicit_origins_s_routes = explicit_origins_s.get_routes()
+    self.explicit_origins_app = flask.Flask('test_explicit_origins_app')
+    self.explicit_origins_app.config['TESTING'] = True
+    for route in explicit_origins_s_routes:
+      self.explicit_origins_app.add_url_rule(route[0],
+                                             view_func=route[1],
+                                             methods=route[2])
+
+    no_cors_s = flask_server.FlaskServer(allow_cors=False)
+    no_cors_s.add_service(self.service)
+    no_cors_s_routes = no_cors_s.get_routes()
+    self.no_cors_app = flask.Flask('test_no_cors_app')
+    self.no_cors_app.config['TESTING'] = True
+    for route in no_cors_s_routes:
+      self.no_cors_app.add_url_rule(route[0],
+                                    view_func=route[1],
+                                    methods=route[2])
+
+  def get_response(self,
+                   app,
+                   url,
+                   data=None,
+                   headers='',
+                   request_type='POST',
+                   expect_errors=False):
+    if request_type == 'OPTIONS':
+      return app.test_client().options(url, headers=headers)
+    return app.test_client().post(
+        url,
+        data=data,
+        headers=headers,
+    )
+
+  def get_response_body(self, response):
+    return response.data
+
+  def get_response_status(self, response):
+    return response.status_code
+
+  def test_context(self):
+    return self.check_context([
+        {
+            'is_active': True,
+            'peer': 'ipv4:127.0.0.1',
+            'time_remaining': None,
+        },
+    ])
+
+  def test_bad_headers(self):
+    self.call_with_bad_headers('')
 
 
 if __name__ == '__main__':
