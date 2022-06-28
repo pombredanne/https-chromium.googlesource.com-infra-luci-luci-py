@@ -114,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "43061eea_3d0ceab5",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-28T19:57:47Z",
+      "side": 1,
+      "message": "Another way of putting it might be:\n```\nport \u003d split_host[1] if len(split_host) \u003e 1 else \u002780\u0027\n```\nThis way the initialization is done on one line in all cases.",
+      "parentUuid": "ceeb3767_32754751",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 15
+      },
+      "revId": "3508e7100968e50a749b998a95cb342d812cb9ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "19d41a5f_7b4d05c7",
         "filename": "appengine/components/components/endpoints_flask/adapter.py",
         "patchSetId": 3

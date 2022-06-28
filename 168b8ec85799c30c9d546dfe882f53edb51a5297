@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f3db147_45cd1298",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-28T19:57:47Z",
+      "side": 1,
+      "message": "style nit: single quotes",
+      "range": {
+        "startLine": 103,
+        "startChar": 42,
+        "endLine": 103,
+        "endChar": 45
+      },
+      "revId": "168b8ec85799c30c9d546dfe882f53edb51a5297",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a56a9c5_255e1ff8",
+        "filename": "appengine/components/components/endpoints_flask/adapter_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-28T19:57:47Z",
+      "side": 1,
+      "message": "Still wary about making any changes here. The library theoretically should work without any changes to the public API.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 0
+      },
+      "revId": "168b8ec85799c30c9d546dfe882f53edb51a5297",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
