@@ -16,6 +16,69 @@
       "message": "We chatted in GVC. I added followup comments for the discussions.",
       "revId": "7318d9eab76f8e7615900e339edcff4dc2f6e961",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43ddd49a_fce436f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 58
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-28T12:55:41Z",
+      "side": 1,
+      "message": "My main concern was to avoid code duplication in server_base.py and server_test.py.\nSo the latest code addressed the issue.\n\nI left some ideas to make tests simpler.",
+      "revId": "7318d9eab76f8e7615900e339edcff4dc2f6e961",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ebceaf3_5c70e2a5",
+        "filename": "appengine/components/components/prpc/server_test.py",
+        "patchSetId": 58
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-28T12:55:41Z",
+      "side": 1,
+      "message": "When we tried multi-class inheritance, we had a problem that setUp() is not called.\n\nMoving the 2 lines to setUp() in the sub classes works well.\n```\n    self.allowed_origins \u003d [\u0027allowed.com\u0027, \u0027allowed-2.com\u0027]\n    self.service \u003d TestServicer()\n```\n\nAs we discussed the sub classes would inherit two classes.\n\n```\nclass PRPCWebapp2ServerTestCase(test_case.TestCase, PRPCServerTestCase):\n  ...\n  \nclass PRPCFlaskServerTestCase(test_case.TestCase, PRPCServerTestCase):\n  ...\n```\n\nSince I\u0027m not familiar with the disadvantages of Python\u0027s multi-class inheritance, this change is optional.",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 0
+      },
+      "revId": "7318d9eab76f8e7615900e339edcff4dc2f6e961",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4281ce15_462b181d",
+        "filename": "appengine/components/components/prpc/server_test.py",
+        "patchSetId": 58
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-28T12:55:41Z",
+      "side": 1,
+      "message": "Just to give you an example how to avoid self.get_response_* in all places.\nHaving an adapter can deal with the minor differences like this.\n\n```\nclass TestAppAdapter:\n  def options(self, url, headers\u003d\u0027\u0027):\n    raise NotImplementedError\n\n  def post(self, url, data\u003dNone, headers\u003d\u0027\u0027, expect_errors\u003dFalse):\n    raise NotImplementedError\n\n\nclass Webapp2Adapter(TestAppAdapter):\n  def __init__(self, app):\n    self._app \u003d app\n\n  def post(self, url, data\u003dNone, headers\u003d\u0027\u0027, expect_errors\u003dFalse):\n    resp \u003d self._app.post(url, data, headers, expect_errors\u003dexpect_errors)\n    return resp.status_int, resp.headers, resp.body\n\n  def options(self, url, headers\u003d\u0027\u0027):\n    resp \u003d self._app.options(url, headers)\n    return resp.status_int, resp.headers, resp.body\n\nclass FlaskAdapter(TestAppAdapter):\n  def __init__(self, app):\n    self._app \u003d app\n\n  def post(self, url, data\u003dNone, headers\u003d\u0027\u0027, expect_errors\u003dFalse):\n    assert not expect_errors\n    resp \u003d self._app.test_client().post(url, data\u003ddata, headers\u003dheaders)\n    return resp.status_code, resp.headers, resp.data\n\n  def options(self, url, headers\u003d\u0027\u0027):\n    resp \u003d self._app.test_client().options(url, headers)\n    return resp.status_code, resp.headers, resp.body\n    \nclass PRPCWebapp2ServerTestCase(...):\n  def setUp(self):\n    ...\n    self.app \u003d Webapp2Adapter(app)\n    ...\n    self.bad_app \u003d Webapp2Adapter(bad_app)\n    ...\n\nclass PRPCFlaskServerTestCase(...):\n  def setUp(self):\n    ...\n    self.app \u003d FlaskAdapter(app)\n    ...\n    self.bad_app \u003d FlaskAdapter(bad_app)\n    ...\n```\n\nIf you want to avoid returning tuples, you can define a response adapter as well.\n\n```\nclass ResponseAdapter:\n  @property\n  def status:\n    ...\n  @property\n  def headers:\n    ...\n    \n  @property\n  def body:\n    ...\n```",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 0
+      },
+      "revId": "7318d9eab76f8e7615900e339edcff4dc2f6e961",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
