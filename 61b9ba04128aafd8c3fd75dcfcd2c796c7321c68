@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "284c065d_db5e275a",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-28T00:55:46Z",
+      "side": 1,
+      "message": "A workaround is to keep it as an alias, and raname the references later.\n\n```\nclass Webapp2Server(ServerBase):\n\n# TODO: remove Server\nServer \u003d Webapp2Server\n```\n\nYou can also rename server.py to webapp2_server.py\nAnd __init__.py would look like\n\n```\nfrom .webapp2_server import Server, Webapp2Server\n```",
+      "parentUuid": "dd7f3a75_be34a88f",
+      "range": {
+        "startLine": 26,
+        "startChar": 6,
+        "endLine": 26,
+        "endChar": 12
+      },
+      "revId": "61b9ba04128aafd8c3fd75dcfcd2c796c7321c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "60411b85_97ffe696",
         "filename": "appengine/components/components/prpc/server_base.py",
         "patchSetId": 31

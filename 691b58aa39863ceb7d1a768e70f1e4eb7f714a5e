@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd7dcbd4_3d631cde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 43
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-28T00:55:46Z",
+      "side": 1,
+      "message": "The latest code looks much simpler.\nThank you for your refactoring.\n\nYou still need to reduce the duplications in the test cases.\n\nAlthough, renaming Server to Webapp2Server is optional, I left tips to make the rename easy.",
+      "revId": "691b58aa39863ceb7d1a768e70f1e4eb7f714a5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1c73d8d_a3123b39",
+        "filename": "appengine/components/components/prpc/flask_server.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-28T00:55:46Z",
+      "side": 1,
+      "message": "I would merge these two.\n\n```\ndef _response_writer(self, response, body, status):\n  response.set_data(body)\n  resopnse.status_code \u003d status\n```",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 0
+      },
+      "revId": "691b58aa39863ceb7d1a768e70f1e4eb7f714a5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc14ec0a_8ae38a6b",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-28T00:55:46Z",
+      "side": 1,
+      "message": "would be simpler to merge these two.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 0
+      },
+      "revId": "691b58aa39863ceb7d1a768e70f1e4eb7f714a5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50fe7ab8_a9774893",
+        "filename": "appengine/components/components/prpc/server_test.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-28T00:55:46Z",
+      "side": 1,
+      "message": "Are the test cases same with PRPCServerTestCase?\nIf so, please consider sharing test cases to avoid duplications.\n\nDoes the following refactoring work?\n```\nclass PRPCServerTestCaseBase(test_case.TestCase):\n  # test cases and common helpers \n\nclass PRPCWebapp2TestCase(PRPCServerTestCaseBase):\n  def setUp(self):\n     # do webapp2 specific setup.\n\nclass PRPCFlaskServerTestCase(PRPCServerTestCaseBase):\n  def setUp(self):\n     # do flask specific setup.\n```",
+      "range": {
+        "startLine": 470,
+        "startChar": 6,
+        "endLine": 470,
+        "endChar": 29
+      },
+      "revId": "691b58aa39863ceb7d1a768e70f1e4eb7f714a5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
