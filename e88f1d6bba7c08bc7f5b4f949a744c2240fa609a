@@ -135,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "806f1563_a3a16135",
+        "filename": "appengine/components/components/prpc/server_test.py",
+        "patchSetId": 57
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-28T09:38:41Z",
+      "side": 1,
+      "message": "The problem is that unittest runs the common test classes and fail because the base class doesn\u0027t complete preparations.\n\nWe tried the two solutions in https://stackoverflow.com/q/1323455.\nThe nested base class doesn\u0027t work because unittest still runs the common tests.\nMultiple inheritance doesn\u0027t work for some setup issue, which we didn\u0027t investigate further.",
+      "parentUuid": "6802391e_30ae9ced",
+      "range": {
+        "startLine": 428,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 0
+      },
+      "revId": "e88f1d6bba7c08bc7f5b4f949a744c2240fa609a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4d55b10_cbd0c001",
@@ -196,6 +220,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "a4d55b10_cbd0c001",
+      "range": {
+        "startLine": 447,
+        "startChar": 6,
+        "endLine": 447,
+        "endChar": 26
+      },
+      "revId": "e88f1d6bba7c08bc7f5b4f949a744c2240fa609a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30614323_d6b35b37",
+        "filename": "appengine/components/components/prpc/server_test.py",
+        "patchSetId": 57
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-06-28T09:38:41Z",
+      "side": 1,
+      "message": "Monorail doesn\u0027t need this feature. So added a TODO.",
+      "parentUuid": "57fe7ac1_b11f1f11",
       "range": {
         "startLine": 447,
         "startChar": 6,
