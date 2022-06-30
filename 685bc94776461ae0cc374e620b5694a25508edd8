@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e71c1fc_306965f7",
+        "filename": "appengine/components/components/endpoints_flask/README.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-30T19:53:59Z",
+      "side": 1,
+      "message": "flask",
+      "range": {
+        "startLine": 10,
+        "startChar": 48,
+        "endLine": 10,
+        "endChar": 55
+      },
+      "revId": "685bc94776461ae0cc374e620b5694a25508edd8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fd28575_109abd1c",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-30T19:53:59Z",
+      "side": 1,
+      "message": "style nit: no () needed here. Same below as well",
+      "range": {
+        "startLine": 121,
+        "startChar": 13,
+        "endLine": 121,
+        "endChar": 14
+      },
+      "revId": "685bc94776461ae0cc374e620b5694a25508edd8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8029014b_f3cf2a57",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-30T19:53:59Z",
+      "side": 1,
+      "message": "Exclude logging lines.",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 28
+      },
+      "revId": "685bc94776461ae0cc374e620b5694a25508edd8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8435731b_f4c4f780",
+        "filename": "appengine/components/components/endpoints_flask/adapter_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-30T19:53:59Z",
+      "side": 1,
+      "message": "Shouldn\u0027t need to make a change to these params.",
+      "range": {
+        "startLine": 47,
+        "startChar": 28,
+        "endLine": 47,
+        "endChar": 65
+      },
+      "revId": "685bc94776461ae0cc374e620b5694a25508edd8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

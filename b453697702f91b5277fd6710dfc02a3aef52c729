@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c6da31e_6b0dd4b8",
+        "filename": "appengine/components/components/endpoints_flask/adapter_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-06-30T19:53:59Z",
+      "side": 0,
+      "message": "Missing an assert in the new code.",
+      "range": {
+        "startLine": 93,
+        "startChar": 11,
+        "endLine": 93,
+        "endChar": 22
+      },
+      "revId": "b453697702f91b5277fd6710dfc02a3aef52c729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
