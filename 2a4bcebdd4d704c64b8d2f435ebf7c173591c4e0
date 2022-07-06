@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c83ad63_44cfdd7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-07-06T23:11:14Z",
+      "side": 1,
+      "message": "Uploaded a CL to downgrade the pylint version for this directory for now.\nhttps://crrev.com/c/3749913",
+      "parentUuid": "79d22a39_b7eca88d",
+      "revId": "2a4bcebdd4d704c64b8d2f435ebf7c173591c4e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4749a59_8a01a1ec",
