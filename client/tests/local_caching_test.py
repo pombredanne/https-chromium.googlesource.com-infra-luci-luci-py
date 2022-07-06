@@ -835,9 +835,10 @@ class FnTest(TestCase):
     super(FnTest, self).setUp()
     # Simulate that the memory cache used disk space.
     def remove_oldest(c):
-      s = old_remove_oldest(c)
+      name, s = old_remove_oldest(c)
       self._free_disk += s
-      return s
+      return name, s
+
     old_remove_oldest = self.mock(
         local_caching.MemoryContentAddressedCache, 'remove_oldest',
         remove_oldest)
