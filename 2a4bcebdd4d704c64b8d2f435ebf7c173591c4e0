@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79d22a39_b7eca88d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-07-06T22:33:58Z",
+      "side": 1,
+      "message": "I looked at the weird presubmit errors.\n\nI compared the output of this presubmit with the output of one of your previous CLs, which was passing, and spotted a tiny difference: pylint 2.7 now and pylint 1.5 previously.\n\nThen I looked through the depot_tools git history [1] and found that Josip had uprevved the pylint version last week: https://crrev.com/c/3722041\n\nThen I looked at other runs of the same recipe to see if other CLs also ran into the issue. They didn\u0027t, because `appengine/components` hasn\u0027t been modified in the past week, and the errors are only in that directory.\n\nI think it\u0027s hard to say to Josip that he needs to revert his change, when he gave a month\u0027s notice for it. I think someone will need to update `appengine/components` to fix the pylint errors. We could ask someone else who\u0027s modified it recently, but I think it\u0027s pretty likely that\u0027ll end up being ourselves mostly.\n\n[1] https://chromium.googlesource.com/chromium/tools/depot_tools/",
+      "revId": "2a4bcebdd4d704c64b8d2f435ebf7c173591c4e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4749a59_8a01a1ec",
