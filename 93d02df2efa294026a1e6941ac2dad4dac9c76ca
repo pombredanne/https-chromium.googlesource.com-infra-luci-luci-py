@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6f28e45_27d8041d",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-07-07T19:07:59Z",
+      "side": 1,
+      "message": "IIRC not all bots have this \u0027bot logs\u0027 link (though SRE is working on a fix for this).\n\nMaybe it\u0027s good enough though for the first cut.",
+      "parentUuid": "aac890cc_a6203cea",
+      "revId": "93d02df2efa294026a1e6941ac2dad4dac9c76ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2da484ac_d4814821",
         "filename": "client/local_caching.py",
         "patchSetId": 1
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "RE to edit: we could also change this from `logging.info` to `logging.debug` - since these are viewed in cloudlogs, it\u0027s fairly easy to switch to viewing info logs only if really noisy. Advantage here is that all present and future caches will be logged in the same way which means logs are easier to search for. \n\nIf you disagree I will move the logging to NamedCache only :)",
       "parentUuid": "2da484ac_d4814821",
+      "revId": "93d02df2efa294026a1e6941ac2dad4dac9c76ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ad993a8_73405a41",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-07-07T19:07:59Z",
+      "side": 1,
+      "message": "Well my worry is that in CAS cache mode, this could potentially be thousands of cache items, and also CAS is \u0027easy come, easy go\u0027; The fact that we\u0027ve evicted something from disk means that, if we need it again, it\u0027s just a quick, transparent, download later.\n\nIn named cache mode we have O(10) caches, and dropping one is potentially 40+ minutes of work to repopulate it.",
+      "parentUuid": "f54264e8_3655addf",
       "revId": "93d02df2efa294026a1e6941ac2dad4dac9c76ca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
