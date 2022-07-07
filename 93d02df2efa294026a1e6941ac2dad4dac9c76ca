@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aac890cc_a6203cea",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-07-07T16:12:38Z",
+      "side": 1,
+      "message": "These don\u0027t show up in the TaskView directly, but the user can access them like so:\nhttp://screen/3xMCjEhYYn4MtMe . I kinda assumed they were accessible to users but didn\u0027t really know how to check. If not we may need to send the logs to BigQuery.",
+      "parentUuid": "25413fee_acb7993c",
+      "revId": "93d02df2efa294026a1e6941ac2dad4dac9c76ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2da484ac_d4814821",
         "filename": "client/local_caching.py",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2022-07-07T05:09:32Z",
       "side": 1,
       "message": "I think this needs to read something like:\n\nremoved cache (\"name of cache\" a.k.a. \u003cdigest\u003e): size\u003dX\nremoved cache (\"name of cache\" a.k.a. \u003cdigest\u003e) which was older than Y: size\u003dX\n\n(depending on which criterion was used)\n\nIf you want to include the timestamp, I would format it as some human time, I think, but I don\u0027t think it\u0027s strictly necessary (the log here will be attached to a task, and the task start time is probably enough precision in this context).\n\n\nedit: after looking at the code closer, I think that `trim_caches` is going to be called on ALL the various caches... I think that having this log for the \"ContentAddressedCache\" derivatives will be very noisy. Could we move the log to remove_oldest in the named cache impl?",
+      "revId": "93d02df2efa294026a1e6941ac2dad4dac9c76ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f54264e8_3655addf",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-07-07T16:12:38Z",
+      "side": 1,
+      "message": "RE to edit: we could also change this from `logging.info` to `logging.debug` - since these are viewed in cloudlogs, it\u0027s fairly easy to switch to viewing info logs only if really noisy. Advantage here is that all present and future caches will be logged in the same way which means logs are easier to search for. \n\nIf you disagree I will move the logging to NamedCache only :)",
+      "parentUuid": "2da484ac_d4814821",
       "revId": "93d02df2efa294026a1e6941ac2dad4dac9c76ca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
