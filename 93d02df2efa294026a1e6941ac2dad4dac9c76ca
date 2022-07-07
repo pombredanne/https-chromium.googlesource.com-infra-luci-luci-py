@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25413fee_acb7993c",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-07-07T05:09:32Z",
+      "side": 1,
+      "message": "so... this makes me wonder if these logs do NOT show up on the task view. Otherwise I would expect that tasks would already contain this output?",
+      "revId": "93d02df2efa294026a1e6941ac2dad4dac9c76ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2da484ac_d4814821",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-07-07T05:09:32Z",
+      "side": 1,
+      "message": "I think this needs to read something like:\n\nremoved cache (\"name of cache\" a.k.a. \u003cdigest\u003e): size\u003dX\nremoved cache (\"name of cache\" a.k.a. \u003cdigest\u003e) which was older than Y: size\u003dX\n\n(depending on which criterion was used)\n\nIf you want to include the timestamp, I would format it as some human time, I think, but I don\u0027t think it\u0027s strictly necessary (the log here will be attached to a task, and the task start time is probably enough precision in this context).\n\n\nedit: after looking at the code closer, I think that `trim_caches` is going to be called on ALL the various caches... I think that having this log for the \"ContentAddressedCache\" derivatives will be very noisy. Could we move the log to remove_oldest in the named cache impl?",
+      "revId": "93d02df2efa294026a1e6941ac2dad4dac9c76ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ce849eb_87e8f7ff",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-07-07T05:09:32Z",
+      "side": 1,
+      "message": "I believe this was previously appending the slice (digest, size)?\n\n(unless nothing actually uses this return value?)\n\nedit: Ah, I see, remove_oldest changed return value...",
+      "revId": "93d02df2efa294026a1e6941ac2dad4dac9c76ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b97154a2_fdc0751a",
+        "filename": "client/local_caching.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-07-07T05:09:32Z",
+      "side": 1,
+      "message": "comment no longer needed, I think",
+      "revId": "93d02df2efa294026a1e6941ac2dad4dac9c76ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
