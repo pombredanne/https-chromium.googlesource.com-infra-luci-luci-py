@@ -59,6 +59,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78998510_c17497de",
+        "filename": "appengine/components/components/endpoints_flask/README.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-07-11T16:33:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4749a59_8a01a1ec",
+      "range": {
+        "startLine": 4,
+        "startChar": 38,
+        "endLine": 5,
+        "endChar": 55
+      },
+      "revId": "2a4bcebdd4d704c64b8d2f435ebf7c173591c4e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4598d568_abc037b1",
@@ -72,6 +96,30 @@
       "writtenOn": "2022-07-06T20:58:25Z",
       "side": 1,
       "message": "I think you still need to `flask.jsonify()` here.",
+      "range": {
+        "startLine": 143,
+        "startChar": 11,
+        "endLine": 143,
+        "endChar": 19
+      },
+      "revId": "2a4bcebdd4d704c64b8d2f435ebf7c173591c4e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e05e0cd_23a3bb92",
+        "filename": "appengine/components/components/endpoints_flask/adapter.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1434285
+      },
+      "writtenOn": "2022-07-11T16:33:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4598d568_abc037b1",
       "range": {
         "startLine": 143,
         "startChar": 11,
