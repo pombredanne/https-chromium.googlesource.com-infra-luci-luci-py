@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "38584075_49b62bd7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1367998
+      },
+      "writtenOn": "2022-07-11T18:54:52Z",
+      "side": 1,
+      "message": "Is there a timeline/plan to remove support for py2?",
+      "range": {
+        "startLine": 14,
+        "startChar": 47,
+        "endLine": 14,
+        "endChar": 54
+      },
+      "revId": "2cbff3c17e5e2147e0ced53eaa5bdb45c76a7b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "ba2ec147_6fcd2c56",
@@ -14,6 +37,23 @@
       "writtenOn": "2022-07-06T23:21:26Z",
       "side": 1,
       "message": "+vadimsh for OWNERS",
+      "revId": "2cbff3c17e5e2147e0ced53eaa5bdb45c76a7b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ee05641_53cb0fdf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1367998
+      },
+      "writtenOn": "2022-07-11T18:54:52Z",
+      "side": 1,
+      "message": "Are there any plans to remove py",
       "revId": "2cbff3c17e5e2147e0ced53eaa5bdb45c76a7b38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
