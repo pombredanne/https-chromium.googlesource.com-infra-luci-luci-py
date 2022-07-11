@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa3094c6_4f8b801d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2022-07-11T20:17:00Z",
+      "side": 1,
+      "message": "Yes, we are thinking 2022 Q4. These changes are in support of the migration work, since we are trying to land a Flask version of endpoints_webapp2 in https://crrev.com/c/3712141 . During the migration process, all of the code needs to be both Py2 and Py3-compatible.",
+      "parentUuid": "38584075_49b62bd7",
+      "range": {
+        "startLine": 14,
+        "startChar": 47,
+        "endLine": 14,
+        "endChar": 54
+      },
+      "revId": "2cbff3c17e5e2147e0ced53eaa5bdb45c76a7b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "ba2ec147_6fcd2c56",
