@@ -15,7 +15,7 @@ from components import utils
 import gae_ts_mon
 
 from server import bot_management
-from server import task_result
+from server.task_result import State, get_result_summaries_query
 
 # - android_devices is a side effect of the health of each Android devices
 #   connected to the bot.
@@ -300,8 +300,7 @@ def _pool_from_dimensions(dimensions):
 def _set_jobs_metrics(payload):
   params = _ShardParams(payload)
 
-  state_map = {task_result.State.RUNNING: 'running',
-               task_result.State.PENDING: 'pending'}
+  state_map = {State.RUNNING: 'running', State.PENDING: 'pending'}
   jobs_counts = defaultdict(lambda: 0)
   jobs_total = 0
   jobs_pending_distributions = defaultdict(
@@ -309,9 +308,10 @@ def _set_jobs_metrics(payload):
   jobs_max_pending_durations = defaultdict(
       lambda: 0.0)
 
-  query_iter = task_result.get_result_summaries_query(
-      None, None, 'created_ts', 'pending_running', None).iter(
-      produce_cursors=True, start_cursor=params.cursor)
+  query_iter = get_result_summaries_query(None, None, 'created_ts',
+                                          'pending_running',
+                                          None).iter(produce_cursors=True,
+                                                     start_cursor=params.cursor)
 
   while query_iter.has_next():
     runtime = (utils.utcnow() - params.start_time).total_seconds()
@@ -501,7 +501,7 @@ def _extract_pubsub_job_fields(tags_dict, status):
   """
   fields = {
       'pool': tags_dict.get('pool', ''),
-      'status': task_result.State.to_string(status)
+      'status': State.to_string(status)
   }
   return fields
 
@@ -518,7 +518,7 @@ def on_task_requested(summary, deduped):
 def on_task_completed(summary):
   """When a task is stopped from being processed."""
   fields = _extract_job_fields(_tags_to_dict(summary.tags))
-  if summary.state == task_result.State.EXPIRED:
+  if summary.state == State.EXPIRED:
     fields['priority'] = summary.priority
     _tasks_expired.increment(fields=fields)
     return
@@ -531,7 +531,7 @@ def on_task_completed(summary):
     fields['result'] = 'success'
 
   completed_fields = fields.copy()
-  completed_fields['status'] = task_result.State.to_string(summary.state)
+  completed_fields['status'] = State.to_string(summary.state)
   _jobs_completed.increment(fields=completed_fields)
   if summary.duration is not None:
     _jobs_durations.add(summary.duration, fields=fields)
