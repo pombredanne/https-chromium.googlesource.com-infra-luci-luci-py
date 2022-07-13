@@ -1200,7 +1200,7 @@ class TaskResultSummary(_TaskResultCommon):
     logging.debug(
         '_send_job_completed_metric: '
         'Task completed. prev_state:"%s", current_state:"%s".\n'
-        'Sending metric...', prev_state, State.to_string(self.state))
+        'Sending metrics...', prev_state, State.to_string(self.state))
     import ts_mon_metrics
     ts_mon_metrics.on_task_completed(self)
 
