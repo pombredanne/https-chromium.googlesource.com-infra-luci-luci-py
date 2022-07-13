@@ -1103,6 +1103,8 @@ message TaskSetupOverhead {
   google.protobuf.Duration duration = 1;
   // Cache trimming overhead.
   CacheTrimOverhead cache_trim = 2;
+  // Records of what digests were trimmed from cache.
+  repeated CacheEviction cache_trim_evictions = 6;
   // CIPD packge installation overhead.
   CIPDOverhead cipd = 3;
   // Named cache install overhead.
@@ -1126,6 +1128,17 @@ message TaskTeardownOverhead {
 // Overhead information about cache trimming.
 message CacheTrimOverhead {
   google.protobuf.Duration duration = 1;
+}
+
+message CacheEviction {
+  // Digest of cache trim entry.
+  string digest = 1;
+  // Size of item being removed from cache.
+  int64 size = 2;
+  // time of eviction
+  int64 eviction_time = 3;
+  // a reason given for the eviction.
+  string reason = 4;
 }
 
 // Overhead information about CIPD packge installation.
