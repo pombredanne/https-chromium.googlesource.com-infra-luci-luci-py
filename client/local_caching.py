@@ -96,10 +96,12 @@ def trim_caches(caches, path, min_free_space, max_age_secs):
       c, ts = oldest[0]
       if ts >= min_ts and free_disk >= min_free_space:
         break
-      total.append(c.remove_oldest())
+      digest, size = c.remove_oldest()
+      total.append(size)
       if min_free_space:
         free_disk = file_path.get_free_space(path)
-  logging.info("free_disk after removing oldest entries: %d", free_disk)
+  logging.info("free_disk after removing oldest entries: %d, older than %d",
+               free_disk, min_ts)
   # Evaluate each cache's own policies.
   for c in caches:
     total.extend(c.trim())
@@ -336,9 +338,8 @@ class MemoryContentAddressedCache(ContentAddressedCache):
 
   def remove_oldest(self):
     with self._lock:
-      # TODO(maruel): Update self._added.
-      # (key, (value, ts))
-      return len(self._lru.pop_oldest()[1][0])
+      digest, (value, _) = self._lru.pop_oldest()
+      return digest, len(value)
 
   def save(self):
     pass
@@ -674,20 +675,22 @@ class DiskContentAddressedCache(ContentAddressedCache):
         # (key, (data, ts)
         if oldest[1][1] >= cutoff:
           break
-        evicted.append(self._remove_lru_file(True))
+        _, size = self._remove_lru_file(True)
+        evicted.append(size)
 
     # Ensure maximum cache size.
     if self.policies.max_cache_size:
       total_size = sum(self._lru.values())
       while total_size > self.policies.max_cache_size:
-        e = self._remove_lru_file(True)
-        evicted.append(e)
-        total_size -= e
+        _, size = self._remove_lru_file(True)
+        evicted.append(size)
+        total_size -= size
 
     # Ensure maximum number of items in the cache.
     if self.policies.max_items and len(self._lru) > self.policies.max_items:
       for _ in range(len(self._lru) - self.policies.max_items):
-        evicted.append(self._remove_lru_file(True))
+        _, size = self._remove_lru_file(True)
+        evicted.append(size)
 
     # Ensure enough free space.
     self._free_disk = file_path.get_free_space(self.cache_dir)
@@ -696,7 +699,8 @@ class DiskContentAddressedCache(ContentAddressedCache):
         self._lru and
         self._free_disk < self.policies.min_free_space):
       # self._free_disk is updated by this call.
-      evicted.append(self._remove_lru_file(True))
+      _, size = self._remove_lru_file(True)
+      evicted.append(size)
 
     if evicted:
       total_usage = sum(self._lru.values())
@@ -740,7 +744,7 @@ class DiskContentAddressedCache(ContentAddressedCache):
     digest, (size, _) = self._lru.pop_oldest()
     logging.debug('Removing LRU file %s with size %s bytes', digest, size)
     self._delete_file(digest, size)
-    return size
+    return digest, size
 
   def _add(self, digest, size=UNKNOWN_FILE_SIZE):
     """Adds an item into LRU cache marking it as a newest one."""
@@ -759,7 +763,8 @@ class DiskContentAddressedCache(ContentAddressedCache):
     while (self.policies.min_free_space and self._lru and
            self._free_disk < self.policies.min_free_space):
       # self._free_disk is updated by this call.
-      if self._remove_lru_file(False) == -1:
+      _, size = self._remove_lru_file(False)
+      if size == -1:
         break
 
   def _delete_file(self, digest, size=UNKNOWN_FILE_SIZE):
@@ -1036,9 +1041,7 @@ class NamedCache(Cache):
 
   def remove_oldest(self):
     with self._lock:
-      # TODO(maruel): Update self._added.
-      _name, size = self._remove_lru_item()
-      return size
+      return self._remove_lru_item()
 
   def save(self):
     with self._lock:
