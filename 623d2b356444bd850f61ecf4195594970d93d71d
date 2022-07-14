@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67eece73_0a98b078",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-07-14T02:27:22Z",
+      "side": 1,
+      "message": "Will fix the cyclic dependency in another CL.",
+      "revId": "623d2b356444bd850f61ecf4195594970d93d71d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
