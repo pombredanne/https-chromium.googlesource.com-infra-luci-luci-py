@@ -141,7 +141,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
 
   def setUp(self):
     super(TaskToRunApiTest, self).setUp()
-    self.now = datetime.datetime(2019, 01, 02, 03, 04, 05, 06)
+    self.now = datetime.datetime(2019, 1, 2, 3, 4, 5, 6)
     self.mock_now(self.now)
     auth_testing.mock_get_current_identity(self)
     # Setup the backend to handle task queues.
@@ -898,7 +898,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
   def test_yield_expired_task_to_run(self):
     # There's a cut off at 2019-09-01, so the default self.now on Jan 2nd
     # doesn't work when looking 4 weeks ago.
-    self.now = datetime.datetime(2019, 10, 10, 03, 04, 05, 06)
+    self.now = datetime.datetime(2019, 10, 10, 3, 4, 5, 6)
     self.mock_now(self.now, 0)
     # task_to_run_1: still active
     _, _to_run_1 = self._gen_new_task_to_run_slices(

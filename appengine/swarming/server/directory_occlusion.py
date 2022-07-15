@@ -22,7 +22,7 @@ subdirectories in the task (e.g. in the isolated).
 import collections
 
 
-class Checker(object):
+class Checker:
   """A very limited filesystem hierarchy checker.
 
   This forms a tree, where each node is a directory. Nodes in the tree may have

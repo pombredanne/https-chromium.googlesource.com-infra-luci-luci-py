@@ -239,7 +239,7 @@ class AuthSystemTest(auto_stub.TestCase):
 
   @staticmethod
   def mocked_rpc_client(reply):
-    class MockedClient(object):
+    class MockedClient:
 
       def __init__(self):
         self.calls = []
