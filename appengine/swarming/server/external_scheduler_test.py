@@ -78,7 +78,7 @@ def _gen_request(**kwargs):
   return ret
 
 
-class FakeExternalScheduler(object):
+class FakeExternalScheduler:
   def __init__(self, test):
     self._test = test
     self.called_with_requests = []

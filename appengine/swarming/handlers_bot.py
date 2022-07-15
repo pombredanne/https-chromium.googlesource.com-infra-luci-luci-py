@@ -273,7 +273,7 @@ class _BotApiHandler(auth.ApiHandler):
 ### Bot Session API RPC handlers
 
 
-class _ProcessResult(object):
+class _ProcessResult:
   """Returned by _BotBaseHandler._process."""
 
   # A dict with parsed JSON request body, as it was received.
