@@ -422,7 +422,7 @@ def _set_global_metrics():
   utils.enqueue_task('/internal/taskqueue/monitoring/tsmon/executors', 'tsmon')
 
 
-class _ShardParams(object):
+class _ShardParams:
   """Parameters for a chain of taskqueue tasks."""
   def __init__(self, payload):
     self.start_time = utils.utcnow()
