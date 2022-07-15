@@ -32,7 +32,7 @@ class TestProcessTaskRequest(test_case.TestCase):
 
   def setUp(self):
     super(TestProcessTaskRequest, self).setUp()
-    now = datetime.datetime(2019, 01, 02, 03)
+    now = datetime.datetime(2019, 1, 2, 3)
     test_case.mock_now(self, now, 0)
 
     self._known_pools = None

@@ -1201,7 +1201,7 @@ class TaskResultSummary(_TaskResultCommon):
         '_send_job_completed_metric: '
         'Task completed. prev_state:"%s", current_state:"%s".\n'
         'Sending metric...', prev_state, State.to_string(self.state))
-    import ts_mon_metrics
+    import ts_mon_metrics # pylint: disable=R0401
     ts_mon_metrics.on_task_completed(self)
 
   def reset_to_pending(self):
