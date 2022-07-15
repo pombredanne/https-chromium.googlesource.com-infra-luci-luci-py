@@ -131,7 +131,7 @@ def load_and_run(server_url, work_dir, manifest, auth_params_file):
     return json.load(f)
 
 
-class FakeAuthSystem(object):
+class FakeAuthSystem:
   local_auth_context = None
 
   def __init__(self, auth_params_file):
@@ -535,7 +535,7 @@ class TestTaskRunner(TestTaskRunnerBase):
 
   def test_run_command_large(self):
     # Method should have "self" as first argument - pylint: disable=E0213
-    class Popen(object):
+    class Popen:
       """Mocks the process so we can control how data is returned."""
       def __init__(self2, _cmd, cwd, env, stdout, stderr, stdin, detached):
         self.assertEqual(self.work_dir, cwd)
