@@ -75,7 +75,7 @@ def _make_stack():
                    for i, f in enumerate(frames))
 
 
-class Bot(object):
+class Bot:
 
   def __init__(self, remote, attributes, server, server_version, base_dir,
                shutdown_hook):
@@ -110,7 +110,7 @@ class Bot(object):
     """Returns the directory used for configuration files on the machine."""
     if sys.platform == 'win32':
       return 'C:\\swarming_config'
-    elif sys.platform == 'cygwin':
+    if sys.platform == 'cygwin':
       return '/cygdrive/c/swarming_config'
     return '/etc/swarming_config'
 

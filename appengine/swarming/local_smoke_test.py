@@ -87,7 +87,7 @@ def _script(content):
   return textwrap.dedent(content.encode('utf-8'))
 
 
-class SwarmingClient(object):
+class SwarmingClient:
 
   def __init__(self, swarming_server, cas_addr, tmpdir):
     self._swarming_server = swarming_server
@@ -416,7 +416,7 @@ class Test(unittest.TestCase):
         self.fail('Bot took too long to start after wipe_cache()')
       state = self.client.query_bot()
       if not state or not any(
-          [d['key'] == 'server_version' for d in state['dimensions']]):
+          (d['key'] == 'server_version' for d in state['dimensions'])):
         time.sleep(0.1)
         continue
       if not had_cache:

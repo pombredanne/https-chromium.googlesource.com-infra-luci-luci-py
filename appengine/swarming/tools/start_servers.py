@@ -37,7 +37,7 @@ import cas_util
 from tool_support import local_app
 
 
-class LocalServers(object):
+class LocalServers:
   """Local Swarming and CAS servers."""
 
   def __init__(self, listen_all, root):

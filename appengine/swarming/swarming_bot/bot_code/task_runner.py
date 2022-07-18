@@ -164,7 +164,7 @@ def get_isolated_args(work_dir, task_details, isolated_result,
   return cmd
 
 
-class Containment(object):
+class Containment:
   """Containment details."""
   _EXPECTED = frozenset((
       'containment_type',
@@ -184,7 +184,7 @@ class Containment(object):
     return out
 
 
-class TaskDetails(object):
+class TaskDetails:
   """A task_runner specific view of the server's TaskProperties.
 
   It only contains what the bot needs to know.
@@ -479,7 +479,7 @@ def _start_task_runner(args, work_dir, ctx_file):
   return proc
 
 
-class _OutputBuffer(object):
+class _OutputBuffer:
   """_OutputBuffer implements stdout (and eventually stderr) buffering.
 
   This data is buffered and must be sent to the Swarming server when
