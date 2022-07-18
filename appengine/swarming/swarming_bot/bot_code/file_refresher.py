@@ -10,7 +10,7 @@ import threading
 from utils import file_path
 
 
-class FileRefresherThread(object):
+class FileRefresherThread:
   """Represents a thread that periodically dumps result of a callback to a file.
 
   Used by bot_main to send authentication headers to task_runner. task_runner

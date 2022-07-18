@@ -302,7 +302,7 @@ def _bots_cfg_body_key():
   return ndb.Key(BotsCfgBody, 1, parent=_bots_cfg_head_key())
 
 
-class _DigestBuilder(object):
+class _DigestBuilder:
   """Tiny helper for building config digest strings."""
 
   def __init__(self):
@@ -470,7 +470,7 @@ _BotGroups = collections.namedtuple(
     ])
 
 
-class _BotGroupsCache(object):
+class _BotGroupsCache:
   """State of _BotGroups in-process cache, see _fetch_bot_groups()."""
 
   def __init__(self):

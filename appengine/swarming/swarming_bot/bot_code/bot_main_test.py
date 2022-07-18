@@ -43,7 +43,7 @@ from utils import zip_package
 REQUEST_UUID = '7905e667-d415-48f1-9df7-f914541d6331'
 
 
-class FakeThreadingEvent(object):
+class FakeThreadingEvent:
 
   def is_set(self):
     return False
@@ -58,7 +58,7 @@ class TestBotBase(net_utils.TestCase):
     super(TestBotBase, self).setUp()
     # Throw away all swarming environ if running the test on Swarming. It may
     # interfere with the test.
-    for k in os.environ.keys():
+    for k in os.environ:
       if k.startswith('SWARMING_'):
         os.environ.pop(k)
     self.root_dir = tempfile.mkdtemp(prefix='bot_main')
@@ -172,7 +172,7 @@ class TestBotMain(TestBotBase):
     self.mock(bot_config, 'get_dimensions', get_dimensions)
 
     # The extra version takes priority.
-    class extra(object):
+    class extra:
       def get_dimensions(self2, botobj): # pylint: disable=no-self-argument
         self.assertEqual(obj, botobj)
         return {'alternative': ['truth']}
@@ -466,7 +466,7 @@ class TestBotMain(TestBotBase):
       first.set()
     self.mock(bot_config, 'on_bot_shutdown', on_bot_shutdown_1)
 
-    class extra(object):
+    class extra:
       def on_bot_shutdown(self2, botobj): # pylint: disable=no-self-argument
         self.assertEqual(obj, botobj)
         second.set()
@@ -517,7 +517,7 @@ class TestBotMain(TestBotBase):
     self.mock(os_utilities, 'get_state', lambda *_: self.attributes['state'])
 
     # pylint: disable=unused-argument
-    class Popen(object):
+    class Popen:
       def __init__(
           self2, cmd, detached, cwd, stdout, stderr, stdin, **kwargs):
         self2.returncode = None
@@ -815,7 +815,7 @@ class TestBotMain(TestBotBase):
         'version': 3,
     }
     # Method should have "self" as first argument - pylint: disable=E0213
-    class Popen(object):
+    class Popen:
 
       def __init__(self2, cmd, detached, cwd, env, stdout, stderr, stdin,
                    **kwargs):
@@ -1084,7 +1084,7 @@ class TestBotMain(TestBotBase):
 
     self.mock(bot_main, '_run_bot', run_bot)
 
-    class Singleton(object):
+    class Singleton:
       # pylint: disable=no-self-argument
       def acquire(self2):
         return True
@@ -1147,7 +1147,7 @@ class TestBotNotMocked(TestBotBase):
       return 23
     self.mock(bot_main.common, 'exec_python', exec_python)
     # pylint: disable=unused-argument
-    class Popen(object):
+    class Popen:
       def __init__(self2, cmd, cwd, stdin, stdout, stderr, detached, **kwargs):
         self2.returncode = None
         expected = [sys.executable, bot_main.THIS_FILE, 'is_fine']
