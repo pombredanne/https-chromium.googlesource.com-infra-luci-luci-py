@@ -16,6 +16,40 @@
       "message": "Warning: Huge CL. There\u0027s no urgency to review this immediately.",
       "revId": "6855d6215d062099384628e5f95654a4c5520997",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c84e7f1c_0693ab9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-07-18T07:04:46Z",
+      "side": 1,
+      "message": "This is great. Thanks for doing it.",
+      "revId": "6855d6215d062099384628e5f95654a4c5520997",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "605bffdf_118fe74a",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-07-18T07:04:46Z",
+      "side": 1,
+      "message": "This def is unused? Can we just delete it?",
+      "revId": "6855d6215d062099384628e5f95654a4c5520997",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
