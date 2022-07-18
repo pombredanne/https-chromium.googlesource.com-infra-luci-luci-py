@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f293aacc_4a6bc94e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-07-18T06:51:40Z",
+      "side": 1,
+      "message": "Warning: Huge CL. There\u0027s no urgency to review this immediately.",
+      "revId": "6855d6215d062099384628e5f95654a4c5520997",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
