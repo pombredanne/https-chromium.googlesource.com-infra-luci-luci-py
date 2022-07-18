@@ -13,7 +13,7 @@ from google.appengine.ext import ndb
 
 
 # Mask to TaskRequest key ids so they become decreasing numbers.
-TASK_REQUEST_KEY_ID_MASK = int(2L**63-1)
+TASK_REQUEST_KEY_ID_MASK = int(2**63 - 1)
 
 
 ### Entities relationships.

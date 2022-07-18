@@ -1436,8 +1436,8 @@ class TestOutput(TestCase):
   def test_get_output_utf8(self):
     self.mock(task_result.TaskOutput, 'CHUNK_SIZE', 4)
     run_result = _gen_run_result()
-    ndb.put_multi(run_result.append_output(b'Foo🤠Bar', 0))
-    self.assertEqual(b'Foo🤠Bar', run_result.get_output(0, 0))
+    ndb.put_multi(run_result.append_output('Foo🤠Bar', 0))
+    self.assertEqual('Foo🤠Bar', run_result.get_output(0, 0))
     self.assertTaskOutputChunk([
         {
             'chunk': b'Foo\xf0',
