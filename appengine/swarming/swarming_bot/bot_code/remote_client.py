@@ -84,7 +84,7 @@ def make_appengine_id(hostname, work_dir):
   return googappuid
 
 
-class RemoteClientNative(object):
+class RemoteClientNative:
   """RemoteClientNative knows how to make authenticated calls to the backend.
 
   It also holds in-memory cache of authentication headers and periodically
