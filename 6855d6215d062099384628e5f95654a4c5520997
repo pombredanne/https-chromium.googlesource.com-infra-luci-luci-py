@@ -50,6 +50,24 @@
       "message": "This def is unused? Can we just delete it?",
       "revId": "6855d6215d062099384628e5f95654a4c5520997",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62a74840_41d4e6fa",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-07-18T07:25:37Z",
+      "side": 1,
+      "message": "I wanted to keep this because of the TODO comments below.",
+      "parentUuid": "605bffdf_118fe74a",
+      "revId": "6855d6215d062099384628e5f95654a4c5520997",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
