@@ -40,7 +40,7 @@ def _safe_rm(path):
       logging.error('Failed to delete %s: %s', path, e)
 
 
-class LocalBot(object):
+class LocalBot:
   """A local running Swarming bot.
 
   It creates its own temporary directory to download the zip and run tasks

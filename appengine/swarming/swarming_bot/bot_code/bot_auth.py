@@ -175,10 +175,10 @@ def process_auth_params_json(val):
       task_service_account=read_account('task_service_account'))
 
 
-class _LockMap(object):
+class _LockMap:
   """A map of locks."""
 
-  class _LockWithRC(object):
+  class _LockWithRC:
     def __init__(self):
       self.lock = threading.Lock()
       self.ref_count = 0
@@ -203,7 +203,7 @@ class _LockMap(object):
           del self._individual_locks[key]
 
 
-class AuthSystem(object):
+class AuthSystem:
   """Authentication subsystem used by task_runner.
 
   Contains two threads:
@@ -506,8 +506,7 @@ class AuthSystem(object):
       return auth_params.task_service_account
     if account_id == 'system':
       return auth_params.system_service_account
-    else:
-      raise auth_server.RPCError(404, 'Unknown account %r' % account_id)
+    raise auth_server.RPCError(404, 'Unknown account %r' % account_id)
 
   def _check_and_log_token(self, tok, account_id, service_account):
     """Checks token's expiry is not in the past, logs info about the token.
