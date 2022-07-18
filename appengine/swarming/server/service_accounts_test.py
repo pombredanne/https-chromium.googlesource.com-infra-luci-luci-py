@@ -23,7 +23,7 @@ from server import task_pack
 from server import task_request
 
 
-class MockedAuthDB(object):
+class MockedAuthDB:
   token_server_url = 'https://tokens.example.com'
 
 
