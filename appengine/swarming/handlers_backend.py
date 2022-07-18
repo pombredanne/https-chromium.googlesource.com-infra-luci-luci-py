@@ -293,7 +293,7 @@ class TaskSendPubSubMessage(webapp2.RequestHandler):
 
   # Add task_id to the URL for better visibility in request logs.
   @decorators.require_taskqueue('pubsub')
-  def post(self, task_id):  # pylint: disable=unused-argument
+  def post(self, task_id):  # : disable=unused-argument
     task_scheduler.task_handle_pubsub_task(json.loads(self.request.body))
 
 

@@ -163,7 +163,7 @@ class TaskBackendAPIService(prpc_helpers.SwarmingPRPCService):
             for (i, error) in errors])
 
 
-class BotAPIService(object):
+class BotAPIService:
   """Service implements the pRPC service in swarming.proto."""
 
   DESCRIPTION = swarming_prpc_pb2.BotAPIServiceDescription

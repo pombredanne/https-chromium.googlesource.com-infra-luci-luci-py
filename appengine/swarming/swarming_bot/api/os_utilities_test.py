@@ -257,7 +257,7 @@ class TestOsUtilities(auto_stub.TestCase):
     manual_mock = not hasattr(platforms, 'gce')
     if manual_mock:
       # On macOS.
-      class Mock(object):
+      class Mock:
         def get_metadata(self):
           return None
       platforms.gce = Mock()

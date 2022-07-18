@@ -904,7 +904,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         assert isinstance(request, task_request.TaskRequest)
         assert isinstance(result, task_result._TaskResultCommon)
       calls.append([es_cfg, requests, use_tq, is_callback])
-      return
 
     self.mock(external_scheduler, "notify_requests", mock_notify)
 
@@ -2847,7 +2846,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
     def mock_get_cancellations(es_cfg):
       calls.append(es_cfg)
-      return None
 
     self.mock(external_scheduler, 'get_cancellations', mock_get_cancellations)
 
