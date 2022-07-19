@@ -815,7 +815,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                     mock.Mock(side_effect=self.nop_async)) as mock_call:
       to_run_key = task_to_run.request_to_task_to_run_key(request, 1, 0)
       self.mock_now(self.now, 60)
-      task_scheduler._expire_task(to_run_key, request, True, 0)
+      task_scheduler._expire_task(to_run_key, request, True)
       mock_call.assert_called_once_with('1d69b9f088008911',
                                         u'resultdb-update-token')
 
@@ -2532,9 +2532,10 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(False, is_in_negative_cache(1))
     self.assertEqual(False, is_in_negative_cache(2))
     status = State.to_string(State.BOT_DIED)
-    self.assertIsNone(
+    self.assertEqual(
+        0,
         ts_mon_metrics._task_state_change_pubsub_notify_latencies.get(
-            fields=_get_fields(status=status, http_status_code=200)))
+            fields=_get_fields(status=status, http_status_code=200)).sum)
 
     # Refresh and compare:
     expected = self._gen_result_summary_reaped(
@@ -2593,9 +2594,10 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(1, self.execute_tasks())
     self.assertEqual(2, len(pub_sub_calls))  # RUNNING -> COMPLETED
     status = State.to_string(State.BOT_DIED)
-    self.assertIsNone(
+    self.assertEqual(
+        0,
         ts_mon_metrics._task_state_change_pubsub_notify_latencies.get(
-            fields=_get_fields(status=status, http_status_code=200)))
+            fields=_get_fields(status=status, http_status_code=200)).sum)
 
     # Refresh and compare:
     expected = self._gen_result_summary_reaped(
@@ -3021,7 +3023,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     expiration_secs = 1200
     self.mock_milliseconds_since_epoch(100)
     self.mock_now(self.now, expiration_secs)
-    task_scheduler.task_expire_tasks(to_runs, 0)
+    task_scheduler.task_expire_tasks(to_runs)
     self.assertEqual(State.EXPIRED, result_summary.key.get().state)
     self.assertEqual(
         expiration_secs * 1000.0,
@@ -3031,7 +3033,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.execute_tasks()
     status = State.to_string(State.EXPIRED)
     self.assertEqual(
-        100,
+        0,
         ts_mon_metrics._task_state_change_pubsub_notify_latencies.get(
             fields=_get_fields(status=status, http_status_code=200)).sum)
 

@@ -258,9 +258,8 @@ class TaskExpireTasksHandler(webapp2.RequestHandler):
 
   @decorators.require_taskqueue('task-expire')
   def post(self):
-    start_time = utils.milliseconds_since_epoch()
     payload = json.loads(self.request.body)
-    task_scheduler.task_expire_tasks(payload.get('task_to_runs'), start_time)
+    task_scheduler.task_expire_tasks(payload.get('task_to_runs'))
 
 
 class TaskDeleteTasksHandler(webapp2.RequestHandler):
