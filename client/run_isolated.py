@@ -406,9 +406,9 @@ def run_command(
   Returns:
     tuple(process exit code, bool if had a hard timeout)
   """
-  logging.info(
-      'run_command(%s, %s, %s, %s, %s, %s)',
-      command, cwd, hard_timeout, grace_period, lower_priority, containment)
+  logging.log(logging_utils.USER_LOGS, 'run_command(%s, %s, %s, %s, %s, %s)',
+              command, cwd, hard_timeout, grace_period, lower_priority,
+              containment)
 
   exit_code = None
   had_hard_timeout = False
@@ -1503,9 +1503,13 @@ def main(args):
   # parsed normally, the strings are str instances.
   (parser, options, args) = parse_args(args)
 
+  # adds another log level for logs which are directed to standard output
+  # these logs will be uploaded to cloudstorage
+  logging_utils.set_user_level_logging()
+
   # Must be logged after parse_args(), which eventually calls
   # logging_utils.prepare_logging() which expects no logs before its call.
-  logging.info('Starting run_isolated script')
+  logging.log(logging_utils.USER_LOGS, 'Starting run_isolated script')
 
   SWARMING_SERVER = os.environ.get('SWARMING_SERVER')
   SWARMING_TASK_ID = os.environ.get('SWARMING_TASK_ID')
@@ -1560,7 +1564,8 @@ def main(args):
         caches, root, min_free_space=min_free_space, max_age_secs=MAX_AGE_SECS)
     duration = time.time() - start
     stats['duration'] = duration
-    logging.info('trim_caches: took %d seconds', duration)
+    logging.log(logging_utils.USER_LOGS, 'trim_caches: took %d seconds',
+                duration)
 
   # Save state of cas cache not to overwrite state from go client.
   if cas_cache:
