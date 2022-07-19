@@ -109,6 +109,29 @@
       "parentUuid": "62a74840_41d4e6fa",
       "revId": "6855d6215d062099384628e5f95654a4c5520997",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1d892b3_00d63d39",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-07-19T16:51:36Z",
+      "side": 1,
+      "message": "why? it was `i` because it was integer index. It is not a key.",
+      "range": {
+        "startLine": 676,
+        "startChar": 14,
+        "endLine": 676,
+        "endChar": 15
+      },
+      "revId": "6855d6215d062099384628e5f95654a4c5520997",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
