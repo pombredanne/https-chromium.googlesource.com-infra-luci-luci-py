@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "732b6d53_a27cefbe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-07-19T21:15:52Z",
+      "side": 1,
+      "message": "It looks like there are a bunch of test cases which (apparently?) capture log output?",
+      "revId": "fc921404235da558bb6948488c78334781591bd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
