@@ -86,6 +86,30 @@
       },
       "revId": "fc921404235da558bb6948488c78334781591bd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a6875f2_914e0449",
+        "filename": "client/utils/logging_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-07-19T23:01:08Z",
+      "side": 1,
+      "message": "It will now appear with a \"U\" instead of an \"L.",
+      "parentUuid": "5031d758_8fb24afa",
+      "range": {
+        "startLine": 268,
+        "startChar": 27,
+        "endLine": 268,
+        "endChar": 41
+      },
+      "revId": "fc921404235da558bb6948488c78334781591bd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
