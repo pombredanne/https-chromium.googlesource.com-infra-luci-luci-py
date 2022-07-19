@@ -159,7 +159,7 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
   return result_summary, new_to_run, state_changed
 
 
-def _expire_task(to_run_key, request, inline, start_time):
+def _expire_task(to_run_key, request, inline):
   """Expires a TaskResultSummary and unschedules the TaskToRunShard.
 
   This function is only meant to process PENDING tasks.
@@ -178,6 +178,10 @@ def _expire_task(to_run_key, request, inline, start_time):
     - TaskResultSummary on success
     - TaskToRunShard if a new TaskSlice was reenqueued
   """
+  # At this point we have the task that we need to expire so take the start time
+  # to compute PubSub notification latency.
+  start_time = utils.milliseconds_since_epoch()
+
   # Add it to the negative cache *before* running the transaction. Either way
   # the task was already reaped or the task is correctly expired and not
   # reapable.
@@ -366,6 +370,7 @@ def _detect_dead_task_async(run_result_key):
     ndb.Future that returns TaskRunResult key if the task was killed,
     None if no action was done.
   """
+  start_time = utils.milliseconds_since_epoch()
   result_summary_key = task_pack.run_result_key_to_result_summary_key(
       run_result_key)
   request_key = task_pack.result_summary_key_to_request_key(result_summary_key)
@@ -445,7 +450,8 @@ def _detect_dead_task_async(run_result_key):
       _maybe_taskupdate_notify_via_tq(result_summary,
                                       request,
                                       es_cfg,
-                                      transactional=True)
+                                      transactional=True,
+                                      start_time=start_time)
     yield futures
     logging.warning('Task state was successfully updated. task: %s',
                     run_result.task_id)
@@ -1414,10 +1420,7 @@ def bot_reap_task(bot_dimensions, bot_version, start_time):
 
         # Expiring a TaskToRunShard for TaskSlice may reenqueue a new
         # TaskToRunShard.
-        summary, new_to_run = _expire_task(to_run.key,
-                                           request,
-                                           inline=True,
-                                           start_time=start_time)
+        summary, new_to_run = _expire_task(to_run.key, request, inline=True)
         if not new_to_run:
           if summary:
             expired += 1
@@ -1957,7 +1960,7 @@ def task_handle_pubsub_task(payload):
     logging.exception('Fatal error when sending PubSub notification')
 
 
-def task_expire_tasks(task_to_runs, start_time):
+def task_expire_tasks(task_to_runs):
   """Expire tasks enqueued by cron_abort_expired_task_to_run."""
   killed = []
   reenqueued = 0
@@ -1986,10 +1989,7 @@ def task_expire_tasks(task_to_runs, start_time):
 
       for to_run in to_runs:
         # execute task expiration
-        summary, new_to_run = _expire_task(to_run.key,
-                                           request,
-                                           inline=False,
-                                           start_time=start_time)
+        summary, new_to_run = _expire_task(to_run.key, request, inline=False)
         if new_to_run:
           # Expiring a TaskToRunShard for TaskSlice may reenqueue a new
           # TaskToRunShard.
