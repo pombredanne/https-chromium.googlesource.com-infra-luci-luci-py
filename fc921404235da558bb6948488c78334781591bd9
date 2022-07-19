@@ -16,6 +16,52 @@
       "message": "It looks like there are a bunch of test cases which (apparently?) capture log output?",
       "revId": "fc921404235da558bb6948488c78334781591bd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d92290cd_c9db6421",
+        "filename": "client/utils/logging_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-07-19T21:18:53Z",
+      "side": 1,
+      "message": "clever",
+      "range": {
+        "startLine": 231,
+        "startChar": 6,
+        "endLine": 231,
+        "endChar": 22
+      },
+      "revId": "fc921404235da558bb6948488c78334781591bd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c9665ef_b9511a31",
+        "filename": "client/utils/logging_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-07-19T21:18:53Z",
+      "side": 1,
+      "message": "iiuc this will have the effect of setting a level code of \"U\"?",
+      "range": {
+        "startLine": 268,
+        "startChar": 27,
+        "endLine": 268,
+        "endChar": 41
+      },
+      "revId": "fc921404235da558bb6948488c78334781591bd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
