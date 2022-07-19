@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e9e1f7c_6239e2f4",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-07-19T16:30:32Z",
+      "side": 1,
+      "message": "this is still python2 code, in Python 2 \"class X\" and \"class X(object)\" are different things, thus better to keep it as is (and disable this lint globally if possible): https://docs.python.org/2/reference/datamodel.html#new-style-and-classic-classes",
+      "range": {
+        "startLine": 276,
+        "startChar": 0,
+        "endLine": 276,
+        "endChar": 21
+      },
+      "revId": "6855d6215d062099384628e5f95654a4c5520997",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "605bffdf_118fe74a",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 2
