@@ -452,10 +452,11 @@ class Test(unittest.TestCase):
         '-c',
         'print(\'' + invalid_bytes + '\')',
     ]
+    expected_output = re.escape(u'Aï»¿þÿÝsfsÃ(B\n')
     summary = self.gen_expected(
         name=u'non_utf8',
         # The string is mostly converted to 'Replacement Character'.
-        output=u'A\ufeff\ufffd\ufffd\ufffdsfs\ufffd(B\n',
+        output=re.compile(u'(\\s|\\S)*%s' % expected_output),
         tags=sorted([
             u'authenticated:bot:whitelisted-ip',
             u'os:' + self.dimensions['os'][0],
@@ -591,7 +592,7 @@ class Test(unittest.TestCase):
     items_in = [content_size]
     expected_summary = self.gen_expected(
         name=u'isolated_task',
-        output=u'hi\n',
+        output=re.compile(u'(\\s|\\S)*hi\n'),
         tags=[
             u'authenticated:bot:whitelisted-ip', u'pool:default',
             u'priority:200', u'realm:none', u'service_account:none',
@@ -668,9 +669,10 @@ class Test(unittest.TestCase):
     digest = self._archive(name, content, isolate_content)
     content_size = sum(len(c) for c in content.values())
     items_in = [content_size]
+    expected_output = u'hi💩\n%s\n' % os.sep.join(['$CWD', 'local', 'path'])
     expected_summary = self.gen_expected(
         name=u'command_env',
-        output=u'hi💩\n%s\n' % os.sep.join(['$CWD', 'local', 'path']),
+        output=re.compile(u'(\\s|\\S)*%s' % re.escape(expected_output)),
         tags=[
             u'authenticated:bot:whitelisted-ip', u'pool:default',
             u'priority:200', u'realm:none', u'service_account:none',
@@ -819,7 +821,7 @@ class Test(unittest.TestCase):
     items_in = [content_size]
     expected_summary = self.gen_expected(
         name=u'hard_timeout_grace',
-        output=u'hi\ngot signal 15\n',
+        output=re.compile(u'(\\s|\\S)*hi\ngot signal 15\n'),
         failure=True,
         tags=[
             u'authenticated:bot:whitelisted-ip',
@@ -1302,7 +1304,7 @@ class Test(unittest.TestCase):
     task_id = self.client.task_trigger_raw(request)
     expected_summary = self.gen_expected(
         name=u'task_slice',
-        output=u'first\n',
+        output=re.compile('(\\s|\\S)*first$'),
         tags=[
             u'authenticated:bot:whitelisted-ip',
             u'pool:default',
@@ -1373,7 +1375,7 @@ class Test(unittest.TestCase):
     expected_summary = self.gen_expected(
         name=u'task_slice_fallback',
         current_task_slice=u'1',
-        output=u'second\n',
+        output=re.compile(u'(\\s|\\S)*second\n'),
         tags=[
             # Bug!
             u'authenticated:bot:whitelisted-ip',
