@@ -354,10 +354,10 @@ class TestTaskRunner(TestTaskRunnerBase):
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
     sep = re.escape(os.sep)
-    self.expectTask(
-        task_details.task_id,
-        output=re.compile(
-          (to_native_eol('.+%slocal%ssmurf\n$') % (sep, sep)).encode()))
+    self.expectTask(task_details.task_id,
+                    output=re.compile(
+                        (to_native_eol('(\\s|\\S)*%slocal%ssmurf\n$') %
+                         (sep, sep)).encode()))
 
   def test_run_command_env_prefix_multiple(self):
     task_details = get_task_details(
@@ -381,7 +381,7 @@ class TestTaskRunner(TestTaskRunnerBase):
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
     sep = re.escape(os.sep)
-    output = re.compile(((r'^'
+    output = re.compile(((r'(\s|\S)*'
                           r'(?P<cwd>[^\n]*)\n'
                           r'(?P=cwd)%slocal%ssmurf\n'
                           r'(?P=cwd)%sother%sthing\n'
@@ -475,7 +475,8 @@ class TestTaskRunner(TestTaskRunnerBase):
     pattern = (
         # This is a beginning of run_isolated.py's output if binary is not
         # found.
-        br'^<The executable does not exist, a dependent library is missing or '
+        br'(\S|\s)*'
+        br'<The executable does not exist, a dependent library is missing or '
         br'the command line is too long>\n'
         br'<Check for missing .so/.dll in the .isolate or GN file or length of '
         br'command line args>')
@@ -978,12 +979,13 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.assertEqual(expected, self._run_command(task_details))
     # Now look at the updates sent by the bot as seen by the server.
     #  output_re='^hi\ngot signal %d\nbye\n$' % task_runner.SIG_BREAK_OR_TERM)
-    self.expectTask(
-        task_details.task_id,
-        io_timeout=True,
-        exit_code=exit_code,
-        output=(to_native_eol('hi\ngot signal %d\nbye\n') %
-                task_runner.SIG_BREAK_OR_TERM).encode())
+    output = (to_native_eol('hi\ngot signal %d\nbye\n') %
+              task_runner.SIG_BREAK_OR_TERM).encode()
+    output_re = b'(\\s|\\S)*%s' % output
+    self.expectTask(task_details.task_id,
+                    io_timeout=True,
+                    exit_code=exit_code,
+                    output=re.compile(output_re))
 
   def test_isolated_io_signal_grand_children(self):
     """Handles grand-children process hanging and signal management.
@@ -1059,7 +1061,8 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
         io_timeout=True,
         exit_code=EXIT_CODE_TERM,
         output=re.compile(
-            to_native_eol('parent\n\\d+\nchildren\n\\d+\nhi\n').encode()),
+            to_native_eol(
+                '(\\s|\\S)*parent\n\\d+\nchildren\n\\d+\nhi\n').encode()),
         isolated_stats={
             'download': {
                 'duration': 0,
