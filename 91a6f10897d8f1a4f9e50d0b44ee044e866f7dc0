@@ -49,6 +49,54 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "471ff293_4f07ae66",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-07-20T21:21:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85b104f2_0d4e4bdf",
+      "range": {
+        "startLine": 21,
+        "startChar": 45,
+        "endLine": 21,
+        "endChar": 46
+      },
+      "revId": "91a6f10897d8f1a4f9e50d0b44ee044e866f7dc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f15c9c2c_4738b95b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-07-20T21:21:59Z",
+      "side": 1,
+      "message": "changed this to just saw \"swarming_user_logs:\" instead of file:lineno",
+      "parentUuid": "ee396bfa_31df10d5",
+      "range": {
+        "startLine": 21,
+        "startChar": 16,
+        "endLine": 21,
+        "endChar": 20
+      },
+      "revId": "91a6f10897d8f1a4f9e50d0b44ee044e866f7dc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "95a4d496_c6becfe2",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 8
@@ -81,6 +129,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "482ebe88_5ce1aa92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-07-20T21:21:59Z",
+      "side": 1,
+      "message": "hahaha",
+      "parentUuid": "46c6782a_38fc9c2f",
+      "revId": "91a6f10897d8f1a4f9e50d0b44ee044e866f7dc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cb1d2b3_a95859e1",
@@ -94,6 +160,30 @@
       "writtenOn": "2022-07-20T00:42:03Z",
       "side": 1,
       "message": "nit: I think it would be more readable to wrap `logging.log(USER_LOG, ...)` in a function:\n\n```\nfrom utils import logging_utils\n\nlogging_utils.user_log(\"fmt\", arg1, arg2)\n```\n\nIt doesn\u0027t really matter that it is implemented on top of `logging` library.",
+      "range": {
+        "startLine": 88,
+        "startChar": 2,
+        "endLine": 88,
+        "endChar": 24
+      },
+      "revId": "91a6f10897d8f1a4f9e50d0b44ee044e866f7dc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38c7e800_68dc0144",
+        "filename": "client/local_caching.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-07-20T21:21:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cb1d2b3_a95859e1",
       "range": {
         "startLine": 88,
         "startChar": 2,
