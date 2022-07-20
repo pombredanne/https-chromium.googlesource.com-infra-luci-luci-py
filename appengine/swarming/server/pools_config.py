@@ -673,14 +673,14 @@ def _validate_pools_cfg(cfg, ctx):
               ctx.error('peer "%s" was specified twice', d.peer_id)
             elif peer_id:
               seen_peers.add(peer_id)
-          for i, tag in enumerate(d.require_any_of.tag):
+          for k, tag in enumerate(d.require_any_of.tag):
             if ':' not in tag:
-              ctx.error('bad tag #%d "%s" - must be <key>:<value>', i, tag)
+              ctx.error('bad tag #%d "%s" - must be <key>:<value>', k, tag)
 
       # Validate external schedulers.
-      for i, es in enumerate(msg.external_schedulers):
+      for k, es in enumerate(msg.external_schedulers):
         if not es.address:
-          ctx.error('%sth external scheduler config had no address', i)
+          ctx.error('%sth external scheduler config had no address', k)
 
       _resolve_deployment(ctx, msg, template_map, deployment_map)
 
