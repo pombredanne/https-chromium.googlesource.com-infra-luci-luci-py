@@ -62,6 +62,46 @@
       "message": "lgtm; vadim wdyt?",
       "revId": "91a6f10897d8f1a4f9e50d0b44ee044e866f7dc0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46c6782a_38fc9c2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-07-20T00:42:03Z",
+      "side": 1,
+      "message": "I\u0027m afraid increased chattiness will result in https://xkcd.com/1172/ situation (I won\u0027t be surprised if someone is parsing these logs somehere...) But I guess we can land and see.",
+      "revId": "91a6f10897d8f1a4f9e50d0b44ee044e866f7dc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cb1d2b3_a95859e1",
+        "filename": "client/local_caching.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-07-20T00:42:03Z",
+      "side": 1,
+      "message": "nit: I think it would be more readable to wrap `logging.log(USER_LOG, ...)` in a function:\n\n```\nfrom utils import logging_utils\n\nlogging_utils.user_log(\"fmt\", arg1, arg2)\n```\n\nIt doesn\u0027t really matter that it is implemented on top of `logging` library.",
+      "range": {
+        "startLine": 88,
+        "startChar": 2,
+        "endLine": 88,
+        "endChar": 24
+      },
+      "revId": "91a6f10897d8f1a4f9e50d0b44ee044e866f7dc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
