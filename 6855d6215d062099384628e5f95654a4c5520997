@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d96f312_071ef9ff",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-07-20T13:02:45Z",
+      "side": 1,
+      "message": "I see. I\u0027ve added \u0027useless-object-inheritance\u0027 to the global ignore in PRESUBMIT.py",
+      "parentUuid": "6e9e1f7c_6239e2f4",
+      "range": {
+        "startLine": 276,
+        "startChar": 0,
+        "endLine": 276,
+        "endChar": 21
+      },
+      "revId": "6855d6215d062099384628e5f95654a4c5520997",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "605bffdf_118fe74a",
@@ -124,6 +148,30 @@
       "writtenOn": "2022-07-19T16:51:36Z",
       "side": 1,
       "message": "why? it was `i` because it was integer index. It is not a key.",
+      "range": {
+        "startLine": 676,
+        "startChar": 14,
+        "endLine": 676,
+        "endChar": 15
+      },
+      "revId": "6855d6215d062099384628e5f95654a4c5520997",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fb89b91_500dabd2",
+        "filename": "appengine/swarming/server/pools_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-07-20T13:02:45Z",
+      "side": 1,
+      "message": "i is already being used in the outer for loop. I\u0027ll change this to j instead.",
+      "parentUuid": "f1d892b3_00d63d39",
       "range": {
         "startLine": 676,
         "startChar": 14,

@@ -22,6 +22,30 @@
       },
       "revId": "e73a63cfeb3d16a1e5767c29f7d90dde0ee8c2f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63d7fbc3_bc1e857d",
+        "filename": "appengine/swarming/server/external_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-07-20T13:02:45Z",
+      "side": 0,
+      "message": "Apologies, my fault. This wasn\u0027t the linter otherwise it would\u0027ve triggered the bottom code.",
+      "parentUuid": "c937e731_2cd0bf5d",
+      "range": {
+        "startLine": 69,
+        "startChar": 2,
+        "endLine": 69,
+        "endChar": 13
+      },
+      "revId": "e73a63cfeb3d16a1e5767c29f7d90dde0ee8c2f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
