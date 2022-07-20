@@ -1,11 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
 """Compiles all *.proto files it finds into *_pb2.py."""
-
-from __future__ import print_function
 
 import logging
 import optparse
@@ -161,7 +159,7 @@ def get_protoc_version():
   except OSError as err:
     logging.debug('Failed to run protoc --version: %s', err)
     return None
-  match = re.match('libprotoc (.*)', out)
+  match = re.match('libprotoc (.*)', out.decode("utf-8"))
   if not match:
     logging.debug('Unexpected output of protoc --version: %s', out)
     return None
