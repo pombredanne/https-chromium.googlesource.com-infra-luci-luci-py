@@ -479,7 +479,7 @@ def _start_task_runner(args, work_dir, ctx_file):
   return proc
 
 
-class _OutputBuffer(object):
+class _OutputBuffer:
   """_OutputBuffer implements stdout (and eventually stderr) buffering.
 
   This data is buffered and must be sent to the Swarming server when
