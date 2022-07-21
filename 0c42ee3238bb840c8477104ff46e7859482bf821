@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ee24054_13f17a0c",
+        "filename": "appengine/components/components/auth/machine_auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-07-21T21:23:14Z",
+      "side": 1,
+      "message": "this will be mumbo-jumbo\n\nbig int serialized to bytes is just a sequence of bytes representing binary encoding of this number (whatever it is... go docs are suspiciously missing any specification). It is not an utf-8 encoded string with decimal representation of the number.\n\nSince converting this byte buffer back to (long) python int is probably not trivial, the simplest alternative would be to print hex encoding of the byte buffer using binascii.hexlify(...). It means it will actually be hard to correlate these logs to what\u0027s in BigQuery (someone will need to convert from decimal long int representation as logged to BigQuery to byte buffer representation as logged here and vice versa).",
+      "range": {
+        "startLine": 207,
+        "startChar": 42,
+        "endLine": 207,
+        "endChar": 58
+      },
+      "revId": "0c42ee3238bb840c8477104ff46e7859482bf821",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfa29a88_396e7c24",
+        "filename": "appengine/components/components/auth/machine_auth_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-07-21T21:23:14Z",
+      "side": 1,
+      "message": "it is more like b\u0027/x00/x01/x02/x03\u0027",
+      "range": {
+        "startLine": 87,
+        "startChar": 16,
+        "endLine": 87,
+        "endChar": 23
+      },
+      "revId": "0c42ee3238bb840c8477104ff46e7859482bf821",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
