@@ -16,6 +16,24 @@
       "message": "LGTM\n\nBtw, we have handed over Swarming to Foundation team.\nI\u0027m happy to review, but please involve them from next CLs.",
       "revId": "7659d9c5ea1823a98a37c27961930d1ef4b785e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc019700_bde2db34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001921
+      },
+      "writtenOn": "2022-07-21T11:09:35Z",
+      "side": 1,
+      "message": "Thank you!\nIt makes sense to remove you from OWNERS, then.\n\nVadim, would you handle rolling Swarming with this change?",
+      "parentUuid": "541666a9_6bd94065",
+      "revId": "7659d9c5ea1823a98a37c27961930d1ef4b785e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
