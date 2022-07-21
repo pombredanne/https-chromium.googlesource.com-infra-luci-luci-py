@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e78ac9b7_2055e39e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-07-21T21:39:08Z",
+      "side": 1,
+      "message": "Junji, Takuto, I can keep you in luci-py/OWNERS if you like prefer. I\u0027m removing you from Swarming OWNERS to avoid new CLs being sent to you like in https://chromium-review.googlesource.com/c/3776516",
+      "revId": "d73865a379004b285e7b0c6ae3fb385881700521",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
