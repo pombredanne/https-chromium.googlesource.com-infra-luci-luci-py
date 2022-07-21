@@ -52,6 +52,24 @@
       "parentUuid": "cc019700_bde2db34",
       "revId": "7659d9c5ea1823a98a37c27961930d1ef4b785e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a318bde_55f7e877",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-07-21T21:24:11Z",
+      "side": 1,
+      "message": "It has been deployed.",
+      "parentUuid": "3b9b3661_6df8a01c",
+      "revId": "7659d9c5ea1823a98a37c27961930d1ef4b785e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
