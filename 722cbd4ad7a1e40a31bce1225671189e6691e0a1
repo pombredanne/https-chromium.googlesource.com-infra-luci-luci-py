@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7271d92_deb55e3d",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1370239
+      },
+      "writtenOn": "2022-07-21T07:26:35Z",
+      "side": 1,
+      "message": "Do we need a fullQueryUser as well?",
+      "range": {
+        "startLine": 186,
+        "startChar": 28,
+        "endLine": 186,
+        "endChar": 34
+      },
+      "revId": "722cbd4ad7a1e40a31bce1225671189e6691e0a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
