@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "541666a9_6bd94065",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-07-21T03:46:57Z",
+      "side": 1,
+      "message": "LGTM\n\nBtw, we have handed over Swarming to Foundation team.\nI\u0027m happy to review, but please involve them from next CLs.",
+      "revId": "7659d9c5ea1823a98a37c27961930d1ef4b785e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
