@@ -16,6 +16,23 @@
       "message": "Hi Vadim, the presubmits for this package seem broken. Do you own this package?",
       "revId": "443ae216c9bb6b97e8081b6693e7c498c2e25bd2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61359093_21f0aaf4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-07-22T17:51:08Z",
+      "side": 1,
+      "message": "Grr... it is default pylint version change in depot_tools. I\u0027ll look into fixing this, but feel free to bypass presubmit checks for now.",
+      "revId": "443ae216c9bb6b97e8081b6693e7c498c2e25bd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
