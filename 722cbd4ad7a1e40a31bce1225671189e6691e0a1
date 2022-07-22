@@ -22,6 +22,30 @@
       },
       "revId": "722cbd4ad7a1e40a31bce1225671189e6691e0a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76e6c042_715d6614",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1386944
+      },
+      "writtenOn": "2022-07-22T03:46:16Z",
+      "side": 1,
+      "message": "To avoid creating a cross product of roles, I am recommending grant of two roles if (query and reader) or (query and editor) is desired.\n\nNote I renamed reader to limitedReader and fullReader to reader.\nI believe this is more consistent with the naming of permissions in other systems, e.g. BigQuery. Restricted readers there have an extra word ( filtered... or masked...).\nhttps://cloud.google.com/bigquery/docs/access-control",
+      "parentUuid": "f7271d92_deb55e3d",
+      "range": {
+        "startLine": 186,
+        "startChar": 28,
+        "endLine": 186,
+        "endChar": 34
+      },
+      "revId": "722cbd4ad7a1e40a31bce1225671189e6691e0a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
