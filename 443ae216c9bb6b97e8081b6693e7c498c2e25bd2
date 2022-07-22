@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddd70fcc_f712daa2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1386944
+      },
+      "writtenOn": "2022-07-22T04:44:13Z",
+      "side": 1,
+      "message": "Hi Vadim, the presubmits for this package seem broken. Do you own this package?",
+      "revId": "443ae216c9bb6b97e8081b6693e7c498c2e25bd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
