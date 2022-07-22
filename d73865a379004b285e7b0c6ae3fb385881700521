@@ -16,6 +16,41 @@
       "message": "Junji, Takuto, I can keep you in luci-py/OWNERS if you like prefer. I\u0027m removing you from Swarming OWNERS to avoid new CLs being sent to you like in https://chromium-review.googlesource.com/c/3776516",
       "revId": "d73865a379004b285e7b0c6ae3fb385881700521",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa1691e5_56518002",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-07-22T00:35:37Z",
+      "side": 1,
+      "message": "I\u0027m fine without owners permission.\n\nI\u0027m happy to comments on CLs without approval if somebody want. but it doesn\u0027t require owner permission.\nA possible use case would be to do +1 in APAC time zone in an emergency situation. But SREs in SYD are the right person to have that power.",
+      "parentUuid": "e78ac9b7_2055e39e",
+      "revId": "d73865a379004b285e7b0c6ae3fb385881700521",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "361d7cd5_412006e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-07-22T00:35:37Z",
+      "side": 1,
+      "message": "n",
+      "revId": "d73865a379004b285e7b0c6ae3fb385881700521",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
