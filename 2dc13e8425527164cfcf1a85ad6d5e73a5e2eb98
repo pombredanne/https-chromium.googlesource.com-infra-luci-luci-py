@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca927c5f_2672fe37",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-07-22T06:46:24Z",
+      "side": 1,
+      "message": "Is this ever true? If yes, should our metric be also protected with this statement?",
+      "revId": "2dc13e8425527164cfcf1a85ad6d5e73a5e2eb98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4164f0c8_9e6aba7e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-07-22T06:46:24Z",
+      "side": 1,
+      "message": "Could we rename this to on_dead_task_detection_latency (or similar) and include both KILLED and BOT_DIED as metric field named state?",
+      "range": {
+        "startLine": 451,
+        "startChar": 6,
+        "endLine": 451,
+        "endChar": 50
+      },
+      "revId": "2dc13e8425527164cfcf1a85ad6d5e73a5e2eb98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
