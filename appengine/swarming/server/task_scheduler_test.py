@@ -2532,6 +2532,11 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         internal_failure=True,
         modified_ts=now_1,
         state=State.BOT_DIED)
+    self.assertLessEqual(
+        0,
+        ts_mon_metrics._bot_died_detection_latencies.get(fields={
+            'pool': 'default'
+        }).sum)
     self.assertEqual(expected, run_result.key.get().to_dict())
 
     self.assertEqual(0, self.execute_tasks())
@@ -2572,7 +2577,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertLessEqual(
         0,
         ts_mon_metrics._task_state_change_pubsub_notify_latencies.get(
-            fields=_get_fields(status=status, http_status_code=200)).sum)
+            fields=_get_fields(status=status, http_status_code=200)))
+    self.assertLessEqual(
+        0,
+        ts_mon_metrics._bot_died_detection_latencies.get(fields={
+            'pool': 'default'
+        }).sum)
 
     # Refresh and compare:
     expected = self._gen_result_summary_reaped(
@@ -2713,7 +2723,11 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         state=State.BOT_DIED,
         try_number=1)
     self.assertEqual(expected, run_result.result_summary_key.get().to_dict())
-
+    self.assertLessEqual(
+        0,
+        ts_mon_metrics._bot_died_detection_latencies.get(fields={
+            'pool': 'default'
+        }).sum)
     # Task was retried but the same bot polls again, it's denied the task.
     now_2 = self.mock_now(
         self.now + datetime.timedelta(seconds=request.bot_ping_tolerance_secs),
@@ -2769,6 +2783,9 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(
         task_result.State.to_string(task_result.State.KILLED),
         task_result.State.to_string(run_result.state))
+    self.assertIsNone(
+        ts_mon_metrics._bot_died_detection_latencies.get(
+            fields={'pool': 'default'}))
 
   def test_cron_handle_external_cancellations(self):
     es_address = 'externalscheduler_address'

@@ -491,6 +491,23 @@ class TestMetrics(test_case.TestCase):
         ts_mon_metrics._task_state_change_pubsub_notify_latencies.get(
             fields=fields).sum)
 
+  def test_on_bot_died_detection(self):
+    tags = [
+        'project:test_project',
+        'subproject:test_subproject',
+        'pool:test_pool',
+        'buildername:test_builder',
+        'name:some_tests',
+        'build_is_experimental:true',
+    ]
+    dead_after_ts = self.now - datetime.timedelta(seconds=1)
+    ts_mon_metrics.on_bot_died_detection_latency(tags, dead_after_ts)
+    self.assertEqual(
+        1000,
+        ts_mon_metrics._bot_died_detection_latencies.get(fields={
+            'pool': 'test_pool'
+        }).sum)
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:

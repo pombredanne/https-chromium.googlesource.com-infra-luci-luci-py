@@ -409,6 +409,8 @@ def _detect_dead_task_async(run_result_key):
     run_result.completed_ts = now
     if not run_result.abandoned_ts:
       run_result.abandoned_ts = now
+
+    dead_after_ts = run_result.dead_after_ts
     # set .dead_after_ts to None since the task is terminated.
     run_result.dead_after_ts = None
     # mark as internal failure as the task doesn't get completed normally.
@@ -438,13 +440,16 @@ def _detect_dead_task_async(run_result_key):
         run_result.task_id, task_result.State.to_string(run_result.state),
         run_result.bot_id)
     futures = ndb.put_multi_async(to_put)
-    # if result_summary.state != orig_summary_state:
+
     if orig_summary_state != result_summary.state:
       _maybe_taskupdate_notify_via_tq(result_summary,
                                       request,
                                       es_cfg,
                                       transactional=True)
     yield futures
+    if run_result.state == task_result.State.BOT_DIED:
+      ts_mon_metrics.on_bot_died_detection_latency(result_summary.tags,
+                                                   dead_after_ts)
     logging.warning('Task state was successfully updated. task: %s',
                     run_result.task_id)
     raise ndb.Return(run_result_key)
