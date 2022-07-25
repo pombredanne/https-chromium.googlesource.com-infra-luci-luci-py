@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc124273_bb0a0391",
+        "filename": "client/third_party/infra_libs/bqh.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-07-25T06:05:27Z",
+      "side": 1,
+      "message": "You need to change https://source.chromium.org/chromium/infra/infra/+/main:packages/infra_libs/infra_libs/bqh.py and import to this directory instead of modifying local copy?",
+      "revId": "2f15021e0c75c9d7cdd46b351eec595de9483156",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
