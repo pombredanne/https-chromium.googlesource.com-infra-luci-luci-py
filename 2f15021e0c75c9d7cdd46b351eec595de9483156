@@ -16,6 +16,24 @@
       "message": "You need to change https://source.chromium.org/chromium/infra/infra/+/main:packages/infra_libs/infra_libs/bqh.py and import to this directory instead of modifying local copy?",
       "revId": "2f15021e0c75c9d7cdd46b351eec595de9483156",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eefbb26_79b307ab",
+        "filename": "client/third_party/infra_libs/bqh.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-07-28T08:53:45Z",
+      "side": 1,
+      "message": "I diff checked the version used by swarming under luci/third_party and they are different.\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/client/third_party/infra_libs/bqh.py\n\nLooks like we are running an older version, should we update the original and copy it over?",
+      "parentUuid": "fc124273_bb0a0391",
+      "revId": "2f15021e0c75c9d7cdd46b351eec595de9483156",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
