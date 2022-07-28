@@ -34,6 +34,24 @@
       "parentUuid": "fc124273_bb0a0391",
       "revId": "2f15021e0c75c9d7cdd46b351eec595de9483156",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f76dd7fa_00ede86c",
+        "filename": "client/third_party/infra_libs/bqh.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-07-28T08:54:32Z",
+      "side": 1,
+      "message": "I think so.",
+      "parentUuid": "5eefbb26_79b307ab",
+      "revId": "2f15021e0c75c9d7cdd46b351eec595de9483156",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
