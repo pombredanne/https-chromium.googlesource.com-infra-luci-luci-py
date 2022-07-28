@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf71a582_71e051e4",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-07-28T07:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca927c5f_2672fe37",
+      "revId": "2dc13e8425527164cfcf1a85ad6d5e73a5e2eb98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4164f0c8_9e6aba7e",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-07-22T06:46:24Z",
       "side": 1,
       "message": "Could we rename this to on_dead_task_detection_latency (or similar) and include both KILLED and BOT_DIED as metric field named state?",
+      "range": {
+        "startLine": 451,
+        "startChar": 6,
+        "endLine": 451,
+        "endChar": 50
+      },
+      "revId": "2dc13e8425527164cfcf1a85ad6d5e73a5e2eb98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0efcebaa_e94c9e9f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-07-28T07:58:42Z",
+      "side": 1,
+      "message": "Done. I\u0027ll add the EXPIRED task state detection latency in another CL.",
+      "parentUuid": "4164f0c8_9e6aba7e",
       "range": {
         "startLine": 451,
         "startChar": 6,
