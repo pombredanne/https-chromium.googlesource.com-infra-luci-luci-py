@@ -52,6 +52,24 @@
       "parentUuid": "5eefbb26_79b307ab",
       "revId": "2f15021e0c75c9d7cdd46b351eec595de9483156",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "370783f6_d9e450ac",
+        "filename": "client/third_party/infra_libs/bqh.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-07-29T01:39:29Z",
+      "side": 1,
+      "message": "In that case I\u0027ll push these changes out first and then roll in the new version of bqh.py. There are already enough changes in this CL.",
+      "parentUuid": "f76dd7fa_00ede86c",
+      "revId": "2f15021e0c75c9d7cdd46b351eec595de9483156",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
