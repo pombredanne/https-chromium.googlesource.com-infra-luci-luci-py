@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "218edb23_883adee0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2022-08-01T22:48:30Z",
+      "side": 1,
+      "message": "It looks like after the fishfood of LUCI CV, LUCI CV has launched excessive amount of retries for failed builds. We have successfully identified the bug and fixed it. Sorry for the breakage.\n\nhttps://groups.google.com/a/google.com/g/luci-eng/c/0FnaLRyPbmg/m/XSq33Y-hAAAJ",
+      "revId": "9af2771201fe8ca155e2c80261c04c69c7171591",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5ef20f8_4794c470",
