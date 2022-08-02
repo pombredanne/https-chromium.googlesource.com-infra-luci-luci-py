@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1ffd6fe_056b232a",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-02T16:52:19Z",
+      "side": 1,
+      "message": "This is called from inside of the callback passed to transaction_async, it means:\n1. Even if this code is called, there\u0027s no guarantee the transaction actually lands (it is decided after the callback finishes running). This should be rare though.\n2. It may be called multiple times, transaction_async retries on transactional conflicts a bunch of times. This is relatively frequent.\n\nA safer way to report metrics from transactions is to return stuff to be reported from the callback, and report it to tsmon outside the transaction.",
+      "range": {
+        "startLine": 458,
+        "startChar": 6,
+        "endLine": 458,
+        "endChar": 51
+      },
+      "revId": "93f6f9fbc877853f91c333f34b391f0b1aeb2736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da567782_31d9adbb",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-02T16:52:19Z",
+      "side": 1,
+      "message": "this can be made part of _extract_given_job_fields too",
+      "range": {
+        "startLine": 596,
+        "startChar": 37,
+        "endLine": 596,
+        "endChar": 50
+      },
+      "revId": "93f6f9fbc877853f91c333f34b391f0b1aeb2736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
