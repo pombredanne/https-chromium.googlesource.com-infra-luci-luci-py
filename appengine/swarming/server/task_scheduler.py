@@ -404,11 +404,15 @@ def _detect_dead_task_async(run_result_key):
     if not run_result.dead_after_ts or run_result.dead_after_ts > now:
       raise ndb.Return(None)
 
+    old_abandoned_ts = run_result.abandoned_ts
+    old_dead_after_ts = run_result.dead_after_ts
+
     run_result.signal_server_version(server_version)
     run_result.modified_ts = now
     run_result.completed_ts = now
     if not run_result.abandoned_ts:
       run_result.abandoned_ts = now
+
     # set .dead_after_ts to None since the task is terminated.
     run_result.dead_after_ts = None
     # mark as internal failure as the task doesn't get completed normally.
@@ -429,8 +433,11 @@ def _detect_dead_task_async(run_result_key):
       run_result.killing = False
       run_result.state = task_result.State.KILLED
       run_result = _set_fallbacks_to_exit_code_and_duration(run_result, now)
+      # run_result.abandoned_ts is set when run_result.killing == True
+      actual_state_change_time = old_abandoned_ts
     else:
       run_result.state = task_result.State.BOT_DIED
+      actual_state_change_time = old_dead_after_ts
     result_summary.set_from_run_result(run_result, request)
 
     logging.warning(
@@ -438,13 +445,18 @@ def _detect_dead_task_async(run_result_key):
         run_result.task_id, task_result.State.to_string(run_result.state),
         run_result.bot_id)
     futures = ndb.put_multi_async(to_put)
-    # if result_summary.state != orig_summary_state:
+
     if orig_summary_state != result_summary.state:
       _maybe_taskupdate_notify_via_tq(result_summary,
                                       request,
                                       es_cfg,
                                       transactional=True)
     yield futures
+
+    if orig_summary_state != result_summary.state:
+      latency = utils.utcnow() - actual_state_change_time
+      ts_mon_metrics.on_dead_task_detection_latency(
+          result_summary.tags, round(latency.total_seconds() * 1000), True)
     logging.warning('Task state was successfully updated. task: %s',
                     run_result.task_id)
     raise ndb.Return(run_result_key)
@@ -1559,7 +1571,7 @@ def bot_update_task(run_result_key, bot_id, output, output_chunk_start,
   return run_result.state
 
 
-def bot_terminate_task(run_result_key, bot_id):
+def bot_terminate_task(run_result_key, bot_id, start_time):
   """Terminates a task that is currently running as an internal failure.
 
   Sets the TaskRunResult's state to
@@ -1594,8 +1606,13 @@ def bot_terminate_task(run_result_key, bot_id):
       run_result.killing = False
       run_result.state = task_result.State.KILLED
       run_result = _set_fallbacks_to_exit_code_and_duration(run_result, now)
+      # run_result.abandoned_ts is set when run_result.killing == True
+      actual_state_change_time = run_result.abandoned_ts
     else:
       run_result.state = task_result.State.BOT_DIED
+      # this should technically be the exact time when the bot terminates the
+      # running this task as a bot died, but this is a close approximation
+      actual_state_change_time = start_time
     run_result.internal_failure = True
     run_result.abandoned_ts = now
     run_result.completed_ts = now
@@ -1611,6 +1628,9 @@ def bot_terminate_task(run_result_key, bot_id):
     for f in futures:
       f.check_success()
 
+    latency = utils.utcnow() - actual_state_change_time
+    ts_mon_metrics.on_dead_task_detection_latency(
+        result_summary.tags, round(latency.total_seconds() * 1000), False)
     return None
 
   try:
