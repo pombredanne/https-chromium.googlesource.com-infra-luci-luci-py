@@ -27,7 +27,7 @@ from server import task_result
 # Keep in sync with ../swarming_bot/bot_code/bot_main.py
 _IGNORED_DIMENSIONS = ('android_devices', 'caches', 'id', 'server_version',
                        'temp_band')
-# Real timeout is 60s, keep it slightly under to bail out early.
+# Real timeout is 60s, keep it slightly under to bail out early
 _REQUEST_TIMEOUT_SEC = 50
 # Cap the max number of items per taskqueue task, to keep the total
 # number of collected streams managable within each instance.
