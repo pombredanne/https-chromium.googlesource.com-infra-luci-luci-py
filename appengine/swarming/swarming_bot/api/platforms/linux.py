@@ -115,8 +115,11 @@ def _get_intel_version():
 
 
 def _read_cpuinfo():
-  with open('/proc/cpuinfo', 'r') as f:
-    return f.read()
+  try:
+    with open('/proc/cpuinfo', 'r') as f:
+      return f.read()
+  except (IOError, OSError):
+    return ''
 
 
 def _read_cgroup():
