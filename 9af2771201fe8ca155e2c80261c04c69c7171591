@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2611a706_d43cbeb2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-02T02:42:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73a8fb10_25a58709",
+      "revId": "9af2771201fe8ca155e2c80261c04c69c7171591",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "218edb23_883adee0",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
@@ -52,6 +70,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "547f7b99_aa88c42c",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-02T02:42:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5ef20f8_4794c470",
+      "revId": "9af2771201fe8ca155e2c80261c04c69c7171591",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3345d0a9_57e076ab",
@@ -65,6 +101,24 @@
       "writtenOn": "2022-08-01T06:44:10Z",
       "side": 1,
       "message": "Can we add a boolean metric field indicating the source of the measurement?\n\ne.g.\n\ncron\u003dfalse if POST to task/error\ncron\u003dtrue if detected by the cron job",
+      "revId": "9af2771201fe8ca155e2c80261c04c69c7171591",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce41dc03_0ff74ad7",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-02T02:42:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3345d0a9_57e076ab",
       "revId": "9af2771201fe8ca155e2c80261c04c69c7171591",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
