@@ -161,11 +161,12 @@ def db():
   role(
       'role/weetbix.limitedReader',
       [
-          # Access to read basic information about rules and clusters,
-          # including the associated bugs for rules and aggregated
-          # statistics about the failures in the cluster.
-          # Should not reveal to the user any Test IDs or failure
+          # Access to read basic information about the Weetbix project,
+          # its rules and clusters, including the associated bugs for
+          # rules and aggregated statistics about the failures in each
+          # cluster. Should not reveal to the user any Test IDs or failure
           # reasons they do not already have access to in ResultDB.
+          permission('weetbix.config.get'),
           permission('weetbix.rules.get'),
           permission('weetbix.rules.list'),
           permission('weetbix.clusters.get'),
