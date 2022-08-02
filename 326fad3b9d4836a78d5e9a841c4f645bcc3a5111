@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "948bab9b_113b9ff6",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-08-02T08:22:54Z",
+      "side": 1,
+      "message": "Can you please add metric description?",
+      "revId": "326fad3b9d4836a78d5e9a841c4f645bcc3a5111",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

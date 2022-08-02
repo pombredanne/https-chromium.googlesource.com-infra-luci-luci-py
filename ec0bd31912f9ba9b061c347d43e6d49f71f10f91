@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3fed255_a26e6f60",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-08-02T08:22:54Z",
+      "side": 0,
+      "message": "Ideally refactoring should be done in a seperate change.",
+      "revId": "ec0bd31912f9ba9b061c347d43e6d49f71f10f91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
