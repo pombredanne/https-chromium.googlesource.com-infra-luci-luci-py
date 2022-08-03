@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a995ef5_bf7e35fe",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-03T22:46:10Z",
+      "side": 1,
+      "message": "I think this should be updated, otherwise it will reject requests with `missing_cas` and `missing_cipd` with HTTP 400 on line 1382",
+      "range": {
+        "startLine": 1342,
+        "startChar": 2,
+        "endLine": 1342,
+        "endChar": 15
+      },
+      "revId": "5e22ae60d2803e96c27f0e6901cea49368c6547c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62b1ba4b_d4bc17b9",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-03T22:46:10Z",
+      "side": 1,
+      "message": "my brain hurts looking at this python code (not your fault, it was horrible already), but do I understand correctly that if either `missing_cas` or `missing_cipd` are set, we now skip setting all other properties like for example `bot_overhead`?\n\nIf so, why? Ah.. is it because they are popped later anyway? What a mess 😞",
+      "range": {
+        "startLine": 757,
+        "startChar": 8,
+        "endLine": 758,
+        "endChar": 80
+      },
+      "revId": "5e22ae60d2803e96c27f0e6901cea49368c6547c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4518e90_2b6ed76c",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-03T22:46:10Z",
+      "side": 1,
+      "message": "what about other non-retrieable errors like authentication_error and arguments_invalid and client_error? \n\nI think it might be better to replace InvalidCasDigestException with more general NonRetryableCASException (or something) and make it carry the final dict instead of individual fields, so we\u0027ll have a logic of transforming -dump-json output into a final thing sent to Swarming in a single place:\n\n```\n  ...\n  raise NonRetryableCASException(\n      error\u003d\u0027missing_digest\u0027,\n      digest\u003ddigest,\n      instance\u003dinstance)\n```\n\nAt least for CIPD, I imagine, we\u0027ll eventually add more statuses (other than \"bad version\"). I definitely saw tasks failing due to authentication errors before, it would be nice to surface them. Soon we\u0027ll have tasks failing with \"admission plugin check\" (it is part of BCID effort), it\u0027d be nice to surface this error as well.\n\nSo I\u0027m asking to make dicts and exceptions with cipd and cas errors be slightly more generic, not just \"something is missing\".",
+      "range": {
+        "startLine": 622,
+        "startChar": 41,
+        "endLine": 622,
+        "endChar": 55
+      },
+      "revId": "5e22ae60d2803e96c27f0e6901cea49368c6547c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6205665_3a4911d2",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-03T22:46:10Z",
+      "side": 1,
+      "message": "this will now be skipped on `digest_invalid` errors, not sure it is OK to skip it",
+      "range": {
+        "startLine": 632,
+        "startChar": 6,
+        "endLine": 636,
+        "endChar": 40
+      },
+      "revId": "5e22ae60d2803e96c27f0e6901cea49368c6547c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
