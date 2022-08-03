@@ -221,6 +221,25 @@ TaskData = collections.namedtuple(
     ])
 
 
+class InvalidCasDigestException(Exception):
+  def __init__(self, digest, instance):
+    self.digest = digest
+    self.instance = instance
+    super(Exception,
+          self).__init__("Invaid CAS digest {} on instance {}".format(
+              digest, instance))
+
+
+class InvalidCipdPackageException(Exception):
+  def __init__(self, package_name, path, version):
+    self.package_name = package_name
+    self.path = path
+    self.version = version
+    super(Exception, self).__init__(
+        "Invaid CIPD package {} with version {} on path {}".format(
+            package_name, version, path))
+
+
 def make_temp_dir(prefix, root_dir):
   """Returns a new unique temporary directory."""
   return tempfile.mkdtemp(prefix=prefix, dir=root_dir)
@@ -593,9 +612,17 @@ def _fetch_and_map(cas_client, digest, instance, output_dir, cache_dir,
     if kvs_dir:
       cmd.extend(['-kvs-dir', kvs_dir])
 
+    def open_json_and_check(result_json_path):
+      with open(result_json_path) as json_file:
+        result_json = json.load(json_file)
+        if result_json.get('result') == 'digest_invalid':
+          raise InvalidCasDigestException(digest, instance)
+      return result_json
+
     try:
       _run_go_cmd_and_wait(cmd, tmp_dir)
     except subprocess42.CalledProcessError as ex:
+      open_json_and_check(result_json_path)
       if not kvs_dir:
         raise
       logging.exception('Failed to run cas, removing kvs cache dir and retry.')
@@ -604,8 +631,7 @@ def _fetch_and_map(cas_client, digest, instance, output_dir, cache_dir,
       file_path.rmtree(output_dir)
       _run_go_cmd_and_wait(cmd, tmp_dir)
 
-    with open(result_json_path) as json_file:
-      result_json = json.load(json_file)
+    result_json = open_json_and_check(result_json_path)
 
     return {
         'duration': time.time() - start,
@@ -919,6 +945,25 @@ def map_and_run(data, constant_run_path):
     # We successfully ran the command, set internal_failure back to
     # None (even if the command failed, it's not an internal error).
     result['internal_failure'] = None
+  except InvalidCasDigestException as e:
+    # We could not find the CAS package. The swarming task should not be retried
+    # automaticallys
+    result['missing_cas'] = [{'digest': e.digest, 'instance': e.instance}]
+    logging.exception('internal failure: %s', e)
+    result['internal_failure'] = str(e)
+    on_error.report(None)
+  except InvalidCipdPackageException as e:
+    # We could not find a CIPD package. The swarming task should not be retried
+    # automaticallys
+    result['missing_cipd'] = [{
+        'package_name': e.package_name,
+        'version': e.version,
+        'path': e.path
+    }]
+    logging.exception('internal failure: %s', e)
+    result['internal_failure'] = str(e)
+    on_error.report(None)
+  # Todo: Handle bad CIPD package
   except Exception as e:
     # An internal error occurred. Report accordingly so the swarming task will
     # be retried automatically.
