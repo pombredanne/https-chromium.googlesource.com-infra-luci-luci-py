@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4be3d9a_969cad85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1366072
+      },
+      "writtenOn": "2022-08-03T00:22:42Z",
+      "side": 1,
+      "message": "LGTM, but we have removed us from OWNERS, already.",
+      "revId": "c5883a14c2ea6d5a7e4619eeac229c304537577c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
