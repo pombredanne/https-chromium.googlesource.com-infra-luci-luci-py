@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c974647_c2ffcdf9",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-04T09:42:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a995ef5_bf7e35fe",
+      "range": {
+        "startLine": 1342,
+        "startChar": 2,
+        "endLine": 1342,
+        "endChar": 15
+      },
+      "revId": "5e22ae60d2803e96c27f0e6901cea49368c6547c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62b1ba4b_d4bc17b9",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-03T22:46:10Z",
       "side": 1,
       "message": "my brain hurts looking at this python code (not your fault, it was horrible already), but do I understand correctly that if either `missing_cas` or `missing_cipd` are set, we now skip setting all other properties like for example `bot_overhead`?\n\nIf so, why? Ah.. is it because they are popped later anyway? What a mess 😞",
+      "range": {
+        "startLine": 757,
+        "startChar": 8,
+        "endLine": 758,
+        "endChar": 80
+      },
+      "revId": "5e22ae60d2803e96c27f0e6901cea49368c6547c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13d74a73_8771082d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-04T09:42:35Z",
+      "side": 1,
+      "message": "That\u0027s correct. If we end up with either a missing CAS or CIPD then none of the other fields will exist, so we need to check for it upfront first. \n\nYes it boggles my mind how this still works.",
+      "parentUuid": "62b1ba4b_d4bc17b9",
       "range": {
         "startLine": 757,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3637f067_71bae814",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-04T09:42:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4518e90_2b6ed76c",
+      "range": {
+        "startLine": 622,
+        "startChar": 41,
+        "endLine": 622,
+        "endChar": 55
+      },
+      "revId": "5e22ae60d2803e96c27f0e6901cea49368c6547c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6205665_3a4911d2",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-08-03T22:46:10Z",
       "side": 1,
       "message": "this will now be skipped on `digest_invalid` errors, not sure it is OK to skip it",
+      "range": {
+        "startLine": 632,
+        "startChar": 6,
+        "endLine": 636,
+        "endChar": 40
+      },
+      "revId": "5e22ae60d2803e96c27f0e6901cea49368c6547c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "528ef0ac_c317c868",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-04T09:42:35Z",
+      "side": 1,
+      "message": "hmmm, I think you are right I was concerned that the rmtree would remove the json file since output_dir and tmp_dir could be the same? Let me try to write this better.",
+      "parentUuid": "c6205665_3a4911d2",
       "range": {
         "startLine": 632,
         "startChar": 6,
