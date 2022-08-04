@@ -399,6 +399,8 @@ class TestBotMain(TestBotBase):
                 'data': {
                     'id': expected_attribs['dimensions']['id'][0],
                     'message': 'error',
+                    'missing_cas': None,
+                    'missing_cipd': None,
                     'task_id': 23,
                 },
                 'expected_error_codes': None,
