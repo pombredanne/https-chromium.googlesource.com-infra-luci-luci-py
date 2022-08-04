@@ -1349,6 +1349,7 @@ class BotTaskErrorHandler(_BotApiHandler):
     bot_id = request.get('id')
     task_id = request.get('task_id', '')
     message = request.get('message', 'unknown')
+    # TODO(b/239491333): handle missing_cas and missing_cipd cases.
 
     # Make sure bot self-reported ID matches the authentication token. Raises
     # auth.AuthorizationError if not.
