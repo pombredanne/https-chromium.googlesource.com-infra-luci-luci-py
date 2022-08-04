@@ -31,6 +31,24 @@ __all__ = [
     'ServerBase',
     'StatusCode',
 ]
+  # pylint: disable=pointless-string-statement
+
+_PRPC_TO_HTTP_STATUS = {
+    StatusCode.OK: httplib.OK,
+    StatusCode.CANCELLED: httplib.NO_CONTENT,
+    StatusCode.INVALID_ARGUMENT: httplib.BAD_REQUEST,
+    StatusCode.DEADLINE_EXCEEDED: httplib.SERVICE_UNAVAILABLE,
+    StatusCode.NOT_FOUND: httplib.NOT_FOUND,
+    StatusCode.ALREADY_EXISTS: httplib.CONFLICT,
+    StatusCode.PERMISSION_DENIED: httplib.FORBIDDEN,
+    StatusCode.RESOURCE_EXHAUSTED: httplib.SERVICE_UNAVAILABLE,
+    StatusCode.FAILED_PRECONDITION: httplib.PRECONDITION_FAILED,
+    StatusCode.OUT_OF_RANGE: httplib.BAD_REQUEST,
+    StatusCode.UNIMPLEMENTED: httplib.NOT_IMPLEMENTED,
+    StatusCode.INTERNAL: httplib.INTERNAL_SERVER_ERROR,
+    StatusCode.UNAVAILABLE: httplib.SERVICE_UNAVAILABLE,
+    StatusCode.UNAUTHENTICATED: httplib.UNAUTHORIZED,
+}
 
 _Service = collections.namedtuple('_Service', ['servicer', 'methods'])
 
@@ -50,25 +68,6 @@ class ServerBase(object):
   Server is intended to vaguely mimic gRPC's Server as an abstraction, but
   provides a simpler interface via add_service and get_routes.
   """
-
-  # pylint: disable=pointless-string-statement
-
-  _PRPC_TO_HTTP_STATUS = {
-      StatusCode.OK: httplib.OK,
-      StatusCode.CANCELLED: httplib.NO_CONTENT,
-      StatusCode.INVALID_ARGUMENT: httplib.BAD_REQUEST,
-      StatusCode.DEADLINE_EXCEEDED: httplib.SERVICE_UNAVAILABLE,
-      StatusCode.NOT_FOUND: httplib.NOT_FOUND,
-      StatusCode.ALREADY_EXISTS: httplib.CONFLICT,
-      StatusCode.PERMISSION_DENIED: httplib.FORBIDDEN,
-      StatusCode.RESOURCE_EXHAUSTED: httplib.SERVICE_UNAVAILABLE,
-      StatusCode.FAILED_PRECONDITION: httplib.PRECONDITION_FAILED,
-      StatusCode.OUT_OF_RANGE: httplib.BAD_REQUEST,
-      StatusCode.UNIMPLEMENTED: httplib.NOT_IMPLEMENTED,
-      StatusCode.INTERNAL: httplib.INTERNAL_SERVER_ERROR,
-      StatusCode.UNAVAILABLE: httplib.SERVICE_UNAVAILABLE,
-      StatusCode.UNAUTHENTICATED: httplib.UNAUTHORIZED,
-  }
 
   def __init__(self, allow_cors=True, allowed_origins=None):
     """Initializes a new Server.
