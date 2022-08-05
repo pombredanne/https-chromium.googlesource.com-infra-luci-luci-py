@@ -5,10 +5,9 @@
 """Definition of possible RPC response status codes."""
 
 import collections
+import httplib
 
 StatusCodeBase = collections.namedtuple('StatusCodeBase', ['value', 'name'])
-
-
 class StatusCode(StatusCodeBase):
   """Mirrors grpc.StatusCode in the gRPC Core.
 
@@ -32,6 +31,9 @@ class StatusCode(StatusCodeBase):
   DATA_LOSS           = StatusCodeBase(15, 'data loss')
   UNAUTHENTICATED     = StatusCodeBase(16, 'unauthenticated')
 
+  @staticmethod
+  def to_http_code(status_code):
+    return _PRPC_TO_HTTP_STATUS.get(status_code)
 
 # Used in ServicerContext.set_code to assert that the code is known.
 ALL_CODES = frozenset(
@@ -40,3 +42,20 @@ ALL_CODES = frozenset(
     if isinstance(getattr(StatusCode, k), StatusCodeBase))
 
 INT_TO_CODE = {c[0]: c for c in ALL_CODES}
+
+_PRPC_TO_HTTP_STATUS = {
+    StatusCode.OK: httplib.OK,
+    StatusCode.CANCELLED: httplib.NO_CONTENT,
+    StatusCode.INVALID_ARGUMENT: httplib.BAD_REQUEST,
+    StatusCode.DEADLINE_EXCEEDED: httplib.SERVICE_UNAVAILABLE,
+    StatusCode.NOT_FOUND: httplib.NOT_FOUND,
+    StatusCode.ALREADY_EXISTS: httplib.CONFLICT,
+    StatusCode.PERMISSION_DENIED: httplib.FORBIDDEN,
+    StatusCode.RESOURCE_EXHAUSTED: httplib.SERVICE_UNAVAILABLE,
+    StatusCode.FAILED_PRECONDITION: httplib.PRECONDITION_FAILED,
+    StatusCode.OUT_OF_RANGE: httplib.BAD_REQUEST,
+    StatusCode.UNIMPLEMENTED: httplib.NOT_IMPLEMENTED,
+    StatusCode.INTERNAL: httplib.INTERNAL_SERVER_ERROR,
+    StatusCode.UNAVAILABLE: httplib.SERVICE_UNAVAILABLE,
+    StatusCode.UNAUTHENTICATED: httplib.UNAUTHORIZED,
+}
