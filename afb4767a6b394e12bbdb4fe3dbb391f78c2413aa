@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99616439_f7822217",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 1610,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-08-05T08:01:55Z",
+      "side": 1,
+      "message": "Can we use [] instead of None? This would make it easier to signal multiple missing entries or dependencies in the future.",
+      "range": {
+        "startLine": 1610,
+        "startChar": 21,
+        "endLine": 1610,
+        "endChar": 22
+      },
+      "revId": "afb4767a6b394e12bbdb4fe3dbb391f78c2413aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2a964af_495de965",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-08-05T08:01:55Z",
+      "side": 1,
+      "message": "I would prefer [{..}] given that more than one dependency might be missing.",
+      "revId": "afb4767a6b394e12bbdb4fe3dbb391f78c2413aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fabc8d0_68c6351c",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-08-05T08:01:55Z",
+      "side": 1,
+      "message": "Maybe more generic NonRecoverableException?",
+      "revId": "afb4767a6b394e12bbdb4fe3dbb391f78c2413aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
