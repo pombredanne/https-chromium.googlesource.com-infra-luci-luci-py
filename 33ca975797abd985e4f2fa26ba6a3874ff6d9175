@@ -22,6 +22,30 @@
       },
       "revId": "33ca975797abd985e4f2fa26ba6a3874ff6d9175",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4056ebcf_c7b52f0c",
+        "filename": "appengine/components/components/prpc/server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2022-08-05T00:43:33Z",
+      "side": 1,
+      "message": "+1 with a slight change.\n\nprpc.__init__ already exposes StatusCode.\n\nIt\u0027d be handy to add a static method in StatusCode.\n\n```\n_PRPC_TO_HTTP_STATUS \u003d {\n    ...\n}\n\nclass StatusCode(..):\n    OK \u003d ...\n    CANCELLED \u003d ...\n    ...\n    \n    @staticmethod\n    def to_http_code(status_code):\n        return _PRPC_TO_HTTP_STATUS.get(status_code)\n```",
+      "parentUuid": "bc3824ce_8fab4e64",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 20
+      },
+      "revId": "33ca975797abd985e4f2fa26ba6a3874ff6d9175",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
