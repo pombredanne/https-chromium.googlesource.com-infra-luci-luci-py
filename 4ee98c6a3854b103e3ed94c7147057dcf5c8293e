@@ -152,6 +152,30 @@
       },
       "revId": "4ee98c6a3854b103e3ed94c7147057dcf5c8293e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a41e763a_3ef1343d",
+        "filename": "appengine/components/components/prpc/codes.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2022-08-05T17:05:38Z",
+      "side": 1,
+      "message": "(1) According to codesearch, Monorail is the only app accessing _PRPC_TO_HTTP_STATUS directly.\n(2) apps using prpc are not supposed to import and use _PRPC_TO_HTTP_STATUS directly, as the var name implies.\n(3) Even if there was an unknown, secret app importing and using _PRPC_TO_HTTP_STATUS directly, the app wouldn\u0027t use this new method, to_http_code(), anyways. This CL will break the secret app with an import failure, and the owner will have to read this CL or take a look at the latest revision of prpc package to make a fix. The owner should know the impact of this change.\n\nHence, it should be safe to add new entries for the missing StatusCode. Please find the mapping HTTP codes from https://source.chromium.org/chromium/infra/infra/+/main:go/src/go.chromium.org/luci/grpc/grpcutil/errors.go;l\u003d174-194",
+      "parentUuid": "a5ce8ff2_1b7a3d91",
+      "range": {
+        "startLine": 36,
+        "startChar": 32,
+        "endLine": 36,
+        "endChar": 35
+      },
+      "revId": "4ee98c6a3854b103e3ed94c7147057dcf5c8293e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

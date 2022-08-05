@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4d01f86_a2281447",
+        "filename": "appengine/components/components/prpc/code_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2022-08-05T17:05:38Z",
+      "side": 1,
+      "message": "👍",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 43
+      },
+      "revId": "13258c1962ea31f0f41d143b63d0129516ad01cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17c4dd4c_0051479d",
+        "filename": "appengine/components/components/prpc/codes.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2022-08-05T17:05:38Z",
+      "side": 1,
+      "message": "nit; unnecessary indent\n\n```\nif httpCode \u003d\u003d None:\n    raise ValueError(...)\n    \nreturn httpCode\n```",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 23
+      },
+      "revId": "13258c1962ea31f0f41d143b63d0129516ad01cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddf26ed3_d65bbc36",
+        "filename": "appengine/components/components/prpc/codes.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2022-08-05T17:05:38Z",
+      "side": 1,
+      "message": "trailing spaces? please remove",
+      "range": {
+        "startLine": 62,
+        "startChar": 44,
+        "endLine": 62,
+        "endChar": 48
+      },
+      "revId": "13258c1962ea31f0f41d143b63d0129516ad01cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cff676f9_90cac145",
+        "filename": "appengine/components/components/prpc/codes.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2022-08-05T17:05:38Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 67,
+        "startChar": 46,
+        "endLine": 67,
+        "endChar": 50
+      },
+      "revId": "13258c1962ea31f0f41d143b63d0129516ad01cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
