@@ -184,7 +184,7 @@ def datetime_to_timestamp(value):
     raise ValueError(
         'Expecting datetime object, got %s instead' % type(value).__name__)
   if value.tzinfo is not None:
-    raise ValueError('Only UTC datetime is supported')
+    raise ('Only UTC datetime is supported')
   dt = value - EPOCH
   return dt.microseconds + 1000 * 1000 * (dt.seconds + 24 * 3600 * dt.days)
 
