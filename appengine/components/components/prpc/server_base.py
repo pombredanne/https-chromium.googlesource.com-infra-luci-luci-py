@@ -12,7 +12,6 @@ https://github.com/grpc/grpc/tree/master/src/python/grpcio/grpc
 
 import collections
 import logging
-import httplib
 
 from google.protobuf import symbol_database
 
@@ -309,8 +308,9 @@ class ServerBase(object):
       response.headers['Access-Control-Allow-Origin'] = origin
       response.headers['Vary'] = 'Origin'
       response.headers['Access-Control-Allow-Credentials'] = 'true'
-    self._response_body_and_status_writer(
-        response, status=self._PRPC_TO_HTTP_STATUS[context._code])
+    self._response_body_and_status_writer(response,
+                                          status=StatusCode.to_http_code(
+                                              context._code))
     response.headers['X-Prpc-Grpc-Code'] = str(context._code.value)
     response.headers['Access-Control-Expose-Headers'] = ('X-Prpc-Grpc-Code')
     response.headers['X-Content-Type-Options'] = 'nosniff'
