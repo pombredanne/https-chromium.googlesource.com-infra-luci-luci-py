@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "894fa0a2_67e77da9",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 1610,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-08T11:14:03Z",
+      "side": 1,
+      "message": "see below.",
+      "parentUuid": "99616439_f7822217",
+      "range": {
+        "startLine": 1610,
+        "startChar": 21,
+        "endLine": 1610,
+        "endChar": 22
+      },
+      "revId": "afb4767a6b394e12bbdb4fe3dbb391f78c2413aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2a964af_495de965",
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9b3493b9_c08b2038",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-08T11:14:03Z",
+      "side": 1,
+      "message": "For CAS I don\u0027t see why we need to support \u003e1 dependency, there\u0027s only ever a single CAS digest. For CIPD packages I can see this being feasible. However looking back at the doc, foundation doesn\u0027t seem to be in agreement, since it\u0027s a little overkill. I\u0027m thinking of going with their approach with a single enum to categorise the error. Thoughts?",
+      "parentUuid": "b2a964af_495de965",
+      "revId": "afb4767a6b394e12bbdb4fe3dbb391f78c2413aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5fabc8d0_68c6351c",
         "filename": "client/run_isolated.py",
         "patchSetId": 17
@@ -54,6 +96,24 @@
       "writtenOn": "2022-08-05T08:01:55Z",
       "side": 1,
       "message": "Maybe more generic NonRecoverableException?",
+      "revId": "afb4767a6b394e12bbdb4fe3dbb391f78c2413aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0d78453_91efd5ef",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-08T11:14:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fabc8d0_68c6351c",
       "revId": "afb4767a6b394e12bbdb4fe3dbb391f78c2413aa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
