@@ -153,6 +153,10 @@ message BotGroup {
   //
   // If not set, bots will not use authentication at all.
   string system_service_account = 24;
+
+  // The project for logs of non-GCE bots having cloudtail installed.
+  // More details: go/swarming-non-gce-logging.
+  string logging_project = 27;
 }
 
 
