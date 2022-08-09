@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6958f2f8_40c7c53a",
+        "filename": "appengine/components/components/prpc/codes.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:35:39Z",
+      "side": 0,
+      "message": "nit: please keep these newlines between StatusCodeBase and StatusCode",
+      "revId": "efaa68e634269d3c191b1c72f1d7e348ab03b3a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

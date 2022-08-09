@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e991147b_0696837e",
+        "filename": "appengine/components/components/prpc/codes.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:35:39Z",
+      "side": 1,
+      "message": "StatusCode",
+      "range": {
+        "startLine": 38,
+        "startChar": 42,
+        "endLine": 38,
+        "endChar": 48
+      },
+      "revId": "1fcb34f771bb2e2d9b19287a59066a7138cba7e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7aa01c6_c33cea51",
+        "filename": "appengine/components/components/prpc/server_base.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:35:39Z",
+      "side": 1,
+      "message": "is this still referenced by anything?",
+      "range": {
+        "startLine": 55,
+        "startChar": 2,
+        "endLine": 55,
+        "endChar": 22
+      },
+      "revId": "1fcb34f771bb2e2d9b19287a59066a7138cba7e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
