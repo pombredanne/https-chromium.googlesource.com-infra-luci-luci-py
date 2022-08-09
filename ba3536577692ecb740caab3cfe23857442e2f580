@@ -16,6 +16,29 @@
       "message": "PTAL",
       "revId": "ba3536577692ecb740caab3cfe23857442e2f580",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aea3bafa_1762f369",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-08-09T16:38:58Z",
+      "side": 1,
+      "message": "Super small nit: Might be worth referencing that the timeouts and retry configuration are located in swarming/cron.yaml",
+      "range": {
+        "startLine": 822,
+        "startChar": 53,
+        "endLine": 823,
+        "endChar": 67
+      },
+      "revId": "ba3536577692ecb740caab3cfe23857442e2f580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
