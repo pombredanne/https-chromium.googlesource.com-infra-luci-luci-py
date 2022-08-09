@@ -81,6 +81,30 @@
       },
       "revId": "9579ecb4ce64fe42607552356a4fa1cf80f6f02d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95b47594_de1c46a8",
+        "filename": "appengine/swarming/proto/config/bots.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-09T17:45:58Z",
+      "side": 1,
+      "message": "Hm... I think \"compute.googleapis.com\" should probably be reserved for GCE, no? Even if we are allowed to set that label, it seems like it\u0027s not a namespace we should use?\n\nI\u0027d be more comfortable if we could have the namespace be like \"chromeos-swarming.appspot.com/bot\"\u003d\"\u003cbot-id\u003e\" or something like that...",
+      "parentUuid": "b8509cc6_69769e6f",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 27
+      },
+      "revId": "9579ecb4ce64fe42607552356a4fa1cf80f6f02d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
