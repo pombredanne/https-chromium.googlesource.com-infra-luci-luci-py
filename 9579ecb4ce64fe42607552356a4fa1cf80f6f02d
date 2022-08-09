@@ -105,6 +105,30 @@
       },
       "revId": "9579ecb4ce64fe42607552356a4fa1cf80f6f02d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daad6200_81a67cb9",
+        "filename": "appengine/swarming/proto/config/bots.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T17:53:03Z",
+      "side": 1,
+      "message": "It is not possible, Cloud Logging accepts only resource types it already knows about: https://cloud.google.com/logging/docs/api/v2/resource-list#resource-types\n\nThe closest is \"generic_node\". I believe it didn\u0027t exist when cloudtail was switched to Cloud Logging v2 (and thus gce_instance was used instead).",
+      "parentUuid": "95b47594_de1c46a8",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 27
+      },
+      "revId": "9579ecb4ce64fe42607552356a4fa1cf80f6f02d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
