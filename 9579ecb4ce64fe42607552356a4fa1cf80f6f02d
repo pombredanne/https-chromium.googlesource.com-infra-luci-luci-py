@@ -39,6 +39,30 @@
       },
       "revId": "9579ecb4ce64fe42607552356a4fa1cf80f6f02d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8509cc6_69769e6f",
+        "filename": "appengine/swarming/proto/config/bots.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1529882
+      },
+      "writtenOn": "2022-08-09T03:14:06Z",
+      "side": 1,
+      "message": "Yes, cloudtail fills the hostname into this same field, so the query should be the same: http://cs/chromium_infra/go/src/infra/tools/cloudtail/client.go;l\u003d168;rcl\u003daef7044b3a3a625e3a57852a04dbfbdd03389f57",
+      "parentUuid": "b790299b_194c3163",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 27
+      },
+      "revId": "9579ecb4ce64fe42607552356a4fa1cf80f6f02d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
