@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c548ccd2_1d0da278",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T01:56:14Z",
+      "side": 1,
+      "message": "Please update generated _pb2.py files by going to https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/proto and running `make compile`.",
+      "revId": "9579ecb4ce64fe42607552356a4fa1cf80f6f02d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b790299b_194c3163",
+        "filename": "appengine/swarming/proto/config/bots.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T01:56:14Z",
+      "side": 1,
+      "message": "To view logs, one also needs to construct a log query. For GCE bots it appears to be \n\n```\nlabels.\"compute.googleapis.com/resource_name\"\u003d\"\u003cbot-id\u003e\"\n```\n\nWill we use the exact same query for non-GCE bots or they will use some other target? If they\u0027ll use different query, it needs to be configurable too.",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 27
+      },
+      "revId": "9579ecb4ce64fe42607552356a4fa1cf80f6f02d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
