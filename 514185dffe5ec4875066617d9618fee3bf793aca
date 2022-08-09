@@ -95,6 +95,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "cb3470c2_d8a1816b",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T01:48:58Z",
+      "side": 0,
+      "message": "Oh, the unit test didn\u0027t catch this because it was spinning in the loop only **once**. The test mocks one dead and one alive bot. After my refactor to explicitly loop over alive bots, it started to fail, since it visits 2 bots now.",
+      "parentUuid": "913c2125_1a849b62",
+      "range": {
+        "startLine": 845,
+        "startChar": 44,
+        "endLine": 845,
+        "endChar": 60
+      },
+      "revId": "514185dffe5ec4875066617d9618fee3bf793aca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c43fe94c_e31f5013",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 1
