@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b4f14ea_5e0c0007",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T01:47:18Z",
+      "side": 0,
+      "message": "This get() runs in a transaction. Transactions do not use memcache.",
+      "range": {
+        "startLine": 781,
+        "startChar": 4,
+        "endLine": 784,
+        "endChar": 69
+      },
+      "revId": "514185dffe5ec4875066617d9618fee3bf793aca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b733e32_85afdb81",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T01:47:18Z",
+      "side": 0,
+      "message": "This was confusing to read (do we have schrodinger bots?). I\u0027m 99% sure it is impossible for a bot to be both alive and dead. I also deleted is_alive to avoid similar confusions in the future.",
+      "range": {
+        "startLine": 790,
+        "startChar": 26,
+        "endLine": 790,
+        "endChar": 62
+      },
+      "revId": "514185dffe5ec4875066617d9618fee3bf793aca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34bd3b5c_1305d817",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T01:47:18Z",
+      "side": 0,
+      "message": "This raises exceptions on transaction errors. They would abort the entire cron_update_bot_info if not caught.",
+      "range": {
+        "startLine": 799,
+        "startChar": 10,
+        "endLine": 799,
+        "endChar": 29
+      },
+      "revId": "514185dffe5ec4875066617d9618fee3bf793aca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "913c2125_1a849b62",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T01:47:18Z",
+      "side": 0,
+      "message": "This was bug #1. I\u0027m 80% sure the lambda there captures `key` \"by reference\":\n\n```\n\u003e\u003e\u003e key \u003d 123\n\u003e\u003e\u003e def p(x): print(x)\n...\n\u003e\u003e\u003e p1 \u003d lambda: p(key)\n\u003e\u003e\u003e key \u003d 456\n\u003e\u003e\u003e p2 \u003d lambda: p(key)\n\u003e\u003e\u003e p1()\n456\n\u003e\u003e\u003e p2()\n456\n```\n\nThis makes the code brittle since if datastore_utils.transaction_async makes any kind of \"delayed\" call to its callback, it may end up seeing wrong key. Not sure if it is really happening, but functools.partial is definitely safer.\n\n\n```\n\u003e\u003e\u003e key \u003d 123\n\u003e\u003e\u003e p1 \u003d functools.partial(p, key)\n\u003e\u003e\u003e key \u003d 456\n\u003e\u003e\u003e p2 \u003d functools.partial(p, key)\n\u003e\u003e\u003e p1()\n123\n\u003e\u003e\u003e p2()\n456\n```",
+      "range": {
+        "startLine": 845,
+        "startChar": 44,
+        "endLine": 845,
+        "endChar": 60
+      },
+      "revId": "514185dffe5ec4875066617d9618fee3bf793aca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c43fe94c_e31f5013",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 847,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T01:47:18Z",
+      "side": 0,
+      "message": "I bumped this to 20.",
+      "range": {
+        "startLine": 847,
+        "startChar": 24,
+        "endLine": 847,
+        "endChar": 25
+      },
+      "revId": "514185dffe5ec4875066617d9618fee3bf793aca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "890fa6f2_d82414c6",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T01:47:18Z",
+      "side": 0,
+      "message": "this was suspicious place #2: modifying an array while iterating (I think it might actually be OK, but I think my version is more readable)",
+      "range": {
+        "startLine": 850,
+        "startChar": 6,
+        "endLine": 852,
+        "endChar": 28
+      },
+      "revId": "514185dffe5ec4875066617d9618fee3bf793aca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
