@@ -221,6 +221,66 @@ TaskData = collections.namedtuple(
     ])
 
 
+class NonRecoverableException(Exception):
+  """For handling errors where we cannot recover from and should not retry"""
+
+  def __init__(self, status, msg):
+    super(Exception, self).__init__(msg)
+    self.status = status
+
+  def to_dict(self):
+    """Returns a dictionary with the attributes serialised"""
+    raise NotImplementedError()
+
+  def name(self):
+    """Returns a shortened alias name for the exception"""
+    raise NotImplementedError()
+
+
+class NonRetriableCasException(NonRecoverableException):
+  """For handling a bad CAS input where we should not attempt to retry"""
+
+  def __init__(self, status, digest, instance):
+    self.digest = digest
+    self.instance = instance
+    super(NonRetriableCasException, self).__init__(
+        status, "CAS error: {} with digest {} on instance {}".format(
+            status, digest, instance))
+
+  def to_dict(self):
+    return {
+        'status': self.status,
+        'digest': self.digest,
+        'instance': self.instance,
+    }
+
+  def name(self):
+    return "missing_cas"
+
+
+class NonRetriableCipdException(NonRecoverableException):
+  """For handling a bad CIPD package where we should not attempt to retry"""
+
+  def __init__(self, status, package_name, path, version):
+    self.package_name = package_name
+    self.path = path
+    self.version = version
+    super(NonRetriableCipdException, self).__init__(
+        status, "CIPD error: {} with package {}, version {} on path {}".format(
+            status, package_name, version, path))
+
+  def to_dict(self):
+    return {
+        'status': self.status,
+        'package_name': self.package_name,
+        'path': self.path,
+        'version': self.version
+    }
+
+  def name(self):
+    return "missing_cipd"
+
+
 def make_temp_dir(prefix, root_dir):
   """Returns a new unique temporary directory."""
   return tempfile.mkdtemp(prefix=prefix, dir=root_dir)
@@ -570,7 +630,7 @@ def _fetch_and_map(cas_client, digest, instance, output_dir, cache_dir,
         # flags for output.
         '-dir',
         output_dir,
-        '-dump-stats-json',
+        '-dump-json',
         result_json_path,
         '-log-level',
         'info',
@@ -593,19 +653,33 @@ def _fetch_and_map(cas_client, digest, instance, output_dir, cache_dir,
     if kvs_dir:
       cmd.extend(['-kvs-dir', kvs_dir])
 
+    def open_json_and_check(result_json_path, cleanup_dirs):
+      error = False
+      with open(result_json_path) as json_file:
+        result_json = json.load(json_file)
+        error = result_json.get('result') in ('digest_invalid',
+                                              'authentication_error',
+                                              'arguments_invalid')
+      if cleanup_dirs:
+        file_path.rmtree(kvs_dir)
+        file_path.rmtree(output_dir)
+      if error:
+        raise NonRetriableCasException(result_json['result'], digest, instance)
+      return result_json
+
     try:
       _run_go_cmd_and_wait(cmd, tmp_dir)
     except subprocess42.CalledProcessError as ex:
       if not kvs_dir:
+        open_json_and_check(result_json_path, False)
         raise
+
+      open_json_and_check(result_json_path, True)
       logging.exception('Failed to run cas, removing kvs cache dir and retry.')
       on_error.report("Failed to run cas %s" % ex)
-      file_path.rmtree(kvs_dir)
-      file_path.rmtree(output_dir)
       _run_go_cmd_and_wait(cmd, tmp_dir)
 
-    with open(result_json_path) as json_file:
-      result_json = json.load(json_file)
+    result_json = open_json_and_check(result_json_path, False)
 
     return {
         'duration': time.time() - start,
@@ -698,7 +772,7 @@ def upload_outdir(cas_client, cas_instance, outdir, tmp_dir):
         # output
         '-dump-digest',
         digest_path,
-        '-dump-stats-json',
+        '-dump-json',
         stats_json_path,
     ]
 
@@ -919,6 +993,21 @@ def map_and_run(data, constant_run_path):
     # We successfully ran the command, set internal_failure back to
     # None (even if the command failed, it's not an internal error).
     result['internal_failure'] = None
+  except NonRetriableCasException as e:
+    # We could not find the CAS package. The swarming task should not
+    # be retried automatically
+    result[e.name()] = e.to_dict()
+    logging.exception('internal failure: %s', e)
+    result['internal_failure'] = str(e)
+    on_error.report(None)
+
+  except NonRetriableCipdException as e:
+    # We could not find the CIPD package. The swarming task should not
+    # be retried automatically
+    result[e.name()] = [e.to_dict()]
+    logging.exception('internal failure: %s', e)
+    result['internal_failure'] = str(e)
+    on_error.report(None)
   except Exception as e:
     # An internal error occurred. Report accordingly so the swarming task will
     # be retried automatically.
