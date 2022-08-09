@@ -54,6 +54,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "0c3e782e_e7b8507d",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:06:15Z",
+      "side": 1,
+      "message": "I believe after /bot/handshake, but before /bot/poll, but I\u0027m not sure.",
+      "parentUuid": "8c0913ff_6c4d73c9",
+      "revId": "ba3536577692ecb740caab3cfe23857442e2f580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "693bc4bc_49c10db4",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 2
@@ -98,6 +116,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07a56873_ff759d27",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aea3bafa_1762f369",
+      "range": {
+        "startLine": 822,
+        "startChar": 53,
+        "endLine": 823,
+        "endChar": 67
+      },
+      "revId": "ba3536577692ecb740caab3cfe23857442e2f580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93cbc031_6d8e57fe",
@@ -121,6 +163,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98ed76f7_4bc24bfd",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:06:15Z",
+      "side": 1,
+      "message": "\u003e note for the future... it seems futile to start this loop from the same place every time... probably should change this to use a cursor and wrap around over multiple cron iterations.\n\nIt currently takes a minute to visit ~25k bots on ChromeOS swarming. The hard deadline for cron handler is 10m, so we still have some room for growth before we need to start doing \"chaining\" (which in practice is complicated and buggy... some tsmon crons tried chaining, they were bad).\n\n\u003e \n\u003e (or just rethink this entire mechanism... there has to be a way to efficiently index-by-timestamp in {data,fire}store... Maybe shard a timestamp-tracking kind and have bots hash themselves into one of those shards? Then instead of one hot time-index, there should be N less-hot time-indexes...)\n\u003e \n\u003e Another approach could be the \"__scatter__\" approach that the datastore \"map reduce\" library used to use, and shard the cron?\n\nYeah, I think the simplest approach would be shard this query into N independent queries, filtering by \"BotInfo.shard_id\", which is \"hash(bot_id) % shards\" (or something like that). __scatter__ is the same thing, just more magical (also not sure it is still supported on Firestore).",
+      "parentUuid": "93cbc031_6d8e57fe",
+      "range": {
+        "startLine": 838,
+        "startChar": 24,
+        "endLine": 838,
+        "endChar": 40
+      },
+      "revId": "ba3536577692ecb740caab3cfe23857442e2f580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c884a6a3_2e44e82b",
@@ -134,6 +200,30 @@
       "writtenOn": "2022-08-09T17:08:44Z",
       "side": 1,
       "message": "this is much less confusing than before; consider pulling 20 into a MAX_CONCURRENT_TRANSACTIONS constant?",
+      "range": {
+        "startLine": 858,
+        "startChar": 12,
+        "endLine": 858,
+        "endChar": 13
+      },
+      "revId": "ba3536577692ecb740caab3cfe23857442e2f580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd2d7eb9_40ab30d6",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:06:15Z",
+      "side": 1,
+      "message": "Eh, it is referenced only once, and it is already commented.",
+      "parentUuid": "c884a6a3_2e44e82b",
       "range": {
         "startLine": 858,
         "startChar": 12,
