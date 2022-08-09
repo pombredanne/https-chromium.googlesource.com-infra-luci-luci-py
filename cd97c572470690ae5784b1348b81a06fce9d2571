@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dc59455_16cf16ad",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 1339,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:32:35Z",
+      "side": 1,
+      "message": "I have a feeling it might be simpler for future CLs to put these into a single field `client_error` or something, and propagate it through Swarming server code as a single value (instead of a pair of values).",
+      "range": {
+        "startLine": 1339,
+        "startChar": 37,
+        "endLine": 1339,
+        "endChar": 68
+      },
+      "revId": "cd97c572470690ae5784b1348b81a06fce9d2571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72c124ae_98991f20",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:32:35Z",
+      "side": 1,
+      "message": "nit: `missing_cipd or []`",
+      "range": {
+        "startLine": 302,
+        "startChar": 24,
+        "endLine": 302,
+        "endChar": 68
+      },
+      "revId": "cd97c572470690ae5784b1348b81a06fce9d2571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74168fec_a9f1a896",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:32:35Z",
+      "side": 1,
+      "message": "nit: end sentences with dots, like all other docstrings in this file",
+      "range": {
+        "startLine": 225,
+        "startChar": 69,
+        "endLine": 225,
+        "endChar": 74
+      },
+      "revId": "cd97c572470690ae5784b1348b81a06fce9d2571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7b3533d_e2028b0f",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:32:35Z",
+      "side": 1,
+      "message": "nit: super(...) first, everything else later\n\nGenerally, an object is in undefined state before it is initialized by a super class",
+      "range": {
+        "startLine": 244,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 38
+      },
+      "revId": "cd97c572470690ae5784b1348b81a06fce9d2571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9819084_44bd48a6",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:32:35Z",
+      "side": 1,
+      "message": "note: these may not always be available (in particular `path` will always be None for \"unknown version\" errors).",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 31
+      },
+      "revId": "cd97c572470690ae5784b1348b81a06fce9d2571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45b0c99f_796456ba",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:32:35Z",
+      "side": 1,
+      "message": "This cleanup now will be skipped if `result_json_path` doesn\u0027t exist or can\u0027t be read. Please refactor it to handle missing `result_json_path` more gracefully.",
+      "range": {
+        "startLine": 663,
+        "startChar": 0,
+        "endLine": 665,
+        "endChar": 36
+      },
+      "revId": "cd97c572470690ae5784b1348b81a06fce9d2571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94797320_9528c2cf",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 1010,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-09T18:32:35Z",
+      "side": 1,
+      "message": "why introduce name() and to_dict() and then copy-paste code for two child classes manually anyway? Either remove name() and to_dict() (their existence in the base class is unused and unnecessary), or replace this with a single general except block:\n\n```\nexcept NonRecoverableException as e:\n  result[e.name()] \u003d [e.to_dict()]\n  ...\n```",
+      "range": {
+        "startLine": 996,
+        "startChar": 0,
+        "endLine": 1010,
+        "endChar": 25
+      },
+      "revId": "cd97c572470690ae5784b1348b81a06fce9d2571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
