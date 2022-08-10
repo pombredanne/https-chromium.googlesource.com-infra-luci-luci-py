@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "790c8fbf_f677f735",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-10T01:42:49Z",
+      "side": 1,
+      "message": "oh 🤢",
+      "range": {
+        "startLine": 336,
+        "startChar": 2,
+        "endLine": 336,
+        "endChar": 10
+      },
+      "revId": "9a9d45aefcc62fdbd1f2c12bd05392fbf8bb94be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
