@@ -129,6 +129,30 @@
       },
       "revId": "9579ecb4ce64fe42607552356a4fa1cf80f6f02d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f823408_df3fb288",
+        "filename": "appengine/swarming/proto/config/bots.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1529882
+      },
+      "writtenOn": "2022-08-10T13:33:42Z",
+      "side": 1,
+      "message": "Looking at the previously linked cloudtail/client.go file it appears if the existing command-line flag \"-resource-type\" is set to a string other than the default \"machine\" then different labels will be applied to the log entries with a \"cloudtail/\" prefix, and the \"global\" resource type will be used. Searching the existing logs in chrome-infra-logs, I can\u0027t find this actually being used anywhere.\nhttp://cs/chromium_infra/go/src/infra/tools/cloudtail/client.go;l\u003d157;rcl\u003daef7044b3a3a625e3a57852a04dbfbdd03389f57\n\nUsing the \"generic_node\" resource type might make more sense than \"global\", though would require updates to cloudtail to support this.\nhttps://cloud.google.com/logging/docs/api/v2/resource-list#resource-types\n\nShould we prioritise solving this issue now, or add it to the backlog to consider later? Our logs are in separate projects between GCE machines (ccompute) and everything else (chrome-infra-logs), but I see there is a benefit in reducing confusion if the logs from Chrome Fleet machines no longer said \"gce_instance\".\n\nIf we go ahead with solving this, we could add another field to this BotGroup proto message, maybe \"logs_hostname_label\" to specify which label to specify which label to query logs given the hostname of a bot.",
+      "parentUuid": "daad6200_81a67cb9",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 27
+      },
+      "revId": "9579ecb4ce64fe42607552356a4fa1cf80f6f02d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
