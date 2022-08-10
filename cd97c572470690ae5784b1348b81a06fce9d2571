@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "805467a5_4ea10593",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 1339,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-10T13:40:17Z",
+      "side": 1,
+      "message": "Thinking about this, my concern is mixing the types (i.e. missing_cas is a dict vs missing_cipd which is a list containing dicts), because eventually we want to store in the TaskRunResult as a structured field.",
+      "parentUuid": "6f2ce988_b5400e40",
+      "range": {
+        "startLine": 1339,
+        "startChar": 37,
+        "endLine": 1339,
+        "endChar": 68
+      },
+      "revId": "cd97c572470690ae5784b1348b81a06fce9d2571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72c124ae_98991f20",
