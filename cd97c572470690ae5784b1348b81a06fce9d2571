@@ -72,6 +72,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33e26bc5_1430f2d2",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 1339,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-10T16:58:35Z",
+      "side": 1,
+      "message": "I meant something like:\n\n```\nclient_error \u003d {\n  \"missing_cas\": {...},\n  \"missing_cipd\": {...},\n}\n```\n\nJust to package them as a single unit that eventually ends up in BigQuery or whatever, since I don\u0027t think we would ever handle \"missing_cas\" differently from \"missing_cipd\" on the server side.\n\n\u003e Ack. I\u0027ll make this change when updating the swarming server.\n\nJust FYI that strictly speaking you will be making multiple backward-incompatible changes that would normally break clients. They might be OK for Swarming though, because swarming is using rather... unique bot deployment scheme, where a bot \"latches\" to a particular server version it was started with, instead of talking to the latest deployed version. This latching is not 100% accurate though (for example, if a server version is deleted, requests targeting it will start hitting the default latest version).\n\nThe breaking change is:\n1. New bot sends \"missing_cas\" and \"missing_cipd\" fields in /on_error request.\n2. The request hits an older version of the server.\n3. It doesn\u0027t have msising_cas/missing_cipd in EXPECTED_KEYS, rejects the request with HTTP 400.\n\n(I think we should relax EXPECTED_KEYS validation...)",
+      "parentUuid": "805467a5_4ea10593",
+      "range": {
+        "startLine": 1339,
+        "startChar": 37,
+        "endLine": 1339,
+        "endChar": 68
+      },
+      "revId": "cd97c572470690ae5784b1348b81a06fce9d2571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72c124ae_98991f20",
