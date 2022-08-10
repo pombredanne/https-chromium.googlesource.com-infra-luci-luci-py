@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d40f3433_b02b1290",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-10T00:30:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55fed0e3_39dd9f98",
+      "range": {
+        "startLine": 396,
+        "startChar": 0,
+        "endLine": 400,
+        "endChar": 33
+      },
+      "revId": "4202842048fd37d78eef4ea2f1c7347d6bb1c53f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "fb017206_6d7787bf",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 14
@@ -60,6 +84,30 @@
       "writtenOn": "2022-08-09T22:30:57Z",
       "side": 1,
       "message": "better to do this conversion in on_dead_task_detection_latency instead of copy-pasting it each time on_dead_task_detection_latency is called",
+      "range": {
+        "startLine": 1840,
+        "startChar": 16,
+        "endLine": 1840,
+        "endChar": 53
+      },
+      "revId": "4202842048fd37d78eef4ea2f1c7347d6bb1c53f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f96efd33_f7ae2cb0",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 1840,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-10T00:30:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42ff447c_0a773b3a",
       "range": {
         "startLine": 1840,
         "startChar": 16,
