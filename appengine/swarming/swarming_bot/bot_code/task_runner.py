@@ -623,6 +623,7 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
         'exit_code': -1,
         'hard_timeout': False,
         'io_timeout': False,
+        'task_runner_internal_failure': True,
         'must_signal_internal_failure': None,
         'version': OUT_VERSION,
     }
@@ -651,6 +652,7 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
     exit_code = None
     had_io_timeout = False
     must_signal_internal_failure = None
+    task_runner_internal_failure = False
     missing_cas = None
     missing_cipd = []
     term_sent = False
@@ -843,9 +845,11 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
                                must_signal_internal_failure,
                                missing_cas=missing_cas,
                                missing_cipd=missing_cipd)
-        # Clear out this error as we've posted it now (we already cleared out
+        # Clear this error as we've posted it now (we already cleared out
         # exit_code above). Note: another error could arise after this point,
-        # which is fine, since bot_main.py will post it).
+        # which is fine, since bot_main.py will post it). However we still want
+        # to propagate the error into the on_after_task hook.
+        task_runner_internal_failure = True
         must_signal_internal_failure = ''
     except remote_client.InternalError as e:
       logging.error('Internal error while finishing the task: %s', e)
@@ -856,6 +860,7 @@ def run_command(remote, task_details, work_dir, cost_usd_hour,
         'exit_code': exit_code,
         'hard_timeout': had_hard_timeout,
         'io_timeout': had_io_timeout,
+        'task_runner_internal_failure': task_runner_internal_failure,
         'must_signal_internal_failure': must_signal_internal_failure,
         'version': OUT_VERSION,
     }
