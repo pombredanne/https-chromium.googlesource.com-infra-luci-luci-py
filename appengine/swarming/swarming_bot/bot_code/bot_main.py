@@ -895,6 +895,7 @@ def _run_manifest(botobj, manifest, start):
 
   failure = False
   internal_failure = False
+  task_runner_internal_failure = False
   msg = None
   auth_params_dumper = None
   must_reboot_reason = None
@@ -1004,7 +1005,7 @@ def _run_manifest(botobj, manifest, start):
     if fs.exists(task_result_file):
       with fs.open(task_result_file, 'rb') as fd:
         task_result = json.load(fd)
-
+      task_runner_internal_failure = task_result['task_runner_internal_failure']
     if proc.returncode:
       # STATUS_DLL_INIT_FAILED generally means that something bad happened, and
       # a reboot magically clears things out. :(
@@ -1039,9 +1040,9 @@ def _run_manifest(botobj, manifest, start):
     logging.info('calling on_after_task: failure=%s, internal_failure=%s, '
                  'task_dimensions=%s, task_result=%s',
                  failure, internal_failure, task_dimensions, task_result)
-    _call_hook_safe(
-        True, botobj, 'on_after_task', failure, internal_failure,
-        task_dimensions, task_result)
+    _call_hook_safe(True, botobj, 'on_after_task', failure, internal_failure
+                    or task_runner_internal_failure, task_dimensions,
+                    task_result)
     if fs.isdir(work_dir):
       try:
         file_path.rmtree(work_dir)
