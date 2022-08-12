@@ -19,7 +19,11 @@ from bot_code.remote_client_errors import BotCodeError
 from bot_code.remote_client_errors import InitializationError
 from bot_code.remote_client_errors import InternalError
 from bot_code.remote_client_errors import MintTokenError
-from bot_code.remote_client_errors import PollError
+from bot_code.remote_client_errors import (
+    PollError,
+    ActiveError,
+    AssignTaskError,
+)
 
 
 # RemoteClient will attempt to refresh the authentication headers once they are
@@ -317,6 +321,40 @@ class RemoteClientNative(object):
     return self._url_read_json(
         '/swarming/api/v1/bot/handshake',
         data=attributes)
+
+  def active(self, attributes):
+    resp = self._url_read_json('/swarming/api/v1/bot/active', data=attributes)
+    if not resp or resp.get('error'):
+      raise ActiveError(
+          resp.get('error') if resp else 'Failed to contact server')
+    cmd = resp['cmd']
+    if cmd == 'sleep':
+      return (cmd, resp['duration'])
+    if cmd == 'assign_task':
+      return (cmd, [])
+    if cmd == 'update':
+      return (cmd, resp['version'])
+    if cmd in ('restart', 'host_reboot'):
+      return (cmd, resp['message'])
+    if cmd == 'bot_restart':
+      return (cmd, resp['message'])
+    raise ActiveError('Unexpected command: %s\n%s' % (cmd, resp))
+
+  def assign_task(self, attributes):
+    data = attributes.copy()
+    data['request_uuid'] = str(uuid.uuid4())
+    resp = self._url_read_json('/swarming/api/v1/bot/assign_task', data=data)
+    if not resp or resp.get('error'):
+      raise AssignTaskError(
+          resp.get('error') if resp else 'Failed to contact server')
+    cmd = resp['cmd']
+    if cmd == 'sleep':
+      return (cmd, resp['duration'])
+    if cmd == 'terminate':
+      return (cmd, resp['task_id'])
+    if cmd == 'run':
+      return (cmd, resp['manifest'])
+    raise AssignTaskError('Unexpected command: %s\n%s' % (cmd, resp))
 
   def poll(self, attributes):
     """Polls for new work or other commands; returns a (cmd, value) pair as
