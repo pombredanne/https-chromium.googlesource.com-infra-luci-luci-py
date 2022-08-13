@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "561cd706_940a0d6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-13T05:53:22Z",
+      "side": 1,
+      "message": "this looks like a pretty clean separation to me",
+      "revId": "35376f6f7a0c76d8b7b4fef13de6fb3af056b069",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a93fb124_991aee19",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1292,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-13T05:53:22Z",
+      "side": 1,
+      "message": "👍",
+      "range": {
+        "startLine": 1292,
+        "startChar": 0,
+        "endLine": 1292,
+        "endChar": 20
+      },
+      "revId": "35376f6f7a0c76d8b7b4fef13de6fb3af056b069",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
