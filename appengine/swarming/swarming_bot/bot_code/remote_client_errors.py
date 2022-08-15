@@ -27,5 +27,13 @@ class PollError(Exception):
   """Raised on unrecoverable errors in RemoteClient.poll."""
 
 
+class ActiveError(Exception):
+  """Raised from unrecoverable errors in RemoteClient.active"""
+
+
+class AssignTaskError(Exception):
+  """Raised from unrecoverable in RemoteClient.assign_task"""
+
+
 class MintTokenError(Exception):
   """Raised on unrecoverable errors in RemoteClient.mint_*_token."""
