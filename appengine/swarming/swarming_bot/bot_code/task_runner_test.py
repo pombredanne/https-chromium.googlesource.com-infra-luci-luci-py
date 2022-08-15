@@ -339,7 +339,8 @@ class TestTaskRunner(TestTaskRunnerBase):
       'must_signal_internal_failure': None,
       'version': task_runner.OUT_VERSION,
     }
-    self.assertEqual(expected, self._run_command(task_details))
+    result = self._run_command(task_details)
+    self.assertEqual(expected, result)
     # Now look at the updates sent by the bot as seen by the server.
     self.expectTask(task_details.task_id)
 

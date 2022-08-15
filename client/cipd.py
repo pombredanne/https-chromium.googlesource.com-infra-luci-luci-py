@@ -18,6 +18,7 @@ import tempfile
 import time
 import urllib.parse
 
+from errors import NonRetriableCipdException
 from utils import file_path
 from utils import fs
 from utils import net
@@ -178,7 +179,6 @@ class CipdClient:
     json_out_file_handle, json_file_path = tempfile.mkstemp(
         dir=tmp_dir, prefix='cipd-ensure-result-', suffix='.json')
     os.close(json_out_file_handle)
-
     try:
       try:
         for subdir, pkgs in sorted(packages.items()):
@@ -234,6 +234,24 @@ class CipdClient:
           logging.info('cipd client: %s', line)
 
       exit_code = process.wait(timeout=timeoutfn())
+
+      if os.path.exists(json_file_path):
+        with open(json_file_path) as jfile:
+          result_json = json.load(jfile)
+
+          status = result_json.get('error_code')
+          if status in ('auth_error', 'bad_argument_error',
+                        'invalid_version_error', 'stale_error',
+                        'hash_mismatch_error'):
+            details = result_json.get('error_details')
+            cipd_package = cipd_version = cipd_subdir = None
+            if details:
+              cipd_package = details.get('package')
+              cipd_version = details.get('version')
+              cipd_subdir = details.get('subdir')
+            raise NonRetriableCipdException(status, cipd_package, cipd_subdir,
+                                            cipd_version)
+
       if exit_code != 0:
         raise Error(
             'Could not install packages; exit code %d\noutput:%s' % (
