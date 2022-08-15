@@ -39,6 +39,29 @@
       },
       "revId": "35376f6f7a0c76d8b7b4fef13de6fb3af056b069",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c73a677_14c609d2",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1295,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-08-15T16:30:54Z",
+      "side": 1,
+      "message": "One things I would also like to consider here is whether we should add new hooks for \"after assign task\" or \"after active\" message has been sent.",
+      "range": {
+        "startLine": 1295,
+        "startChar": 6,
+        "endLine": 1295,
+        "endChar": 58
+      },
+      "revId": "35376f6f7a0c76d8b7b4fef13de6fb3af056b069",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
