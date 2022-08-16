@@ -34,6 +34,24 @@
       "parentUuid": "8b6afac8_05b1f5a4",
       "revId": "40b9887a01cef3b9d018730b45b33030bf4b3e2f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27b726f1_33598cff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-16T22:23:41Z",
+      "side": 1,
+      "message": "The idea is that when we need to update urllib3 next time, we just run \"update.sh\" and be done with it (no manual patching steps required).",
+      "parentUuid": "10982480_5ee8d094",
+      "revId": "40b9887a01cef3b9d018730b45b33030bf4b3e2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
