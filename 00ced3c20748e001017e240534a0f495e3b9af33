@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "017b679e_6c9280d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-17T22:48:42Z",
+      "side": 1,
+      "message": "PTAL\n\nThis code is craptastic and basically \"meh, it\u0027ll converge to something in the end\".",
+      "revId": "00ced3c20748e001017e240534a0f495e3b9af33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
