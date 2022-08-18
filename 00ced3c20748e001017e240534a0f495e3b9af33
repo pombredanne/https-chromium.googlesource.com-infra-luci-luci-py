@@ -63,6 +63,30 @@
       },
       "revId": "00ced3c20748e001017e240534a0f495e3b9af33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cb0685f_d84c8a3e",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-18T00:48:34Z",
+      "side": 1,
+      "message": "It is documented as expected thing. It is also how it worked before when using cache_with_expiration, because https://chromium.googlesource.com/infra/luci/luci-py/+/00ae486eb53cbff9c00b3ed1441cda66849fb2bc",
+      "parentUuid": "bdc1b4d1_5ffdbbf7",
+      "range": {
+        "startLine": 288,
+        "startChar": 51,
+        "endLine": 288,
+        "endChar": 57
+      },
+      "revId": "00ced3c20748e001017e240534a0f495e3b9af33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
