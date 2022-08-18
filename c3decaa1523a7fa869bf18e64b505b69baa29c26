@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "556f6b90_641d8c5e",
+        "filename": "client/errors.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-18T13:28:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1197590d_b786baf7",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 30
+      },
+      "revId": "c3decaa1523a7fa869bf18e64b505b69baa29c26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bdf1261_f5788731",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-16T10:47:53Z",
       "side": 1,
       "message": "Can we rename to NonRecoverableCipdException so the naming stays consistent?",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 38,
+        "endChar": 31
+      },
+      "revId": "c3decaa1523a7fa869bf18e64b505b69baa29c26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df146f88_acaaee0d",
+        "filename": "client/errors.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-18T13:28:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bdf1261_f5788731",
       "range": {
         "startLine": 38,
         "startChar": 6,
