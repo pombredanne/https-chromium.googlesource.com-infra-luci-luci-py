@@ -16,6 +16,24 @@
       "message": "this looks unrelated to what\u0027s in the CL message... however I don\u0027t understand what it\u0027s supposed to be doing...",
       "revId": "a5c33d9bca35dfd633c496c85d210090a5478f9e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8940e8c_707f33ba",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-18T00:52:36Z",
+      "side": 0,
+      "message": "It is related. The previous version of this code ran request_key.get \"in parallel\" with utils.get_app_version(). But utils.get_app_version() is almost instantaneous (it just hits local memory in 99.999% cases). So this code was just unnecessarily complicated. After removing utils.get_app_version() I just replaced\n\n```\nrequest_future \u003d request_key.get_async()\nrequest \u003d request_future.get_result()\n```\n\nwith \n\n```\nrequest \u003d request_key.get()\n```\n\n(which is the exact same thing)\n\nand then also removed `request_key` variable, since it is used exactly once.",
+      "parentUuid": "27ca7a57_98eeb64f",
+      "revId": "a5c33d9bca35dfd633c496c85d210090a5478f9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
