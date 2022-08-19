@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ff86659_526e3d6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-19T20:57:45Z",
+      "side": 1,
+      "message": "chanli/yaunjunh, I think we also need to disable the search APIs on bb py, too (at least stop returning any v2 builds for them)... I\u0027m actually not sure if the search code in python is defunct or not... can we just delete it?\n\nIt looks like it\u0027s still exposed via v1 (e.g. skia may be using it still): https://source.chromium.org/chromium/infra/infra/+/main:appengine/cr-buildbucket/legacy/api.py;l\u003d509",
+      "revId": "76226b467ba1ecb590d3643b84951a0b9b302e34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0131d194_5c940f0d",
