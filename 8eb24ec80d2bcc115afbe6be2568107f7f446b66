@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19c8c3c7_186d81df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-19T05:29:23Z",
+      "side": 1,
+      "message": "I think you mean futures here?",
+      "range": {
+        "startLine": 17,
+        "startChar": 37,
+        "endLine": 17,
+        "endChar": 45
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b87926b_3a2cc3a3",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-19T05:29:23Z",
+      "side": 1,
+      "message": "well not really",
+      "range": {
+        "startLine": 432,
+        "startChar": 71,
+        "endLine": 433,
+        "endChar": 13
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51ee37ef_6bb0c172",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-19T05:29:23Z",
+      "side": 1,
+      "message": "This seems fairly accurate though. \"We tried to sort them but after throwing them all on the ground, we\u0027re not sure if we sorted them right, so you\u0027ll just get whatever we yield.\"",
+      "range": {
+        "startLine": 435,
+        "startChar": 0,
+        "endLine": 437,
+        "endChar": 46
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29ac7d9a_e087d3f1",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-19T05:29:23Z",
+      "side": 1,
+      "message": "iiuc, this always returns 0 or None... can we change the sleep below to sleep for SOME amount of time instead?",
+      "range": {
+        "startLine": 469,
+        "startChar": 24,
+        "endLine": 469,
+        "endChar": 28
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a361d51_face8936",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-19T05:29:23Z",
+      "side": 1,
+      "message": "it would be interesting to log how many queues had zero responses maybe?",
+      "range": {
+        "startLine": 477,
+        "startChar": 57,
+        "endLine": 477,
+        "endChar": 62
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bdf0dda_6f182534",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-19T05:29:23Z",
+      "side": 1,
+      "message": "is this just an attempted optimization to have O(1) insertion for the first round? how many items actually make it into the first round?",
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5982c48_f155952c",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-19T05:29:23Z",
+      "side": 1,
+      "message": "nit: I would do this filtering in _ActiveQuery instead",
+      "range": {
+        "startLine": 510,
+        "startChar": 13,
+        "endLine": 514,
+        "endChar": 50
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3b65a61_0e8803c6",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-19T05:29:23Z",
+      "side": 1,
+      "message": "yeah this is pure bs, there\u0027s absolutely no ordering here",
+      "range": {
+        "startLine": 543,
+        "startChar": 0,
+        "endLine": 543,
+        "endChar": 28
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
