@@ -307,6 +307,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "860d43dd_ccd862a2",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T19:21:58Z",
+      "side": 1,
+      "message": "It doesn\u0027t. On a loaded server it returns after 1s (whenever an rpc finishes): https://screenshot.googleplex.com/9XgVZbycMR4XAwk",
+      "parentUuid": "58515147_71af89e7",
+      "range": {
+        "startLine": 477,
+        "startChar": 57,
+        "endLine": 477,
+        "endChar": 62
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bdf0dda_6f182534",
