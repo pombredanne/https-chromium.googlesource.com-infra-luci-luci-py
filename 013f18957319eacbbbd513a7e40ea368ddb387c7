@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "055755cd_103cb0f0",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T03:07:21Z",
+      "side": 1,
+      "message": "python\u0027s heap implementation is weird... I had to wrap the item into _TaskToRunItem to implement __cmp__ for it. And I could not use a tuple because I actually have no idea how expensive it is to compare to TaskToRun (which will be happening when we compare two tuple with equal first items).",
+      "range": {
+        "startLine": 379,
+        "startChar": 0,
+        "endLine": 410,
+        "endChar": 24
+      },
+      "revId": "013f18957319eacbbbd513a7e40ea368ddb387c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eeb09d33_09721fa3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T03:07:21Z",
+      "side": 1,
+      "message": "Unit tests pass, must be OK.",
+      "revId": "9aaca2662b26ad587073ca623c67f62317394f29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2a7a2e6_56b3bec2",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T03:07:21Z",
+      "side": 1,
+      "message": "I have only very vague idea what is actually going on inside. The actual code flow in this code is super complicated. I suspect this `run1` actually advances all various ndb tasklets inside. I also don\u0027t really understand when it unblock. Documentation says:\n\n```\nRun one item (a callback or an RPC wait_any) or sleep.\n\nReturns\nTrue if something happened; False if all queues are empty.\n```\n\nwhich is super vague\n\nI assume it may take arbitrary small amount of time if there are many tasklets running (and it is very possible there are, since caller of _yield_potential_tasks launches a tasklet per yielded item). So I opted to making this loop as fast to spin as possible (in particular replacing O(N) `any(futures)` with O(1) `queries`, where N is up to 30).",
+      "range": {
+        "startLine": 545,
+        "startChar": 8,
+        "endLine": 545,
+        "endChar": 28
+      },
+      "revId": "9aaca2662b26ad587073ca623c67f62317394f29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
