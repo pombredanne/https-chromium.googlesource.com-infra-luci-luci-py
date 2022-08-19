@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "923d94c8_29a470bc",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-19T20:47:40Z",
+      "side": 1,
+      "message": "maybe * 1.2 up to a max of 500?\n\n50\n60\n72\n86\n103\n123\n147\n176\n211\n253\n303\n363\n435\n500\n\n?",
+      "range": {
+        "startLine": 420,
+        "startChar": 48,
+        "endLine": 420,
+        "endChar": 49
+      },
+      "revId": "e566578a7be32413bce160f230093c009d38d67d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
