@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d39e5b3_69ac37fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T18:44:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19c8c3c7_186d81df",
+      "range": {
+        "startLine": 17,
+        "startChar": 37,
+        "endLine": 17,
+        "endChar": 45
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98f01531_e066817e",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-19T17:25:36Z",
       "side": 1,
       "message": "Nit: I don\u0027t think `queue.heap` is ever called so should we consider using `_heap` to show that it\u0027s a private member of the class?",
+      "range": {
+        "startLine": 392,
+        "startChar": 9,
+        "endLine": 392,
+        "endChar": 10
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22407960_0b84085a",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T18:44:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98f01531_e066817e",
       "range": {
         "startLine": 392,
         "startChar": 9,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7e0f08a_0a487897",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T18:44:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8b87926b_3a2cc3a3",
+      "range": {
+        "startLine": 432,
+        "startChar": 71,
+        "endLine": 433,
+        "endChar": 13
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51ee37ef_6bb0c172",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-08-19T05:29:23Z",
       "side": 1,
       "message": "This seems fairly accurate though. \"We tried to sort them but after throwing them all on the ground, we\u0027re not sure if we sorted them right, so you\u0027ll just get whatever we yield.\"",
+      "range": {
+        "startLine": 435,
+        "startChar": 0,
+        "endLine": 437,
+        "endChar": 46
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "135db0bc_21528987",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T18:44:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "51ee37ef_6bb0c172",
       "range": {
         "startLine": 435,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a78ad440_d6b4d08a",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T18:44:33Z",
+      "side": 1,
+      "message": "Actually I\u0027ll do the opposite and make it *not* sleep at all if r \u003d\u003d 0.0 (to avoid yielding the thread). This is what run1 does. This is not a busy-loop because run0 blocks inside on completion of a pending RPC, and we know there are pending RPCs because we checked this in the loop condition above.",
+      "parentUuid": "29ac7d9a_e087d3f1",
+      "range": {
+        "startLine": 469,
+        "startChar": 24,
+        "endLine": 469,
+        "endChar": 28
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a361d51_face8936",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-08-19T05:29:23Z",
       "side": 1,
       "message": "it would be interesting to log how many queues had zero responses maybe?",
+      "range": {
+        "startLine": 477,
+        "startChar": 57,
+        "endLine": 477,
+        "endChar": 62
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "073b6e8a_489fe004",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T18:44:33Z",
+      "side": 1,
+      "message": "It will be logged below in _poll_queries as \"queue %d is exhausted\".",
+      "parentUuid": "7a361d51_face8936",
       "range": {
         "startLine": 477,
         "startChar": 57,
@@ -156,6 +300,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64b64cd6_b2c0752b",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T18:44:33Z",
+      "side": 1,
+      "message": "Yes. We build the initial queue in O(N) (N insertions + O(N) heapify) instead of O(N logN) (N pq insertions which are log N). There can be up to 300 elements (10 items per page, 30 queues), but only in a very degraded state. Normally there\u0027ll be maybe 20, so this probably be negligible.\n\nI figured it\u0027s not that much code (~4 lines) to populate the queue in O(N) instead of O(N log N), so why not do it, it is more correct from algorithmic point of view. As a comment to yield_next_available_task_to_dispatch comment says \"Performance is the top most priority here\" (and then it proceeds doing crazy stuff...).",
+      "parentUuid": "5bdf0dda_6f182534",
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5982c48_f155952c",
@@ -169,6 +331,30 @@
       "writtenOn": "2022-08-19T05:29:23Z",
       "side": 1,
       "message": "nit: I would do this filtering in _ActiveQuery instead",
+      "range": {
+        "startLine": 510,
+        "startChar": 13,
+        "endLine": 514,
+        "endChar": 50
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd6d4c81_d1964f4e",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T18:44:33Z",
+      "side": 1,
+      "message": "It makes logging more \"dispersed\" through the code (instead of being in a single function). Also it would appear twice for first pages (their page() is called twice), unless there is a separate method to filter stuff. Also need to pass bot_id to _ActiveQuery for logging. I think it will be more convoluted in the end.",
+      "parentUuid": "d5982c48_f155952c",
       "range": {
         "startLine": 510,
         "startChar": 13,
@@ -202,6 +388,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ad10cd9_f536af51",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T18:44:33Z",
+      "side": 1,
+      "message": "To build the queue faster in O(N) instead of O(N log N), see my reply above.",
+      "parentUuid": "5a6e5caf_7290e2b2",
+      "range": {
+        "startLine": 531,
+        "startChar": 37,
+        "endLine": 531,
+        "endChar": 51
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3b65a61_0e8803c6",
@@ -215,6 +425,30 @@
       "writtenOn": "2022-08-19T05:29:23Z",
       "side": 1,
       "message": "yeah this is pure bs, there\u0027s absolutely no ordering here",
+      "range": {
+        "startLine": 543,
+        "startChar": 0,
+        "endLine": 543,
+        "endChar": 28
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7521894b_d7c337b2",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T18:44:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c3b65a61_0e8803c6",
       "range": {
         "startLine": 543,
         "startChar": 0,
