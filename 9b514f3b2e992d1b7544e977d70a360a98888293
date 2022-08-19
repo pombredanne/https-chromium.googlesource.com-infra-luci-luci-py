@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15ac16a8_c55c804d",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T22:24:00Z",
+      "side": 1,
+      "message": "I don\u0027t really know what it does, I just did a refactoring that doesn\u0027t change the actual logic (I hope the existing unit tests is comprehensive...).\n\nI decided it is worth doing after looking at how bot_dimensions_to_flat is implemented: https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_queues.py;l\u003d851?q\u003dbot_dimensions_to_flat\u0026ss\u003dchromium It looks kinds of complicated (and some our bots have a lot of dimensions, e.g. skylab bots have 40 dimension keys).",
+      "range": {
+        "startLine": 633,
+        "startChar": 0,
+        "endLine": 638,
+        "endChar": 79
+      },
+      "revId": "9b514f3b2e992d1b7544e977d70a360a98888293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
