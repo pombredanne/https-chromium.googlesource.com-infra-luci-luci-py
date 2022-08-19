@@ -283,6 +283,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58515147_71af89e7",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-19T19:11:17Z",
+      "side": 1,
+      "message": "oh wow, you\u0027re right: https://github.com/GoogleCloudPlatform/datastore-ndb-python/blame/cf4cab3f1f69cd04e1a9229871be466b53729f3f/ndb/eventloop.py#L246\n\nI\u0027m not sure how this can return at all within 1 sec unless something completes?",
+      "parentUuid": "073b6e8a_489fe004",
+      "range": {
+        "startLine": 477,
+        "startChar": 57,
+        "endLine": 477,
+        "endChar": 62
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bdf0dda_6f182534",
