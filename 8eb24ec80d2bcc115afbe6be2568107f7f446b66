@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "98f01531_e066817e",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-08-19T17:25:36Z",
+      "side": 1,
+      "message": "Nit: I don\u0027t think `queue.heap` is ever called so should we consider using `_heap` to show that it\u0027s a private member of the class?",
+      "range": {
+        "startLine": 392,
+        "startChar": 9,
+        "endLine": 392,
+        "endChar": 10
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b87926b_3a2cc3a3",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 5
@@ -151,6 +174,29 @@
         "startChar": 13,
         "endLine": 514,
         "endChar": 50
+      },
+      "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a6e5caf_7290e2b2",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-08-19T17:25:36Z",
+      "side": 1,
+      "message": "Possibly related to Robbies earlier comment, but why is there an unordered way of adding to the priority queue?",
+      "range": {
+        "startLine": 531,
+        "startChar": 37,
+        "endLine": 531,
+        "endChar": 51
       },
       "revId": "8eb24ec80d2bcc115afbe6be2568107f7f446b66",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
