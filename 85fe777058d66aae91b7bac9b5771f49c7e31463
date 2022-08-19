@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65648ba9_f263cf4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-19T19:57:04Z",
+      "side": 1,
+      "message": "woohoo!",
+      "revId": "85fe777058d66aae91b7bac9b5771f49c7e31463",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8981932_8efa90bc",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-19T19:57:04Z",
+      "side": 1,
+      "message": "hm... I wonder if this should just be 1 for the first round if we really want to stick to a 1 sec threshold?",
+      "range": {
+        "startLine": 399,
+        "startChar": 0,
+        "endLine": 399,
+        "endChar": 65
+      },
+      "revId": "85fe777058d66aae91b7bac9b5771f49c7e31463",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
