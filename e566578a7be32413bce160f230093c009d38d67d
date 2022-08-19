@@ -22,6 +22,30 @@
       },
       "revId": "e566578a7be32413bce160f230093c009d38d67d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b791f6f_352d754a",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-19T20:52:29Z",
+      "side": 1,
+      "message": "This would be a pretty drastic change from the existing behavior of 10 item pages. I\u0027d like to start with something gentler: 10, 15, 20, ...\n\nThe problem with large pages is that it takes time for datastore to produce them, and during this time /bot/poll loop will sit idle (while ideally it should keep examining the fetched TaskToRun to see what wasn\u0027t consumed yet).",
+      "parentUuid": "923d94c8_29a470bc",
+      "range": {
+        "startLine": 420,
+        "startChar": 48,
+        "endLine": 420,
+        "endChar": 49
+      },
+      "revId": "e566578a7be32413bce160f230093c009d38d67d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
