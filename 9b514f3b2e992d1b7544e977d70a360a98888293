@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "14388c56_e6dc7ce4",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1380,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-20T17:29:25Z",
+      "side": 1,
+      "message": "ultranit: is this intentionally different from\n\n   ...get(u\u0027pool\u0027, [\u0027-\u0027])[0]\n   \n? Like does this actually expect a `[]` response for pool in bot_dimensions?",
+      "revId": "9b514f3b2e992d1b7544e977d70a360a98888293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "845e8dff_e814f7ab",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-20T17:29:25Z",
+      "side": 1,
+      "message": "nit: you only need a closure on `set(bot_dimensions)` (i.e. just the keys). I\u0027m not sure if it\u0027s better to actually make that set or just use the original dict.",
+      "range": {
+        "startLine": 634,
+        "startChar": 22,
+        "endLine": 634,
+        "endChar": 36
+      },
+      "revId": "9b514f3b2e992d1b7544e977d70a360a98888293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "15ac16a8_c55c804d",
@@ -14,6 +54,30 @@
       "writtenOn": "2022-08-19T22:24:00Z",
       "side": 1,
       "message": "I don\u0027t really know what it does, I just did a refactoring that doesn\u0027t change the actual logic (I hope the existing unit tests is comprehensive...).\n\nI decided it is worth doing after looking at how bot_dimensions_to_flat is implemented: https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_queues.py;l\u003d851?q\u003dbot_dimensions_to_flat\u0026ss\u003dchromium It looks kinds of complicated (and some our bots have a lot of dimensions, e.g. skylab bots have 40 dimension keys).",
+      "range": {
+        "startLine": 633,
+        "startChar": 0,
+        "endLine": 638,
+        "endChar": 79
+      },
+      "revId": "9b514f3b2e992d1b7544e977d70a360a98888293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed7fe698_0dca174d",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-20T17:29:25Z",
+      "side": 1,
+      "message": "It looks like it\u0027s trying to match \n\n   {\"key\": \"multi|value\"}\n\nto \n\n   {\"key\": \"multi|value\"}\n\nThe first clause aborts if the request keys include a key not in the bot dimensions at all.\n\nThis second one is looking for single overlaps in flattened \"key:multi\" or \"key:value\"\n\nI suspect this would be faster:\n\n```\nfor key, multiValue in range request_dimensions.iteritems():\n  for value in multiValue.split(OR_DIM_SEP):\n    if \"%s:%s\" in bot_flat:\n      break\n  else:\n    return False\nreturn True\n```\n\nThough I couldn\u0027t quite untangle all the stuff the flattener function is checking... I suspect that this deep in the code we shouldn\u0027t be doing such validation?",
+      "parentUuid": "15ac16a8_c55c804d",
       "range": {
         "startLine": 633,
         "startChar": 0,
