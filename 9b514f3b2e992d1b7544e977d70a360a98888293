@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d086834c_87c2d90f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1380,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-22T22:23:19Z",
+      "side": 1,
+      "message": "yes, it is intentionally different, to never crash",
+      "parentUuid": "14388c56_e6dc7ce4",
+      "revId": "9b514f3b2e992d1b7544e977d70a360a98888293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "845e8dff_e814f7ab",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-08-20T17:29:25Z",
       "side": 1,
       "message": "nit: you only need a closure on `set(bot_dimensions)` (i.e. just the keys). I\u0027m not sure if it\u0027s better to actually make that set or just use the original dict.",
+      "range": {
+        "startLine": 634,
+        "startChar": 22,
+        "endLine": 634,
+        "endChar": 36
+      },
+      "revId": "9b514f3b2e992d1b7544e977d70a360a98888293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d168445_6eeb46a7",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-22T22:23:19Z",
+      "side": 1,
+      "message": "I think using the original dict is slightly faster, since checking membership in a set or a dict is roughly the same speed, but it would take time to convert a dict into a set (though this time would be amortized, so its all negligible difference in the end).\n\nAlso I removed this check, it is no longer necessary.",
+      "parentUuid": "845e8dff_e814f7ab",
       "range": {
         "startLine": 634,
         "startChar": 22,
@@ -78,6 +120,30 @@
       "side": 1,
       "message": "It looks like it\u0027s trying to match \n\n   {\"key\": \"multi|value\"}\n\nto \n\n   {\"key\": \"multi|value\"}\n\nThe first clause aborts if the request keys include a key not in the bot dimensions at all.\n\nThis second one is looking for single overlaps in flattened \"key:multi\" or \"key:value\"\n\nI suspect this would be faster:\n\n```\nfor key, multiValue in range request_dimensions.iteritems():\n  for value in multiValue.split(OR_DIM_SEP):\n    if \"%s:%s\" in bot_flat:\n      break\n  else:\n    return False\nreturn True\n```\n\nThough I couldn\u0027t quite untangle all the stuff the flattener function is checking... I suspect that this deep in the code we shouldn\u0027t be doing such validation?",
       "parentUuid": "15ac16a8_c55c804d",
+      "range": {
+        "startLine": 633,
+        "startChar": 0,
+        "endLine": 638,
+        "endChar": 79
+      },
+      "revId": "9b514f3b2e992d1b7544e977d70a360a98888293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbf1d7c5_f1eb2077",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-22T22:23:19Z",
+      "side": 1,
+      "message": "Optimized.",
+      "parentUuid": "ed7fe698_0dca174d",
       "range": {
         "startLine": 633,
         "startChar": 0,
