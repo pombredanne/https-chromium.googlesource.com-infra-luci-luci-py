@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6cc97cd_64b34d45",
+        "filename": "client/cipd.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-22T21:10:31Z",
+      "side": 1,
+      "message": "let\u0027s not open/parse it twice, it is sloppy\nThis code path can just use `result_json` (with some additional check that it actually was read)",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 38
+      },
+      "revId": "5ad7efb0a9cf89b95b3277690248ac5948e7480f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "730915f7_5b0ba02c",
+        "filename": "client/errors.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-22T21:10:31Z",
+      "side": 1,
+      "message": "it is not an executable script, it doesn\u0027t need \"#!/...\" line",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "5ad7efb0a9cf89b95b3277690248ac5948e7480f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e262323b_75c8237f",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1765,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-22T21:10:31Z",
+      "side": 1,
+      "message": "why is this here, but the CAS one is not?",
+      "range": {
+        "startLine": 1765,
+        "startChar": 10,
+        "endLine": 1765,
+        "endChar": 44
+      },
+      "revId": "5ad7efb0a9cf89b95b3277690248ac5948e7480f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
