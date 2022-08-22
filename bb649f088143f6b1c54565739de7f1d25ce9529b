@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07d42de2_2daa8cf5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-22T21:34:04Z",
+      "side": 1,
+      "message": "This is somewhat convoluted (again, not your fault, this code is a horrible mess). Consider replacing must_signal_internal_failure/task_runner_internal_failure with `internal_error: str, internal_error_reported: bool`, where `internal_error` is a non-empty string for any kind of internal errors (and it is never reset to \u0027\u0027), and `internal_error_reported` is True only if task_runner already reported it.\n\nI think it will make code slightly less bizarre.",
+      "revId": "bb649f088143f6b1c54565739de7f1d25ce9529b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72826aba_1be86e6b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-22T21:34:04Z",
+      "side": 1,
+      "message": "this will blow up if the key is not there, please double check task_runner populates this field in every code path",
+      "range": {
+        "startLine": 1008,
+        "startChar": 37,
+        "endLine": 1008,
+        "endChar": 80
+      },
+      "revId": "bb649f088143f6b1c54565739de7f1d25ce9529b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04d4e5cd_060e4ad2",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-22T21:34:04Z",
+      "side": 1,
+      "message": "a canceled task is not an internal error",
+      "range": {
+        "startLine": 626,
+        "startChar": 8,
+        "endLine": 626,
+        "endChar": 45
+      },
+      "revId": "bb649f088143f6b1c54565739de7f1d25ce9529b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5c79410_c2767781",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-22T21:34:04Z",
+      "side": 1,
+      "message": "does this thing set `task_runner_internal_failure`?",
+      "range": {
+        "startLine": 645,
+        "startChar": 11,
+        "endLine": 645,
+        "endChar": 31
+      },
+      "revId": "bb649f088143f6b1c54565739de7f1d25ce9529b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9a502b2_2b1fe71c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 855,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-22T21:34:04Z",
+      "side": 1,
+      "message": "should task_runner_internal_failure be set to True in this code path?",
+      "range": {
+        "startLine": 855,
+        "startChar": 6,
+        "endLine": 855,
+        "endChar": 69
+      },
+      "revId": "bb649f088143f6b1c54565739de7f1d25ce9529b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
