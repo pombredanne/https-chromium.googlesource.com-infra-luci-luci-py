@@ -5,7 +5,7 @@
 // This file has some data used for task-list tests.
 
 // 2 tasks of each of the various states.
-export const tasks_20 = {
+export const tasks_21 = {
   'items': [
     {
       'created_ts': '2018-12-19T16:31:28.290449',
@@ -43,6 +43,46 @@ export const tasks_20 = {
       'modified_ts': '2018-12-19T16:31:28.333370',
       'user': '',
       'current_task_slice': '0',
+    },
+    {
+      'created_ts': '2018-12-19T16:31:28.290449',
+      'name': 'gfx_unittests/Mac-12/f4c7893a7e/mac12-arm64-rel-tests/503',
+      'task_id': '41e020504d0a5119',
+      'run_id': '41e0222290be8111',
+      'tags': [
+        'build_is_experimental:false',
+        'buildername:mac12-arm64-rel-tests',
+        'buildnumber:503',
+        'data:f4c7893a7e2958a8d451d7a5a2d39a98127aa78293272bd6e4fa3d11470',
+        'name:gfx_unittests',
+        'os:Mac-12',
+        'pool:chromium.tests',
+        'priority:25',
+        'project:chromium',
+        'purpose:CI',
+        'purpose:luci',
+        'purpose:post-commit',
+        'service_account:none',
+        'botname:swarm1596-c4',
+        'spec_name:chromium.ci:android-marshmallow-arm64-rel',
+        'stepname:webview_instrumentation_test_apk on Android device Nexus 5X',
+        'swarming.pool.template:prod',
+        'swarming.pool.version:3105689c391c8dfb9bb4c91393c1d2dc63ac0cef',
+        'user:none',
+      ],
+      'internal_failure': false,
+      'server_versions': [
+        '3945-402d3be',
+      ],
+      'failure': true,
+      'state': 'CLIENT_ERROR',
+      'modified_ts': '2018-12-19T16:31:28.333370',
+      'user': '',
+      'current_task_slice': '0',
+      'abandoned_ts': '2018-12-19T15:58:11.142556',
+      'bot_id': 'gce-lucid-e542d7b5-au-syd-c-l9hr',
+      'try_number': '1',
+      'started_ts': '2018-12-19T16:59:23.543213',
     },
     {
       'created_ts': '2018-12-19T16:31:28.036976',
