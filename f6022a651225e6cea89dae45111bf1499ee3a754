@@ -22,6 +22,30 @@
       },
       "revId": "f6022a651225e6cea89dae45111bf1499ee3a754",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab56689b_1a2946ea",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-23T20:43:57Z",
+      "side": 1,
+      "message": "Appears so, but from multiple different _test.py files, so I gave up and kept it here.",
+      "parentUuid": "33c6f519_57be1a2c",
+      "range": {
+        "startLine": 160,
+        "startChar": 7,
+        "endLine": 160,
+        "endChar": 36
+      },
+      "revId": "f6022a651225e6cea89dae45111bf1499ee3a754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
