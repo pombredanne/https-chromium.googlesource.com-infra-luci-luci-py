@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d83cb2f9_647e217a",
+        "filename": "client/cipd.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-23T01:00:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6cc97cd_64b34d45",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 38
+      },
+      "revId": "5ad7efb0a9cf89b95b3277690248ac5948e7480f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "730915f7_5b0ba02c",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b45b9922_7c679cfd",
+        "filename": "client/errors.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-23T01:00:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "730915f7_5b0ba02c",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "5ad7efb0a9cf89b95b3277690248ac5948e7480f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e262323b_75c8237f",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-08-22T21:10:31Z",
       "side": 1,
       "message": "why is this here, but the CAS one is not?",
+      "range": {
+        "startLine": 1765,
+        "startChar": 10,
+        "endLine": 1765,
+        "endChar": 44
+      },
+      "revId": "5ad7efb0a9cf89b95b3277690248ac5948e7480f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2c5d0b6_9d652fa9",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1765,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-23T01:00:42Z",
+      "side": 1,
+      "message": "This should\u0027ve been added in the previous CL. I didn\u0027t have a unit test to cover the case of running the main() with a bad cas package, which meant that this code path was never hit. I\u0027ll fix this in another CL, let\u0027s just keep this one for CIPD related changes.",
+      "parentUuid": "e262323b_75c8237f",
       "range": {
         "startLine": 1765,
         "startChar": 10,
