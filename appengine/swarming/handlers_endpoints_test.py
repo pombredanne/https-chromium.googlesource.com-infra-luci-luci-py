@@ -77,7 +77,7 @@ def _bot_event(event_type, bot_id, **kwargs):
       'register_dimensions': event_type.startswith('request_')
   }
   args.update(kwargs)
-  return bot_management.bot_event(event_type, bot_id, **args)
+  return bot_management.handle_bot_event(event_type, bot_id, **args)
 
 
 class BaseTest(test_env_handlers.AppTestBase, test_case.EndpointsTestCase):
