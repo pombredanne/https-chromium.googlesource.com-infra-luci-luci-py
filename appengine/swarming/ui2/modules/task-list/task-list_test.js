@@ -15,7 +15,7 @@ describe('task-list', function() {
   const {fetchMock, MATCHED, UNMATCHED} = require('fetch-mock');
 
   const {column, filterTasks, getColHeader, listQueryParams, processTasks} = require('modules/task-list/task-list-helpers');
-  const {tasks_20} = require('modules/task-list/test_data');
+  const {tasks_21} = require('modules/task-list/test_data');
   const {fleetDimensions} = require('modules/bot-list/test_data');
   beforeEach(function() {
     jasmine.addMatchers(customMatchers);
@@ -31,7 +31,7 @@ describe('task-list', function() {
       cancel_task: false,
     });
 
-    fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*', tasks_20);
+    fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*', tasks_21);
     fetchMock.get(
         'glob:/_ah/api/swarming/v1/bots/dimensions?*', fleetDimensions);
     fetchMock.get('glob:/_ah/api/swarming/v1/tasks/count?*', {'count': 12345});
@@ -183,7 +183,7 @@ describe('task-list', function() {
           loggedInTasklist((ele) => {
             const rows = $('.task-table .task-row', ele);
             expect(rows).toBeTruthy();
-            expect(rows).toHaveSize(20, '(num taskRows)');
+            expect(rows).toHaveSize(21, '(num taskRows)');
             done();
           });
         });
@@ -210,11 +210,11 @@ describe('task-list', function() {
 
             const rows = $('.task-table .task-row', ele);
             expect(rows).toBeTruthy();
-            expect(rows).toHaveSize(20, '20 rows');
+            expect(rows).toHaveSize(21, '21 rows');
 
             const cells = $('.task-table .task-row td', ele);
             expect(cells).toBeTruthy();
-            expect(cells).toHaveSize(7 * 20, '7 columns * 20 rows');
+            expect(cells).toHaveSize(7 * 21, '7 columns * 21 rows');
             // little helper for readability
             const cell = (r, c) => cells[7*r+c];
 
@@ -295,7 +295,7 @@ describe('task-list', function() {
             expect(countRows).toBeTruthy();
             expect(countRows).toHaveSize(1+7, '(num counts, displayed + 7 states)');
 
-            expect(countRows[0]).toMatchTextContent('Displayed: 20');
+            expect(countRows[0]).toMatchTextContent('Displayed: 21');
 
             expect(countRows[3].innerHTML).toContain('<a ', 'contains a link');
             const link = $$('a', countRows[3]);
@@ -383,12 +383,13 @@ describe('task-list', function() {
         const actualPoolOrder = ele._tasks.map((t) => column('pool-tag', t, ele));
 
         expect(actualIDOrder).toEqual(['41e0284bc3ef4f10', '41e023035ecced10',
-          '41e0222076a33010', '41e020504d0a5110', '41e0204f39d06210',
-          '41e01fe02b981410', '41dfffb4970ae410', '41e0284bf01aef10',
-          '41e0222290be8110', '41e031b2c8b46710', '41dfffb8b1414b10',
-          '41dfa79d3bf29010', '41df677202f20310', '41e019d8b7aa2f10',
-          '41e015d550464910', '41e0310fe0b7c410', '41e0182a00fcc110',
-          '41e016dc85735b10', '41dd3d950bb52710', '41dd3d9564402e10']);
+          '41e0222076a33010', '41e020504d0a5110', '41e020504d0a5119',
+          '41e0204f39d06210', '41e01fe02b981410', '41dfffb4970ae410',
+          '41e0284bf01aef10', '41e0222290be8110', '41e031b2c8b46710',
+          '41dfffb8b1414b10', '41dfa79d3bf29010', '41df677202f20310',
+          '41e019d8b7aa2f10', '41e015d550464910', '41e0310fe0b7c410',
+          '41e0182a00fcc110', '41e016dc85735b10', '41dd3d950bb52710',
+          '41dd3d9564402e10', '41dd3d9564402e10']);
         expect(actualPoolOrder).toEqual(['Chrome', 'Chrome', 'Chrome',
           'Chrome', 'Chrome', 'Chrome', 'Chrome', 'Chrome-CrOS-VM', 'Chrome-GPU',
           'Skia', 'Skia', 'Skia', 'Skia', 'fuchsia.tests', 'fuchsia.tests',
@@ -514,9 +515,10 @@ describe('task-list', function() {
         expect(valueSelector).toBeTruthy();
         values = childrenAsArray(valueSelector).map((c) => c.textContent.trim());
         // spot check
-        expect(values).toHaveSize(14);
+        expect(values).toHaveSize(15);
         expect(values).toContain('RUNNING');
         expect(values).toContain('COMPLETED_FAILURE');
+        expect(values).toContain('CLIENT_ERROR');
 
         done();
       });
@@ -620,7 +622,7 @@ describe('task-list', function() {
         ele._filters = [];
         ele.render();
 
-        expect(ele._tasks).toHaveSize(20, 'All 20 at the start');
+        expect(ele._tasks).toHaveSize(21, 'All 21 at the start');
 
         let wasCalled = false;
         fetchMock.get('glob:/_ah/api/swarming/v1/tasks/list?*', () => {
@@ -812,7 +814,7 @@ describe('task-list', function() {
         expect(ele._allStates).toBeTruthy();
         countRows = $('#query_counts tr', ele);
         expect(countRows).toBeTruthy();
-        expect(countRows).toHaveSize(1+12, '(num counts, displayed + 12 states)');
+        expect(countRows).toHaveSize(1+13, '(num counts, displayed + 12 states)');
 
         showMore = $$('.summary expand-more-icon-sk');
         showMore2 = $$('.summary more-horiz-icon-sk');
@@ -951,7 +953,7 @@ describe('task-list', function() {
         ele._addFilter('state:PENDING_RUNNING');
         fetchMock.flush(true).then(() => {
           const calls = fetchMock.calls(MATCHED, 'GET');
-          expect(calls).toHaveSize(3+12, '3 from task-list and 12 counts');
+          expect(calls).toHaveSize(4+12, '4 from task-list and 12 counts');
 
           const gets = calls.slice(1).map((c) => c[0])
               .filter((g) => !g.includes('pool='));
@@ -1063,7 +1065,7 @@ describe('task-list', function() {
   }); // end describe('api calls')
 
   describe('data parsing', function() {
-    const ANDROID_TASK = tasks_20.items[0];
+    const ANDROID_TASK = tasks_21.items[0];
 
     it('turns the dates into DateObjects', function() {
       // Make a copy of the object because processTasks will modify it in place.
@@ -1085,7 +1087,7 @@ describe('task-list', function() {
 
     it('produces a list of tags', function() {
       const tags = {};
-      const tasks = processTasks(deepCopy(tasks_20.items), tags);
+      const tasks = processTasks(deepCopy(tasks_21.items), tags);
       const keys = Object.keys(tags);
       expect(keys).toBeTruthy();
       expect(keys).toHaveSize(75);
@@ -1093,14 +1095,14 @@ describe('task-list', function() {
       expect(keys).toContain('purpose');
       expect(keys).toContain('source_revision');
 
-      expect(tasks).toHaveSize(20);
+      expect(tasks).toHaveSize(21);
     });
 
     it('filters tasks based on special keys', function() {
-      const tasks = processTasks(deepCopy(tasks_20.items), {});
+      const tasks = processTasks(deepCopy(tasks_21.items), {});
 
       expect(tasks).toBeTruthy();
-      expect(tasks).toHaveSize(20);
+      expect(tasks).toHaveSize(21);
 
       const filtered = filterTasks(['state:COMPLETED_FAILURE'], tasks);
       expect(filtered).toHaveSize(2);
@@ -1111,10 +1113,10 @@ describe('task-list', function() {
     });
 
     it('filters tasks based on tags', function() {
-      const tasks = processTasks(deepCopy(tasks_20.items), {});
+      const tasks = processTasks(deepCopy(tasks_21.items), {});
 
       expect(tasks).toBeTruthy();
-      expect(tasks).toHaveSize(20);
+      expect(tasks).toHaveSize(21);
 
       let filtered = filterTasks(['pool-tag:Chrome'], tasks);
       expect(filtered).toHaveSize(7);
@@ -1124,7 +1126,7 @@ describe('task-list', function() {
 
       // some tasks have multiple 'purpose' tags
       filtered = filterTasks(['purpose-tag:luci'], tasks);
-      expect(filtered).toHaveSize(8);
+      expect(filtered).toHaveSize(9);
       actualIds = filtered.map((task) => task.task_id);
       expect(actualIds).toContain('41e020504d0a5110'); // spot check
       expect(actualIds).not.toContain('41e0310fe0b7c410');
