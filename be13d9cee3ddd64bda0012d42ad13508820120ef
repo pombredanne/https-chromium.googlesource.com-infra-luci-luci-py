@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "683c8ed6_f0985d42",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-23T16:55:18Z",
+      "side": 1,
+      "message": "docstrings would be nice while it\u0027s fresh in your brain, even if they\u0027re short. I know it\u0027s not long-lived code (in theory :))",
+      "revId": "be13d9cee3ddd64bda0012d42ad13508820120ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97c4aa53_585c435d",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-23T16:55:18Z",
+      "side": 1,
+      "message": "will this be spammy? is stats.stale enough?",
+      "revId": "be13d9cee3ddd64bda0012d42ad13508820120ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab58fac7_de70526c",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-23T16:55:18Z",
+      "side": 1,
+      "message": "nit: could do it old-school and use an index to avoid the allocation (since this is py2)",
+      "revId": "be13d9cee3ddd64bda0012d42ad13508820120ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2ad5857_9b6a82c2",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-23T16:55:18Z",
+      "side": 1,
+      "message": "_ActiveQuery is shorter and more accurate at this point, I think.",
+      "range": {
+        "startLine": 475,
+        "startChar": 19,
+        "endLine": 475,
+        "endChar": 41
+      },
+      "revId": "be13d9cee3ddd64bda0012d42ad13508820120ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
