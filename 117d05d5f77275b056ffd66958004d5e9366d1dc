@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e71282c6_07b962e9",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list_test.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-08-24T08:07:49Z",
+      "side": 1,
+      "message": "Can we remove this?",
+      "revId": "117d05d5f77275b056ffd66958004d5e9366d1dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d76fd28_ffe4e576",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list_test.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-08-24T08:07:49Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "117d05d5f77275b056ffd66958004d5e9366d1dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7baa6b33_045c5207",
+        "filename": "appengine/swarming/ui2/modules/task-list/task-list_test.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-08-24T08:07:49Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "117d05d5f77275b056ffd66958004d5e9366d1dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9a17b08_8dfe12f3",
+        "filename": "appengine/swarming/ui2/modules/task-list/test_data.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-08-24T08:07:49Z",
+      "side": 1,
+      "message": "true?",
+      "revId": "117d05d5f77275b056ffd66958004d5e9366d1dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
