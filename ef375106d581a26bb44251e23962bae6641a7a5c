@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aceca59c_fed0fc7f",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1764,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-08-24T10:36:08Z",
+      "side": 1,
+      "message": "I realised that catching NonRecoverableCipdException \u0026 NonRecoverableCipdException is redundant, it should\u0027ve been caught and handled upstream.",
+      "revId": "ef375106d581a26bb44251e23962bae6641a7a5c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
