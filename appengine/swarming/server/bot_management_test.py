@@ -57,7 +57,7 @@ def _bot_event(bot_id=None,
   if not authenticated_as:
     authenticated_as = u'bot:%s.domain' % bot_id
   register_dimensions = kwargs.get('event_type').startswith('request_')
-  return bot_management.bot_event(
+  return bot_management.handle_bot_event(
       bot_id=bot_id,
       external_ip=external_ip,
       authenticated_as=authenticated_as,
@@ -368,6 +368,12 @@ class BotManagementTest(test_case.TestCase):
     self.assertEqual(
         expected,
         [i.to_dict() for i in bot_management.get_events_query('id1', True)])
+
+  def test_is_allowed_event_type(self):
+    for event in bot_management.BotEvent.ALLOWED_EVENTS:
+      not_event = "not%s" % event
+      self.assertTrue(event in bot_management.BotEvent.ALLOWED_EVENTS)
+      self.assertFalse(not_event not in bot_management.BotEvent.ALLOWED_EVENTS)
 
   def test_bot_event_poll_sleep(self):
     _bot_event(event_type='request_sleep')
