@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd1abe76_e3c12d0e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-24T01:19:30Z",
+      "side": 1,
+      "message": "nit: imo `inline` is kind of a bad name even though it\u0027s probably technically accurate... maybe `process_claimed` or something?",
+      "range": {
+        "startLine": 180,
+        "startChar": 28,
+        "endLine": 180,
+        "endChar": 34
+      },
+      "revId": "8c54aa95dbf469867ac37331bd17fa54aeaeaaa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9d6a5eb_8aca7641",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-24T01:19:30Z",
+      "side": 1,
+      "message": "this seems later than I would expect... if you deploy today then the max pending time is 7 days, right?",
+      "range": {
+        "startLine": 436,
+        "startChar": 20,
+        "endLine": 436,
+        "endChar": 31
+      },
+      "revId": "8c54aa95dbf469867ac37331bd17fa54aeaeaaa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
