@@ -82,6 +82,15 @@ class Handler(httpserver.Handler):
       self.server.parent.has_polled.set()
       return self.send_json({'cmd': 'sleep', 'duration': 60})
 
+    if self.path == '/swarming/api/v1/bot/active':
+      return self.send_json({
+          'cmd': 'assign_task',
+      })
+
+    if self.path == '/swarming/api/v1/bot/assign_task':
+      self.server.parent.has_polled.set()
+      return self.send_json({'cmd': 'sleep', 'duration': 60})
+
     if self.path.startswith('/swarming/api/v1/bot/task_update/'):
       task_id = self.path[len('/swarming/api/v1/bot/task_update/'):]
       must_stop = self.server.parent._on_task_update(task_id, data)

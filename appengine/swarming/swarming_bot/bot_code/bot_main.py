@@ -1249,21 +1249,63 @@ def _poll_server(botobj, quit_bit, last_action):
   """
   start = time.time()
   cmd = None
+
+  def _post_bot_event(event_type, message=None, **kwargs):
+    botobj.post_event(event_type, message=message, **kwargs)
+
   try:
-    cmd, value = botobj.remote.poll(botobj._attributes)
-  except remote_client_errors.PollError as e:
+    cmd, value = botobj.remote.active(botobj._attributes)
+  except remote_client_errors.ActiveError as e:
     # Back off on failure.
     delay = max(1, min(60, botobj.state.get('sleep_streak', 10) * 2))
-    logging.warning('Poll failed (%s), sleeping %.1f sec', e, delay)
+    logging.warning('Active failed (%s), sleeping %.1f sec', e, delay)
     quit_bit.wait(delay)
     return False
   finally:
-    _call_hook_safe(False, botobj, 'on_after_poll', cmd)
+    # if we return 'assign_task' then we have more to do and could
+    # get other commands to work on which would not be equivalent
+    # to the bot/poll loop as before
+    if cmd != 'assign_task':
+      _call_hook_safe(False, botobj, 'on_after_poll', cmd)
+
+  if cmd == "assign_task":
+    try:
+      logging.debug(
+          'Server responded with assign_task, requesting task assignment')
+      cmd, value = botobj.remote.assign_task(botobj._attributes)
+      if cmd == "run":
+        _post_bot_event('task_request',
+                        message=None,
+                        task_id=value.get('task_id'),
+                        task_name=value.get('task_name'))
+        success = _run_manifest(botobj, value, start)
+        # Unconditionally clean up cache after each task.
+        # This is done *after* the task is terminated, so that:
+        # - there's no task overhead
+        # - if there's an exception while cleaning, it's not logged in the task
+        _clean_cache(botobj)
+        if success:
+          # Completed a task successfully so update swarming_bot.zip if needed.
+          _update_lkgbc(botobj)
+        return True
+    except remote_client_errors.AssignTaskError as e:
+      delay = max(1, min(60, botobj.state.get('sleep_streak', 10) * 2))
+      logging.warning('AssignTask failed (%s), sleeping %.1f sec', e, delay)
+      quit_bit.wait(delay)
+      return False
+    finally:
+      # Back off on failure.
+      # Saving 'on_after_poll' for backcompat reasons since some customers
+      # still use it
+      # Having reviewed the other hooks this will have the same effect:
+      # https://cs/on_after_poll
+      _call_hook_safe(False, botobj, 'on_after_poll', cmd)
 
   logging.debug('Server response:\n%s: %s', cmd, value)
 
   if cmd == 'sleep':
     # Value is duration
+    _post_bot_event('request_sleep', message=None)
     _call_hook_safe(
         True, botobj, 'on_bot_idle', max(0, time.time() - last_action))
     _maybe_update_lkgbc(botobj)
@@ -1278,6 +1320,7 @@ def _poll_server(botobj, quit_bit, last_action):
 
   if cmd == 'terminate':
     # The value is the task ID to serve as the special termination command.
+    _post_bot_event('bot_terminate', message=None, task_id=value)
     quit_bit.set()
     try:
       # Duration must be set or server IEs. For that matter, we've never cared
@@ -1289,22 +1332,9 @@ def _poll_server(botobj, quit_bit, last_action):
       pass
     return False
 
-  if cmd == 'run':
-    # Value is the manifest
-    success = _run_manifest(botobj, value, start)
-    # Unconditionally clean up cache after each task. This is done *after* the
-    # task is terminated, so that:
-    # - there's no task overhead
-    # - if there's an exception while cleaning, it's not logged in the task
-    _clean_cache(botobj)
-    if success:
-      # Completed a task successfully so update swarming_bot.zip if necessary.
-      _update_lkgbc(botobj)
-    # TODO(maruel): Handle the case where quit_bit.is_set() happens here. This
-    # is concerning as this means a signal (often SIGTERM) was received while
-    # running the task. Make sure the host is properly restarting.
-  elif cmd == 'update':
+  if cmd == 'update':
     # Value is the version
+    _post_bot_event('request_update', version=value)
     _update_bot(botobj, value)
     _should_have_exited_but_didnt('Failed to self-update the bot')
   elif cmd in ('host_reboot', 'restart'):
@@ -1313,6 +1343,7 @@ def _poll_server(botobj, quit_bit, last_action):
     _should_have_exited_but_didnt('Failed to reboot the host')
   elif cmd == 'bot_restart':
     # Value is the message to display while restarting
+    _post_bot_event('request_restart')
     _bot_restart(botobj, value)
     _should_have_exited_but_didnt('Failed to restart the bot process')
   else:
