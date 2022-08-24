@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "815874f4_6aedc8b9",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-24T17:59:40Z",
+      "side": 1,
+      "message": "It affects not only \"set_lookup_cache\" but also number of retries in a transaction. I could not come up with a better name that describes these both effects.\n\nI plan to do two change later that will touch this code:\n1. Rename set_lookup_cache into something less vague.\n2. Refactor how expiration works because it is a buggy mess right now.\n\nI\u0027ll rename it then.",
+      "parentUuid": "cd1abe76_e3c12d0e",
+      "range": {
+        "startLine": 180,
+        "startChar": 28,
+        "endLine": 180,
+        "endChar": 34
+      },
+      "revId": "8c54aa95dbf469867ac37331bd17fa54aeaeaaa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9d6a5eb_8aca7641",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-24T01:19:30Z",
       "side": 1,
       "message": "this seems later than I would expect... if you deploy today then the max pending time is 7 days, right?",
+      "range": {
+        "startLine": 436,
+        "startChar": 20,
+        "endLine": 436,
+        "endChar": 31
+      },
+      "revId": "8c54aa95dbf469867ac37331bd17fa54aeaeaaa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57484a85_9443c2e5",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-24T17:59:40Z",
+      "side": 1,
+      "message": "There\u0027s no rush really. The fallback is not complicating code very much.",
+      "parentUuid": "a9d6a5eb_8aca7641",
       "range": {
         "startLine": 436,
         "startChar": 20,
