@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "639b2807_a8e47a39",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-24T00:47:41Z",
+      "side": 0,
+      "message": "This was sneaky :-/ it actually changed the memcache state regardless of `inline` value. It just for some reason then bailed when `inline` is True if the task is already claimed (and proceeded anyway in the cron case).\n\nI suspect this ignorance of result of set_lookup_cache in the cron code path is what causing a ton of contention when there\u0027s a large pending queue of *already expired* TaskToRun: the cron and bot_reap_task end up doing _expire_task_tx at the same time and colliding.\n\nI\u0027m not changing this logic for now, I want to keep this CL focused on improving the inner scheduling loop.",
+      "range": {
+        "startLine": 183,
+        "startChar": 5,
+        "endLine": 183,
+        "endChar": 67
+      },
+      "revId": "d9f43a1811f38cf2e9922a252dba59a80e7370d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
