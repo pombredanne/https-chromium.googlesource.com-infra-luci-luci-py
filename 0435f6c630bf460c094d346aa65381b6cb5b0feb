@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8822a73c_ac7efb8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-24T23:22:58Z",
+      "side": 1,
+      "message": "Congrats, you are now our only expert in Swarming UI 😊",
+      "revId": "0435f6c630bf460c094d346aa65381b6cb5b0feb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
