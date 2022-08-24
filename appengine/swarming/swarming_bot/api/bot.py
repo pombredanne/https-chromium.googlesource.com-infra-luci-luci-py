@@ -216,11 +216,11 @@ class Bot(object):
                           self.id.encode('utf-8'))).digest()[:2])[0]
     return round(b / 32768. * width, 4)
 
-  def post_event(self, event_type, message):
+  def post_event(self, event_type, message, **kwargs):
     """Posts an event to the server."""
     with self._lock:
       attr = copy.deepcopy(self._attributes)
-    self._remote.post_bot_event(event_type, message, attr)
+    self._remote.post_bot_event(event_type, message, attr, **kwargs)
 
   def post_error(self, message):
     """Posts given string as a failure.

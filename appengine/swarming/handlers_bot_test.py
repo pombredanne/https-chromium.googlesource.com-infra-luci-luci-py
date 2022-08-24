@@ -111,7 +111,9 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.mock(bot_auth,
               'validate_bot_id_and_fetch_config', lambda *args, **kwargs: cfg)
 
-  def emulate_bot_poll(self, params, ignore_event_fields=[]):
+  def emulate_bot_poll(self, params, ignore_event_fields=None):
+    if ignore_event_fields is None:
+      ignore_event_fields = []
     active_response = self.post_json('/swarming/api/v1/bot/active', params)
     self.assertEquals('assign_task', active_response['cmd'])
     response = self.post_json('/swarming/api/v1/bot/assign_task', params)
