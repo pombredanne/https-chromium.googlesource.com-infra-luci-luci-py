@@ -16,6 +16,149 @@
       "message": "PTAL",
       "revId": "79edc4d873a45bf5fa30bf48cb28db17c4d72049",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55d5fff9_83721eed",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-25T22:03:49Z",
+      "side": 1,
+      "message": "nit: has",
+      "range": {
+        "startLine": 67,
+        "startChar": 2,
+        "endLine": 67,
+        "endChar": 6
+      },
+      "revId": "79edc4d873a45bf5fa30bf48cb28db17c4d72049",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43acc97c_e037d03b",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-25T22:03:49Z",
+      "side": 1,
+      "message": "TIL! (This is good)",
+      "range": {
+        "startLine": 87,
+        "startChar": 45,
+        "endLine": 89,
+        "endChar": 5
+      },
+      "revId": "79edc4d873a45bf5fa30bf48cb28db17c4d72049",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86e4eb45_7c80c1f3",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-25T22:03:49Z",
+      "side": 1,
+      "message": "note: this is tricky to model in Go gae right now... I suspect we should add pointery field type support (i.e. nil \u003d\u003d None) for this sort of thing.",
+      "range": {
+        "startLine": 117,
+        "startChar": 13,
+        "endLine": 117,
+        "endChar": 17
+      },
+      "revId": "79edc4d873a45bf5fa30bf48cb28db17c4d72049",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d32bfcc9_c051c100",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-25T22:03:49Z",
+      "side": 1,
+      "message": "Hm... I wonder why it\u0027s a field and not just recorded as a metric at expiration time?",
+      "range": {
+        "startLine": 121,
+        "startChar": 39,
+        "endLine": 121,
+        "endChar": 66
+      },
+      "revId": "79edc4d873a45bf5fa30bf48cb28db17c4d72049",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60f75d1f_1ec7b314",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-25T22:03:49Z",
+      "side": 1,
+      "message": "ultranit: this should probably use slots",
+      "revId": "79edc4d873a45bf5fa30bf48cb28db17c4d72049",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be45e9fc_e7c33b79",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-25T22:03:49Z",
+      "side": 1,
+      "message": "slots everywhere....",
+      "revId": "79edc4d873a45bf5fa30bf48cb28db17c4d72049",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ec4a7a0_0b5c09da",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-25T22:03:49Z",
+      "side": 1,
+      "message": "you could fix the wrong claim removal thing by using cas (i.e. add+gets, then cas to set an expiration of 1s)",
+      "revId": "79edc4d873a45bf5fa30bf48cb28db17c4d72049",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
