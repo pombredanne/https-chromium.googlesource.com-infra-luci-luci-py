@@ -1,0 +1,20 @@
+# This is a vpython "spec" file.
+#
+# Read more about `vpython` and how to modify this file here:
+#   https://chromium.googlesource.com/infra/infra/+/master/doc/users/vpython.md
+
+# This spec for the case swarming.py is used via
+# https://chromium.googlesource.com/infra/luci/client-py
+
+python_version:"3.8"
+
+wheel: <
+ name: "infra/python/wheels/pyobjc/${vpython_platform}"
+ version: "version:7.3.chromium.1"
+ match_tag: <
+   platform: "macosx_10_10_intel"
+ >
+ match_tag: <
+   platform: "macosx_11_0_arm64"
+ >
+>
