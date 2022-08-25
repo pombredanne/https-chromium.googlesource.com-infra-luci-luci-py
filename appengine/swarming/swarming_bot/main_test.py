@@ -126,17 +126,17 @@ class MainTest(TestCase):
       event.pop('dimensions')
       event.pop('state')
       event.pop('version')
-    expected = [
-        {
-            'event': 'bot_shutdown',
-            'message': 'Signal was received',
-        },
-    ]
+    expected = {
+        'event': 'bot_shutdown',
+        'message': 'Signal was received',
+    }
     if sys.platform == 'win32':
       # Sadly, the signal handler generate an error.
       # TODO(maruel): Fix one day.
       self.assertEqual('bot_error', events.pop(0)['event'])
-    self.assertEqual(expected, events)
+    # the final event will always be bot_shutdown
+    # the bot may have emitted other events
+    self.assertEqual(expected, events[-1])
 
 
 if __name__ == '__main__':
