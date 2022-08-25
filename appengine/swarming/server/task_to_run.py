@@ -414,7 +414,7 @@ class _ActiveQuery(object):
       try:
         fetched, cursor, more = yield self._query.fetch_page_async(
             self._page_size, start_cursor=cursor, deadline=deadline)
-      except apiproxy_errors.DeadlineExceededError:
+      except (apiproxy_errors.DeadlineExceededError, datastore_errors.Timeout):
         # TODO(vadimsh): Maybe it makes sense to use a smaller RPC deadline and
         # instead retry the call a bunch of times until reaching the overall
         # deadline?
