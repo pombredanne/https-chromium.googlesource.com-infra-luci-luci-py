@@ -36,19 +36,18 @@ def _bot_event(bot_id, pool, caches, oses):
           name: [['a', size], 10] for name, size in caches.items()
       }
   }
-  bot_management.bot_event(
-      event_type='request_sleep',
-      bot_id=bot_id,
-      external_ip='8.8.4.4',
-      authenticated_as=u'bot:%s.domain' % bot_id,
-      dimensions=dimensions,
-      state=state or {'ram': 65},
-      version=unicode(hashlib.sha256().hexdigest()),
-      quarantined=False,
-      maintenance_msg=None,
-      task_id=None,
-      task_name=None,
-      register_dimensions=True)
+  bot_management.handle_bot_event(event_type='request_sleep',
+                                  bot_id=bot_id,
+                                  external_ip='8.8.4.4',
+                                  authenticated_as=u'bot:%s.domain' % bot_id,
+                                  dimensions=dimensions,
+                                  state=state or {'ram': 65},
+                                  version=unicode(hashlib.sha256().hexdigest()),
+                                  quarantined=False,
+                                  maintenance_msg=None,
+                                  task_id=None,
+                                  task_name=None,
+                                  register_dimensions=True)
 
 
 class NamedCachesTest(test_case.TestCase):
