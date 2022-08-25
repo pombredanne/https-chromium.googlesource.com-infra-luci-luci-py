@@ -534,10 +534,13 @@ def filter_availability(q, quarantined, in_maintenance, is_dead, is_busy):
   return q
 
 
-def bot_event(
-    event_type, bot_id, external_ip, authenticated_as, dimensions, state,
-    version, quarantined, maintenance_msg, task_id, task_name,
-    register_dimensions, **kwargs):
+def is_allowed_event_type(event_type):
+  return event_type in BotEvent.ALLOWED_EVENTS
+
+
+def handle_bot_event(event_type, bot_id, external_ip, authenticated_as,
+                     dimensions, state, version, quarantined, maintenance_msg,
+                     task_id, task_name, register_dimensions, **kwargs):
   """Records when a bot has queried for work.
 
   This event happening usually means the bot is alive (not dead), except for
@@ -570,7 +573,7 @@ def bot_event(
   Returns:
     ndb.Key to BotEvent entity if one was added.
   """
-  assert event_type in BotEvent.ALLOWED_EVENTS, event_type
+  assert is_allowed_event_type(event_type), event_type
   if not bot_id:
     return
 
@@ -784,21 +787,20 @@ def cron_update_bot_info():
       # BotInfo entity, which we just mutated above, so it also has a higher
       # chance to fail.
       logging.info('Sending bot_missing event: %s', bot.id)
-      bot_event(
-          event_type='bot_missing',
-          bot_id=bot.id,
-          message=None,
-          external_ip=None,
-          authenticated_as=None,
-          dimensions=None,
-          state=None,
-          version=None,
-          quarantined=None,
-          maintenance_msg=None,
-          task_id=None,
-          task_name=None,
-          register_dimensions=False,
-          last_seen_ts=bot.last_seen_ts)
+      handle_bot_event(event_type='bot_missing',
+                       bot_id=bot.id,
+                       message=None,
+                       external_ip=None,
+                       authenticated_as=None,
+                       dimensions=None,
+                       state=None,
+                       version=None,
+                       quarantined=None,
+                       maintenance_msg=None,
+                       task_id=None,
+                       task_name=None,
+                       register_dimensions=False,
+                       last_seen_ts=bot.last_seen_ts)
     except datastore_utils.CommitError:
       logging.warning('Failed to commit a Tx')
       stats['failed'] += 1
