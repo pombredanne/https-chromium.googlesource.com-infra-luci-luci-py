@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6825dff7_ddd6fa73",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-25T22:08:34Z",
+      "side": 1,
+      "message": "🙄",
+      "range": {
+        "startLine": 533,
+        "startChar": 0,
+        "endLine": 533,
+        "endChar": 75
+      },
+      "revId": "17d0f5cc3bd4d1a0ad4ff471a1030148047c228a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "deccc256_e57d869a",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-25T22:08:34Z",
+      "side": 1,
+      "message": "I kind of hate this comment.",
+      "range": {
+        "startLine": 689,
+        "startChar": 0,
+        "endLine": 690,
+        "endChar": 18
+      },
+      "revId": "17d0f5cc3bd4d1a0ad4ff471a1030148047c228a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
