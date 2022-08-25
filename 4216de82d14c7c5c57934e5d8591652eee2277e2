@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c15f5242_4693c76f",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-25T22:37:32Z",
+      "side": 1,
+      "message": "`default_options` is a way to supply default options to `query.fetch_page_async()`. We were actually supplying `deadline\u003d...` to each `fetch_page_async` call explicitly. So I\u0027m pretty sure these `opts` here were totally ignored.",
+      "parentUuid": "d28ee3c3_7eb4eff1",
+      "range": {
+        "startLine": 309,
+        "startChar": 22,
+        "endLine": 309,
+        "endChar": 23
+      },
+      "revId": "4216de82d14c7c5c57934e5d8591652eee2277e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08b57cd3_f0dbd078",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-25T22:27:29Z",
       "side": 1,
       "message": "right, that...",
+      "range": {
+        "startLine": 418,
+        "startChar": 8,
+        "endLine": 420,
+        "endChar": 19
+      },
+      "revId": "4216de82d14c7c5c57934e5d8591652eee2277e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e06a172_06738408",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-25T22:37:32Z",
+      "side": 1,
+      "message": "I\u0027m not sure about this change, since before this CL we actually had full 60s deadline. I can imagine datastore might actually need a lot of time to scan through \"tombstones\" until it gets to the good stuff. If we always give it no more than e.g. 10s, it may never make any progress. But I don\u0027t know how to check this. Decided not to change the logic significantly for now.",
+      "parentUuid": "08b57cd3_f0dbd078",
       "range": {
         "startLine": 418,
         "startChar": 8,
