@@ -601,7 +601,7 @@ class TestBotMain(TestBotBase):
         'pool': ['default'],
     }, botobj[0].dimensions)
 
-  def test_poll_server_sleep(self):
+  def test_active_server_sleep(self):
     slept = []
     bit = threading.Event()
     self.mock(bit, 'wait', slept.append)
@@ -610,15 +610,31 @@ class TestBotMain(TestBotBase):
     from config import bot_config
     called = []
     self.mock(bot_config, 'on_bot_idle', lambda _bot, _s: called.append(1))
-    self.mock(uuid, 'uuid4', lambda: uuid.UUID(REQUEST_UUID))
 
     data = self.attributes.copy()
-    data['request_uuid'] = REQUEST_UUID
+    event_data = data.copy()
+    event_data['event'] = 'request_sleep'
     self.expected_requests([
         (
-            'https://localhost:1/swarming/api/v1/bot/poll',
+            'https://localhost:1/swarming/api/v1/bot/active',
             {
                 'data': data,
+                'expected_error_codes': None,
+                'follow_redirects': False,
+                'headers': {
+                    'Cookie': 'GOOGAPPUID=42'
+                },
+                'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
+            },
+            {
+                'cmd': 'sleep',
+                'duration': 1.24,
+            },
+        ),
+        (
+            'https://localhost:1/swarming/api/v1/bot/event',
+            {
+                'data': event_data,
                 'expected_error_codes': None,
                 'follow_redirects': False,
                 'headers': {
@@ -636,21 +652,22 @@ class TestBotMain(TestBotBase):
     self.assertEqual([1.24], slept)
     self.assertEqual([1], called)
 
-  def test_poll_server_sleep_with_auth(self):
+  def test_active_server_sleep_with_auth(self):
     slept = []
     bit = threading.Event()
     self.mock(bit, 'wait', slept.append)
     self.mock(bot_main, '_run_manifest', self.fail)
     self.mock(bot_main, '_update_bot', self.fail)
-    self.mock(uuid, 'uuid4', lambda: uuid.UUID(REQUEST_UUID))
 
     self.bot = self.make_bot(lambda: ({'A': 'a'}, time.time() + 3600))
 
     data = self.attributes.copy()
-    data['request_uuid'] = REQUEST_UUID
+    event_data = self.attributes.copy()
+    event_data['event'] = 'request_sleep'
+    event_data['message'] = None
     self.expected_requests([
         (
-            'https://localhost:1/swarming/api/v1/bot/poll',
+            'https://localhost:1/swarming/api/v1/bot/active',
             {
                 'data': data,
                 'expected_error_codes': None,
@@ -666,11 +683,21 @@ class TestBotMain(TestBotBase):
                 'duration': 1.24,
             },
         ),
+        ('https://localhost:1/swarming/api/v1/bot/event', {
+            'data': event_data,
+            'expected_error_codes': None,
+            'follow_redirects': False,
+            'headers': {
+                'A': 'a',
+                'Cookie': 'GOOGAPPUID=42'
+            },
+            'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
+        }, {}),
     ])
     self.assertFalse(bot_main._poll_server(self.bot, bit, 0))
     self.assertEqual([1.24], slept)
 
-  def test_poll_server_run(self):
+  def test_active_assign_server_run(self):
     manifest = []
     clean = []
     bit = threading.Event()
@@ -681,10 +708,19 @@ class TestBotMain(TestBotBase):
     self.mock(uuid, 'uuid4', lambda: uuid.UUID(REQUEST_UUID))
 
     data = self.bot._attributes.copy()
-    data['request_uuid'] = REQUEST_UUID
+    assign_data = self.bot._attributes.copy()
+    assign_data['request_uuid'] = REQUEST_UUID
+    task_id = '1234'
+    task_name = 'a task'
+    event_data = data.copy()
+    event_data['event'] = 'task_request'
+    event_data['message'] = None
+    event_data['task_id'] = task_id
+    event_data['task_name'] = task_name
+
     self.expected_requests([
         (
-            'https://localhost:1/swarming/api/v1/bot/poll',
+            'https://localhost:1/swarming/api/v1/bot/active',
             {
                 'data': data,
                 'expected_error_codes': None,
@@ -695,33 +731,62 @@ class TestBotMain(TestBotBase):
                 'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
             },
             {
+                'cmd': 'assign_task',
+            },
+        ),
+        (
+            'https://localhost:1/swarming/api/v1/bot/assign_task',
+            {
+                'data': assign_data,
+                'expected_error_codes': None,
+                'follow_redirects': False,
+                'headers': {
+                    'Cookie': 'GOOGAPPUID=42'
+                },
+                'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
+            },
+            {
                 'cmd': 'run',
                 'manifest': {
-                    'foo': 'bar'
+                    'task_id': task_id,
+                    'task_name': task_name,
                 },
             },
         ),
+        ('https://localhost:1/swarming/api/v1/bot/event', {
+            'data': event_data,
+            'expected_error_codes': None,
+            'follow_redirects': False,
+            'headers': {
+                'Cookie': 'GOOGAPPUID=42'
+            },
+            'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
+        }, {}),
     ])
     self.assertTrue(bot_main._poll_server(self.bot, bit, 0))
-    expected = [(self.bot, {'foo': 'bar'}, time.time())]
+    expected = [(self.bot, {
+        'task_name': task_name,
+        'task_id': task_id
+    }, time.time())]
     self.assertEqual(expected, manifest)
     expected = [(self.bot,)]
     self.assertEqual(expected, clean)
     self.assertEqual(None, self.bot.bot_restart_msg())
 
-  def test_poll_server_update(self):
+  def test_active_server_update(self):
     update = []
     bit = threading.Event()
     self.mock(bit, 'wait', self.fail)
     self.mock(bot_main, '_run_manifest', self.fail)
     self.mock(bot_main, '_update_bot', lambda *args: update.append(args))
-    self.mock(uuid, 'uuid4', lambda: uuid.UUID(REQUEST_UUID))
 
     data = self.attributes.copy()
-    data['request_uuid'] = REQUEST_UUID
+    event_data = data.copy()
+    event_data['event'] = 'request_update'
+    event_data['version'] = '345'
     self.expected_requests([
         (
-            'https://localhost:1/swarming/api/v1/bot/poll',
+            'https://localhost:1/swarming/api/v1/bot/active',
             {
                 'data': data,
                 'expected_error_codes': None,
@@ -733,15 +798,28 @@ class TestBotMain(TestBotBase):
             },
             {
                 'cmd': 'update',
-                'version': '123',
+                'version': '345',
             },
+        ),
+        (
+            'https://localhost:1/swarming/api/v1/bot/event',
+            {
+                'data': event_data,
+                'expected_error_codes': None,
+                'follow_redirects': False,
+                'headers': {
+                    'Cookie': 'GOOGAPPUID=42'
+                },
+                'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
+            },
+            {},
         ),
     ])
     self.assertTrue(bot_main._poll_server(self.bot, bit, 0))
-    self.assertEqual([(self.bot, '123')], update)
+    self.assertEqual([(self.bot, '345')], update)
     self.assertEqual(None, self.bot.bot_restart_msg())
 
-  def test_poll_server_restart(self):
+  def test_active_server_restart(self):
     restarts = []
     bit = threading.Event()
     self.mock(bit, 'wait', self.fail)
@@ -749,13 +827,13 @@ class TestBotMain(TestBotBase):
     self.mock(bot_main, '_update_bot', self.fail)
     self.mock(self.bot, 'host_reboot', self.fail)
     self.mock(bot_main, '_bot_restart', lambda obj, x: restarts.append(x))
-    self.mock(uuid, 'uuid4', lambda: uuid.UUID(REQUEST_UUID))
 
     data = self.attributes.copy()
-    data['request_uuid'] = REQUEST_UUID
+    event_data = data.copy()
+    event_data['event'] = 'request_restart'
     self.expected_requests([
         (
-            'https://localhost:1/swarming/api/v1/bot/poll',
+            'https://localhost:1/swarming/api/v1/bot/active',
             {
                 'data': data,
                 'expected_error_codes': None,
@@ -770,25 +848,36 @@ class TestBotMain(TestBotBase):
                 'message': 'Please restart now',
             },
         ),
+        (
+            'https://localhost:1/swarming/api/v1/bot/event',
+            {
+                'data': event_data,
+                'expected_error_codes': None,
+                'follow_redirects': False,
+                'headers': {
+                    'Cookie': 'GOOGAPPUID=42'
+                },
+                'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
+            },
+            {},
+        ),
     ])
     self.assertTrue(bot_main._poll_server(self.bot, bit, 0))
     self.assertEqual(['Please restart now'], restarts)
     self.assertEqual(None, self.bot.bot_restart_msg())
 
-  def test_poll_server_reboot(self):
+  def test_active_server_reboot(self):
     reboots = []
     bit = threading.Event()
     self.mock(bit, 'wait', self.fail)
     self.mock(bot_main, '_run_manifest', self.fail)
     self.mock(bot_main, '_update_bot', self.fail)
     self.mock(self.bot, 'host_reboot', lambda *args: reboots.append(args))
-    self.mock(uuid, 'uuid4', lambda: uuid.UUID(REQUEST_UUID))
 
     data = self.attributes.copy()
-    data['request_uuid'] = REQUEST_UUID
     self.expected_requests([
         (
-            'https://localhost:1/swarming/api/v1/bot/poll',
+            'https://localhost:1/swarming/api/v1/bot/active',
             {
                 'data': data,
                 'expected_error_codes': None,
@@ -805,7 +894,52 @@ class TestBotMain(TestBotBase):
         ),
     ])
     self.assertTrue(bot_main._poll_server(self.bot, bit, 0))
-    self.assertEqual([('Please die now',)], reboots)
+    self.assertEqual([('Please die now', )], reboots)
+    self.assertEqual(None, self.bot.bot_restart_msg())
+
+  def test_assign_task_and_terminate(self):
+    reboots = []
+    bit = threading.Event()
+    self.mock(bit, 'wait', self.fail)
+    self.mock(bot_main, '_run_manifest', self.fail)
+    self.mock(bot_main, '_update_bot', self.fail)
+    self.mock(self.bot, 'host_reboot', lambda *args: reboots.append(args))
+    self.mock(uuid, 'uuid4', lambda: uuid.UUID(REQUEST_UUID))
+
+    data = self.attributes.copy()
+    assign_data = self.bot._attributes.copy()
+    assign_data['request_uuid'] = REQUEST_UUID
+    self.expected_requests([
+        (
+            'https://localhost:1/swarming/api/v1/bot/active',
+            {
+                'data': data,
+                'expected_error_codes': None,
+                'follow_redirects': False,
+                'headers': {
+                    'Cookie': 'GOOGAPPUID=42'
+                },
+                'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
+            },
+            {
+                'cmd': 'assign_task',
+            },
+        ),
+        ('https://localhost:1/swarming/api/v1/bot/assign_task', {
+            'data': assign_data,
+            'expected_error_codes': None,
+            'follow_redirects': False,
+            'headers': {
+                'Cookie': 'GOOGAPPUID=42'
+            },
+            'timeout': remote_client.NET_CONNECTION_TIMEOUT_SEC,
+        }, {
+            'cmd': 'host_reboot',
+            'message': 'Please die now',
+        })
+    ])
+    self.assertTrue(bot_main._poll_server(self.bot, bit, 0))
+    self.assertEqual([('Please die now', )], reboots)
     self.assertEqual(None, self.bot.bot_restart_msg())
 
   def _mock_popen(self,
