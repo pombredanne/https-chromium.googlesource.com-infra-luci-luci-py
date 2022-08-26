@@ -936,7 +936,6 @@ class _BotCommandHandler(_BotBaseHandler):
     }
     self.send_response(out)
 
-
 class BotActiveHandler(_BotCommandHandler):
   @auth.public
   def post(self):
@@ -1167,10 +1166,15 @@ class BotEventHandler(_BotBaseHandler):
       u'message',
   }
 
+  def _should_update_dimensions(self, event):
+    return event not in ('bot_error', 'bot_log', 'bot_rebooting',
+                         'bot_shutdown')
+
   @auth.public  # auth happens in self._process()
   def post(self):
     res = self._process()
     event = res.request.get('event')
+    logging.info("Event: '%s' detected", event)
     if not bot_management.is_allowed_event_type(event):
       logging.error('Unexpected event type: %s', event)
       self.abort_with_error(400, error='Unsupported event type')
@@ -1192,7 +1196,7 @@ class BotEventHandler(_BotBaseHandler):
           task_id=res.request.get('task_id'),
           task_name=res.request.get('task_name'),
           message=res.quarantined_msg if res.quarantined_msg else message,
-          register_dimensions=False)
+          register_dimensions=self._should_update_dimensions(event))
     except datastore_errors.BadValueError as e:
       logging.warning('Invalid BotInfo or BotEvent values', exc_info=True)
       return self.abort_with_error(400, error=e.message)
