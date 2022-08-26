@@ -16,6 +16,23 @@
       "message": "The spec is small, should we just embed it into the script? https://chromium.googlesource.com/infra/infra/+/HEAD/doc/users/vpython.md#embedded-specification",
       "revId": "a876cc75067e7912dfc2d7c3c7598a8a33ce24f1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a052e83d_4b8ca600",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-26T00:52:10Z",
+      "side": 1,
+      "message": "Future troopers FYI",
+      "revId": "a876cc75067e7912dfc2d7c3c7598a8a33ce24f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
