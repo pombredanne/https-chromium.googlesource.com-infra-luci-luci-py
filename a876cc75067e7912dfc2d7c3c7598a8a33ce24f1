@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f42775a_7fc97d54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-26T00:51:02Z",
+      "side": 1,
+      "message": "The spec is small, should we just embed it into the script? https://chromium.googlesource.com/infra/infra/+/HEAD/doc/users/vpython.md#embedded-specification",
+      "revId": "a876cc75067e7912dfc2d7c3c7598a8a33ce24f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
