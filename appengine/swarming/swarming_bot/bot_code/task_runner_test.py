@@ -1269,7 +1269,7 @@ class TestTaskRunnerKilled(TestTaskRunnerBase):
     self.assertEqual([], self.server.get_bot_events())
     expected = {
         'swarming_bot.1.zip',
-        '7f03c894282e3fc39105466a8ee5055ffd05e79dfd4010360117078afbfa68bd'
+        '9c9b9685ad319b9747c3fe69b46a61c11a0efabdfa09ca6a8b0c3da421036d27'
         '-cacert.'
         'pem',
         'w',
