@@ -2042,7 +2042,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         completed_ts=self.now,
         costs_usd=[0.],
         id='1d69b9f088008910',
-        internal_failure=True,
+        internal_failure=False,
         missing_cas=expected_missing_cas,
         started_ts=self.now,
         state=State.CLIENT_ERROR,
@@ -2057,7 +2057,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         abandoned_ts=self.now,
         completed_ts=self.now,
         id='1d69b9f088008911',
-        internal_failure=True,
+        internal_failure=False,
         missing_cas=expected_missing_cas,
         state=State.CLIENT_ERROR,
         killing=None,
@@ -2093,13 +2093,14 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         None,
         task_scheduler.bot_terminate_task(run_result.key, 'localhost', self.now,
                                           client_error))
+    self.maxDiff = None
     # check result summary
     expected = self._gen_result_summary_reaped(
         abandoned_ts=self.now,
         completed_ts=self.now,
         costs_usd=[0.],
         id='1d69b9f088008910',
-        internal_failure=True,
+        internal_failure=False,
         missing_cipd=client_error['missing_cipd'],
         started_ts=self.now,
         state=State.CLIENT_ERROR,
@@ -2114,7 +2115,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         abandoned_ts=self.now,
         completed_ts=self.now,
         id='1d69b9f088008911',
-        internal_failure=True,
+        internal_failure=False,
         missing_cipd=client_error['missing_cipd'],
         state=State.CLIENT_ERROR,
         killing=None,
