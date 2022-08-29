@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c861e394_74d0b629",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-29T22:32:01Z",
+      "side": 1,
+      "message": "I hope ndb is smart enough to split it into multiple RPCs if len(to_put) \u003e 250 (which is a API-level limit on number of entities in a single Put)...",
+      "range": {
+        "startLine": 484,
+        "startChar": 10,
+        "endLine": 484,
+        "endChar": 37
+      },
+      "revId": "27f79b5d07f0b9a910b982baee725424a5a6d5d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
