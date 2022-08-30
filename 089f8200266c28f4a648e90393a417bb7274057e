@@ -16,6 +16,24 @@
       "message": "I\u0027m realizing that the updated CA looks like it\u0027s removing a lot of CA\u0027s in the Mozilla trusted roots program. Is maybe roots.pem only for Google-only servers?",
       "revId": "089f8200266c28f4a648e90393a417bb7274057e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "002f1b10_59686562",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1553262
+      },
+      "writtenOn": "2022-08-30T00:44:55Z",
+      "side": 1,
+      "message": "I have had a look into this a bit more and I think the answer is that the roots.pem should be sufficient. I have reached out to the certs team to confirm this and so we know what the inclusion criteria is for the future.\n\n\u003e Is maybe roots.pem only for Google-only servers?\nThe go/which-roots documentation indicates that the roots.pem should contain certificates that are publicly trusted as part of the Mozilla program and it looks like it does, but only a small subset of them (104 are missing).\n\nSome of the certificates Mozilla bundles as part of their release include additional domain use restrictions which can\u0027t be reflected in roots.pem so they may have been pruned?",
+      "parentUuid": "d875e937_d23020a6",
+      "revId": "089f8200266c28f4a648e90393a417bb7274057e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
