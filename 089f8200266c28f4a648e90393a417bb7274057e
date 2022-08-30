@@ -52,6 +52,23 @@
       "parentUuid": "002f1b10_59686562",
       "revId": "089f8200266c28f4a648e90393a417bb7274057e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "398796e0_0a078fd1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1553262
+      },
+      "writtenOn": "2022-08-30T02:00:02Z",
+      "side": 1,
+      "message": "Hi Vadim,\n\nHoping you could take a look at this when you have time.\n\nThanks,\nRachael",
+      "revId": "089f8200266c28f4a648e90393a417bb7274057e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
