@@ -69,6 +69,23 @@
       "message": "Hi Vadim,\n\nHoping you could take a look at this when you have time.\n\nThanks,\nRachael",
       "revId": "089f8200266c28f4a648e90393a417bb7274057e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb95f134_36f5aa8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-30T02:02:12Z",
+      "side": 1,
+      "message": "Please add a note here that this file was updated: https://chromium.googlesource.com/infra/luci/luci-py/+/089f8200266c28f4a648e90393a417bb7274057e/client/third_party/certifi/README.swarming",
+      "revId": "089f8200266c28f4a648e90393a417bb7274057e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
