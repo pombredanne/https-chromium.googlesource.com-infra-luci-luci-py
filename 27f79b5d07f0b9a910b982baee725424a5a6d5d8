@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "fa648c40_0ab890ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-30T18:18:32Z",
+      "side": 1,
+      "message": "There are two kinds of contention in Datastore (and Firestore running in \"Optimistic With Entity Groups concurrency\" mode, which is how migrated datastore DBs run):\n\n1. Real transactional collisions: when two transactions mutate the same entity at the same time. Datastore (and Firestore in beforementioned mode) uses \"optimistic concurrency\" for transactions: there are no locks or blocking. Transactions both run at the same time, and at the moment of the commit datastore checks if any things that transaction read were mutated since the transaction started. If so, it aborts the transaction by retuning ABORTED code, and ndb code retries it again (including rerunning txn callback).\n\n2. Entity group contention: there\u0027s a soft limit on how often an entity group can be written to (via `Put` or transactions). I believe it is purely an artifact of how Datastore implements global replication and consistency. If you write to the same entity group more often than 1 write per second, datastore occasionally craps out with \"too much contention on these datastore entities\" error (I don\u0027t know what status code it is). This limit is relaxed in Firestore when *not* running in \"Optimistic With Entity Groups concurrency\". In that case it is 1 write per *entity*, not entity group.\n\nThis CL reduces errors due to (2). There were almost guaranteed to happen for some busy bots that have a lot of BotDimensions entities.\n\nYou are correct, it increases chances of errors due to (1), but the transaction doesn\u0027t really read anything, so it should not be conflicting with other transactions often (I hope... not super sure how write-only transaction work w.r.t. collisions). I also considered changing it to be a non-transactional ndb.put_multi + ndb.delete_multi, but I\u0027m not sure how well this works w.r.t. entity group contention (will datastore consider it a single write? N writes?..).\n\nThe two other places where this entity group is modified are cron_tidy_stale and some code in rebuild_task_cache_async. I\u0027ve added a tweak (_TIDY_BOT_DIMENSIONS_CRON_LAG) to reduce potentially collisions in cron_tidy_stale in https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3863088 I\u0027m still researching how rebuild_task_cache_async works.\n\nRe timeouts: I haven\u0027t thought about it. I believe in practice we\u0027ll be mutating at most maybe 100 entities (http://shortn/_sAbS4eH4gb shows very little activity from bots with number of polled queues \u003e25, and the number of queues \u003d\u003d number of BotTaskDimensions... 25 entities added + 25 deleted x2 fudge factor \u003d 100). Each BotTaskDimensions is maybe 200 bytes. Transactionally changing 20K should not be a problem even with the default timeout. But I\u0027ll keep an eye on it.\n\nRe metrics: I don\u0027t know. I believe some of collisions manifest as ABORTED errors and show up in \"Server Error Percentage per Response Code\" graph e.g. here http://shortn/_x3lqIdVPsY). I also suspect INVALID_ARGUMENT is related to that (stale transaction ID), but I\u0027m not sure.",
+      "parentUuid": "c5956cbe_d859aba4",
+      "revId": "27f79b5d07f0b9a910b982baee725424a5a6d5d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c861e394_74d0b629",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 1
