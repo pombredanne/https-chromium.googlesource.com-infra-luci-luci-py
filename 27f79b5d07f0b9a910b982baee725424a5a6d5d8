@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c5956cbe_d859aba4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-08-30T16:34:37Z",
+      "side": 1,
+      "message": "I have a general questions about this CL:\n\nThere are timeouts with `ndb.transactions`. The transactions also retry if they conflict with other transactions[1]. Is there a greater risk for the entities collected in the one big transaction to either:\n1. never be applied since there are conflicts in a small number of the entities which are being updated\n2. timeout since there could be numerous entities which are stale and the transaction takes longer than 1 minute\n\nMy other question is where one can find good metrics about contention in the database. I have discovered http://screen/BTWBxtkoqTVEZ4Y which I don\u0027t understand yet. Are there some other places I should look? \n\n- [1] https://cloud.google.com/appengine/docs/legacy/standard/python/ndb/transactions",
+      "revId": "27f79b5d07f0b9a910b982baee725424a5a6d5d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c861e394_74d0b629",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 1
