@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1222ccdf_33ea1178",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-31T21:31:55Z",
+      "side": 1,
+      "message": "it\u0027s not sorted or anything, is it?",
+      "range": {
+        "startLine": 209,
+        "startChar": 33,
+        "endLine": 209,
+        "endChar": 39
+      },
+      "revId": "46c92a78b527c5fdd4ff93a0d87aa156ba82f207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6571fc9e_e64af21a",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-31T21:31:55Z",
+      "side": 1,
+      "message": "document no duplicates here instead of _equals",
+      "range": {
+        "startLine": 211,
+        "startChar": 34,
+        "endLine": 211,
+        "endChar": 38
+      },
+      "revId": "46c92a78b527c5fdd4ff93a0d87aa156ba82f207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67b43627_cc3cc111",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-31T21:31:55Z",
+      "side": 1,
+      "message": "this will be problematic for indexing; IIRC this is stored as a proto blob (this is different from `StructuredProperty`",
+      "range": {
+        "startLine": 265,
+        "startChar": 13,
+        "endLine": 265,
+        "endChar": 36
+      },
+      "revId": "46c92a78b527c5fdd4ff93a0d87aa156ba82f207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42cf9fb9_f0c0ccfe",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-31T21:31:55Z",
+      "side": 1,
+      "message": "doc return? looks like a random string?",
+      "range": {
+        "startLine": 552,
+        "startChar": 34,
+        "endLine": 552,
+        "endChar": 48
+      },
+      "revId": "46c92a78b527c5fdd4ff93a0d87aa156ba82f207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "744876f5_127ac812",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-31T21:31:55Z",
+      "side": 1,
+      "message": "😞",
+      "range": {
+        "startLine": 919,
+        "startChar": 0,
+        "endLine": 921,
+        "endChar": 44
+      },
+      "revId": "46c92a78b527c5fdd4ff93a0d87aa156ba82f207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

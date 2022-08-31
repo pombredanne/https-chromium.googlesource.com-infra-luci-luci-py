@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67ddf7c7_386e409f",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-31T21:31:55Z",
+      "side": 0,
+      "message": "lol why, it\u0027s a local computation, right?",
+      "range": {
+        "startLine": 726,
+        "startChar": 0,
+        "endLine": 726,
+        "endChar": 36
+      },
+      "revId": "203c121dc157a39664a3b85c7306d39778757613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
