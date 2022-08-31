@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6fb71e4_63f66f9b",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-08-31T21:46:03Z",
+      "side": 1,
+      "message": "why not:\n  * enumerate roots\n  * make cleaner tasklet per root w/ ancestor query?",
+      "revId": "893d43b063d42230c074936654da36cfa5a809b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
