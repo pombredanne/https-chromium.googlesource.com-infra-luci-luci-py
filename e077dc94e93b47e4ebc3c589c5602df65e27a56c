@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c144760f_bd305410",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-31T17:21:06Z",
+      "side": 1,
+      "message": "I don\u0027t like the duplication. Maybe we should get rid of DEPS?",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 46
+      },
+      "revId": "e077dc94e93b47e4ebc3c589c5602df65e27a56c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
