@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b46427d_be97ea0a",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-31T21:41:37Z",
+      "side": 1,
+      "message": "Not sure, it is not really important for now.",
+      "parentUuid": "1222ccdf_33ea1178",
+      "range": {
+        "startLine": 209,
+        "startChar": 33,
+        "endLine": 209,
+        "endChar": 39
+      },
+      "revId": "46c92a78b527c5fdd4ff93a0d87aa156ba82f207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6571fc9e_e64af21a",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-31T21:31:55Z",
       "side": 1,
       "message": "document no duplicates here instead of _equals",
+      "range": {
+        "startLine": 211,
+        "startChar": 34,
+        "endLine": 211,
+        "endChar": 38
+      },
+      "revId": "46c92a78b527c5fdd4ff93a0d87aa156ba82f207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5ec6a31_fb713af8",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-31T21:41:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6571fc9e_e64af21a",
       "range": {
         "startLine": 211,
         "startChar": 34,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccd49336_7d97452a",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-31T21:41:37Z",
+      "side": 1,
+      "message": "Yes. The index will be a separate field if we decide to add it. I\u0027m in general not a fan of LocalStructuredProperty (vs just JSON blob), I think ndb does a lot of unnecessary crap.",
+      "parentUuid": "67b43627_cc3cc111",
+      "range": {
+        "startLine": 265,
+        "startChar": 13,
+        "endLine": 265,
+        "endChar": 36
+      },
+      "revId": "46c92a78b527c5fdd4ff93a0d87aa156ba82f207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42cf9fb9_f0c0ccfe",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-08-31T21:31:55Z",
       "side": 1,
       "message": "doc return? looks like a random string?",
+      "range": {
+        "startLine": 552,
+        "startChar": 34,
+        "endLine": 552,
+        "endChar": 48
+      },
+      "revId": "46c92a78b527c5fdd4ff93a0d87aa156ba82f207",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74bfb642_eee9f4a8",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-08-31T21:41:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42cf9fb9_f0c0ccfe",
       "range": {
         "startLine": 552,
         "startChar": 34,
