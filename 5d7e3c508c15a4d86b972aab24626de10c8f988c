@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d068ba2b_1aa0607a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-01T04:04:55Z",
+      "side": 1,
+      "message": "Would it be possible to remove these packages from DEPS file now, to have only one place where their versions are defined? It can be done in a separate CL. I assume we\u0027ll need to stop auto-roller first.",
+      "revId": "5d7e3c508c15a4d86b972aab24626de10c8f988c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

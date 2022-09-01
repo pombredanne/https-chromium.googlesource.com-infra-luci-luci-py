@@ -46,6 +46,30 @@
       },
       "revId": "e077dc94e93b47e4ebc3c589c5602df65e27a56c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a47c3d97_1098c314",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-01T04:04:55Z",
+      "side": 1,
+      "message": "Yes, but with your original CL, we would need to update run_isolated.py manually anyway (to update values in \"except ImportError\" section).",
+      "parentUuid": "4355069f_dc955ea5",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 46
+      },
+      "revId": "e077dc94e93b47e4ebc3c589c5602df65e27a56c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
