@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17bb194a_b5a6373d",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-01T06:11:10Z",
+      "side": 1,
+      "message": "Is there a downside to having bot_dimensions_to_flat just return a set?\n\nAlso why isn\u0027t this thing called `flatten_dimensions`. The mind boggles...",
+      "range": {
+        "startLine": 452,
+        "startChar": 27,
+        "endLine": 452,
+        "endChar": 49
+      },
+      "revId": "50cc9bbeb47cc5059306e5536be8a4e1fb539f2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
