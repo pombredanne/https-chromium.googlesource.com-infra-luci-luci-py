@@ -22,6 +22,53 @@
       },
       "revId": "1dc93b1b0de035e84964c2fc59edcf99d7d40e9a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d653d97_5f0e85f5",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-01T17:03:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0500ff01_5a6e4848",
+      "range": {
+        "startLine": 762,
+        "startChar": 2,
+        "endLine": 762,
+        "endChar": 5
+      },
+      "revId": "1dc93b1b0de035e84964c2fc59edcf99d7d40e9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b5819e5_3fae246c",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-01T17:03:21Z",
+      "side": 1,
+      "message": "wtf is this formatting.... (this is \"git cl format\", not me)",
+      "range": {
+        "startLine": 259,
+        "startChar": 5,
+        "endLine": 260,
+        "endChar": 30
+      },
+      "revId": "1dc93b1b0de035e84964c2fc59edcf99d7d40e9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
