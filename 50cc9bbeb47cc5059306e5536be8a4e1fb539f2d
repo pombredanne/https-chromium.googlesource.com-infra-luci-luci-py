@@ -22,6 +22,30 @@
       },
       "revId": "50cc9bbeb47cc5059306e5536be8a4e1fb539f2d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c71681c5_764a8601",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-01T16:34:27Z",
+      "side": 1,
+      "message": "It is used in a whole lot of places, many of which seem to actually want `list`. Don\u0027t want to touch them.",
+      "parentUuid": "17bb194a_b5a6373d",
+      "range": {
+        "startLine": 452,
+        "startChar": 27,
+        "endLine": 452,
+        "endChar": 49
+      },
+      "revId": "50cc9bbeb47cc5059306e5536be8a4e1fb539f2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
