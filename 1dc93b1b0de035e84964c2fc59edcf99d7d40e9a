@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0500ff01_5a6e4848",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-01T06:31:48Z",
+      "side": 1,
+      "message": "nit: s/obj/task_dimensions  ?",
+      "range": {
+        "startLine": 762,
+        "startChar": 2,
+        "endLine": 762,
+        "endChar": 5
+      },
+      "revId": "1dc93b1b0de035e84964c2fc59edcf99d7d40e9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
