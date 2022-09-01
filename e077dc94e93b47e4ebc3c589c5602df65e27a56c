@@ -22,6 +22,30 @@
       },
       "revId": "e077dc94e93b47e4ebc3c589c5602df65e27a56c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4355069f_dc955ea5",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-09-01T03:52:46Z",
+      "side": 1,
+      "message": "I see. But you need to update revision manually from now.",
+      "parentUuid": "c144760f_bd305410",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 46
+      },
+      "revId": "e077dc94e93b47e4ebc3c589c5602df65e27a56c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
