@@ -269,7 +269,7 @@ class TaskDimensions(ndb.Model):
     """
     # Update the expiration timestamp or add a new entry.
     updated = False
-    s = self._match_request_flat(task_dimensions_flat)
+    s = self.match_request_flat(task_dimensions_flat)
     if not s:
       self.sets.append(
           TaskDimensionsSet(
@@ -288,22 +288,6 @@ class TaskDimensions(ndb.Model):
     # True if anything has changed.
     return updated or len(self.sets) != old
 
-  def match_request(self, dimensions):
-    """Confirms that this instance actually stores this set.
-
-    Note that `dimensions` values here may still contain "|" inside.
-
-    Returns:
-      Matching TaskDimensionsSet or None if there's no match.
-    """
-    flat = []
-    for k, values in dimensions.items():
-      for v in values:
-        flat.append(u'%s:%s' % (k, v))
-    # TODO(vadimsh): This is wrong. _match_request_flat expects flattened
-    # dimensions with "|" already gone, but `flat` may still have "|" in them.
-    return self._match_request_flat(flat)
-
   def match_bot(self, bot_dimensions_set):
     """Returns the TaskDimensionsSet that matches bot_dimensions_set or None.
 
@@ -315,8 +299,12 @@ class TaskDimensions(ndb.Model):
         return s
     return None
 
-  def _match_request_flat(self, task_dimensions_flat):
-    """Returns the stored TaskDimensionsSet that equals task_dimensions_flat."""
+  def match_request_flat(self, task_dimensions_flat):
+    """Returns the stored TaskDimensionsSet that equals task_dimensions_flat.
+
+    `task_dimensions_flat` here don't have "|" in them anymore, i.e. they are
+    already flattened via expand_dimensions_to_flats(...).
+    """
     d = set(task_dimensions_flat)
     for s in self.sets:
       if s._equals(d):
@@ -778,23 +766,40 @@ def _assert_task_props_async(properties, expiration_ts):
     # jitter is essentially removed from _EXTEND_VALIDITY window.
     jitter = datetime.timedelta(seconds=random.randint(5*60, 10*60))
     valid_until_ts = expiration_ts - jitter
-    s = obj.match_request(properties.dimensions)
-    if s:
-      if s.valid_until_ts >= valid_until_ts:
-        logging.debug('assert_task_async(%d): hit. valid_until_ts(%s)',
-                      dimensions_hash, s.valid_until_ts)
-        raise ndb.Return(None)
-      logging.info(
-          'assert_task_async(%d): set.valid_until_ts(%s) < expected(%s); '
-          'triggering rebuild-task-cache', dimensions_hash, s.valid_until_ts,
-          valid_until_ts)
-    else:
-      # TaskDimensions(dimensions_hash) actually contains a list of dimension
-      # dicts all matching `dimensions_hash` (regardless of collisions). The
-      # enqueued task will just add entries to this list.
-      logging.info(
-          'assert_task_async(%d): failed to match the dimensions; triggering '
-          'rebuild-task-cache', dimensions_hash)
+
+    # Need to ensure each OR variant is known and fresh.
+    stale = False
+    for task_dims in expand_dimensions_to_flats(properties.dimensions):
+      s = obj.match_request_flat(task_dims)
+      # TaskDimensions(dimensions_hash) exists, but doesn't contain our
+      # dimensions. This may happen on hash collisions. The entity actually
+      # contains a list of dimension sets, all matching `dimensions_hash`, even
+      # if their original TaskProperties.dimensions just accidentally happen to
+      # hash to the same `dimensions_hash` integer. We need to enqueue a task to
+      # add new dimensions to this list.
+      if not s:
+        logging.info(
+            'assert_task_async(%d): failed to match the dimensions; triggering '
+            'rebuild-task-cache', dimensions_hash)
+        stale = True
+        break
+      # The dimension set was known before, but it is close to expiration,
+      # need to refresh it. This will also refresh all other dimension sets
+      # that resulted from expand_dimensions_to_flats(...).
+      if s.valid_until_ts < valid_until_ts:
+        logging.info(
+            'assert_task_async(%d): set.valid_until_ts(%s) < expected(%s); '
+            'triggering rebuild-task-cache', dimensions_hash, s.valid_until_ts,
+            valid_until_ts)
+        stale = True
+        break
+      # The dimension set is present and fresh.
+      logging.debug('assert_task_async(%d): hit. valid_until_ts(%s)',
+                    dimensions_hash, s.valid_until_ts)
+
+    # If all expand_dimensions_to_flats(...) are fresh, we are done.
+    if not stale:
+      raise ndb.Return(None)
   else:
     logging.info(
         'assert_task_async(%d): new request kind; triggering '
