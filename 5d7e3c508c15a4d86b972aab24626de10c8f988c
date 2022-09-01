@@ -16,6 +16,24 @@
       "message": "Would it be possible to remove these packages from DEPS file now, to have only one place where their versions are defined? It can be done in a separate CL. I assume we\u0027ll need to stop auto-roller first.",
       "revId": "5d7e3c508c15a4d86b972aab24626de10c8f988c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d1e6b0c_d79690e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-09-01T04:17:12Z",
+      "side": 1,
+      "message": "No. nsjail and cas client from DEPS are used in some unittests too.\n* https://source.chromium.org/chromium/infra/infra/+/main:luci/client/tests/cas_util.py;l\u003d20;drc\u003deac7dc4a4f6d4215f5142815594946752dc4aeb1\n* https://source.chromium.org/chromium/infra/infra/+/main:luci/client/tests/subprocess42_test.py;l\u003d451;drc\u003dfeca99d2386d1036a843aba11c746fa419c5b6aa",
+      "parentUuid": "d068ba2b_1aa0607a",
+      "revId": "5d7e3c508c15a4d86b972aab24626de10c8f988c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
