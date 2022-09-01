@@ -34,6 +34,24 @@
       "parentUuid": "d068ba2b_1aa0607a",
       "revId": "5d7e3c508c15a4d86b972aab24626de10c8f988c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01b09b1f_17257bd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2022-09-01T04:21:13Z",
+      "side": 1,
+      "message": "I think nsjail can be removed entirely though. It was added by fuchsia folks, but we don\u0027t have plan to use that anymore.",
+      "parentUuid": "7d1e6b0c_d79690e9",
+      "revId": "5d7e3c508c15a4d86b972aab24626de10c8f988c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
