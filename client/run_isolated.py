@@ -115,7 +115,7 @@ _NSJAIL_DIR = 'ns'
 
 # TODO(tikuta): take these parameter from luci-config?
 _CAS_PACKAGE = 'infra/tools/luci/cas/${platform}'
-_LUCI_GO_REVISION = 'git_revision:e71b07162fb1593f8bfba873ffe1174e1f24c88c'
+_LUCI_GO_REVISION = 'git_revision:6d4a97ac3f5d5be4af98ec5d142cd7f88eeb8b15'
 _NSJAIL_PACKAGE = 'infra/3pp/tools/nsjail/${platform}'
 _NSJAIL_VERSION = 'version:2@3.0.chromium.1'
 
