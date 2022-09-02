@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57bbcb46_cbd139e6",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-09-02T14:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72826aba_1be86e6b",
+      "range": {
+        "startLine": 1008,
+        "startChar": 37,
+        "endLine": 1008,
+        "endChar": 80
+      },
+      "revId": "bb649f088143f6b1c54565739de7f1d25ce9529b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04d4e5cd_060e4ad2",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-08-22T21:34:04Z",
       "side": 1,
       "message": "a canceled task is not an internal error",
+      "range": {
+        "startLine": 626,
+        "startChar": 8,
+        "endLine": 626,
+        "endChar": 45
+      },
+      "revId": "bb649f088143f6b1c54565739de7f1d25ce9529b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7fcfd60_f8afa430",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-09-02T14:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04d4e5cd_060e4ad2",
       "range": {
         "startLine": 626,
         "startChar": 8,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c3088c1_b423a03a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-09-02T14:17:10Z",
+      "side": 1,
+      "message": "Yes, returned dict as been updated now.",
+      "parentUuid": "f5c79410_c2767781",
+      "range": {
+        "startLine": 645,
+        "startChar": 11,
+        "endLine": 645,
+        "endChar": 31
+      },
+      "revId": "bb649f088143f6b1c54565739de7f1d25ce9529b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9a502b2_2b1fe71c",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-08-22T21:34:04Z",
       "side": 1,
       "message": "should task_runner_internal_failure be set to True in this code path?",
+      "range": {
+        "startLine": 855,
+        "startChar": 6,
+        "endLine": 855,
+        "endChar": 69
+      },
+      "revId": "bb649f088143f6b1c54565739de7f1d25ce9529b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "405bdfe4_3f64f9e6",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 855,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-09-02T14:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9a502b2_2b1fe71c",
       "range": {
         "startLine": 855,
         "startChar": 6,
