@@ -3169,9 +3169,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(State.PENDING, result_summary.state)
     self.assertEqual(0, result_summary.current_task_slice)
 
-    # task_expire_tasks should expire the task.
-    try_number = 1
-    to_runs = [(result_summary.task_id, try_number, invalid_slice_index)]
+    to_runs = [(result_summary.task_id, invalid_slice_index)]
     expiration_secs = 1200
     self.mock_now(self.now, expiration_secs)
     task_scheduler.task_expire_tasks(to_runs)
