@@ -165,6 +165,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d98d5294_e9d8b268",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T20:28:37Z",
+      "side": 1,
+      "message": "Oh, I was suggestion only to remove it from the public API (but still keep in the datastore). TaskResult here is just a schema for REST API responses, it doesn\u0027t have to match to datastore entities one-to-one.\n\nModifying entity fields involved in queries is hard and not worth the effort in this case (i.e. we are stuck with `try_number` entity property forever, at most we can rename how Python code refers to it similar to https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_request.py;l\u003d815?q\u003d%22dimensions_data%20%3D%22\u0026ss\u003dchromium)",
+      "parentUuid": "c5d33e02_4295a588",
+      "range": {
+        "startLine": 715,
+        "startChar": 2,
+        "endLine": 715,
+        "endChar": 12
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9bf743a1_c7eb2dac",
         "filename": "appengine/swarming/swarming_rpcs.py",
         "patchSetId": 7
