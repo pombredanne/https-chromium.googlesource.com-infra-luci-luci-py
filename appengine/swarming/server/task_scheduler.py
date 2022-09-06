@@ -838,17 +838,7 @@ def _bot_update_tx(run_result_key, bot_id, output, output_chunk_start,
     run_result.dead_after_ts = None
 
   result_summary = result_summary_future.get_result()
-  if (result_summary.try_number and
-      result_summary.try_number > run_result.try_number):
-    # The situation where a shard is retried but the bot running the previous
-    # try somehow reappears and reports success, the result must still show
-    # the last try's result. We still need to update cost_usd manually.
-    result_summary.costs_usd[run_result.try_number-1] = run_result.cost_usd
-    result_summary.modified_ts = now
-  else:
-    # Performance warning: this function calls properties_hash() which will
-    # GET SecretBytes entity if there's one.
-    result_summary.set_from_run_result(run_result, request)
+  result_summary.set_from_run_result(run_result, request)
 
   to_put.append(result_summary)
 
@@ -1825,8 +1815,7 @@ def cron_abort_expired_task_to_run():
       summary_key = task_pack.request_key_to_result_summary_key(
           to_run.request_key)
       task_id = task_pack.pack_result_summary_key(summary_key)
-      # TODO(maruel): Use (to_run.task_id, to_run.task_slice_index).
-      task_to_runs.append((task_id, to_run.try_number, to_run.task_slice_index))
+      task_to_runs.append((task_id, to_run.task_slice_index))
 
       # Enqueue every 50 TaskToRunShards.
       if len(task_to_runs) == 50:
@@ -1994,7 +1983,7 @@ def task_expire_tasks(task_to_runs):
   skipped = 0
 
   try:
-    for task_id, _try_number, task_slice_index in task_to_runs:
+    for task_id, task_slice_index in task_to_runs:
       # retrieve request
       request_key, _ = task_pack.get_request_and_result_keys(task_id)
       request = request_key.get()
