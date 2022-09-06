@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ee8c19d_525baee9",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T18:29:12Z",
+      "side": 1,
+      "message": "This is problematic for several reasons:\n\n1. This is a relatively expensive call that scans through all bot ID prefixes in bots.cfg (hundreds of them). This matters, because task_result_to_rpc(...) is called (among other things) when listing tasks. So it will itself be called hundreds of times per single \"tasks/list\" call, resulting in potentially hundreds of thousands of bot_id prefix checks. I don\u0027t like this performance impact.\n2. It uses the current bots.cfg state. The bot may not be present there anymore (in which case this code would actually crash with an exception below). Also removing a bot should probably not retroactively affect log links in task results (Cloud Logging logs aren\u0027t removed after all).\n3. This neglects logic of picking the default bot group, as done in bot_auth._get_bot_group_config(...).\n\nA better approach would be to store bot_logs_cloud_project inside TaskRunResult (and TaskResultSummary) entities, the same way bot_dimensions are stored now. See task_result.new_run_result(...). It is called when a bot is picking up a task, there\u0027s BotGroupConfig already available there (as res.bot_groups_cfg in BotPollHandler). It can be passed down the stack to task_scheduler.bot_reap_task(...), to enable passing of cloud project ID to task_result.new_run_result(...).",
+      "range": {
+        "startLine": 353,
+        "startChar": 10,
+        "endLine": 353,
+        "endChar": 59
+      },
+      "revId": "76dd29eb599ee4ecfee17e6b230c3c73b29e626c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a82fae6f_428dc1ee",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T18:29:12Z",
+      "side": 1,
+      "message": "bot_logs_cloud_project and also put it after bot_version.\n\nThis is important since this field is in TaskResult. It is not task logs (at least not in the sense of Swarming API task logs).\n\nAlso I really don\u0027t like that this field is in TaskResult. Logically it should be in BotInfo. But bot_dimensions set a precedence, I guess, so whatever.",
+      "range": {
+        "startLine": 756,
+        "startChar": 2,
+        "endLine": 756,
+        "endChar": 20
+      },
+      "revId": "76dd29eb599ee4ecfee17e6b230c3c73b29e626c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "129481eb_6aa163d7",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T18:29:12Z",
+      "side": 1,
+      "message": "Let\u0027s compute it on the frontend to avoid adding confusing fields to the API. For 99% of calls, this will be identical to bot_id. And most API readers aren\u0027t really familiar with what \"composed name\" is. So this field will be extra confusing to them.",
+      "range": {
+        "startLine": 758,
+        "startChar": 0,
+        "endLine": 760,
+        "endChar": 38
+      },
+      "revId": "76dd29eb599ee4ecfee17e6b230c3c73b29e626c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
