@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02c2861e_78d386dc",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1986,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-06T22:25:44Z",
+      "side": 1,
+      "message": "I\u0027ve added some code to handle this case with a TODO for removal later!",
+      "parentUuid": "b9825d68_7e14b9d2",
+      "range": {
+        "startLine": 1986,
+        "startChar": 4,
+        "endLine": 1986,
+        "endChar": 50
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a40d364f_ec5b97ca",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-06T19:22:23Z",
       "side": 1,
       "message": "TaskToRun is instantiated only for non-dedupped tasks (its existence is a signal that the task needs to be scheduled on some bot and executed). As such, try_number here is *always* 1 and this property can be removed. See also TODO(crbug.com/1065101) in the doc string.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 47
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d961846_4576cc65",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-06T22:25:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a40d364f_ec5b97ca",
       "range": {
         "startLine": 137,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89bd7907_ee9b2204",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-06T22:25:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76493bb1_f8017148",
+      "range": {
+        "startLine": 175,
+        "startChar": 4,
+        "endLine": 175,
+        "endChar": 39
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df6874a9_c29f2e75",
@@ -93,6 +165,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf1d0b1e_7d398c3f",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-06T22:25:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6874a9_c29f2e75",
+      "range": {
+        "startLine": 700,
+        "startChar": 4,
+        "endLine": 700,
+        "endChar": 30
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "421f2354_43b7dc9c",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-09-06T19:22:23Z",
       "side": 1,
       "message": "this should be hardcoded in request_to_task_to_run_key implementation now",
+      "range": {
+        "startLine": 725,
+        "startChar": 44,
+        "endLine": 725,
+        "endChar": 46
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a840977b_24b69945",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-06T22:25:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "421f2354_43b7dc9c",
       "range": {
         "startLine": 725,
         "startChar": 44,
@@ -187,6 +307,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "824d2d96_8fd1214c",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-06T22:25:44Z",
+      "side": 1,
+      "message": "Ah! I just noticed that the filename is `swarming_rpcs`! Removed it!\n\nI think this is actually read but would have no effect:\nhttps://crsrc.org/i/luci/appengine/swarming/ui2/modules/task-page/task-page.js;l\u003d140\n\nI will remove front end parts in a separate CL",
+      "parentUuid": "d98d5294_e9d8b268",
+      "range": {
+        "startLine": 715,
+        "startChar": 2,
+        "endLine": 715,
+        "endChar": 12
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bf743a1_c7eb2dac",
@@ -200,6 +344,30 @@
       "writtenOn": "2022-09-06T19:22:23Z",
       "side": 1,
       "message": "This is used only by the Swarming UI (and maybe client/tools/swarming_tasks_cost.py that no one uses). We should simplify it to be just a single float (potentially 0 for dedupped tasks). Can be done separately.",
+      "range": {
+        "startLine": 718,
+        "startChar": 2,
+        "endLine": 718,
+        "endChar": 11
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "606e95c0_34639eb8",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-06T22:25:44Z",
+      "side": 1,
+      "message": "Sounds good - will create separate bug.",
+      "parentUuid": "9bf743a1_c7eb2dac",
       "range": {
         "startLine": 718,
         "startChar": 2,
