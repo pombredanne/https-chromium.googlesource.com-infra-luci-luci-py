@@ -51,8 +51,9 @@ def result_summary_key_to_run_result_key(result_summary_key, try_number):
 
   Arguments:
     result_summary_key: ndb.Key for a TaskResultSummary entity.
-    try_number: the try on which TaskRunResult was created for. The first try
-        is 1, the second is 2, etc.
+    try_number: the try on which TaskRunResult was created for. This is an old
+    value which is still used. This value is 0 if a task is deduped, otherwise
+    it is 1.
 
   Returns:
     ndb.Key for the corresponding TaskRunResult entity.
@@ -60,8 +61,8 @@ def result_summary_key_to_run_result_key(result_summary_key, try_number):
   assert result_summary_key.kind() == 'TaskResultSummary', result_summary_key
   if try_number < 1:
     raise ValueError('Try number(%d) must be above 0' % try_number)
-  if try_number > 2:
-    raise ValueError('Try number(%d) > 2 is not supported' % try_number)
+  if try_number >= 2:
+    raise ValueError('Try number(%d) >= 2 is not supported' % try_number)
   return ndb.Key('TaskRunResult', try_number, parent=result_summary_key)
 
 

@@ -1089,8 +1089,9 @@ class TaskResultSummary(_TaskResultCommon):
   # State of this task. The value from TaskRunResult will be copied over.
   state = StateProperty(default=State.PENDING)
 
-  # Represent the last try attempt of the task. Starts at 1 EXCEPT when the
-  # results were deduped, in this case it's 0.
+  # Is 1 EXCEPT when the results were deduped. If deduped it is 0.
+  # This field is left over from when swarming had internal retries.
+  # See https://crbug.com/1065101
   try_number = ndb.IntegerProperty()
 
   # Effective cost of this task for each try. Use self.cost_usd for the sum.
@@ -1245,9 +1246,11 @@ class TaskResultSummary(_TaskResultCommon):
     self.missing_cas = run_result.missing_cas
     self.missing_cipd = run_result.missing_cipd
 
-    while len(self.costs_usd) < run_result.try_number:
-      self.costs_usd.append(0.)
-    self.costs_usd[run_result.try_number-1] = run_result.cost_usd
+    # try_number == 0 implies dedup so set cost to 0.
+    if run_result.try_number == 0:
+      self.costs_usd = [0.]
+    else:
+      self.costs_usd = [run_result.cost_usd]
 
     # Update the automatic tags, removing the ones from the other
     # TaskProperties.
