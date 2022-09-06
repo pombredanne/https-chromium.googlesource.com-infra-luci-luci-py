@@ -136,7 +136,7 @@ class _TaskToRunBase(ndb.Model):
 
   @property
   def try_number(self):
-    """Returns the try number, 1 or 2."""
+    """Returns the try number, 1 or 0."""
     return task_to_run_key_try_number(self.key)
 
   @property
@@ -156,8 +156,7 @@ class _TaskToRunBase(ndb.Model):
     """
     summary_key = task_pack.request_key_to_result_summary_key(
         self.request_key)
-    return task_pack.result_summary_key_to_run_result_key(
-        summary_key, self.try_number)
+    return task_pack.result_summary_key_to_run_result_key(summary_key)
 
   @property
   def task_id(self):
@@ -699,7 +698,7 @@ def task_to_run_key_slice_index(to_run_key):
 
 
 def task_to_run_key_try_number(to_run_key):
-  """Returns the try number, 1 or 2."""
+  """Returns the try number. This is either 1 or 0"""
   return to_run_key.integer_id() & 15
 
 
