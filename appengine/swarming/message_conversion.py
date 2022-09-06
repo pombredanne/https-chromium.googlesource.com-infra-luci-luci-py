@@ -21,6 +21,7 @@ from components import utils
 from server import task_pack
 from server import task_request
 from server import task_result
+from server import bot_groups_config
 
 
 ### Private API.
@@ -345,6 +346,13 @@ def task_result_to_rpc(entity, send_stats):
         invocation=entity.resultdb_info.invocation,
     )
 
+  logs_cloud_project = None
+  host_name = None
+  if entity.bot_id:
+    host_name = bot_groups_config.extract_primary_hostname(entity.bot_id)
+    cfg = bot_groups_config.get_bot_group_config(host_name)
+    logs_cloud_project = cfg.logs_cloud_project
+
   missing_cas = None
   if entity.missing_cas:
     missing_cas = []
@@ -402,6 +410,10 @@ def task_result_to_rpc(entity, send_stats):
           missing_cas,
       'missing_cipd':
           missing_cipd,
+      'logs_cloud_project':
+          logs_cloud_project,
+      'host_name':
+          host_name,
   }
   if entity.__class__ is task_result.TaskRunResult:
     kwargs['costs_usd'] = []

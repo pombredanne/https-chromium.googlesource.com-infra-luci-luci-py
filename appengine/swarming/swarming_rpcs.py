@@ -752,6 +752,13 @@ class TaskResult(messages.Message):
   # Reported missing CIPD packages on CLIENT_ERROR state
   missing_cipd = messages.MessageField(CipdPackage, 34, repeated=True)
 
+  # The cloud project id where the bot saves its logs.
+  logs_cloud_project = messages.StringField(35)
+
+  # The primary hostname if the bot_id is a composed name.
+  # Otherwise it equals to the bot_id.
+  host_name = messages.StringField(36)
+
 
 class TaskStates(messages.Message):
   """Only holds states. Used in the 'get_states' RPC."""

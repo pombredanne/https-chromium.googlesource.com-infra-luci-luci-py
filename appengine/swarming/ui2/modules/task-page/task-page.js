@@ -4,7 +4,7 @@
 
 import {$, $$} from 'common-sk/modules/dom';
 import {errorMessage} from 'elements-sk/errorMessage';
-import {html} from 'lit-html';
+import {html, parts} from 'lit-html';
 import {ifDefined} from 'lit-html/directives/if-defined';
 import {jsonOrThrow} from 'common-sk/modules/jsonOrThrow';
 import {stateReflector} from 'common-sk/modules/stateReflector';
@@ -92,7 +92,7 @@ const botLogsURL = (botProjectID, botZone, request, result) => {
   // limit logs that we care
   // TODO(jwata): Non GCE bots will need a different label.
   const query =
-      `labels."compute.googleapis.com/resource_name"="${result.bot_id}"`;
+      `labels."compute.googleapis.com/resource_name":"${result.host_name}"`;
   let timeStart;
   let timeEnd;
   if (result.started_ts) {
@@ -697,6 +697,7 @@ const logsSection = (ele, request, result) => {
   if (!ele._taskId || ele._notFound) {
     return '';
   }
+  let logsCloudProject = null;
   let botProjectID = null;
   let botZone = null;
   if (result && result.bot_dimensions) {
@@ -707,8 +708,13 @@ const logsSection = (ele, request, result) => {
             (a, b) => a.length > b.length ? a : b );
       }
     }
+    //
+    logsCloudProject = result.logs_cloud_project;
+    if (logsCloudProject == null) {
+      logsCloudProject = botProjectID;
+    }
   }
-  const showBotLogsLink = !!botProjectID;
+  const showBotLogsLink = !!logsCloudProject;
   return html`
 <div class=title>Logs Information</div>
 <div class="horizontal layout wrap">
@@ -735,7 +741,7 @@ const logsSection = (ele, request, result) => {
       <tr>
         <td>Bot Logs</td>
         <td>
-          <a href=${botLogsURL(botProjectID, botZone, request, result)} target="_blank" ?hidden=${!showBotLogsLink}>
+          <a href=${botLogsURL(logsCloudProject, botZone, request, result)} target="_blank" ?hidden=${!showBotLogsLink}>
             View on Cloud Console
           </a>
           <p ?hidden=${showBotLogsLink}>--</p>
