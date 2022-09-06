@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0370392_9c1988bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T17:32:20Z",
+      "side": 1,
+      "message": "Looks much more comprehensible now 😊",
+      "revId": "a32d899146c51fb154bac8f86771d475c5d04cd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fe0fb14_1cade355",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1039,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T17:32:20Z",
+      "side": 1,
+      "message": "I think this can just be replaced with `internal_failure` now.",
+      "range": {
+        "startLine": 1039,
+        "startChar": 4,
+        "endLine": 1039,
+        "endChar": 70
+      },
+      "revId": "a32d899146c51fb154bac8f86771d475c5d04cd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "799b0c41_2e556229",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T17:32:20Z",
+      "side": 1,
+      "message": "This is no longer correct, it should stay set, so bot_main can observe it (and the comment is outdated, there\u0027s internal_error_reported now to indicate \"we\u0027ve posted the error already\").",
+      "range": {
+        "startLine": 847,
+        "startChar": 8,
+        "endLine": 851,
+        "endChar": 29
+      },
+      "revId": "a32d899146c51fb154bac8f86771d475c5d04cd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98387a62_76a372d2",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T17:32:20Z",
+      "side": 1,
+      "message": "nit: unnecessary, it is always False here anyway",
+      "range": {
+        "startLine": 857,
+        "startChar": 8,
+        "endLine": 857,
+        "endChar": 39
+      },
+      "revId": "a32d899146c51fb154bac8f86771d475c5d04cd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
