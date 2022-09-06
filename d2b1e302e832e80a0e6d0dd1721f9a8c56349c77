@@ -141,6 +141,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5d33e02_4295a588",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-06T20:18:53Z",
+      "side": 1,
+      "message": "Agreed, it\u0027s currently only used for filters. Ie `state:deduped` in the UI. The issue with using `deduped_from` for the same purpose is that you cannot do a `!\u003d null` filter in datastore. \n\nThe other option to remove this property completely would be is to add a second property `is_deduped: bool` and filter for it here:\nhttps://crsrc.org/i/luci/appengine/swarming/server/task_result.py;l\u003d1487\n\nI think that approach could be cleaner and allow us eventually remove `try_number`. However, IMO the main issue keeping `try_number` is that it makes the code more difficult to understand due to its weird name and legacy usages. Adding a comment clarifying naming and removing those usages solves most of the issue for me. So not sure if the work to add new field is worth it. What do you think? \n\nAlso I may be over estimating how easy / difficult it is to add / remove a property from an entity.",
+      "parentUuid": "0876cb93_724cb5ff",
+      "range": {
+        "startLine": 715,
+        "startChar": 2,
+        "endLine": 715,
+        "endChar": 12
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9bf743a1_c7eb2dac",
         "filename": "appengine/swarming/swarming_rpcs.py",
         "patchSetId": 7
