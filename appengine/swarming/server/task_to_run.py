@@ -135,11 +135,6 @@ class _TaskToRunBase(ndb.Model):
     return task_to_run_key_slice_index(self.key)
 
   @property
-  def try_number(self):
-    """Returns the try number, 1 or 2."""
-    return task_to_run_key_try_number(self.key)
-
-  @property
   def is_reapable(self):
     """Returns True if the task is ready to be scheduled."""
     return bool(self.queue_number)
@@ -156,14 +151,11 @@ class _TaskToRunBase(ndb.Model):
     """
     summary_key = task_pack.request_key_to_result_summary_key(
         self.request_key)
-    return task_pack.result_summary_key_to_run_result_key(
-        summary_key, self.try_number)
+    return task_pack.result_summary_key_to_run_result_key(summary_key)
 
   @property
   def task_id(self):
     """Returns an encoded task id for this TaskToRunShard.
-
-    Note: this includes the try_number but not the task_slice_index.
     """
     return task_pack.pack_run_result_key(self.run_result_key)
 
@@ -173,7 +165,6 @@ class _TaskToRunBase(ndb.Model):
     # Consistent formatting makes it easier to reason about.
     if out['queue_number']:
       out['queue_number'] = '0x%016x' % out['queue_number']
-    out['try_number'] = self.try_number
     out['task_slice_index'] = self.task_slice_index
     return out
 
@@ -277,10 +268,8 @@ def _memcache_to_run_key(to_run_key):
   See Claim for more explanation.
   """
   request_key = task_to_run_key_to_request_key(to_run_key)
-  return '%x-%d-%d' % (
-      request_key.integer_id(),
-      task_to_run_key_try_number(to_run_key),
-      task_to_run_key_slice_index(to_run_key))
+  return '%x-%d-%d' % (request_key.integer_id(), 1,
+                       task_to_run_key_slice_index(to_run_key))
 
 
 class _QueryStats(object):
@@ -676,13 +665,12 @@ class ScanDeadlineError(Exception):
     self.code = code
 
 
-def request_to_task_to_run_key(request, try_number, task_slice_index):
+def request_to_task_to_run_key(request, task_slice_index):
   """Returns the ndb.Key for a TaskToRunShard from a TaskRequest."""
-  assert 1 <= try_number <= 2, try_number
   assert 0 <= task_slice_index < request.num_task_slices
   h = request.task_slice(task_slice_index).properties.dimensions_hash
   kind = get_shard_kind(h % N_SHARDS)
-  return ndb.Key(kind, try_number | (task_slice_index << 4), parent=request.key)
+  return ndb.Key(kind, 0x1 | (task_slice_index << 4), parent=request.key)
 
 
 def task_to_run_key_to_request_key(to_run_key):
@@ -696,12 +684,6 @@ def task_to_run_key_slice_index(to_run_key):
   represents as pending.
   """
   return to_run_key.integer_id() >> 4
-
-
-def task_to_run_key_try_number(to_run_key):
-  """Returns the try number, 1 or 2."""
-  return to_run_key.integer_id() & 15
-
 
 def new_task_to_run(request, task_slice_index):
   """Returns a fresh new TaskToRunShard for the task ready to be scheduled.
@@ -723,7 +705,7 @@ def new_task_to_run(request, task_slice_index):
   h = task_queues.hash_dimensions(dims)
   qn = _gen_queue_number(h, request.created_ts, request.priority)
   kind = get_shard_kind(h % N_SHARDS)
-  key = request_to_task_to_run_key(request, 1, task_slice_index)
+  key = request_to_task_to_run_key(request, task_slice_index)
   return kind(key=key,
               created_ts=created,
               dimensions=dims,
