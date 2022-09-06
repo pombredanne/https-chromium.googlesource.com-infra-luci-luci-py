@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9825d68_7e14b9d2",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1986,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T19:22:23Z",
+      "side": 1,
+      "message": "task_to_runs here is deserialized from a task queue task payload submitted by cron_abort_expired_tasks.\n\nDuring deployments and rollbacks, cron_abort_expired_task_to_run(...) and task_expire_tasks(...) may be executed by different versions of the code, resulting in:\n1. A task submitted by old code executing on new code.\n2. A task submitted by new code executing on old code.\n\nAs such, changes like require more care:\n1. Make task_expire_tasks(...) accept both `[(task_id, task_slice_index)]` and `[(task_id, try_number, task_slice_index)]` at the same time (e.g. checking len(...) of the tuple).\n2. Fully deploy this code.\n3. Change cron_abort_expired_task_to_run(...) to submit tasks with `[(task_id, task_slice_index)]`.\n4. Fully deploy this code.\n5. After some time there should be no inflight tasks with tripes.\n6. Clean len(...) \u003d\u003d 3 code path.\n\n(Also this BS is one of the reasons reason why our Go code is uses protobuf messages to represent Task Queue tasks. It simplifies evolving the schema without breaking old code).",
+      "range": {
+        "startLine": 1986,
+        "startChar": 4,
+        "endLine": 1986,
+        "endChar": 50
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a40d364f_ec5b97ca",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T19:22:23Z",
+      "side": 1,
+      "message": "TaskToRun is instantiated only for non-dedupped tasks (its existence is a signal that the task needs to be scheduled on some bot and executed). As such, try_number here is *always* 1 and this property can be removed. See also TODO(crbug.com/1065101) in the doc string.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 47
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76493bb1_f8017148",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T19:22:23Z",
+      "side": 1,
+      "message": "can be deleted, this is \"purely for unit testing\"",
+      "range": {
+        "startLine": 175,
+        "startChar": 4,
+        "endLine": 175,
+        "endChar": 39
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df6874a9_c29f2e75",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T19:22:23Z",
+      "side": 1,
+      "message": "can also be deleted, should always be 1 now",
+      "range": {
+        "startLine": 700,
+        "startChar": 4,
+        "endLine": 700,
+        "endChar": 30
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "421f2354_43b7dc9c",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T19:22:23Z",
+      "side": 1,
+      "message": "this should be hardcoded in request_to_task_to_run_key implementation now",
+      "range": {
+        "startLine": 725,
+        "startChar": 44,
+        "endLine": 725,
+        "endChar": 46
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0876cb93_724cb5ff",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T19:22:23Z",
+      "side": 1,
+      "message": "I\u0027m 90% certain nothing is actually reading this field, and there\u0027s \"deduped_from\" already to indicate if a task was dedupped. It would be nice to eventually get rid of this field too...",
+      "range": {
+        "startLine": 715,
+        "startChar": 2,
+        "endLine": 715,
+        "endChar": 12
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bf743a1_c7eb2dac",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T19:22:23Z",
+      "side": 1,
+      "message": "This is used only by the Swarming UI (and maybe client/tools/swarming_tasks_cost.py that no one uses). We should simplify it to be just a single float (potentially 0 for dedupped tasks). Can be done separately.",
+      "range": {
+        "startLine": 718,
+        "startChar": 2,
+        "endLine": 718,
+        "endChar": 11
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
