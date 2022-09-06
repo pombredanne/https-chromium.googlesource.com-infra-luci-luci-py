@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a5a9251_983f21af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T17:13:55Z",
+      "side": 1,
+      "message": "Also this https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/components/components/auth/api.py#2124 (it is Python \"client\" side, you updated \"server\" side).",
+      "revId": "f66ecdeb4d8d484c6559b6300ccd58668eff53f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21e21cca_ddb9e398",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T17:13:55Z",
+      "side": 1,
+      "message": "... and \"@project\"",
+      "range": {
+        "startLine": 52,
+        "startChar": 74,
+        "endLine": 53,
+        "endChar": 15
+      },
+      "revId": "f66ecdeb4d8d484c6559b6300ccd58668eff53f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6644a89_2c9907f2",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T17:13:55Z",
+      "side": 1,
+      "message": "add a sentence explaining why @root is a bad place for them",
+      "range": {
+        "startLine": 76,
+        "startChar": 23,
+        "endLine": 77,
+        "endChar": 22
+      },
+      "revId": "f66ecdeb4d8d484c6559b6300ccd58668eff53f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae84f0d7_bc22575e",
+        "filename": "appengine/auth_service/proto/realms_config.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T17:13:55Z",
+      "side": 1,
+      "message": "I\u0027m afraid this will require redeploying all services after auth libraries are updated (or maybe not, I forgot how obnoxious is validation there, please double check before actually adding @project in realms.cfg anywhere... I mean code paths that deserialize realms proto after getting it from the auth service. I\u0027ve been burned on extra strict validation there before, so maybe I relaxed it for realms already, I don\u0027t remember).",
+      "range": {
+        "startLine": 86,
+        "startChar": 5,
+        "endLine": 87,
+        "endChar": 16
+      },
+      "revId": "f66ecdeb4d8d484c6559b6300ccd58668eff53f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
