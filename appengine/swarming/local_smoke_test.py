@@ -365,8 +365,6 @@ def gen_expected(**kwargs):
           u'swarming.pool.version:pools_cfg_rev',
           u'user:joe@localhost',
       ],
-      u'try_number':
-      u'1',
       u'user':
       u'joe@localhost',
   }
