@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64a283cf_fd450240",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 2653,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T23:51:19Z",
+      "side": 1,
+      "message": "this looks fishy... I think this particular test doesn\u0027t really care about is_claimed(2) situation. Can just remove the related asserts.",
+      "range": {
+        "startLine": 2653,
+        "startChar": 4,
+        "endLine": 2653,
+        "endChar": 27
+      },
+      "revId": "5a402b84356537850c06da14dc6392ffdd5dc4a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "909dc93f_359032c7",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-06T23:51:19Z",
+      "side": 1,
+      "message": "del?",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 16
+      },
+      "revId": "5a402b84356537850c06da14dc6392ffdd5dc4a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
