@@ -46,23 +46,17 @@ def result_summary_key_to_request_key(result_summary_key):
   return result_summary_key.parent()
 
 
-def result_summary_key_to_run_result_key(result_summary_key, try_number):
+def result_summary_key_to_run_result_key(result_summary_key):
   """Returns the TaskRunResult ndb.Key for this TaskResultSummary.key.
 
   Arguments:
     result_summary_key: ndb.Key for a TaskResultSummary entity.
-    try_number: the try on which TaskRunResult was created for. The first try
-        is 1, the second is 2, etc.
 
   Returns:
     ndb.Key for the corresponding TaskRunResult entity.
   """
   assert result_summary_key.kind() == 'TaskResultSummary', result_summary_key
-  if try_number < 1:
-    raise ValueError('Try number(%d) must be above 0' % try_number)
-  if try_number > 2:
-    raise ValueError('Try number(%d) > 2 is not supported' % try_number)
-  return ndb.Key('TaskRunResult', try_number, parent=result_summary_key)
+  return ndb.Key('TaskRunResult', 1, parent=result_summary_key)
 
 
 def run_result_key_to_result_summary_key(run_result_key):
@@ -173,8 +167,5 @@ def unpack_run_result_key(packed_key):
   The expected format of |packed_key| is %x.
   """
   request_key = unpack_request_key(packed_key[:-1])
-  try_number = int(packed_key[-1], 16)
-  if not try_number:
-    raise ValueError('Can\'t reference to the overall task result.')
   result_summary_key = request_key_to_result_summary_key(request_key)
-  return result_summary_key_to_run_result_key(result_summary_key, try_number)
+  return result_summary_key_to_run_result_key(result_summary_key)
