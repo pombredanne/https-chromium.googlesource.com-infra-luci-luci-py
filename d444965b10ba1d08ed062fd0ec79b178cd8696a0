@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "931a91a6_9be2c18d",
+        "filename": "appengine/swarming/server/task_pack.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-07T20:06:46Z",
+      "side": 1,
+      "message": "nit: why keep extra nesting instead of dealing with the problem right away?\n\n```\nif request_id[-1] !\u003d \u00271\u0027:\n  raise ValueError(...)\n...\n```",
+      "range": {
+        "startLine": 143,
+        "startChar": 2,
+        "endLine": 143,
+        "endChar": 14
+      },
+      "revId": "d444965b10ba1d08ed062fd0ec79b178cd8696a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
