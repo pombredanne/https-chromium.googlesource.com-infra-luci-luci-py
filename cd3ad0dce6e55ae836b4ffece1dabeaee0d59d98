@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7666e1ef_3aaf072d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1111884
+      },
+      "writtenOn": "2022-09-07T16:56:19Z",
+      "side": 1,
+      "message": "\u003e Patch Set 2: Code-Review+1\n\u003e \n\u003e By voting Code-Review+1 the following files are now code-owner approved by \u003cGERRIT_ACCOUNT_1002539\u003e:\n\u003e * client/run_isolated.py\n\u003e \n\n",
+      "revId": "cd3ad0dce6e55ae836b4ffece1dabeaee0d59d98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
