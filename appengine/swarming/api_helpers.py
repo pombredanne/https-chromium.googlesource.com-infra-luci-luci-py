@@ -159,7 +159,7 @@ def validate_backend_configs(configs):
     if cfg.parent_run_id:  # Optional value.
       try:
         task_request.validate_task_run_id('parent_run_id', cfg.parent_run_id)
-      except (ValueError, TypeError) as e:
+      except (AssertionError, TypeError) as e:
         errors.append((i, e.message))
 
     if cfg.service_account:
