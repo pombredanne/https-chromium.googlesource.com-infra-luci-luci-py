@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6deba37d_062d063b",
+        "filename": "appengine/swarming/server/task_pack.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-07T15:57:10Z",
+      "side": 1,
+      "message": "Okay, actually done!",
+      "parentUuid": "b9f7fd96_f63315fb",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 68
+      },
+      "revId": "d2b1e302e832e80a0e6d0dd1721f9a8c56349c77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9825d68_7e14b9d2",
