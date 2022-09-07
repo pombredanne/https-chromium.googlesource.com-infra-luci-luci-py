@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75a33bb9_7b990696",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1039,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-09-07T02:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fe0fb14_1cade355",
+      "range": {
+        "startLine": 1039,
+        "startChar": 4,
+        "endLine": 1039,
+        "endChar": 70
+      },
+      "revId": "a32d899146c51fb154bac8f86771d475c5d04cd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "799b0c41_2e556229",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c302312_f2cdc7cd",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-09-07T02:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "799b0c41_2e556229",
+      "range": {
+        "startLine": 847,
+        "startChar": 8,
+        "endLine": 851,
+        "endChar": 29
+      },
+      "revId": "a32d899146c51fb154bac8f86771d475c5d04cd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98387a62_76a372d2",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-09-06T17:32:20Z",
       "side": 1,
       "message": "nit: unnecessary, it is always False here anyway",
+      "range": {
+        "startLine": 857,
+        "startChar": 8,
+        "endLine": 857,
+        "endChar": 39
+      },
+      "revId": "a32d899146c51fb154bac8f86771d475c5d04cd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29a5b72a_cf2d39af",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-09-07T02:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98387a62_76a372d2",
       "range": {
         "startLine": 857,
         "startChar": 8,
