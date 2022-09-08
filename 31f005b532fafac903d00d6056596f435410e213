@@ -16,6 +16,24 @@
       "message": "Please run:\n`gcloud --project chrome-infra-auth services enable   prodxmon-pa.googleapis.com   prodxmon-wbl-pa.googleapis.com`\n`gcloud projects add-iam-policy-binding chrome-infra-auth --member serviceAccount:chrome-infra-auth@appspot.gserviceaccount.com --role roles/prodx.metricPublisher`\n\nThis has already been done on the dev environment. I lack the permissions to do the same on prod.",
       "revId": "31f005b532fafac903d00d6056596f435410e213",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2132c8d6_13de3b19",
+        "filename": "appengine/auth_service/monitoring.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-09-08T05:12:17Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "358e6493_cab52f40",
+      "revId": "31f005b532fafac903d00d6056596f435410e213",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
