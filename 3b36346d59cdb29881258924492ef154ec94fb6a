@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6ebed5a_08e6299f",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-08T16:14:10Z",
+      "side": 1,
+      "message": "Nit: can we use a more descriptive name?",
+      "range": {
+        "startLine": 479,
+        "startChar": 2,
+        "endLine": 479,
+        "endChar": 5
+      },
+      "revId": "3b36346d59cdb29881258924492ef154ec94fb6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
