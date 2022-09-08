@@ -862,22 +862,22 @@ class BotApiTest(test_env_handlers.AppTestBase):
     params = self.do_handshake()
     self.assertEqual(params['dimensions']['pool'], ['default'])
 
-    self.mock_bot_group_config(
-        version='default',
-        owners=None,
-        auth=(bot_groups_config.BotAuth(
-            log_if_failed=False,
-            require_luci_machine_token=False,
-            require_service_account=None,
-            require_gce_vm_token=None,
-            ip_whitelist=None,
-        ),),
-        dimensions={u'pool': [u'server-side']},
-        bot_config_script=None,
-        bot_config_script_rev=None,
-        bot_config_script_content=None,
-        system_service_account=None,
-        is_default=True)
+    self.mock_bot_group_config(version='default',
+                               owners=None,
+                               auth=(bot_groups_config.BotAuth(
+                                   log_if_failed=False,
+                                   require_luci_machine_token=False,
+                                   require_service_account=None,
+                                   require_gce_vm_token=None,
+                                   ip_whitelist=None,
+                               ), ),
+                               dimensions={u'pool': [u'server-side']},
+                               bot_config_script=None,
+                               bot_config_script_rev=None,
+                               bot_config_script_content=None,
+                               system_service_account=None,
+                               is_default=True,
+                               logs_cloud_project=None)
 
     # Bot sends 'default' pool, but server config defined it as 'server-side'.
     response = self.post_json('/swarming/api/v1/bot/poll', params)
@@ -898,13 +898,14 @@ class BotApiTest(test_env_handlers.AppTestBase):
             require_service_account=None,
             require_gce_vm_token=None,
             ip_whitelist=None,
-        ),),
+        ), ),
         dimensions={},
         bot_config_script='foo.py',
         bot_config_script_rev='abcd',
         bot_config_script_content='print("Hi");import sys; sys.exit(1)',
         system_service_account=None,
-        is_default=True)
+        is_default=True,
+        logs_cloud_project='chrome-infra-logs')
     params = self.do_handshake()
     self.assertEqual(u'print("Hi");import sys; sys.exit(1)',
                      params['bot_config'])
@@ -1947,22 +1948,22 @@ class BotApiTest(test_env_handlers.AppTestBase):
                                 expected_kind, expected_scopes,
                                 expected_audience):
     self.set_as_bot()
-    self.mock_bot_group_config(
-        version='default',
-        owners=None,
-        auth=(bot_groups_config.BotAuth(
-            log_if_failed=False,
-            require_luci_machine_token=False,
-            require_service_account=None,
-            require_gce_vm_token=None,
-            ip_whitelist=None,
-        ),),
-        dimensions={},
-        bot_config_script=None,
-        bot_config_script_rev=None,
-        bot_config_script_content=None,
-        system_service_account='system@example.com',
-        is_default=True)
+    self.mock_bot_group_config(version='default',
+                               owners=None,
+                               auth=(bot_groups_config.BotAuth(
+                                   log_if_failed=False,
+                                   require_luci_machine_token=False,
+                                   require_service_account=None,
+                                   require_gce_vm_token=None,
+                                   ip_whitelist=None,
+                               ), ),
+                               dimensions={},
+                               bot_config_script=None,
+                               bot_config_script_rev=None,
+                               bot_config_script_content=None,
+                               system_service_account='system@example.com',
+                               is_default=True,
+                               logs_cloud_project=None)
 
     calls = []
 
