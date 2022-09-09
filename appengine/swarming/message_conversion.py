@@ -21,6 +21,7 @@ from components import utils
 from server import task_pack
 from server import task_request
 from server import task_result
+from server import bot_groups_config
 
 
 ### Private API.

@@ -647,15 +647,23 @@ class AppTestBase(test_case.TestCase):
                 u'value': [u'default']
             },
         ],
-        u'bot_id': u'bot1',
-        u'bot_version': self.bot_version,
-        u'current_task_slice': u'0',
-        u'failure': False,
-        u'internal_failure': False,
-        u'name': u'job1',
-        u'run_id': u'5cee488008811',
+        u'bot_id':
+        u'bot1',
+        u'bot_version':
+        self.bot_version,
+        u'current_task_slice':
+        u'0',
+        u'failure':
+        False,
+        u'internal_failure':
+        False,
+        u'name':
+        u'job1',
+        u'run_id':
+        u'5cee488008811',
         u'server_versions': [u'v1a'],
-        u'state': u'COMPLETED',
+        u'state':
+        u'COMPLETED',
         u'tags': [
             u'a:tag',
             u'os:Amiga',
@@ -666,9 +674,12 @@ class AppTestBase(test_case.TestCase):
             u'swarming.pool.template:no_config',
             u'user:joe@localhost',
         ],
-        u'task_id': u'5cee488008810',
-        u'try_number': u'0',
-        u'user': u'joe@localhost',
+        u'task_id':
+        u'5cee488008810',
+        u'try_number':
+        u'0',
+        u'user':
+        u'joe@localhost',
     }
     out.update((unicode(k), v) for k, v in kwargs.items())
     return out
@@ -694,18 +705,28 @@ class AppTestBase(test_case.TestCase):
                 u'value': [u'default']
             },
         ],
-        u'bot_id': u'bot1',
-        u'bot_version': self.bot_version,
+        u'bot_id':
+        u'bot1',
+        u'bot_version':
+        self.bot_version,
         u'costs_usd': [0.0],
-        u'current_task_slice': u'0',
-        u'failure': False,
-        u'internal_failure': False,
-        u'name': u'job1',
-        u'run_id': u'5cee488008811',
+        u'current_task_slice':
+        u'0',
+        u'failure':
+        False,
+        u'internal_failure':
+        False,
+        u'name':
+        u'job1',
+        u'run_id':
+        u'5cee488008811',
         u'server_versions': [u'v1a'],
-        u'state': u'RUNNING',
-        u'task_id': u'5cee488008811',
-        u'try_number': u'1',
+        u'state':
+        u'RUNNING',
+        u'task_id':
+        u'5cee488008811',
+        u'try_number':
+        u'1',
     }
     out.update((unicode(k), v) for k, v in kwargs.items())
     return out
