@@ -185,6 +185,7 @@ export const taskResults = [
     'current_task_slice': '0',
     'try_number': '3',
     'started_ts': '2019-02-04T16:05:49.489858',
+    'logs_cloud_project': 'chrome-infra-logs',
   },
   {
     'cipd_pins': {

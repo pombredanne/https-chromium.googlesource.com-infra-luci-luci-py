@@ -84,6 +84,9 @@ BotGroupConfig = collections.namedtuple(
 
         # True if it's default group config.
         'is_default',
+
+        # The cloud project id where the bot saves its logs.
+        'logs_cloud_project',
     ])
 
 
@@ -506,26 +509,25 @@ _cache = _BotGroupsCache()
 
 # Default config to use on unconfigured server.
 def _default_bot_groups():
-  return _BotGroups(
-      digest='none',
-      rev='none',
-      direct_matches={},
-      prefix_matches=[],
-      default_group=BotGroupConfig(
-          version='default',
-          owners=(),
-          auth=(BotAuth(
-              log_if_failed=False,
-              require_luci_machine_token=False,
-              require_service_account=None,
-              require_gce_vm_token=None,
-              ip_whitelist=auth.bots_ip_whitelist()),),
-          dimensions={},
-          bot_config_script='',
-          bot_config_script_rev='',
-          bot_config_script_content='',
-          system_service_account='',
-          is_default=True))
+  return _BotGroups(digest='none',
+                    rev='none',
+                    direct_matches={},
+                    prefix_matches=[],
+                    default_group=BotGroupConfig(
+                        version='default',
+                        owners=(),
+                        auth=(BotAuth(log_if_failed=False,
+                                      require_luci_machine_token=False,
+                                      require_service_account=None,
+                                      require_gce_vm_token=None,
+                                      ip_whitelist=auth.bots_ip_whitelist()), ),
+                        dimensions={},
+                        bot_config_script='',
+                        bot_config_script_rev='',
+                        bot_config_script_content='',
+                        system_service_account='',
+                        is_default=True,
+                        logs_cloud_project=None))
 
 
 def _gen_version(fields):
@@ -575,20 +577,21 @@ def _bot_group_proto_to_tuple(msg, trusted_dimensions):
   return _make_bot_group_config(
       owners=tuple(msg.owners),
       auth=tuple(
-          BotAuth(
-              log_if_failed=cfg.log_if_failed,
-              require_luci_machine_token=cfg.require_luci_machine_token,
-              require_service_account=tuple(cfg.require_service_account),
-              require_gce_vm_token=(
-                  BotAuthGCE(cfg.require_gce_vm_token.project) if cfg
-                  .HasField('require_gce_vm_token') else None),
-              ip_whitelist=cfg.ip_whitelist) for cfg in msg.auth),
-      dimensions={k: sorted(v) for k, v in dimensions.items()},
+          BotAuth(log_if_failed=cfg.log_if_failed,
+                  require_luci_machine_token=cfg.require_luci_machine_token,
+                  require_service_account=tuple(cfg.require_service_account),
+                  require_gce_vm_token=(
+                      BotAuthGCE(cfg.require_gce_vm_token.project) if cfg.
+                      HasField('require_gce_vm_token') else None),
+                  ip_whitelist=cfg.ip_whitelist) for cfg in msg.auth),
+      dimensions={k: sorted(v)
+                  for k, v in dimensions.items()},
       bot_config_script=msg.bot_config_script or '',
       bot_config_script_rev='',
       bot_config_script_content=msg.bot_config_script_content or '',
       system_service_account=msg.system_service_account or '',
-      is_default=not msg.bot_id and not msg.bot_id_prefix)
+      is_default=not msg.bot_id and not msg.bot_id_prefix,
+      logs_cloud_project=msg.logs_cloud_project or None)
 
 
 def _expand_bot_id_expr(expr):
