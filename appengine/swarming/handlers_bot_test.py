@@ -862,22 +862,22 @@ class BotApiTest(test_env_handlers.AppTestBase):
     params = self.do_handshake()
     self.assertEqual(params['dimensions']['pool'], ['default'])
 
-    self.mock_bot_group_config(
-        version='default',
-        owners=None,
-        auth=(bot_groups_config.BotAuth(
-            log_if_failed=False,
-            require_luci_machine_token=False,
-            require_service_account=None,
-            require_gce_vm_token=None,
-            ip_whitelist=None,
-        ),),
-        dimensions={u'pool': [u'server-side']},
-        bot_config_script=None,
-        bot_config_script_rev=None,
-        bot_config_script_content=None,
-        system_service_account=None,
-        is_default=True)
+    self.mock_bot_group_config(version='default',
+                               owners=None,
+                               auth=(bot_groups_config.BotAuth(
+                                   log_if_failed=False,
+                                   require_luci_machine_token=False,
+                                   require_service_account=None,
+                                   require_gce_vm_token=None,
+                                   ip_whitelist=None,
+                               ), ),
+                               dimensions={u'pool': [u'server-side']},
+                               bot_config_script=None,
+                               bot_config_script_rev=None,
+                               bot_config_script_content=None,
+                               system_service_account=None,
+                               is_default=True,
+                               logs_cloud_project=None)
 
     # Bot sends 'default' pool, but server config defined it as 'server-side'.
     response = self.post_json('/swarming/api/v1/bot/poll', params)
@@ -898,13 +898,14 @@ class BotApiTest(test_env_handlers.AppTestBase):
             require_service_account=None,
             require_gce_vm_token=None,
             ip_whitelist=None,
-        ),),
+        ), ),
         dimensions={},
         bot_config_script='foo.py',
         bot_config_script_rev='abcd',
         bot_config_script_content='print("Hi");import sys; sys.exit(1)',
         system_service_account=None,
-        is_default=True)
+        is_default=True,
+        logs_cloud_project='chrome-infra-logs')
     params = self.do_handshake()
     self.assertEqual(u'print("Hi");import sys; sys.exit(1)',
                      params['bot_config'])
@@ -1161,60 +1162,64 @@ class BotApiTest(test_env_handlers.AppTestBase):
 
     self.set_as_user()
     response = self.client_get_results(task_id, include_performance_stats=True)
-    expected = self.gen_run_result(
-        bot_idle_since_ts=fmtdate(self.now),
-        cas_output_root={
-            'cas_instance': 'projects/test/instances/default',
-            'digest': {
-                'hash': '12345',
-                'size_bytes': '1',
-            }
-        },
-        cipd_pins={
-            'client_package': {
-                'package_name': 'infra/tools/cipd/windows-amd64',
-                'version': 'deadbeef' * 5,
-            },
-            'packages': [{
-                'package_name': 'rm',
-                'path': 'bin',
-                'version': 'badc0fee' * 5,
-            }]
-        },
-        completed_ts=fmtdate(self.now),
-        costs_usd=[0.1],
-        created_ts=fmtdate(self.now),
-        duration=3.0,
-        performance_stats={
-            u'bot_overhead': 0.1,
-            u'cache_trim': {
-                u'duration': 0.1,
-            },
-            u'package_installation': {
-                u'duration': 0.1,
-            },
-            u'named_caches_install': {
-                u'duration': 0.1,
-            },
-            u'named_caches_uninstall': {
-                u'duration': 0.1,
-            },
-            u'isolated_download': {
-                u'duration': 0.1,
-                u'initial_number_items': u'10',
-                u'initial_size': u'1000',
-            },
-            u'isolated_upload': {
-                u'duration': 0.1,
-            },
-            u'cleanup': {
-                u'duration': 0.1,
-            },
-        },
-        exit_code=u'0',
-        modified_ts=fmtdate(self.now),
-        started_ts=fmtdate(self.now),
-        state=u'COMPLETED')
+    expected = self.gen_run_result(bot_idle_since_ts=fmtdate(self.now),
+                                   cas_output_root={
+                                       u'cas_instance':
+                                       u'projects/test/instances/default',
+                                       u'digest': {
+                                           u'hash': u'12345',
+                                           u'size_bytes': u'1',
+                                       }
+                                   },
+                                   cipd_pins={
+                                       u'client_package': {
+                                           u'package_name':
+                                           u'infra/tools/cipd/windows-amd64',
+                                           u'version': u'deadbeef' * 5,
+                                       },
+                                       u'packages': [{
+                                           u'package_name':
+                                           u'rm',
+                                           u'path':
+                                           u'bin',
+                                           u'version':
+                                           u'badc0fee' * 5,
+                                       }]
+                                   },
+                                   completed_ts=fmtdate(self.now),
+                                   costs_usd=[0.1],
+                                   created_ts=fmtdate(self.now),
+                                   duration=3.0,
+                                   performance_stats={
+                                       u'bot_overhead': 0.1,
+                                       u'cache_trim': {
+                                           u'duration': 0.1,
+                                       },
+                                       u'package_installation': {
+                                           u'duration': 0.1,
+                                       },
+                                       u'named_caches_install': {
+                                           u'duration': 0.1,
+                                       },
+                                       u'named_caches_uninstall': {
+                                           u'duration': 0.1,
+                                       },
+                                       u'isolated_download': {
+                                           u'duration': 0.1,
+                                           u'initial_number_items': u'10',
+                                           u'initial_size': u'1000',
+                                       },
+                                       u'isolated_upload': {
+                                           u'duration': 0.1,
+                                       },
+                                       u'cleanup': {
+                                           u'duration': 0.1,
+                                       },
+                                   },
+                                   exit_code=u'0',
+                                   modified_ts=fmtdate(self.now),
+                                   started_ts=fmtdate(self.now),
+                                   state=u'COMPLETED')
     self.assertEqual(expected, response)
 
   def test_bot_ereporter2_error(self):
@@ -1947,22 +1952,22 @@ class BotApiTest(test_env_handlers.AppTestBase):
                                 expected_kind, expected_scopes,
                                 expected_audience):
     self.set_as_bot()
-    self.mock_bot_group_config(
-        version='default',
-        owners=None,
-        auth=(bot_groups_config.BotAuth(
-            log_if_failed=False,
-            require_luci_machine_token=False,
-            require_service_account=None,
-            require_gce_vm_token=None,
-            ip_whitelist=None,
-        ),),
-        dimensions={},
-        bot_config_script=None,
-        bot_config_script_rev=None,
-        bot_config_script_content=None,
-        system_service_account='system@example.com',
-        is_default=True)
+    self.mock_bot_group_config(version='default',
+                               owners=None,
+                               auth=(bot_groups_config.BotAuth(
+                                   log_if_failed=False,
+                                   require_luci_machine_token=False,
+                                   require_service_account=None,
+                                   require_gce_vm_token=None,
+                                   ip_whitelist=None,
+                               ), ),
+                               dimensions={},
+                               bot_config_script=None,
+                               bot_config_script_rev=None,
+                               bot_config_script_content=None,
+                               system_service_account='system@example.com',
+                               is_default=True,
+                               logs_cloud_project=None)
 
     calls = []
 
