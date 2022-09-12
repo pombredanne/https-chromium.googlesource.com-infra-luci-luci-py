@@ -151,9 +151,9 @@ export const specialFilters = {
     if (s === 'COMPLETED_FAILURE') {
       return state === 'COMPLETED' && failure;
     }
-    const tryNum = task.try_number;
+    const deduped = task.deduped_from === undefined;
     if (s === 'DEDUPED') {
-      return state === 'COMPLETED' && tryNum === '0';
+      return state === 'COMPLETED' && deduped;
     }
   },
 };
@@ -577,7 +577,7 @@ const colMap = {
       if (task.failure) {
         return 'COMPLETED (FAILURE)';
       }
-      if (task.try_number === '0') {
+      if (task.from_deduped !== undefined) {
         return 'COMPLETED (DEDUPED)';
       }
       return 'COMPLETED (SUCCESS)';

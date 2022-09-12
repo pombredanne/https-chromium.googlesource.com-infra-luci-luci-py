@@ -220,7 +220,6 @@ export const tasks_20 = {
       'user': '',
       'bot_id': 'build128-a9',
       'current_task_slice': '0',
-      'try_number': '1',
       'started_ts': '2018-12-19T16:33:28.255378',
     },
     {
@@ -367,7 +366,6 @@ export const tasks_20 = {
       'user': '',
       'bot_id': 'gce-trusty-e833d7b0-us-east1-b-fb3g',
       'current_task_slice': '0',
-      'try_number': '1',
       'started_ts': '2018-12-19T16:33:27.622954',
     },
     {
@@ -590,7 +588,6 @@ export const tasks_20 = {
           'key': 'zone',
         },
       ],
-      'try_number': '1',
       'current_task_slice': '0',
       'costs_usd': [
         0.015322936171758469,
@@ -769,7 +766,6 @@ export const tasks_20 = {
           'key': 'zone',
         },
       ],
-      'try_number': '1',
       'current_task_slice': '0',
       'costs_usd': [
         0.014702407470976892,
@@ -899,7 +895,6 @@ export const tasks_20 = {
       'user': 'skiabot@example.com',
       'bot_id': 'skia-e-win-352',
       'current_task_slice': '0',
-      'try_number': '1',
       'started_ts': '2018-12-19T16:07:20.776635',
     },
     {
@@ -1047,7 +1042,6 @@ export const tasks_20 = {
       'user': '',
       'bot_id': 'gce-trusty-e833d7b0-us-west1-c-l5rh',
       'current_task_slice': '0',
-      'try_number': '1',
       'started_ts': '2018-12-19T15:55:51.961390',
     },
     {
@@ -1222,7 +1216,6 @@ export const tasks_20 = {
           'key': 'zone',
         },
       ],
-      'try_number': '0',
       'current_task_slice': '0',
       'bot_id': 'gce-trusty-e833d7b0-us-east1-b-6z96',
     },
@@ -1399,7 +1392,6 @@ export const tasks_20 = {
           'key': 'zone',
         },
       ],
-      'try_number': '0',
       'current_task_slice': '0',
       'bot_id': 'gce-trusty-e833d7b0-us-west1-b-g3nv',
     },
@@ -1776,7 +1768,6 @@ export const tasks_20 = {
           'key': 'zone',
         },
       ],
-      'try_number': '1',
       'current_task_slice': '0',
       'costs_usd': [
         0.07229456286102291,
@@ -2017,7 +2008,6 @@ export const tasks_20 = {
           'key': 'zone',
         },
       ],
-      'try_number': '1',
       'current_task_slice': '1',
       'costs_usd': [
         0.01062192540761886,
@@ -2243,7 +2233,6 @@ export const tasks_20 = {
           'key': 'zone',
         },
       ],
-      'try_number': '1',
       'current_task_slice': '0',
       'costs_usd': [
         0.9931866545447807,
@@ -2467,7 +2456,6 @@ export const tasks_20 = {
           'key': 'zone',
         },
       ],
-      'try_number': '1',
       'current_task_slice': '0',
       'costs_usd': [
         0.5098954997358307,
