@@ -231,6 +231,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         None,
         'bot_version':
         None,
+        'bot_logs_cloud_project':
+        None,
         'cipd_pins':
         None,
         'children_task_ids': [],
@@ -308,6 +310,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         'bot_id': u'localhost',
         'bot_idle_since_ts': self.now,
         'bot_version': u'abc',
+        'bot_logs_cloud_project': None,
         'cas_output_root': None,
         'cipd_pins': None,
         'children_task_ids': [],
@@ -387,7 +390,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     bot_id = bot_dimensions['id'][0]
     queues = task_queues._get_queues(bot_management.get_root_key(bot_id))
     return task_scheduler.bot_reap_task(bot_dimensions, queues, version
-                                        or 'abc', _deadline())
+                                        or 'abc', None, _deadline())
 
   def _quick_reap(self, num_task, num_btd_updated, **kwargs):
     """Makes sure the bot is registered and have it reap a task."""
