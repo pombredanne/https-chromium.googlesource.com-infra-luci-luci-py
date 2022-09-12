@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19131efc_74389fa9",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1547129
+      },
+      "writtenOn": "2022-09-12T05:17:31Z",
+      "side": 1,
+      "message": "Code change done.",
+      "parentUuid": "3ee8c19d_525baee9",
+      "range": {
+        "startLine": 353,
+        "startChar": 10,
+        "endLine": 353,
+        "endChar": 59
+      },
+      "revId": "76dd29eb599ee4ecfee17e6b230c3c73b29e626c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a82fae6f_428dc1ee",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5685f48f_75002274",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1547129
+      },
+      "writtenOn": "2022-09-12T05:17:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a82fae6f_428dc1ee",
+      "range": {
+        "startLine": 756,
+        "startChar": 2,
+        "endLine": 756,
+        "endChar": 20
+      },
+      "revId": "76dd29eb599ee4ecfee17e6b230c3c73b29e626c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "129481eb_6aa163d7",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-09-06T18:29:12Z",
       "side": 1,
       "message": "Let\u0027s compute it on the frontend to avoid adding confusing fields to the API. For 99% of calls, this will be identical to bot_id. And most API readers aren\u0027t really familiar with what \"composed name\" is. So this field will be extra confusing to them.",
+      "range": {
+        "startLine": 758,
+        "startChar": 0,
+        "endLine": 760,
+        "endChar": 38
+      },
+      "revId": "76dd29eb599ee4ecfee17e6b230c3c73b29e626c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "157b19bd_7f448a0b",
+        "filename": "appengine/swarming/swarming_rpcs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1547129
+      },
+      "writtenOn": "2022-09-12T05:17:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "129481eb_6aa163d7",
       "range": {
         "startLine": 758,
         "startChar": 0,
