@@ -110,5 +110,20 @@ module.exports = function(config) {
     concurrency: Infinity,
 
     webpack: webpackConfig,
+
+    customLaunchers: {
+      'ChromeHeadless': {
+        base: 'Chrome',
+        flags: [
+          '--headless',
+          '--disable-gpu',
+          '--no-sandbox',
+          '--disable-web-security',
+          // Without a debugging port, Chrome exits immediately.
+          '--remote-debugging-port=9222',
+        ],
+        debug: true,
+      },
+    },
   });
 };

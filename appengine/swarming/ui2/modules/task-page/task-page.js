@@ -45,6 +45,20 @@ import SwarmingAppBoilerplate from '../SwarmingAppBoilerplate';
  *    Instead, dummy data will be used. Ideal for local testing.
  */
 
+const extractPrimaryHostname = (bot_id) => {
+  if (!bot_id) {
+    return bot_id;
+  }
+  const parts = bot_id.split('--');
+  if (parts.length == 2) {
+    return parts[0];
+  }
+  if (parts.length > 2) {
+    throw Error('Unable to parse composed bot_id: ' + bot_id);
+  }
+  return bot_id;
+};
+
 const cloudLoggingURL = (project, query, start, end) => {
   let url = `https://pantheon.corp.google.com/logs/query`;
   url += `;query=${encodeURIComponent(query)}`;
@@ -91,8 +105,9 @@ const serverBotLogsURL = (project, request, result) => {
 const botLogsURL = (botProjectID, botZone, request, result) => {
   // limit logs that we care
   // TODO(jwata): Non GCE bots will need a different label.
+  const host_name = extractPrimaryHostname(result.bot_id);
   const query =
-      `labels."compute.googleapis.com/resource_name"="${result.bot_id}"`;
+      `labels."compute.googleapis.com/resource_name":"${host_name}"`;
   let timeStart;
   let timeEnd;
   if (result.started_ts) {
@@ -697,6 +712,7 @@ const logsSection = (ele, request, result) => {
   if (!ele._taskId || ele._notFound) {
     return '';
   }
+  let botLogsCloudProject = null;
   let botProjectID = null;
   let botZone = null;
   if (result && result.bot_dimensions) {
@@ -706,6 +722,11 @@ const logsSection = (ele, request, result) => {
         botZone = dim.value.reduce(
             (a, b) => a.length > b.length ? a : b );
       }
+    }
+    //
+    botLogsCloudProject = result.bot_logs_cloud_project;
+    if (!!botLogsCloudProject) {
+      botProjectID = botLogsCloudProject;
     }
   }
   const showBotLogsLink = !!botProjectID;

@@ -260,10 +260,8 @@ def _is_valid_ident_for_bot(ident, bot_id):
       ident != auth.IP_WHITELISTED_BOT_ID and
       ident.name.startswith(bot_id + '.'))
 
-
 def _extract_primary_hostname(bot_id):
   """If the bot_id is a composed name, return just the primary hostname.
-
    Multiple bots running on the same host may use the host's token to
    authenticate. When this is the case, the hostname is needed to
    validate the token. It can be extracted from their bot_ids, which will take
