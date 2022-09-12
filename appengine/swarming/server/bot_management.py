@@ -396,12 +396,6 @@ class BotEvent(_BotCommon):
     return (self.event_type == 'request_sleep' and not self.quarantined
             and not self.maintenance_msg)
 
-  @property
-  def previous_key(self):
-    """Returns the ndb.Key to the previous event."""
-    return ndb.Key(
-        self.__class__, self.key.integer_id()+1, parent=self.key.parent())
-
   def to_proto(self, out):
     """Converts self to a swarming_pb2.BotEvent."""
     if self.ts:
@@ -476,7 +470,7 @@ def get_events_query(bot_id, order):
       default_options=ndb.QueryOptions(use_cache=False),
       ancestor=get_root_key(bot_id))
   if order:
-    q = q.order(BotEvent.key)
+    q = q.order(-BotEvent.ts)
   return q
 
 
@@ -532,6 +526,14 @@ def filter_availability(q, quarantined, in_maintenance, is_dead, is_busy):
   # TODO(charliea): Add filtering based on the 'maintenance' field.
 
   return q
+
+
+def _insert_bot_event(root_key, event, bot_info):
+  entities_to_create = [event, bot_info]
+  bot_root = root_key.get()
+  if not bot_root:
+    entities_to_create.append(BotRoot(key=root_key, current=0))
+  ndb.put_multi(entities_to_create)
 
 
 def bot_event(
@@ -667,20 +669,20 @@ def bot_event(
   # aren't provided by the bot.
   event_dimensions_flat = dimensions_flat or bot_info.dimensions_flat
 
-  event = BotEvent(
-      parent=get_root_key(bot_id),
-      event_type=event_type,
-      external_ip=external_ip,
-      authenticated_as=authenticated_as,
-      dimensions_flat=event_dimensions_flat,
-      quarantined=bot_info.quarantined,
-      maintenance_msg=bot_info.maintenance_msg,
-      state=bot_info.state,
-      task_id=task_id or bot_info.task_id,
-      version=bot_info.version,
-      **kwargs)
+  root_key = get_root_key(bot_id)
+  event = BotEvent(parent=root_key,
+                   event_type=event_type,
+                   external_ip=external_ip,
+                   authenticated_as=authenticated_as,
+                   dimensions_flat=event_dimensions_flat,
+                   quarantined=bot_info.quarantined,
+                   maintenance_msg=bot_info.maintenance_msg,
+                   state=bot_info.state,
+                   task_id=task_id or bot_info.task_id,
+                   version=bot_info.version,
+                   **kwargs)
+  _insert_bot_event(root_key, event, bot_info)
 
-  datastore_utils.store_new_version(event, BotRoot, [bot_info])
   return event.key
 
 

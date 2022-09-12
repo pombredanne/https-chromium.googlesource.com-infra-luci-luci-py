@@ -151,7 +151,25 @@ class BotManagementTest(test_case.TestCase):
   def setUp(self):
     super(BotManagementTest, self).setUp()
     self.now = datetime.datetime(2010, 1, 2, 3, 4, 5, 6)
-    self.mock_now(self.now)
+    self.mock_now_incrementing(self.now, datetime.timedelta(seconds=1))
+
+  def _assertEqualDicts(self, expected, actual, keys_to_ignore):
+    for item in expected:
+      for key in keys_to_ignore:
+        if key in item:
+          item.pop(key)
+    for item in actual:
+      for key in keys_to_ignore:
+        if key in item:
+          item.pop(key)
+    self.assertEqual(expected, actual)
+
+  def assertEventsAreEqual(self, expected, actual):
+    self._assertEqualDicts(expected, actual, ["ts"])
+
+  def assertBotsEqualIgnoringTime(self, expected, actual):
+    self._assertEqualDicts(expected, actual,
+                           ["last_seen_ts", "first_seen_ts", "idle_since_ts"])
 
   def test_all_apis_are_tested(self):
     actual = frozenset(i[5:] for i in dir(self) if i.startswith('test_'))
@@ -212,6 +230,7 @@ class BotManagementTest(test_case.TestCase):
 
   def test_BotEvent_proto_maintenance(self):
     # Also test a misconfigured bot not in a pool.
+    self.mock_now(self.now)
     event_key = _bot_event(
         event_type=u'bot_connected',
         bot_id=u'id1',
@@ -243,6 +262,7 @@ class BotManagementTest(test_case.TestCase):
 
   def test_BotEvent_proto_quarantine(self):
     # Also test that a bot can belong to two pools.
+    self.mock_now(self.now)
     event_key = _bot_event(
         event_type=u'bot_connected',
         bot_id=u'id1',
@@ -297,8 +317,8 @@ class BotManagementTest(test_case.TestCase):
     _bot_event(event_type=event, bot_id='id1', dimensions=d)
 
     expected = _gen_bot_info(idle_since_ts=self.now)
-    self.assertEqual(
-        expected, bot_management.get_info_key('id1').get().to_dict())
+    self.assertBotsEqualIgnoringTime(
+        [expected], [bot_management.get_info_key('id1').get().to_dict()])
 
   @parameterized.expand([
       (u'task_completed', True, False),
@@ -354,18 +374,18 @@ class BotManagementTest(test_case.TestCase):
           task_name=task_name,
           idle_since_ts=None)
 
-    self.assertEqual(expected, bot_info.key.get().to_dict())
+    self.assertBotsEqualIgnoringTime([expected], [bot_info.key.get().to_dict()])
 
     # bot_event should have task_id
     if not skip_store_event:
       expected_event = _gen_bot_event(event_type=event, task_id=task_id)
       last_event = bot_management.get_events_query(bot_id, True).get()
-      self.assertEqual(expected_event, last_event.to_dict())
+      self.assertEventsAreEqual([expected_event], [last_event.to_dict()])
 
   def test_get_events_query(self):
     _bot_event(event_type='bot_connected')
     expected = [_gen_bot_event(event_type=u'bot_connected')]
-    self.assertEqual(
+    self.assertEventsAreEqual(
         expected,
         [i.to_dict() for i in bot_management.get_events_query('id1', True)])
 
@@ -383,26 +403,30 @@ class BotManagementTest(test_case.TestCase):
         ])
 
     bot_info = bot_management.get_info_key('id1').get()
-    self.assertEqual(expected, bot_info.to_dict())
+    self.assertBotsEqualIgnoringTime([expected], [bot_info.to_dict()])
 
     # BotEvent is registered for poll when BotInfo creates
     expected_event = _gen_bot_event(event_type=u'request_sleep')
     bot_events = bot_management.get_events_query('id1', True)
-    self.assertEqual([expected_event], [e.to_dict() for e in bot_events])
+    self.assertEventsAreEqual([expected_event],
+                              [e.to_dict() for e in bot_events])
 
     # flush bot events
     ndb.delete_multi(e.key for e in bot_events)
 
     # BotEvent is not registered for poll when no dimensions change
     _bot_event(event_type='request_sleep')
-    self.assertEqual([], bot_management.get_events_query('id1', True).fetch())
+    self.assertEventsAreEqual([],
+                              bot_management.get_events_query('id1',
+                                                              True).fetch())
 
     # BotEvent is registered for poll when dimensions change
     dims = {u'foo': [u'bar']}
     _bot_event(event_type='request_sleep', dimensions=dims)
     expected_event['dimensions'] = dims
     bot_events = bot_management.get_events_query('id1', True).fetch()
-    self.assertEqual([expected_event], [e.to_dict() for e in bot_events])
+    self.assertEventsAreEqual([expected_event],
+                              [e.to_dict() for e in bot_events])
 
   def test_bot_event_busy(self):
     _bot_event(event_type='bot_connected')
@@ -417,13 +441,13 @@ class BotManagementTest(test_case.TestCase):
         task_id=u'12311',
         task_name=u'yo')
     bot_info = bot_management.get_info_key('id1').get()
-    self.assertEqual(expected, bot_info.to_dict())
+    self.assertBotsEqualIgnoringTime([expected], [bot_info.to_dict()])
 
     expected = [
         _gen_bot_event(event_type=u'request_task', task_id=u'12311'),
         _gen_bot_event(event_type=u'bot_connected'),
     ]
-    self.assertEqual(
+    self.assertEventsAreEqual(
         expected,
         [e.to_dict() for e in bot_management.get_events_query('id1', True)])
 
@@ -519,6 +543,7 @@ class BotManagementTest(test_case.TestCase):
 
   def test_has_capacity_BotEvent(self):
     # Disable the memcache code path to confirm the DB based behavior.
+    self.mock_now(self.now)
     self.mock(task_queues, 'probably_has_capacity', lambda *_: None)
 
     d = {u'pool': [u'default'], u'os': [u'Ubuntu-16.04']}
@@ -554,6 +579,7 @@ class BotManagementTest(test_case.TestCase):
     self.assertEqual(pools, ['pool1', 'pool2'])
 
   def test_cron_update_bot_info(self):
+    self.mock_now(self.now)
     # Create two bots, one becomes dead, updating the cron job fixes composite.
     timeout = bot_management.config.settings().bot_death_timeout_secs
 
@@ -636,8 +662,9 @@ class BotManagementTest(test_case.TestCase):
   def test_cron_delete_old_bot_events(self):
     # Create an old BotEvent right at the cron job cut off, and another one one
     # second later (that will be kept).
-    _bot_event(event_type='bot_connected')
     now = self.now
+    self.mock_now(now)
+    _bot_event(event_type='bot_connected')
     self.mock_now(now, 1)
     event_key = _bot_event(event_type='bot_connected')
     self.mock_now(now + bot_management._OLD_BOT_EVENTS_CUT_OFF, 0)

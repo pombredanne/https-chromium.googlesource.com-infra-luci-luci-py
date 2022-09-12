@@ -884,8 +884,8 @@ class SwarmingBotService(remote.Service):
       end = message_conversion.epoch_to_datetime(request.end)
       order = not (start or end)
       q = bot_management.get_events_query(bot_id, order)
-      if not order:
-        q = q.order(-bot_management.BotEvent.ts, bot_management.BotEvent.key)
+      import pdb
+      pdb.set_trace()
       if start:
         q = q.filter(bot_management.BotEvent.ts >= start)
       if end:

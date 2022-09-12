@@ -3333,7 +3333,9 @@ class BotApiTest(BaseTest):
     self.client_create_task_raw()
     self.set_as_bot()
     res = self.bot_poll(params=params)
-    now_60 = self.mock_now(self.now, 60)
+    now_60 = self.now + datetime.timedelta(seconds=60)
+    incrementer = self.mock_now_incrementing(now_60,
+                                             datetime.timedelta(seconds=1))
     response = self.bot_complete_task(task_id=res['manifest']['task_id'])
     self.assertEqual({u'must_stop': False, u'ok': True}, response)
 
@@ -3342,12 +3344,12 @@ class BotApiTest(BaseTest):
     response = self.post_json('/swarming/api/v1/bot/event', params)
     self.assertEqual({}, response)
 
-    start = utils.datetime_to_timestamp(self.now) / 1000000.
-    end = utils.datetime_to_timestamp(now_60) / 1000000.
+    start = utils.datetime_to_timestamp(incrementer.get_first()) / 1000000.
+    end = utils.datetime_to_timestamp(incrementer.get_last()) / 1000000.
     self.set_as_privileged_user()
     body = message_to_dict(
         handlers_endpoints.BotEventsRequest.combined_message_class(
-            bot_id='bot1', start=start, end=end + 1))
+            bot_id='bot1', start=start - 1, end=end + 1))
     response = self.call_api('events', body=body)
     dimensions = [
         {
@@ -3432,7 +3434,7 @@ class BotApiTest(BaseTest):
         ],
         u'now': fmtdate(now_60),
     }
-    self.assertEqual(expected, response.json)
+    self.assertEventsAreEqual(expected["items"], response.json["items"])
 
     # Now test with a subset.
     body = message_to_dict(

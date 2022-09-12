@@ -383,6 +383,8 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, response)
 
   def test_poll_bad_dimensions(self):
+    incrementer = self.mock_now_incrementing(self.now,
+                                             datetime.timedelta(seconds=1))
     errors = []
 
     def add_error(request, source, message):
@@ -441,7 +443,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     events = [
         e.to_dict() for e in bot_management.get_events_query('bot1', True)
     ]
-    self.assertEqual(events[0], expected_event)
+    self.assertEventsAreEqual(events[0:1], [expected_event])
 
     # BotInfo should be changed to quarantined state, too.
     bot_info = bot_management.get_info_key('bot1').get()
@@ -1330,6 +1332,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, [e[1] for e in errors])
 
   def test_bot_event(self):
+    self.mock_now_incrementing(self.now, datetime.timedelta(seconds=1))
     self.mock(random, 'getrandbits', lambda _: 0x88)
     params = self.do_handshake()
     dimensions = params['dimensions']
@@ -1398,7 +1401,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         'version': u'123',
     })
 
-    self.assertEqual(expected, actual)
+    self.assertEventsAreEqual(expected, actual)
 
   def test_bot_event_bad_request(self):
     params = self.do_handshake()
