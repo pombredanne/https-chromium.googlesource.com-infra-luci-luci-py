@@ -1,0 +1,186 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "407afb45_f2851a18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-13T02:53:20Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64a4e9ba_5de6f439",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1400,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-13T02:53:20Z",
+      "side": 1,
+      "message": "also sort of behaves like a sync.waitgroup?",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "346b7d7a_0b3afd89",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1408,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-13T02:53:20Z",
+      "side": 1,
+      "message": "docstrings re: types would be helpful",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cf45128_5c4db6e1",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1416,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-13T02:53:20Z",
+      "side": 1,
+      "message": "could this be asserted once in __init__?\n\nedit: nvm, this is an int probably. something something types. Assert message text would maybe help tho.",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "409f2aa5_0c0b8ed5",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-13T02:53:20Z",
+      "side": 1,
+      "message": "assert items are futures? (or filter)",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfd96ea3_ae5b195f",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1429,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-13T02:53:20Z",
+      "side": 1,
+      "message": "ok",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1111535_c996f07a",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1435,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-13T02:53:20Z",
+      "side": 1,
+      "message": "how possible?",
+      "range": {
+        "startLine": 1435,
+        "startChar": 0,
+        "endLine": 1435,
+        "endChar": 43
+      },
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41d05388_0a2b9a5f",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-13T02:53:20Z",
+      "side": 1,
+      "message": "I THINK you can use this thing (https://github.com/GoogleCloudPlatform/datastore-ndb-python/blob/master/ndb/tasklets.py#L662) to achieve this",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7a0f6d1_698d76f8",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-13T02:53:20Z",
+      "side": 1,
+      "message": "meh, but probably fine for its intended use.",
+      "range": {
+        "startLine": 1442,
+        "startChar": 54,
+        "endLine": 1443,
+        "endChar": 71
+      },
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbe44ae9_d653ad44",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1470,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-13T02:53:20Z",
+      "side": 1,
+      "message": "should all this code really be in \"task_queues.py\"?",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
