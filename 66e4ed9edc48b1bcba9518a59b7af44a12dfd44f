@@ -1,5 +1,75 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "babd654c_64cf2d4b",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1163,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-13T03:34:26Z",
+      "side": 1,
+      "message": "visited by the Tooth Fairy.",
+      "range": {
+        "startLine": 1163,
+        "startChar": 45,
+        "endLine": 1163,
+        "endChar": 72
+      },
+      "revId": "66e4ed9edc48b1bcba9518a59b7af44a12dfd44f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb7cc279_7682a743",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1188,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-13T03:34:26Z",
+      "side": 1,
+      "message": "will this affect the UI handlers too?",
+      "range": {
+        "startLine": 1188,
+        "startChar": 16,
+        "endLine": 1188,
+        "endChar": 21
+      },
+      "revId": "66e4ed9edc48b1bcba9518a59b7af44a12dfd44f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4c0b9ba_adb81b2b",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-13T03:34:26Z",
+      "side": 1,
+      "message": "why not index it then? IIUC this is basically an epoch?",
+      "range": {
+        "startLine": 1210,
+        "startChar": 30,
+        "endLine": 1210,
+        "endChar": 47
+      },
+      "revId": "66e4ed9edc48b1bcba9518a59b7af44a12dfd44f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
