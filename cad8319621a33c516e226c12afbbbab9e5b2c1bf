@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f5e93a7_b7cc9b55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-13T01:13:57Z",
+      "side": 1,
+      "message": "PTAL, this is a gadget that will be used to process results of all queries. I hope I didn\u0027t screw it up, ndb sucks.",
+      "revId": "cad8319621a33c516e226c12afbbbab9e5b2c1bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
