@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "84566574_8af316b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-13T17:39:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13d2bb08_e56e50df",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "5324dca4c460e8eda1ab96e0c16c62797228b3e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ba1b942e_719369e7",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -83,6 +107,30 @@
       "writtenOn": "2022-09-13T17:29:52Z",
       "side": 1,
       "message": "imo this function name sucks... assert bot? assert what, exactly. anyway.",
+      "range": {
+        "startLine": 105,
+        "startChar": 6,
+        "endLine": 105,
+        "endChar": 17
+      },
+      "revId": "5324dca4c460e8eda1ab96e0c16c62797228b3e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9103314b_828feee4",
+        "filename": "appengine/swarming/server/task_queues_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-13T17:39:52Z",
+      "side": 1,
+      "message": "it asserts bot\u0027s existence. I guess it could be named \"register_bot\", but this function also \"refreshes\" state of existing bots as well.",
+      "parentUuid": "44a24480_77265b1f",
       "range": {
         "startLine": 105,
         "startChar": 6,
