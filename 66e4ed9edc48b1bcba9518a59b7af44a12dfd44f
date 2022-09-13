@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0594fae1_1e9c3082",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1163,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-13T03:41:46Z",
+      "side": 1,
+      "message": "https://m.media-amazon.com/images/I/81xVxf51krL._SL1500_.jpg (NSFL)",
+      "parentUuid": "babd654c_64cf2d4b",
+      "range": {
+        "startLine": 1163,
+        "startChar": 45,
+        "endLine": 1163,
+        "endChar": 72
+      },
+      "revId": "66e4ed9edc48b1bcba9518a59b7af44a12dfd44f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb7cc279_7682a743",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a46c0dcf_ebc713bd",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1188,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-13T03:41:46Z",
+      "side": 1,
+      "message": "No, they use a separate index on BotInfo in bot_management.py.\n\nIndexes here are actually more dynamic (in the previous implementation as well). If a bot is detected as dead or quarantined, it is kicked out of the index. It remains in BotInfo index, since we still need to show dead bots in the UI.",
+      "parentUuid": "eb7cc279_7682a743",
+      "range": {
+        "startLine": 1188,
+        "startChar": 16,
+        "endLine": 1188,
+        "endChar": 21
+      },
+      "revId": "66e4ed9edc48b1bcba9518a59b7af44a12dfd44f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4c0b9ba_adb81b2b",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-09-13T03:34:26Z",
       "side": 1,
       "message": "why not index it then? IIUC this is basically an epoch?",
+      "range": {
+        "startLine": 1210,
+        "startChar": 30,
+        "endLine": 1210,
+        "endChar": 47
+      },
+      "revId": "66e4ed9edc48b1bcba9518a59b7af44a12dfd44f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "379d0f6d_9f96d3b5",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-13T03:41:46Z",
+      "side": 1,
+      "message": "There are no queries that would use this index.\n\nthe algo is:\n\n```\n  @txn\n  def enqueue():\n     ...\n     ent.rescan_counter +\u003d 1\n     transactionally_enqueue({\u0027rescan_counter\u0027: ent.rescan_counter})\n     ent.put()\n     \n  def tq_task(rescan_counter):\n    ent \u003d get()\n    if ent.rescan_counter !\u003d rescan_counter:\n      return # there\u0027s a \"newer\" task in flight already\n    ...\n```",
+      "parentUuid": "b4c0b9ba_adb81b2b",
       "range": {
         "startLine": 1210,
         "startChar": 30,
