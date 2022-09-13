@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a05d0b38_85f75ef6",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1400,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-13T03:23:24Z",
+      "side": 1,
+      "message": "semantically more like parallel.WorkPool",
+      "parentUuid": "64a4e9ba_5de6f439",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "346b7d7a_0b3afd89",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-09-13T02:53:20Z",
       "side": 1,
       "message": "docstrings re: types would be helpful",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6197eba3_af88bd80",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1408,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-13T03:23:24Z",
+      "side": 1,
+      "message": "Added. This type is implementation detail of _map_async, so I didn\u0027t document it.",
+      "parentUuid": "346b7d7a_0b3afd89",
       "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -88,6 +124,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3dbcee95_51a28ad4",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-13T03:23:24Z",
+      "side": 1,
+      "message": "They aren\u0027t futures, they are entities that will later be passed to `cb`. In ndb tasklets are \"eager\", if we require a future here, then there\u0027s already a tasklet this future is associated with that ndb even loop is pushing forward. And there\u0027s no place to control how many such tasklets are running concurrently.\n\nAdded doc string.",
+      "parentUuid": "409f2aa5_0c0b8ed5",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "bfd96ea3_ae5b195f",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 4
@@ -99,6 +153,24 @@
       "writtenOn": "2022-09-13T02:53:20Z",
       "side": 1,
       "message": "ok",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70d77a41_cfa0453f",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1429,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-13T03:23:24Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "bfd96ea3_ae5b195f",
       "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -126,6 +198,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6f2c359_893d7ac6",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1435,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-13T03:23:24Z",
+      "side": 1,
+      "message": "cb is allowed to return non-Future if it actually doesn\u0027t need to async-process the item. It is documented in _map_async.",
+      "parentUuid": "f1111535_c996f07a",
+      "range": {
+        "startLine": 1435,
+        "startChar": 0,
+        "endLine": 1435,
+        "endChar": 43
+      },
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41d05388_0a2b9a5f",
@@ -139,6 +235,24 @@
       "writtenOn": "2022-09-13T02:53:20Z",
       "side": 1,
       "message": "I THINK you can use this thing (https://github.com/GoogleCloudPlatform/datastore-ndb-python/blob/master/ndb/tasklets.py#L662) to achieve this",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c354b130_c173bee8",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-13T03:23:24Z",
+      "side": 1,
+      "message": "Yeah, I considered that... At the core of its implementation is a thing similar to self._waiter here. But it also has a lot more code and I\u0027m scared to rely on it because there\u0027s virtually ZERO hits of its use in code search (outside of couple ndb own tests). I decided I\u0027d better write a smaller things I fully understand (well, almost fully).",
+      "parentUuid": "41d05388_0a2b9a5f",
       "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -179,6 +293,24 @@
       "writtenOn": "2022-09-13T02:53:20Z",
       "side": 1,
       "message": "should all this code really be in \"task_queues.py\"?",
+      "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a865255b_cd4b1fde",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1470,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-13T03:23:24Z",
+      "side": 1,
+      "message": "It uses booleans to communicate success/failure. It kind of sucks as a general API. I don\u0027t want to generalize it, it makes it more complicated.",
+      "parentUuid": "cbe44ae9_d653ad44",
       "revId": "875eee83040593fb84bd1b3add4f806153ac8ecc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
