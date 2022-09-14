@@ -108,6 +108,29 @@
       },
       "revId": "36159abdb0c34498cf224fe5ab1d2d3309a36cd5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3187f2b1_04faeecb",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-14T21:55:18Z",
+      "side": 1,
+      "message": "note that it still needs a transaction to make sure `event` and `bot_info` are stored at the same time. Just calling `ndb.put_multi(a, b)` may result in `a` being stored and `b` not, there\u0027s no atomicity guarantee. Only transactions give this guarantee. Still, it will be much simpler transaction than what store_new_version did.",
+      "range": {
+        "startLine": 683,
+        "startChar": 2,
+        "endLine": 683,
+        "endChar": 19
+      },
+      "revId": "36159abdb0c34498cf224fe5ab1d2d3309a36cd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
