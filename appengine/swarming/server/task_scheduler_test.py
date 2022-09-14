@@ -230,6 +230,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         None,
         'bot_version':
         None,
+        'bot_logs_cloud_project':
+        None,
         'cipd_pins':
         None,
         'children_task_ids': [],
@@ -307,6 +309,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         'bot_id': u'localhost',
         'bot_idle_since_ts': self.now,
         'bot_version': u'abc',
+        'bot_logs_cloud_project': None,
         'cas_output_root': None,
         'cipd_pins': None,
         'children_task_ids': [],
@@ -382,7 +385,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     bot_id = bot_dimensions['id'][0]
     queues = task_queues._get_queues(bot_management.get_root_key(bot_id))
     return task_scheduler.bot_reap_task(bot_dimensions, queues, version
-                                        or 'abc', _deadline())
+                                        or 'abc', None, _deadline())
 
   def _quick_reap(self, num_btd_updated, **kwargs):
     """Makes sure the bot is registered and have it reap a task."""
@@ -485,7 +488,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                 }),
             wait_for_capacity=False),
     ]
-    self._quick_schedule(task_slices=task_slices)
+    self._quick_schedule(1, task_slices=task_slices)
     _, _, run_result = self._bot_reap_task()
     self.assertEqual(u'bot1', run_result.bot_id)
     to_run_key = _run_result_to_to_run_key(run_result)
@@ -1790,8 +1793,10 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     bot2_dimensions = self.bot_dimensions.copy()
     bot2_dimensions['id'] = [bot2_dimensions['id'][0] + '2']
     self._register_bot(1, bot2_dimensions)
-    _, _, child_run_result = self._bot_reap_task()
-    self.execute_tasks()
+
+    _, _, child_run_result = task_scheduler.bot_reap_task(
+        bot2_dimensions, 'abc', 'test_project', _deadline())
+    self.assertEqual(0, self.execute_tasks())
 
     # Run a child task 2.
     child_request2 = _gen_request_slices(
@@ -1802,8 +1807,10 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     bot3_dimensions = self.bot_dimensions.copy()
     bot3_dimensions['id'] = [bot3_dimensions['id'][0] + '3']
     self._register_bot(1, bot3_dimensions)
-    _, _, child_run_result2 = self._bot_reap_task()
-    self.execute_tasks()
+
+    _, _, child_run_result2 = task_scheduler.bot_reap_task(
+        bot3_dimensions, 'abc', 'test_project', _deadline())
+    self.assertEqual(0, self.execute_tasks())
 
     # Run a child task 3. This will be cancelled before running.
     child_request3 = _gen_request_slices(

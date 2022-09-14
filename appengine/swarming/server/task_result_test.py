@@ -112,7 +112,8 @@ def _gen_run_result(**kwargs):
   request = result_summary.request_key.get()
   to_run = task_to_run.new_task_to_run(request, 0)
   run_result = task_result.new_run_result(request, to_run, 'localhost', 'abc',
-                                          {}, result_summary.resultdb_info)
+                                          {}, 'test_project',
+                                          result_summary.resultdb_info)
   run_result.started_ts = result_summary.modified_ts
   run_result.modified_ts = utils.utcnow()
   run_result.dead_after_ts = utils.utcnow() + datetime.timedelta(
@@ -164,6 +165,8 @@ class TaskResultApiTest(TestCase):
         'bot_idle_since_ts':
         None,
         'bot_version':
+        None,
+        'bot_logs_cloud_project':
         None,
         'cipd_pins':
         None,
@@ -239,6 +242,7 @@ class TaskResultApiTest(TestCase):
         'bot_id': u'localhost',
         'bot_idle_since_ts': None,
         'bot_version': u'abc',
+        'bot_logs_cloud_project': None,
         'cas_output_root': None,
         'children_task_ids': [],
         'cipd_pins': None,
@@ -353,7 +357,7 @@ class TaskResultApiTest(TestCase):
         request, to_run, u'localhost', u'abc', {
             u'id': [u'localhost'],
             u'foo': [u'bar', u'biz']
-        },
+        }, None,
         task_result.ResultDBInfo(hostname='hostname', invocation='invocation'))
     actual.modified_ts = self.now
     actual.started_ts = self.now
@@ -459,7 +463,7 @@ class TaskResultApiTest(TestCase):
     actual = task_result.new_run_result(request, to_run, u'localhost', u'abc', {
         u'id': [u'localhost'],
         u'foo': [u'bar', u'biz']
-    }, None)
+    }, None, None)
     actual.completed_ts = self.now
     actual.modified_ts = self.now
     actual.started_ts = self.now
@@ -505,7 +509,7 @@ class TaskResultApiTest(TestCase):
     to_run.queue_number = None
     to_run.put()
     run_result = task_result.new_run_result(request, to_run, u'localhost',
-                                            u'abc', {},
+                                            u'abc', {}, 'test_project',
                                             result_summary.resultdb_info)
     run_result.started_ts = utils.utcnow()
     run_result.modified_ts = run_result.started_ts
@@ -514,15 +518,15 @@ class TaskResultApiTest(TestCase):
     ndb.transaction(lambda: result_summary.set_from_run_result(
         run_result, request))
     ndb.transaction(lambda: ndb.put_multi((result_summary, run_result)))
-    expected = self._gen_summary(
-        bot_dimensions={},
-        bot_version=u'abc',
-        bot_id=u'localhost',
-        costs_usd=[0.],
-        modified_ts=reap_ts,
-        state=task_result.State.RUNNING,
-        started_ts=reap_ts,
-        try_number=1)
+    expected = self._gen_summary(bot_dimensions={},
+                                 bot_version=u'abc',
+                                 bot_id=u'localhost',
+                                 bot_logs_cloud_project=u'test_project',
+                                 costs_usd=[0.],
+                                 modified_ts=reap_ts,
+                                 state=task_result.State.RUNNING,
+                                 started_ts=reap_ts,
+                                 try_number=1)
     self.assertEqual(expected, result_summary.key.get().to_dict())
 
     # Task completed after 2 seconds (6 secs total), the task has been running
@@ -555,18 +559,18 @@ class TaskResultApiTest(TestCase):
     ndb.transaction(lambda: result_summary.set_from_run_result(
         run_result, request))
     ndb.transaction(lambda: ndb.put_multi((result_summary, run_result)))
-    expected = self._gen_summary(
-        bot_dimensions={},
-        bot_version=u'abc',
-        bot_id=u'localhost',
-        completed_ts=complete_ts,
-        costs_usd=[0.],
-        duration=0.1,
-        exit_code=0,
-        modified_ts=complete_ts,
-        state=task_result.State.COMPLETED,
-        started_ts=reap_ts,
-        try_number=1)
+    expected = self._gen_summary(bot_dimensions={},
+                                 bot_version=u'abc',
+                                 bot_id=u'localhost',
+                                 bot_logs_cloud_project=u'test_project',
+                                 completed_ts=complete_ts,
+                                 costs_usd=[0.],
+                                 duration=0.1,
+                                 exit_code=0,
+                                 modified_ts=complete_ts,
+                                 state=task_result.State.COMPLETED,
+                                 started_ts=reap_ts,
+                                 try_number=1)
     self.assertEqual(expected, result_summary.key.get().to_dict())
     expected = {
         'bot_overhead': 0.1,
@@ -654,7 +658,8 @@ class TaskResultApiTest(TestCase):
     ndb.transaction(result_summary.put)
     to_run = task_to_run.new_task_to_run(request, 0)
     run_result = task_result.new_run_result(request, to_run, 'localhost', 'abc',
-                                            {}, result_summary.resultdb_info)
+                                            {}, 'test_project',
+                                            result_summary.resultdb_info)
     run_result.started_ts = utils.utcnow()
     run_result.modified_ts = run_result.started_ts
     run_result.dead_after_ts = run_result.started_ts + datetime.timedelta(
@@ -675,7 +680,8 @@ class TaskResultApiTest(TestCase):
     result_summary = task_result.new_result_summary(request)
     to_run = task_to_run.new_task_to_run(request, 0)
     run_result = task_result.new_run_result(request, to_run, 'localhost', 'abc',
-                                            {}, result_summary.resultdb_info)
+                                            {}, 'test_project',
+                                            result_summary.resultdb_info)
     run_result.started_ts = utils.utcnow()
     self.assertTrue(result_summary.need_update_from_run_result(run_result))
     result_summary.modified_ts = utils.utcnow()
@@ -696,7 +702,8 @@ class TaskResultApiTest(TestCase):
     result_summary = task_result.new_result_summary(request)
     to_run = task_to_run.new_task_to_run(request, 0)
     run_result = task_result.new_run_result(request, to_run, 'localhost', 'abc',
-                                            {}, result_summary.resultdb_info)
+                                            {}, 'test_project',
+                                            result_summary.resultdb_info)
     run_result.started_ts = utils.utcnow()
     self.assertTrue(result_summary.need_update_from_run_result(run_result))
     result_summary.modified_ts = utils.utcnow()
@@ -747,7 +754,8 @@ class TaskResultApiTest(TestCase):
     ndb.transaction(result_summary.put)
     to_run = task_to_run.new_task_to_run(request, 0)
     run_result = task_result.new_run_result(request, to_run, 'localhost', 'abc',
-                                            {}, result_summary.resultdb_info)
+                                            {}, 'test_project',
+                                            result_summary.resultdb_info)
     run_result.state = task_result.State.TIMED_OUT
     run_result.duration = 0.1
     run_result.exit_code = -1

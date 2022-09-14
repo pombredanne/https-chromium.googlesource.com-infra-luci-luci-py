@@ -497,6 +497,9 @@ class _TaskResultCommon(ndb.Model):
   # overhead.
   bot_idle_since_ts = ndb.DateTimeProperty(indexed=False)
 
+  # The cloud project id where the bot saves its logs.
+  bot_logs_cloud_project = ndb.StringProperty()
+
   # Active server version(s). Note that during execution, the active server
   # version may have changed, this list will list all versions seen as the task
   # was updated.
@@ -1542,7 +1545,7 @@ def new_result_summary(request):
 
 
 def new_run_result(request, to_run, bot_id, bot_version, bot_dimensions,
-                   resultdb_info):
+                   bot_logs_cloud_project, resultdb_info):
   """Returns a new TaskRunResult for a TaskRequest.
 
   Initializes only the immutable parts.
@@ -1551,14 +1554,15 @@ def new_run_result(request, to_run, bot_id, bot_version, bot_dimensions,
   """
   assert isinstance(request, task_request.TaskRequest)
   summary_key = task_pack.request_key_to_result_summary_key(request.key)
-  return TaskRunResult(
-      key=task_pack.result_summary_key_to_run_result_key(summary_key),
-      bot_dimensions=bot_dimensions,
-      bot_id=bot_id,
-      bot_version=bot_version,
-      resultdb_info=resultdb_info,
-      current_task_slice=to_run.task_slice_index,
-      server_versions=[utils.get_app_version()])
+  return TaskRunResult(key=task_pack.result_summary_key_to_run_result_key(
+      summary_key, to_run.try_number),
+                       bot_dimensions=bot_dimensions,
+                       bot_id=bot_id,
+                       bot_version=bot_version,
+                       bot_logs_cloud_project=bot_logs_cloud_project,
+                       resultdb_info=resultdb_info,
+                       current_task_slice=to_run.task_slice_index,
+                       server_versions=[utils.get_app_version()])
 
 
 def yield_result_summary_by_parent_task_id(parent_task_id):
