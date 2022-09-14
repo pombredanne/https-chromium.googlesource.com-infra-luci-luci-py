@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b4589bc_c59e4e04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-14T14:15:34Z",
+      "side": 1,
+      "message": "LGTM!\n\nHad one general question about whether this is something which we will eventually delete, IE once all the TaskDimensions have been backfilled?",
+      "revId": "ca5a77e1c294d19a727f87217121a6b0fbadc432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69c0d5d5_b092e134",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2274,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-14T14:15:34Z",
+      "side": 1,
+      "message": "Is there a way to emit these as metrics? They kinda look like something we\u0027d want to monitor but also seems like:\n1. IIUC backfilling is temporary\n2. Not sure whether it\u0027s easy to emit metrics in swarming server ( I searched and could not find anything )\n3. logging individual backfilling tasks seems fine?",
+      "range": {
+        "startLine": 2271,
+        "startChar": 2,
+        "endLine": 2274,
+        "endChar": 44
+      },
+      "revId": "ca5a77e1c294d19a727f87217121a6b0fbadc432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
