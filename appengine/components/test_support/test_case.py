@@ -35,6 +35,23 @@ def mock_now(test, now, seconds):
   return now
 
 
+class Ticker(object):
+  def __init__(self, start, increment):
+    self._current = start
+    self._start = start
+    self._increment = increment
+
+  def first(self):
+    return self._start
+
+  def last(self):
+    return self._current
+
+  def __call__(self):
+    self._current += self._increment
+    return self._current
+
+
 class TestCase(auto_stub.TestCase):
   """Support class to enable more unit testing in GAE.
 
@@ -120,6 +137,13 @@ class TestCase(auto_stub.TestCase):
   def mock_now(self, now, seconds=0):
     return mock_now(self, now, seconds)
 
+  def mock_now_with_increment(self, now, increment):
+    ticker = Ticker(now, increment)
+    self.mock(utils, 'utcnow', ticker)
+    self.mock(ndb.DateTimeProperty, '_now', ticker)
+    self.mock(ndb.DateProperty, '_now', lambda _: ticker().date())
+    return ticker
+
   def mock_milliseconds_since_epoch(self, milliseconds):
     self.mock(utils, "milliseconds_since_epoch", lambda: milliseconds)
 
@@ -195,6 +219,24 @@ class TestCase(auto_stub.TestCase):
         continue
       return t
     return None
+
+  def _assertEqualDicts(self, expected, actual, keys_to_ignore):
+    for item in expected:
+      for key in keys_to_ignore:
+        if key in item:
+          item.pop(key)
+    for item in actual:
+      for key in keys_to_ignore:
+        if key in item:
+          item.pop(key)
+    self.assertEqual(expected, actual)
+
+  def assertEventsAreEqual(self, expected, actual):
+    self._assertEqualDicts(expected, actual, ["ts"])
+
+  def assertBotsEqualIgnoringTime(self, expected, actual):
+    self._assertEqualDicts(expected, actual,
+                           ["last_seen_ts", "first_seen_ts", "idle_since_ts"])
 
 
 class Endpoints(object):
