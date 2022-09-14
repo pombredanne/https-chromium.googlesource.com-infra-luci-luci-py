@@ -84,6 +84,9 @@ BotGroupConfig = collections.namedtuple(
 
         # True if it's default group config.
         'is_default',
+
+        # The cloud project id where the bot saves its logs.
+        'logs_cloud_project',
     ])
 
 
@@ -515,7 +518,7 @@ def _default_bot_groups():
           version='default',
           owners=(),
           auth=(BotAuth(
-              log_if_failed=False,
+             log_if_failed=False,
               require_luci_machine_token=False,
               require_service_account=None,
               require_gce_vm_token=None,
@@ -525,7 +528,8 @@ def _default_bot_groups():
           bot_config_script_rev='',
           bot_config_script_content='',
           system_service_account='',
-          is_default=True))
+          is_default=True,
+          logs_cloud_project=None))
 
 
 def _gen_version(fields):
@@ -588,7 +592,8 @@ def _bot_group_proto_to_tuple(msg, trusted_dimensions):
       bot_config_script_rev='',
       bot_config_script_content=msg.bot_config_script_content or '',
       system_service_account=msg.system_service_account or '',
-      is_default=not msg.bot_id and not msg.bot_id_prefix)
+      is_default=not msg.bot_id and not msg.bot_id_prefix,
+      logs_cloud_project=msg.logs_cloud_project or None)
 
 
 def _expand_bot_id_expr(expr):
