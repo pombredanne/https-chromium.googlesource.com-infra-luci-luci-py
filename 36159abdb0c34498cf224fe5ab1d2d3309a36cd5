@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4b27f94_ee28aadf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-14T21:49:51Z",
+      "side": 1,
+      "message": "I think we should split it into two CLs and two deployments:\n1. Use ordering by `ts` in all queries (but still keep generating monotonic IDs).\n2. Switch to auto-generated IDs.\n\nOnce we switch to auto-generated IDs, there\u0027s no way back, we won\u0027t be able to rollback (old code will return events in random order). By deploying the first change first (and waiting until it sticks), we make the second change less dangerous.",
+      "revId": "36159abdb0c34498cf224fe5ab1d2d3309a36cd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b364dfe6_51c5d3fc",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-14T21:49:51Z",
+      "side": 1,
+      "message": "appengine/components/test_support/test_case.py is a shared package, it is not Swarming specified and should not have Swarming details",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 239,
+        "endChar": 78
+      },
+      "revId": "36159abdb0c34498cf224fe5ab1d2d3309a36cd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f11e4cb_a73a5931",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-14T21:49:51Z",
+      "side": 1,
+      "message": "is this comment still relevant?",
+      "range": {
+        "startLine": 194,
+        "startChar": 6,
+        "endLine": 195,
+        "endChar": 69
+      },
+      "revId": "36159abdb0c34498cf224fe5ab1d2d3309a36cd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e04bb67_e09996a1",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-14T21:49:51Z",
+      "side": 1,
+      "message": "is BotRoot ever read by anything? If not, it doesn\u0027t need to be stored.",
+      "range": {
+        "startLine": 531,
+        "startChar": 2,
+        "endLine": 534,
+        "endChar": 67
+      },
+      "revId": "36159abdb0c34498cf224fe5ab1d2d3309a36cd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8df796d_eddde2a5",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-14T21:49:51Z",
+      "side": 1,
+      "message": "what is its final ID? auto-generated?",
+      "range": {
+        "startLine": 672,
+        "startChar": 10,
+        "endLine": 672,
+        "endChar": 18
+      },
+      "revId": "36159abdb0c34498cf224fe5ab1d2d3309a36cd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
