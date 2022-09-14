@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78f68821_ed116a48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-14T18:44:09Z",
+      "side": 1,
+      "message": "Changes to actual code are quite small in this CL. Lots of unit tests needed to be refactored since they depended on the BotEvent.Key being ordered in a monotonically increasing sequence. So it was possible to mock BotEvent.ts as a constant and not effect the test outcome. But now we depend on BotEvent.ts for ordering so all those tests had to be modified to account for this.  ",
+      "revId": "95973cdd880019127ca7c56f0eddd151638579c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edd7d9f9_d5204526",
+        "filename": "appengine/components/components/datastore_utils/monotonic.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-14T18:44:09Z",
+      "side": 1,
+      "message": "Will do this in separate CL",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 226,
+        "endChar": 66
+      },
+      "revId": "95973cdd880019127ca7c56f0eddd151638579c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
