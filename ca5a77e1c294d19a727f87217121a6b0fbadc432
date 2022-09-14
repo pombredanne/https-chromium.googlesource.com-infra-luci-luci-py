@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1b7bc70_f2b583b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-14T16:56:03Z",
+      "side": 1,
+      "message": "Yes. If everything goes according to plan, once all backfill is done, all newer entities should be added by _assert_task_dimensions_async, we won\u0027t need to backfill them. So once the cron reports \"0 entities updated\", we should be able to remove it.",
+      "parentUuid": "8b4589bc_c59e4e04",
+      "revId": "ca5a77e1c294d19a727f87217121a6b0fbadc432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69c0d5d5_b092e134",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-14T14:15:34Z",
       "side": 1,
       "message": "Is there a way to emit these as metrics? They kinda look like something we\u0027d want to monitor but also seems like:\n1. IIUC backfilling is temporary\n2. Not sure whether it\u0027s easy to emit metrics in swarming server ( I searched and could not find anything )\n3. logging individual backfilling tasks seems fine?",
+      "range": {
+        "startLine": 2271,
+        "startChar": 2,
+        "endLine": 2274,
+        "endChar": 44
+      },
+      "revId": "ca5a77e1c294d19a727f87217121a6b0fbadc432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2d47168_d147bd5c",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2274,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-14T16:56:03Z",
+      "side": 1,
+      "message": "Yes, I didn\u0027t bother with metrics because this is supposed to be a ~one-time deal (and ran semi-manually via \"Run cron now\" button, 6h is just a fallback). I was going to just look at the logs.\n\n\u003e Not sure whether it\u0027s easy to emit metrics in swarming server\n\nE.g. https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/ts_mon_metrics.py",
+      "parentUuid": "69c0d5d5_b092e134",
       "range": {
         "startLine": 2271,
         "startChar": 2,
