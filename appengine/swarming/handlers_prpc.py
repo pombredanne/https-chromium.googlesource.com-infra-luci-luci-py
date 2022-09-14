@@ -193,10 +193,7 @@ class BotAPIService(object):
 
       # The BotEvent key is already in the right chronological order, but
       # querying per BotEvent.ts *requires* ordering per BotEvent.ts.
-      order = not (start or end)
-      q = bot_management.get_events_query(request.bot_id, order)
-      if not order:
-        q = q.order(-bot_management.BotEvent.ts, bot_management.BotEvent.key)
+      q = bot_management.get_events_query(request.bot_id)
       if start:
         q = q.filter(bot_management.BotEvent.ts >= start)
       if end:
