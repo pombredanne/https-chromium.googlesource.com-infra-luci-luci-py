@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "610737db_c3a63c93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-14T03:04:18Z",
+      "side": 1,
+      "message": "PTAL",
+      "revId": "10ff77989e2d37712b6eed7fc270d758d2389376",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cb13d69_4c549950",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1404,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-14T03:04:18Z",
+      "side": 1,
+      "message": "The previous implementation also did it (and it broke my brain a little bit trying to understand how). See _EXTEND_VALIDITY usage in this file. What broke my brain is how it is interrelated with _KEEP_DEAD and \"jitter\" in _assert_task_props_old_async and various expiry checks (that sometimes account for _KEEP_DEAD and sometimes not).\n\nMy implementation essentially repeats what _EXTEND_VALIDITY and \"jitter\" did, except tries to comment it better (dunno, maybe the previous implementation was also clear and I\u0027m just dumb). They are important for reasons I tried to explain in comments.\n\nI decided to reduce _EXTEND_VALIDITY from 4h to 2h and completely remove _KEEP_DEAD (since I have a feeling it was added as a workaround to avoid exploding transactions when frequently updating TaskDimensions). As a result in the new implementation we\u0027ll store task dimension sets at most 2h 35min past their real expiration. In the old implementation that number was around 28h (_KEEP_DEAD + _EXTEND_VALIDITY) which looks too much to me (i.e. if we run a task even once, we keep storing and **scanning** its TaskDimensions for more than a day). I suspect it\u0027s one of the reasons chromeos-swarming sometimes has 50K \"active\" TaskDimensions (some portion of them are dead junk from the day before).",
+      "range": {
+        "startLine": 1394,
+        "startChar": 0,
+        "endLine": 1404,
+        "endChar": 54
+      },
+      "revId": "10ff77989e2d37712b6eed7fc270d758d2389376",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
