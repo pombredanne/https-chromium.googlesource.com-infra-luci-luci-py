@@ -223,4 +223,5 @@ def store_new_version_async(entity, root_cls, extra=None):
   raise ndb.Return(result)
 
 
+# TODO jonahhooper@ this is likely unusued, clean it up if need be
 store_new_version = utils.sync_of(store_new_version_async)
