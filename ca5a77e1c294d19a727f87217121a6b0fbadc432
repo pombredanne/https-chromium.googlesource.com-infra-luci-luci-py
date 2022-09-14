@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bccded9b_da3ed748",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-14T16:58:46Z",
+      "side": 1,
+      "message": "(oh, in practice I expect there may be some race between currently executing _assert_task_dimensions_async and the cron \"backfilling\" newly created sets, since the cron may notice old-style (but still being created by old code path) TaskDimensions before _assert_task_dimensions_async creates the corresponding new-style entity. So in practice I expect we won\u0027t see \"0 entities updated\" on busy servers, but a small enough number is good too).",
+      "parentUuid": "d1b7bc70_f2b583b9",
+      "revId": "ca5a77e1c294d19a727f87217121a6b0fbadc432",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69c0d5d5_b092e134",
