@@ -39,6 +39,53 @@
       },
       "revId": "95973cdd880019127ca7c56f0eddd151638579c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60c45f39_dec50845",
+        "filename": "appengine/components/components/datastore_utils/monotonic.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-14T18:57:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edd7d9f9_d5204526",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 226,
+        "endChar": 66
+      },
+      "revId": "95973cdd880019127ca7c56f0eddd151638579c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f26c79f_d4c43220",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-14T18:57:37Z",
+      "side": 1,
+      "message": "not sure about this - I think we need to keep current for backcompat reasons? IE there will be some swarming instances which are not updated as well as some which are. In which case I think we should probably not have `current\u003d0` but rather that max value.",
+      "range": {
+        "startLine": 533,
+        "startChar": 52,
+        "endLine": 533,
+        "endChar": 61
+      },
+      "revId": "95973cdd880019127ca7c56f0eddd151638579c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
