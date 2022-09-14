@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbefa0d5_617ee98a",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2009,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-14T19:21:21Z",
+      "side": 1,
+      "message": "\"deadline/commit error\"?\n\nI would handle and log them separately",
+      "range": {
+        "startLine": 2009,
+        "startChar": 51,
+        "endLine": 2009,
+        "endChar": 56
+      },
+      "revId": "92d84331571d887cb7391bc2134c2ccb2a0ae406",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
