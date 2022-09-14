@@ -39,6 +39,30 @@
       },
       "revId": "10ff77989e2d37712b6eed7fc270d758d2389376",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5138d95_2761e074",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1404,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-14T04:09:35Z",
+      "side": 1,
+      "message": "Actually I\u0027ll make it 5h instead of 2h for now, to smooth the transition. The next CL will add a cron that backfills TaskDimensionsSets based on existing TaskDimensions from the old implementation. It will be better if TaskDimensionsSets stored via _assert_task_dimensions_async have larger expiration than TaskDimensions stored by the old implementation, to avoid adding extra ongoing work to the backfill cron. Once we switch to the new implementation, I\u0027ll reduce it back to 2h or maybe even less.",
+      "parentUuid": "1cb13d69_4c549950",
+      "range": {
+        "startLine": 1394,
+        "startChar": 0,
+        "endLine": 1404,
+        "endChar": 54
+      },
+      "revId": "10ff77989e2d37712b6eed7fc270d758d2389376",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
