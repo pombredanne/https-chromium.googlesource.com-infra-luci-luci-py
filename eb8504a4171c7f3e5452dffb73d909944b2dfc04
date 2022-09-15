@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fa3a4ec_2ed30567",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-15T17:44:51Z",
+      "side": 1,
+      "message": "As suggested, this is part (2) of a two part CL. First, we\u0027ll confirm that changes in (1) are not broken. Then we\u0027ll deploy (2) which contains a destructive update to the BotEvent and BotRoot entities. ",
+      "revId": "eb8504a4171c7f3e5452dffb73d909944b2dfc04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
