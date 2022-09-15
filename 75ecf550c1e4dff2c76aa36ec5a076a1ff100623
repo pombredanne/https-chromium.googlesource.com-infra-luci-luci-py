@@ -20,6 +20,121 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a8f8c8ce_47cf47e5",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T20:08:46Z",
+      "side": 1,
+      "message": "nit: please keep it last, it is constructed differently from the rest of the fields",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 21
+      },
+      "revId": "75ecf550c1e4dff2c76aa36ec5a076a1ff100623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57a7e0fe_68981194",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T20:08:46Z",
+      "side": 1,
+      "message": "please fix formatting",
+      "range": {
+        "startLine": 521,
+        "startChar": 0,
+        "endLine": 521,
+        "endChar": 13
+      },
+      "revId": "75ecf550c1e4dff2c76aa36ec5a076a1ff100623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6bbdfb8_c0e9ef67",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T20:08:46Z",
+      "side": 1,
+      "message": "nit: swap",
+      "range": {
+        "startLine": 531,
+        "startChar": 0,
+        "endLine": 532,
+        "endChar": 33
+      },
+      "revId": "75ecf550c1e4dff2c76aa36ec5a076a1ff100623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85e33154_ac29921d",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T20:08:46Z",
+      "side": 1,
+      "message": "nit: swap",
+      "range": {
+        "startLine": 595,
+        "startChar": 0,
+        "endLine": 596,
+        "endChar": 55
+      },
+      "revId": "75ecf550c1e4dff2c76aa36ec5a076a1ff100623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96f36449_97b1bf04",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1330,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T20:08:46Z",
+      "side": 1,
+      "message": "It appears these two always travel together. It will make code cleaner if they are grouped into a single argument, e.g. \n\n```\nBotDetails \u003d collections.namedtuple(\u0027BotDetails\u0027, \n    [\u0027bot_version\u0027, \u0027logs_cloud_project\u0027])\n    \ndef bot_reap_task(bot_dimensions, queues, bot_details, deadline):\n  ...\n```\n\n(I\u0027m avoiding BotInfo because there\u0027s already a class with that name)\n\nThis also de-emphasises in the API that this is about logs. The is absolutely non-essential for any of APIs here. What is important is that it is some block of information about the bot that needs to be propagated to the task.",
+      "range": {
+        "startLine": 1330,
+        "startChar": 42,
+        "endLine": 1330,
+        "endChar": 77
+      },
+      "revId": "75ecf550c1e4dff2c76aa36ec5a076a1ff100623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "175a3624_df0cd28e",
         "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
         "patchSetId": 9
@@ -31,6 +146,24 @@
       "writtenOn": "2022-09-15T18:16:50Z",
       "side": 1,
       "message": "This seems sketchy to me; IIUC the bot IDs are arbitrary (known only to swarming) and may not correlate with the hostname of the bot. It _just so happens_ that in chrome\u0027s bot deployments this matches up, but I don\u0027t think it\u0027s required or guaranteed?",
+      "revId": "75ecf550c1e4dff2c76aa36ec5a076a1ff100623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b005813_da37f905",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T20:08:46Z",
+      "side": 1,
+      "message": "\u0027--\u0027 is a hack already hardcoded into Swarming Python code. I don\u0027t think it make situation much worse if we hardcoded it into JS code as well.",
+      "parentUuid": "175a3624_df0cd28e",
       "revId": "75ecf550c1e4dff2c76aa36ec5a076a1ff100623",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
