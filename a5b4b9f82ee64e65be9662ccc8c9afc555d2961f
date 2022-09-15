@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e4e4cc7_67ddad51",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T21:09:23Z",
+      "side": 1,
+      "message": "it is named confusingly.. just based on the name I\u0027d assume it can be used as `assertEqualDicts({\"a\": 1}, {\"a\": 2}, [])`. (Dicts? Yes, two of them.)\n\nMaybe `assertEqualDictLists` or something like that.\n\nI\u0027m nit picking because methods that go into \"shared libraries\" uphold to higher standards that code in some leaf test.",
+      "range": {
+        "startLine": 223,
+        "startChar": 6,
+        "endLine": 223,
+        "endChar": 22
+      },
+      "revId": "a5b4b9f82ee64e65be9662ccc8c9afc555d2961f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1febc3a5_cea32b32",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T21:09:23Z",
+      "side": 1,
+      "message": "it should make copies of dicts before popping keys from them, it is surprising to the caller that their arguments will be modified\n\nalso consider using comprehensions, e.g. \n\n`expected \u003d {k: v for k, v in expected.items() if k not in keys_to_ignore}`",
+      "range": {
+        "startLine": 224,
+        "startChar": 4,
+        "endLine": 231,
+        "endChar": 23
+      },
+      "revId": "a5b4b9f82ee64e65be9662ccc8c9afc555d2961f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77cc9539_d560953d",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T21:09:23Z",
+      "side": 1,
+      "message": "why is this necessary? To avoid hardcoding \u0027ts\u0027 for expected dicts? \n\nI think it might be cleaner to keep comparing `ts` to expected values (derived from self.now) (and avoid introducing assertEventsAreEqual and assertEqualDicts, but I\u0027m not insisting).\n\nIf you want to keep ignoring `ts`, then remove it from expectation dicts (it is ignored after all), or at least comment that it is ignored.",
+      "range": {
+        "startLine": 110,
+        "startChar": 44,
+        "endLine": 110,
+        "endChar": 50
+      },
+      "revId": "a5b4b9f82ee64e65be9662ccc8c9afc555d2961f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23d74b41_2c61289a",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T21:09:23Z",
+      "side": 1,
+      "message": "is this dead code now?",
+      "range": {
+        "startLine": 448,
+        "startChar": 8,
+        "endLine": 448,
+        "endChar": 22
+      },
+      "revId": "a5b4b9f82ee64e65be9662ccc8c9afc555d2961f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab3c0017_f1246e12",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1285,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T21:09:23Z",
+      "side": 1,
+      "message": "why did this change?",
+      "range": {
+        "startLine": 1285,
+        "startChar": 15,
+        "endLine": 1285,
+        "endChar": 23
+      },
+      "revId": "a5b4b9f82ee64e65be9662ccc8c9afc555d2961f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
