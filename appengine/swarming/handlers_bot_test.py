@@ -106,6 +106,9 @@ class BotApiTest(test_env_handlers.AppTestBase):
       return task_queues.update_bot_matches_async(payload)
     self.fail(url)
 
+  def assertEventsAreEqual(self, expected, actual):
+    self.assertEqualDicts(expected, actual, ["ts"])
+
   def mock_bot_group_config(self, **kwargs):
     cfg = bot_groups_config.BotGroupConfig(**kwargs)
     self.mock(bot_auth,
@@ -389,6 +392,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, response)
 
   def test_poll_bad_dimensions(self):
+    self.mock_now_with_increment(self.now, datetime.timedelta(seconds=1))
     errors = []
 
     def add_error(request, source, message):
@@ -444,10 +448,8 @@ class BotApiTest(test_env_handlers.AppTestBase):
         'ts': self.now,
         'version': self.bot_version,
     }
-    events = [
-        e.to_dict() for e in bot_management.get_events_query('bot1', True)
-    ]
-    self.assertEqual(events[0], expected_event)
+    events = [e.to_dict() for e in bot_management.get_events_query('bot1')]
+    self.assertEventsAreEqual(events[0:1], [expected_event])
 
     # BotInfo should be changed to quarantined state, too.
     bot_info = bot_management.get_info_key('bot1').get()
@@ -1277,9 +1279,11 @@ class BotApiTest(test_env_handlers.AppTestBase):
         })
     response = ereporter2_app.post_json('/ereporter2/api/v1/on_error',
                                         error_params)
+    self.assertTrue('id' in response.json)
+    error_id = response.json['id']
     expected = {
-        u'id': 1,
-        u'url': u'http://localhost/restricted/ereporter2/errors/1',
+        u'id': error_id,
+        u'url': u'http://localhost/restricted/ereporter2/errors/%d' % error_id,
     }
     self.assertEqual(expected, response.json)
 
@@ -1336,6 +1340,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, [e[1] for e in errors])
 
   def test_bot_event(self):
+    self.mock_now_with_increment(self.now, datetime.timedelta(seconds=1))
     self.mock(random, 'getrandbits', lambda _: 0x88)
     params = self.do_handshake()
     dimensions = params['dimensions']
@@ -1349,9 +1354,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
       self.assertEqual({}, response)
 
     # TODO(maruel): Replace with client api to query last BotEvent.
-    actual = [
-        e.to_dict() for e in bot_management.get_events_query('bot1', True)
-    ]
+    actual = [e.to_dict() for e in bot_management.get_events_query('bot1')]
     expected = [{
         'authenticated_as': u'bot:whitelisted-ip',
         'dimensions': dimensions,
@@ -1404,7 +1407,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         'version': u'123',
     })
 
-    self.assertEqual(expected, actual)
+    self.assertEventsAreEqual(expected, actual)
 
   def test_bot_event_bad_request(self):
     params = self.do_handshake()
