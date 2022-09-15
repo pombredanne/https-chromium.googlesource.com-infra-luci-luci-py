@@ -86,6 +86,30 @@
       },
       "revId": "95973cdd880019127ca7c56f0eddd151638579c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "469fd104_be78f36e",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-15T14:36:09Z",
+      "side": 1,
+      "message": "We will do a multi staged deployment which will probably keep this around until it can be safely removed.",
+      "parentUuid": "0f26c79f_d4c43220",
+      "range": {
+        "startLine": 533,
+        "startChar": 52,
+        "endLine": 533,
+        "endChar": 61
+      },
+      "revId": "95973cdd880019127ca7c56f0eddd151638579c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

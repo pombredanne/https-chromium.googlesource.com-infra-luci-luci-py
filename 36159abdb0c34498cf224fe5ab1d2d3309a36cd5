@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa0faf5c_3856804b",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-15T14:36:09Z",
+      "side": 1,
+      "message": "Good point, decided to just duplicate these two methods wherever they are used.",
+      "parentUuid": "b364dfe6_51c5d3fc",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 239,
+        "endChar": 78
+      },
+      "revId": "36159abdb0c34498cf224fe5ab1d2d3309a36cd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f11e4cb_a73a5931",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-09-14T21:49:51Z",
       "side": 1,
       "message": "is this comment still relevant?",
+      "range": {
+        "startLine": 194,
+        "startChar": 6,
+        "endLine": 195,
+        "endChar": 69
+      },
+      "revId": "36159abdb0c34498cf224fe5ab1d2d3309a36cd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "837235ea_1e242418",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-15T14:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f11e4cb_a73a5931",
       "range": {
         "startLine": 194,
         "startChar": 6,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2667e086_60452ec0",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-15T14:36:09Z",
+      "side": 1,
+      "message": "The botroot is used as part of an ancestor query to get the list of BotEvents I think?\n\nhttps://crsrc.org/i/luci/appengine/swarming/server/bot_management.py;l\u003d470",
+      "parentUuid": "9e04bb67_e09996a1",
+      "range": {
+        "startLine": 531,
+        "startChar": 2,
+        "endLine": 534,
+        "endChar": 67
+      },
+      "revId": "36159abdb0c34498cf224fe5ab1d2d3309a36cd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8df796d_eddde2a5",
@@ -110,6 +182,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca999f5d_011c2836",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-15T14:36:09Z",
+      "side": 1,
+      "message": "Yup!",
+      "parentUuid": "c8df796d_eddde2a5",
+      "range": {
+        "startLine": 672,
+        "startChar": 10,
+        "endLine": 672,
+        "endChar": 18
+      },
+      "revId": "36159abdb0c34498cf224fe5ab1d2d3309a36cd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3187f2b1_04faeecb",
@@ -123,6 +219,30 @@
       "writtenOn": "2022-09-14T21:55:18Z",
       "side": 1,
       "message": "note that it still needs a transaction to make sure `event` and `bot_info` are stored at the same time. Just calling `ndb.put_multi(a, b)` may result in `a` being stored and `b` not, there\u0027s no atomicity guarantee. Only transactions give this guarantee. Still, it will be much simpler transaction than what store_new_version did.",
+      "range": {
+        "startLine": 683,
+        "startChar": 2,
+        "endLine": 683,
+        "endChar": 19
+      },
+      "revId": "36159abdb0c34498cf224fe5ab1d2d3309a36cd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "208f553e_9ad38551",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-15T14:36:09Z",
+      "side": 1,
+      "message": "Good point! Will split this CL up and rewrite this method in the next part.",
+      "parentUuid": "3187f2b1_04faeecb",
       "range": {
         "startLine": 683,
         "startChar": 2,
