@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ef2cde5_462ac7a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-15T18:16:50Z",
+      "side": 1,
+      "message": "I am wondering if all the plumbing of logs_cloud_project is strictly required, or if it can be pulled up the stack?",
+      "revId": "75ecf550c1e4dff2c76aa36ec5a076a1ff100623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "175a3624_df0cd28e",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-15T18:16:50Z",
+      "side": 1,
+      "message": "This seems sketchy to me; IIUC the bot IDs are arbitrary (known only to swarming) and may not correlate with the hostname of the bot. It _just so happens_ that in chrome\u0027s bot deployments this matches up, but I don\u0027t think it\u0027s required or guaranteed?",
+      "revId": "75ecf550c1e4dff2c76aa36ec5a076a1ff100623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
