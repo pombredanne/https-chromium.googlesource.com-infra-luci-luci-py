@@ -47,6 +47,46 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c695a119_35f3d6f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T22:53:30Z",
+      "side": 1,
+      "message": "Why do it through task queue task at all at this point instead of directly in the cron handler (perhaps new cron handler)? If the task is slower than 1min (and it most definitely will be), there\u0027ll be queueing and delays and/or overlaps.\n\nIt is first time I\u0027m looking at details of this implementation and it scares me. I\u0027m asking questions to confirm my understanding.\n\nWhat magic does register_global_metrics_callback do that can\u0027t be reproduced by a regular standalone GAE cron job?",
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5abd69c0_a2774764",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T22:53:30Z",
+      "side": 1,
+      "message": "nit: please run \"git cl format\", it will reformat this (probably in something that looks ugly as hell, but \"adhering to the style guide\")",
+      "range": {
+        "startLine": 360,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 18
+      },
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49988642_6e845d79",
@@ -60,6 +100,52 @@
       "writtenOn": "2022-09-15T18:25:39Z",
       "side": 1,
       "message": "is 1000 actually a good number? What is the average number of results here? I wouldn\u0027t expect the summaries to be more than a KB, so maybe we could make this larger?",
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab27d1f7_6588678d",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T22:53:30Z",
+      "side": 1,
+      "message": "nit: please move it under the `if` below, to make it clear this matters only when `status \u003d\u003d running and summary.bot_id`. Also I have a feeling this should not be a boolean metric with lots of fields, but instead be a string-valued metric with fewer fields... It will result in less total number of monarch streams. But it\u0027s too late now.\n\nAlso this looks sketchy... A single instance will report a ton of metrics with different target `hostname`. Questions:\n1. Will it \"forget\" about them right after reporting or will it keep reporting their latest known values like it does for regular metrics? Where does \"forgetting\" happen?\n2. Are reset timestamps correctly set when the same {\u0027hostname\u0027: \u0027xxx\u0027} is reported from different GAE instances?",
+      "range": {
+        "startLine": 372,
+        "startChar": 0,
+        "endLine": 374,
+        "endChar": 63
+      },
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94943370_2c3cabf1",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-15T22:53:30Z",
+      "side": 1,
+      "message": "what does this do exactly?",
+      "range": {
+        "startLine": 629,
+        "startChar": 2,
+        "endLine": 629,
+        "endChar": 78
+      },
       "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
