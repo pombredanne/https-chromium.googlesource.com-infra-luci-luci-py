@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87d03468_2f2bf010",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-15T18:25:39Z",
+      "side": 1,
+      "message": "are they actually overlapping? like if this takes 3 minutes to complete, will that cause issues?",
+      "range": {
+        "startLine": 10,
+        "startChar": 56,
+        "endLine": 10,
+        "endChar": 85
+      },
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c29e920_8c059862",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-15T18:25:39Z",
+      "side": 1,
+      "message": "note that making this a cron job instead would nearly guarantee this; it will wait for the previously launched request to finish before launching the next one.",
+      "range": {
+        "startLine": 12,
+        "startChar": 3,
+        "endLine": 12,
+        "endChar": 63
+      },
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49988642_6e845d79",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-15T18:25:39Z",
+      "side": 1,
+      "message": "is 1000 actually a good number? What is the average number of results here? I wouldn\u0027t expect the summaries to be more than a KB, so maybe we could make this larger?",
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
