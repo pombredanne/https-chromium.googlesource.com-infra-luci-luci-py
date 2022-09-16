@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b172e068_d039b966",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-16T16:36:09Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "69556eebf78fd9aa30d383c93f81dfbc5beb13ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1508fb0f_b5b83fd6",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1718,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-16T16:36:09Z",
+      "side": 1,
+      "message": "I have not seen this before but I\u0027m assuming from the word Conjunction that this is basically combining two filters into one using AND \n\nIs there a difference between this and calling the `.filter` method twice?",
+      "range": {
+        "startLine": 1715,
+        "startChar": 16,
+        "endLine": 1718,
+        "endChar": 10
+      },
+      "revId": "69556eebf78fd9aa30d383c93f81dfbc5beb13ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
