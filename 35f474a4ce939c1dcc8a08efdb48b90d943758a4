@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f42d59ce_8ff19fe9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-16T16:05:25Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "35f474a4ce939c1dcc8a08efdb48b90d943758a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a843d481_a0745a10",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1315,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-16T16:05:25Z",
+      "side": 1,
+      "message": "Just want to confirm that I have the correct understanding about the rules of matching. \n\nIs this correct?\n\nif a bot has a set of \"expanded\" dimensions (IE `k:a|b \u003d\u003e [[k:a], [k:b]]`) then a task can be run on a bot if one or more of its expanded task dimensions is in the set of the bots expanded dimensions.",
+      "range": {
+        "startLine": 1315,
+        "startChar": 13,
+        "endLine": 1315,
+        "endChar": 42
+      },
+      "revId": "35f474a4ce939c1dcc8a08efdb48b90d943758a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "324af2ed_9e637469",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1667,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-16T16:05:25Z",
+      "side": 1,
+      "message": "I\u0027m assuming this check is here because in general, we want to avoid creating the transaction if possible?",
+      "range": {
+        "startLine": 1661,
+        "startChar": 2,
+        "endLine": 1667,
+        "endChar": 26
+      },
+      "revId": "35f474a4ce939c1dcc8a08efdb48b90d943758a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
