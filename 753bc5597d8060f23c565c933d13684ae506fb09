@@ -16,6 +16,29 @@
       "message": "Changed as suggested.",
       "revId": "753bc5597d8060f23c565c933d13684ae506fb09",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2f0e0fb_8f91ceaa",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T03:40:47Z",
+      "side": 1,
+      "message": "This deconstruction should happen only inside task_result.new_run_result.\n\nI\u0027m suggesting to change the code to pass `bot_details` everywhere instead of separately passing `bot_version` and `bot_logs_cloud_project`.\n\nThat\u0027s what I meant \"they always travel as a pair\": the appear in all arguments and functions together, and just gets plumbed through calls until they get into new_run_result. Instead of doubling all the plumbing, like is happening now, I\u0027m asking to replace plumbing for `bot_version` with plumbing for `bot_details` (that internally contains `bot_version` and `bot_logs_cloud_project`, but all the plumbing doesn\u0027t care about this).",
+      "range": {
+        "startLine": 1356,
+        "startChar": 2,
+        "endLine": 1356,
+        "endChar": 51
+      },
+      "revId": "753bc5597d8060f23c565c933d13684ae506fb09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
