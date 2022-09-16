@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1f350ac_101b61d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-16T21:58:40Z",
+      "side": 1,
+      "message": "hm, interesting... do we need monitor this latency?\n\nI guess previously the poll rpc would just time out for an indeterminate sequence of times.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 61
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f695ea3e_a78b661b",
@@ -35,6 +58,115 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f51052e_2c4c0daf",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1129,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-16T21:58:40Z",
+      "side": 1,
+      "message": "hopefully self.sets is always small (seems like it should be?)",
+      "range": {
+        "startLine": 1129,
+        "startChar": 11,
+        "endLine": 1129,
+        "endChar": 14
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3db13a35_ffcba466",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-16T21:58:40Z",
+      "side": 1,
+      "message": "nit: or\n\nI would document that this is NOT transactional, and that the constructed one is not saved yet.\n\n\n(just because this comment will be interpreted in the context of other swarming code/comments...)",
+      "range": {
+        "startLine": 1271,
+        "startChar": 34,
+        "endLine": 1271,
+        "endChar": 36
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45fc89be_bcc57662",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1591,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-16T21:58:40Z",
+      "side": 1,
+      "message": "i.e. {k: [values]} ?",
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e526b4f_36d48ec6",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1597,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-16T21:58:40Z",
+      "side": 1,
+      "message": "this is deterministic? I thought there wasn\u0027t any sorting?",
+      "range": {
+        "startLine": 1597,
+        "startChar": 24,
+        "endLine": 1597,
+        "endChar": 46
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80740889_c09c981b",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1617,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-16T21:58:40Z",
+      "side": 1,
+      "message": "(re: determinism because of this comparison)",
+      "range": {
+        "startLine": 1617,
+        "startChar": 13,
+        "endLine": 1617,
+        "endChar": 23
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "fedc667f_6f992a33",
@@ -60,6 +192,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1c1e1b1f_e7d226d2",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1630,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-16T21:58:40Z",
+      "side": 1,
+      "message": "add comment in code?",
+      "parentUuid": "fedc667f_6f992a33",
+      "range": {
+        "startLine": 1628,
+        "startChar": 6,
+        "endLine": 1630,
+        "endChar": 30
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a04c4970_5a04e766",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 1
@@ -71,6 +227,30 @@
       "writtenOn": "2022-09-16T01:54:48Z",
       "side": 1,
       "message": "Note that this is more aggressive than the current implementation (which uses 20m-40m). The idea is to reduce latency of discovering \"misses\" from ~30m to ~10m. Since rescans now happen via a task queue, this will at most result in wasted CPU cycles (but should not be user-visible). I\u0027ll see how bad it is after deploying and maybe adjust back to be 20m-40m.",
+      "range": {
+        "startLine": 1634,
+        "startChar": 37,
+        "endLine": 1634,
+        "endChar": 66
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35c5d59c_a30ad7bd",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-16T21:58:40Z",
+      "side": 1,
+      "message": "what\u0027s the value of waiting a minimum of 5 minutes? don\u0027t we know for sure it\u0027s stale right now?",
+      "parentUuid": "a04c4970_5a04e766",
       "range": {
         "startLine": 1634,
         "startChar": 37,
