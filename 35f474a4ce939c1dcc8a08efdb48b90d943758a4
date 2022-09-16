@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa3c519b_2e8e0ec3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-16T18:34:19Z",
+      "side": 1,
+      "message": "SG!",
+      "parentUuid": "f2d58022_ed50172a",
+      "revId": "35f474a4ce939c1dcc8a08efdb48b90d943758a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a843d481_a0745a10",
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "First, let\u0027s ignore \"|\" for now. Bots report dimensions as `{key: [value]}`, e.g. `{\"pool\": [\"some-pool\"], \"os\": [\"Linux\", \"Ubuntu\"]}`. It means the pool can tasks that target \"Linux\" or \"Ubuntu\" (or both or neither, see below).\n\nTasks also have dimensions specified as `{key: [value]}`. A matching bot should have *all* dimensions requested by the task (but may be have more). For example, following tasks will match to the bot:\n\n```\n{\"pool\": [\"some-pool\"], \"os\": [\"Linux\"]}\n{\"pool\": [\"some-pool\"], \"os\": [\"Ubuntu\"]}\n{\"pool\": [\"some-pool\"], \"os\": [\"Linux\", \"Ubuntu]}\n{\"pool\": [\"some-pool\"]}\n{}\n```\n\nFollowing tasks will not match to the bot:\n\n```\n{\"pool\": [\"another-pool\"], \"os\": [\"Linux\"]}\n{\"pool\": [\"some-pool\"], \"os\": [\"Windows\"]}\n{\"pool\": [\"some-pool\"], \"os\": [\"Linux\", \"Debian]}\n```\n\nRepeated dimension values here act as AND: the task the bot to have os:Linux AND os:Ubuntu.\n\nNow about \"|\". This denotes that a task wants one set of dimensions OR another. For example `{\"pool\": [\"some-pool\"], \"os\": [\"Linux|Windows\"]}`. Such task will match to bots that report os:Linux or os:Windows.\n\nMore complex example might be:\n\n```\n{\"pool\": [\"some-pool\"], \"os\": [\"Linux\", \"Debian|Ubuntu\"]}\n```\n\nThis logically filters bots based on their `os` dimension (which is a list!) as \n\n```\n(\"Linux\" in os) AND (\"Debian\" in os OR \"Ubuntu\" in os)\n```\n\nIn terms of implementation such filters are rewriting into \"(AND AND AND) OR (AND AND AND) OR ...\". This is what `expand_dimensions_to_flats` does essentially. So the above filter is rewritten as\n\n```\n(\"Linux\" in os AND \"Debian\" in os) OR (\"Linux\" in os AND \"Ubuntu\" in os)\n```\n\nInternally this is represented in `sets` as:\n\n```\nsets \u003d [\n  [\"os:Linux\", \"os:Debian\"],\n  [\"os:Linux\", \"os:Ubuntu\"],\n]\n```\n\n(I omitted \"pool\" and other task dimensions for clarity).\n\nBot dimensions are internally represented by a set of \"k:v\" pairs as well: `[\"os:Linux\", \"os:Ubuntu\", \"os:Ubuntu-20.20\"]`.\n\n`any(bot_dims_set.issuperset(dims) for dims in task_dims_sets)` checks if bot can run (\u003d\u003d has all required dimensions, perhaps more \u003d\u003e issuperset) any of ORed requirement of the task.\n\nNote that bots can\u0027t report dimensions with \"|\" in them. Then already report all dimensions as \"OR\" semantically, e.g. a bot with `{\"os\": [\"Linux\", \"Ubuntu\"]}` can run tasks with `os:Linux` OR `os:Ubuntu`.",
       "parentUuid": "a843d481_a0745a10",
+      "range": {
+        "startLine": 1315,
+        "startChar": 13,
+        "endLine": 1315,
+        "endChar": 42
+      },
+      "revId": "35f474a4ce939c1dcc8a08efdb48b90d943758a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8277e00_bd52a034",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1315,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-16T18:34:19Z",
+      "side": 1,
+      "message": "That makes a lot more sense! Thanks for the explanation :) \n\nSo \"|\" dimensions are basically there when you want to match \"os:[Ubuntu]\" or \"os:[debian]\" to match but not \"os:[ubuntu, debian]\"",
+      "parentUuid": "1aca7851_c7187d90",
       "range": {
         "startLine": 1315,
         "startChar": 13,
