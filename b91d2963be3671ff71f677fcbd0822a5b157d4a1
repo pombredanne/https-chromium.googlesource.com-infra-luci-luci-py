@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f695ea3e_a78b661b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T01:54:48Z",
+      "side": 1,
+      "message": "PTAL. If this is deployed, there\u0027ll be useless noop TQ tasks to do \"rescans\", but otherwise it will have no effect, since nothing is populating `BotDimensionsMatches.matches` yet.",
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fedc667f_6f992a33",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1630,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T01:54:48Z",
+      "side": 1,
+      "message": "this theoretically should never be happen\nit can happen if a bot calls /bot/poll concurrently, which it should not be doing",
+      "range": {
+        "startLine": 1628,
+        "startChar": 6,
+        "endLine": 1630,
+        "endChar": 30
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a04c4970_5a04e766",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T01:54:48Z",
+      "side": 1,
+      "message": "Note that this is more aggressive than the current implementation (which uses 20m-40m). The idea is to reduce latency of discovering \"misses\" from ~30m to ~10m. Since rescans now happen via a task queue, this will at most result in wasted CPU cycles (but should not be user-visible). I\u0027ll see how bad it is after deploying and maybe adjust back to be 20m-40m.",
+      "range": {
+        "startLine": 1634,
+        "startChar": 37,
+        "endLine": 1634,
+        "endChar": 66
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
