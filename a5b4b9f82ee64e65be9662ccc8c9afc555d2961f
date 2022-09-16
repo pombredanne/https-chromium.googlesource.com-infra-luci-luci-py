@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b0dad4b_f1c4c4c7",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-16T19:21:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e4e4cc7_67ddad51",
+      "range": {
+        "startLine": 223,
+        "startChar": 6,
+        "endLine": 223,
+        "endChar": 22
+      },
+      "revId": "a5b4b9f82ee64e65be9662ccc8c9afc555d2961f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1febc3a5_cea32b32",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-15T21:09:23Z",
       "side": 1,
       "message": "it should make copies of dicts before popping keys from them, it is surprising to the caller that their arguments will be modified\n\nalso consider using comprehensions, e.g. \n\n`expected \u003d {k: v for k, v in expected.items() if k not in keys_to_ignore}`",
+      "range": {
+        "startLine": 224,
+        "startChar": 4,
+        "endLine": 231,
+        "endChar": 23
+      },
+      "revId": "a5b4b9f82ee64e65be9662ccc8c9afc555d2961f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1858cde8_bb921d99",
+        "filename": "appengine/components/test_support/test_case.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-16T19:21:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1febc3a5_cea32b32",
       "range": {
         "startLine": 224,
         "startChar": 4,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b3ec26ce_0a1827dd",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-16T19:21:51Z",
+      "side": 1,
+      "message": "Tentatively, I\u0027m going to go through the tests again and check whether it\u0027s possible to reliably set a timestamp derived from `self.now` but here is my reasoning for why we should ignore. \n\nIt is difficult to predictably set a timestamp which we can then associate with a \n`bot_event`. \n\nMany things being tested could touch methods mocked in [mock_now](https://crsrc.org/i/luci/appengine/components/test_support/test_case.py;l\u003d26).So modifications to code being tested could result in unpredictable use of the timestamps and so causing some tests to fail unpredictably. \n\nSo I think getting rid of ts is better in this case. We\u0027re also not really loosing any information since the timestamps were always fixed. I can add one test just to make sure that the timestamp does end up getting set when a `BotEvent` is created just to be sure.",
+      "parentUuid": "77cc9539_d560953d",
+      "range": {
+        "startLine": 110,
+        "startChar": 44,
+        "endLine": 110,
+        "endChar": 50
+      },
+      "revId": "a5b4b9f82ee64e65be9662ccc8c9afc555d2961f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "23d74b41_2c61289a",
         "filename": "appengine/swarming/handlers_bot_test.py",
         "patchSetId": 8
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a8e1237e_2053ad60",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-16T19:21:51Z",
+      "side": 1,
+      "message": "Removing now!",
+      "parentUuid": "23d74b41_2c61289a",
+      "range": {
+        "startLine": 448,
+        "startChar": 8,
+        "endLine": 448,
+        "endChar": 22
+      },
+      "revId": "a5b4b9f82ee64e65be9662ccc8c9afc555d2961f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ab3c0017_f1246e12",
         "filename": "appengine/swarming/handlers_bot_test.py",
         "patchSetId": 8
@@ -106,6 +202,30 @@
       "writtenOn": "2022-09-15T21:09:23Z",
       "side": 1,
       "message": "why did this change?",
+      "range": {
+        "startLine": 1285,
+        "startChar": 15,
+        "endLine": 1285,
+        "endChar": 23
+      },
+      "revId": "a5b4b9f82ee64e65be9662ccc8c9afc555d2961f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04cb13d1_0f822bc8",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1285,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-16T19:21:51Z",
+      "side": 1,
+      "message": "The `error_id` is not really dependent on an input to `/ereporter2/api/v1/on_error`. The id returned is derived from a [database key](https://crsrc.org/i/luci/appengine/components/components/ereporter2/on_error.py;l\u003d82) which in theory is autogenerated. \n\nFor some reason the Id returned changed to `3` while I was updating these tests. I tested wither the entity mentioned (`models.Error`) is created more than once. Since it\u0027s not and the rest of the test suite was at this point fine, I concluded that this is something internal to datastore wrt how it allocates keys. So decided to change the test so that it\u0027s not dependent on that process.",
+      "parentUuid": "ab3c0017_f1246e12",
       "range": {
         "startLine": 1285,
         "startChar": 15,
