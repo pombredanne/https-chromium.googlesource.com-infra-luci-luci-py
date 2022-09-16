@@ -52,6 +52,11 @@ _PROBABILITY_OF_QUICK_COMEBACK = 0.05
 _ES_FALLBACK_SLACK = datetime.timedelta(minutes=6)
 
 
+# Non-essential bot information for reaping a task
+BotDetails = collections.namedtuple('BotDetails',
+    ['bot_version', 'logs_cloud_project'])
+
+
 class Error(Exception):
   pass
 
@@ -235,7 +240,8 @@ def _expire_task(to_run_key, request, inline):
   return summary, new_to_run
 
 
-def _reap_task(bot_dimensions, bot_version, to_run_key, request):
+def _reap_task(bot_dimensions, bot_version, bot_logs_cloud_project, to_run_key,
+        request):
   """Reaps a task and insert the results entity.
 
   Returns:
@@ -289,6 +295,7 @@ def _reap_task(bot_dimensions, bot_version, to_run_key, request):
     to_run.expiration_ts = None
     run_result = task_result.new_run_result(request, to_run, bot_id,
                                             bot_version, bot_dimensions,
+                                            bot_logs_cloud_project,
                                             result_summary.resultdb_info)
     # Upon bot reap, both .started_ts and .modified_ts matches. They differ on
     # the first ping.
@@ -1053,7 +1060,8 @@ def _ensure_active_slice(request, task_slice_index):
   return datastore_utils.transaction(run)
 
 
-def _bot_reap_task_external_scheduler(bot_dimensions, bot_version, es_cfg):
+def _bot_reap_task_external_scheduler(bot_dimensions, bot_version,
+                                      bot_logs_cloud_project, es_cfg):
   """Reaps a TaskToRunShard (chosen by external scheduler) if available.
 
   This is a simpler version of bot_reap_task that skips a lot of the steps
@@ -1069,7 +1077,8 @@ def _bot_reap_task_external_scheduler(bot_dimensions, bot_version, es_cfg):
   if not request or not to_run:
     return None, None, None
 
-  run_result, secret_bytes = _reap_task(bot_dimensions, bot_version, to_run.key,
+  run_result, secret_bytes = _reap_task(bot_dimensions, bot_version,
+                                        bot_logs_cloud_project, to_run.key,
                                         request)
   if not run_result:
     raise external_scheduler.ExternalSchedulerException(
@@ -1323,7 +1332,7 @@ def schedule_request(request,
   return result_summary
 
 
-def bot_reap_task(bot_dimensions, queues, bot_version, deadline):
+def bot_reap_task(bot_dimensions, queues, bot_details, deadline):
   """Reaps a TaskToRunShard if one is available.
 
   The process is to find a TaskToRunShard where its .queue_number is set, then
@@ -1333,7 +1342,8 @@ def bot_reap_task(bot_dimensions, queues, bot_version, deadline):
   - bot_dimensions: The dimensions of the bot as a dictionary in
           {string key: list of string values} format.
   - queues: a list of integers with dimensions hashes of queues to poll.
-  - bot_version: String version of the bot client.
+  - bot_details: a nametuple of fields bot_version and logs_cloud_project,
+          non-essential but would be porpagated to the task.
   - deadline: datetime.datetime of when to give up.
 
   Returns:
@@ -1343,9 +1353,10 @@ def bot_reap_task(bot_dimensions, queues, bot_version, deadline):
   start = time.time()
   bot_id = bot_dimensions[u'id'][0]
   es_cfg = external_scheduler.config_for_bot(bot_dimensions)
+  bot_version, bot_logs_cloud_project = bot_details
   if es_cfg:
     request, secret_bytes, to_run_result = _bot_reap_task_external_scheduler(
-        bot_dimensions, bot_version, es_cfg)
+        bot_dimensions, bot_version, bot_logs_cloud_project, es_cfg)
     if request:
       return request, secret_bytes, to_run_result
     logging.info('External scheduler did not reap any tasks, trying native '
@@ -1440,7 +1451,8 @@ def bot_reap_task(bot_dimensions, queues, bot_version, deadline):
         to_run = new_to_run
 
       run_result, secret_bytes = _reap_task(bot_dimensions, bot_version,
-                                            to_run.key, request)
+                                            bot_logs_cloud_project, to_run.key,
+                                            request)
       if not run_result:
         failures += 1
         # Sad thing is that there is not way here to know the try number.
