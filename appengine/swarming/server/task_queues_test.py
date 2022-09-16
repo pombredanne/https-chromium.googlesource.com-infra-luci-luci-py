@@ -1560,6 +1560,9 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
             555,
         })
 
+  def test_tq_update_bot_matches_async(self):
+    pass
+
 
 class TestMapAsync(test_env_handlers.AppTestBase):
   # Page size in queries.
