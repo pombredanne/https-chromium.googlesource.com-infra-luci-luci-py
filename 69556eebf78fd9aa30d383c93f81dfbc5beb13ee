@@ -39,6 +39,30 @@
       },
       "revId": "69556eebf78fd9aa30d383c93f81dfbc5beb13ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a9469fa_09c05c07",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1718,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T17:14:45Z",
+      "side": 1,
+      "message": "Yes, it is AND and there should be no difference. I wasn\u0027t sure how to express `__key__` in filter(...) and code-search revealed this explicit ConjunctionNode construct that understands `__key__` just fine.",
+      "parentUuid": "1508fb0f_b5b83fd6",
+      "range": {
+        "startLine": 1715,
+        "startChar": 16,
+        "endLine": 1718,
+        "endChar": 10
+      },
+      "revId": "69556eebf78fd9aa30d383c93f81dfbc5beb13ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
