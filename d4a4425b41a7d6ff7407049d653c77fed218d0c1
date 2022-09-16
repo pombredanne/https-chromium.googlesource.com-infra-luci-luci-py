@@ -112,6 +112,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f8a3a9a_6e7e4f3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-09-16T05:56:56Z",
+      "side": 1,
+      "message": "\u003e Why do it through task queue task at all at this point instead of directly in the cron handler (perhaps new cron handler)?\n\nI don\u0027t the original motivation for implementing this using a chain of cloud tasks. After this change, the only benefit will be parallel execution for jobs and executors. It will be easy to switch to sequential synchronous export if total export time at peak is consistently under 1 minute. If it takes more time, we will either need to depart from relaying on tsmon cronjob to orchestrate our exports, find a way to speed up or parallelise or accept that metrics will be exported less frequently.\n\n\u003e What magic does register_global_metrics_callback do that can\u0027t be reproduced by a regular standalone GAE cron job?\n\nMetric reset on flush if metric is marked as \"global\".",
+      "parentUuid": "c695a119_35f3d6f4",
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5abd69c0_a2774764",
