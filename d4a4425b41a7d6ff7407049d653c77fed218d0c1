@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c8b5b36_c7b1d169",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-09-16T05:39:19Z",
+      "side": 1,
+      "message": "\u003e are they actually overlapping?\n\nThe length of the task chain is dependent on the number of active jobs/executors. \nWe do see overlapping runs especially during peak hours.\n\n\u003e  like if this takes 3 minutes to complete, will that cause issues?\n\nIt will be still possible to have overlapping runs after this change however it will less likely.",
+      "parentUuid": "87d03468_2f2bf010",
+      "range": {
+        "startLine": 10,
+        "startChar": 56,
+        "endLine": 10,
+        "endChar": 85
+      },
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c29e920_8c059862",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-15T18:25:39Z",
       "side": 1,
       "message": "note that making this a cron job instead would nearly guarantee this; it will wait for the previously launched request to finish before launching the next one.",
+      "range": {
+        "startLine": 12,
+        "startChar": 3,
+        "endLine": 12,
+        "endChar": 63
+      },
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "997fe46a_2bbe1f8a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-09-16T05:39:19Z",
+      "side": 1,
+      "message": "I agree. It will be fairly straightforward to switch to sequential synchronous execution if peak total export time for jobs and executors is consistently under 1 minute. If it takes more time, we will either need to depart from relaying on tsmon cronjob to orchestrate our exports, find a way to speed up or parallelise or accept that metrics will be exported less frequently.",
+      "parentUuid": "4c29e920_8c059862",
       "range": {
         "startLine": 12,
         "startChar": 3,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eb36173_385e8794",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-09-16T05:39:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5abd69c0_a2774764",
+      "range": {
+        "startLine": 360,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 18
+      },
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49988642_6e845d79",
@@ -100,6 +172,24 @@
       "writtenOn": "2022-09-15T18:25:39Z",
       "side": 1,
       "message": "is 1000 actually a good number? What is the average number of results here? I wouldn\u0027t expect the summaries to be more than a KB, so maybe we could make this larger?",
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35f23fe0_878a326e",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-09-16T05:39:19Z",
+      "side": 1,
+      "message": "\u003e is 1000 actually a good number?\n\nPage size of 1000 is at the upper bound of what most people seem to be using.\nSee: https://source.chromium.org/search?q\u003d%5C.fetch_page%5C(.*,%20language:python%20pcre:yes\n\n\u003e What is the average number of results here? \n\n~ 25k for executors and 15k for jobs (depends on time of day)\n\n\u003e I wouldn\u0027t expect the summaries to be more than a KB, so maybe we could make this larger?\n\nI agree with you that it principle it should be possible to increase the page size. I will see if we can increase it after after we get real life performance numbers.  Our constrains are basically throughput (higher is better) and Datastore RPC timeout (60s).",
+      "parentUuid": "49988642_6e845d79",
       "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -127,6 +217,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfe89a32_e4ba4a61",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-09-16T05:39:19Z",
+      "side": 1,
+      "message": "\u003e nit: please move it under the  if  below, to make it clear this matters only when  status \u003d\u003d running and summary.bot_id .\n\nDone.\n\n\u003e Also I have a feeling this should not be a boolean metric with lots of fields, but instead be a string-valued metric with fewer fields... It will result in less total number of monarch streams. But it\u0027s too late now.\n\nAgree.\n\n\u003e 1. Will it \"forget\" about them right after reporting or will it keep reporting their latest known values like it does for regular metrics? Where does \"forgetting\" happen?\n\nThis is explained in more detail here: https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/third_party/gae_ts_mon/README.md;l\u003d118\n\nReset is performed here: https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/third_party/gae_ts_mon/exporter.py;l\u003d106\n\n\u003e Are reset timestamps correctly set when the same {\u0027hostname\u0027: \u0027xxx\u0027} is reported from different GAE instances?\n\nNo. This change reduces number of participating instances from ~20 down to 1 per set of metrics. This will remain an issue for close or overlapping exports.",
+      "parentUuid": "ab27d1f7_6588678d",
+      "range": {
+        "startLine": 372,
+        "startChar": 0,
+        "endLine": 374,
+        "endChar": 63
+      },
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94943370_2c3cabf1",
@@ -140,6 +254,30 @@
       "writtenOn": "2022-09-15T22:53:30Z",
       "side": 1,
       "message": "what does this do exactly?",
+      "range": {
+        "startLine": 629,
+        "startChar": 2,
+        "endLine": 629,
+        "endChar": 78
+      },
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dabdf2af_f0acfa07",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-09-16T05:39:19Z",
+      "side": 1,
+      "message": "From https://source.chromium.org/chromium/infra/infra/+/main:packages/infra_libs/infra_libs/ts_mon/common/interface.py;l\u003d316\n\nRegister a named function to compute global metrics values.\n\nThere can only be one callback for a given name. Setting another callback with\n  the same name will override the previous one. To disable a callback, set its\n  function to None.\n\n  Args:\n    name (string): name of the callback.\n    callback (function): this function will be called without arguments every\n      minute.  On Appengine it is called once for the whole application from the\n      gae_ts_mon cron job. It is intended to set the values of the global\n      metrics.",
+      "parentUuid": "94943370_2c3cabf1",
       "range": {
         "startLine": 629,
         "startChar": 2,
