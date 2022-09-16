@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "504f7902_0c99830a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T17:08:01Z",
+      "side": 1,
+      "message": "Please roll out this change during your working hours, confirming it doesn\u0027t break chromeos-swarming metrics (which can have up to 50k pending Swarming tasks). I\u0027m not confident in robustness of this change (but the existing state also looks fragile to me, so maybe it is not a big deal). IIUC, breaking these metrics may either leave Chrome Browser Infra without metrics or with false alerts.",
+      "revId": "34bacd6ae2748dd41c16cfb7a53011c6e91ec0b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

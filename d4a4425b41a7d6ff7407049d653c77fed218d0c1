@@ -304,6 +304,30 @@
       },
       "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a11dff8_1a6b3ac0",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T17:08:01Z",
+      "side": 1,
+      "message": "This is roughly useless now. It just ties kicking off TQ tasks to /internal/cron/ts_mon/send cron. TQ tasks are just pure complexity at this point, it should just use its own cron that sends metrics right away... All magic actually happens in gae_ts_mon.register_global_metrics and it is unrelated to gae_ts_mon.register_global_metrics_callback (we already set values for these metrics *outside* of the registered callback, because we set them in another process in TQ tasks).",
+      "parentUuid": "dabdf2af_f0acfa07",
+      "range": {
+        "startLine": 629,
+        "startChar": 2,
+        "endLine": 629,
+        "endChar": 78
+      },
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
