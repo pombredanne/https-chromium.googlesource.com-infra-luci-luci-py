@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "292bd3dc_0333a87b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T22:18:05Z",
+      "side": 1,
+      "message": "Yes, we may need to expose this latency as a metric if we notice stalls. For now I\u0027m just logging it. I believe with our current alerting philosophy, we don\u0027t put alerts on internal metrics, only on API HTTP requests, so I didn\u0027t bother.",
+      "parentUuid": "b1f350ac_101b61d7",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 61
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f695ea3e_a78b661b",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -81,6 +105,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaf823ce_fb163529",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1129,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T22:18:05Z",
+      "side": 1,
+      "message": "yes, in 99% cases it is 1, it is not 1 only when using \"|\" dimensions (and I could not find a limit on allowed number of \"|\" variants, so it is still possible to DOS this I guess, but it is a separate problem which I\u0027m ignoring for now).",
+      "parentUuid": "7f51052e_2c4c0daf",
+      "range": {
+        "startLine": 1129,
+        "startChar": 11,
+        "endLine": 1129,
+        "endChar": 14
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3db13a35_ffcba466",
@@ -94,6 +142,30 @@
       "writtenOn": "2022-09-16T21:58:40Z",
       "side": 1,
       "message": "nit: or\n\nI would document that this is NOT transactional, and that the constructed one is not saved yet.\n\n\n(just because this comment will be interpreted in the context of other swarming code/comments...)",
+      "range": {
+        "startLine": 1271,
+        "startChar": 34,
+        "endLine": 1271,
+        "endChar": 36
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29e97e5c_441d28eb",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T22:18:05Z",
+      "side": 1,
+      "message": "Done. This can be used as part of a transaction though (and indeed used like that).",
+      "parentUuid": "3db13a35_ffcba466",
       "range": {
         "startLine": 1271,
         "startChar": 34,
@@ -121,6 +193,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c65fe5cd_03c37e5a",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1591,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T22:18:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45fc89be_bcc57662",
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e526b4f_36d48ec6",
@@ -144,6 +234,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6347388d_99cff440",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1597,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T22:18:05Z",
+      "side": 1,
+      "message": "it is deterministic, there\u0027s is sorting:\n\n```\n...\nresult.append(sorted(set(cur_dimensions_flat)))\n...\n```\n\nIt wasn\u0027t relied upon on the previous implementation, it is relied upon now.",
+      "parentUuid": "5e526b4f_36d48ec6",
+      "range": {
+        "startLine": 1597,
+        "startChar": 24,
+        "endLine": 1597,
+        "endChar": 46
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80740889_c09c981b",
@@ -157,6 +271,30 @@
       "writtenOn": "2022-09-16T21:58:40Z",
       "side": 1,
       "message": "(re: determinism because of this comparison)",
+      "range": {
+        "startLine": 1617,
+        "startChar": 13,
+        "endLine": 1617,
+        "endChar": 23
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a35c5c26_add14655",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1617,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T22:18:05Z",
+      "side": 1,
+      "message": "yes, there\u0027s another place where it is relied upon (in another CL)",
+      "parentUuid": "80740889_c09c981b",
       "range": {
         "startLine": 1617,
         "startChar": 13,
@@ -216,6 +354,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "80d5d988_7b5ef6e2",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1630,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T22:18:05Z",
+      "side": 1,
+      "message": "Done, but I thought it is obvious.",
+      "parentUuid": "1c1e1b1f_e7d226d2",
+      "range": {
+        "startLine": 1628,
+        "startChar": 6,
+        "endLine": 1630,
+        "endChar": 30
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a04c4970_5a04e766",
         "filename": "appengine/swarming/server/task_queues.py",
         "patchSetId": 1
@@ -251,6 +413,30 @@
       "side": 1,
       "message": "what\u0027s the value of waiting a minimum of 5 minutes? don\u0027t we know for sure it\u0027s stale right now?",
       "parentUuid": "a04c4970_5a04e766",
+      "range": {
+        "startLine": 1634,
+        "startChar": 37,
+        "endLine": 1634,
+        "endChar": 66
+      },
+      "revId": "b91d2963be3671ff71f677fcbd0822a5b157d4a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5601a80a_4cb9a752",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-16T22:18:05Z",
+      "side": 1,
+      "message": "It\u0027s not waiting. It transactionally launches a rescan and calculates when the **next** rescan should be happening (which is 5-15 min from now).",
+      "parentUuid": "35c5d59c_a30ad7bd",
       "range": {
         "startLine": 1634,
         "startChar": 37,
