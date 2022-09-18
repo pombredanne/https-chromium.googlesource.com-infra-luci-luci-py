@@ -39,6 +39,30 @@
       },
       "revId": "753bc5597d8060f23c565c933d13684ae506fb09",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b387868e_b09b4e22",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 1547129
+      },
+      "writtenOn": "2022-09-18T23:46:19Z",
+      "side": 1,
+      "message": "Sorry I missed the point. Code change to combine them has been made.",
+      "parentUuid": "d2f0e0fb_8f91ceaa",
+      "range": {
+        "startLine": 1356,
+        "startChar": 2,
+        "endLine": 1356,
+        "endChar": 51
+      },
+      "revId": "753bc5597d8060f23c565c933d13684ae506fb09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
