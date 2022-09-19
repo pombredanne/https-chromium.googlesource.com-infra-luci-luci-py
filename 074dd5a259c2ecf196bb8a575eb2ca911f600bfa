@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "323e5f40_b70fb5d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-19T17:08:38Z",
+      "side": 1,
+      "message": "Note that there will always be 1 min gap between executions now. Previously TQ tasks were running back to back (especially if there was a backlog of them). There was also no control over the length of this backlog and tasks were also running in parallel... The solution with the cron is less chaotic, but has this 1 min gap. I hope it will not matter...",
+      "revId": "074dd5a259c2ecf196bb8a575eb2ca911f600bfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

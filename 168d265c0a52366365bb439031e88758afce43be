@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74adc1bc_419c2dc3",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-19T17:08:38Z",
+      "side": 0,
+      "message": "Please keep it and delete only after this whole thing is deployed and the queue is unused.\n\nQueues are global to the GAE app, deploying this code will break the currently running code and will also complicate rollbacks.",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 22
+      },
+      "revId": "168d265c0a52366365bb439031e88758afce43be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
