@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5481484e_0a947bc2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-19T16:39:07Z",
+      "side": 1,
+      "message": "Did some refactoring of the tests. I moved some of them to the other CL and kept some of them here. It seems like even after removing ordering by BotEvent.key and ordering by BotEvent.ts, if all the timestamps are the same it will still return results by BotEvent.key. \n\nThe second CL removes the monotonic sequence so the tests affected by this will actually fail in that CL - so moved the affected tests to second CL. ",
+      "revId": "0aebc91354fdd5346c424584f8c386c477de38a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
