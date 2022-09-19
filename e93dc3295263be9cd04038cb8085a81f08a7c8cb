@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6598824d_fcbd9ea8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-19T18:06:42Z",
+      "side": 1,
+      "message": "Few nits.",
+      "revId": "e93dc3295263be9cd04038cb8085a81f08a7c8cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81d3c8ff_48f308d6",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 887,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-19T18:06:42Z",
+      "side": 1,
+      "message": "nit: please swap order of is_default and logs_cloud_project in tests to match the order of definition in the tuple",
+      "range": {
+        "startLine": 886,
+        "startChar": 0,
+        "endLine": 887,
+        "endChar": 31
+      },
+      "revId": "e93dc3295263be9cd04038cb8085a81f08a7c8cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f04842a_1b60ba63",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1071,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-19T18:06:42Z",
+      "side": 1,
+      "message": "nit: \"a BotDetails tuple\"\n\nA comment that mentions bot_version and logs_cloud_project will easily become stale if new fields are added.",
+      "range": {
+        "startLine": 1070,
+        "startChar": 19,
+        "endLine": 1071,
+        "endChar": 60
+      },
+      "revId": "e93dc3295263be9cd04038cb8085a81f08a7c8cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "400fde1c_20b4beed",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-19T18:06:42Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 1342,
+        "startChar": 4,
+        "endLine": 1343,
+        "endChar": 60
+      },
+      "revId": "e93dc3295263be9cd04038cb8085a81f08a7c8cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b7515bd_b69def38",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-19T18:06:42Z",
+      "side": 1,
+      "message": "Let\u0027s change this to console.cloud.google.com while at it. It is not great to hardcode corp.google.com URL in the open source project code.",
+      "range": {
+        "startLine": 63,
+        "startChar": 21,
+        "endLine": 63,
+        "endChar": 45
+      },
+      "revId": "e93dc3295263be9cd04038cb8085a81f08a7c8cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
