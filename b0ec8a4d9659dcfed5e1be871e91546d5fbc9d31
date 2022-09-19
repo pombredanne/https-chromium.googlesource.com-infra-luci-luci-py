@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c547033_0d851164",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-19T21:31:43Z",
+      "side": 1,
+      "message": "Oh, actually, at least in legacy datastore, it would also be totally fine to always unconditionally store BotRoot inside the transaction (since we are modifying the entity group anyway).\n\nI\u0027m less sure about how it works in new Firestore datastore.",
+      "parentUuid": "5fb0d7bd_97b811aa",
+      "range": {
+        "startLine": 533,
+        "startChar": 4,
+        "endLine": 535,
+        "endChar": 69
+      },
+      "revId": "b0ec8a4d9659dcfed5e1be871e91546d5fbc9d31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35cf26f6_e03981cc",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 6
