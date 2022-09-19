@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb0142eb_2e34d923",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-19T18:44:11Z",
+      "side": 1,
+      "message": "Requesting review on second part of this CL. We need to deploy the first CL, and check whether it breaks anything before deploying this CL, which cannot be rolled back easily since it turns off monotonically decreasing sequences. ",
+      "revId": "b0ec8a4d9659dcfed5e1be871e91546d5fbc9d31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
