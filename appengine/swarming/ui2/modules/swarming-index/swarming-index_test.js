@@ -3,13 +3,14 @@
 // that can be found in the LICENSE file.
 
 import 'modules/swarming-index';
+import fetchMock from 'fetch-mock';
+const {MATCHED} = require('fetch-mock');
 
 describe('swarming-index', function() {
   // Instead of using import, we use require. Otherwise,
   // the concatenation trick we do doesn't play well with webpack, which would
   // leak dependencies (e.g. bot-list's 'column' function to task-list) and
   // try to import things multiple times.
-  const {fetchMock, MATCHED, UNMATCHED} = require('fetch-mock');
   const {expectNoUnmatchedCalls, mockAppGETs} =
     require('modules/test_util');
 

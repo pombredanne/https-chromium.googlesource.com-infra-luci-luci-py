@@ -2,9 +2,8 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-const commonBuilder = require('pulito');
-const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const commonBuilder = require('./webpack_config/webpack.common');
 
 module.exports = (env, argv) => {
   const config = commonBuilder(env, argv, __dirname);
@@ -15,9 +14,10 @@ module.exports = (env, argv) => {
     use: 'html-template-minifier-webpack',
   });
   config.plugins.push(
-      new CopyWebpackPlugin([
-        {from: 'node_modules/@webcomponents/custom-elements/custom-elements.min.js'},
-      ]),
+      new CopyWebpackPlugin({
+        patterns: [
+          'node_modules/@webcomponents/custom-elements/custom-elements.min.js',
+        ]}),
   );
 
   return config;

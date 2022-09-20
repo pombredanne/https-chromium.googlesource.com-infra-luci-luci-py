@@ -11,7 +11,7 @@
  * </p>
  */
 
-import {UNMATCHED} from 'fetch-mock';
+const {UNMATCHED} = require('fetch-mock');
 
 export const customMatchers = {
   // see https://jasmine.github.io/tutorials/custom_matcher

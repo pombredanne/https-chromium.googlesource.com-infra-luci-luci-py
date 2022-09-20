@@ -3,6 +3,8 @@
 // that can be found in the LICENSE file.
 
 import 'modules/task-list';
+import fetchMock from 'fetch-mock';
+const {MATCHED} = require('fetch-mock');
 
 describe('task-list', function() {
   // Instead of using import, we use require. Otherwise,
@@ -12,11 +14,10 @@ describe('task-list', function() {
   const {deepCopy} = require('common-sk/modules/object');
   const {$, $$} = require('common-sk/modules/dom');
   const {childrenAsArray, customMatchers, expectNoUnmatchedCalls, getChildItemWithText, mockAppGETs} = require('modules/test_util');
-  const {fetchMock, MATCHED, UNMATCHED} = require('fetch-mock');
-
   const {column, filterTasks, getColHeader, listQueryParams, processTasks} = require('modules/task-list/task-list-helpers');
   const {tasks_22} = require('modules/task-list/test_data');
   const {fleetDimensions} = require('modules/bot-list/test_data');
+
   beforeEach(function() {
     jasmine.addMatchers(customMatchers);
     // Clear out any query params we might have to not mess with our current state.
