@@ -65,6 +65,7 @@ describe('sort-toggle', function() {
 
   it('emits a sort-change event and toggles on click', function(done) {
     createElement((ele) => {
+      debugger;
       ele.currentKey = 'beta';
       ele.key = 'beta';
       ele.direction = 'asc';

@@ -3,6 +3,8 @@
 // that can be found in the LICENSE file.
 
 import 'modules/task-mass-cancel';
+import fetchMock from 'fetch-mock';
+const {MATCHED} = require('fetch-mock');
 
 describe('task-mass-cancel', function() {
   // Instead of using import, we use require. Otherwise,
@@ -11,7 +13,6 @@ describe('task-mass-cancel', function() {
   // try to import things multiple times.
   const {$, $$} = require('common-sk/modules/dom');
   const {customMatchers, expectNoUnmatchedCalls, mockAppGETs} = require('modules/test_util');
-  const {fetchMock, MATCHED, UNMATCHED} = require('fetch-mock');
   // A reusable HTML element in which we create our element under test.
   const container = document.createElement('div');
   document.body.appendChild(container);
