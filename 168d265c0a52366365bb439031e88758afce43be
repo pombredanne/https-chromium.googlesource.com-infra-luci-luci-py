@@ -22,6 +22,30 @@
       },
       "revId": "168d265c0a52366365bb439031e88758afce43be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39edc7cd_4aaac0e0",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-09-20T04:03:07Z",
+      "side": 0,
+      "message": "Done.",
+      "parentUuid": "74adc1bc_419c2dc3",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 22
+      },
+      "revId": "168d265c0a52366365bb439031e88758afce43be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
