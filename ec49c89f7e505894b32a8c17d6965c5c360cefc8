@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "613d42f2_022b1e54",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-09-20T04:29:02Z",
+      "side": 1,
+      "message": "Could refactor this to call ts_mon_metrics._set_exectors_metrics() directly and scrap ts_mon_metrics.set_global_metrics()?",
+      "revId": "ec49c89f7e505894b32a8c17d6965c5c360cefc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8a5e8c2_10ed59c4",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-09-20T04:29:02Z",
+      "side": 1,
+      "message": "Could refactor this to call ts_mon_metrics._set_jobs_metrics() directly and scrap ts_mon_metrics.set_global_metrics()?",
+      "revId": "ec49c89f7e505894b32a8c17d6965c5c360cefc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
