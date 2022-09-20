@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dbfa9ce2_e399152b",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-20T14:58:03Z",
+      "side": 1,
+      "message": "Makes sense! After taking a second look I worry about a race condition where an event could be lost during the update.\n\nThe following could happen:\n- old swarming, new swarming\n- old writes event 1 with root1 current \u003d x\n- old writes event 2 with root1 current \u003d x-1\n- new writes event 3 with root1 current \u003d x\n- old writes event 4 with root1 current \u003d x-1\n- because event 2 and 4 have the same key, 4 would write over 2\n\nI read/heard somewhere that bots will talk to the same version of the server - but after reviewing `swarming_bot` code I don\u0027t see a mechanism where that happens. \n\nSo I\u0027m wondering if we could just set the `BotRoot.current` value to something random. Then overwrite will not really matter. Or we could keep a `root_key.get()` outside the transaction to be more safe.\n\nThis would also only be an issue while there are many old and new servers at the same time.",
+      "parentUuid": "5c547033_0d851164",
+      "range": {
+        "startLine": 533,
+        "startChar": 4,
+        "endLine": 535,
+        "endChar": 69
+      },
+      "revId": "b0ec8a4d9659dcfed5e1be871e91546d5fbc9d31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35cf26f6_e03981cc",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 6
@@ -78,6 +102,30 @@
       "writtenOn": "2022-09-19T21:21:06Z",
       "side": 1,
       "message": "Better to keep the exception uncaught and let it crash, because it will crash anyway, just with AttributeError (trying to look inside this None). Or even worse, it will store this None somewhere where an entity is expected.",
+      "range": {
+        "startLine": 699,
+        "startChar": 2,
+        "endLine": 699,
+        "endChar": 13
+      },
+      "revId": "b0ec8a4d9659dcfed5e1be871e91546d5fbc9d31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bd57c5b_5d8b1294",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-20T14:58:03Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "35cf26f6_e03981cc",
       "range": {
         "startLine": 699,
         "startChar": 2,
