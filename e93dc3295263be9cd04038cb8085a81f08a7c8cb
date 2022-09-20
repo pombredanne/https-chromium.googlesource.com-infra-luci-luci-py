@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a840bc59_3c60b8f3",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 887,
+      "author": {
+        "id": 1547129
+      },
+      "writtenOn": "2022-09-20T05:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81d3c8ff_48f308d6",
+      "range": {
+        "startLine": 886,
+        "startChar": 0,
+        "endLine": 887,
+        "endChar": 31
+      },
+      "revId": "e93dc3295263be9cd04038cb8085a81f08a7c8cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f04842a_1b60ba63",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-09-19T18:06:42Z",
       "side": 1,
       "message": "nit: \"a BotDetails tuple\"\n\nA comment that mentions bot_version and logs_cloud_project will easily become stale if new fields are added.",
+      "range": {
+        "startLine": 1070,
+        "startChar": 19,
+        "endLine": 1071,
+        "endChar": 60
+      },
+      "revId": "e93dc3295263be9cd04038cb8085a81f08a7c8cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54e4638a_1de5acab",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1071,
+      "author": {
+        "id": 1547129
+      },
+      "writtenOn": "2022-09-20T05:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f04842a_1b60ba63",
       "range": {
         "startLine": 1070,
         "startChar": 19,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4c51350_a595291e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1547129
+      },
+      "writtenOn": "2022-09-20T05:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "400fde1c_20b4beed",
+      "range": {
+        "startLine": 1342,
+        "startChar": 4,
+        "endLine": 1343,
+        "endChar": 60
+      },
+      "revId": "e93dc3295263be9cd04038cb8085a81f08a7c8cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b7515bd_b69def38",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-09-19T18:06:42Z",
       "side": 1,
       "message": "Let\u0027s change this to console.cloud.google.com while at it. It is not great to hardcode corp.google.com URL in the open source project code.",
+      "range": {
+        "startLine": 63,
+        "startChar": 21,
+        "endLine": 63,
+        "endChar": 45
+      },
+      "revId": "e93dc3295263be9cd04038cb8085a81f08a7c8cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68d9d61d_496e9245",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1547129
+      },
+      "writtenOn": "2022-09-20T05:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b7515bd_b69def38",
       "range": {
         "startLine": 63,
         "startChar": 21,
