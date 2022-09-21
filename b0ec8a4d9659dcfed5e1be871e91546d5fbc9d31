@@ -113,6 +113,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03994620_77e3e84d",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-21T21:46:53Z",
+      "side": 1,
+      "message": "Got it - will keep the `root_key.get()` part.",
+      "parentUuid": "7f62b25e_fe09427f",
+      "range": {
+        "startLine": 533,
+        "startChar": 4,
+        "endLine": 535,
+        "endChar": 69
+      },
+      "revId": "b0ec8a4d9659dcfed5e1be871e91546d5fbc9d31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35cf26f6_e03981cc",
@@ -174,6 +198,30 @@
       "side": 1,
       "message": "It is still caught and still will result in None return code instead of a crash.",
       "parentUuid": "9bd57c5b_5d8b1294",
+      "range": {
+        "startLine": 699,
+        "startChar": 2,
+        "endLine": 699,
+        "endChar": 13
+      },
+      "revId": "b0ec8a4d9659dcfed5e1be871e91546d5fbc9d31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb48ddc2_8f29f75f",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-21T21:46:53Z",
+      "side": 1,
+      "message": "Ah okay! Now reraises the exception instead of ignoring it.",
+      "parentUuid": "bf882061_6152eb79",
       "range": {
         "startLine": 699,
         "startChar": 2,
