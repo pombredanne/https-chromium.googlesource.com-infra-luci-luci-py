@@ -80,11 +80,10 @@ describe('sort-toggle', function() {
         arrow = ele.querySelector('arrow-drop-up-icon-sk');
         expect(arrow).toBeTruthy();
         expect(arrow.attributes.hidden).toBeTruthy('We should only display down arrow');
-
-        done();
       });
 
       ele.click();
+      done();
     });
   });
 
@@ -99,12 +98,11 @@ describe('sort-toggle', function() {
         // click on change should be ascending
         expect(e.detail.direction).toBe('asc');
         expect(e.detail.key).toBe('beta');
-
         expect(ele.direction).toBe('asc');
-        done();
       });
 
       ele.click();
+      done();
     });
   });
 });
