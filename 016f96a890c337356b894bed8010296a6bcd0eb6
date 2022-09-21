@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cfab3de_7556ffe3",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2372,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-21T00:24:44Z",
+      "side": 1,
+      "message": "to flip to the new implementation, will just need to replace `old_queues` with `new_queues` here and in freshen_up_queues (plus some other minor changes like stoping catching exceptions, plus likely some unit tests changes that inadvertently depend on old implementation details)",
+      "range": {
+        "startLine": 2371,
+        "startChar": 2,
+        "endLine": 2372,
+        "endChar": 19
+      },
+      "revId": "016f96a890c337356b894bed8010296a6bcd0eb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
