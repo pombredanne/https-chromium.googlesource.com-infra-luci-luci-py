@@ -22,6 +22,30 @@
       },
       "revId": "e6ebdb6e20c80d6503b7244a63dc2098a01336df",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52604d76_de8b372c",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1325,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-21T18:30:47Z",
+      "side": 1,
+      "message": "There\u0027s one micro-optimization that can be made but I resisted making it: there\u0027s absolutely no reason to materialize `data` as a string (and using `+\u003d` at that which will make unnecessary reallocs). Data can be fed directly into the hasher.",
+      "parentUuid": "3ae593d8_b6faafd2",
+      "range": {
+        "startLine": 1325,
+        "startChar": 19,
+        "endLine": 1325,
+        "endChar": 22
+      },
+      "revId": "e6ebdb6e20c80d6503b7244a63dc2098a01336df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
