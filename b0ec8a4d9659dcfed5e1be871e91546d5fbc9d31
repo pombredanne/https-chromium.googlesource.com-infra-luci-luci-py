@@ -91,6 +91,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f62b25e_fe09427f",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-21T19:03:25Z",
+      "side": 1,
+      "message": "Yeah, nice observation.\n\nSince this is possibility only during the initial deployment, any solution is fine. Creating the root transactionally is probably the simplest. I assume we\u0027ll move it out of the transaction in a future CL, when *nothing* is supposed to be reading `current` anymore (and so it doesn\u0027t matter we override it). In fact, we\u0027ll just remove `current` completely.",
+      "parentUuid": "dbfa9ce2_e399152b",
+      "range": {
+        "startLine": 533,
+        "startChar": 4,
+        "endLine": 535,
+        "endChar": 69
+      },
+      "revId": "b0ec8a4d9659dcfed5e1be871e91546d5fbc9d31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35cf26f6_e03981cc",
         "filename": "appengine/swarming/server/bot_management.py",
         "patchSetId": 6
@@ -126,6 +150,30 @@
       "side": 1,
       "message": "Done!",
       "parentUuid": "35cf26f6_e03981cc",
+      "range": {
+        "startLine": 699,
+        "startChar": 2,
+        "endLine": 699,
+        "endChar": 13
+      },
+      "revId": "b0ec8a4d9659dcfed5e1be871e91546d5fbc9d31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf882061_6152eb79",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-21T19:03:25Z",
+      "side": 1,
+      "message": "It is still caught and still will result in None return code instead of a crash.",
+      "parentUuid": "9bd57c5b_5d8b1294",
       "range": {
         "startLine": 699,
         "startChar": 2,
