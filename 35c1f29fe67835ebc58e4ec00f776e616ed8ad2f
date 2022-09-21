@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b45aa3ba_fe45e53a",
+        "filename": "appengine/swarming/ui2/Makefile",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-21T21:46:28Z",
+      "side": 0,
+      "message": "not working? or accidental?",
+      "range": {
+        "startLine": 14,
+        "startChar": 50,
+        "endLine": 14,
+        "endChar": 51
+      },
+      "revId": "35c1f29fe67835ebc58e4ec00f776e616ed8ad2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69db8402_d9511ce7",
+        "filename": "appengine/swarming/ui2/modules/sort-toggle/sort-toggle_test.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-21T21:46:28Z",
+      "side": 0,
+      "message": "intended?",
+      "revId": "35c1f29fe67835ebc58e4ec00f776e616ed8ad2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17c9f529_3c0ea422",
+        "filename": "appengine/swarming/ui2/modules/sort-toggle/sort-toggle_test.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-21T21:46:28Z",
+      "side": 0,
+      "message": "same",
+      "revId": "35c1f29fe67835ebc58e4ec00f776e616ed8ad2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

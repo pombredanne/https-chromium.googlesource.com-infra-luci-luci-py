@@ -16,6 +16,108 @@
       "message": "Main changes here are removing `pulito` dependency and updating all of our NPM packages to newer, more secure ones. \n\nOne issue I noticed here is that the test suite is none-deterministically hangs but I think this issue predates the changes proposed in this CL.",
       "revId": "0c47a976951171c47c2970d389dfc3ce18327d28",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4d0e678_df20eddc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-21T21:46:28Z",
+      "side": 1,
+      "message": "lgtm if it works 😊",
+      "revId": "0c47a976951171c47c2970d389dfc3ce18327d28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7878d0e_e3c61420",
+        "filename": "appengine/swarming/ui2/dev/postcss.config.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-21T21:46:28Z",
+      "side": 1,
+      "message": "worth a comment?",
+      "revId": "0c47a976951171c47c2970d389dfc3ce18327d28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a69c2ea_277ceab2",
+        "filename": "appengine/swarming/ui2/karma.conf.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-21T21:46:28Z",
+      "side": 1,
+      "message": "can\u0027t these simply be omitted?",
+      "revId": "0c47a976951171c47c2970d389dfc3ce18327d28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c607ec26_aeed219a",
+        "filename": "appengine/swarming/ui2/karma.conf.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-21T21:46:28Z",
+      "side": 1,
+      "message": "why can we set this here but not above?",
+      "revId": "0c47a976951171c47c2970d389dfc3ce18327d28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98630d88_c2edec3d",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-21T21:46:28Z",
+      "side": 1,
+      "message": "I assume that all this added code is essentially \u0027inlining\u0027 pulito?",
+      "revId": "0c47a976951171c47c2970d389dfc3ce18327d28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fda6df3_7a3f0c59",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-09-21T21:46:28Z",
+      "side": 1,
+      "message": "aren\u0027t these the things we unset in the other file? can they be omitted here?",
+      "revId": "0c47a976951171c47c2970d389dfc3ce18327d28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
