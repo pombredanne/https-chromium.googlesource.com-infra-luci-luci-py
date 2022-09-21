@@ -31,6 +31,7 @@ class FrontendTest(test_env_handlers.AppTestBase):
           'REMOTE_ADDR': self.source_ip,
           'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
         })
+    self.mock_tq_tasks()
 
   def tearDown(self):
     try:

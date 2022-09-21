@@ -69,13 +69,11 @@ class BotApiTest(test_env_handlers.AppTestBase):
         '%s, %s' % (args, kwargs)))
     # Bot API test cases run by default as bot.
     self.set_as_bot()
-    self._enqueue_task_orig = self.mock(utils, 'enqueue_task',
-                                        self._enqueue_task)
-    self._enqueue_task_async_orig = self.mock(utils, 'enqueue_task_async',
-                                              self._enqueue_task_async)
+    self.mock(utils, 'enqueue_task', self._enqueue_task)
     self.now = datetime.datetime(2010, 1, 2, 3, 4, 5)
     self.mock_now(self.now)
     self.mock_default_pool_acl([])
+    self.mock_tq_tasks()
 
   def tearDown(self):
     super(BotApiTest, self).tearDown()
@@ -91,19 +89,6 @@ class BotApiTest(test_env_handlers.AppTestBase):
     del kwargs
     if queue_name in ('cancel-children-tasks', 'pubsub'):
       return True
-    self.fail(url)
-
-  @ndb.non_transactional
-  def _enqueue_task_async(self, url, queue_name, payload, transactional=False):
-    if queue_name == 'rebuild-task-cache':
-      self.assertFalse(transactional)
-      return task_queues.rebuild_task_cache_async(payload)
-    if queue_name == 'rescan-matching-task-sets':
-      self.assertTrue(transactional)
-      return task_queues.rescan_matching_task_sets_async(payload)
-    if queue_name == 'update-bot-matches':
-      self.assertTrue(transactional)
-      return task_queues.update_bot_matches_async(payload)
     self.fail(url)
 
   def mock_bot_group_config(self, **kwargs):

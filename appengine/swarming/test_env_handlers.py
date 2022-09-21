@@ -14,6 +14,7 @@ import swarming_test_env
 swarming_test_env.setup_test_env()
 
 from google.appengine.api import app_identity
+from google.appengine.ext import ndb
 
 from protorpc.remote import protojson
 import webtest
@@ -37,6 +38,7 @@ from server import large
 from server import pools_config
 from server import realms
 from server import service_accounts
+from server import task_queues
 
 # Realm permissions used in Swarming.
 _ALL_PERMS = [
@@ -99,6 +101,53 @@ class AppTestBase(test_case.TestCase):
         [auth.Identity(auth.IDENTITY_USER, 'priv@example.com')])
     auth.bootstrap_group(
         users_group, [auth.Identity(auth.IDENTITY_USER, 'user@example.com')])
+
+  def mock_tq_tasks(self):
+    # Help to route TQ tasks to their implementations.
+    self.mock(utils, 'enqueue_task', self._enqueue_mock)
+    self.mock(utils, 'enqueue_task_async', self._enqueue_mock_async)
+
+  def _enqueue_mock(self, url, queue_name, **_kwargs):
+    self.assertIn(queue_name,
+                  ('buildbucket-notify', 'cancel-children-tasks', 'pubsub',
+                   'monitoring-bq-tasks-results-run',
+                   'monitoring-bq-tasks-results-summary',
+                   'monitoring-bq-bots-events', 'monitoring-bq-tasks-requests'))
+    return True
+
+  @ndb.tasklet
+  def _enqueue_mock_async(self, url, queue_name, payload, transactional=False):
+    if queue_name == 'rebuild-task-cache':
+      self.assertFalse(transactional)
+      self.assertFalse(ndb.in_transaction())
+      yield task_queues.rebuild_task_cache_async(payload)
+      raise ndb.Return(True)
+
+    if queue_name == 'rescan-matching-task-sets':
+      self.assertTrue(transactional)
+      self.assertTrue(ndb.in_transaction())
+
+      # Need to execute it after the transaction lands.
+      @ndb.non_transactional
+      def exec_tq():
+        task_queues.rescan_matching_task_sets_async(payload).get_result()
+
+      ndb.get_context().call_on_commit(exec_tq)
+      raise ndb.Return(True)
+
+    if queue_name == 'update-bot-matches':
+      self.assertTrue(transactional)
+      self.assertTrue(ndb.in_transaction())
+
+      # Need to execute it after the transaction lands.
+      @ndb.non_transactional
+      def exec_tq():
+        task_queues.update_bot_matches_async(payload).get_result()
+
+      ndb.get_context().call_on_commit(exec_tq)
+      raise ndb.Return(True)
+
+    self.fail(url)
 
   def set_as_anonymous(self):
     """Removes all IPs from the whitelist."""
