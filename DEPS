@@ -9,7 +9,7 @@ deps = {
     'packages': [
       {
         'package': 'infra/3pp/tools/nodejs/${{platform}}',
-        'version': 'version:13.3.0',
+        'version': 'version:2@18.7.0',
       }
     ],
     'dep_type': 'cipd',
