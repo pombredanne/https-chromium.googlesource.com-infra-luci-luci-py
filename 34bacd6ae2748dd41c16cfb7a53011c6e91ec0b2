@@ -16,6 +16,23 @@
       "message": "Please roll out this change during your working hours, confirming it doesn\u0027t break chromeos-swarming metrics (which can have up to 50k pending Swarming tasks). I\u0027m not confident in robustness of this change (but the existing state also looks fragile to me, so maybe it is not a big deal). IIUC, breaking these metrics may either leave Chrome Browser Infra without metrics or with false alerts.",
       "revId": "34bacd6ae2748dd41c16cfb7a53011c6e91ec0b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dae1a373_4a4bc0a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-22T17:15:25Z",
+      "side": 1,
+      "message": "/internal/cron/monitoring/tsmon/jobs is pretty consistently timing out on chromeos-swarming after 10m of running: https://screenshot.googleplex.com/8zBosHQfLbSMwdG\n\nAs a result we have no graphs for jobs (at least): https://screenshot.googleplex.com/BkyYF4oGmW2sZgi I\u0027m not sure if any of these metrics are used in alerts.\n\nchromium-swarm is better, but it also has dips (maybe increasing interpolation interval in mash would be sufficient) https://screenshot.googleplex.com/Ac5KB5bFQaktg2v",
+      "revId": "34bacd6ae2748dd41c16cfb7a53011c6e91ec0b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
