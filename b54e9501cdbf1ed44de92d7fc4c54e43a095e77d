@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "144dd86c_e996a6b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-26T19:43:17Z",
+      "side": 1,
+      "message": "Eh, it made almost no difference on -dev for overall QPS to /task_update. I think most of our task are actually in a mode that uses _MAX_PACKET_INTERVAL (10s), i.e. they sit without any stdout. In that case task_running.py makes 0.1 QPS to /task_update. I\u0027m hesitant to touch it, since it will change timings for the cron job that collects dead tasks. (Also the primary reasons I\u0027m changing this code is to reduce entity group congestion, and 0.1 QPS should not cause it).",
+      "revId": "b54e9501cdbf1ed44de92d7fc4c54e43a095e77d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
