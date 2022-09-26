@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98099772_dcfee69d",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-26T21:41:32Z",
+      "side": 1,
+      "message": "nit: move it under `if not bot_root`",
+      "range": {
+        "startLine": 536,
+        "startChar": 2,
+        "endLine": 536,
+        "endChar": 8
+      },
+      "revId": "1b912a546afb9e9ed7f178fad0130567d7651f74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebea9c3e_5964d2ad",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-09-26T21:41:32Z",
+      "side": 1,
+      "message": "0 is not a valid datastore ID\n\nalso if generated key_id is very small, the old code will run out of available IDs very fast and will break\n\nmaybe `key_id \u003d random.randint(100000, datastore_utils.HIGH_KEY_ID)` or something\n\n(though probability of any of this happening is minuscule, considering HIGH_KEY_ID is 140737488355327)",
+      "range": {
+        "startLine": 536,
+        "startChar": 26,
+        "endLine": 536,
+        "endChar": 27
+      },
+      "revId": "1b912a546afb9e9ed7f178fad0130567d7651f74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
