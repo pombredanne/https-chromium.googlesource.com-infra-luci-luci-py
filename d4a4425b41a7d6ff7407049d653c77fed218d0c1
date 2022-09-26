@@ -97,6 +97,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "740cf7e1_62628769",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-09-26T04:28:08Z",
+      "side": 1,
+      "message": "Done in https://crrev.com/c/3905821",
+      "parentUuid": "997fe46a_2bbe1f8a",
+      "range": {
+        "startLine": 12,
+        "startChar": 3,
+        "endLine": 12,
+        "endChar": 63
+      },
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c695a119_35f3d6f4",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 7
@@ -208,6 +232,24 @@
       "side": 1,
       "message": "\u003e is 1000 actually a good number?\n\nPage size of 1000 is at the upper bound of what most people seem to be using.\nSee: https://source.chromium.org/search?q\u003d%5C.fetch_page%5C(.*,%20language:python%20pcre:yes\n\n\u003e What is the average number of results here? \n\n~ 25k for executors and 15k for jobs (depends on time of day)\n\n\u003e I wouldn\u0027t expect the summaries to be more than a KB, so maybe we could make this larger?\n\nI agree with you that it principle it should be possible to increase the page size. I will see if we can increase it after after we get real life performance numbers.  Our constrains are basically throughput (higher is better) and Datastore RPC timeout (60s).",
       "parentUuid": "49988642_6e845d79",
+      "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be3dc104_419f7643",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-09-26T04:28:08Z",
+      "side": 1,
+      "message": "Increased from 1000 to 5000 in http://crrev.com/c/3915626. I\u0027m seeing some timeouts in ChromeOS so we might need to reduce this a bit.",
+      "parentUuid": "35f23fe0_878a326e",
       "revId": "d4a4425b41a7d6ff7407049d653c77fed218d0c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
