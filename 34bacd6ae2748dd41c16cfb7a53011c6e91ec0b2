@@ -33,6 +33,24 @@
       "message": "/internal/cron/monitoring/tsmon/jobs is pretty consistently timing out on chromeos-swarming after 10m of running: https://screenshot.googleplex.com/8zBosHQfLbSMwdG\n\nAs a result we have no graphs for jobs (at least): https://screenshot.googleplex.com/BkyYF4oGmW2sZgi I\u0027m not sure if any of these metrics are used in alerts.\n\nchromium-swarm is better, but it also has dips (maybe increasing interpolation interval in mash would be sufficient) https://screenshot.googleplex.com/Ac5KB5bFQaktg2v",
       "revId": "34bacd6ae2748dd41c16cfb7a53011c6e91ec0b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87fb5882_1c1d815e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2022-09-26T09:33:10Z",
+      "side": 1,
+      "message": "ChromeOS improved but still has gaps. I will look if we can optimise the query so it completes in under 10 minutes.",
+      "parentUuid": "dae1a373_4a4bc0a0",
+      "revId": "34bacd6ae2748dd41c16cfb7a53011c6e91ec0b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
