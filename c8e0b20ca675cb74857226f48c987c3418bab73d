@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "132610ee_248f1e7e",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-26T17:16:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdca197f_b5eb1908",
+      "range": {
+        "startLine": 697,
+        "startChar": 23,
+        "endLine": 697,
+        "endChar": 73
+      },
+      "revId": "c8e0b20ca675cb74857226f48c987c3418bab73d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2823bf0e_0a5a2efc",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-26T16:26:07Z",
       "side": 1,
       "message": "is this how \"git cl format\" formatted it?..",
+      "range": {
+        "startLine": 418,
+        "startChar": 4,
+        "endLine": 426,
+        "endChar": 46
+      },
+      "revId": "c8e0b20ca675cb74857226f48c987c3418bab73d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d6eb42d_f535cfd4",
+        "filename": "appengine/swarming/server/bot_management_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-09-26T17:16:59Z",
+      "side": 1,
+      "message": "It seems so - it sort of makes sense but looks really confusing so changed it by providing an intermediate variable.",
+      "parentUuid": "2823bf0e_0a5a2efc",
       "range": {
         "startLine": 418,
         "startChar": 4,
