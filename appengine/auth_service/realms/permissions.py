@@ -311,6 +311,8 @@ def db():
   # CQ permissions and roles. Placeholders for now.
   role('role/cq.committer', [])
   role('role/cq.dryRunner', [])
+  role('role/cq.newPatchsetRunTriggerer', [])
+
 
   # Milo permissions and roles.
   role('role/milo.reader', [
