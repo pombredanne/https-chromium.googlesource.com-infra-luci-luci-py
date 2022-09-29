@@ -24,5 +24,5 @@ if sys.platform == 'darwin':
     return -int(m.groups()[0])
 
   def native_case(p):
-    path = objc.FSRef.from_pathname(p.encode('utf-8').decode())
+    path = objc.FSRef.from_pathname(p.encode('utf-8').decodeFAIL())
     return unicodedata.normalize('NFC', path.as_pathname())
