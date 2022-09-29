@@ -86,6 +86,31 @@ release process.
     alive.
 *   Run one of the [examples in the client code](../../client/example).
 
+## Running Tests
+
+In order to run the tests `python` on your `$PATH` should point to python `2.7`.
+Tests `local_smoke_test.py` rely on executing `python2` specific code for some tests.
+
+The entire test suite may be run using the following command:
+
+```sh
+vpython -vpython-spec <path-to>/infra/luci/.vpython -u test.py -v --conf unittest.cfg
+```
+
+Many of the test suites can also be run independently, by running `./<module_name>_test.py`. This will typically invoke the tests using `vpython`.
+
+Appending `-v` to the test suite will force verbose output of tests, showing a more complete `diff` for test failures.
+
+The test suite `local_smoke_test.py` contains a number of local integration tests which are end to end but running locally.
+`local_smoke_test.py` will typically create a number of logs which are deleted after the tests are finished running located in the `/tmp/local_smoke_test*/` directory.
+To prevent those logs from being deleted you can run `local_smoke_test.py --leak`.
+
+To run a specific test, most test suites allow for `./<module_name>_test.py <TestSuiteClass>.<test_name>` eg:
+
+```sh
+./local_smoke_test.py Test.test_with_cas
+```
+
 
 ## Running locally
 
@@ -120,3 +145,4 @@ You can run a swarming+RBE-CAS local setup with:
 Then run a bot with:
 
     ./tools/start_bot.py http://localhost:9050
+

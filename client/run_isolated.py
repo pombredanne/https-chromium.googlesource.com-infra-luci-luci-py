@@ -115,7 +115,7 @@ _NSJAIL_DIR = 'ns'
 
 # TODO(tikuta): take these parameter from luci-config?
 _CAS_PACKAGE = 'infra/tools/luci/cas/${platform}'
-_LUCI_GO_REVISION = 'git_revision:f529671465f28c457995930305dbfa049e5551f7'
+_LUCI_GO_REVISION = 'git_revision:c1445b07f755ba00e06952383c3ea6a605b3206a'
 _NSJAIL_PACKAGE = 'infra/3pp/tools/nsjail/${platform}'
 _NSJAIL_VERSION = 'version:2@3.0.chromium.1'
 
@@ -569,7 +569,7 @@ def _fetch_and_map(cas_client, digest, instance, output_dir, cache_dir,
         # flags for output.
         '-dir',
         output_dir,
-        '-dump-json',
+        '-dump-stats-json',
         result_json_path,
         '-log-level',
         'info',
@@ -721,7 +721,7 @@ def upload_outdir(cas_client, cas_instance, outdir, tmp_dir):
         # output
         '-dump-digest',
         digest_path,
-        '-dump-json',
+        '-dump-stats-json',
         stats_json_path,
     ]
 
