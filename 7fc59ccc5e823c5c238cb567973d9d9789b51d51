@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8125568b_42dd1cb5",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-03T18:57:00Z",
+      "side": 1,
+      "message": "I think this will be task dimensions, not bot dimensions. I\u0027m afraid we\u0027ll need to pipe bot dimensions all the way from the server.",
+      "range": {
+        "startLine": 244,
+        "startChar": 4,
+        "endLine": 244,
+        "endChar": 40
+      },
+      "revId": "7fc59ccc5e823c5c238cb567973d9d9789b51d51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
