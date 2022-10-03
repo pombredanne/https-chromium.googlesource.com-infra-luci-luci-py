@@ -241,6 +241,7 @@ class TaskDetails(object):
     self.resultdb = data['resultdb']
     self.realm = data['realm']
     self.containment = Containment(data['containment'])
+    self.dimensions = data['dimensions']
 
   @staticmethod
   def load(path):
@@ -327,6 +328,11 @@ def load_and_run(in_file, swarming_server, cost_usd_hour, start, out_file,
       if task_details.secret_bytes is not None:
         swarming = luci_context.read('swarming') or {}
         swarming['secret_bytes'] = task_details.secret_bytes
+        swarming['task'] = {
+            'server': swarming_server,
+            'task_id': task_details.task_id,
+            'bot_dimensions': task_details.dimensions
+        }
         context_edits['swarming'] = swarming
 
       # Extend existing LUCI_CONTEXT['realm'], if any.
