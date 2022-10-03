@@ -46,6 +46,30 @@
       },
       "revId": "7fc59ccc5e823c5c238cb567973d9d9789b51d51",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed300f3b_aa14a03e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-03T19:15:11Z",
+      "side": 1,
+      "message": "It knows, but local values needs to be propagate carefully too. Just calling get_dimensions() will not work, since this function calls hooks and generally returns different results each time. We\u0027ll need to remember dimensions we called /bot/poll with and pass them to the task polled this way (and assume Swarming server doesn\u0027t do any extra processing on them before storing in its datastore). \n\nThe property I\u0027m trying to preserve is \"bot dimensions in TaskRunResult \u003d\u003d\u003d bot dimensions as seen by the task\". Passing dimensions from the server side is one way to do that.",
+      "parentUuid": "2a2f8030_30c9ab85",
+      "range": {
+        "startLine": 244,
+        "startChar": 4,
+        "endLine": 244,
+        "endChar": 40
+      },
+      "revId": "7fc59ccc5e823c5c238cb567973d9d9789b51d51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
