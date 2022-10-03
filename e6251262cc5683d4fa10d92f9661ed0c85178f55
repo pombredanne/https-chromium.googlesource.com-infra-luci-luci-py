@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90b351c6_4060e622",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-03T21:46:45Z",
+      "side": 1,
+      "message": "nit: also please keep this list (and `__init__` assignments below) sorted",
+      "range": {
+        "startLine": 214,
+        "startChar": 7,
+        "endLine": 214,
+        "endChar": 21
+      },
+      "revId": "e6251262cc5683d4fa10d92f9661ed0c85178f55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6384a79_822b479d",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 2
