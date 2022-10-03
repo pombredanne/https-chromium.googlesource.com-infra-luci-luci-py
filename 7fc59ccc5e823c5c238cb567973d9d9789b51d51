@@ -22,6 +22,30 @@
       },
       "revId": "7fc59ccc5e823c5c238cb567973d9d9789b51d51",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a2f8030_30c9ab85",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-10-03T19:08:09Z",
+      "side": 1,
+      "message": "oh, yuck, the bot doesn\u0027t know them locally? (I can see why task_runner wouldn\u0027t, but I naively expected the bot to have this state...)",
+      "parentUuid": "8125568b_42dd1cb5",
+      "range": {
+        "startLine": 244,
+        "startChar": 4,
+        "endLine": 244,
+        "endChar": 40
+      },
+      "revId": "7fc59ccc5e823c5c238cb567973d9d9789b51d51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
