@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6384a79_822b479d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-03T21:45:32Z",
+      "side": 1,
+      "message": "somewhat unrelated, but I think this is unnecessary and dangerous, better to always override the entire section",
+      "range": {
+        "startLine": 330,
+        "startChar": 19,
+        "endLine": 330,
+        "endChar": 48
+      },
+      "revId": "e6251262cc5683d4fa10d92f9661ed0c85178f55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a62b1a8_0f2b72ef",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-03T21:45:32Z",
+      "side": 1,
+      "message": "This section has 3 bugs... Looks like there\u0027s no test that hits this code path :-/\n\n```\nbot_dimensions \u003d []\nfor k, vs in task_details.bot_dimensions.items():\n  bot_dimensions.extend(\u0027%s:%s\u0027 % (k, v) for v in vs)\nbot_dimensions.sort()\n```\n\n(I\u0027ve also added sort for consistent ordering)",
+      "range": {
+        "startLine": 333,
+        "startChar": 8,
+        "endLine": 335,
+        "endChar": 71
+      },
+      "revId": "e6251262cc5683d4fa10d92f9661ed0c85178f55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4e90e5d_ceb91303",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-03T21:45:32Z",
+      "side": 1,
+      "message": "this should happen outside of `if task_details.secret_bytes is not None` block now",
+      "range": {
+        "startLine": 342,
+        "startChar": 8,
+        "endLine": 342,
+        "endChar": 44
+      },
+      "revId": "e6251262cc5683d4fa10d92f9661ed0c85178f55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
