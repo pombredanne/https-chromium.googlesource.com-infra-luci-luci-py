@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "358a85bb_46a4b618",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2022-10-04T00:53:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90b351c6_4060e622",
+      "range": {
+        "startLine": 214,
+        "startChar": 7,
+        "endLine": 214,
+        "endChar": 21
+      },
+      "revId": "e6251262cc5683d4fa10d92f9661ed0c85178f55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6384a79_822b479d",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-03T21:45:32Z",
       "side": 1,
       "message": "somewhat unrelated, but I think this is unnecessary and dangerous, better to always override the entire section",
+      "range": {
+        "startLine": 330,
+        "startChar": 19,
+        "endLine": 330,
+        "endChar": 48
+      },
+      "revId": "e6251262cc5683d4fa10d92f9661ed0c85178f55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a01e131_ad49e6d8",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2022-10-04T00:53:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6384a79_822b479d",
       "range": {
         "startLine": 330,
         "startChar": 19,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f78d3cfb_fccc7636",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2022-10-04T00:53:59Z",
+      "side": 1,
+      "message": "Ah didn\u0027t realize I\u0027m so bad at python now 😂\n\nI tried to add a test but it wasn\u0027t as straightforward as I thought so I gave up...",
+      "parentUuid": "3a62b1a8_0f2b72ef",
+      "range": {
+        "startLine": 333,
+        "startChar": 8,
+        "endLine": 335,
+        "endChar": 71
+      },
+      "revId": "e6251262cc5683d4fa10d92f9661ed0c85178f55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4e90e5d_ceb91303",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-10-03T21:45:32Z",
       "side": 1,
       "message": "this should happen outside of `if task_details.secret_bytes is not None` block now",
+      "range": {
+        "startLine": 342,
+        "startChar": 8,
+        "endLine": 342,
+        "endChar": 44
+      },
+      "revId": "e6251262cc5683d4fa10d92f9661ed0c85178f55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d0227b7_a284c43a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2022-10-04T00:53:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4e90e5d_ceb91303",
       "range": {
         "startLine": 342,
         "startChar": 8,
