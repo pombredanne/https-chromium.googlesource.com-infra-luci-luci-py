@@ -75,6 +75,10 @@ def get_manifest(script=None, **kwargs):
   """
   out = {
       'bot_authenticated_as': 'foo',
+      'bot_dimensions': {
+          'id': ['localhost'],
+          'cpu': ['x86', 'x86-64'],
+      },
       'bot_id': 'localhost',
       'caches': [],
       'cipd_input': {},
@@ -1445,6 +1449,18 @@ class TaskRunnerNoServer(auto_stub.TestCase):
         'version': task_runner.OUT_VERSION,
     }
     self.assertEqual(expected, actual)
+    swarming = luci_context.read('swarming') or {}
+    expected_swarming_task = {
+        'server': 'http://localhost:1',
+        'task_id': manifest['task_id'][:-1] + '0',
+        'bot_id': manifest['bot_id'],
+        'bot_dimensions': [
+            'cpu:x86',
+            'cpu:x86-64',
+            'id:localhost',
+        ],
+    }
+    self.assertEqual(swarming, expected_swarming_task)
 
 
 if __name__ == '__main__':
