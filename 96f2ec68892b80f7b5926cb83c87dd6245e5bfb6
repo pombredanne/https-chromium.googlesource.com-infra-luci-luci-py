@@ -16,6 +16,29 @@
       "message": "There\u0027re multiple ways to populate the default versioned swarming server, I chose the current approach just to make sure we\u0027re using the same value for the context and this env var, since eventually we\u0027ll remove this env var and use the server in the context instead.",
       "revId": "96f2ec68892b80f7b5926cb83c87dd6245e5bfb6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd359e00_39d18ab9",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 893,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-05T17:45:58Z",
+      "side": 1,
+      "message": "nit: Swarming server URL to put into LUCI_CONTEXT",
+      "range": {
+        "startLine": 893,
+        "startChar": 26,
+        "endLine": 893,
+        "endChar": 59
+      },
+      "revId": "96f2ec68892b80f7b5926cb83c87dd6245e5bfb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
