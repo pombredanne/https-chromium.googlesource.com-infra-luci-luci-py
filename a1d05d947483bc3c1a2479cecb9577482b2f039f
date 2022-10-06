@@ -22,6 +22,30 @@
       },
       "revId": "a1d05d947483bc3c1a2479cecb9577482b2f039f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71008dd9_5f326e73",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-10-06T19:44:06Z",
+      "side": 1,
+      "message": "Interesting, just confirming that this is related to the context cache mentioned here: https://cloud.google.com/appengine/docs/legacy/standard/python/ndb/cache",
+      "parentUuid": "9d2c1ddb_5425210c",
+      "range": {
+        "startLine": 535,
+        "startChar": 4,
+        "endLine": 535,
+        "endChar": 21
+      },
+      "revId": "a1d05d947483bc3c1a2479cecb9577482b2f039f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
