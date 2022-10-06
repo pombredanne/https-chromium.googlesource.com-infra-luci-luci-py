@@ -88,10 +88,9 @@ _OLD_BOT_EVENTS_CUT_OFF = datetime.timedelta(days=4 * 7)
 
 ### Models.
 
-# There is one BotRoot entity per bot id. Multiple bots could run on a single
-# host, for example with multiple phones connected to a host. In this case, the
-# id is specific to each device acting as a bot.
-BotRoot = datastore_utils.get_versioned_root_model('BotRoot')
+
+class BotRoot(ndb.Model):
+  """Root entity for BotEvent, BotInfo and BotSettings"""
 
 
 class _BotCommon(ndb.Model):
@@ -528,16 +527,11 @@ def filter_availability(q, quarantined, in_maintenance, is_dead, is_busy):
 
 
 def _insert_bot_with_txn(root_key, event, bot_info):
-  bot_root = root_key.get()
   entities = [event, bot_info]
-  # TODO(jonahhooper) remove this later
-  # choose a random key for current to make collisions less likely during
-  # migration
+  bot_root = root_key.get()
   if not bot_root:
-    key_id = random.randint(1000000, datastore_utils.HIGH_KEY_ID)
-    entities.append(BotRoot(key=root_key, current=key_id))
+    entities.append(BotRoot(key=root_key))
   attempt = 1
-
   def txn():
     ndb.put_multi(entities)
 
