@@ -22,6 +22,30 @@
       },
       "revId": "7a0e66e5039329970a67ef2eb34d94a2a39edfdc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee475f16_3c87a610",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-10-06T19:27:26Z",
+      "side": 1,
+      "message": "Done! Hoping my reasoning is correct for comment :)",
+      "parentUuid": "7c353a0d_45bf3ec0",
+      "range": {
+        "startLine": 532,
+        "startChar": 2,
+        "endLine": 532,
+        "endChar": 10
+      },
+      "revId": "7a0e66e5039329970a67ef2eb34d94a2a39edfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
