@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94149573_3d3e3bae",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-06T19:09:52Z",
+      "side": 1,
+      "message": "I think it still will be overall faster to do:\n\n```\n# Non-transactional, hits ndb memcache almost always \u003d\u003e ~free.\nif not root_key.get():\n  entities.append(BotRoot(key\u003droot_key))\n\ndef txn():\n  ndb.put_multi(entities)\n```\n\ni.e. just remove `current` field\n\nBecause writing BotRoot in every transaction will likely affect the index on BotRoot entity (which is used by some cleanup crons IIRC).",
+      "range": {
+        "startLine": 531,
+        "startChar": 0,
+        "endLine": 531,
+        "endChar": 40
+      },
+      "revId": "6e0a1e0e5445ff0e2203914a782cd4c4b0627b14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
