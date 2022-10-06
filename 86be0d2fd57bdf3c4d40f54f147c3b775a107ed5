@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5c1477d_db68699d",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2022-10-06T03:13:39Z",
+      "side": 1,
+      "message": "nit: maybe include an example as well?",
+      "revId": "86be0d2fd57bdf3c4d40f54f147c3b775a107ed5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
