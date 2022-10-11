@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e2902f8_b7b9a66e",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-11T17:06:31Z",
+      "side": 0,
+      "message": "Was stopped being used in https://chromium.googlesource.com/infra/luci/luci-py/+/35c1f29fe67835ebc58e4ec00f776e616ed8ad2f",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 13
+      },
+      "revId": "e635c04148bc1e9768ea189f4268d9fd087a36c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
