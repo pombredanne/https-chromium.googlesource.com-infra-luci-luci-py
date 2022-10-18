@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9a9d220_e0da0624",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-10-18T16:28:34Z",
+      "side": 1,
+      "message": "There are already protos defined for some objects in [swarming.proto](https://crsrc.org/i/luci/appengine/swarming/proto/api/swarming.proto;l\u003d457?q\u003dswarming.proto). It turns out that many of them are quite different from the existing `protorpc` objects. In the case of `BotEvent` it\u0027s completely different and is also used in bigquery exports. \nI want the new to API maintain as much backcompat with current API as much as possible so considered two approaches to resolve naming ambiguity:\n1. in the new `prpc` protos use already existing protos and objects. Issue is that this will make backcompat super difficult with protoRPC api. \n2. the new proto file should be called `swarming_api.proto` . Eventually rename existing `swarming.proto` file to `swarming_internal.proto` or something to reduce confusion. \n\nEnded up going with (2) because I don\u0027t really think it\u0027s a bad thing to have \"internal\" (works with bigquery and scheduler) and \"external\" (what we expose to end users via api) protobufs. The awkward part is the naming conventions which I can fix later on. \n\nFor example many `to_proto` functions like: https://crsrc.org/i/luci/appengine/swarming/server/bot_management.py;l\u003d158?q\u003dfilepath:bot_management.py \nThis isn\u0027t bad if we treat `swarming.proto` as \"internal\" proto objects.",
+      "revId": "0333278edda2c9ef29a21ac0461b57d39d708568",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
