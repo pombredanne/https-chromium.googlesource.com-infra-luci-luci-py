@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b16f3e7_c094b10c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-20T00:15:36Z",
+      "side": 1,
+      "message": "I think we shouldn\u0027t just convert Swarming API to pRPC, we should also try to make it look like a normal pRPC API if its not too much effort, since we\u0027ll need to migrate clients anyway.",
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d220548b_97b9ad08",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-20T00:15:36Z",
+      "side": 1,
+      "message": "just \"swarming.v1\"\n\nprpc is a transport, it doesn\u0027t change the form of the API (we can theoretically expose the exact same API via real gRPC).",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "151f07be_20e3d3a8",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-20T00:15:36Z",
+      "side": 1,
+      "message": "We should still roughly follow https://google.aip.dev/121 and other AIPs there (which are widely used standard) instead of closely copying existing Swarming API (which is not very good). My comments below is based on that.",
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da6bfdef_3d1439b5",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-20T00:15:36Z",
+      "side": 1,
+      "message": "Should be a single \"BotsService\":\n\n```\nservice BotsService {\n  GetBot\n  DeleteBot\n  TerminateBot\n  ListBots\n  CountBots\n  ListBotEvents\n}\n```\n\nNot sure what to do with Tasks. Probably it can be put into TasksService, since it has listing method already (and listing bot tasks is the same as listing all tasks, just with a filter on bot_id IIUC).\n\nNot sure what to do with Dimensions. It has roughly nothing to do with bots. It should probably go into ServerService or be removed if not used (is it used? where?)",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 1
+      },
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23c13b9c_fea8c499",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-20T00:15:36Z",
+      "side": 1,
+      "message": "This should probably be merged with ServerService, which will be a collection or random server-global method.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 1
+      },
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0ddecb5_b39da9e0",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-20T00:15:36Z",
+      "side": 1,
+      "message": "Should also be single TasksService\n\n```\nservice TasksService {\n  CreateTask\n  CancelTask\n  GetTask\n  GetTaskStdout\n  ListTasks\n  CountTasks\n  CancelTasks\n}\n```\n\nRequest, Result, include_performance_stats - these should all be part of GetTask, which should accept a field mask (https://google.aip.dev/161) specifying what portions of the task the caller is interested in (request, result, stats, etc).\n\nRequests: part of ListTasks, which should also accept the field mask.\n\nNot sure what to do with States. Where is it used?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 1
+      },
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9b4f6b4_30ab1593",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-20T00:15:36Z",
+      "side": 1,
+      "message": "nit: please use \"//\" for comments, or at least do not mix two style of comments",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 2
+      },
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e1b7215_286083ee",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-20T00:15:36Z",
+      "side": 1,
+      "message": "Is this an existing enum and changing its value will break things? Because 0 should be reserved for \"unspecified\": https://google.aip.dev/126",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 16
+      },
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
