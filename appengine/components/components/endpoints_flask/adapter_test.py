@@ -15,9 +15,10 @@ from protorpc import remote
 import endpoints
 import flask
 import mock
-
-from test_support import test_case
 from werkzeug import datastructures
+
+from components import template
+from test_support import test_case
 import adapter
 
 
@@ -50,6 +51,10 @@ class EndpointsService(remote.Service):
 
 
 class EndpointsFlaskTestCase(test_case.TestCase):
+  def setUp(self):
+    super(EndpointsFlaskTestCase, self).setUp()
+    template.reset()
+
   def test_decode_message_post(self):
     request = mock.MagicMock()
     request.data = json.dumps({"s": "a"})
