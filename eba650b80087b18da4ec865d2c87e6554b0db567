@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b9549ef_e9020c31",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-20T18:16:33Z",
+      "side": 1,
+      "message": "Where is this happening? I think template.reset() should be there instead of a base class that has nothing to do with templates.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 34
+      },
+      "revId": "eba650b80087b18da4ec865d2c87e6554b0db567",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
