@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d766bbeb_a9b5a6af",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-10-21T00:40:10Z",
+      "side": 1,
+      "message": "nit RBEMigration?",
+      "range": {
+        "startLine": 144,
+        "startChar": 3,
+        "endLine": 144,
+        "endChar": 4
+      },
+      "revId": "4975fd74ec7e5d55e13d6b46e212e26cc8e4fc6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
