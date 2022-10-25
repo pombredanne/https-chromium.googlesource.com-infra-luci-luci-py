@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "182a5efb_be22bb14",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-10-25T19:02:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d220548b_97b9ad08",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "151f07be_20e3d3a8",
@@ -58,6 +82,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10fee675_252723f5",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-10-25T19:02:09Z",
+      "side": 1,
+      "message": "As discussed last week, I\u0027ve tried to avoid changing content of the actual responses. I have however, tried to group some of the services and rename the request + response objects so that they approximate AIP naming conventions.",
+      "parentUuid": "151f07be_20e3d3a8",
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da6bfdef_3d1439b5",
@@ -71,6 +113,30 @@
       "writtenOn": "2022-10-20T00:15:36Z",
       "side": 1,
       "message": "Should be a single \"BotsService\":\n\n```\nservice BotsService {\n  GetBot\n  DeleteBot\n  TerminateBot\n  ListBots\n  CountBots\n  ListBotEvents\n}\n```\n\nNot sure what to do with Tasks. Probably it can be put into TasksService, since it has listing method already (and listing bot tasks is the same as listing all tasks, just with a filter on bot_id IIUC).\n\nNot sure what to do with Dimensions. It has roughly nothing to do with bots. It should probably go into ServerService or be removed if not used (is it used? where?)",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 1
+      },
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "671c77bc_ac15b311",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-10-25T19:02:09Z",
+      "side": 1,
+      "message": "I\u0027ve tried to still merge the services, unfortunately there is still the different requests for `BotTasks` and `BotEvents` to keep parity.",
+      "parentUuid": "da6bfdef_3d1439b5",
       "range": {
         "startLine": 14,
         "startChar": 0,
@@ -104,6 +170,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc822575_b4114d73",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-10-25T19:02:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23c13b9c_fea8c499",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 1
+      },
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0ddecb5_b39da9e0",
@@ -117,6 +207,30 @@
       "writtenOn": "2022-10-20T00:15:36Z",
       "side": 1,
       "message": "Should also be single TasksService\n\n```\nservice TasksService {\n  CreateTask\n  CancelTask\n  GetTask\n  GetTaskStdout\n  ListTasks\n  CountTasks\n  CancelTasks\n}\n```\n\nRequest, Result, include_performance_stats - these should all be part of GetTask, which should accept a field mask (https://google.aip.dev/161) specifying what portions of the task the caller is interested in (request, result, stats, etc).\n\nRequests: part of ListTasks, which should also accept the field mask.\n\nNot sure what to do with States. Where is it used?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 1
+      },
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a502453_46d16b85",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-10-25T19:02:09Z",
+      "side": 1,
+      "message": "Tried to not have a `Tasks` and `Task` service but keeping the `Request, Result` distinctions instead of having them returned by single response type with optional fields to be as close to `protorpc` as possible.",
+      "parentUuid": "f0ddecb5_b39da9e0",
       "range": {
         "startLine": 32,
         "startChar": 0,
@@ -150,6 +264,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f28f387_be02f982",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-10-25T19:02:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9b4f6b4_30ab1593",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 2
+      },
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e1b7215_286083ee",
@@ -163,6 +301,30 @@
       "writtenOn": "2022-10-20T00:15:36Z",
       "side": 1,
       "message": "Is this an existing enum and changing its value will break things? Because 0 should be reserved for \"unspecified\": https://google.aip.dev/126",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 16
+      },
+      "revId": "0e2a42e34e7f945dd74b21e80aee515494401b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7dac0fb_65474ea3",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-10-25T19:02:09Z",
+      "side": 1,
+      "message": "In the interests of keeping things as close to protorpc as possible - leaving `PENDING\u003d0` .",
+      "parentUuid": "2e1b7215_286083ee",
       "range": {
         "startLine": 70,
         "startChar": 0,
