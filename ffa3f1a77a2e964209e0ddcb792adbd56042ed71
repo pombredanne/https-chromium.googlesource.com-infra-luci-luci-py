@@ -16,6 +16,24 @@
       "message": "There seem to be a lot of unrelated protos here (mostly under common/proto). How was this CL generated? I think we need to adjust the script to exclude some protos.",
       "revId": "ffa3f1a77a2e964209e0ddcb792adbd56042ed71",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a81d4dd_0a123e28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2022-10-25T21:29:32Z",
+      "side": 1,
+      "message": "via this script (and the highlighted sub paths) https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/bb_backend_proto/update_taskbackend_protos.py;l\u003d28-34?q\u003dupdate_taskbackend\u0026ss\u003dchromium\n\nAlso most of these protos already existed in this folder, this was just an update. I can adjust the script as needed, but I think it might turn into a \"here are the exact files needed\" script... which is fine if thats the level of granularity we want.",
+      "parentUuid": "56785bf6_30ec891d",
+      "revId": "ffa3f1a77a2e964209e0ddcb792adbd56042ed71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
