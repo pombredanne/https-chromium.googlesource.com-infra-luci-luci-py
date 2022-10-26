@@ -45,6 +45,30 @@
       },
       "revId": "12c2facee8df46e5070b6e406403dd5d4c849365",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28771e50_eb8bde2a",
+        "filename": "appengine/components/PRESUBMIT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-26T23:08:03Z",
+      "side": 1,
+      "message": "It triggers 20000 pylint errors. Switching to it is a separate issue.",
+      "parentUuid": "fb91bd8d_c702f6c2",
+      "range": {
+        "startLine": 15,
+        "startChar": 44,
+        "endLine": 15,
+        "endChar": 50
+      },
+      "revId": "12c2facee8df46e5070b6e406403dd5d4c849365",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
