@@ -70,6 +70,24 @@
       "parentUuid": "4a9935ac_de89e3a9",
       "revId": "ffa3f1a77a2e964209e0ddcb792adbd56042ed71",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49c5b387_ff6207f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-26T18:13:51Z",
+      "side": 1,
+      "message": "The problem is that backend.proto imports other protos using absolute import paths like `import \"go.chromium.org/luci/buildbucket/proto/common.proto\"` and they import other protos and so on.\n\nFor this to work without modifying *.proto content, files need to be located in corresponding directories in the file system. This is what \"bb_backend_proto\" is trying to do, except I believe it pulls in lots of unnecessary stuff.\n\nHere\u0027s another proposal: what if we don\u0027t copy *.proto files at all and just commit necessary generated _pb2.py files (using original protos in the original repository to generate them).\n\nEither way, some trimming is necessary to identify transitive dependencies of backend.proto and generate code only for them.",
+      "parentUuid": "bb6edac9_20b4bf95",
+      "revId": "ffa3f1a77a2e964209e0ddcb792adbd56042ed71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
