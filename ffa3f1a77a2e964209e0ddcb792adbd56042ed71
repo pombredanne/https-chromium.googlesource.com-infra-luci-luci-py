@@ -34,6 +34,24 @@
       "parentUuid": "56785bf6_30ec891d",
       "revId": "ffa3f1a77a2e964209e0ddcb792adbd56042ed71",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a9935ac_de89e3a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-26T17:37:47Z",
+      "side": 1,
+      "message": "This script has at least two issues:\n1. It copies Swarming own protos back into luci-py, resulting in duplicated protos which is very confusing:\n * Original: https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/proto/api/swarming.proto\n * Copy of a copy: https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/bb_backend_proto/go.chromium.org/luci/swarming/proto/api/swarming.proto\n\n2. At least this stuff is copied uselessly https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/main/common/proto/googleapis/. It needs to passed to protoc via separate `--proto_path` to take any effect (e.g. like cproto does https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/main/common/proto/protoc/inputs.go#164). update_taskbackend_protos.py doesn\u0027t do this, yet everything works, thus I think all copied proto/googleapis/ is useless junk.\n\nI think the script should copy ONLY files that are necessary in luci-py, especially considering its copying them under \"appengine/swarming\" directory. It should be only files necessary by Swarming, not all random junk in luci-go repo. And it definitely should not copy Swarming protos back into Swarming under a different name.\n\nIf you prefer, I can make these changes. Let me know.",
+      "parentUuid": "2a81d4dd_0a123e28",
+      "revId": "ffa3f1a77a2e964209e0ddcb792adbd56042ed71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
