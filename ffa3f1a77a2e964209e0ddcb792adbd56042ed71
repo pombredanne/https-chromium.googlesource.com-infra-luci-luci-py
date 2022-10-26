@@ -52,6 +52,24 @@
       "parentUuid": "2a81d4dd_0a123e28",
       "revId": "ffa3f1a77a2e964209e0ddcb792adbd56042ed71",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb6edac9_20b4bf95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2022-10-26T17:56:02Z",
+      "side": 1,
+      "message": "what if I just created a new script to update https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/proto/api/\n\nso that only the necessary buildbucket protos (really just backend.proto) are copied over. That way we can remove all the junk. There is another set of coppied protos inside `appengine/swarming/proto/api/internal/bb` with a TODO that states that we should do some cleanup. https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/proto/api/internal/bb/backend.proto#12 \n\nThis would achieve the following:\n\n1. remove `appengine/swarming/bb_backend_proto`\n2. remove `appengine/swarming/proto/api/internal/bb`\n3. place all necessary protos inside `appengine/swarming/proto/api` so that there is a central location for the protos (like I said I think we just need `backend.proto`)\n4. the script (`update_protos.py`) would live inside `appengine/swarming/proto/api`\n\nthoughts?",
+      "parentUuid": "4a9935ac_de89e3a9",
+      "revId": "ffa3f1a77a2e964209e0ddcb792adbd56042ed71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
