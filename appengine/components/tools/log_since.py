@@ -1,20 +1,20 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
 """Prints a short log from HEAD (or [end]) to a pseudo revision number."""
 
-from __future__ import print_function
-
-__version__ = '1.0.1'
+__version__ = '2.0.0'
 
 import json
 import optparse
 import subprocess
 import sys
 
-import calculate_version  # pylint: disable=W0403
+assert sys.version_info.major == 3
+
+import calculate_version
 
 
 def get_logs(root, pseudo_revision, mergebase, start, end):
@@ -28,7 +28,7 @@ def get_logs(root, pseudo_revision, mergebase, start, end):
   ]
   nb_commits = (end or pseudo_revision) - start
   try:
-    log = subprocess.check_output(cmd, cwd=root)
+    log = subprocess.check_output(cmd, cwd=root, text=True)
   except subprocess.CalledProcessError:
     print(
         '\nFailed to retrieve the log of last %d commits.' % nb_commits,
@@ -115,7 +115,8 @@ def main():
 
   out, refspec = get_logs(root, pseudo_revision, mergebase[:12], start, end)
   remote = subprocess.check_output(['git', 'remote', 'get-url', 'origin'],
-                                   cwd=root).strip()
+                                   cwd=root,
+                                   text=True).strip()
   print(remote + '/+log/' + refspec)
   print('')
   print(out)
