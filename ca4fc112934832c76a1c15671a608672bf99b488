@@ -16,6 +16,24 @@
       "message": "Hi,\nI believe this change is blocking submission of findit CLs. e g. https://chromium-review.googlesource.com/c/infra/infra/+/3985395",
       "revId": "ca4fc112934832c76a1c15671a608672bf99b488",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ea94ccc_7f7646af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-10-27T22:44:31Z",
+      "side": 1,
+      "message": "It looks like the findit presubmit is running pylint on gae.py; I think you want to adjust presubmit so that it skips this.",
+      "parentUuid": "fa46517a_9fe98dc2",
+      "revId": "ca4fc112934832c76a1c15671a608672bf99b488",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
