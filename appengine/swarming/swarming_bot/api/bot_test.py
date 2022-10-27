@@ -70,12 +70,18 @@ class TestBot(unittest.TestCase):
 
   def test_attribute_updates(self):
     obj = make_bot()
-    obj._update_bot_group_cfg('cfg_ver', {'dimensions': {'pool': ['A']}})
+
+    with obj.mutate_internals() as mut:
+      mut.update_bot_group_cfg('cfg_ver', {'dimensions': {'pool': ['A']}})
     self.assertEqual({'id': ['bot1'], 'pool': ['A']}, obj.dimensions)
-    self.assertEqual({'bot_group_cfg_version': 'cfg_ver'}, obj.state)
+    self.assertEqual({
+        'bot_group_cfg_version': 'cfg_ver',
+        'rbe_instance': None
+    }, obj.state)
 
     # Dimension in bot_group_cfg ('A') wins over custom one ('B').
-    obj._update_dimensions({'foo': ['baz'], 'pool': ['B']})
+    with obj.mutate_internals() as mut:
+      mut.update_dimensions({'foo': ['baz'], 'pool': ['B']})
     self.assertEqual({'foo': ['baz'], 'pool': ['A']}, obj.dimensions)
 
 

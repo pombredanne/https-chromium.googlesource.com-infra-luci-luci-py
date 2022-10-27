@@ -74,6 +74,7 @@ class TestBotBase(net_utils.TestCase):
         'state': {
             'bot_group_cfg_version': None,
             'cost_usd_hour': 3600.,
+            'rbe_instance': None,
             'sleep_streak': 0,
         },
         'version': '123',
