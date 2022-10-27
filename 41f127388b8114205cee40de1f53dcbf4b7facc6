@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a99b9957_64f3f9a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2022-10-27T23:30:36Z",
+      "side": 1,
+      "message": "PTAL.\n\nIn case you\u0027re wondering: I was able to run CreateBuild without having the permission setup because the \"ADMIN_FALLBACK\" logic in [buildbucket perm check](https://source.chromium.org/chromium/infra/infra/+/main:go/src/go.chromium.org/luci/buildbucket/appengine/internal/perm/perm.go;l\u003d157-163;drc\u003da53ea56c71ea6dcbf8a47f8c00d3885e1e31a1ef)",
+      "revId": "41f127388b8114205cee40de1f53dcbf4b7facc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
