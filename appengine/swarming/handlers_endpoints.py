@@ -27,6 +27,7 @@ from components import endpoints_webapp2
 from components import utils
 
 import api_helpers
+import api_common
 import handlers_exceptions
 import message_conversion
 import swarming_rpcs
@@ -785,39 +786,9 @@ class SwarmingBotService(remote.Service):
     logging.debug('%s', request)
     bot_id = request.bot_id
 
-    # Check permission.
-    # The caller needs to have global permission, or any permissions of the
-    # pools that the bot belongs to.
-    realms.check_bot_get_acl(bot_id)
-
-    bot = bot_management.get_info_key(bot_id).get()
-    deleted = False
+    bot, deleted = api_common.get_bot(bot_id)
     if not bot:
-      # If there is not BotInfo, look if there are BotEvent child of this
-      # entity. If this is the case, it means the bot was deleted but it's
-      # useful to show information about it to the user even if the bot was
-      # deleted.
-      events = bot_management.get_events_query(bot_id).fetch(1)
-      if not events:
-        raise endpoints.NotFoundException('%s not found.' % bot_id)
-      bot = bot_management.BotInfo(
-          key=bot_management.get_info_key(bot_id),
-          dimensions_flat=task_queues.bot_dimensions_to_flat(
-              events[0].dimensions),
-          state=events[0].state,
-          external_ip=events[0].external_ip,
-          authenticated_as=events[0].authenticated_as,
-          version=events[0].version,
-          quarantined=events[0].quarantined,
-          maintenance_msg=events[0].maintenance_msg,
-          task_id=events[0].task_id,
-          last_seen_ts=events[0].ts)
-      # message_conversion.bot_info_to_rpc calls `is_dead` and this property
-      # require `composite` to be calculated. The calculation is done in
-      # _pre_put_hook usually. But the BotInfo shouldn't be stored in this case,
-      # as it's already deleted.
-      bot.composite = bot._calc_composite()
-      deleted = True
+      raise endpoints.NotFoundException('%s not found.' % bot_id)
 
     return message_conversion.bot_info_to_rpc(bot, deleted=deleted)
 
@@ -839,18 +810,8 @@ class SwarmingBotService(remote.Service):
     still alive.
     """
     logging.debug('%s', request)
-
-    # Check permission.
-    # The caller needs to have global permission, or a permission in any pools
-    # that the bot belongs to.
-    realms.check_bot_delete_acl(request.bot_id)
-
-    bot_info_key = bot_management.get_info_key(request.bot_id)
-    get_or_raise(bot_info_key)  # raises 404 if there is no such bot
-    # It is important to note that the bot is not there anymore, so it is not
-    # a member of any task queue.
-    task_queues.cleanup_after_bot(request.bot_id)
-    bot_info_key.delete()
+    bot_id = request.bot_id
+    api_common.delete_bot(bot_id)
     return swarming_rpcs.DeletedResponse(deleted=True)
 
   @gae_ts_mon.instrument_endpoint()
@@ -874,13 +835,10 @@ class SwarmingBotService(remote.Service):
       now = utils.utcnow()
       start = message_conversion.epoch_to_datetime(request.start)
       end = message_conversion.epoch_to_datetime(request.end)
-      q = bot_management.get_events_query(bot_id)
-      if start:
-        q = q.filter(bot_management.BotEvent.ts >= start)
-      if end:
-        q = q.filter(bot_management.BotEvent.ts < end)
-      items, cursor = datastore_utils.fetch_page(
-          q, request.limit, request.cursor)
+      limit = request.limit
+      cursor = request.cursor
+      items, cursor = api_common.get_bot_events(bot_id, start, end, limit,
+                                                cursor)
     except ValueError as e:
       raise endpoints.BadRequestException(
           'Inappropriate filter for bot.events: %s' % e)
@@ -912,25 +870,8 @@ class SwarmingBotService(remote.Service):
     # minutes.
     logging.debug('%s', request)
     bot_id = unicode(request.bot_id)
-
-    # Check permission.
-    # The caller needs to have global permission, or a permission in any pools
-    # that the bot belongs to.
-    realms.check_bot_terminate_acl(bot_id)
-
-    bot_key = bot_management.get_info_key(bot_id)
-    get_or_raise(bot_key)  # raises 404 if there is no such bot
-    try:
-      # Craft a special priority 0 task to tell the bot to shutdown.
-      request = task_request.create_termination_task(
-          bot_id, wait_for_capacity=True)
-    except (datastore_errors.BadValueError, TypeError, ValueError) as e:
-      raise endpoints.BadRequestException(e.message)
-
-    result_summary = task_scheduler.schedule_request(request,
-                                                     enable_resultdb=False)
-    return swarming_rpcs.TerminateResponse(
-        task_id=task_pack.pack_result_summary_key(result_summary.key))
+    task_id = api_common.terminate_bot(bot_id)
+    return swarming_rpcs.TerminateResponse(task_id=task_id)
 
   @gae_ts_mon.instrument_endpoint()
   @auth.endpoints_method(
