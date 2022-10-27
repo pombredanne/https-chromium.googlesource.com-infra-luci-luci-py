@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6caa3fee_8e1938ea",
+        "filename": "appengine/swarming/swarming_bot/api/bot.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-27T23:54:54Z",
+      "side": 0,
+      "message": "😐\n\nJust moved it below, since elsewhere \"private\" stuff is at the end of the file.",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 17
+      },
+      "revId": "91c234e20d784136e0e8ac2609d5a44b2e681059",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
