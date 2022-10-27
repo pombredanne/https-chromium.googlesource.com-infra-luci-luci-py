@@ -260,6 +260,11 @@ def db():
       ])
 
   # Buildbucket permissions and roles (crbug.com/1091604).
+  role('role/buildbucket.creator', [
+      include('role/buildbucket.reader'),
+      permission('buildbucket.builds.create'),
+      permission('buildbucket.builds.cancel'),
+  ])
   role(
       'role/buildbucket.limitedReader',
       [
