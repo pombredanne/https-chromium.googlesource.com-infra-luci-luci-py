@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "200fcb1b_32d32010",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-10-28T23:52:44Z",
+      "side": 1,
+      "message": "🤯",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 14
+      },
+      "revId": "b3bf643e3e02ad30a2c6f890a502d5e9884b4ccd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c5b9958_2500e623",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-10-28T23:52:44Z",
+      "side": 1,
+      "message": "wdyt about `\"bot_error\": [\"bot_main:_get_dimensions\"]` or something like that?",
+      "range": {
+        "startLine": 357,
+        "startChar": 9,
+        "endLine": 357,
+        "endChar": 25
+      },
+      "revId": "b3bf643e3e02ad30a2c6f890a502d5e9884b4ccd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04004a6f_1dfbdd83",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-10-28T23:52:44Z",
+      "side": 1,
+      "message": "another \"bot_error\" dimension value here?",
+      "revId": "b3bf643e3e02ad30a2c6f890a502d5e9884b4ccd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
