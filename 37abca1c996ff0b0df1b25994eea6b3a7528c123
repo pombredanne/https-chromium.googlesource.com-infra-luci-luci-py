@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fb1633c_8e5307c0",
+        "filename": "appengine/swarming/swarming_bot/api/bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-10-28T23:48:32Z",
+      "side": 1,
+      "message": "😮 in-band signalling whyyyyy",
+      "range": {
+        "startLine": 95,
+        "startChar": 42,
+        "endLine": 95,
+        "endChar": 49
+      },
+      "revId": "37abca1c996ff0b0df1b25994eea6b3a7528c123",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "933bfd7e_349256f8",
+        "filename": "appengine/swarming/swarming_bot/api/bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-10-28T23:48:32Z",
+      "side": 1,
+      "message": "I don\u0027t suppose we can enforce this at all?",
+      "range": {
+        "startLine": 257,
+        "startChar": 4,
+        "endLine": 257,
+        "endChar": 33
+      },
+      "revId": "37abca1c996ff0b0df1b25994eea6b3a7528c123",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

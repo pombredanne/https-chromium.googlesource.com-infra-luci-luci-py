@@ -22,6 +22,29 @@
       },
       "revId": "91c234e20d784136e0e8ac2609d5a44b2e681059",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f25dd60_1e787f83",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1181,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-10-28T23:48:32Z",
+      "side": 0,
+      "message": "😮",
+      "range": {
+        "startLine": 1181,
+        "startChar": 18,
+        "endLine": 1181,
+        "endChar": 23
+      },
+      "revId": "91c234e20d784136e0e8ac2609d5a44b2e681059",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
