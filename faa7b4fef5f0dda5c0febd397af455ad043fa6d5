@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37f90f15_54938968",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-28T01:08:31Z",
+      "side": 1,
+      "message": "Doing this in a function called \"_get_XXX\" is wrong, but I decided to ignore this. There are lot of other wrong things here...",
+      "range": {
+        "startLine": 423,
+        "startChar": 8,
+        "endLine": 423,
+        "endChar": 32
+      },
+      "revId": "faa7b4fef5f0dda5c0febd397af455ad043fa6d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
