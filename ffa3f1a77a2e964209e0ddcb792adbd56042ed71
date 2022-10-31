@@ -88,6 +88,24 @@
       "parentUuid": "bb6edac9_20b4bf95",
       "revId": "ffa3f1a77a2e964209e0ddcb792adbd56042ed71",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea31e0ef_b2428fd4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2022-10-31T18:46:48Z",
+      "side": 1,
+      "message": "I removed all the old protos, and re-worked the script (and move it to swarming/protos) so that only the needed protos are kept. Kind of a shitty hack for now, but I think that without a BUILD file that makes a dependency tree for us, this is decent for now.",
+      "parentUuid": "49c5b387_ff6207f5",
+      "revId": "ffa3f1a77a2e964209e0ddcb792adbd56042ed71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
