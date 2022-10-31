@@ -45,6 +45,30 @@
       },
       "revId": "37abca1c996ff0b0df1b25994eea6b3a7528c123",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d934938_876a4c1a",
+        "filename": "appengine/swarming/swarming_bot/api/bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-31T17:55:37Z",
+      "side": 1,
+      "message": "We probably can with some presubmit check, considering all bot hooks are stored in our repo, but it\u0027s not something I plan to do.",
+      "parentUuid": "933bfd7e_349256f8",
+      "range": {
+        "startLine": 257,
+        "startChar": 4,
+        "endLine": 257,
+        "endChar": 33
+      },
+      "revId": "37abca1c996ff0b0df1b25994eea6b3a7528c123",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
