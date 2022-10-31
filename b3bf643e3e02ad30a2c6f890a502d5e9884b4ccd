@@ -47,6 +47,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b091b34f_bf9529f2",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-31T18:05:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c5b9958_2500e623",
+      "range": {
+        "startLine": 357,
+        "startChar": 9,
+        "endLine": 357,
+        "endChar": 25
+      },
+      "revId": "b3bf643e3e02ad30a2c6f890a502d5e9884b4ccd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04004a6f_1dfbdd83",
@@ -60,6 +84,24 @@
       "writtenOn": "2022-10-28T23:52:44Z",
       "side": 1,
       "message": "another \"bot_error\" dimension value here?",
+      "revId": "b3bf643e3e02ad30a2c6f890a502d5e9884b4ccd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23a507e4_b8bcc60d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-10-31T18:05:45Z",
+      "side": 1,
+      "message": "It is \"state\", it is allowed to have random junk. Also \"dimensions\" dict is not available here. We\u0027ll need to recognized the error in the caller, so it can update \"dimensions\". I don\u0027t want to deal with this now, it is not essential.",
+      "parentUuid": "04004a6f_1dfbdd83",
       "revId": "b3bf643e3e02ad30a2c6f890a502d5e9884b4ccd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
