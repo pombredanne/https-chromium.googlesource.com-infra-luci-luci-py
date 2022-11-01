@@ -112,6 +112,7 @@ class RemoteClientNative(object):
     self._bot_hostname = hostname
     self._bot_work_dir = work_dir
     self._bot_id = None
+    self._poll_request_uuid = None
 
   @property
   def server(self):
@@ -223,7 +224,11 @@ class RemoteClientNative(object):
           logging.info('Using auth headers (%s).', self._headers.keys())
       return self._headers or {}
 
-  def _url_read_json(self, url_path, data=None, expected_error_codes=None):
+  def _url_read_json(self,
+                     url_path,
+                     data=None,
+                     expected_error_codes=None,
+                     retry_transient=True):
     """Does POST (if data is not None) or GET request to a JSON endpoint."""
     logging.info('Calling %s', url_path)
     return net.url_read_json(
@@ -232,7 +237,8 @@ class RemoteClientNative(object):
         headers=self.get_headers(include_auth=True),
         timeout=NET_CONNECTION_TIMEOUT_SEC,
         follow_redirects=False,
-        expected_error_codes=expected_error_codes)
+        expected_error_codes=expected_error_codes,
+        max_attempts=net.URL_OPEN_MAX_ATTEMPTS if retry_transient else 1)
 
   def _url_retrieve(self, filepath, url_path):
     """Fetches the file from the given URL path on the server."""
@@ -319,21 +325,33 @@ class RemoteClientNative(object):
         data=attributes)
 
   def poll(self, attributes):
-    """Polls for new work or other commands; returns a (cmd, value) pair as
-    shown below.
+    """Polls Swarming server for commands; returns a (cmd, value) pair.
+
+    Unlike other methods, this method doesn't retry on transient errors
+    internally (it raises PollError instead). This allows the outer poll loop
+    to do stuff (like ping RBE session) between `/bot/poll` attempts.
 
     Raises:
-      PollError if can't contact the server after many attempts, the server
-      replies with an error or the returned dict does not have the correct
-      values set.
+      PollError if can't contact the server, the server replies with an error or
+      the returned dict does not have the correct values set.
     """
-    # This makes retry requests idempotent. See also crbug.com/1214700.
     data = attributes.copy()
-    data['request_uuid'] = str(uuid.uuid4())
-    resp = self._url_read_json('/swarming/api/v1/bot/poll', data=data)
+
+    # This makes retry requests idempotent. See also crbug.com/1214700. Reuse
+    # the UUID until we get a successful response.
+    if not self._poll_request_uuid:
+      self._poll_request_uuid = str(uuid.uuid4())
+    data['request_uuid'] = self._poll_request_uuid
+
+    resp = self._url_read_json('/swarming/api/v1/bot/poll',
+                               data=data,
+                               retry_transient=False)
     if not resp or resp.get('error'):
       raise PollError(
           resp.get('error') if resp else 'Failed to contact server')
+
+    # Successfully polled. Use a new UUID next time.
+    self._poll_request_uuid = None
 
     cmd = resp['cmd']
     if cmd == 'sleep':
