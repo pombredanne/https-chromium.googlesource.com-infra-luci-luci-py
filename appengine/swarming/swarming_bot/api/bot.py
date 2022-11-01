@@ -42,6 +42,11 @@ class Bot(object):
     self._bot_config = {}
     self._rbe_state = None
 
+    # Populate parts of self._dimensions and self._state that depend on other
+    # fields with default values.
+    with self.mutate_internals() as mut:
+      mut._refresh_attributes()
+
   @property
   def base_dir(self):
     """The working directory.
@@ -315,6 +320,8 @@ class BotMutator(object):
     if bot_config_name:
       dimensions['bot_config'] = [bot_config_name]
     self._bot._dimensions = dimensions
+    if self._bot._remote:
+      self._bot._remote.bot_id = dimensions.get('id', [None])[0]
 
   def update_state(self, new_state):
     """Updates `bot.state` by merging-in automatically set keys."""
