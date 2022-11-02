@@ -104,8 +104,22 @@ class BaseTest(test_env_handlers.AppTestBase, test_case.EndpointsTestCase):
     self.mock_tq_tasks()
 
 
+def _decode(raw, dst):
+  assert raw[:5] == ')]}\'\n', raw[:5]
+  return encoding.get_decoder(encoding.Encoding.JSON)(raw[5:], dst)
+
+
+def _encode(d):
+  raw = encoding.get_encoder(encoding.Encoding.JSON)(d)
+  assert raw[:5] == ')]}\'\n', raw[:5]
+  return raw[5:]
+
+
 class ServerApiTest(BaseTest):
   api_service_cls = handlers_endpoints.SwarmingServerService
+
+  def _post_prpc(self, route, payload):
+    return self.app.post(route, _encode(payload))
 
   def test_details(self):
     """Asserts that server_details returns the correct version."""
