@@ -20,16 +20,16 @@ from test_support import test_case
 
 class TestableService(prpc_helpers.SwarmingPRPCService):
 
-  @prpc_helpers.PRPCMethod
+  @prpc_helpers.prpc_method
   def SuccessHandler(self, request, _ctx):
     return request
 
-  @prpc_helpers.PRPCMethod
+  @prpc_helpers.prpc_method
   def BadHandler(self, _request, _ctx):
     raise handlers_exceptions.BadRequestException(
         'Bad request: no `chicken` found')
 
-  @prpc_helpers.PRPCMethod
+  @prpc_helpers.prpc_method
   def UnrecognizedErrorHandler(self, _request, _ctx):
     raise ValueError('whoops')
 
