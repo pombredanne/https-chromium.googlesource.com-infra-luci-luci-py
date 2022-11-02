@@ -47,6 +47,54 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cd2a141_89543fa5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-11-02T01:30:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ee1550f_480bd7a8",
+      "range": {
+        "startLine": 22,
+        "startChar": 17,
+        "endLine": 22,
+        "endChar": 21
+      },
+      "revId": "4031e7733dd918bcebd98c046c25f75ce2a5b331",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8424fbbd_4e93d9c5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-11-02T01:30:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54c4cdb1_f7233db7",
+      "range": {
+        "startLine": 22,
+        "startChar": 27,
+        "endLine": 22,
+        "endChar": 37
+      },
+      "revId": "4031e7733dd918bcebd98c046c25f75ce2a5b331",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8ebaf42_f30f20f0",
@@ -60,6 +108,24 @@
       "writtenOn": "2022-11-02T00:39:42Z",
       "side": 1,
       "message": "I would describe that this section is used by the Go server to authenticate the bot which just handed this blob over (IIUC)",
+      "revId": "4031e7733dd918bcebd98c046c25f75ce2a5b331",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "657b82df_066c9601",
+        "filename": "appengine/swarming/proto/internals/rbe.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-11-02T01:30:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8ebaf42_f30f20f0",
       "revId": "4031e7733dd918bcebd98c046c25f75ce2a5b331",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
