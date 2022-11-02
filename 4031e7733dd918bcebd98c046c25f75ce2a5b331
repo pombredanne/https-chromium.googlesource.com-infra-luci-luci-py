@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54c4cdb1_f7233db7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-02T00:39:42Z",
+      "side": 1,
+      "message": "symmetric",
+      "range": {
+        "startLine": 22,
+        "startChar": 27,
+        "endLine": 22,
+        "endChar": 37
+      },
+      "revId": "4031e7733dd918bcebd98c046c25f75ce2a5b331",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ee1550f_480bd7a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-02T00:39:42Z",
+      "side": 1,
+      "message": "I would note also that nothing in these protos is SECRET; It just needs to be verifiable.",
+      "range": {
+        "startLine": 22,
+        "startChar": 17,
+        "endLine": 22,
+        "endChar": 21
+      },
+      "revId": "4031e7733dd918bcebd98c046c25f75ce2a5b331",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8ebaf42_f30f20f0",
+        "filename": "appengine/swarming/proto/internals/rbe.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-02T00:39:42Z",
+      "side": 1,
+      "message": "I would describe that this section is used by the Go server to authenticate the bot which just handed this blob over (IIUC)",
+      "revId": "4031e7733dd918bcebd98c046c25f75ce2a5b331",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
