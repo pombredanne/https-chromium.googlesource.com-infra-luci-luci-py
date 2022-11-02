@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10ef9fe7_8aa0eed3",
+        "filename": "appengine/swarming/swarming_bot/api/bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-11-02T01:58:43Z",
+      "side": 1,
+      "message": "RemoteClientNative, it is wrapper over RPCs: https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/swarming_bot/bot_code/remote_client.py;l\u003d87?q\u003dremote_client.py\u0026ss\u003dchromium",
+      "parentUuid": "45e6b4e8_0a6406c5",
+      "range": {
+        "startLine": 326,
+        "startChar": 17,
+        "endLine": 326,
+        "endChar": 24
+      },
+      "revId": "f59842706677585ff6a4e969fadbc1a9e12f5b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c306b8d7_fee64eaf",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-02T01:21:13Z",
       "side": 1,
       "message": "nit: imo this bit of the comment isn\u0027t needed",
+      "range": {
+        "startLine": 1175,
+        "startChar": 45,
+        "endLine": 1176,
+        "endChar": 23
+      },
+      "revId": "f59842706677585ff6a4e969fadbc1a9e12f5b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89b418ad_d1529153",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-11-02T01:58:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c306b8d7_fee64eaf",
       "range": {
         "startLine": 1175,
         "startChar": 45,
@@ -66,6 +114,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "86d16605_9a9fd5e4",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-11-02T01:58:43Z",
+      "side": 1,
+      "message": "No particular reason. It wasn\u0027t a separate function until I started writing tests. Now that it is a separate function, it is indeed makes sense to put it into BotLoopState.",
+      "parentUuid": "1a98ea9c_dc1da28b",
+      "revId": "f59842706677585ff6a4e969fadbc1a9e12f5b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4b874829_6657f0c4",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 5
@@ -89,6 +155,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "8be2039f_3cff9191",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1187,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-11-02T01:58:43Z",
+      "side": 1,
+      "message": "Yeah, it is super convoluted, especially the startup code where it uses \"stock\" bot hooks to derive bot ID (because it doesn\u0027t have any other), uses it to fetch \"correct\" hooks from the server, and then uses them to potentially get **different** bot ID.\n\nThe order of calls to on_before_poll etc is important because many-many hooks keep global variables and initialize stuff in particular places, which they empirically observed as \"called first\".\n\nThis is all horrifying.",
+      "parentUuid": "4b874829_6657f0c4",
+      "range": {
+        "startLine": 1187,
+        "startChar": 0,
+        "endLine": 1187,
+        "endChar": 71
+      },
+      "revId": "f59842706677585ff6a4e969fadbc1a9e12f5b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "270e11e2_4d7bf588",
         "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
         "patchSetId": 5
@@ -100,6 +190,30 @@
       "writtenOn": "2022-11-02T01:21:13Z",
       "side": 1,
       "message": "ugh python things 😞",
+      "range": {
+        "startLine": 1349,
+        "startChar": 42,
+        "endLine": 1349,
+        "endChar": 47
+      },
+      "revId": "f59842706677585ff6a4e969fadbc1a9e12f5b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "435a6b4d_a8f4da91",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-11-02T01:58:43Z",
+      "side": 1,
+      "message": "The bot process is essentially single-threaded. When it blocks on task_runner.py it can\u0027t do anything else.",
+      "parentUuid": "270e11e2_4d7bf588",
       "range": {
         "startLine": 1349,
         "startChar": 42,
