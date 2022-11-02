@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45e6b4e8_0a6406c5",
+        "filename": "appengine/swarming/swarming_bot/api/bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-02T01:21:13Z",
+      "side": 1,
+      "message": "what IS _remote?",
+      "range": {
+        "startLine": 326,
+        "startChar": 17,
+        "endLine": 326,
+        "endChar": 24
+      },
+      "revId": "f59842706677585ff6a4e969fadbc1a9e12f5b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c306b8d7_fee64eaf",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-02T01:21:13Z",
+      "side": 1,
+      "message": "nit: imo this bit of the comment isn\u0027t needed",
+      "range": {
+        "startLine": 1175,
+        "startChar": 45,
+        "endLine": 1176,
+        "endChar": 23
+      },
+      "revId": "f59842706677585ff6a4e969fadbc1a9e12f5b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a98ea9c_dc1da28b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-02T01:21:13Z",
+      "side": 1,
+      "message": "is there a reason this is a function instead of a method directly on state? took me a minute to figure out that this was a _BotLoopState",
+      "revId": "f59842706677585ff6a4e969fadbc1a9e12f5b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b874829_6657f0c4",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1187,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-02T01:21:13Z",
+      "side": 1,
+      "message": "I tried to trace this through the code... it looks kind of hopeless to enforce this 😞",
+      "range": {
+        "startLine": 1187,
+        "startChar": 0,
+        "endLine": 1187,
+        "endChar": 71
+      },
+      "revId": "f59842706677585ff6a4e969fadbc1a9e12f5b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "270e11e2_4d7bf588",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-02T01:21:13Z",
+      "side": 1,
+      "message": "ugh python things 😞",
+      "range": {
+        "startLine": 1349,
+        "startChar": 42,
+        "endLine": 1349,
+        "endChar": 47
+      },
+      "revId": "f59842706677585ff6a4e969fadbc1a9e12f5b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
