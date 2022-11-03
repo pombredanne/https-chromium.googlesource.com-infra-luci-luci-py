@@ -1,6 +1,217 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e52fa292_d80dbb5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-03T17:28:00Z",
+      "side": 1,
+      "message": "publishing comments in sections",
+      "revId": "f38207a43d053687e741e3edabe04daf11887852",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9e2f796_af9a415a",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-03T17:28:00Z",
+      "side": 1,
+      "message": "nit: newline after, this is describing this section, really. \n\nActually, if you wanted, you could put this in `services.proto` on its own. We\u0027ve also split by `xxx_service.proto` including request/response messages, but those get pretty big, too. Could then do stuff like `bot_service_getbot.proto`, etc. but that\u0027s likely excessive 😊",
+      "range": {
+        "startLine": 12,
+        "startChar": 3,
+        "endLine": 12,
+        "endChar": 11
+      },
+      "revId": "f38207a43d053687e741e3edabe04daf11887852",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b503423a_1d47e62a",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-03T17:28:00Z",
+      "side": 1,
+      "message": "This all needs some docstrings; I\u0027ve taken a first whack at it",
+      "range": {
+        "startLine": 13,
+        "startChar": 8,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "f38207a43d053687e741e3edabe04daf11887852",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b677ceb0_e570bbb9",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-03T17:28:00Z",
+      "side": 1,
+      "message": "// GetBotState returns the state for a single bot.",
+      "revId": "f38207a43d053687e741e3edabe04daf11887852",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50ea022c_58eacfff",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-03T17:28:00Z",
+      "side": 1,
+      "message": "// DeleteBot makes Swarming forget about a single bot.\n//\n// This includes the event history, task history and current state (dimensions,\n// cache state, etc). Once deleted, Swarming will not send tasks to this bot.\n//\n// TODO: what happens if you delete a bot which is currently running a task?\n//\n// For non-GCE-Provider bots, this does not remove any data on the bot\n// machine itself, and if the bot is still running on that machine, it will\n// likely show up again in swarming shortly after calling this API.\n// \n// If this bot is managed with GCE Provider, the underlying VM will be recycled\n// and all data on that VM will be lost.",
+      "revId": "f38207a43d053687e741e3edabe04daf11887852",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99214404_af93700a",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-03T17:28:00Z",
+      "side": 1,
+      "message": "// ListBotEvents returns a section of the Events (limited in quantity, time range)\n// related to a single Bot.\n//\n// The bot in question must still be \u0027known\u0027 to Swarming.",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 19
+      },
+      "revId": "f38207a43d053687e741e3edabe04daf11887852",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8638a492_cdb38665",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-03T17:28:00Z",
+      "side": 1,
+      "message": "// TerminateBot sends a request to the indicated bot for it to stop running.\n//\n// If the bot is currently running a task, the termination will occur after the \n// current task completes, but before another task is assigned.",
+      "revId": "f38207a43d053687e741e3edabe04daf11887852",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aab0c10e_0ba77a1a",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-03T17:28:00Z",
+      "side": 1,
+      "message": "// ListBotTasks returns a section of the Task history (limited in quantity, time \n// range) in the context of a single bot.\n//\n// The bot in question must still be \u0027known\u0027 to Swarming.",
+      "range": {
+        "startLine": 18,
+        "startChar": 6,
+        "endLine": 18,
+        "endChar": 18
+      },
+      "revId": "f38207a43d053687e741e3edabe04daf11887852",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47e166d6_3d78ae23",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-03T17:28:00Z",
+      "side": 1,
+      "message": "// ListBots returns the state of a filtered (dimensions, state) list of known bots.",
+      "revId": "f38207a43d053687e741e3edabe04daf11887852",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a56a7fcc_a50f86f7",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-03T17:28:00Z",
+      "side": 1,
+      "message": "// CountBots is a more efficient way to count bots in various states vs. doing \n// ListBots and counting manually.",
+      "revId": "f38207a43d053687e741e3edabe04daf11887852",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89b66706_daf51521",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-11-03T17:28:00Z",
+      "side": 1,
+      "message": "// GetBotDimensions returns a list of known dimensions/values for bots currently\n// connected to a given pool.",
+      "revId": "f38207a43d053687e741e3edabe04daf11887852",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "132470a5_8890b0ca",
