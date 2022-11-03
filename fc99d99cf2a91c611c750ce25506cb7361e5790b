@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d76f5d93_db875bc8",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-03T20:58:13Z",
+      "side": 1,
+      "message": "I have figured out a way cleaner way to do this - so am refactoring this file.",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "fc99d99cf2a91c611c750ce25506cb7361e5790b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
