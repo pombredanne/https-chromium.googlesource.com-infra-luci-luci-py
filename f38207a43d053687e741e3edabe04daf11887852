@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "132470a5_8890b0ca",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-03T16:14:14Z",
+      "side": 1,
+      "message": "it is on my todo list to add default values for many of these fields.",
+      "range": {
+        "startLine": 534,
+        "startChar": 8,
+        "endLine": 534,
+        "endChar": 13
+      },
+      "revId": "f38207a43d053687e741e3edabe04daf11887852",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac4714f9_fe46c455",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-03T16:14:14Z",
+      "side": 1,
+      "message": "I wonder if this is even necessary in the original protorpc.",
+      "range": {
+        "startLine": 555,
+        "startChar": 2,
+        "endLine": 555,
+        "endChar": 27
+      },
+      "revId": "f38207a43d053687e741e3edabe04daf11887852",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
