@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92337f65_b245fd74",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2022-11-07T21:11:25Z",
+      "side": 1,
+      "message": "SGTM. Done.",
+      "parentUuid": "ffa0bdd0_5c41e54c",
+      "revId": "6bb27ded6882b414ad7bc5f5b5ba5eeaf587f648",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef826779_a3864fb5",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-11-01T18:10:17Z",
       "side": 1,
       "message": "Why is this needed? This directory is copied from luci-py. It appears there\u0027s a circular dependency between luci-py and luci-go protos resulting in copies of copies?",
+      "revId": "6bb27ded6882b414ad7bc5f5b5ba5eeaf587f648",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1f720cc_42ad453a",
+        "filename": "appengine/swarming/proto/update_taskbackend_protos.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2022-11-07T21:11:25Z",
+      "side": 1,
+      "message": "fixed!",
+      "parentUuid": "ef826779_a3864fb5",
       "revId": "6bb27ded6882b414ad7bc5f5b5ba5eeaf587f648",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
