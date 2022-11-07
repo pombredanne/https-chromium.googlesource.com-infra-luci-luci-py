@@ -165,3 +165,72 @@ def bot_events_response(items, cursor):
   out.cursor = cursor or ''
   out.now.GetCurrentTime()
   return out
+
+
+def _perf_stats(out):
+  out.field('bot_overhead')
+
+  def _cas_op_stats(out):
+    out.fields('duration', 'initial_number_items', 'initial_size', 'items_cold',
+               'items_hot', 'num_items_cold', 'num_items_hot',
+               'total_bytes_items_hot', 'total_bytes_items_cold')
+
+  def _op_stats(out):
+    out.field('duration')
+
+  out.message_field('isolated_download', _cas_op_stats, required=False)
+  out.message_field('isolated_upload', _cas_op_stats, required=False)
+  out.message_field('package_installation', _op_stats, required=False)
+  out.message_field('cache_trim', _op_stats, required=False)
+  out.message_field('named_caches_uninstall', _op_stats, required=False)
+  out.message_field('named_caches_install', _op_stats, required=False)
+  out.message_field('cleanup', _op_stats, required=False)
+
+
+def _cas_reference(out):
+  out.field('cas_instance')
+  out.message_field(
+      'digest', lambda digest: digest.fields('hash', 'size_bytes'))
+
+
+def _cipd_package(out):
+  out.fields('package_name', 'version', 'path')
+
+
+def _cipd_pins(out):
+  out.message_field('client_package', _cipd_package)
+
+
+def _result_db_info(out):
+  out.fields('hostname', 'invocation')
+
+
+def _task_result_response(task_result):
+  out = ObjectDerivedProtoFactory(task_result,
+                                  swarming_api_pb2.TaskResultResponse())
+  out.fields('bot_id', 'bot_version', 'bot_logs_cloud_project', 'deduped_from',
+             'duration', 'exit_code', 'failure', 'internal_failure', 'state',
+             'task_id', 'name', 'current_task_slice')
+  out.field('run_id',
+            required=False).field('user',
+                                  required=False).field('costs_saved_usd',
+                                                        required=False)
+  out.dates('completed_ts', 'bot_idle_since_ts', 'abandoned_ts', 'modified_ts',
+            'started_ts', 'created_ts')
+  out.string_list_pairs('bot_dimensions')
+  out.repeated_field('children_task_ids')
+  out.repeated_field('server_versions')
+  out.repeated_field('costs_usd', required=False)
+  out.message_field('performance_stats', _perf_stats, required=False)
+  out.message_field('cas_output_root', _cas_reference, required=False)
+  out.repeated_message_field('missing_cas', _cas_reference, required=False)
+  out.repeated_message_field('missing_cipd', _cipd_package, required=False)
+  return out.to_proto()
+
+
+def bot_tasks_response(items, cursor):
+  out = swarming_api_pb2.TaskListResponse()
+  out.cursor = cursor or ''
+  out.items.extend([_task_result_response(item) for item in items])
+  out.now.GetCurrentTime()
+  return out
