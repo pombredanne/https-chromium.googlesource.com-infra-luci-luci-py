@@ -84,6 +84,58 @@ class PrpcTest(test_env_handlers.AppTestBase):
   no_run = 1
   service = None
 
+  def generate_prpc_run_result(self):
+    """Returns a serialized swarming_rpcs.TaskResult initialized from a
+    TaskRunResult.
+
+    To be used for expectations.
+    """
+    out = swarming_api_pb2.TaskResultResponse()
+    out.bot_dimensions.extend([
+        swarming_api_pb2.StringListPair(key='id', value=['bot1']),
+        swarming_api_pb2.StringListPair(key='os', value=['Amiga']),
+        swarming_api_pb2.StringListPair(key='pool', value=['default']),
+    ])
+    out.bot_id = 'bot1'
+    out.bot_version = self.bot_version
+    out.current_task_slice = 0
+    out.failure = False
+    out.name = 'job1'
+    out.server_versions.extend(['v1a'])
+    out.state = swarming_api_pb2.TaskState.COMPLETED
+    out.task_id = '5cee870005511'
+    return out
+
+  def gen_perf_stats_prpc(self, stats):
+    """Returns a serialized swarming_rpcs.PerformanceStats.
+
+    To be used for expectations.
+    """
+    stats.bot_overhead = 0.1
+    stats.cache_trim.duration = 0.1
+    stats.isolated_download.duration = 1.0
+    stats.isolated_download.initial_size = 100000
+    stats.isolated_download.initial_number_items = 10
+    stats.isolated_download.items_cold = b'x\234\023\001\000\000\025\000\025'
+    stats.isolated_download.items_hot = b'x\234\223\343\002\000\000H\000)'
+    stats.isolated_download.num_items_cold = 1
+    stats.isolated_download.total_bytes_items_cold = 20
+    stats.isolated_download.num_items_hot = 2
+    stats.isolated_download.total_bytes_items_hot = 70
+
+    stats.isolated_upload.duration = 2.0
+    stats.isolated_upload.items_cold = b'x\234cdT\003\000\000.\000)'
+    stats.isolated_upload.items_hot = b'x\234cdd\324\007\000\000<\0003'
+    stats.isolated_upload.num_items_cold = 3
+    stats.isolated_upload.total_bytes_items_cold = 43
+    stats.isolated_upload.num_items_hot = 4
+    stats.isolated_upload.total_bytes_items_hot = 56
+
+    stats.cleanup.duration = 0.1
+    stats.package_installation.duration = 3.0
+    stats.named_caches_install.duration = 0.1
+    stats.named_caches_uninstall.duration = 0.1
+
   def post_prpc(self, rpc, request, expect_errors=False):
     assert self.service, "Child classes must define service"
 
@@ -426,6 +478,71 @@ class BotServicePrpcTest(PrpcTest):
     _decode(resp.body, actual)
     expected = swarming_api_pb2.TerminateResponse(task_id='5cee488008810')
     self.assertEqual(expected, actual)
+
+  def test_tasks_ok(self):
+    """Asserts that tasks produces bot information."""
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+
+    self.set_as_bot()
+    self.bot_poll()
+    self.set_as_user()
+    self.client_create_task_raw()
+    self.set_as_bot()
+    res = self.bot_poll()
+    response = self.bot_complete_task(task_id=res['manifest']['task_id'])
+    self.assertEqual({u'must_stop': False, u'ok': True}, response)
+
+    now_1 = self.mock_now(self.now, 1)
+    self.mock(random, 'getrandbits', lambda _: 0x55)
+    self.set_as_user()
+    self.client_create_task_raw(name='philbert')
+    self.set_as_bot()
+    res = self.bot_poll()
+    response = self.bot_complete_task(exit_code=1,
+                                      task_id=res['manifest']['task_id'])
+    self.assertEqual({u'must_stop': False, u'ok': True}, response)
+
+    start = self.now + datetime.timedelta(seconds=0.5)
+    end = now_1 + datetime.timedelta(seconds=0.5)
+
+    self.set_as_privileged_user()
+    request = swarming_api_pb2.BotTasksRequest()
+    request.bot_id = 'bot1'
+    request.start.FromDatetime(start)
+    request.end.FromDatetime(end)
+    request.sort = swarming_api_pb2.TaskQuery.Sort.CREATED_TS
+    request.state = swarming_api_pb2.TaskQuery.State.ALL
+    request.include_performance_stats = True
+    request.limit = 100
+    response = self.post_prpc('ListBotTasks', request)
+    actual = swarming_api_pb2.TaskListResponse()
+    _decode(response.body, actual)
+
+    tr = self.generate_prpc_run_result()
+    tr.bot_idle_since_ts.FromDatetime(now_1)
+    tr.completed_ts.FromDatetime(now_1)
+    tr.created_ts.FromDatetime(now_1)
+    tr.duration = 0.1
+    tr.exit_code = 1
+    tr.failure = True
+    tr.modified_ts.FromDatetime(now_1)
+    tr.name = 'philbert'
+    self.gen_perf_stats_prpc(tr.performance_stats)
+    tr.started_ts.FromDatetime(now_1)
+    expected = swarming_api_pb2.TaskListResponse()
+    expected.items.extend([tr])
+    self.assertEqual(expected.items, actual.items)
+
+    for sort in (swarming_api_pb2.TaskQuery.Sort.COMPLETED_TS,
+                 swarming_api_pb2.TaskQuery.Sort.STARTED_TS):
+      request = swarming_api_pb2.BotTasksRequest()
+      request.bot_id = 'bot1'
+      request.sort = sort
+      request.state = swarming_api_pb2.TaskQuery.State.ALL
+      request.include_performance_stats = True
+      request.limit = 100
+      response = self.post_prpc('ListBotTasks', request)
+      self.assertEqual(response.status, '200 OK')
 
 
 if __name__ == '__main__':
