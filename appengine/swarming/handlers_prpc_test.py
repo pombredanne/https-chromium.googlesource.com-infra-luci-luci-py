@@ -52,6 +52,16 @@ def _decode_dict(dct, out):
   return proto.json_format.ParseDict(dct, out)
 
 
+def _encode_as_dict(message, **kwargs):
+  message_dict = proto.json_format.MessageToDict(
+      message,
+      preserving_proto_field_name=True,
+      including_default_value_fields=True)
+  for k, v in kwargs.items():
+    message_dict[k] = v
+  return message_dict
+
+
 def _encode(d):
   raw = encoding.get_encoder(encoding.Encoding.JSON)(d)
   assert raw[:5] == ')]}\'\n', raw[:5]
@@ -83,6 +93,36 @@ def _bot_event(event_type, bot_id, **kwargs):
 class PrpcTest(test_env_handlers.AppTestBase):
   no_run = 1
   service = None
+
+  def gen_perf_stats_prpc(self, stats):
+    """Returns a serialized swarming_rpcs.PerformanceStats.
+
+    To be used for expectations.
+    """
+    stats.bot_overhead = 0.1
+    stats.cache_trim.duration = 0.1
+    stats.isolated_download.duration = 1.0
+    stats.isolated_download.initial_size = 100000
+    stats.isolated_download.initial_number_items = 10
+    stats.isolated_download.items_cold = b'x\234\023\001\000\000\025\000\025'
+    stats.isolated_download.items_hot = b'x\234\223\343\002\000\000H\000)'
+    stats.isolated_download.num_items_cold = 1
+    stats.isolated_download.total_bytes_items_cold = 20
+    stats.isolated_download.num_items_hot = 2
+    stats.isolated_download.total_bytes_items_hot = 70
+
+    stats.isolated_upload.duration = 2.0
+    stats.isolated_upload.items_cold = b'x\234cdT\003\000\000.\000)'
+    stats.isolated_upload.items_hot = b'x\234cdd\324\007\000\000<\0003'
+    stats.isolated_upload.num_items_cold = 3
+    stats.isolated_upload.total_bytes_items_cold = 43
+    stats.isolated_upload.num_items_hot = 4
+    stats.isolated_upload.total_bytes_items_hot = 56
+
+    stats.cleanup.duration = 0.1
+    stats.package_installation.duration = 3.0
+    stats.named_caches_install.duration = 0.1
+    stats.named_caches_uninstall.duration = 0.1
 
   def post_prpc(self, rpc, request, expect_errors=False):
     assert self.service, "Child classes must define service"
@@ -426,6 +466,81 @@ class BotServicePrpcTest(PrpcTest):
     _decode(resp.body, actual)
     expected = swarming_api_pb2.TerminateResponse(task_id='5cee488008810')
     self.assertEqual(expected, actual)
+
+  def test_tasks_ok(self):
+    """Asserts that tasks produces bot information."""
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+
+    self.set_as_bot()
+    self.bot_poll()
+    self.set_as_user()
+    self.client_create_task_raw()
+    self.set_as_bot()
+    res = self.bot_poll()
+    response = self.bot_complete_task(task_id=res['manifest']['task_id'])
+    self.assertEqual({u'must_stop': False, u'ok': True}, response)
+
+    now_1 = self.mock_now(self.now, 1)
+    self.mock(random, 'getrandbits', lambda _: 0x55)
+    self.set_as_user()
+    self.client_create_task_raw(name='philbert')
+    self.set_as_bot()
+    res = self.bot_poll()
+    response = self.bot_complete_task(exit_code=1,
+                                      task_id=res['manifest']['task_id'])
+    self.assertEqual({u'must_stop': False, u'ok': True}, response)
+
+    start = self.now + datetime.timedelta(seconds=0.5)
+    end = now_1 + datetime.timedelta(seconds=0.5)
+
+    self.set_as_privileged_user()
+    request = swarming_api_pb2.BotTasksRequest()
+    request.bot_id = 'bot1'
+    request.start.FromDatetime(start)
+    request.end.FromDatetime(end)
+    request.sort = swarming_api_pb2.TaskQuery.Sort.CREATED_TS
+    request.state = swarming_api_pb2.TaskQuery.State.ALL
+    request.include_performance_stats = True
+    request.limit = 100
+    response = self.post_prpc('ListBotTasks', request)
+    actual = swarming_api_pb2.TaskListResponse()
+    _decode(response.body, actual)
+
+    performance_stats = swarming_api_pb2.PerformanceStats()
+    self.gen_perf_stats_prpc(performance_stats)
+    expected_keys = self.gen_run_result(
+        bot_idle_since_ts=fmtdate(now_1),
+        completed_ts=fmtdate(now_1),
+        costs_usd=[0.1],
+        created_ts=fmtdate(now_1),
+        duration=0.1,
+        exit_code=1,
+        current_task_slice=0,
+        failure=True,
+        modified_ts=fmtdate(now_1),
+        name=u'philbert',
+        performance_stats=_encode_as_dict(performance_stats),
+        run_id=u'5cee870005511',
+        started_ts=fmtdate(now_1),
+        state=u'COMPLETED',
+        task_id=u'5cee870005511')
+
+    expected = _encode_as_dict(swarming_api_pb2.TaskResultResponse(),
+                               **expected_keys)
+    actual = _encode_as_dict(actual)['items'][0]
+    # import pdb; pdb.set_trace()
+    self.assertEqual(expected, actual)
+
+    for sort in (swarming_api_pb2.TaskQuery.Sort.COMPLETED_TS,
+                 swarming_api_pb2.TaskQuery.Sort.STARTED_TS):
+      request = swarming_api_pb2.BotTasksRequest()
+      request.bot_id = 'bot1'
+      request.sort = sort
+      request.state = swarming_api_pb2.TaskQuery.State.ALL
+      request.include_performance_stats = True
+      request.limit = 100
+      response = self.post_prpc('ListBotTasks', request)
+      self.assertEqual(response.status, '200 OK')
 
 
 if __name__ == '__main__':

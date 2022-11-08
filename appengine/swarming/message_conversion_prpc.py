@@ -5,6 +5,9 @@
 import json
 
 from proto.api import swarming_api_pb2
+from server import task_pack
+from server import task_result
+from server import task_request
 
 
 class ProtoFactory(object):
@@ -164,5 +167,84 @@ def bot_events_response(items, cursor):
   out = swarming_api_pb2.BotEventsResponse()
   out.items.extend([_bot_event_response(event) for event in items])
   out.cursor = cursor or ''
+  out.now.GetCurrentTime()
+  return out
+
+
+def _perf_stats(out):
+  out.field('bot_overhead')
+
+  def _cas_op_stats(out):
+    out.fields('duration', 'initial_number_items', 'initial_size', 'items_cold',
+               'items_hot', 'num_items_cold', 'num_items_hot',
+               'total_bytes_items_hot', 'total_bytes_items_cold')
+
+  def _op_stats(out):
+    out.field('duration')
+
+  out.message_field('isolated_download', _cas_op_stats, required=False)
+  out.message_field('isolated_upload', _cas_op_stats, required=False)
+  out.message_field('package_installation', _op_stats, required=False)
+  out.message_field('cache_trim', _op_stats, required=False)
+  out.message_field('named_caches_uninstall', _op_stats, required=False)
+  out.message_field('named_caches_install', _op_stats, required=False)
+  out.message_field('cleanup', _op_stats, required=False)
+
+
+def _cas_reference(out):
+  out.field('cas_instance')
+  out.message_field(
+      'digest', lambda digest: digest.fields('hash', 'size_bytes'))
+
+
+def _cipd_package(out):
+  out.fields('package_name', 'version', 'path')
+
+
+def _cipd_pins(out):
+  out.message_field('client_package', _cipd_package)
+
+
+def _result_db_info(out):
+  out.fields('hostname', 'invocation')
+
+
+def task_result_response(result):
+  factory = ObjectDerivedProtoFactory(result,
+                                      swarming_api_pb2.TaskResultResponse())
+  factory.fields('bot_id', 'bot_version', 'bot_logs_cloud_project',
+                 'deduped_from', 'duration', 'exit_code', 'failure',
+                 'internal_failure', 'state', 'task_id', 'name',
+                 'current_task_slice', 'user', 'run_id', 'costs_saved_usd')
+  factory.dates('completed_ts', 'bot_idle_since_ts', 'abandoned_ts',
+                'modified_ts', 'started_ts', 'created_ts')
+  factory.string_list_pairs('bot_dimensions')
+  factory.repeated_field('children_task_ids')
+  factory.repeated_field('server_versions')
+  factory.repeated_field('tags')
+  factory.message_field('performance_stats', _perf_stats)
+  factory.message_field('cas_output_root', _cas_reference)
+  factory.repeated_message_field('missing_cas', _cas_reference)
+  factory.repeated_message_field('missing_cipd', _cipd_package)
+
+  out = factory.to_proto()
+  if result.__class__ is task_result.TaskRunResult:
+    if result.cost_usd is not None:
+      out.costs_usd.extend([result.cost_usd])
+    if result.task_id:
+      out.run_id = result.task_id
+  else:
+    assert result.__class__ is task_result.TaskResultSummary, result
+    k = result.run_result_key
+    run_id = task_pack.pack_run_result_key(k) if k else None
+    if run_id:
+      out.run_id = run_id
+  return out
+
+
+def bot_tasks_response(items, cursor):
+  out = swarming_api_pb2.TaskListResponse()
+  out.cursor = cursor or ''
+  out.items.extend([task_result_response(item) for item in items])
   out.now.GetCurrentTime()
   return out
