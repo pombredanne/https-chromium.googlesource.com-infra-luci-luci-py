@@ -16,6 +16,7 @@ import json
 import logging
 
 import swarming_rpcs
+from proto.api import swarming_api_pb2
 
 from components import utils
 from server import task_pack
@@ -208,7 +209,6 @@ def bot_info_to_rpc(entity, deleted=False):
       # Deprecated. TODO(crbug/897355): Remove.
       machine_type=entity.machine_type,
       state=json.dumps(entity.state, sort_keys=True, separators=(',', ':')))
-
 
 def bot_event_to_rpc(entity):
   """"Returns a swarming_rpcs.BotEvent from a bot.BotEvent."""
