@@ -27,10 +27,10 @@ from server import task_request
 from server import task_result
 from server import task_pack
 
-from proto.api.internal.bb import backend_pb2
-from proto.api.internal.bb import common_pb2
-from proto.api.internal.bb import launcher_pb2
-from proto.api.internal.bb import swarming_bb_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import backend_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import common_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import launcher_pb2
+from proto.api import swarming_bb_pb2
 
 
 def req_dim_prpc(key, value, exp_secs=None):

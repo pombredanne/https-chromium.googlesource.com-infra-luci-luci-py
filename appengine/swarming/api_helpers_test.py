@@ -26,7 +26,8 @@ from server import service_accounts
 from server import task_request
 from test_support import test_case
 
-from proto.api.internal.bb import swarming_bb_pb2
+from proto.api import swarming_bb_pb2
+
 
 class TestProcessTaskRequest(test_case.TestCase):
 

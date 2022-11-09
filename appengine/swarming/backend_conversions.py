@@ -16,9 +16,9 @@ from components import utils
 from server import task_request
 from server import task_result
 
-from proto.api.internal.bb import backend_pb2
-from proto.api.internal.bb import common_pb2
-from proto.api.internal.bb import swarming_bb_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import backend_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import common_pb2
+from proto.api import swarming_bb_pb2
 
 # This is the path, relative to the swarming run dir, to the directory that
 # contains the mounted swarming named caches. It will be prepended to paths of
