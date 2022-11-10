@@ -3,6 +3,7 @@
 # that can be found in the LICENSE file.
 
 """This module defines Swarming Server frontend pRPC handlers."""
+import datetime
 
 from components import prpc
 from components import auth
@@ -11,13 +12,18 @@ from proto.api import swarming_api_prpc_pb2  # pylint: disable=no-name-in-module
 from proto.api import swarming_api_pb2  # pylint: disable=no-name-in-module
 
 from server import realms
-
 from server import acl
 
 import api_common
 import message_conversion_prpc
 import prpc_helpers
 import endpoints
+
+
+def _is_empty_date(dt):
+  """prpc does not support setting optional fields for python.
+  We check whether the datetime value is the default date (therefore unset)."""
+  return dt == datetime.datetime(1970, 1, 1, 0, 0)
 
 
 class BotService(prpc_helpers.SwarmingPRPCService):
@@ -68,8 +74,27 @@ class BotService(prpc_helpers.SwarmingPRPCService):
     return swarming_api_pb2.TerminateResponse(task_id=task_id)
 
   @prpc_helpers.prpc_method
+  @auth.require(acl.can_access, log_identity=True)
   def ListBotTasks(self, request, _context):
-    pass
+    bot_id = request.bot_id
+    realms.check_bot_terminate_acl(bot_id)
+    start = request.start.ToDatetime()
+    if _is_empty_date(start):
+      start = None
+    end = request.end.ToDatetime()
+    if _is_empty_date(end):
+      end = None
+    sort = swarming_api_pb2.TaskQuery.Sort.Name(request.sort)
+    state = swarming_api_pb2.TaskQuery.State.Name(request.state)
+    limit = request.limit
+    cursor = request.cursor
+    try:
+      items, cursor = api_common.list_bot_tasks(bot_id, start, end, sort, state,
+                                                cursor, limit)
+    except ValueError as e:
+      raise endpoints.BadRequestException("Inappropriate filter bot tasks %s" %
+                                          e)
+    return message_conversion_prpc.bot_tasks_response(items, cursor)
 
 
 class TaskService:
