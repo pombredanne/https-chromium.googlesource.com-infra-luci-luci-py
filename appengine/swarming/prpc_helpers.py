@@ -15,16 +15,21 @@ from components import auth
 from components.prpc import codes
 
 import handlers_exceptions
+import endpoints
 
 EXCEPTIONS_TO_CODE = {
+    handlers_exceptions.NotFoundException: codes.StatusCode.NOT_FOUND,
     handlers_exceptions.BadRequestException: codes.StatusCode.INVALID_ARGUMENT,
     datastore_errors.BadValueError: codes.StatusCode.INVALID_ARGUMENT,
     handlers_exceptions.PermissionException: codes.StatusCode.PERMISSION_DENIED,
     handlers_exceptions.InternalException: codes.StatusCode.INTERNAL,
+    auth.AuthorizationError: codes.StatusCode.PERMISSION_DENIED,
+    endpoints.NotFoundException: codes.StatusCode.NOT_FOUND,
+    endpoints.BadRequestException: codes.StatusCode.INVALID_ARGUMENT,
 }
 
 
-def PRPCMethod(func):
+def prpc_method(func):
 
   @functools.wraps(func)
   def wrapper(self, request, prpc_context):

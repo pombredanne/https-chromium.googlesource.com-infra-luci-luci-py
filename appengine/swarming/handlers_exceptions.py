@@ -12,3 +12,7 @@ class PermissionException(Exception):
 
 class InternalException(Exception):
   """Unexpected error occurred."""
+
+
+class NotFoundException(Exception):
+  """Raised if we do not find what we are looking for"""
