@@ -103,6 +103,15 @@ class ObjectDerivedProtoFactory(ProtoFactory):
         factory_fn(factory)
     return self
 
+  def message_collection(self, proto_field, items, factory_fn):
+    proto_field = self._get_proto(proto_field)
+    for item in items:
+      if item is not None:
+        proto_entry = proto_field.Add()
+        factory = ObjectDerivedProtoFactory(item, proto_entry)
+        factory_fn(factory)
+    return self
+
 
 def _string_pairs_from_dict(dictionary):
   # For key: value items like env.
@@ -247,3 +256,50 @@ def bot_tasks_response(items, cursor):
   out.items.extend([task_result_response(item) for item in items])
   out.now.GetCurrentTime()
   return out
+
+
+def _cache_entry(factory):
+  factory.fields('name', 'path')
+
+
+def _cipd_input(factory):
+  factory.field('server')
+  factory.message_field('client_package', _cipd_package)
+  factory.repeated_message_field('packages', _cipd_package)
+
+
+def _task_properties(factory):
+  factory.repeated_message_field('caches', _cache_entry)
+  factory.message_field('cas_input_root', _cas_reference)
+  factory.message_field('containment', lambda f: f.field('containment_type'))
+  factory.message_field('cipd_input', _cipd_input)
+  factory.string_list_pairs('env_prefixes')
+  factory.repeated_message_field('env', lambda f: f.fields('key', 'value'))
+  factory.repeated_message_field(
+      'dimensions', lambda f: f.fields('key', 'value'))
+  factory.repeated_field('command')
+  factory.repeated_field('outputs')
+  factory.fields('idempotent', 'io_timeout_secs', 'secret_bytes',
+                 'execution_timeout_secs', 'grace_period_secs')
+
+
+def _task_slice(factory):
+  factory.message_field('properties', _task_properties)
+  factory.fields('expiration_secs', 'wait_for_capacity')
+
+
+def task_request_response(request):
+  factory = ObjectDerivedProtoFactory(request, swarming_api_pb2.TaskRequest())
+  factory.message_field('properties', _task_properties)
+  factory.message_field('resultdb', _result_db_info)
+  factory.repeated_field('tags')
+  factory.fields("user", "authenticated", "service_account", "realm",
+                 "expiration_secs", "name", "task_id", "parent_task_id",
+                 "priority", "pubsub_topic", "pubsub_userdata",
+                 "bot_ping_tolerance_secs")
+  factory.message_collection(
+      'task_slices',
+      [request.task_slice(i)
+       for i in range(request.num_task_slices)], _task_slice)
+
+  return factory.to_proto()
