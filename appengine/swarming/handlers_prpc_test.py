@@ -543,6 +543,146 @@ class BotServicePrpcTest(PrpcTest):
       self.assertEqual(response.status, '200 OK')
 
 
+class TaskServicePrpcTest(PrpcTest):
+  def setUp(self):
+    super(TaskServicePrpcTest, self).setUp()
+    self.service = "swarming_api.v1.TaskService"
+    routes = handlers_prpc.get_routes() + handlers_bot.get_routes()
+    self.app = webtest.TestApp(
+        webapp2.WSGIApplication(routes, debug=True),
+        extra_environ={
+            'REMOTE_ADDR': self.source_ip,
+            'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
+        },
+    )
+    self._headers = {
+        'Content-Type': encoding.Encoding.JSON[1],
+        'Accept': encoding.Encoding.JSON[1],
+    }
+    self.now = datetime.datetime(2010, 1, 2, 3, 4, 5)
+    self.mock_now(self.now)
+    self.mock_default_pool_acl([])
+    self.mock_tq_tasks()
+
+  def test_result_unknown(self):
+    """Asserts that result raises 404 for unknown task IDs."""
+    self.set_as_privileged_user()
+    resp = self.post_prpc(
+        'GetResult',
+        swarming_api_pb2.TaskIdWithPerfRequest(task_id='12310'),
+        expect_errors=True)
+    self.assertEqual(resp.status, '404 Not Found')
+
+  def test_result_long(self):
+    """Asserts that result raises 400 for wildly invalid task IDs."""
+    self.set_as_privileged_user()
+    resp = self.post_prpc(
+        'GetResult',
+        swarming_api_pb2.TaskIdWithPerfRequest(task_id='12310' * 10),
+        expect_errors=True)
+    self.assertEqual(resp.status, '400 Bad Request')
+
+  def test_result_ok(self):
+    """Asserts that result produces a result entity."""
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    self.set_as_bot()
+    self.bot_poll()
+
+    # pending task
+    self.set_as_user()
+    _, task_id = self.client_create_task_raw()
+    response = self.post_prpc(
+        'GetResult', swarming_api_pb2.TaskIdWithPerfRequest(task_id=task_id))
+    expected = _encode_as_dict(
+        swarming_api_pb2.TaskResultResponse(),
+        created_ts=fmtdate(self.now),
+        failure=False,
+        internal_failure=False,
+        modified_ts=fmtdate(self.now),
+        name='job1',
+        server_versions=[u'v1a'],
+        state='PENDING',
+        tags=[
+            u'a:tag',
+            u'authenticated:user:user@example.com',
+            u'os:Amiga',
+            u'pool:default',
+            u'priority:20',
+            u'realm:none',
+            u'service_account:none',
+            u'swarming.pool.template:none',
+            u'swarming.pool.version:pools_cfg_rev',
+            u'user:joe@localhost',
+        ],
+        task_id='5cee488008810',
+        user='joe@localhost',
+    )
+    actual = swarming_api_pb2.TaskResultResponse()
+    _decode(response.body, actual)
+    self.assertEqual(expected, _encode_as_dict(actual))
+
+    # no bot started: running task
+    run_id = task_id[:-1] + '1'
+    response = self.post_prpc(
+        'GetResult',
+        swarming_api_pb2.TaskIdWithPerfRequest(task_id=run_id),
+        expect_errors=True)
+    self.assertEqual(response.status, '404 Not Found')
+
+    # run as bot
+    self.set_as_bot()
+    self.bot_poll()
+
+    self.set_as_user()
+    response = self.post_prpc(
+        'GetResult', swarming_api_pb2.TaskIdWithPerfRequest(task_id=run_id))
+    expected_fields = self.gen_run_result(current_task_slice=0,
+                                          bot_idle_since_ts=fmtdate(self.now),
+                                          created_ts=fmtdate(self.now),
+                                          modified_ts=fmtdate(self.now),
+                                          started_ts=fmtdate(self.now))
+    expected = _encode_as_dict(swarming_api_pb2.TaskResultResponse(),
+                               **expected_fields)
+    actual = swarming_api_pb2.TaskResultResponse()
+    _decode(response.body, actual)
+    self.assertEqual(expected, _encode_as_dict(actual))
+
+  def test_result_completed_task(self):
+    """Tests that completed tasks are correctly reported."""
+    self.set_as_bot()
+    self.bot_poll()
+    self.set_as_user()
+    self.client_create_task_raw()
+    self.set_as_bot()
+    task_id = self.bot_run_task()
+    # First ask without perf metadata.
+    self.set_as_user()
+    response = self.post_prpc(
+        'GetResult', swarming_api_pb2.TaskIdWithPerfRequest(task_id=task_id))
+
+    performance_stats = swarming_api_pb2.PerformanceStats()
+    self.gen_perf_stats_prpc(performance_stats)
+    expected_fields = self.gen_run_result(
+        performance_stats=_encode_as_dict(performance_stats),
+        bot_idle_since_ts=fmtdate(self.now),
+        completed_ts=fmtdate(self.now),
+        costs_usd=[0.1],
+        created_ts=fmtdate(self.now),
+        duration=0.1,
+        exit_code=0,
+        current_task_slice=0,
+        modified_ts=fmtdate(self.now),
+        run_id=task_id,
+        started_ts=fmtdate(self.now),
+        state=u'COMPLETED',
+        task_id=task_id)
+    expected = _encode_as_dict(swarming_api_pb2.TaskResultResponse(),
+                               **expected_fields)
+    actual = swarming_api_pb2.TaskResultResponse()
+    _decode(response.body, actual)
+    self.assertEqual(expected, _encode_as_dict(actual))
+
+
 if __name__ == '__main__':
   if '-v' in sys.argv:
     unittest.TestCase.maxDiff = None

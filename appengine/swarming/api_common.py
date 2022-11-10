@@ -5,6 +5,8 @@
 """
 
 import endpoints
+from google.appengine.ext import ndb
+
 from components import datastore_utils
 from server import task_queues
 from server import bot_management
@@ -140,3 +142,83 @@ def list_bot_tasks(bot_id, start, end, sort, state, cursor, limit):
   q = task_result.get_run_results_query(start, end, sort, state, bot_id)
   items, cursor = datastore_utils.fetch_page(q, limit, cursor)
   return items, cursor
+
+
+def to_keys(task_id):
+  """Returns request and result keys, handling failure."""
+  try:
+    return task_pack.get_request_and_result_keys(task_id)
+  except ValueError:
+    raise endpoints.BadRequestException('%s is an invalid key.' % task_id)
+
+
+# Used by _get_task_request_async(), clearer than using True/False and important
+# as this is part of the security boundary.
+CANCEL = object()
+VIEW = object()
+
+
+@ndb.tasklet
+def get_task_request_async(task_id, request_key, viewing):
+  """Returns the TaskRequest corresponding to a task ID.
+
+  Enforces the ACL for users. Allows bots all access for the moment.
+
+  Returns:
+    TaskRequest instance.
+  """
+  request = yield request_key.get_async()
+  if not request:
+    raise endpoints.NotFoundException('%s not found.' % task_id)
+  if viewing == VIEW:
+    realms.check_task_get_acl(request)
+  elif viewing == CANCEL:
+    realms.check_task_cancel_acl(request)
+  else:
+    raise endpoints.InternalServerErrorException('_get_task_request_async()')
+  raise ndb.Return(request)
+
+
+def get_request_and_result(task_id, viewing, trust_memcache):
+  """Returns the TaskRequest and task result corresponding to a task ID.
+
+  For the task result, first do an explict lookup of the caches, and then decide
+  if it is necessary to fetch from the DB.
+
+  Arguments:
+    task_id: task ID as provided by the user.
+    viewing: one of _CANCEL or _VIEW
+    trust_memcache: bool to state if memcache should be trusted for running
+        task. If False, when a task is still pending/running, do a DB fetch.
+
+  Returns:
+    tuple(TaskRequest, result): result can be either for a TaskRunResult or a
+                                TaskResultSummay.
+  """
+  request_key, result_key = to_keys(task_id)
+  # The task result has a very high odd of taking much more time to fetch than
+  # the TaskRequest, albeit it is the TaskRequest that enforces ACL. Do the task
+  # result fetch first, the worst that will happen is unnecessarily fetching the
+  # task result.
+  result_future = result_key.get_async(use_cache=True,
+                                       use_memcache=True,
+                                       use_datastore=False)
+
+  # The TaskRequest has P(99.9%) chance of being fetched from memcache since it
+  # is immutable.
+  request_future = get_task_request_async(task_id, request_key, viewing)
+
+  result = result_future.get_result()
+  if (not result or (result.state in task_result.State.STATES_RUNNING
+                     and not trust_memcache)):
+    # Either the entity is not in cache, or we don't trust memcache for a
+    # running task result. Do the DB fetch, which is slow.
+    result = result_key.get(use_cache=False,
+                            use_memcache=False,
+                            use_datastore=True)
+
+  request = request_future.get_result()
+
+  if not result:
+    raise endpoints.NotFoundException('%s not found.' % task_id)
+  return request, result

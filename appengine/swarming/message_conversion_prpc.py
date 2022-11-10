@@ -5,9 +5,9 @@
 import json
 
 from proto.api import swarming_api_pb2
-from server import task_pack
 from server import task_result
 from server import task_request
+from server import task_pack
 
 
 class ProtoFactory(object):
@@ -240,7 +240,6 @@ def task_result_response(result):
     if run_id:
       out.run_id = run_id
   return out
-
 
 def bot_tasks_response(items, cursor):
   out = swarming_api_pb2.TaskListResponse()
