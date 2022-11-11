@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "828aec75_027620ff",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-11-11T01:30:18Z",
+      "side": 0,
+      "message": "what this new line did wrong to deserve deletion?",
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
