@@ -354,6 +354,10 @@ def db():
       # invocations.
       permission('resultdb.invocations.setProducerResource', internal=True),
       permission('resultdb.invocations.exportToBigQuery', internal=True),
+      # Allow LUCI Analysis to read buildbucket builds (and their
+      # ResultDB invocations) for ingestion.
+      permission('buildbucket.builds.get'),
+      include('role/resultdb.reader'),
   ])
 
   # Allows to see the list of builders and read builds in a LUCI project.
