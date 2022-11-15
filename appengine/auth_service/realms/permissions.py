@@ -296,6 +296,12 @@ def db():
           permission('buildbucket.builds.cancel'),
       ])
   role(
+      'role/buildbucket.subscriptionsCreator',
+      [
+          # Permission to call buildbucket's SubscribeBuildsV2PubSub RPC.
+          permission('buildbucket.subscriptions.create'),
+      ])
+  role(
       'role/buildbucket.triggerer',
       [
           include('role/buildbucket.reader'),
