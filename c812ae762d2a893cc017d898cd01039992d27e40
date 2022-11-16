@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c65ddac_b792a454",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003293
+      },
+      "writtenOn": "2022-11-16T03:04:29Z",
+      "side": 1,
+      "message": "This will be auto-deployed to chrome-infra-auth-dev when it lands. Updating prod requires a push similar to https://chrome-internal.googlesource.com/infradata/gae/+/5454acc14fb818a2f74c1f0abf69d8e3191c965a",
+      "revId": "c812ae762d2a893cc017d898cd01039992d27e40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93902fd1_70255b55",
@@ -14,6 +31,30 @@
       "writtenOn": "2022-11-16T02:41:10Z",
       "side": 1,
       "message": "Would you be able to help us create this group in chrome-infra-auth + chrome-infra-auth-dev?\n\nOn dev, it should contain:\nluci-analysis-dev@appspot.gserviceaccount.com\nchops-weetbix-dev@appspot.gserviceaccount.com\n\nOn prod, it should contain:\nluci-analysis@appspot.gserviceaccount.com",
+      "range": {
+        "startLine": 519,
+        "startChar": 28,
+        "endLine": 519,
+        "endChar": 55
+      },
+      "revId": "c812ae762d2a893cc017d898cd01039992d27e40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "496ddb8d_7125da49",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1003293
+      },
+      "writtenOn": "2022-11-16T03:04:29Z",
+      "side": 1,
+      "message": "Created\nhttps://chrome-infra-auth-dev.appspot.com/auth/groups/resultdb-internal-readers\nhttps://chrome-infra-auth.appspot.com/auth/groups/resultdb-internal-readers",
+      "parentUuid": "93902fd1_70255b55",
       "range": {
         "startLine": 519,
         "startChar": 28,
