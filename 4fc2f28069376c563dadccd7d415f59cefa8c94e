@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0405d2a_38a16471",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "There already is a `swarming.v1` protobuf which is currently used. So I added `_api` to distinguish it from that. Possibly `swarming_external` could also be a name?",
+      "parentUuid": "4f236f55_dd815531",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "afca0cd8_28c17214",
         "filename": "appengine/swarming/proto/api/swarming_api.proto",
         "patchSetId": 15
@@ -54,6 +78,30 @@
       "writtenOn": "2022-11-11T00:58:18Z",
       "side": 1,
       "message": "just `Bots`\n\nit is already a service by being an RPC service",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 18
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c37b7b0_7aae2989",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afca0cd8_28c17214",
       "range": {
         "startLine": 12,
         "startChar": 8,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0045f85_abf8b414",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Tried to include this nit in other places where appropriate.",
+      "parentUuid": "9a4c7706_a80de8cd",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 12
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9204a6fa_6fa0430e",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-11-11T00:58:18Z",
       "side": 1,
       "message": "nit: just BotInfo\n\n\"...Response\" is usually a suffix indicating it is specifically RPC response, i.e. it is rare to see XxxResponse as submessages anywhere else. Since BotInfo is reused in BotInfoListResponse, it would be cleaner just to name it BotInfo",
+      "range": {
+        "startLine": 14,
+        "startChar": 34,
+        "endLine": 14,
+        "endChar": 49
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "274b6b52_ec991b02",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9204a6fa_6fa0430e",
       "range": {
         "startLine": 14,
         "startChar": 34,
@@ -133,6 +229,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da88436b_75181194",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Ooops!",
+      "parentUuid": "b992bc2c_4218378d",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 59
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32320a6f_5e5b1e2a",
@@ -146,6 +266,30 @@
       "writtenOn": "2022-11-11T00:58:18Z",
       "side": 1,
       "message": "Tasks",
+      "range": {
+        "startLine": 55,
+        "startChar": 8,
+        "endLine": 55,
+        "endChar": 19
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "800db468_5d0c4d12",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32320a6f_5e5b1e2a",
       "range": {
         "startLine": 55,
         "startChar": 8,
@@ -179,6 +323,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92257af0_c404551e",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5736d90c_517c6cf4",
+      "range": {
+        "startLine": 56,
+        "startChar": 5,
+        "endLine": 56,
+        "endChar": 12
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6183b0a0_7dde630a",
@@ -192,6 +360,30 @@
       "writtenOn": "2022-11-11T00:58:18Z",
       "side": 1,
       "message": "I don\u0027t see a reason why TaskService and TaskService have to be separate. Better to put everything into Tasks.",
+      "range": {
+        "startLine": 71,
+        "startChar": 8,
+        "endLine": 71,
+        "endChar": 20
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9175f6d7_7fe5f848",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6183b0a0_7dde630a",
       "range": {
         "startLine": 71,
         "startChar": 8,
@@ -225,6 +417,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e463d6ba_8fdc2391",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd2220e1_6652b0b1",
+      "range": {
+        "startLine": 93,
+        "startChar": 8,
+        "endLine": 93,
+        "endChar": 21
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7d2577c_55d5a850",
@@ -238,6 +454,30 @@
       "writtenOn": "2022-11-11T00:58:18Z",
       "side": 1,
       "message": "this looks outdated",
+      "range": {
+        "startLine": 122,
+        "startChar": 18,
+        "endLine": 122,
+        "endChar": 32
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "251a91bf_52526842",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7d2577c_55d5a850",
       "range": {
         "startLine": 122,
         "startChar": 18,
@@ -273,6 +513,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f8617995_3a4f1086",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Did this in response to a strange warning I received when compiling:\n\n```\nproto/api/swarming_api.proto:793:3: \"RUNNING\" is already defined in \"swarming_api.v1\".\nproto/api/swarming_api.proto:793:3: Note that enum values use C++ scoping rules, meaning that enum values are siblings of\ntheir type, not children of it.  Therefore, \"RUNNING\" must be unique within \"swarming_api.v1\", not just within \"TaskState\"\n```\n\nI basically got this warning since there is a duplicated `RUNNING` in both this `TaskQueryState` enum and the `TaskState` enum. \n\nSo what I did here fixes the warning but perhaps there is a better way to do this? I could rename the duplicated states themselves like `RUNNING -\u003e RUNNING_QUERY` etc\n\nAfter looking online this was the suggested fix.",
+      "parentUuid": "71baea0c_65cb2edc",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 14
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5e0c89f_d3080fe9",
         "filename": "appengine/swarming/proto/api/swarming_api.proto",
         "patchSetId": 15
@@ -284,6 +548,30 @@
       "writtenOn": "2022-11-11T00:58:18Z",
       "side": 1,
       "message": "this is not helpful... what encoding? what makes it deterministic? (I recognize the style of this comment, you probably copy-pasted it from existing proto).",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 76
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "021dfacc_a112a718",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Removed them!",
+      "parentUuid": "b5e0c89f_d3080fe9",
       "range": {
         "startLine": 198,
         "startChar": 0,
@@ -317,6 +605,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d6e9d32_97648730",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42f0ef7b_2eef167b",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 17
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86d21994_736cae23",
@@ -330,6 +642,30 @@
       "writtenOn": "2022-11-11T00:58:18Z",
       "side": 1,
       "message": "not helpful",
+      "range": {
+        "startLine": 341,
+        "startChar": 2,
+        "endLine": 341,
+        "endChar": 50
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5249a9b4_ae982210",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86d21994_736cae23",
       "range": {
         "startLine": 341,
         "startChar": 2,
@@ -363,6 +699,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfe9bd32_4424ce90",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Copied this over from old code - corrected to have `ids` first.",
+      "parentUuid": "7c6b39c8_f6da286d",
+      "range": {
+        "startLine": 560,
+        "startChar": 8,
+        "endLine": 560,
+        "endChar": 23
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "111d3597_9b12c6b4",
@@ -386,6 +746,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4003566c_7dada14b",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "111d3597_9b12c6b4",
+      "range": {
+        "startLine": 590,
+        "startChar": 9,
+        "endLine": 590,
+        "endChar": 16
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7791f28_cbb3cbdd",
@@ -399,6 +783,30 @@
       "writtenOn": "2022-11-11T00:58:18Z",
       "side": 1,
       "message": "start before end",
+      "range": {
+        "startLine": 599,
+        "startChar": 0,
+        "endLine": 600,
+        "endChar": 38
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09025d9c_a1d20711",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7791f28_cbb3cbdd",
       "range": {
         "startLine": 599,
         "startChar": 0,
@@ -434,6 +842,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e17ff536_cf205a02",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Added a comment. IIRC its to be compatible with the previous version of the api.",
+      "parentUuid": "9d5253de_34040977",
+      "range": {
+        "startLine": 604,
+        "startChar": 8,
+        "endLine": 604,
+        "endChar": 16
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3676d4fe_e137498b",
         "filename": "appengine/swarming/proto/api/swarming_api.proto",
         "patchSetId": 15
@@ -445,6 +877,30 @@
       "writtenOn": "2022-11-11T00:58:18Z",
       "side": 1,
       "message": "all byte sizes should use int64\n\nint32 is just two gigabytes, there are individual files that are bigger than that",
+      "range": {
+        "startLine": 610,
+        "startChar": 2,
+        "endLine": 610,
+        "endChar": 7
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "003138b0_315f947a",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3676d4fe_e137498b",
       "range": {
         "startLine": 610,
         "startChar": 2,
@@ -480,6 +936,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab1ca913_282beb08",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "It will be \"false\" if the task was actually cancelled. Added a doc comment. It seems that the legacy api uses `ok` field to indicate success / failure... I have added a doc comment. I think this is a case of \"we should change as little as possible\" vs \"we should make some small changes\".",
+      "parentUuid": "d6a7d5d6_f25f3a77",
+      "range": {
+        "startLine": 641,
+        "startChar": 7,
+        "endLine": 641,
+        "endChar": 9
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0899acec_ff765ad2",
         "filename": "appengine/swarming/proto/api/swarming_api.proto",
         "patchSetId": 15
@@ -491,6 +971,30 @@
       "writtenOn": "2022-11-11T00:58:18Z",
       "side": 1,
       "message": "why?..",
+      "range": {
+        "startLine": 649,
+        "startChar": 2,
+        "endLine": 649,
+        "endChar": 36
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db7dacc1_f3ade755",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "It seems like a pattern of the legacy API where many of these responses return a timestamp of \"now\". Not sure why but leaving it here for backcompat reasons.",
+      "parentUuid": "0899acec_ff765ad2",
       "range": {
         "startLine": 649,
         "startChar": 2,
@@ -524,6 +1028,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "010aec83_cfdfb33d",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d586fd05_8da518e7",
+      "range": {
+        "startLine": 774,
+        "startChar": 0,
+        "endLine": 775,
+        "endChar": 52
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a196a6b4_b855037b",
@@ -537,6 +1065,30 @@
       "writtenOn": "2022-11-11T00:58:18Z",
       "side": 1,
       "message": "this is stale",
+      "range": {
+        "startLine": 781,
+        "startChar": 0,
+        "endLine": 785,
+        "endChar": 33
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bb7d59b_43ec1cd3",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a196a6b4_b855037b",
       "range": {
         "startLine": 781,
         "startChar": 0,
@@ -570,6 +1122,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "faa0c7ef_3d58ff56",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 983,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c428436_677d27ed",
+      "range": {
+        "startLine": 982,
+        "startChar": 0,
+        "endLine": 983,
+        "endChar": 38
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ee4bec4_4cf20458",
@@ -583,6 +1159,30 @@
       "writtenOn": "2022-11-11T00:58:18Z",
       "side": 1,
       "message": "consistently order fields across messages: bot_id, limit, cursor.",
+      "range": {
+        "startLine": 987,
+        "startChar": 0,
+        "endLine": 989,
+        "endChar": 18
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ea1f4c7_40584c4d",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 989,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ee4bec4_4cf20458",
       "range": {
         "startLine": 987,
         "startChar": 0,
@@ -616,6 +1216,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13ad6302_14469941",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 990,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e9f50ac_cf767958",
+      "range": {
+        "startLine": 990,
+        "startChar": 22,
+        "endLine": 990,
+        "endChar": 28
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27b59bff_1ff6c805",
@@ -629,6 +1253,30 @@
       "writtenOn": "2022-11-11T00:58:18Z",
       "side": 1,
       "message": "int64 since these are technically also about byte sizes (of a swarming task log)",
+      "range": {
+        "startLine": 1051,
+        "startChar": 0,
+        "endLine": 1052,
+        "endChar": 19
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17b4671b_b257e061",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-21T16:25:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27b59bff_1ff6c805",
       "range": {
         "startLine": 1051,
         "startChar": 0,
