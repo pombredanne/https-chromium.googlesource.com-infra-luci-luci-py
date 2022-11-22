@@ -150,6 +150,7 @@ def get_dimensions(devices):
       'device_os_flavor': ['product.brand', 'product.system.brand'],
       'device_os_type': ['build.type'],
       'device_type': ['product.device', 'build.product', 'product.board'],
+      'device_abi': ['product.cpu.abi'],
   }
   for dim in dimension_properties:
     dimensions[dim] = set()
