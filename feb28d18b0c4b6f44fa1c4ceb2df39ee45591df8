@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43dca84b_821fb96e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-11-28T22:25:25Z",
+      "side": 1,
+      "message": "Had to change it a bit to keep python2 compatibility, since this code still actually executes with python2 as well.",
+      "revId": "feb28d18b0c4b6f44fa1c4ceb2df39ee45591df8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
