@@ -16,6 +16,24 @@
       "message": "what this new line did wrong to deserve deletion?",
       "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e291aaad_ad13c33e",
+        "filename": "appengine/swarming/message_conversion.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-29T16:35:08Z",
+      "side": 0,
+      "message": "it\u0027s syntactically insignificant whitespace and therefore must be destroyed!",
+      "parentUuid": "828aec75_027620ff",
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

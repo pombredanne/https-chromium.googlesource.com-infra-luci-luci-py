@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c331c087_53dd91f5",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-29T16:35:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f83c3461_c9ddb116",
+      "range": {
+        "startLine": 33,
+        "startChar": 11,
+        "endLine": 33,
+        "endChar": 39
+      },
+      "revId": "b76fde48c782ee468b8b281b8c155ea70fd70d6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a887ca69_95cc3d56",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-11T01:30:18Z",
       "side": 1,
       "message": "I\u0027m not a fan of this duplication. Realm checks in /tasks/new are very non-trivial and we should not be copy-pasting them. These copies will also have tendency to diverge.\n\nCan you remind me what\u0027s wrong with moving all the logic into a single place (e.g. here) and then making Endpoints code be simple shim that takes proto response and converts it to protorpc crap?\n\nAlternatively, how about we move *all* the logic (including permission checks) into some base layer that responds with some encoding-agnosting objects (like ndb entities), and then separately wrap it twice to get protobuf RPC and endpoints RPC.",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 39
+      },
+      "revId": "b76fde48c782ee468b8b281b8c155ea70fd70d6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7acc985_2873aeaf",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-29T16:35:08Z",
+      "side": 1,
+      "message": "Main reason I did not put realm checks inside the common code is that I think we should be doing authorization before processing a request. \n\nWe must construct a shared \"request\" type which is subsequently used in common code. Converting to that request type will involve some processing. The shared \"request type\" in current implementation is function arguments. \n\nConcretely, in the case of `ListBotTasks` there is the issue of parsing the date information for both fields in order to execute common code. If we have the common code execute the rhelm check we will end up doing some processing (parsing dates) on unauthorized requests. So I thought its better to do the rhelm check as early as possible, outside common code and be consistent about it. \n\nThat being said - I could be totally wrong about the first principle - maybe it is okay to do that? Especially if it simplifies the code a lot. I went with the \"duplication\" is fine route.",
+      "parentUuid": "a887ca69_95cc3d56",
       "range": {
         "startLine": 41,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49aadbe1_4ba1767c",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-29T16:35:08Z",
+      "side": 1,
+      "message": "Agree with your approach - I initially wrote this based on a misunderstanding of how None values are handled by proto constructor. \n\nFor example I thought:\n```\nswarming.ResponseType(field\u003dNone)\n```\n\nwould throw an exception. If you do swarming.ResponseType().field \u003d None it will throw an exception so I erroneously based my understanding on that 😕\n\nThe factories were intended to make the writing of those null checks a lot easier and make things more declarative.",
+      "parentUuid": "bfe5abd4_fee4ac0b",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 23
+      },
+      "revId": "b76fde48c782ee468b8b281b8c155ea70fd70d6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "010d977b_68bcd95c",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-11T01:30:18Z",
       "side": 1,
       "message": "please del, we aren\u0027t going to port this to python3 and `six` just complicates code",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 10
+      },
+      "revId": "b76fde48c782ee468b8b281b8c155ea70fd70d6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "647d63e6_29a9049a",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-29T16:35:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "010d977b_68bcd95c",
       "range": {
         "startLine": 9,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1409865_87b608fd",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-29T16:35:08Z",
+      "side": 1,
+      "message": "I thought this was a class haha",
+      "parentUuid": "ed1fe59a_dfe5d1da",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 20
+      },
+      "revId": "b76fde48c782ee468b8b281b8c155ea70fd70d6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eeb40226_861b85db",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-11-11T01:30:18Z",
       "side": 1,
       "message": "why?...\n\nIt is responsibility of pRPC server code to escape any output.",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 37
+      },
+      "revId": "b76fde48c782ee468b8b281b8c155ea70fd70d6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66a6a50e_a202d350",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-11-29T16:35:08Z",
+      "side": 1,
+      "message": "I\u0027m assuming because you might open this in a browser? I feel like it is probably a good idea to just escape since we don\u0027t know what user input could have been used to construct `e.message`.",
+      "parentUuid": "eeb40226_861b85db",
       "range": {
         "startLine": 65,
         "startChar": 27,
