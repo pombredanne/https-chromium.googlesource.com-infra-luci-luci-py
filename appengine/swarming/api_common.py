@@ -223,3 +223,11 @@ def get_request_and_result(task_id, viewing, trust_memcache):
   if not result:
     raise endpoints.NotFoundException('%s not found.' % task_id)
   return request, result
+
+
+def cancel_task(task_id, kill_running):
+  request_key, result_key = to_keys(task_id)
+  request_obj = get_task_request_async(task_id, request_key,
+                                       CANCEL).get_result()
+  return task_scheduler.cancel_task(request_obj, result_key, kill_running
+                                    or False, None)

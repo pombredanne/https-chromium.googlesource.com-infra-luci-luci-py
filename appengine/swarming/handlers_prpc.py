@@ -123,6 +123,13 @@ class TaskService(prpc_helpers.SwarmingPRPCService):
         request.task_id, request_key, api_common.VIEW).get_result()
     return message_conversion_prpc.task_request_response(request_obj)
 
+  @prpc_helpers.prpc_method
+  @auth.require(acl.can_access, log_identity=True)
+  def CancelTask(self, request, _context):
+    ok, was_running = api_common.cancel_task(request.task_id,
+                                             request.kill_running)
+    return swarming_api_pb2.CancelResponse(ok=ok, was_running=was_running)
+
 
 class SwarmingService:
   DESCRIPTION = swarming_api_prpc_pb2.SwarmingServiceDescription
