@@ -4,6 +4,7 @@
 
 """This module defines Swarming Server frontend pRPC handlers."""
 import datetime
+import logging
 
 from components import prpc
 from components import auth
@@ -111,6 +112,16 @@ class TaskService(prpc_helpers.SwarmingPRPCService):
                                                     e.message)
     return message_conversion_prpc.task_result_response(
         result, request.include_performance_stats)
+
+
+  @prpc_helpers.prpc_method
+  @auth.require(acl.can_access, log_identity=True)
+  def GetRequest(self, request, _context):
+    logging.debug('%s', request)
+    request_key, _ = api_common.to_keys(request.task_id)
+    request_obj = api_common.get_task_request_async(
+        request.task_id, request_key, api_common.VIEW).get_result()
+    return message_conversion_prpc.task_request_response(request_obj)
 
 
 class SwarmingService:
