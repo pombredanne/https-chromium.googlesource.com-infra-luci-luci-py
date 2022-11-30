@@ -1050,11 +1050,15 @@ def get_state():
     nb_files_in_temp = len(os.listdir(tmpdir))
   except OSError:
     nb_files_in_temp = 'N/A'
+  original_cwd = os.getcwd()
+  final_cwd = file_path.get_native_path_case(original_cwd)
   state = {
       'audio': get_audio(),
       'cpu_name': get_cpuinfo().get('name'),
       'cost_usd_hour': get_cost_hour(),
-      'cwd': file_path.get_native_path_case(os.getcwd()),
+      'cwd': final_working_dir,
+      'cwd_changed': final_cwd != original_cwd,
+      'original_cwd': original_cwd,
       'disks': get_disks_info(),
       # Only including a subset of the environment variable, as state is not
       # designed to sustain large load at the moment.
