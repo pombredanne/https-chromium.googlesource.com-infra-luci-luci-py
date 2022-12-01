@@ -95,6 +95,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3634e53_264aeedf",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-01T20:34:51Z",
+      "side": 1,
+      "message": "Ok, let\u0027s keep it as if for now and come back later if there are issues like lots of diverging copy-pasta.",
+      "parentUuid": "b7acc985_2873aeaf",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 39
+      },
+      "revId": "b76fde48c782ee468b8b281b8c155ea70fd70d6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfe5abd4_fee4ac0b",
@@ -273,6 +297,30 @@
       "side": 1,
       "message": "I\u0027m assuming because you might open this in a browser? I feel like it is probably a good idea to just escape since we don\u0027t know what user input could have been used to construct `e.message`.",
       "parentUuid": "eeb40226_861b85db",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 37
+      },
+      "revId": "b76fde48c782ee468b8b281b8c155ea70fd70d6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef78b1d1_b1ec0f94",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-01T20:34:51Z",
+      "side": 1,
+      "message": "Even so, this cgi.escape(...) should be in https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/components/components/prpc/server_base.py;l\u003d308?q\u003d%22self._response_body_and_status_writer%22\u0026ss\u003dchromium\n\nAt `ctx.set_details` level, there\u0027s no HTML or HTTP. It is generic API response level that shouldn\u0027t know anything about underlying transport (which can be JSON+HTTP or binary+grpc or whatever). cgi.escape(...) is detail of pRPC transport and should be handled in pRPC layer.",
+      "parentUuid": "66a6a50e_a202d350",
       "range": {
         "startLine": 65,
         "startChar": 27,
