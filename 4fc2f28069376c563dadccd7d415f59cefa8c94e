@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c22f3fb_ee514661",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-01T19:48:24Z",
+      "side": 1,
+      "message": "How about \"swarming.v2\" then since \"v1\" is taken and I assume we can\u0027t delete it? This what version suffixes are for after all.\n\n\"_api\" is redundant, it\u0027s like naming scripts \"script_python.py\"",
+      "parentUuid": "f0405d2a_38a16471",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "afca0cd8_28c17214",
         "filename": "appengine/swarming/proto/api/swarming_api.proto",
         "patchSetId": 15
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "afca0cd8_28c17214",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 18
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9efa364c_c2a006a5",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-01T19:48:24Z",
+      "side": 1,
+      "message": "I think plural (\"Bots\", \"Tasks\") is better for services, since using singular risks conflicting with actual messages for things (\"message Bot\", \"message Task\").",
+      "parentUuid": "2c37b7b0_7aae2989",
       "range": {
         "startLine": 12,
         "startChar": 8,
@@ -537,6 +585,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ebafae0_4cb9498f",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-01T19:48:24Z",
+      "side": 1,
+      "message": "The guidance for this is https://google.aip.dev/126 and the solution it recommends is: a) try to avoid duplicate names in the first place; b) if not, consistently prefix with enum name, e..g \"STATE_PENDING\", \"STATE_RUNNING\", ...\n\nUnfortunately the conflicting enum is also named TaskState... Maybe rename \"enum State\" into \"enum StateQuery\" and use QUERY_ prefix.",
+      "parentUuid": "f8617995_3a4f1086",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 14
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5e0c89f_d3080fe9",
         "filename": "appengine/swarming/proto/api/swarming_api.proto",
         "patchSetId": 15
@@ -864,6 +936,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad081474_7bfbb1b1",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-01T19:48:24Z",
+      "side": 1,
+      "message": "Ack, though I have a feeling we can switch to Duration, we are switching API anyway and clients will need to do some kind of migration anyway",
+      "parentUuid": "e17ff536_cf205a02",
+      "range": {
+        "startLine": 604,
+        "startChar": 8,
+        "endLine": 604,
+        "endChar": 16
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3676d4fe_e137498b",
@@ -913,6 +1009,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2c970f05_2c4bd834",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-01T19:48:24Z",
+      "side": 1,
+      "message": "not fully done, initial_size is still int32",
+      "parentUuid": "003138b0_315f947a",
+      "range": {
+        "startLine": 610,
+        "startChar": 2,
+        "endLine": 610,
+        "endChar": 7
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d6a7d5d6_f25f3a77",
         "filename": "appengine/swarming/proto/api/swarming_api.proto",
         "patchSetId": 15
@@ -948,6 +1068,30 @@
       "side": 1,
       "message": "It will be \"false\" if the task was actually cancelled. Added a doc comment. It seems that the legacy api uses `ok` field to indicate success / failure... I have added a doc comment. I think this is a case of \"we should change as little as possible\" vs \"we should make some small changes\".",
       "parentUuid": "d6a7d5d6_f25f3a77",
+      "range": {
+        "startLine": 641,
+        "startChar": 7,
+        "endLine": 641,
+        "endChar": 9
+      },
+      "revId": "4fc2f28069376c563dadccd7d415f59cefa8c94e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cee25ec2_078681d5",
+        "filename": "appengine/swarming/proto/api/swarming_api.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-01T19:48:24Z",
+      "side": 1,
+      "message": "Let\u0027s rename it to \"canceled\" since \"ok\" is too generic. This will also be more consistent with \"deleted\" bool in DeleteResponse.",
+      "parentUuid": "ab1ca913_282beb08",
       "range": {
         "startLine": 641,
         "startChar": 7,
