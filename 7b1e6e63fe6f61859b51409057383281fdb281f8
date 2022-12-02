@@ -16,6 +16,29 @@
       "message": "+5/-390 ❤️\n\nNot sure about the test change, but... I\u0027m guessing it\u0027s just a crummy test?\n\nI\u0027m not sure about os.path.normcase; I would just skip it. IIUC it\u0027s just going to lowercase everything and clean slashes, but we know slashes are correct from os.getcwd, and I\u0027m not sure that lowercasing helps. On other platforms it\u0027s a nop.",
       "revId": "7b1e6e63fe6f61859b51409057383281fdb281f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6ed29b7_144bc5b2",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-02T21:29:36Z",
+      "side": 1,
+      "message": "nit: del",
+      "range": {
+        "startLine": 433,
+        "startChar": 1,
+        "endLine": 433,
+        "endChar": 22
+      },
+      "revId": "7b1e6e63fe6f61859b51409057383281fdb281f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
