@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a5b6b7a_958ba7b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-12-02T20:48:15Z",
+      "side": 1,
+      "message": "+5/-390 ❤️\n\nNot sure about the test change, but... I\u0027m guessing it\u0027s just a crummy test?\n\nI\u0027m not sure about os.path.normcase; I would just skip it. IIUC it\u0027s just going to lowercase everything and clean slashes, but we know slashes are correct from os.getcwd, and I\u0027m not sure that lowercasing helps. On other platforms it\u0027s a nop.",
+      "revId": "7b1e6e63fe6f61859b51409057383281fdb281f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
