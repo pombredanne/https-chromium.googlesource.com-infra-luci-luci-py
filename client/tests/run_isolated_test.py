@@ -1549,6 +1549,8 @@ class RunIsolatedTestOutputFiles(RunIsolatedTestBase):
 class RunIsolatedJsonTest(RunIsolatedTestBase):
   # Similar to RunIsolatedTest but adds the hacks to process ISOLATED_OUTDIR to
   # generate a json result file.
+  maxDiff = None
+
   def setUp(self):
     super(RunIsolatedJsonTest, self).setUp()
 
