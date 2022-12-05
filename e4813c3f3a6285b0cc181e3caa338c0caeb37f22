@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c116d890_42e0e28d",
+        "filename": "appengine/components/components/gsm.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-12-05T18:15:54Z",
+      "side": 1,
+      "message": "Should this be `fetched.exception`?",
+      "range": {
+        "startLine": 102,
+        "startChar": 56,
+        "endLine": 102,
+        "endChar": 78
+      },
+      "revId": "e4813c3f3a6285b0cc181e3caa338c0caeb37f22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edf87af1_7ae97c15",
+        "filename": "appengine/components/components/gsm.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-12-05T18:15:54Z",
+      "side": 1,
+      "message": "Related to my other comment but is the intention behind the `_FetchOutcome` named tuple that there is either an `exception` or `value` set and not both?",
+      "range": {
+        "startLine": 116,
+        "startChar": 4,
+        "endLine": 116,
+        "endChar": 30
+      },
+      "revId": "e4813c3f3a6285b0cc181e3caa338c0caeb37f22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
