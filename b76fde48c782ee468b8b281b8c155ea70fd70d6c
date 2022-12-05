@@ -353,6 +353,30 @@
       },
       "revId": "b76fde48c782ee468b8b281b8c155ea70fd70d6c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "736b596e_d176c169",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-12-05T22:22:41Z",
+      "side": 1,
+      "message": "Should note that the `Web2appServer` would only be used by this swarming code so it could make sense to include it in the `appengine/swarming/prpc_helpers` file.",
+      "parentUuid": "4d7d7fd3_464cc676",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 37
+      },
+      "revId": "b76fde48c782ee468b8b281b8c155ea70fd70d6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
