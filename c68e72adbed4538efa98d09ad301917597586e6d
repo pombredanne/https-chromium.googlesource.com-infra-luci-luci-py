@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f6e4f8c_b078eec6",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-12-05T22:21:36Z",
+      "side": 1,
+      "message": "I use this function in test suite so leaving it public.",
+      "parentUuid": "f650e26a_a75b38eb",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 8
+      },
+      "revId": "c68e72adbed4538efa98d09ad301917597586e6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35f82ce9_32566862",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-01T20:34:51Z",
       "side": 1,
       "message": "\"returns None for unrecognized ones\"",
+      "range": {
+        "startLine": 54,
+        "startChar": 48,
+        "endLine": 54,
+        "endChar": 72
+      },
+      "revId": "c68e72adbed4538efa98d09ad301917597586e6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48f32f56_8d0332fb",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-12-05T22:21:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35f82ce9_32566862",
       "range": {
         "startLine": 54,
         "startChar": 48,

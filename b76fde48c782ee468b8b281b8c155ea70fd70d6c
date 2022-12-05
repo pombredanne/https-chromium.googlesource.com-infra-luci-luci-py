@@ -329,6 +329,30 @@
       },
       "revId": "b76fde48c782ee468b8b281b8c155ea70fd70d6c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d7d7fd3_464cc676",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-12-05T22:21:36Z",
+      "side": 1,
+      "message": "I decided to do some research on where the patterns in this file are from. Interestingly, this file is present in monorail here https://crsrc.org/i/appengine/monorail/api/monorail_servicer.py;l\u003d355?q\u003d%22cgi.escape%22%20language:python\n\nThey don\u0027t apply `cgi.escape` to all errors but rather any error which has a user input. \n\nI\u0027ve added `cgi.escape` to the swarming `_response_and_status_writer`. Should we consider adding it for individual error types instead?",
+      "parentUuid": "ef78b1d1_b1ec0f94",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 37
+      },
+      "revId": "b76fde48c782ee468b8b281b8c155ea70fd70d6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
