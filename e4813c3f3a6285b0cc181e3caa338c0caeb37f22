@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d5f6b94_b3b387cb",
+        "filename": "appengine/components/components/gsm.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-05T20:09:08Z",
+      "side": 1,
+      "message": "No. There are two cases here:\n1. There\u0027s a good previously known value. In that case self._latest.exception is None and we want to keep self._latest.exception as None, so that `_latest_or_raise` keeps returning the good known value.\n2. We never seen a good value before. Then self._latest.exception is not None. I decided to keep \"remembering\" this original error, instead of overriding it with a new error (most likely they are the same anyway, like \"No such secret\" or \"Permission denied\").",
+      "parentUuid": "c116d890_42e0e28d",
+      "range": {
+        "startLine": 102,
+        "startChar": 56,
+        "endLine": 102,
+        "endChar": 78
+      },
+      "revId": "e4813c3f3a6285b0cc181e3caa338c0caeb37f22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edf87af1_7ae97c15",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-05T18:15:54Z",
       "side": 1,
       "message": "Related to my other comment but is the intention behind the `_FetchOutcome` named tuple that there is either an `exception` or `value` set and not both?",
+      "range": {
+        "startLine": 116,
+        "startChar": 4,
+        "endLine": 116,
+        "endChar": 30
+      },
+      "revId": "e4813c3f3a6285b0cc181e3caa338c0caeb37f22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22d355f8_db213e8d",
+        "filename": "appengine/components/components/gsm.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-05T20:09:08Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "edf87af1_7ae97c15",
       "range": {
         "startLine": 116,
         "startChar": 4,
