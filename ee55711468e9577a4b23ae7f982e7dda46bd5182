@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c684849_9f527c30",
+        "filename": "appengine/swarming/proto/api/swarming_v2.proto",
+        "patchSetId": 19
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-05T20:14:14Z",
+      "side": 1,
+      "message": "nit: let\u0027s prefix these with SORT_ too for consistency. StateQuery and SortQuery are named similarly and will often be used together. It now looks weird that StateQuery values are prefixed with something, but SortQuery are not.",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 17
+      },
+      "revId": "ee55711468e9577a4b23ae7f982e7dda46bd5182",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
