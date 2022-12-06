@@ -127,7 +127,6 @@ class TasksService(prpc_helpers.SwarmingPRPCService):
   @prpc_helpers.prpc_method
   @auth.require(acl.can_access, log_identity=True)
   def GetRequest(self, request, _context):
-    logging.debug('%s', request)
     request_key, _ = api_common.to_keys(request.task_id)
     request_obj = api_common.get_task_request_async(
         request.task_id, request_key, api_common.VIEW).get_result()
@@ -139,6 +138,13 @@ class TasksService(prpc_helpers.SwarmingPRPCService):
     canceled, was_running = api_common.cancel_task(request.task_id,
                                                    request.kill_running)
     return swarming.CancelResponse(canceled=canceled, was_running=was_running)
+
+  @prpc_helpers.prpc_method
+  @auth.require(acl.can_access, log_identity=True)
+  def GetStdout(self, request, _context):
+    output, state = api_common.get_output(request.task_id, request.offset,
+                                          request.length)
+    return swarming.TaskOutputResponse(output=output, state=state)
 
 
 class SwarmingService:
