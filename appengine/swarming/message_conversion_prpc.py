@@ -160,8 +160,11 @@ def _cipd_pins(pin):
   return swarming.CipdPins(client_package=_cipd_package(pin.client_package), )
 
 
-def _result_db_info(out):
-  out.fields('hostname', 'invocation')
+def _result_db_info(info):
+  if info is None:
+    return None
+  return swarming.ResultDBInfo(hostname=info.hostname,
+                               invocation=info.invocation)
 
 
 def task_result_response(result, include_performance_stats=True):
@@ -219,3 +222,71 @@ def bot_tasks_response(items, cursor):
   out.items.extend([task_result_response(item) for item in items])
   out.now.GetCurrentTime()
   return out
+
+
+def _cache_entry(entry):
+  return swarming.CacheEntry(
+      name=entry.name,
+      path=entry.path,
+  )
+
+
+def _cipd_input(input):
+  return swarming.CipdInput(
+      server=input.server,
+      client_package=_cipd_package(input.client_package),
+      packages=[_cipd_package(package) for package in input.packages],
+  )
+
+
+def _task_properties(props):
+  return swarming.TaskProperties(
+      caches=[_cache_entry(entry) for entry in props.caches],
+      cas_input_root=_cas_reference(props.cas_input_root),
+      containment=swarming.Containment(
+          containment_type=props.containment.containment_type),
+      cipd_input=_cipd_input(props.cipd_input),
+      env_prefixes=_string_list_pairs_from_dict(props.env_prefixes),
+      env=[swarming.StringPair(key=k, value=v) for k, v in props.env.items()],
+      dimensions=_duplicate_string_pairs_from_dict(props.dimensions),
+      command=props.command,
+      outputs=props.outputs,
+      idempotent=props.idempotent,
+      io_timeout_secs=props.io_timeout_secs,
+      secret_bytes='<REDACTED>' if props.has_secret_bytes else None,
+      execution_timeout_secs=props.execution_timeout_secs,
+      grace_period_secs=props.grace_period_secs,
+  )
+
+
+def _task_slice(slice):
+  return swarming.TaskSlice(
+      properties=_task_properties(slice.properties),
+      expiration_secs=slice.expiration_secs,
+      wait_for_capacity=slice.wait_for_capacity,
+  )
+
+
+def task_request_response(request):
+  slices = [
+      _task_slice(request.task_slice(i)) for i in range(request.num_task_slices)
+  ]
+  return swarming.TaskRequestResponse(
+      created_ts=date(request.created_ts),
+      properties=slices[0].properties if slices else None,
+      resultdb=_result_db_info(request.resultdb),
+      tags=request.tags,
+      user=request.user,
+      authenticated=request.authenticated.to_bytes(),
+      service_account=request.service_account,
+      realm=request.realm,
+      expiration_secs=request.expiration_secs,
+      name=request.name,
+      task_id=request.task_id,
+      parent_task_id=request.parent_task_id,
+      priority=request.priority,
+      pubsub_topic=request.pubsub_topic,
+      pubsub_userdata=request.pubsub_userdata,
+      bot_ping_tolerance_secs=request.bot_ping_tolerance_secs,
+      task_slices=slices,
+  )
