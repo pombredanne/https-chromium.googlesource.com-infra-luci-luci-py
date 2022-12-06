@@ -282,20 +282,10 @@ class SwarmingTaskService(remote.Service):
   def stdout(self, request):
     """Returns the output of the task corresponding to a task ID."""
     logging.debug('%s', request)
-    if not request.length:
-      # Maximum content fetched at once, mostly for compatibility with previous
-      # behavior. pRPC implementation should limit to a multiple of CHUNK_SIZE
-      # (one or two?) for efficiency.
-      request.length = 16*1000*1024
-    _, result = api_common.get_request_and_result(request.task_id,
-                                                  api_common.VIEW, True)
-    output = result.get_output(request.offset or 0, request.length)
-    if output:
-      # That was an error, don't do that in pRPC:
-      output = output.decode('utf-8', 'replace')
-    return swarming_rpcs.TaskOutput(
-        output=output,
-        state=swarming_rpcs.TaskState(result.state))
+    output, state = api_common.get_output(request.task_id, request.offset,
+                                          request.length or 16 * 1000 * 1024)
+    return swarming_rpcs.TaskOutput(output=output,
+                                    state=swarming_rpcs.TaskState(state))
 
 
 TasksRequest = endpoints.ResourceContainer(
