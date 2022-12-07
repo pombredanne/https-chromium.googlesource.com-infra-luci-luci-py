@@ -95,8 +95,8 @@ def add_cipd_options(parser):
       '--cipd-cache',
       help='CIPD cache directory, separate from isolate cache. '
       'Only relevant with --cipd-enabled or --cipd-package. '
-      'Default: "%default".',
-      default='')
+      'Default: "%default". Generally only changed for testing purposes. '
+      'It is usually the $bot_dir/cipd_cache.')
   parser.add_option_group(group)
 
 
