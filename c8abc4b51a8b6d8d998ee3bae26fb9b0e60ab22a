@@ -16,6 +16,24 @@
       "message": "Seems fine, but would be nice to verify this on chromium-swarm-dev somehow before rolling out everywhere.",
       "revId": "c8abc4b51a8b6d8d998ee3bae26fb9b0e60ab22a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d181878_c890e9e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-12-07T23:32:28Z",
+      "side": 1,
+      "message": "I\u0027ll submit this tomorrow and then attempt to verify whether it breaks anything on `swarming-dev` 👍",
+      "parentUuid": "ad3d3646_726c3225",
+      "revId": "c8abc4b51a8b6d8d998ee3bae26fb9b0e60ab22a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
