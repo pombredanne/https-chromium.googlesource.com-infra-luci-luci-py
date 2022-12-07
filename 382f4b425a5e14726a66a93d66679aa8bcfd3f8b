@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5f406c9_18206c82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-07T21:41:26Z",
+      "side": 1,
+      "message": "This will be used to construct https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/proto/internals/rbe.proto#121",
+      "revId": "382f4b425a5e14726a66a93d66679aa8bcfd3f8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
