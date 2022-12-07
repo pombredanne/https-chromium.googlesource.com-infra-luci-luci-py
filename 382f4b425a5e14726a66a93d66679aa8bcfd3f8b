@@ -16,6 +16,23 @@
       "message": "This will be used to construct https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/proto/internals/rbe.proto#121",
       "revId": "382f4b425a5e14726a66a93d66679aa8bcfd3f8b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39386da1_d45f88f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-12-07T22:05:59Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "382f4b425a5e14726a66a93d66679aa8bcfd3f8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
