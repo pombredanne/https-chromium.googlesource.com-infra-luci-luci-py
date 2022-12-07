@@ -1654,10 +1654,6 @@ def main(args):
   install_packages_fn = copy_local_packages
   tmp_cipd_cache_dir = None
   if options.cipd_enabled:
-    cache_dir = options.cipd_cache
-    if not cache_dir:
-      tmp_cipd_cache_dir = tempfile.mkdtemp()
-      cache_dir = tmp_cipd_cache_dir
     install_packages_fn = (
         lambda run_dir, cas_dir, nsjail_dir: install_client_and_packages(
             run_dir,
@@ -1665,7 +1661,7 @@ def main(args):
             options.cipd_server,
             options.cipd_client_package,
             options.cipd_client_version,
-            cache_dir=cache_dir,
+            cache_dir=options.cache_dir,
             cas_dir=cas_dir,
             nsjail_dir=nsjail_dir,
         ))
