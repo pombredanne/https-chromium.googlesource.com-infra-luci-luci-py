@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "27694953_2dc475d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-12-08T20:09:38Z",
+      "side": 1,
+      "message": "LGTM!\n\nJust wanted to make sure I understand this - the purpose of the token is to prove to the `go server` that the bot, at some point, did authenticate to a `swarming server` and got instructions to talk to `rbe`?",
+      "revId": "f0ae89eec2389163e957bfd4851e853e6c3d3654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "aab5db1e_e251dd9e",
         "filename": "appengine/swarming/server/rbe.py",
         "patchSetId": 1
