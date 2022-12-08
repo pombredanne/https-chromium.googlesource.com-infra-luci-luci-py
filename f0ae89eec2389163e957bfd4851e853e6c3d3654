@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "393459c2_8d069da4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-08T02:53:25Z",
+      "side": 1,
+      "message": "PTAL\n\nI also deployed this to chromium-swarm-dev, seems to be working:\n\n```\nPollState token:\nid: \"e3b2d5e5-6545-4144-9533-9bb8b408a036\"\nexpiry {\n  seconds: 1670471455\n  nanos: 858006000\n}\nrbe_instance: \"projects/chromium-swarm-dev/instances/default_instance\"\nenforced_dimensions {\n  key: \"id\"\n  values: \"dev-infra-rbe-bionic-0-d48e\"\n}\nenforced_dimensions {\n  key: \"pool\"\n  values: \"infra.loadtest.rbe\"\n}\ndebug_info {\n  created {\n    seconds: 1670467855\n    nanos: 858006000\n  }\n  swarming_version: \"6922-22066df-vadimsh-generate-poll-token\"\n  request_id: \"639150fe00ff09f9fe906931fa0001737e6368726f6d69756d2d737761726d2d6465760001363932322d323230363664662d766164696d73682d67656e65726174652d706f6c6c2d746f6b656e00010122\"\n}\ngce_auth {\n  gce_project: \"google.com:chromecompute\"\n  gce_instance: \"dev-infra-rbe-bionic-0-d48e\"\n}\n```",
+      "revId": "f0ae89eec2389163e957bfd4851e853e6c3d3654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aab5db1e_e251dd9e",
+        "filename": "appengine/swarming/server/rbe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-08T02:53:25Z",
+      "side": 1,
+      "message": "this is primarily useful for tests, since in tests calling app_identity.get_application_id() during module loading time is not allowed (the app_identity mock is not initialized yet at this point). So instead of defining the global variable with the secret, there\u0027s a function that lazy initializes it on first call.",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 12
+      },
+      "revId": "f0ae89eec2389163e957bfd4851e853e6c3d3654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
