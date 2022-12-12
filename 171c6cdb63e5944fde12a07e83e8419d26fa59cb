@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f730516_a0501d1d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2022-12-12T23:38:38Z",
+      "side": 1,
+      "message": "Renaming the new `prpc` api protos so that the generated go clients are generated without issue. \n\nSee https://crrev.com/c/4098468",
+      "revId": "171c6cdb63e5944fde12a07e83e8419d26fa59cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
