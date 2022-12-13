@@ -33,9 +33,10 @@ from components import prpc
 from components.prpc import encoding
 
 from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
-from proto.api.internal.bb import backend_pb2
-from proto.api.internal.bb import common_pb2
-from proto.api.internal.bb import launcher_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import backend_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import common_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import launcher_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import task_pb2
 from proto.config import config_pb2
 
 from server import config
@@ -75,7 +76,8 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     s.add_service(handlers_prpc.TaskBackendAPIService())
     # TODO(crbug/1236848) call handlers_prpc.get_routes() when
     # the Backend is ready and added.
-    routes = s.get_routes() + handlers_bot.get_routes()
+    routes = s.get_routes()
+    print(routes)
     self.app = webtest.TestApp(
         webapp2.WSGIApplication(routes + handlers_bot.get_routes(), debug=True),
         extra_environ={
@@ -148,7 +150,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     request = self._basic_run_task_request()
     request_id = 'cf60878f-8f2a-4f1e-b1f5-8b5ec88813a9'
     request.request_id = request_id
-    self.app.post('/prpc/swarming.backend.TaskBackend/RunTask',
+    self.app.post('/prpc/buildbucket.v2.TaskBackend/RunTask',
                   _encode(request), self._headers)
     self.assertEqual(1, task_request.TaskRequest.query().count())
     self.assertEqual(1, task_request.BuildToken.query().count())
@@ -159,7 +161,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         memcache.get(request_idempotency_key, namespace='backend_run_task'))
 
     # Test requests are correctly deduped if `request_id` matches.
-    self.app.post('/prpc/swarming.backend.TaskBackend/RunTask',
+    self.app.post('/prpc/buildbucket.v2.TaskBackend/RunTask',
                   _encode(request), self._headers)
     self.assertEqual(1, task_request.TaskRequest.query().count())
     self.assertEqual(1, task_request.BuildToken.query().count())
@@ -167,7 +169,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
 
     # Test tasks with different `request_id`s are not deduped.
     request.request_id = 'cf60878f-8f2a-4f1e-b1f5-8b5ec88813a8'
-    self.app.post('/prpc/swarming.backend.TaskBackend/RunTask',
+    self.app.post('/prpc/buildbucket.v2.TaskBackend/RunTask',
                   _encode(request), self._headers)
     self.assertEqual(2, task_request.TaskRequest.query().count())
     self.assertEqual(2, task_request.BuildToken.query().count())
@@ -178,7 +180,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
 
     request = backend_pb2.RunTaskRequest()
     raw_resp = self.app.post(
-        '/prpc/swarming.backend.TaskBackend/RunTask',
+        '/prpc/buildbucket.v2.TaskBackend/RunTask',
         _encode(request),
         self._headers,
         expect_errors=True)
@@ -207,7 +209,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     self.mock(task_scheduler, 'schedule_request', mocked_schedule_request)
     request = self._basic_run_task_request()
     raw_resp = self.app.post(
-        '/prpc/swarming.backend.TaskBackend/RunTask',
+        '/prpc/buildbucket.v2.TaskBackend/RunTask',
         _encode(request),
         self._headers,
         expect_errors=True)
@@ -218,7 +220,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
   def test_run_task_exceptions_auth_error(self):
     request = self._basic_run_task_request()
     raw_resp = self.app.post(
-        '/prpc/swarming.backend.TaskBackend/RunTask',
+        '/prpc/buildbucket.v2.TaskBackend/RunTask',
         _encode(request),
         self._headers,
         expect_errors=True)
@@ -254,29 +256,29 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         tags=['project:yay', 'commit:pre'])
 
     request = backend_pb2.CancelTasksRequest(task_ids=[
-        backend_pb2.TaskID(id=str(first_id)),
-        backend_pb2.TaskID(id=str(second_id)),
-        backend_pb2.TaskID(id='1d69b9f088008810'),  # Does not exist.
+        task_pb2.TaskID(id=str(first_id)),
+        task_pb2.TaskID(id=str(second_id)),
+        task_pb2.TaskID(id='1d69b9f088008810'),  # Does not exist.
     ])
 
     target = 'swarming://%s' % app_identity.get_application_id()
     expected_response = backend_pb2.CancelTasksResponse(tasks=[
-      backend_pb2.Task(
-            id=backend_pb2.TaskID(target=target, id=first_id),
+      task_pb2.Task(
+            id=task_pb2.TaskID(target=target, id=first_id),
             status=common_pb2.SUCCESS),
       # Task to cancel this should be enqueued
-      backend_pb2.Task(
-          id=backend_pb2.TaskID(target=target, id=second_id),
+      task_pb2.Task(
+          id=task_pb2.TaskID(target=target, id=second_id),
           status=common_pb2.SCHEDULED),
-      backend_pb2.Task(
-          id=backend_pb2.TaskID(target=target, id='1d69b9f088008810'),
+      task_pb2.Task(
+          id=task_pb2.TaskID(target=target, id='1d69b9f088008810'),
           summary_html='Swarming task 1d69b9f088008810 not found',
           status=common_pb2.INFRA_FAILURE),
     ])
 
     self.mock_auth_db([auth.Permission('swarming.pools.cancelTask')])
     raw_resp = self.app.post(
-        '/prpc/swarming.backend.TaskBackend/CancelTasks',
+        '/prpc/buildbucket.v2.TaskBackend/CancelTasks',
         _encode(request),
         self._headers,
         expect_errors=False)
@@ -307,12 +309,12 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         properties=dict(idempotent=True))
 
     request = backend_pb2.CancelTasksRequest(task_ids=[
-        backend_pb2.TaskID(id=str(first_id)),
+        task_pb2.TaskID(id=str(first_id)),
     ])
 
     self.mock_auth_db([])
     raw_resp = self.app.post(
-        '/prpc/swarming.backend.TaskBackend/CancelTasks',
+        '/prpc/buildbucket.v2.TaskBackend/CancelTasks',
         _encode(request),
         self._headers,
         expect_errors=True)
@@ -326,12 +328,12 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     self.set_as_user()
 
     request = backend_pb2.CancelTasksRequest(task_ids=[
-        backend_pb2.TaskID(id=str("1")),
-        backend_pb2.TaskID(id=str("2")),
-        backend_pb2.TaskID(id=str("3")),
+        task_pb2.TaskID(id=str("1")),
+        task_pb2.TaskID(id=str("2")),
+        task_pb2.TaskID(id=str("3")),
     ])
     raw_resp = self.app.post(
-        '/prpc/swarming.backend.TaskBackend/CancelTasks',
+        '/prpc/buildbucket.v2.TaskBackend/CancelTasks',
         _encode(request),
         self._headers,
         expect_errors=True)
@@ -370,27 +372,27 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         tags=['project:yay', 'commit:pre'])
 
     request = backend_pb2.FetchTasksRequest(task_ids=[
-        backend_pb2.TaskID(id=str(first_id)),
-        backend_pb2.TaskID(id=str(second_id)),
-        backend_pb2.TaskID(id='1d69b9f088008810'),  # Does not exist.
+        task_pb2.TaskID(id=str(first_id)),
+        task_pb2.TaskID(id=str(second_id)),
+        task_pb2.TaskID(id='1d69b9f088008810'),  # Does not exist.
     ])
 
     target = 'swarming://%s' % app_identity.get_application_id()
     expected_response = backend_pb2.FetchTasksResponse(tasks=[
-        backend_pb2.Task(
-            id=backend_pb2.TaskID(target=target, id=first_id),
+        task_pb2.Task(
+            id=task_pb2.TaskID(target=target, id=first_id),
             status=common_pb2.SUCCESS),
-        backend_pb2.Task(
-            id=backend_pb2.TaskID(target=target, id=second_id),
+        task_pb2.Task(
+            id=task_pb2.TaskID(target=target, id=second_id),
             status=common_pb2.SCHEDULED),
-        backend_pb2.Task(
-            id=backend_pb2.TaskID(target=target, id='1d69b9f088008810'),
+        task_pb2.Task(
+            id=task_pb2.TaskID(target=target, id='1d69b9f088008810'),
             summary_html='Swarming task 1d69b9f088008810 not found',
             status=common_pb2.INFRA_FAILURE),
     ])
 
     self.mock_auth_db([auth.Permission('swarming.pools.listTasks')])
-    raw_resp = self.app.post('/prpc/swarming.backend.TaskBackend/FetchTasks',
+    raw_resp = self.app.post('/prpc/buildbucket.v2.TaskBackend/FetchTasks',
                              _encode(request), self._headers)
     resp = backend_pb2.FetchTasksResponse()
     _decode(raw_resp.body, resp)
@@ -408,12 +410,12 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         properties=dict(idempotent=True))
 
     request = backend_pb2.FetchTasksRequest(task_ids=[
-        backend_pb2.TaskID(id=str(first_id)),
+        task_pb2.TaskID(id=str(first_id)),
     ])
 
     self.mock_auth_db([])
     raw_resp = self.app.post(
-        '/prpc/swarming.backend.TaskBackend/FetchTasks',
+        '/prpc/buildbucket.v2.TaskBackend/FetchTasks',
         _encode(request),
         self._headers,
         expect_errors=True)
@@ -427,14 +429,14 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     self.set_as_user()
 
     request = backend_pb2.FetchTasksRequest(task_ids=[
-        backend_pb2.TaskID(id='1'),
-        backend_pb2.TaskID(id='2'),
-        backend_pb2.TaskID(id='3'),
+        task_pb2.TaskID(id='1'),
+        task_pb2.TaskID(id='2'),
+        task_pb2.TaskID(id='3'),
     ])
 
     self.mock_auth_db([])
     raw_resp = self.app.post(
-        '/prpc/swarming.backend.TaskBackend/FetchTasks',
+        '/prpc/buildbucket.v2.TaskBackend/FetchTasks',
         _encode(request),
         self._headers,
         expect_errors=True)
@@ -469,7 +471,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     ])
 
     raw_resp = self.app.post(
-        '/prpc/swarming.backend.TaskBackend/ValidateConfigs',
+        '/prpc/buildbucket.v2.TaskBackend/ValidateConfigs',
         _encode(request), self._headers)
     resp = backend_pb2.ValidateConfigsResponse()
     _decode(raw_resp.body, resp)
