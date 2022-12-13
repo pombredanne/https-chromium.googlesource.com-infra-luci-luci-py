@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2c94db2_0ea17161",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-13T22:56:15Z",
+      "side": 1,
+      "message": "PTAL. See the chat thread where \"I think I\u0027ll need to do some convoluted things with tokens in Swarming RBE to support long running (days) tasks\" in Swarming pod room.",
+      "revId": "7845c26880692890265708791956ef8c732a63a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
