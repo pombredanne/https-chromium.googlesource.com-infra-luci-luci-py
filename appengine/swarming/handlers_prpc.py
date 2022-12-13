@@ -23,8 +23,8 @@ import backend_conversions
 import handlers_exceptions
 import prpc_helpers
 
-from proto.api.internal.bb import backend_prpc_pb2
-from proto.api.internal.bb import backend_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import backend_prpc_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import backend_pb2
 from proto.api import swarming_prpc_pb2  # pylint: disable=no-name-in-module
 from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
 from server import acl

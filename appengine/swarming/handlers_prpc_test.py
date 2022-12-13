@@ -33,9 +33,9 @@ from components import prpc
 from components.prpc import encoding
 
 from proto.api import swarming_pb2  # pylint: disable=no-name-in-module
-from proto.api.internal.bb import backend_pb2
-from proto.api.internal.bb import common_pb2
-from proto.api.internal.bb import launcher_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import backend_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import common_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import launcher_pb2
 from proto.config import config_pb2
 
 from server import config
