@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a424309_1bbd9b16",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2022-12-14T18:45:03Z",
+      "side": 0,
+      "message": "we chatted about this offline, but if this could be moved to `handlers_task_backend.py` along with the tests to `handlers_task_backend_test.py` that would be ideal!",
+      "revId": "6c33336cc6294eea28e82a5a2540117d4b60c50d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
