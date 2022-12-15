@@ -159,6 +159,7 @@ class _TargetFieldsValues(object):
   def set_value(self, fields, target_fields, value, time_fn=None):
     self._get_target_values(target_fields)[fields] = value
     start_time = time_fn() if time_fn else time.time()
+    # If fields does not exist in dict, set to start_time
     self._get_target_start_times(target_fields).setdefault(fields, start_time)
 
   def iter_targets(self, default_target):
