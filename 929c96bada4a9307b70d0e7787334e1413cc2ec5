@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b54f59fc_29be8a49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-16T20:49:06Z",
+      "side": 1,
+      "message": "Please also add a test to https://chromium.googlesource.com/infra/luci/luci-py/+/929c96bada4a9307b70d0e7787334e1413cc2ec5/appengine/swarming/swarming_bot/api/platforms/android_test.py",
+      "revId": "929c96bada4a9307b70d0e7787334e1413cc2ec5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2834079_a594fdf4",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-16T20:49:06Z",
+      "side": 1,
+      "message": "dimensions has type `{str \u003d\u003e list[str]}`. E.g. you\u0027ll need something like:\n\n```\nif \u0027wembley_2GB\u0027 in dimensions.get(\u0027device_type\u0027, []):\n  dimensions[\u0027device_os\u0027] \u003d [\u0027Android U\u0027]\n```\n\nIt will also probably be wrong when the bot has multiple different phones attached with different `device_type`. If you want this case to be handled correctly, you\u0027ll need to modify `for device in devices:` loop above to do the substitution there.",
+      "range": {
+        "startLine": 217,
+        "startChar": 5,
+        "endLine": 217,
+        "endChar": 15
+      },
+      "revId": "929c96bada4a9307b70d0e7787334e1413cc2ec5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
