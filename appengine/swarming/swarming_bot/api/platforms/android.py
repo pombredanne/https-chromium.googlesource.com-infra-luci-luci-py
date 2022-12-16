@@ -212,6 +212,10 @@ def get_dimensions(devices):
   # Trim 'os' to reduce the number of dimensions and not run tests by accident
   # on it.
   dimensions['os'] = ['Android']
+  
+  # Update device OS for Android Go Wembley devices to the version we install
+  if dimensions.get('device_type') == 'wembley_2GB':
+      dimensions['device_os'] = 'Android U'
 
   logging.info(
       'get_dimensions() (device part) took %gs' %
