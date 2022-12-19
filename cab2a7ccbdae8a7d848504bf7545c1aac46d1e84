@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "941493b3_28fa851d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2022-12-19T19:00:55Z",
+      "side": 1,
+      "message": "lgtm, but this will have to wait until at least Jan 2 before it can be deployed. There\u0027s a holiday production freeze now.",
+      "revId": "cab2a7ccbdae8a7d848504bf7545c1aac46d1e84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
