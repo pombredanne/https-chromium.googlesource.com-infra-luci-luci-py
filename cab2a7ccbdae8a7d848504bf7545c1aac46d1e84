@@ -16,6 +16,24 @@
       "message": "lgtm, but this will have to wait until at least Jan 2 before it can be deployed. There\u0027s a holiday production freeze now.",
       "revId": "cab2a7ccbdae8a7d848504bf7545c1aac46d1e84",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aba7561d_cf2e48f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-19T19:06:17Z",
+      "side": 1,
+      "message": "Just saw the comments, will do then, thanks!",
+      "parentUuid": "941493b3_28fa851d",
+      "revId": "cab2a7ccbdae8a7d848504bf7545c1aac46d1e84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
