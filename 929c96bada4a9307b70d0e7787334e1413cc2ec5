@@ -39,6 +39,30 @@
       },
       "revId": "929c96bada4a9307b70d0e7787334e1413cc2ec5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcc47e47_121e32ba",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-19T18:55:44Z",
+      "side": 1,
+      "message": "Fixed. PTAL, thanks!",
+      "parentUuid": "d2834079_a594fdf4",
+      "range": {
+        "startLine": 217,
+        "startChar": 5,
+        "endLine": 217,
+        "endChar": 15
+      },
+      "revId": "929c96bada4a9307b70d0e7787334e1413cc2ec5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
