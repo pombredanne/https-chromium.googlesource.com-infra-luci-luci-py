@@ -34,6 +34,24 @@
       "parentUuid": "941493b3_28fa851d",
       "revId": "cab2a7ccbdae8a7d848504bf7545c1aac46d1e84",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fec5b2e_f81e60b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551157
+      },
+      "writtenOn": "2022-12-19T19:16:58Z",
+      "side": 1,
+      "message": "Didn\u0027t know it was submitted.. Thought \u0027Ready to submit\u0027 was just CQ tests.",
+      "parentUuid": "aba7561d_cf2e48f2",
+      "revId": "cab2a7ccbdae8a7d848504bf7545c1aac46d1e84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
