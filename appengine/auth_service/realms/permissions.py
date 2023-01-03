@@ -143,6 +143,10 @@ def db():
       permission('resultdb.invocations.create'),
       permission('resultdb.invocations.update'),
   ])
+  role('role/resultdb.limitedReader', [
+      permission('resultdb.testResults.listLimited'),
+      permission('resultdb.testExonerations.listLimited'),
+  ])
   role('role/resultdb.reader', [
       permission('resultdb.invocations.list'),
       permission('resultdb.invocations.get'),
