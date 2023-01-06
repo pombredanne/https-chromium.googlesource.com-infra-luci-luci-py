@@ -56,6 +56,7 @@ TEST_CONFIG = pools_pb2.PoolsCfg(
                 )
             ],
             rbe_migration=pools_pb2.Pool.RBEMigration(rbe_mode_percent=23),
+            scheduling_algorithm=pools_pb2.Pool.SchedulingAlgorithm.Value('SA_FIFO'),
         ),
     ],
     default_external_services=pools_pb2.ExternalServices(
@@ -129,6 +130,7 @@ class PoolsConfigTest(test_case.TestCase):
             allow_es_fallback=True,
         ),),
         rbe_migration=pools_pb2.Pool.RBEMigration(rbe_mode_percent=23),
+        scheduling_algorithm=pools_pb2.Pool.SchedulingAlgorithm.Value('SA_FIFO'),
     )
     expected2 = expected1._replace(name='another_name')
 
@@ -350,6 +352,16 @@ class PoolsConfigTest(test_case.TestCase):
     # Just ensure there are no errors.
     self.assertIsNone(pools_config.bootstrap_dev_server_acls())
     pools_config._LOCAL_FAKE_CONFIG = None
+
+  def test_no_scheduling_algorithm(self):
+    cfg = pools_pb2.PoolsCfg(pool=[pools_pb2.Pool(name=['abc'])])
+    self.mock_config(cfg)
+    self.assertEqual(pools_pb2.Pool.SchedulingAlgorithm.Value('SA_FIFO'), pools_config.get_pool_config('abc').scheduling_algorithm)
+
+  def test_lifo_scheduling_algorithm(self):
+    cfg = pools_pb2.PoolsCfg(pool=[pools_pb2.Pool(name=['abc'], scheduling_algorithm=pools_pb2.Pool.SchedulingAlgorithm.Value('SA_LIFO'))])
+    self.mock_config(cfg)
+    self.assertEqual(pools_pb2.Pool.SchedulingAlgorithm.Value('SA_LIFO'), pools_config.get_pool_config('abc').scheduling_algorithm)
 
 
 class TaskTemplateBaseTest(unittest.TestCase):
