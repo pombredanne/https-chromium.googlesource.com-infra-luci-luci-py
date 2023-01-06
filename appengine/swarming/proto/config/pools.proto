@@ -142,6 +142,13 @@ message Pool {
     int32 rbe_mode_percent = 2;
   }
   RBEMigration rbe_migration = 13;
+
+  // Scheduling algorithm can either be FIFO (default) or LIFO.
+  enum SchedulingAlgorithm {
+    SA_FIFO = 0;
+    SA_LIFO = 1;
+  }
+  SchedulingAlgorithm scheduling_algorithm = 14;
 }
 
 
