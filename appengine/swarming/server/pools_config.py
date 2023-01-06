@@ -59,6 +59,8 @@ PoolConfig = collections.namedtuple(
         'default_cipd',
         # Controls RBE migration parameters, pools_pb2.Pool.RBEMigration.
         'rbe_migration',
+        # Controls scheduling algorithm to be used: FIFO (default) or LIFO.
+        'scheduling_algorithm',
     ])
 
 
@@ -78,6 +80,7 @@ def init_pool_config(**kwargs):
       'external_schedulers': None,
       'default_cipd': None,
       'rbe_migration': None,
+      'scheduling_algorithm': None,
   }
   args.update(kwargs)
   return PoolConfig(**args)
@@ -613,6 +616,9 @@ def _fetch_pools_config():
           default_cipd=default_cipd,
           rbe_migration=(
               msg.rbe_migration if msg.HasField('rbe_migration') else None),
+          scheduling_algorithm=(
+              msg.scheduling_algorithm if msg.scheduling_algorithm else
+              pools_pb2.Pool.SchedulingAlgorithm.Value('SCHEDULING_ALGORITHM_FIFO'))
           )
   return _PoolsCfg(pools, (default_cipd))
 
