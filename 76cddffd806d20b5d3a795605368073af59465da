@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed878c57_9ccd6987",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2023-01-08T23:54:07Z",
+      "side": 1,
+      "message": "Please add longer explanation.",
+      "revId": "76cddffd806d20b5d3a795605368073af59465da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34dd2b92_6ed76061",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2023-01-08T23:54:07Z",
+      "side": 1,
+      "message": "Please use 0 to indicate UNKNOWN or UNSPECIFIED.",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 148,
+        "endChar": 11
+      },
+      "revId": "76cddffd806d20b5d3a795605368073af59465da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc34bfbb_df9f6b88",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1433084
+      },
+      "writtenOn": "2023-01-08T23:54:07Z",
+      "side": 1,
+      "message": "You can leave out prefix for inner enums (controversial). Alternatively, use the full name of the enum e.g. SCHEDULING_ALGORITHM_LIFO.",
+      "revId": "76cddffd806d20b5d3a795605368073af59465da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
