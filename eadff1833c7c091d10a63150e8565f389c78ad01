@@ -16,6 +16,46 @@
       "message": "PTAL",
       "revId": "eadff1833c7c091d10a63150e8565f389c78ad01",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "115e2c17_01e4a501",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-09T22:54:58Z",
+      "side": 1,
+      "message": "Please update the test for check this.",
+      "revId": "eadff1833c7c091d10a63150e8565f389c78ad01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5857cdd4_72c068f7",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-09T22:54:58Z",
+      "side": 1,
+      "message": "nit:\n\n```\ndimensions[\u0027device_os\u0027] \u003d {\n    key for key in dimensions.get(\u0027device_os\u0027, [])\n    if key.lower() !\u003d \u0027master\u0027\n}\n```\n\nThis will also work correctly if `dimensions[\u0027device_os\u0027]` is missing for some reason.",
+      "range": {
+        "startLine": 181,
+        "startChar": 8,
+        "endLine": 184,
+        "endChar": 50
+      },
+      "revId": "eadff1833c7c091d10a63150e8565f389c78ad01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
