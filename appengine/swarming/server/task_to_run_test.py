@@ -26,8 +26,9 @@ from components import auth_testing
 from components import utils
 from test_support import test_case
 
+from proto.config import pools_pb2
 from server import bot_management
-from server import config
+from server import pools_config
 from server import task_queues
 from server import task_request
 from server import task_to_run
@@ -130,9 +131,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
             'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
         })
     self._enqueue_orig = self.mock(utils, 'enqueue_task_async', self._enqueue)
-    cfg = config.settings()
-    cfg.use_lifo = True
-    self.mock(config, 'settings', lambda: cfg)
+    self.mock_pool_config('default')
 
   def _enqueue(self, *args, **kwargs):
     return self._enqueue_orig(*args, use_dedicated_module=False, **kwargs)
@@ -183,6 +182,19 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     to_run = task_to_run.new_task_to_run(request, 0)
     to_run.put()
     return request, to_run
+
+  def mock_pool_config(self, name, scheduling_algorithm=None):
+    """Mocks up a pool with the given scheduling algorithm."""
+    def mocked_get_pool_config(pool):
+      if pool == name:
+        return pools_config.init_pool_config(
+            name=name,
+            scheduling_algorithm=(scheduling_algorithm if scheduling_algorithm
+                                  else (pools_pb2.Pool.SchedulingAlgorithm.
+                                        Value('SCHEDULING_ALGORITHM_LIFO'))),
+        )
+      return None
+    self.mock(pools_config, 'get_pool_config', mocked_get_pool_config)
 
   def test_all_apis_are_tested(self):
     actual = frozenset(i[5:] for i in dir(self) if i.startswith('test_'))
@@ -243,13 +255,50 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     for i, ((dimensions_hash, timestamp, priority),
             (expected_v, expected_p)) in enumerate(data):
       d = datetime.datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S.%f')
-      actual = task_to_run._gen_queue_number(dimensions_hash, d, priority)
+      actual = task_to_run._gen_queue_number(dimensions_hash, d, priority, pools_pb2.Pool.SchedulingAlgorithm.Value('SCHEDULING_ALGORITHM_LIFO'))
       self.assertEqual((i, '0x%016x' % expected_v), (i, '0x%016x' % actual))
       # Ensure we can extract the priority back. That said, it is corrupted by
       # time.
       v = task_to_run._TaskToRunBase(queue_number=actual)
       self.assertEqual((i, expected_p),
                        (i, task_to_run._queue_number_priority(v)))
+
+  def test_get_scheduling_algorithm(self):
+    no_pool_dims = {}
+    expected = (pools_pb2.Pool.SchedulingAlgorithm.
+                Value('SCHEDULING_ALGORITHM_UNKNOWN'))
+    actual = task_to_run._get_scheduling_algorithm(no_pool_dims)
+    self.assertEqual(actual, expected)
+
+    empty_pool_dims = {u'pool': []}
+    actual = task_to_run._get_scheduling_algorithm(empty_pool_dims)
+    self.assertEqual(actual, expected)
+
+    none_value_in_pool_dims = {u'pool': [None]}
+    actual = task_to_run._get_scheduling_algorithm(none_value_in_pool_dims)
+    self.assertEqual(actual, expected)
+
+    no_scheduling_algorithm_dims = {u'pool': [u'nonexistent']}
+    actual = task_to_run._get_scheduling_algorithm(no_scheduling_algorithm_dims)
+    self.assertEqual(actual, expected)
+
+    scheduling_algorithm_FIFO_dims = {u'pool': [u'FIFO']}
+    self.mock_pool_config('FIFO', (pools_pb2.Pool.SchedulingAlgorithm.
+                                      Value('SCHEDULING_ALGORITHM_FIFO')))
+    expected = (pools_pb2.Pool.SchedulingAlgorithm.
+                Value('SCHEDULING_ALGORITHM_FIFO'))
+    actual = (task_to_run.
+              _get_scheduling_algorithm(scheduling_algorithm_FIFO_dims))
+    self.assertEqual(actual, expected)
+
+    scheduling_algorithm_LIFO_dims = {u'pool': [u'LIFO']}
+    self.mock_pool_config('LIFO', (pools_pb2.Pool.SchedulingAlgorithm.
+                                      Value('SCHEDULING_ALGORITHM_LIFO')))
+    expected = (pools_pb2.Pool.SchedulingAlgorithm.
+                Value('SCHEDULING_ALGORITHM_LIFO'))
+    actual = (task_to_run.
+              _get_scheduling_algorithm(scheduling_algorithm_LIFO_dims))
+    self.assertEqual(actual, expected)
 
   def test_new_task_to_run(self):
     self.mock(random, 'getrandbits', lambda _: 0x12)
@@ -392,6 +441,49 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
       actual.extend(to_runs)
     self.assertEqual(expected, map(flatten, actual))
 
+  def test_new_task_to_run_scheduling_algorithm(self):
+    self.mock_now(self.now, 60)
+    request = self.mkreq(_gen_request(properties=_gen_properties()))
+
+    shard = task_to_run.new_task_to_run(request, 0).put()
+    self.assertEqual(shard.get().queue_number, 0x4bef13b79f3d2236)
+
+    shard = task_to_run.new_task_to_run(request, 0, None).put()
+    self.assertEqual(shard.get().queue_number, 0x4bef13b79f3d2236)
+
+    request = self.mkreq(_gen_request(properties=_gen_properties()))
+    shard = task_to_run.new_task_to_run(
+        request,
+        0,
+        pools_pb2.Pool.SchedulingAlgorithm.Value('SCHEDULING_ALGORITHM_UNKNOWN')
+        ).put()
+    self.assertEqual(shard.get().queue_number, 0x4bef13b79f3d2236)
+
+    shard = task_to_run.new_task_to_run(
+        request,
+        0,
+        pools_pb2.Pool.SchedulingAlgorithm.Value('SCHEDULING_ALGORITHM_LIFO')
+        ).put()
+    self.assertEqual(shard.get().queue_number, 0x4bef13b79f3d2236)
+
+    request = self.mkreq(_gen_request(properties=_gen_properties()))
+    shard = task_to_run.new_task_to_run(
+        request,
+        0,
+        pools_pb2.Pool.SchedulingAlgorithm.Value('SCHEDULING_ALGORITHM_FIFO')
+        ).put()
+    self.assertEqual(shard.get().queue_number, 0x4bef13b78c8ee0ca)
+
+    self.mock_pool_config('default', (pools_pb2.Pool.SchedulingAlgorithm.
+                                      Value('SCHEDULING_ALGORITHM_FIFO')))
+
+    shard = task_to_run.new_task_to_run(
+        request,
+        0,
+        pools_pb2.Pool.SchedulingAlgorithm.Value('SCHEDULING_ALGORITHM_UNKNOWN')
+        ).put()
+    self.assertEqual(shard.get().queue_number, 0x4bef13b78c8ee0ca)
+    
   def test_dimensions_matcher(self):
     def match_dimensions(request_dimensions, bot_dimensions):
       return task_to_run.dimensions_matcher(bot_dimensions)(request_dimensions)
@@ -692,10 +784,8 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, actual)
 
   def test_yield_next_available_task_to_dispatch_fifo(self):
-    cfg = config.settings()
-    cfg.use_lifo = False
-    self.mock(config, 'settings', lambda: cfg)
-
+    self.mock_pool_config('default', (pools_pb2.Pool.SchedulingAlgorithm.
+                                      Value('SCHEDULING_ALGORITHM_FIFO')))
     request_dimensions = {u'os': [u'Windows-3.1.1'], u'pool': [u'default']}
     self._gen_new_task_to_run(
         properties=_gen_properties(dimensions=request_dimensions),
@@ -837,7 +927,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
             'created_ts': self.now,
             'expiration_ts': self.now + datetime.timedelta(minutes=1),
             'expiration_delay': None,
-            'queue_number': '0x54795e3c92bd248e',
+            'queue_number': '0x54795e3c800ede72',
             'task_slice_index': 0,
         },
     ]
