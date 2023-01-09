@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9595cad5_ac06f0e5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1529882
+      },
+      "writtenOn": "2023-01-09T11:56:47Z",
+      "side": 1,
+      "message": "You could add a Bug: line here linking to one of your tasks in TaskFlow, which would then link to one of the docs you’ve written proposing the change.",
+      "revId": "1f909bacdfdad3ca7727dbb04c47657f0629fd71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
