@@ -180,6 +180,8 @@ def get_dimensions(devices):
       if 'wembley_2GB' in dimensions.get('device_type', []):
         if 'Master' in dimensions.get('device_os', []):
           dimensions['device_os'].remove('Master')
+        if 'MASTER' in dimensions.get('device_os', []):
+          dimensions['device_os'].remove('MASTER')
         dimensions['device_os'].add('Android U')
 
   # Add the first character of each device_os to the dimension.
