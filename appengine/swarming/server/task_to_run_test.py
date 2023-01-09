@@ -26,8 +26,10 @@ from components import auth_testing
 from components import utils
 from test_support import test_case
 
+from proto.config import pools_pb2
 from server import bot_management
 from server import config
+from server import pools_config
 from server import task_queues
 from server import task_request
 from server import task_to_run
@@ -114,6 +116,22 @@ def _gen_request(properties=None, **kwargs):
       ],
       **kwargs)
 
+TEST_POOL_CONFIG_FIFO = pools_config.init_pool_config(
+        name=u'FIFO',
+        scheduling_algorithm=(
+            pools_pb2.Pool.SchedulingAlgorithm.Value('SCHEDULING_ALGORITHM_FIFO')))
+
+TEST_POOL_CONFIG_LIFO = pools_config.init_pool_config(
+        name=u'default',
+        scheduling_algorithm=(
+            pools_pb2.Pool.SchedulingAlgorithm.Value('SCHEDULING_ALGORITHM_LIFO')),
+    )
+
+def _get_pool_config(pool_name):
+    if pool_name == 'FIFO':
+        return TEST_POOL_CONFIG_FIFO
+    else:
+        return TEST_POOL_CONFIG_LIFO
 
 class TaskToRunApiTest(test_env_handlers.AppTestBase):
 
@@ -130,9 +148,11 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
             'SERVER_SOFTWARE': os.environ['SERVER_SOFTWARE'],
         })
     self._enqueue_orig = self.mock(utils, 'enqueue_task_async', self._enqueue)
+    self.mock(pools_config, 'get_pool_config', _get_pool_config)
     cfg = config.settings()
     cfg.use_lifo = True
     self.mock(config, 'settings', lambda: cfg)
+    
 
   def _enqueue(self, *args, **kwargs):
     return self._enqueue_orig(*args, use_dedicated_module=False, **kwargs)
@@ -243,7 +263,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     for i, ((dimensions_hash, timestamp, priority),
             (expected_v, expected_p)) in enumerate(data):
       d = datetime.datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S.%f')
-      actual = task_to_run._gen_queue_number(dimensions_hash, d, priority)
+      actual = task_to_run._gen_queue_number(dimensions_hash, d, priority, pools_pb2.Pool.SchedulingAlgorithm.Value('SCHEDULING_ALGORITHM_LIFO'))
       self.assertEqual((i, '0x%016x' % expected_v), (i, '0x%016x' % actual))
       # Ensure we can extract the priority back. That said, it is corrupted by
       # time.
@@ -696,7 +716,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
     cfg.use_lifo = False
     self.mock(config, 'settings', lambda: cfg)
 
-    request_dimensions = {u'os': [u'Windows-3.1.1'], u'pool': [u'default']}
+    request_dimensions = {u'os': [u'Windows-3.1.1'], u'pool': [u'FIFO']}
     self._gen_new_task_to_run(
         properties=_gen_properties(dimensions=request_dimensions),
         priority=50)
@@ -714,21 +734,21 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
             'created_ts': self.now,
             'expiration_ts': self.now + datetime.timedelta(minutes=1),
             'expiration_delay': None,
-            'queue_number': '0x1a3aa6630c8ede72',
+            'queue_number': '0x4dca28260c8ede72',
             'task_slice_index': 0,
         },
         {
             'created_ts': self.now + datetime.timedelta(minutes=1),
             'expiration_ts': self.now + datetime.timedelta(minutes=2),
             'expiration_delay': None,
-            'queue_number': '0x1a3aa6630c8ee0ca',
+            'queue_number': '0x4dca28260c8ee0ca',
             'task_slice_index': 0,
         },
     ]
     bot_dimensions = {
         u'id': [u'localhost'],
         u'os': [u'Windows-3.1.1'],
-        u'pool': [u'default'],
+        u'pool': [u'FIFO'],
     }
     actual = self._yield_next_available_task_to_dispatch(bot_dimensions)
     self.assertEqual(expected, actual)
@@ -837,7 +857,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
             'created_ts': self.now,
             'expiration_ts': self.now + datetime.timedelta(minutes=1),
             'expiration_delay': None,
-            'queue_number': '0x54795e3c92bd248e',
+            'queue_number': '0x54795e3c800ede72',
             'task_slice_index': 0,
         },
     ]
