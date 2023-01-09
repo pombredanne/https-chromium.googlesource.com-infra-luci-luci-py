@@ -43,8 +43,10 @@ from google.appengine.ext import ndb
 
 from components import datastore_utils
 from components import utils
+from proto.config import pools_pb2
 from server import bot_management
 from server import config
+from server import pools_config
 from server import task_pack
 from server import task_queues
 from server import task_request
@@ -195,7 +197,7 @@ def get_shard_kind(shard):
 ### Private functions.
 
 
-def _gen_queue_number(dimensions_hash, timestamp, priority):
+def _gen_queue_number(dimensions_hash, timestamp, priority, scheduling_algorithm):
   """Generates a 63 bit packed value used for TaskToRunShard.queue_number.
 
   Arguments:
@@ -205,6 +207,8 @@ def _gen_queue_number(dimensions_hash, timestamp, priority):
         100ms granularity; the year is ignored.
   - priority: priority of the TaskRequest. It's a 8 bit integer. Lower is higher
         priority.
+  - scheduling_algorithm: Whether this task should be scheduled as FIFO (default)
+        or LIFO
 
   Returns:
     queue_number is a 63 bit integer with dimension_hash, timestamp at 100ms
@@ -216,15 +220,20 @@ def _gen_queue_number(dimensions_hash, timestamp, priority):
   assert 0 < dimensions_hash <= 0xFFFFFFFF, hex(dimensions_hash)
   assert isinstance(timestamp, datetime.datetime), repr(timestamp)
   task_request.validate_priority(priority)
+  # assert (
+  #   scheduling_algorithm == pools_pb2.Pool.SchedulingAlgorithm.Value('SA_FIFO') or
+  #   scheduling_algorithm == pools_pb2.Pool.SchedulingAlgorithm.Value('SA_FIFO')), 
+  #   "Invalid Scheduling Algorithm" # doesn't look correct
 
   # Ignore the year.
 
-  if config.settings().use_lifo:
+  if scheduling_algorithm == pools_pb2.Pool.SchedulingAlgorithm.Value('SCHEDULING_ALGORITHM_LIFO'):
     next_year = datetime.datetime(timestamp.year + 1, 1, 1)
     # It is guaranteed to fit 32 bits but upgrade to long right away to ensure
     # assert works.
     t = long(round((next_year - timestamp).total_seconds() * 10.))
-  else:
+  
+  elif scheduling_algorithm == pools_pb2.Pool.SchedulingAlgorithm.Value('SCHEDULING_ALGORITHM_FIFO') or scheduling_algorithm == pools_pb2.Pool.SchedulingAlgorithm.Value('SCHEDULING_ALGORITHM_UNKNOWN'):
     year_start = datetime.datetime(timestamp.year, 1, 1)
     # It is guaranteed to fit 32 bits but upgrade to long right away to ensure
     # assert works.
@@ -691,7 +700,11 @@ def new_task_to_run(request, task_slice_index):
   exp = request.created_ts + datetime.timedelta(seconds=offset)
   dims = request.task_slice(task_slice_index).properties.dimensions
   h = task_queues.hash_dimensions(dims)
-  qn = _gen_queue_number(h, request.created_ts, request.priority)
+  if u'pool' in dims:
+    sched_alg = pools_config.get_pool_config(dims[u'pool'][0]).scheduling_algorithm
+  else:
+    sched_alg = pools_pb2.Pool.SchedulingAlgorithm.Value('SCHEDULING_ALGORITHM_UNKNOWN')
+  qn = _gen_queue_number(h, request.created_ts, request.priority, sched_alg)
   kind = get_shard_kind(h % N_SHARDS)
   key = request_to_task_to_run_key(request, task_slice_index)
   return kind(key=key,
