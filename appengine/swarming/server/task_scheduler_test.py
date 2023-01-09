@@ -49,6 +49,7 @@ from server import task_to_run
 from server.task_result import State
 
 from proto.api import plugin_pb2
+from proto.config import pools_pb2
 
 # pylint: disable=W0212,W0612
 
@@ -752,10 +753,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                 status=State.to_string(State.EXPIRED))).sum)
 
   def test_bot_reap_task_6_expired_fifo(self):
-    cfg = config.settings()
-    cfg.use_lifo = False
-    self.mock(config, 'settings', lambda: cfg)
-
     # A lot of tasks are expired, eventually stop expiring them.
     self._register_bot(self.bot_dimensions)
     result_summaries = []
@@ -780,9 +777,11 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(State.PENDING, result_summary.state)
 
   def test_bot_reap_task_6_expired_lifo(self):
-    cfg = config.settings()
-    cfg.use_lifo = True
-    self.mock(config, 'settings', lambda: cfg)
+    # Make sure pool uses LIFO.
+    self.mock_pool_config(
+        'default',
+        scheduling_algorithm=(pools_pb2.Pool.SchedulingAlgorithm.
+                              Value('SCHEDULING_ALGORITHM_LIFO')))
 
     # A lot of tasks are expired, eventually stop expiring them.
     self._register_bot(self.bot_dimensions)
@@ -3012,7 +3011,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                        scheduling_users=None,
                        scheduling_groups=None,
                        trusted_delegatees=None,
-                       external_schedulers=None):
+                       external_schedulers=None,
+                       scheduling_algorithm=None):
     self._known_pools = self._known_pools or set()
     self._known_pools.add(name)
 
@@ -3028,6 +3028,9 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                 for peer, tags in (trusted_delegatees or {}).items()
             },
             external_schedulers=external_schedulers,
+            scheduling_algorithm=(scheduling_algorithm if scheduling_algorithm
+                                  else (pools_pb2.Pool.SchedulingAlgorithm.
+                                        Value('SCHEDULING_ALGORITHM_FIFO'))),
         )
       return None
 

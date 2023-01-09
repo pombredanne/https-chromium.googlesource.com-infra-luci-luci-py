@@ -403,6 +403,19 @@ def known():
   return sorted(_fetch_pools_config().pools)
 
 
+def get_scheduling_algorithm(dimensions):
+  """Returns pool scheduling algorithm given a TaskRequest's dimensions.
+
+  Checking the existence of fields is necessary as they may not be present,
+  e.g termination tasks (see is_terminate() in task_request.py).
+  """
+  if u'pool' in dimensions:
+    pool = get_pool_config(dimensions[u'pool'][0])
+    if pool and pool.scheduling_algorithm:
+      return pool.scheduling_algorithm
+  return (pools_pb2.Pool.SchedulingAlgorithm.
+          Value('SCHEDULING_ALGORITHM_UNKNOWN'))
+
 ### Private stuff.
 
 
