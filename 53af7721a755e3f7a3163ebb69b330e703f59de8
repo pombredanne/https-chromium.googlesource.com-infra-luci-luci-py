@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca219d34_73eb77df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-11T21:50:28Z",
+      "side": 1,
+      "message": "lgtm, but please test were thoroughly on dev after landing on all platforms with all kinds of restarts.\n\nIf there\u0027s a bug here and it is deployed, it may bring the whole fleet down, requiring large scale manual repairs.",
+      "revId": "53af7721a755e3f7a3163ebb69b330e703f59de8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7df0ef2_8f836bcc",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-11T21:50:28Z",
+      "side": 1,
+      "message": "Can this fail too? Maybe better to wrap it as well.",
+      "range": {
+        "startLine": 266,
+        "startChar": 53,
+        "endLine": 266,
+        "endChar": 71
+      },
+      "revId": "53af7721a755e3f7a3163ebb69b330e703f59de8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ae1fd26_96319b02",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-11T21:50:28Z",
+      "side": 1,
+      "message": "based on the comments, this probably should happen before os.path.join(...) above when preparing logs, but I\u0027m not sure what it does",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 29
+      },
+      "revId": "53af7721a755e3f7a3163ebb69b330e703f59de8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
