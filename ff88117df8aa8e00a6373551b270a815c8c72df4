@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6605c01_004410d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-01-12T23:57:17Z",
+      "side": 1,
+      "message": "LGTM, but wait for vadim to approval.",
+      "revId": "ff88117df8aa8e00a6373551b270a815c8c72df4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

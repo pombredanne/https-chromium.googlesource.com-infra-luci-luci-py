@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a0eb518_c7c91c78",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-01-12T23:57:17Z",
+      "side": 1,
+      "message": "Oh yes you\u0027re right. In that case better to write it as:\n`if len(dimensions.get(u\u0027pool\u0027, [])) \u003e 0:`\n\nIn general, use `len` if you intend to check for length to make the intention clear.",
+      "parentUuid": "91db5803_54a4004b",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 208,
+        "endChar": 37
+      },
+      "revId": "5930b296758a2ddc6f7469f725fa35bf5e749d74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a7e7619_08edad56",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 20
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "I understand, but currently in new_task_to_run() if scheduling_algorithm is None (line 723) then _get_scheduling_algorithm() will be called to update it, which will always return one of the 3, is this enough? I can also move it so that _get_scheduling_algorithm() is called inside _gen_queue_number() instead.",
       "parentUuid": "1cf958e6_23ba74ee",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 70
+      },
+      "revId": "5930b296758a2ddc6f7469f725fa35bf5e749d74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7636f59d_daeb47ec",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-01-12T23:57:17Z",
+      "side": 1,
+      "message": "Okay, I see. That\u0027s fine. I guess the pools pb should enforce it anyway.",
+      "parentUuid": "1528006c_0fa9cb8e",
       "range": {
         "startLine": 246,
         "startChar": 0,
