@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91db5803_54a4004b",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1564697
+      },
+      "writtenOn": "2023-01-12T22:37:19Z",
+      "side": 1,
+      "message": "Done, but kept in dimensions[u\u0027pool\u0027] check to make sure it is not an empty array.",
+      "parentUuid": "45c7a662_cc5b43ab",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 208,
+        "endChar": 37
+      },
+      "revId": "5930b296758a2ddc6f7469f725fa35bf5e749d74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a7e7619_08edad56",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-01-12T06:39:54Z",
       "side": 1,
       "message": "can use getattr() here:\nhttps://docs.python.org/2.7/library/functions.html#getattr\n\nSomething like `if getattr(pool, \u0027scheduling_algorithm, None):`",
+      "range": {
+        "startLine": 211,
+        "startChar": 4,
+        "endLine": 211,
+        "endChar": 65
+      },
+      "revId": "5930b296758a2ddc6f7469f725fa35bf5e749d74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9348a3c_15a28181",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1564697
+      },
+      "writtenOn": "2023-01-12T22:37:19Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "6a7e7619_08edad56",
       "range": {
         "startLine": 211,
         "startChar": 4,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1528006c_0fa9cb8e",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1564697
+      },
+      "writtenOn": "2023-01-12T22:37:19Z",
+      "side": 1,
+      "message": "I understand, but currently in new_task_to_run() if scheduling_algorithm is None (line 723) then _get_scheduling_algorithm() will be called to update it, which will always return one of the 3, is this enough? I can also move it so that _get_scheduling_algorithm() is called inside _gen_queue_number() instead.",
+      "parentUuid": "1cf958e6_23ba74ee",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 70
+      },
+      "revId": "5930b296758a2ddc6f7469f725fa35bf5e749d74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a97a3894_0c400dbd",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 20
@@ -100,6 +172,30 @@
       "writtenOn": "2023-01-12T06:39:54Z",
       "side": 1,
       "message": "Should just be `else` since the assertion above implies this already",
+      "range": {
+        "startLine": 258,
+        "startChar": 1,
+        "endLine": 261,
+        "endChar": 78
+      },
+      "revId": "5930b296758a2ddc6f7469f725fa35bf5e749d74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a5c591d_7246213d",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1564697
+      },
+      "writtenOn": "2023-01-12T22:37:19Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "a97a3894_0c400dbd",
       "range": {
         "startLine": 258,
         "startChar": 1,
