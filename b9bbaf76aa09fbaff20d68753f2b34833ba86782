@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0e240a8_490abeab",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 21
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-01-12T06:04:17Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of this? I thought it was just FIFO (the default) or LIFO?",
+      "revId": "b9bbaf76aa09fbaff20d68753f2b34833ba86782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
