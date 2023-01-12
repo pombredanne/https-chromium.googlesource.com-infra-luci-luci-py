@@ -16,6 +16,24 @@
       "message": "What\u0027s the purpose of this? I thought it was just FIFO (the default) or LIFO?",
       "revId": "b9bbaf76aa09fbaff20d68753f2b34833ba86782",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a63ca99d_e905585a",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 21
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1564697
+      },
+      "writtenOn": "2023-01-12T22:00:44Z",
+      "side": 1,
+      "message": "From talking with Michal, it is best practice to have value 0 as a default unknown/unspecified value, so it has been included here.",
+      "parentUuid": "c0e240a8_490abeab",
+      "revId": "b9bbaf76aa09fbaff20d68753f2b34833ba86782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
