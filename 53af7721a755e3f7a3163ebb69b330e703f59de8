@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37fcd7be_8811c4c0",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-01-12T00:56:51Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "f7df0ef2_8f836bcc",
+      "range": {
+        "startLine": 266,
+        "startChar": 53,
+        "endLine": 266,
+        "endChar": 71
+      },
+      "revId": "53af7721a755e3f7a3163ebb69b330e703f59de8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ae1fd26_96319b02",
@@ -54,6 +78,54 @@
       "writtenOn": "2023-01-11T21:50:28Z",
       "side": 1,
       "message": "based on the comments, this probably should happen before os.path.join(...) above when preparing logs, but I\u0027m not sure what it does",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 29
+      },
+      "revId": "53af7721a755e3f7a3163ebb69b330e703f59de8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4d71b58_67141d9b",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-01-12T00:56:51Z",
+      "side": 1,
+      "message": "Looks like",
+      "parentUuid": "8ae1fd26_96319b02",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 29
+      },
+      "revId": "53af7721a755e3f7a3163ebb69b330e703f59de8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "043b1c4b_d21bdc81",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-01-12T00:56:51Z",
+      "side": 1,
+      "message": "This is some python2 hack. The bots have been migrated to use python3 already so I think its useless now and can be removed.\n\nhttps://source.chromium.org/chromium/chromium/tools/depot_tools/+/main:fix_encoding.py;l\u003d40",
+      "parentUuid": "8ae1fd26_96319b02",
       "range": {
         "startLine": 270,
         "startChar": 0,
