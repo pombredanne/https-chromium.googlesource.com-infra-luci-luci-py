@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eae5801b_362d2775",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-13T17:46:52Z",
+      "side": 1,
+      "message": "Adding https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/4162393 back in.",
+      "revId": "d35380acfeeff080c1c2f66adf6c0af414a617ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0521854c_48903556",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1659,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-13T17:46:52Z",
+      "side": 1,
+      "message": "Adding a default value here because:\n1. not having one breaks tests\n2. I am following advice in python docs:\n```\nrequired option\nan option that must be supplied on the command-line; note that the phrase “required option” is self-contradictory in English. optparse doesn’t prevent you from implementing required options, but doesn’t give you much help at it either.\n```\n\nhttps://docs.python.org/3/library/optparse.html\n\nThis case would never actually happen in production since `--cipd-cache` argument is always provided to `run_isolate.py` by `task_runner.py` so this option mostly applies to tests which is why I think this value is fine.",
+      "range": {
+        "startLine": 1659,
+        "startChar": 6,
+        "endLine": 1659,
+        "endChar": 62
+      },
+      "revId": "d35380acfeeff080c1c2f66adf6c0af414a617ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
