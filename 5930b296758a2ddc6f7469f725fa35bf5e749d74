@@ -115,6 +115,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2ea8b474_e9bc07e9",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-01-13T01:07:00Z",
+      "side": 1,
+      "message": "You can get rid of the line `dimensions.get(u\u0027pool\u0027) is not None` and you forgot to add the brackets in `len(dimensions.get(u\u0027pool\u0027)) \u003e 0` \n\nShould be `len(dimensions.get(u\u0027pool\u0027, []))`. The second argument is the default return value if u\u0027pool` doesn\u0027t exist in the dict.",
+      "parentUuid": "022d7527_c673db23",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 208,
+        "endChar": 37
+      },
+      "revId": "5930b296758a2ddc6f7469f725fa35bf5e749d74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a7e7619_08edad56",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 20
