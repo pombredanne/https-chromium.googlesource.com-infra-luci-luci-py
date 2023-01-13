@@ -161,6 +161,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6512e61_584312f7",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-01-13T03:32:55Z",
+      "side": 1,
+      "message": "Okay, I was assuming here the u\u0027pool\u0027 can never be set to None if it reaches this point? But I guess it doesn\u0027t hurt to be more defensive. I\u0027m happy either way, let\u0027s not play programmer\u0027s golf anymore 😂",
+      "parentUuid": "d2e9a7f0_2a2f7b9f",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 208,
+        "endChar": 37
+      },
+      "revId": "5930b296758a2ddc6f7469f725fa35bf5e749d74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a7e7619_08edad56",
