@@ -39,6 +39,30 @@
       },
       "revId": "d35380acfeeff080c1c2f66adf6c0af414a617ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7e85ee5_7c5882b9",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1659,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-13T19:27:31Z",
+      "side": 1,
+      "message": "Then I think using the temp directory, as was done previously, is more correct.",
+      "parentUuid": "0521854c_48903556",
+      "range": {
+        "startLine": 1659,
+        "startChar": 6,
+        "endLine": 1659,
+        "endChar": 62
+      },
+      "revId": "d35380acfeeff080c1c2f66adf6c0af414a617ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
