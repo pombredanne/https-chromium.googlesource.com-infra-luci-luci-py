@@ -89,6 +89,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "022d7527_c673db23",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1564697
+      },
+      "writtenOn": "2023-01-13T00:31:42Z",
+      "side": 1,
+      "message": "Noted, have changed it, it now checks that the value exists and is not None, and if it does then the length is checked.",
+      "parentUuid": "7a0eb518_c7c91c78",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 208,
+        "endChar": 37
+      },
+      "revId": "5930b296758a2ddc6f7469f725fa35bf5e749d74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a7e7619_08edad56",
