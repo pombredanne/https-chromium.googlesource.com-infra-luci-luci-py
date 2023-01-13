@@ -139,6 +139,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2e9a7f0_2a2f7b9f",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1564697
+      },
+      "writtenOn": "2023-01-13T02:50:31Z",
+      "side": 1,
+      "message": "I have a test where the value of u\u0027pool\u0027 itself is None, so it will error if I don\u0027t have dimensions.get(u\u0027pool\u0027) is not None in there (in this case it doesn\u0027t return the default value []). Then the [] is redundant in the second line as None will have already been checked for, and it looks better for readability. Would this work?",
+      "parentUuid": "2ea8b474_e9bc07e9",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 208,
+        "endChar": 37
+      },
+      "revId": "5930b296758a2ddc6f7469f725fa35bf5e749d74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a7e7619_08edad56",
         "filename": "appengine/swarming/server/task_to_run.py",
         "patchSetId": 20
