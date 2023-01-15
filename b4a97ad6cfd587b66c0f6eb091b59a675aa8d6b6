@@ -1,0 +1,181 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45574c85_73e00008",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-15T22:22:56Z",
+      "side": 1,
+      "message": "round of comments which (may) make this easier to review",
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ada3d440_8ccfb81a",
+        "filename": "appengine/components/components/prpc/webapp2_server.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-15T22:22:56Z",
+      "side": 1,
+      "message": "this file\u0027s changes feel like they should be a separate CL",
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec44fdb3_49173bfe",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-15T22:22:56Z",
+      "side": 1,
+      "message": "I think it would lend a lot of confidence to this CL if these sorts of refactors (which seem fairly standalone) could be extracted into earlier, smaller, CLs",
+      "range": {
+        "startLine": 840,
+        "startChar": 23,
+        "endLine": 840,
+        "endChar": 29
+      },
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35189799_418894c6",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-15T22:22:56Z",
+      "side": 1,
+      "message": "should this file have its own specific tests?",
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92f3c49e_bed39a87",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-15T22:22:56Z",
+      "side": 1,
+      "message": "probably worth a docstring comment to mention that this is going to/from prpc messages to the database entities?",
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cfb3687_b9e40ba9",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-15T22:22:56Z",
+      "side": 1,
+      "message": "I would at least have some cursory docstring to e.g. state that `dictionary` must be a str:str dict.",
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0004dcba_5b88090c",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-15T22:22:56Z",
+      "side": 1,
+      "message": "I actually am not sure what this compatibility really is?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 76
+      },
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99717bc3_91228c36",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-15T22:22:56Z",
+      "side": 1,
+      "message": "`out.extend(swarming.StringPair(key\u003dk, value\u003dv) for v in values)`?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 53
+      },
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0b3fdca_a548eaea",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-15T22:22:56Z",
+      "side": 1,
+      "message": "out.extend(",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 53
+      },
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

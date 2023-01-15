@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "690e29dd_d217a872",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-15T22:22:56Z",
+      "side": 0,
+      "message": "I would extract the deletion of the old API into its own CL as well",
+      "revId": "6c33336cc6294eea28e82a5a2540117d4b60c50d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a424309_1bbd9b16",
         "filename": "appengine/swarming/handlers_prpc.py",
         "patchSetId": 20
