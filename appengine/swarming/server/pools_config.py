@@ -614,13 +614,11 @@ def _fetch_pools_config():
           external_schedulers=_resolve_external_schedulers(
               msg.external_schedulers),
           default_cipd=default_cipd,
-          rbe_migration=(
-              msg.rbe_migration if msg.HasField('rbe_migration') else None),
-          scheduling_algorithm=(
-              msg.scheduling_algorithm if msg.scheduling_algorithm else
-              (pools_pb2.Pool.SchedulingAlgorithm.
-               Value('SCHEDULING_ALGORITHM_UNKNOWN')))
-          )
+          rbe_migration=(msg.rbe_migration
+                         if msg.HasField('rbe_migration') else None),
+          scheduling_algorithm=(msg.scheduling_algorithm
+                                or pools_pb2.Pool.SCHEDULING_ALGORITHM_UNKNOWN),
+      )
   return _PoolsCfg(pools, (default_cipd))
 
 
