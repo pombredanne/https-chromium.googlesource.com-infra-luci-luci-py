@@ -154,6 +154,30 @@
       },
       "revId": "26cce66de18b3d32f880ceb64a067b98d2950d01",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "170290b5_2bfbd152",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-17T22:47:58Z",
+      "side": 1,
+      "message": "\u003e I think I\u0027ll try to propagate the picked scheduling algorithm through TaskRequest entity\n\nActually, this simplifies the rest of the code as well...",
+      "parentUuid": "8edf2bbc_1690e77a",
+      "range": {
+        "startLine": 724,
+        "startChar": 0,
+        "endLine": 725,
+        "endChar": 58
+      },
+      "revId": "26cce66de18b3d32f880ceb64a067b98d2950d01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
