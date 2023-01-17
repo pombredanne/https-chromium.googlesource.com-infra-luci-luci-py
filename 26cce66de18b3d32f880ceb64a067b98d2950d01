@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cfddcce_bf44a105",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-17T21:50:27Z",
+      "side": 1,
+      "message": "Since I was late with the review, I\u0027ll try to fix nits I identified myself. I\u0027ll send you a CL.",
+      "revId": "26cce66de18b3d32f880ceb64a067b98d2950d01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfffb882_904c5952",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-17T21:50:27Z",
+      "side": 1,
+      "message": "I don\u0027t like this. This introduces more uncertainty into possible states. If before, we checks for pool_cfg existence right after getting it, now this logic is split across function boundaries and one might reasonably expect to see `pool_cfg` being None, complicating matters.\n\nI think a somewhat cleaner approach would be to make process_task_request return PoolConfig it used.",
+      "range": {
+        "startLine": 442,
+        "startChar": 16,
+        "endLine": 442,
+        "endChar": 45
+      },
+      "revId": "26cce66de18b3d32f880ceb64a067b98d2950d01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2f11d57_ed1dd69a",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-17T21:50:27Z",
+      "side": 1,
+      "message": "See, it forces one to write comments like that to clarify possible states.",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 74
+      },
+      "revId": "26cce66de18b3d32f880ceb64a067b98d2950d01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c19add90_ab68af5f",
+        "filename": "appengine/swarming/proto/config/config.proto",
+        "patchSetId": 23
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-17T21:50:27Z",
+      "side": 1,
+      "message": "There\u0027s a convention to put these at front, see existing reserved fields above (though I\u0027m not sure how widespread this convention is, but this file is using it already, so need to adhere to it).",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 14
+      },
+      "revId": "26cce66de18b3d32f880ceb64a067b98d2950d01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc452e0a_a1de8460",
+        "filename": "appengine/swarming/server/external_scheduler_test.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-17T21:50:27Z",
+      "side": 1,
+      "message": "Python proto library uses C++ enum namespacing rules for some reason. This should be pools_pb2.Pool.SCHEDULING_ALGORITHM_FIFO.",
+      "range": {
+        "startLine": 176,
+        "startChar": 34,
+        "endLine": 177,
+        "endChar": 68
+      },
+      "revId": "26cce66de18b3d32f880ceb64a067b98d2950d01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25cb99b2_4cb8f964",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-17T21:50:27Z",
+      "side": 1,
+      "message": "This is unnecessarily heavy and verbose. It will be constructing and destroying the same set over and over again every time the function is called. Considering there\u0027s only 3 possibilities (and there\u0027s already an `if` right after that explicitly checks one possibility), it will be cleaner and faster just to use `if` and avoid sets.",
+      "range": {
+        "startLine": 240,
+        "startChar": 26,
+        "endLine": 244,
+        "endChar": 4
+      },
+      "revId": "26cce66de18b3d32f880ceb64a067b98d2950d01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8edf2bbc_1690e77a",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-17T21:50:27Z",
+      "side": 1,
+      "message": "I\u0027m not a fan of this for multiple reasons:\n\n1. It introduces uncertainty into possible states. Instead of being a pure function that does one thing only, this function now conditionally calls potentially heavy get_pool_config. It is also no longer deterministic. Also if the caller forgets to pass scheduling_algorithm, everything would seemingly work, except be slower and potentially occasionally blow up if the pool config\u0027s cache expires sometime between the first get_pool_config and second get_pool_config call within the same request handler (it isn\u0027t really possible now, but might become possible if this code evolves).\n2. It duplicates the logic of \"transforming\" dimensions into scheduling_algorithm. It is now in two places.\n\nIt appears, this None is used in 3 places:\n1. Tests. Simplifying tests is not a good justification for complicating \"production\" logic.\n2. _ensure_active_slice. It appears to be used only in together with external scheduler. We can hardcode FIFO there, it doesn\u0027t matter. External schedulers don\u0027t use scheduling_algorithm field. They just need TaskToRun entity with *some* key.\n3. _expire_task_tx. This is the only place where this logic matters.\n\nFor _expire_task_tx, I think I\u0027ll try to propagate the picked scheduling algorithm through TaskRequest entity (which is stored when the task is scheduler and already available in _expire_task_tx).",
+      "range": {
+        "startLine": 724,
+        "startChar": 0,
+        "endLine": 725,
+        "endChar": 58
+      },
+      "revId": "26cce66de18b3d32f880ceb64a067b98d2950d01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
