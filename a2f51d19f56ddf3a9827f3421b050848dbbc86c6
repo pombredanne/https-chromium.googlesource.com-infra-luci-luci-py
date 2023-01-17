@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "887d85dc_c29b245a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1564697
+      },
+      "writtenOn": "2023-01-17T23:55:14Z",
+      "side": 1,
+      "message": "Thank you very much for fixing everything, I have definitely learnt a lot from reading the code!",
+      "revId": "a2f51d19f56ddf3a9827f3421b050848dbbc86c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6a65940_61a677ee",
+        "filename": "appengine/swarming/proto/config/config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1564697
+      },
+      "writtenOn": "2023-01-17T23:55:14Z",
+      "side": 1,
+      "message": "Perhaps move this deprecated field up as well while we\u0027re at it?",
+      "range": {
+        "startLine": 33,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 13
+      },
+      "revId": "a2f51d19f56ddf3a9827f3421b050848dbbc86c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
