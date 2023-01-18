@@ -18,6 +18,42 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c238fa00_d511e1d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-18T18:22:14Z",
+      "side": 1,
+      "message": "I will try and split this up into multiple smaller commits while still preserving the chain. \n\nI am basically going to `git rebase -i` and squash all the commits together and then readd them using `git add -i` while creating new branches as I go.",
+      "parentUuid": "45574c85_73e00008",
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ac33c55_fd179d88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-18T18:22:14Z",
+      "side": 1,
+      "message": "I will split this CL up based on your suggestions. I think it may be easier to just start the chain fr",
+      "parentUuid": "45574c85_73e00008",
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ada3d440_8ccfb81a",
