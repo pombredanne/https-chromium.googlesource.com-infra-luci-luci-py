@@ -54,6 +54,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb6c1fc2_31a0145a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-19T18:50:46Z",
+      "side": 1,
+      "message": "I spoke to @vadimsh@chromium.org and he suggested that he is fine with the CL being one thing for now. So will keep this CL the same at present. \n\nAlthough I am certainly going to strive for much smaller and more focused CLs in the future.",
+      "parentUuid": "c238fa00_d511e1d9",
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ada3d440_8ccfb81a",
@@ -67,6 +85,24 @@
       "writtenOn": "2023-01-15T22:22:56Z",
       "side": 1,
       "message": "this file\u0027s changes feel like they should be a separate CL",
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "709cf73b_6822f1b2",
+        "filename": "appengine/components/components/prpc/webapp2_server.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-19T18:50:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ada3d440_8ccfb81a",
       "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -94,6 +130,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dc5b630_51d97cf1",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-19T18:50:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ec44fdb3_49173bfe",
+      "range": {
+        "startLine": 840,
+        "startChar": 23,
+        "endLine": 840,
+        "endChar": 29
+      },
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35189799_418894c6",
@@ -107,6 +167,24 @@
       "writtenOn": "2023-01-15T22:22:56Z",
       "side": 1,
       "message": "should this file have its own specific tests?",
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cadd5ac_62639e87",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-19T18:50:46Z",
+      "side": 1,
+      "message": "The overall testing strategy for this is to duplicate the `handlers_endpoints` test suite. I think that those tests are quite comprehensive so doing more testing here seemed redundant to me. I will not rule it out in the future though.",
+      "parentUuid": "35189799_418894c6",
       "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -128,6 +206,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3822d7fb_18ab52c7",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-19T18:50:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92f3c49e_bed39a87",
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cfb3687_b9e40ba9",
@@ -145,6 +241,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4e39028_0799b077",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-19T18:50:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cfb3687_b9e40ba9",
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0004dcba_5b88090c",
@@ -158,6 +272,30 @@
       "writtenOn": "2023-01-15T22:22:56Z",
       "side": 1,
       "message": "I actually am not sure what this compatibility really is?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 76
+      },
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d382dd42_9aab59e3",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-19T18:50:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0004dcba_5b88090c",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -204,6 +342,54 @@
       "writtenOn": "2023-01-15T22:22:56Z",
       "side": 1,
       "message": "out.extend(",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 53
+      },
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91bf76c7_1357627c",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-19T18:50:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99717bc3_91228c36",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 53
+      },
+      "revId": "b4a97ad6cfd587b66c0f6eb091b59a675aa8d6b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8d2b6f9_65b79ee9",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-19T18:50:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0b3fdca_a548eaea",
       "range": {
         "startLine": 26,
         "startChar": 0,
