@@ -6,8 +6,6 @@
 import cgi
 import functools
 import logging
-import six
-import sys
 
 from google.appengine.api import datastore_errors
 
@@ -15,16 +13,21 @@ from components import auth
 from components.prpc import codes
 
 import handlers_exceptions
+import endpoints
 
 EXCEPTIONS_TO_CODE = {
+    handlers_exceptions.NotFoundException: codes.StatusCode.NOT_FOUND,
     handlers_exceptions.BadRequestException: codes.StatusCode.INVALID_ARGUMENT,
     datastore_errors.BadValueError: codes.StatusCode.INVALID_ARGUMENT,
     handlers_exceptions.PermissionException: codes.StatusCode.PERMISSION_DENIED,
     handlers_exceptions.InternalException: codes.StatusCode.INTERNAL,
+    auth.AuthorizationError: codes.StatusCode.PERMISSION_DENIED,
+    endpoints.NotFoundException: codes.StatusCode.NOT_FOUND,
+    endpoints.BadRequestException: codes.StatusCode.INVALID_ARGUMENT,
 }
 
 
-def PRPCMethod(func):
+def prpc_method(func):
 
   @functools.wraps(func)
   def wrapper(self, request, prpc_context):
@@ -42,19 +45,23 @@ class SwarmingPRPCService(object):
       response = handler(self, request, prpc_context)
       return response
     except Exception as e:
-      ProcessException(e, prpc_context)
+      code = process_exception(e, prpc_context)
+      if code is None:
+        raise
 
 
-def ProcessException(e, prpc_context):
-  # type: (Exception, context.ServicerContext) -> None
-  """Sets prpc codes for recognized exceptions, raises unrecognized ones."""
+def process_exception(e, prpc_context):
+  """Sets prpc codes for recognized exceptions. Returns status code if exception
+  type is known, otherwise will return None."""
   logging.exception(e)
   exc_type = type(e)
   code = EXCEPTIONS_TO_CODE.get(exc_type)
   if code is None:
     prpc_context.set_code(codes.StatusCode.INTERNAL)
     prpc_context.set_details('Potential programming error.')
-    six.reraise(e.__class__, e, sys.exc_info()[2])
+    return None
 
   prpc_context.set_code(code)
-  prpc_context.set_details(cgi.escape(e.message, quote=True))
+  prpc_context.set_details(e.message)
+
+  return code
