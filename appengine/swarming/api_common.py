@@ -13,6 +13,7 @@ from server import realms
 from server import task_scheduler
 from server import task_request
 from server import task_pack
+from server import task_result
 
 
 def _get_or_raise(key):
@@ -132,3 +133,11 @@ def terminate_bot(bot_id):
   result_summary = task_scheduler.schedule_request(request,
                                                    enable_resultdb=False)
   return task_pack.pack_result_summary_key(result_summary.key)
+
+
+def list_bot_tasks(bot_id, start, end, sort, state, cursor, limit):
+  sort = sort.lower()
+  state = state.lower()
+  q = task_result.get_run_results_query(start, end, sort, state, bot_id)
+  items, cursor = datastore_utils.fetch_page(q, limit, cursor)
+  return items, cursor
