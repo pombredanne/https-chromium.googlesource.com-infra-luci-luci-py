@@ -39,6 +39,29 @@
       },
       "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13e783fd_87ef1b3a",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:32:24Z",
+      "side": 1,
+      "message": "This name is quite long but is somewhat descriptive of what this decorator does. But happy to consider other names.",
+      "range": {
+        "startLine": 774,
+        "startChar": 14,
+        "endLine": 774,
+        "endChar": 44
+      },
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

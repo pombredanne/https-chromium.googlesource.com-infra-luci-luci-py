@@ -917,6 +917,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83569401_a9c9a812",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:32:24Z",
+      "side": 1,
+      "message": "Actually, this should remain in `handlers_endpoints` because this error comes from converting a string into a `protorpc` compatible date. This is specific to the `handlers_endpoints` and not `prpc`.",
+      "parentUuid": "ee278e74_cb4a3e3a",
+      "range": {
+        "startLine": 844,
+        "startChar": 0,
+        "endLine": 846,
+        "endChar": 56
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "965af6ee_0ef2b481",
@@ -948,6 +972,24 @@
       "side": 1,
       "message": "I\u0027m so confused why the formatting tool doesn\u0027t do this 😞",
       "parentUuid": "965af6ee_0ef2b481",
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c89f980_198371a0",
+        "filename": "appengine/swarming/handlers_exceptions.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:32:24Z",
+      "side": 1,
+      "message": "Ooops, still not fixed - I must remember to hit `:w`!",
+      "parentUuid": "a5e85750_2d84c069",
       "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
