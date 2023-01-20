@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "add08d88_5bc9da2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "I think I have addressed most of the comments but apologies if any are missed! I have left two comments open. 1 comment I am doing a bit more research on while the other is a question. \n\nI will do another pass to double check if anything else is not addressed.",
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e41be86_8eb920aa",
+        "filename": "appengine/swarming/api_common_test.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "There are quite a few ways to create a `bot_event` in testing so it would make sense to create common code for a function similar to this. But I think that would be a refactor out of scope to this work so will save it for another CL.",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 14
+      },
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b06599cf_2afe55f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Agreed! I think we\u0027d benefit from some improved tooling here since a lot of the comments are about doc comment formatting etc. It would be nice to have a tool which says \"new doc comments are not correctly formatted\". I am wondering whether `tricium` supports this.",
+      "parentUuid": "be3a27bd_9928367f",
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14eaa8db_7669fa0b",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-01-20T00:25:03Z",
       "side": 1,
       "message": "2023 now 😞",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c279e12_57854fd9",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14eaa8db_7669fa0b",
       "range": {
         "startLine": 1,
         "startChar": 12,
@@ -64,6 +106,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3a81111_3c4c63f6",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Making it a single line causes it to be greater than 80 characters so leaving as is.",
+      "parentUuid": "868227c7_32b4c00e",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 3
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbbefd79_bf1785dd",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-01-20T00:25:03Z",
       "side": 1,
       "message": "why not handlers_exceptions.NotFoundException?\n\nIt is weird to catch endpoints exceptions in pRPC code.",
+      "range": {
+        "startLine": 19,
+        "startChar": 36,
+        "endLine": 19,
+        "endChar": 55
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd11ab60_ccd7a2ab",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbbefd79_bf1785dd",
       "range": {
         "startLine": 19,
         "startChar": 36,
@@ -110,6 +200,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc123c12_2183eaaf",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b119ac0e_b2521e18",
+      "range": {
+        "startLine": 27,
+        "startChar": 33,
+        "endLine": 27,
+        "endChar": 39
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f80c5e74_c63e9221",
@@ -123,6 +237,30 @@
       "writtenOn": "2023-01-20T00:25:03Z",
       "side": 1,
       "message": "just `bot_management.BotInfo or None` here instead of explaining what a bot_info is on a separate line.",
+      "range": {
+        "startLine": 30,
+        "startChar": 5,
+        "endLine": 30,
+        "endChar": 13
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac4acabc_ee41e243",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Not needed since now throws `handlers_exception.NotFound` if no bot.",
+      "parentUuid": "f80c5e74_c63e9221",
       "range": {
         "startLine": 30,
         "startChar": 5,
@@ -156,6 +294,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4bd0c2f_efe6369b",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "087b845d_b1c3de58",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 36
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d62b0613_04d2c809",
@@ -169,6 +331,30 @@
       "writtenOn": "2023-01-20T00:25:03Z",
       "side": 1,
       "message": "nit: Put it in the main body of the comment (before Returns section), since it is important information (and Returns/Raises should the last section anyway).",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 47
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03334d1b_8a6e8820",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d62b0613_04d2c809",
       "range": {
         "startLine": 40,
         "startChar": 2,
@@ -202,6 +388,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1ead9c6_85b3a63c",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3a9e894_027d8d72",
+      "range": {
+        "startLine": 77,
+        "startChar": 34,
+        "endLine": 77,
+        "endChar": 41
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7dfca3a_1ef960d7",
@@ -215,6 +425,30 @@
       "writtenOn": "2023-01-20T00:25:03Z",
       "side": 1,
       "message": "there\u0027s some typos here",
+      "range": {
+        "startLine": 78,
+        "startChar": 30,
+        "endLine": 78,
+        "endChar": 68
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62584c59_ad286172",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7dfca3a_1ef960d7",
       "range": {
         "startLine": 78,
         "startChar": 30,
@@ -248,6 +482,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07130be4_2ed69a2d",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2104e89c_31bf008c",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 5
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16c61514_776667b4",
@@ -265,6 +523,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1323ea87_7c8bdf7a",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16c61514_776667b4",
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5b8dd74_6528cd0b",
@@ -278,6 +554,30 @@
       "writtenOn": "2023-01-20T00:25:03Z",
       "side": 1,
       "message": "nit: indent\n\nThe general format\n\n```\n\"\"\"\nShort title.\n\nLonger multi-line description \n\nArguments:\n  \u003cname1\u003e: short description.\n  \u003cname2\u003e: short description.\n  \nReturns:\n  \u003cwhat\u003e.\n  \nRaises:\n  \u003cexception1\u003e ...\n  \u003cexception2\u003e ...\n\"\"\"\n```\n\nbut it varies across the code base :( Since this is a new file, just stick with it.",
+      "range": {
+        "startLine": 100,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 3
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6751470e_3a8e7d61",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5b8dd74_6528cd0b",
       "range": {
         "startLine": 100,
         "startChar": 2,
@@ -311,6 +611,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "858df832_e9236b31",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c364c01b_4b54b550",
+      "range": {
+        "startLine": 103,
+        "startChar": 2,
+        "endLine": 103,
+        "endChar": 47
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04d8c18a_8d96f764",
@@ -324,6 +648,30 @@
       "writtenOn": "2023-01-20T00:25:03Z",
       "side": 1,
       "message": "There\u0027s `Raises:` section for this. It should also mention NotFoundException",
+      "range": {
+        "startLine": 115,
+        "startChar": 43,
+        "endLine": 116,
+        "endChar": 61
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5606134d_ea160f5b",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04d8c18a_8d96f764",
       "range": {
         "startLine": 115,
         "startChar": 43,
@@ -357,6 +705,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71ecca58_cc6fc3a9",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Yes, tried with both `git cl format` and `git cl format --no-clang-format`. Tried different ways of formatting and it always returns to this.",
+      "parentUuid": "669f6c1c_0a11a325",
+      "range": {
+        "startLine": 127,
+        "startChar": 50,
+        "endLine": 128,
+        "endChar": 74
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf367842_45eebfbc",
@@ -370,6 +742,30 @@
       "writtenOn": "2023-01-20T00:25:03Z",
       "side": 1,
       "message": "this is not imported\n\nthere is supposed to be a test that detects such things 😊",
+      "range": {
+        "startLine": 130,
+        "startChar": 10,
+        "endLine": 130,
+        "endChar": 29
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a2367e3_97aacb66",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Ooops! I\u0027ll add a test to `handlers_endpoints_test.py` in a separate CL cus I don\u0027t want it to be blocked by this one but have added one to `handlers_prpc_tests.py`.",
+      "parentUuid": "bf367842_45eebfbc",
       "range": {
         "startLine": 130,
         "startChar": 10,
@@ -403,6 +799,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5e5f6da_1cc41952",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acda5697_b99047dc",
+      "range": {
+        "startLine": 791,
+        "startChar": 4,
+        "endLine": 792,
+        "endChar": 65
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8bc7e879_b2b69f3c",
@@ -416,6 +836,30 @@
       "writtenOn": "2023-01-20T00:25:03Z",
       "side": 1,
       "message": "There should be some shared layer (a base class, or a decorator, or whatever works) that would translate `handlers_exceptions` into `endpoints` exceptions (and same for pRPC).",
+      "range": {
+        "startLine": 816,
+        "startChar": 4,
+        "endLine": 816,
+        "endChar": 33
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18b5605a_72112f49",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Working on decorator to do this. I will rewrite all of `api_common` exception to use `handlers_exceptions` and modify `handlers_endpoints` to make use of the decorator.",
+      "parentUuid": "8bc7e879_b2b69f3c",
       "range": {
         "startLine": 816,
         "startChar": 4,
@@ -449,6 +893,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee278e74_cb4a3e3a",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f9363eb_d5338f40",
+      "range": {
+        "startLine": 844,
+        "startChar": 0,
+        "endLine": 846,
+        "endChar": 56
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "965af6ee_0ef2b481",
@@ -466,6 +934,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5e85750_2d84c069",
+        "filename": "appengine/swarming/handlers_exceptions.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "I\u0027m so confused why the formatting tool doesn\u0027t do this 😞",
+      "parentUuid": "965af6ee_0ef2b481",
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f7c3d1c_da72a5fa",
@@ -479,6 +965,30 @@
       "writtenOn": "2023-01-20T00:25:03Z",
       "side": 1,
       "message": "nit: keep it in consistent style with other comments here, e.g.\n\n```\nThe requested entity is not found.\n```",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 53
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f9805e8_c465dfd2",
+        "filename": "appengine/swarming/handlers_exceptions.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f7c3d1c_da72a5fa",
       "range": {
         "startLine": 18,
         "startChar": 5,
@@ -512,6 +1022,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cb74c85_58eb5dbf",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1fec23e_b4b231b3",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 35
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "189a3f0c_8309c0fd",
@@ -525,6 +1059,30 @@
       "writtenOn": "2023-01-20T02:10:13Z",
       "side": 1,
       "message": "Import aliases should be avoided unless they are absolutely necessary https://google.github.io/styleguide/pyguide.html#224-decision\n\nIn particular dropping pb2 suffix actually harms readability. pb2 suffix is widely recognized as \"this module container protobuf code with its weird-ass C++-like API\"",
+      "range": {
+        "startLine": 11,
+        "startChar": 37,
+        "endLine": 11,
+        "endChar": 54
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a47568a_7304d53a",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "189a3f0c_8309c0fd",
       "range": {
         "startLine": 11,
         "startChar": 37,
@@ -560,6 +1118,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16d0b940_94bc8801",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "I am a bit confused about this one because after doing some testing I noticed that the interceptor didn\u0027t appear to actually make a difference. \n\nI assumed that because `acl.can_access` is called before the delegated function, this is okay. Further, removing the `auth.require` does cause some of the tests which rely on auth to fail. \n\nHowever it seems like the `auth.prpc_interceptor` does some other magic with respect to status codes and also metadata on auth. So I need to do some more reading on what\u0027s actually happening.",
+      "parentUuid": "384f352b_c4cdc70a",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 50
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d92ba185_29af66fe",
         "filename": "appengine/swarming/handlers_prpc.py",
         "patchSetId": 22
@@ -571,6 +1153,30 @@
       "writtenOn": "2023-01-20T02:10:13Z",
       "side": 1,
       "message": "`class TasksService(object):`\n\nThis is still Python 2 code. Classes that do not explicitly inherit from `object` become \"old-style classes\" and we don\u0027t want to deal with that ancient stuff.",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 18
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da75c253_bdbb4d2e",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "I\u0027ll just delete and readd them in later CLs",
+      "parentUuid": "d92ba185_29af66fe",
       "range": {
         "startLine": 77,
         "startChar": 0,
@@ -604,6 +1210,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2478ec7c_3f185e22",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea2a93f3_07372018",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 3
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9a17199_fa72af63",
@@ -617,6 +1247,30 @@
       "writtenOn": "2023-01-20T02:10:13Z",
       "side": 1,
       "message": "```\n\u003cstdlib imports\u003e\n\n\u003cthird party librariries\u003e\n\n\u003cfirst party libraries\u003e\n```",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 44
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceca8cce_30902bd8",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9a17199_fa72af63",
       "range": {
         "startLine": 8,
         "startChar": 0,
@@ -650,6 +1304,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ac6b48c_afa29442",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Leaving this public since it\u0027s also used in tests in a later CL chain.",
+      "parentUuid": "20234685_6cf7f920",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 8
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b89c2303_c73e760d",
@@ -663,6 +1341,30 @@
       "writtenOn": "2023-01-20T02:10:13Z",
       "side": 1,
       "message": "this should not be used from the prpc code\n\nwe should be using only exceptions from deeper layers of code (api_common, auth library, datastore), not from a sibling layer (it is no longer layers then, but a mess).",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 16
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac72a56e_8d873328",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b89c2303_c73e760d",
       "range": {
         "startLine": 16,
         "startChar": 0,
@@ -698,6 +1400,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe3c83e6_eb0e946b",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Wouldn\u0027t `UNAUTHENTICATED` correspond with an `auth.AuthenticationError`?",
+      "parentUuid": "ff0df889_5f4d6739",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 64
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9adbe269_5d9d80ca",
         "filename": "appengine/swarming/prpc_helpers.py",
         "patchSetId": 22
@@ -709,6 +1435,30 @@
       "writtenOn": "2023-01-20T02:10:13Z",
       "side": 1,
       "message": "eh, just `method`. It is clear from `prpc_helpers.method` that this is about prpc.",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 15
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a516f21_e0822e8c",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9adbe269_5d9d80ca",
       "range": {
         "startLine": 30,
         "startChar": 4,
@@ -742,6 +1492,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c23830d_f1908912",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "734d86cd_6660418b",
+      "range": {
+        "startLine": 40,
+        "startChar": 6,
+        "endLine": 40,
+        "endChar": 25
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8af44ff_508c9787",
@@ -755,6 +1529,30 @@
       "writtenOn": "2023-01-20T02:10:13Z",
       "side": 1,
       "message": "`return handler(...)`",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 46,
+        "endChar": 21
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fce310d4_c0932c16",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8af44ff_508c9787",
       "range": {
         "startLine": 45,
         "startChar": 6,
@@ -788,6 +1586,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "594d732f_858c5e63",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7cbc8ab_d1dbb7aa",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 47
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a6f6221_2a7837d8",
@@ -811,6 +1633,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5c42351_a73b3174",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Moved the `log.error` so that it will only affect known error types.",
+      "parentUuid": "0a6f6221_2a7837d8",
+      "range": {
+        "startLine": 56,
+        "startChar": 2,
+        "endLine": 56,
+        "endChar": 22
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9a4dce3_57301be5",
@@ -824,6 +1670,30 @@
       "writtenOn": "2023-01-20T02:10:13Z",
       "side": 1,
       "message": "eh, just \"Internal server error\", let\u0027s not blame programmers prematurely\n\nin 90% of cases it will be some random-ass timeout instead of a \"programming error\"",
+      "range": {
+        "startLine": 61,
+        "startChar": 30,
+        "endLine": 61,
+        "endChar": 58
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "806cac32_c59f221c",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-20T22:22:58Z",
+      "side": 1,
+      "message": "Done 😄",
+      "parentUuid": "b9a4dce3_57301be5",
       "range": {
         "startLine": 61,
         "startChar": 30,
