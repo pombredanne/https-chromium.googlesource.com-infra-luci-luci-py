@@ -382,6 +382,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "acda5697_b99047dc",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "I think this (or rather handlers_exceptions.NotFoundException) should be raised inside api_common.get_bot to be consistent with other handlers.",
+      "range": {
+        "startLine": 791,
+        "startChar": 4,
+        "endLine": 792,
+        "endChar": 65
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8bc7e879_b2b69f3c",
         "filename": "appengine/swarming/handlers_endpoints.py",
         "patchSetId": 22
@@ -398,6 +421,29 @@
         "startChar": 4,
         "endLine": 816,
         "endChar": 33
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f9363eb_d5338f40",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "I think ValueError should be caught inside api_common.get_bot_events and be transformed into BadRequestException there (and the transformed into endpoints.BadRequestException by the shared layer I mentioned above).",
+      "range": {
+        "startLine": 844,
+        "startChar": 0,
+        "endLine": 846,
+        "endChar": 56
       },
       "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
@@ -438,6 +484,351 @@
         "startChar": 5,
         "endLine": 18,
         "endChar": 53
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1fec23e_b4b231b3",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "why is it necessary? what does this lint means?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 35
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "189a3f0c_8309c0fd",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "Import aliases should be avoided unless they are absolutely necessary https://google.github.io/styleguide/pyguide.html#224-decision\n\nIn particular dropping pb2 suffix actually harms readability. pb2 suffix is widely recognized as \"this module container protobuf code with its weird-ass C++-like API\"",
+      "range": {
+        "startLine": 11,
+        "startChar": 37,
+        "endLine": 11,
+        "endChar": 54
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "384f352b_c4cdc70a",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "I don\u0027t think this would work as it. It needs an interceptor that would do actual authentication. Here\u0027s what I discovered in old Buildbucket code: https://chromium.googlesource.com/infra/infra/+/c6734a198be6d9fa06c60822c779048cd562779a/appengine/cr-buildbucket/handlers.py#178",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 50
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d92ba185_29af66fe",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "`class TasksService(object):`\n\nThis is still Python 2 code. Classes that do not explicitly inherit from `object` become \"old-style classes\" and we don\u0027t want to deal with that ancient stuff.",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 18
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea2a93f3_07372018",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "This should be after the copyright header.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 3
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9a17199_fa72af63",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "```\n\u003cstdlib imports\u003e\n\n\u003cthird party librariries\u003e\n\n\u003cfirst party libraries\u003e\n```",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 44
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20234685_6cf7f920",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "either need to comment it or make it non-public \"_date\"",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 8
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b89c2303_c73e760d",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "this should not be used from the prpc code\n\nwe should be using only exceptions from deeper layers of code (api_common, auth library, datastore), not from a sibling layer (it is no longer layers then, but a mess).",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 16
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff0df889_5f4d6739",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "also \n\n```\nauth.AuthenticationError: codes.StatusCode.UNAUTHENTICATED\n```",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 64
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9adbe269_5d9d80ca",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "eh, just `method`. It is clear from `prpc_helpers.method` that this is about prpc.",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 15
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "734d86cd_6660418b",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "I don\u0027t think this is necessary. Just put `Run` implementation directly into `prpc_method` decorator (inside `wrapper`). It might be useful if we plan to override `Run` in subclasses, but I don\u0027t think we do. As is, it just adds complexity.",
+      "range": {
+        "startLine": 40,
+        "startChar": 6,
+        "endLine": 40,
+        "endChar": 25
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8af44ff_508c9787",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "`return handler(...)`",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 46,
+        "endChar": 21
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7cbc8ab_d1dbb7aa",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "```\nSets prpc codes for recognized exceptions, logs them.\n\nReturns:\n  Status code if the exception type is know, or None otherwise.\n```",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 47
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a6f6221_2a7837d8",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "1. For known types, we except them, we don\u0027t want to see a stack trace each time a bot is missing or something. We should just use `logging.error(...)`.\n2. For unknown types, the exception is reraised anyway and will be logged by pRPC server. No need to log it separately, we\u0027ll just have two identical stack traces.",
+      "range": {
+        "startLine": 56,
+        "startChar": 2,
+        "endLine": 56,
+        "endChar": 22
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9a4dce3_57301be5",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:10:13Z",
+      "side": 1,
+      "message": "eh, just \"Internal server error\", let\u0027s not blame programmers prematurely\n\nin 90% of cases it will be some random-ass timeout instead of a \"programming error\"",
+      "range": {
+        "startLine": 61,
+        "startChar": 30,
+        "endLine": 61,
+        "endChar": 58
       },
       "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
