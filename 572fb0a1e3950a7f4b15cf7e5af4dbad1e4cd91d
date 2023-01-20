@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af6c3593_8372f8d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T02:31:51Z",
+      "side": 1,
+      "message": "It is too late now, but when reverting more than one change it might be simpler to create reverts as a new CL using \"git revert\". Especially if you plan to reapply them later.",
+      "revId": "572fb0a1e3950a7f4b15cf7e5af4dbad1e4cd91d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
