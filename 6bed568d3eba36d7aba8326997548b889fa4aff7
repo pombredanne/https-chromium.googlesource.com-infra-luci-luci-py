@@ -1,0 +1,446 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be3a27bd_9928367f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "Letf some comments. I haven\u0027t finished yet. I\u0027m sorry, there are many nits, but I do believe keeping comments and code style tidy makes difference in a long run. Code (and comments) is much more frequently read than written. When everything looks uniform and doc strings are structured and provide information at just right amount of detail, it makes it simpler to work with the code (this is especially true for Python where doc strings replace the proper type system).",
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14eaa8db_7669fa0b",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "2023 now 😞",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "868227c7_32b4c00e",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "Super nit: reformulate to make it one line\n\n```\n\"\"\"Contains code shared between bot the prpc API and the protorpc api.\"\"\"\n```",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 3
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbbefd79_bf1785dd",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "why not handlers_exceptions.NotFoundException?\n\nIt is weird to catch endpoints exceptions in pRPC code.",
+      "range": {
+        "startLine": 19,
+        "startChar": 36,
+        "endLine": 19,
+        "endChar": 55
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b119ac0e_b2521e18",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "nit: end sentences with `.`",
+      "range": {
+        "startLine": 27,
+        "startChar": 33,
+        "endLine": 27,
+        "endChar": 39
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f80c5e74_c63e9221",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "just `bot_management.BotInfo or None` here instead of explaining what a bot_info is on a separate line.",
+      "range": {
+        "startLine": 30,
+        "startChar": 5,
+        "endLine": 30,
+        "endChar": 13
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "087b845d_b1c3de58",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "nit: I don\u0027t think this is a worthy comment. The reader can just look at the implementation if they are curious how it works. This is basically free form retelling of what the python code does and it will just diverge with time from the actual implementation.",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 36
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d62b0613_04d2c809",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "nit: Put it in the main body of the comment (before Returns section), since it is important information (and Returns/Raises should the last section anyway).",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 47
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3a9e894_027d8d72",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "appear",
+      "range": {
+        "startLine": 77,
+        "startChar": 34,
+        "endLine": 77,
+        "endChar": 41
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7dfca3a_1ef960d7",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "there\u0027s some typos here",
+      "range": {
+        "startLine": 78,
+        "startChar": 30,
+        "endLine": 78,
+        "endChar": 68
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2104e89c_31bf008c",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "```\nRaises:\n  handlers_exceptions.NotFoundException if there\u0027s no such bot\n```",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 5
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16c61514_776667b4",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "nit: del, we don\u0027t do empty new lines after doc comments",
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5b8dd74_6528cd0b",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "nit: indent\n\nThe general format\n\n```\n\"\"\"\nShort title.\n\nLonger multi-line description \n\nArguments:\n  \u003cname1\u003e: short description.\n  \u003cname2\u003e: short description.\n  \nReturns:\n  \u003cwhat\u003e.\n  \nRaises:\n  \u003cexception1\u003e ...\n  \u003cexception2\u003e ...\n\"\"\"\n```\n\nbut it varies across the code base :( Since this is a new file, just stick with it.",
+      "range": {
+        "startLine": 100,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 3
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c364c01b_4b54b550",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "Maybe just move this into the module doc string since it is repeated every time?\n\n```\n\"\"\"\n...\n\nAll functions define here **do not check ACLs**. The caller should \ncheck ACLs before calling them.\n\"\"\"\n```",
+      "range": {
+        "startLine": 103,
+        "startChar": 2,
+        "endLine": 103,
+        "endChar": 47
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04d8c18a_8d96f764",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "There\u0027s `Raises:` section for this. It should also mention NotFoundException",
+      "range": {
+        "startLine": 115,
+        "startChar": 43,
+        "endLine": 116,
+        "endChar": 61
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "669f6c1c_0a11a325",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "is this how `git cl format --no-clang-format` formats this?",
+      "range": {
+        "startLine": 127,
+        "startChar": 50,
+        "endLine": 128,
+        "endChar": 74
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf367842_45eebfbc",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "this is not imported\n\nthere is supposed to be a test that detects such things 😊",
+      "range": {
+        "startLine": 130,
+        "startChar": 10,
+        "endLine": 130,
+        "endChar": 29
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bc7e879_b2b69f3c",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "There should be some shared layer (a base class, or a decorator, or whatever works) that would translate `handlers_exceptions` into `endpoints` exceptions (and same for pRPC).",
+      "range": {
+        "startLine": 816,
+        "startChar": 4,
+        "endLine": 816,
+        "endChar": 33
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "965af6ee_0ef2b481",
+        "filename": "appengine/swarming/handlers_exceptions.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "nit: please keep consistent spacing. There\u0027s one empty line between classes before, and suddenly there are two. It triggers my anxiety 😊",
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f7c3d1c_da72a5fa",
+        "filename": "appengine/swarming/handlers_exceptions.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-20T00:25:03Z",
+      "side": 1,
+      "message": "nit: keep it in consistent style with other comments here, e.g.\n\n```\nThe requested entity is not found.\n```",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 53
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
