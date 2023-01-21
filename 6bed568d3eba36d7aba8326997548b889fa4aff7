@@ -943,6 +943,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e140d417_ce6fde5f",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-21T00:15:24Z",
+      "side": 1,
+      "message": "Then the code should change to reflect that:\n\n```\ntry:\n  start \u003d ...\n  end \u003d ...\nexcept ValueError:\n  raise ...\n  \nitems, cursor \u003d api_common.get_bot_events(...)\n```",
+      "parentUuid": "83569401_a9c9a812",
+      "range": {
+        "startLine": 844,
+        "startChar": 0,
+        "endLine": 846,
+        "endChar": 56
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "965af6ee_0ef2b481",
         "filename": "appengine/swarming/handlers_exceptions.py",
         "patchSetId": 22
@@ -1454,6 +1478,30 @@
       "side": 1,
       "message": "Wouldn\u0027t `UNAUTHENTICATED` correspond with an `auth.AuthenticationError`?",
       "parentUuid": "ff0df889_5f4d6739",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 64
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b88a762_cef1bdd4",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-21T00:15:24Z",
+      "side": 1,
+      "message": "yes, that\u0027s what I\u0027m proposing?",
+      "parentUuid": "fe3c83e6_eb0e946b",
       "range": {
         "startLine": 24,
         "startChar": 4,

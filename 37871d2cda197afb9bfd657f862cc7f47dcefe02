@@ -18,6 +18,121 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b86aaf59_b4ca9849",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-21T00:15:24Z",
+      "side": 1,
+      "message": "can this be a dict?\n\n```\n_EXCEPTION_MAP \u003d {\n    handlers_exceptions.NotFoundException: endpoints.NotFoundException,\n    ...\n}\n```\n\nIn that case the implementation can be inlined into convert_to_endpoints_exception.\n\nAnother option which will roughly be same number of lines, but slightly simpler is:\n\n```\ntry:\n  return func(...)\nexcept handlers_exceptions.NotFoundException as e:\n  raise endpoints.NotFoundException(e.message)\nexcept handlers_exceptions.BadRequestException as e:\n  raise endpoints.BadRequestException(e.message)\n```",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 51
+      },
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20e60f22_4c192e86",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-21T00:15:24Z",
+      "side": 1,
+      "message": "Why is it in api_common instead of handlers_endpoints? api_common is for things that do not depend on endpoints or prpc.",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 34
+      },
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53d04818_a3bb18cf",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-21T00:15:24Z",
+      "side": 1,
+      "message": "This seems unnecessary, it is clear from @functools.wraps it is a decorator.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 14
+      },
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "380f3acb_ed92017f",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-21T00:15:24Z",
+      "side": 1,
+      "message": "nit: please move these to a separate line:\n\n```\ndef func():\n  \"\"\"Blab blah.\n  \n  More blah blah.\n  \n  Arguments:\n    ...\n    \n  Returns:\n    ...\n  \"\"\"\n  \u003cimplementation\u003e\n```",
+      "range": {
+        "startLine": 70,
+        "startChar": 74,
+        "endLine": 70,
+        "endChar": 77
+      },
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "689732f3_1de57dc7",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-21T00:15:24Z",
+      "side": 1,
+      "message": "`\"%s not found.\" % bot_id` to be on par with the existing implementation, which reports bot ID (and also to be consistent with how _get_or_raise reports this)",
+      "range": {
+        "startLine": 100,
+        "startChar": 51,
+        "endLine": 100,
+        "endChar": 64
+      },
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "4e41be86_8eb920aa",
@@ -59,6 +174,99 @@
         "startChar": 14,
         "endLine": 774,
         "endChar": 44
+      },
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3a9d5f1_77a16728",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-21T00:15:24Z",
+      "side": 1,
+      "message": "How about introducing a decorator that combines @api_common.convert_to_endpoints_exception, @gae_ts_mon.instrument_endpoint and @auth.endpoints_method into one?\n\nSomething like this:\n\n```\ndef endpoint(*args, **kwargs):\n  convert \u003d api_common.convert_to_endpoints_exception\n  method \u003d auth.endpoints_method(*args, **kwargs)\n  instrument \u003d gae_ts_mon.instrument_endpoint()\n  def decorator(fn):\n    return instrument(method(convert(fn)))\n  return decorator\n\nclass SwarmingBotService(...):\n  @endpoint(\n      BotId, swarming_rpcs.BotInfo,\n      name\u003d\u0027get\u0027,\n      path\u003d\u0027{bot_id}/get\u0027,\n      http_method\u003d\u0027GET\u0027)\n  @auth.require(acl.can_access, log_identity\u003dTrue)\n  def get(self, request):\n    ...\n```\n\n(Also order of decorators matters. @gae_ts_mon.instrument_endpoint() should be the outer decorator, it needs to see endpoints-styled exceptions to understand what status code to report to monitoring. The implementation catches endpoints.ServiceException).",
+      "parentUuid": "13e783fd_87ef1b3a",
+      "range": {
+        "startLine": 774,
+        "startChar": 14,
+        "endLine": 774,
+        "endChar": 44
+      },
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ca70799_3e0cd3df",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-21T00:15:24Z",
+      "side": 1,
+      "message": "not necessary anymore",
+      "range": {
+        "startLine": 792,
+        "startChar": 4,
+        "endLine": 793,
+        "endChar": 65
+      },
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d5c3efd_ff1e498f",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-21T00:15:24Z",
+      "side": 1,
+      "message": "why have it is a separate function? `wrapper` doesn\u0027t do anything else",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 8
+      },
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10196dfa_a7310458",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-21T00:15:24Z",
+      "side": 1,
+      "message": "why?",
+      "range": {
+        "startLine": 60,
+        "startChar": 2,
+        "endLine": 60,
+        "endChar": 24
       },
       "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
