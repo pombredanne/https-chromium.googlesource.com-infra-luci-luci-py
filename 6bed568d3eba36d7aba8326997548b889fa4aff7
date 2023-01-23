@@ -1250,6 +1250,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94860e35_54264b65",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-23T23:44:35Z",
+      "side": 1,
+      "message": "auth.require(...) and other auth functions use the state stored in TLS. This state contains the email of the authenticated caller etc. https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/components/components/auth/api.py#1297\n\nauth.prpc_interceptor does the authentication and prepares this state.\n\nWithout it, I think, all requests will be considered to be called by anonymous caller.\n\nIn unit tests this stuff is likely heavily mocked, auth.prpc_interceptor makes no difference there.",
+      "parentUuid": "16d0b940_94bc8801",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 50
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d92ba185_29af66fe",
         "filename": "appengine/swarming/handlers_prpc.py",
         "patchSetId": 22

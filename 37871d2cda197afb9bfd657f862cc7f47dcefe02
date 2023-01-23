@@ -443,6 +443,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "968962a5_78920c9a",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-23T23:44:35Z",
+      "side": 1,
+      "message": "I meant just put the implementation of _run directly into `def wrapper(...)` (the only caller, and trivial at that). If not, please explain why it needs to be a separate function.",
+      "parentUuid": "f24d17f8_320e06ec",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 8
+      },
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10196dfa_a7310458",
         "filename": "appengine/swarming/prpc_helpers.py",
         "patchSetId": 24
