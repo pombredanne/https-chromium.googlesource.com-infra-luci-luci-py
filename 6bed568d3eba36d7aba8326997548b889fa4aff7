@@ -965,6 +965,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b11209cd_329e042b",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-23T23:26:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e140d417_ce6fde5f",
+      "range": {
+        "startLine": 844,
+        "startChar": 0,
+        "endLine": 846,
+        "endChar": 56
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "965af6ee_0ef2b481",
@@ -1014,6 +1038,24 @@
       "side": 1,
       "message": "Ooops, still not fixed - I must remember to hit `:w`!",
       "parentUuid": "a5e85750_2d84c069",
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14f37c71_bf22d0a3",
+        "filename": "appengine/swarming/handlers_exceptions.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-23T23:26:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c89f980_198371a0",
       "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -1502,6 +1544,30 @@
       "side": 1,
       "message": "yes, that\u0027s what I\u0027m proposing?",
       "parentUuid": "fe3c83e6_eb0e946b",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 64
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff635016_1a011f16",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-23T23:26:01Z",
+      "side": 1,
+      "message": "Sorry, got confused 😞",
+      "parentUuid": "3b88a762_cef1bdd4",
       "range": {
         "startLine": 24,
         "startChar": 4,
