@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "fb0f1dd1_556f9a72",
         "filename": "appengine/swarming/local_smoke_test.py",
@@ -14,10 +15,10 @@
       "side": 1,
       "message": "Thank you for doing this, and sorry about the nitpicking here! I still feel that it\u0027s strange to retry asserts. Given that the workaround is to wait for some state, can we simply put a sleep here before doing assertions? Maybe also add a comment explaining why the sleep?",
       "revId": "fc46fcec492259620c594e6445d147a1c3de0da5",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "04ff4dbe_92d27170",
         "filename": "appengine/swarming/local_smoke_test.py",
@@ -32,8 +33,139 @@
       "message": "Actually i forgot that this wasn\u0027t made ready for review... Anyway, i think it\u0027s fine *not* to make a fix for this. Feel free to ignore what i said..",
       "parentUuid": "fb0f1dd1_556f9a72",
       "revId": "fc46fcec492259620c594e6445d147a1c3de0da5",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ],
+  "submitRequirementResults": [
+    {
+      "submitRequirement": {
+        "name": "Code-Owners",
+        "description": {
+          "value": "User with the code owner override approved the change"
+        },
+        "applicabilityExpression": {
+          "value": {
+            "expressionString": "has:enabled_code-owners"
+          }
+        },
+        "submittabilityExpression": {
+          "expressionString": "has:approval_code-owners"
+        },
+        "overrideExpression": {
+          "value": {
+            "expressionString": "label:Owners-Override\u003d+1"
+          }
+        },
+        "allowOverrideInChildProjects": true
+      },
+      "applicabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"has:enabled_code-owners"},"status":"PASS","errorMessage":{"value":null},"passingAtoms":["has:enabled_code-owners"],"failingAtoms":[]}
+      },
+      "submittabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"has:approval_code-owners"},"status":"FAIL","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":["has:approval_code-owners"]}
+      },
+      "overrideExpressionResult": {
+        "value": {"expression":{"expressionString":"label:Owners-Override=+1"},"status":"FAIL","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":["label:Owners-Override=+1"]}
+      },
+      "patchSetCommitId": "fc46fcec492259620c594e6445d147a1c3de0da5",
+      "legacy": {
+        "value": false
+      },
+      "forced": {},
+      "hidden": {}
+    },
+    {
+      "submitRequirement": {
+        "name": "Code-Review",
+        "description": {
+          "value": "Submit requirement for the \u0027Code-Review\u0027 label"
+        },
+        "applicabilityExpression": {},
+        "submittabilityExpression": {
+          "expressionString": "label:Code-Review\u003dMAX,user\u003dnon_uploader -label:Code-Review\u003dMIN"
+        },
+        "overrideExpression": {
+          "value": {
+            "expressionString": "label:Bot-Commit\u003d+1 AND -label:Code-Review\u003dMIN"
+          }
+        },
+        "allowOverrideInChildProjects": true
+      },
+      "applicabilityExpressionResult": {},
+      "submittabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"label:Code-Review=MAX,user=non_uploader -label:Code-Review=MIN"},"status":"FAIL","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":["label:Code-Review=MAX,user=non_uploader","label:Code-Review=MIN"]}
+      },
+      "overrideExpressionResult": {
+        "value": {"expression":{"expressionString":"label:Bot-Commit=+1 AND -label:Code-Review=MIN"},"status":"FAIL","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":["label:Bot-Commit=+1","label:Code-Review=MIN"]}
+      },
+      "patchSetCommitId": "fc46fcec492259620c594e6445d147a1c3de0da5",
+      "legacy": {
+        "value": false
+      },
+      "forced": {},
+      "hidden": {}
+    },
+    {
+      "submitRequirement": {
+        "name": "Review-Enforcement",
+        "description": {
+          "value": "Two Google employees must approve the change. Uploading the change or voting positively on Code-Review count as approval."
+        },
+        "applicabilityExpression": {
+          "value": {
+            "expressionString": "is:review-enforced_gerrit"
+          }
+        },
+        "submittabilityExpression": {
+          "expressionString": "is:review-enforcement-satisfied_gerrit"
+        },
+        "overrideExpression": {},
+        "allowOverrideInChildProjects": false
+      },
+      "applicabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"is:review-enforced_gerrit"},"status":"FAIL","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":["is:review-enforced_gerrit"]}
+      },
+      "submittabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"is:review-enforcement-satisfied_gerrit"},"status":"NOT_EVALUATED","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":[]}
+      },
+      "overrideExpressionResult": {},
+      "patchSetCommitId": "fc46fcec492259620c594e6445d147a1c3de0da5",
+      "legacy": {
+        "value": false
+      },
+      "forced": {},
+      "hidden": {}
+    },
+    {
+      "submitRequirement": {
+        "name": "Verified",
+        "description": {
+          "value": "Submit requirement for the \u0027Verified\u0027 label"
+        },
+        "applicabilityExpression": {
+          "value": {
+            "expressionString": "is:false"
+          }
+        },
+        "submittabilityExpression": {
+          "expressionString": "is:true"
+        },
+        "overrideExpression": {},
+        "allowOverrideInChildProjects": true
+      },
+      "applicabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"is:false"},"status":"FAIL","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":["is:false"]}
+      },
+      "submittabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"is:true"},"status":"NOT_EVALUATED","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":[]}
+      },
+      "overrideExpressionResult": {},
+      "patchSetCommitId": "fc46fcec492259620c594e6445d147a1c3de0da5",
+      "legacy": {
+        "value": false
+      },
+      "forced": {},
+      "hidden": {}
     }
   ]
 }
