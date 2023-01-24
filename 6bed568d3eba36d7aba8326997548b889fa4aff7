@@ -1274,6 +1274,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b45eb603_14287a2f",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-24T22:00:32Z",
+      "side": 1,
+      "message": "That makes sense - thanks for the explanation.",
+      "parentUuid": "94860e35_54264b65",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 50
+      },
+      "revId": "6bed568d3eba36d7aba8326997548b889fa4aff7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d92ba185_29af66fe",
         "filename": "appengine/swarming/handlers_prpc.py",
         "patchSetId": 22

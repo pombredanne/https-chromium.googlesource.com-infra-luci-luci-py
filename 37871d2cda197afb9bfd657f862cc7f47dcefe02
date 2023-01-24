@@ -465,6 +465,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90e9be1a_55057f0d",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-24T22:00:32Z",
+      "side": 1,
+      "message": "Oh! Misunderstood comment. Should be completed!",
+      "parentUuid": "968962a5_78920c9a",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 8
+      },
+      "revId": "37871d2cda197afb9bfd657f862cc7f47dcefe02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10196dfa_a7310458",
