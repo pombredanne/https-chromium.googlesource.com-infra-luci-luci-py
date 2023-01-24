@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f72fa63_febb10d1",
+        "filename": "appengine/swarming/prpc_helpers.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-24T23:04:26Z",
+      "side": 1,
+      "message": "```\n  @functools.wraps(func)\n  def wrapper(self, request, prpc_context):\n    try:\n      return func(self, request, prpc_context)\n    except Exception as e:\n      code \u003d process_exception(e, prpc_context)\n      if code is None:\n        raise\n```",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 50
+      },
+      "revId": "2afc6a76fe587a9fe000534ca1467ab21f07b1c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
