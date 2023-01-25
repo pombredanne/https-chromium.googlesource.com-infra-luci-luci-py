@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c326e64_c7a8ea67",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-25T03:18:28Z",
+      "side": 1,
+      "message": "Looks like this is required :-/ \n\nWithout bot_event(...) call bot\u0027s \"Last Seen\" is not updated and it is eventually considered dead. \n\nUnfortunately bot_event(...) implementation is full of hacks. I was hoping to avoid touching it in this CL, but looks like I have to.",
+      "range": {
+        "startLine": 716,
+        "startChar": 8,
+        "endLine": 717,
+        "endChar": 53
+      },
+      "revId": "457050d6f5e46179e6dbd54d5e589bbbe2adc653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
