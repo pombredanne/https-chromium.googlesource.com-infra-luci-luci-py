@@ -429,6 +429,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         'machine_lease': None,
         'machine_type': None,
         'maintenance_msg': None,
+        'rbe_instance': None,
         'message': u"Invalid dimension value. key: foo, value: [u'bar']",
         'quarantined': True,
         'state': {
@@ -471,7 +472,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     }
     self.assertEqual(expected, response)
 
-  def test_poll_sleep_rbe(self):
+  def test_poll_rbe(self):
     _, bot_auth_cfg = self.mock_bot_group_config(
         version='default',
         dimensions={u'pool': [u'default']},
@@ -487,10 +488,8 @@ class BotApiTest(test_env_handlers.AppTestBase):
     # A bot polls, gets sleep with RBE parameters.
     params = self.do_handshake()
     response = self.post_json('/swarming/api/v1/bot/poll', params)
-    self.assertTrue(response.pop(u'duration'))
     expected = {
-        u'cmd': u'sleep',
-        u'quarantined': False,
+        u'cmd': u'rbe',
         u'rbe': {
             u'instance': u'some-instance',
             u'poll_token': u'mocked-poll-token',
@@ -1420,6 +1419,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
             'message': u'for the best',
             'quarantined': False,
             'maintenance_msg': None,
+            'rbe_instance': None,
             'state': {
                 u'bot_group_cfg_version': u'default',
                 u'running_time': 1234.0,
@@ -1450,6 +1450,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         'message': None,
         'quarantined': False,
         'maintenance_msg': None,
+        'rbe_instance': None,
         'state': {
             u'running_time': 1234.0,
             u'sleep_streak': 0,

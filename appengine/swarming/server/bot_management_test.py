@@ -42,6 +42,7 @@ def _bot_event(bot_id=None,
                version=_VERSION,
                quarantined=False,
                maintenance_msg=None,
+               rbe_instance=None,
                task_id=None,
                task_name=None,
                **kwargs):
@@ -57,19 +58,19 @@ def _bot_event(bot_id=None,
   if not authenticated_as:
     authenticated_as = u'bot:%s.domain' % bot_id
   register_dimensions = kwargs.get('event_type').startswith('request_')
-  return bot_management.bot_event(
-      bot_id=bot_id,
-      external_ip=external_ip,
-      authenticated_as=authenticated_as,
-      dimensions=dimensions,
-      state=state or {'ram': 65},
-      version=version,
-      quarantined=quarantined,
-      maintenance_msg=maintenance_msg,
-      task_id=task_id,
-      task_name=task_name,
-      register_dimensions=register_dimensions,
-      **kwargs)
+  return bot_management.bot_event(bot_id=bot_id,
+                                  external_ip=external_ip,
+                                  authenticated_as=authenticated_as,
+                                  dimensions=dimensions,
+                                  state=state or {'ram': 65},
+                                  version=version,
+                                  quarantined=quarantined,
+                                  maintenance_msg=maintenance_msg,
+                                  rbe_instance=rbe_instance,
+                                  task_id=task_id,
+                                  task_name=task_name,
+                                  register_dimensions=register_dimensions,
+                                  **kwargs)
 
 
 def _ensure_bot_info(bot_id=u'id1', **kwargs):
@@ -79,7 +80,8 @@ def _ensure_bot_info(bot_id=u'id1', **kwargs):
 
 def _gen_bot_info(**kwargs):
   out = {
-      'authenticated_as': u'bot:id1.domain',
+      'authenticated_as':
+      u'bot:id1.domain',
       'composite': [
           bot_management.BotInfo.NOT_IN_MAINTENANCE,
           bot_management.BotInfo.ALIVE,
@@ -91,25 +93,43 @@ def _gen_bot_info(**kwargs):
           u'os': [u'Ubuntu', u'Ubuntu-16.04'],
           u'pool': [u'default'],
       },
-      'external_ip': u'8.8.4.4',
-      'first_seen_ts': utils.utcnow(),
-      'id': 'id1',
-      'idle_since_ts': None,
-      'is_dead': False,
-      'last_seen_ts': utils.utcnow(),
-      'lease_id': None,
-      'lease_expiration_ts': None,
-      'leased_indefinitely': None,
-      'machine_lease': None,
-      'machine_type': None,
-      'quarantined': False,
-      'maintenance_msg': None,
+      'external_ip':
+      u'8.8.4.4',
+      'first_seen_ts':
+      utils.utcnow(),
+      'id':
+      'id1',
+      'idle_since_ts':
+      None,
+      'is_dead':
+      False,
+      'last_seen_ts':
+      utils.utcnow(),
+      'lease_id':
+      None,
+      'lease_expiration_ts':
+      None,
+      'leased_indefinitely':
+      None,
+      'machine_lease':
+      None,
+      'machine_type':
+      None,
+      'quarantined':
+      False,
+      'rbe_instance':
+      None,
+      'maintenance_msg':
+      None,
       'state': {
           u'ram': 65
       },
-      'task_id': None,
-      'task_name': None,
-      'version': _VERSION,
+      'task_id':
+      None,
+      'task_name':
+      None,
+      'version':
+      _VERSION,
   }
   out.update(kwargs)
   return out
@@ -134,6 +154,7 @@ def _gen_bot_event(**kwargs):
       'message': None,
       'quarantined': False,
       'maintenance_msg': None,
+      'rbe_instance': None,
       'state': {
           u'ram': 65
       },
