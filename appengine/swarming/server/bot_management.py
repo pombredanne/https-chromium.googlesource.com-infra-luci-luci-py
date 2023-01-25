@@ -324,7 +324,6 @@ class BotEvent(_BotCommon):
       'bot_rebooting': swarming_pb2.BOT_REBOOTING_HOST,
       'bot_shutdown': swarming_pb2.BOT_SHUTDOWN,
       'bot_terminate': swarming_pb2.INSTRUCT_TERMINATE_BOT,
-
       'request_restart': swarming_pb2.INSTRUCT_RESTART_BOT,
 
       # Shall only be stored when there is a significant difference in the bot
@@ -336,16 +335,20 @@ class BotEvent(_BotCommon):
       'task_error': swarming_pb2.TASK_INTERNAL_FAILURE,
       'task_killed': swarming_pb2.TASK_KILLED,
 
-      # This value is not registered in the API.
-      'task_update': None
+      # These values are not registered in the API.
+      'bot_idle': None,
+      'bot_polling': None,
+      'task_update': None,
   }
 
   ALLOWED_EVENTS = {
       # Bot specific events that are outside the scope of a task:
       'bot_connected',
       'bot_error',
+      'bot_idle',
       'bot_log',
       'bot_missing',
+      'bot_polling',
       'bot_rebooting',
       'bot_shutdown',
       'bot_terminate',
@@ -376,8 +379,8 @@ class BotEvent(_BotCommon):
 
   @property
   def is_idle(self):
-    return (self.event_type == 'request_sleep' and not self.quarantined
-            and not self.maintenance_msg)
+    return (self.event_type in ('request_sleep', 'bot_idle')
+            and not self.quarantined and not self.maintenance_msg)
 
   def to_proto(self, out):
     """Converts self to a swarming_pb2.BotEvent."""
@@ -556,6 +559,7 @@ def bot_event(event_type,
               quarantined=None,
               maintenance_msg=None,
               event_msg=None,
+              rbe_idle=None,
               register_dimensions=False):
   """Updates the state of the bot in the datastore.
 
@@ -655,20 +659,20 @@ def bot_event(event_type,
   # 1) When the task finishes (event_type=task_XXX)
   #    In these cases, the BotEvent shall have the task
   #    since the event still refers to it
-  # 2) When the bot is polling (event_type=request_sleep)
+  # 2) When the bot is polling (event_type=request_sleep, bot_idle, bot_polling)
   #    The bot has already finished the previous task.
   #    But it could have forgotten to remove the task from the BotInfo.
   #    So ensure the task is removed.
   # 3) When the bot is missing
   #    We assume it can't process assigned task anymore.
   if event_type in ('task_completed', 'task_error', 'task_killed',
-                    'request_sleep', 'bot_missing'):
+                    'request_sleep', 'bot_idle', 'bot_polling', 'bot_missing'):
     bot_info.task_id = None
     bot_info.task_name = None
 
-  # idle_since_ts is updated only when bot starts polling with healthy state.
-  is_idle = (event_type == 'request_sleep' and not bot_info.quarantined
-             and not bot_info.maintenance_msg)
+  # idle_since_ts is updated only when bot is idle with healthy state.
+  is_idle = (event_type in ('request_sleep', 'bot_idle')
+             and not bot_info.quarantined and not bot_info.maintenance_msg)
   if is_idle:
     bot_info.idle_since_ts = bot_info.idle_since_ts or now
   else:
@@ -696,7 +700,8 @@ def bot_event(event_type,
   #   * The event type is in a set of "rare" event types.
   #   * Bot changes status: crbug.com/952984, crbug.com/1040345.
   #   * Bot changes dimensions: crbug.com/1015365.
-  rare_event = event_type not in ('request_sleep', 'task_update')
+  rare_event = event_type not in ('request_sleep', 'bot_idle', 'bot_polling',
+                                  'task_update')
   status_updated = prev_composite != bot_info._calc_composite()
   if rare_event or status_updated or dimensions_updated:
     # `dimensions_flat` is not empty for most `bot_*` and `request_*` events.
