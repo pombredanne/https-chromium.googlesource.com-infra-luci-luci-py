@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0957df4d_1ade6d2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-25T18:06:26Z",
+      "side": 1,
+      "message": "I\u0027ll split this into multiple CLs, it is getting messy.",
+      "revId": "d0e59721bb4f5dd0cb57ffb844cd146c29c4822c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
