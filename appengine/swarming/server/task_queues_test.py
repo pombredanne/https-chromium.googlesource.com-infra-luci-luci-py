@@ -121,6 +121,7 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
                              None,
                              None,
                              None,
+                             None,
                              register_dimensions=True)
     queues = task_queues.assert_bot(bot_dimensions,
                                     bot_queues_only=bot_queues_only)

@@ -149,6 +149,7 @@ class TaskToRunApiTest(test_env_handlers.AppTestBase):
                              None,
                              None,
                              None,
+                             None,
                              register_dimensions=False)
     task_queues.assert_bot(bot_dimensions)
     self.execute_tasks()

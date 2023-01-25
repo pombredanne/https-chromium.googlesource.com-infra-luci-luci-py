@@ -72,6 +72,7 @@ def _bot_event(event_type, bot_id, **kwargs):
       'version': '123456789',
       'quarantined': False,
       'maintenance_msg': None,
+      'rbe_instance': None,
       'task_id': None,
       'task_name': None,
       'register_dimensions': event_type.startswith('request_')
