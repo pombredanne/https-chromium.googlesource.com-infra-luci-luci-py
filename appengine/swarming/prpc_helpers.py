@@ -47,11 +47,14 @@ def process_exception(e, prpc_context):
 def method(func):
   @functools.wraps(func)
   def wrapper(self, request, prpc_context):
-    try:
-      return func(self, request, prpc_context)
-    except Exception as e:
-      code = process_exception(e, prpc_context)
-      if code is None:
-        raise
+    def _run(self, handler, request, prpc_context):
+      try:
+        return handler(self, request, prpc_context)
+      except Exception as e:
+        code = process_exception(e, prpc_context)
+        if code is None:
+          raise
+
+    return _run(self, func, request, prpc_context)
 
   return wrapper
