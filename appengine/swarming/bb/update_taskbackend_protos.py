@@ -11,6 +11,21 @@ See SUB_PATHS for the specific list of protos needed to compile
 the protos in NEEDED_PROTOS.
 This script only compiles buildbucket/proto protos.
 Other protos are needed because they're imported by buildbucket/proto files.
+
+Instructions for Running this script:
+
+1. make sure you are in the bb dir: infra/luci/appengine/swarming/bb
+2. run ./update_taskbackend_protos.py
+3. once the python protos are created, you need to prefix each of the
+   "go.chromium.org.luci" imports with "bb". For instance, for the file:
+   "swarming/bb/go/chromium/org/luci/buildbucket/proto/backend_pb2.py"
+   you would change the following import:
+   "from go.chromium.org.luci.buildbucket.proto import common_pb2"
+   to
+   "from bb.go.chromium.org.luci.buildbucket.proto import common_pb2"
+
+   This is slighly annoying but its pretty quick. Do this for all python
+   protos that import "from go.chromium.org.luci...."
 """
 
 from __future__ import print_function
