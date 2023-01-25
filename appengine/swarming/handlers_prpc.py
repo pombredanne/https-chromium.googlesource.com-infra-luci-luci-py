@@ -3,16 +3,18 @@
 # that can be found in the LICENSE file.
 
 """This module defines Swarming Server frontend pRPC handlers."""
-
-from components import prpc
-from components import auth
-import proto.api_v2.swarming_prpc_pb2 as swarming_prpc_pb2
-import proto.api_v2.swarming_pb2 as swarming_pb2
-from server import realms
-from server import acl
 import api_common
 import message_conversion_prpc
 import prpc_helpers
+
+import proto.api_v2.swarming_pb2 as swarming_pb2
+import proto.api_v2.swarming_prpc_pb2 as swarming_prpc_pb2
+
+from components import auth
+from components import prpc
+from handlers_task_backend import TaskBackendAPIService
+from server import acl
+from server import realms
 
 
 class BotsService(object):
@@ -62,5 +64,6 @@ class BotsService(object):
 def get_routes():
   s = prpc.Server()
   s.add_service(BotsService())
+  s.add_service(TaskBackendAPIService())
   s.add_interceptor(auth.prpc_interceptor)
   return s.get_routes()
