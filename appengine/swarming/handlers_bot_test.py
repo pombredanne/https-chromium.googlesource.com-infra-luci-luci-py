@@ -471,7 +471,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     }
     self.assertEqual(expected, response)
 
-  def test_poll_sleep_rbe(self):
+  def test_poll_rbe(self):
     _, bot_auth_cfg = self.mock_bot_group_config(
         version='default',
         dimensions={u'pool': [u'default']},
@@ -487,10 +487,8 @@ class BotApiTest(test_env_handlers.AppTestBase):
     # A bot polls, gets sleep with RBE parameters.
     params = self.do_handshake()
     response = self.post_json('/swarming/api/v1/bot/poll', params)
-    self.assertTrue(response.pop(u'duration'))
     expected = {
-        u'cmd': u'sleep',
-        u'quarantined': False,
+        u'cmd': u'rbe',
         u'rbe': {
             u'instance': u'some-instance',
             u'poll_token': u'mocked-poll-token',

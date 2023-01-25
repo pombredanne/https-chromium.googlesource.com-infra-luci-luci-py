@@ -569,7 +569,7 @@ class BotPollHandler(_BotBaseHandler):
       # Ignore everything, just sleep. Tell the bot it is quarantined to inform
       # it that it won't be running anything anyway. Use a large streak so it
       # will sleep for 60s.
-      self._cmd_sleep(1000, True, None)
+      self._cmd_sleep(1000, True)
       return
 
     deadline = utils.utcnow() + datetime.timedelta(seconds=60)
@@ -634,32 +634,9 @@ class BotPollHandler(_BotBaseHandler):
       self._cmd_bot_restart('Restarting to pick up new bots.cfg config')
       return
 
-    # TODO(crbug.com/1377118): Temporary add RBE parameters to the `sleep`
-    # command. At some later point, there will be a new command dedicated to
-    # "pull from RBE". For now we'll piggy-back on `sleep` to develop the code
-    # path that talks to the RBE Workers API without breaking any other
-    # functionality (like "terminate" commands).
-    rbe_bot_params = None
-    if res.bot_id:
-      rbe_instance = rbe.get_rbe_instance(res.bot_id,
-                                          res.dimensions.get('pool'),
-                                          res.bot_group_cfg)
-      if rbe_instance:
-        rbe_bot_params = {
-            'instance':
-            rbe_instance,
-            'poll_token':
-            rbe.generate_poll_token(
-                bot_id=res.bot_id,
-                rbe_instance=rbe_instance,
-                enforced_dimensions=res.bot_group_cfg.dimensions,
-                bot_auth_cfg=res.bot_auth_cfg,
-            ),
-        }
-
     if quarantined:
       bot_event('request_sleep')
-      self._cmd_sleep(sleep_streak, quarantined, rbe_bot_params)
+      self._cmd_sleep(sleep_streak, quarantined)
       return
 
     #
@@ -678,7 +655,7 @@ class BotPollHandler(_BotBaseHandler):
     if res.state.get('maintenance'):
       bot_event('request_sleep')
       # Tell the bot it's considered quarantined.
-      self._cmd_sleep(sleep_streak, True, rbe_bot_params)
+      self._cmd_sleep(sleep_streak, True)
       return
 
     bot_info = bot_management.get_info_key(res.bot_id).get()
@@ -690,9 +667,23 @@ class BotPollHandler(_BotBaseHandler):
 
     # The bot is in good shape.
 
+    # Check the config to see if this bot is in RBE mode.
+    rbe_instance = rbe.get_rbe_instance(res.bot_id, res.dimensions.get('pool'),
+                                        res.bot_group_cfg)
+
     try:
       # Fetch queues matching bot's dimensions.
-      queues = task_queues.assert_bot(res.dimensions)
+      #
+      # If this bot is configured to use RBE, check only queues targeting this
+      # concrete bot via `id` dimension. These queues usually contain
+      # termination tasks. This allows to keep reusing Swarming scheduler for
+      # termination process, while using RBE for other tasks. This simplifies
+      # the initial implementation of RBE bots running on GCE.
+      #
+      # TODO(crbug.com/1377118): Switch to use RBE for Termination tasks and
+      # get rid of `bot_queues_only`.
+      queues = task_queues.assert_bot(res.dimensions,
+                                      bot_queues_only=bool(rbe_instance))
     except self._TIMEOUT_EXCEPTIONS as e:
       self._abort_by_timeout('assert_bot', e)
 
@@ -700,8 +691,8 @@ class BotPollHandler(_BotBaseHandler):
     reap_deadline = deadline - datetime.timedelta(seconds=10)
     request_uuid = res.request.get('request_uuid')
     try:
-      bot_details = task_scheduler.BotDetails(res.version, res.bot_group_cfg.
-          logs_cloud_project)
+      bot_details = task_scheduler.BotDetails(
+          res.version, res.bot_group_cfg.logs_cloud_project)
       (request, secret_bytes,
        run_result), is_deduped = api_helpers.cache_request(
            'bot_poll', request_uuid, lambda: task_scheduler.bot_reap_task(
@@ -713,9 +704,25 @@ class BotPollHandler(_BotBaseHandler):
       logging.info('Reusing request cache with uuid %s', request_uuid)
 
     if not request:
-      # No task found, tell it to sleep a bit.
-      bot_event('request_sleep')
-      self._cmd_sleep(sleep_streak, quarantined, rbe_bot_params)
+      # No tasks found in the Swarming scheduler.
+      if not rbe_instance:
+        # If this is a pure Swarming bot, tell it to sleep a bit.
+        bot_event('request_sleep')
+        self._cmd_sleep(sleep_streak, False)
+      else:
+        # If this is an RBE Swarming bot, ask it to check the RBE scheduler
+        # instead.
+        #
+        # TODO(crbug.com/1377118): Maybe we should record a bot_event of some
+        # sort to capture the switch to/from RBE mode.
+        self._cmd_rbe(
+            rbe_instance,
+            rbe.generate_poll_token(
+                bot_id=res.bot_id,
+                rbe_instance=rbe_instance,
+                enforced_dimensions=res.bot_group_cfg.dimensions,
+                bot_auth_cfg=res.bot_auth_cfg,
+            ))
       return
 
     # This part is tricky since it intentionally runs a transaction after
@@ -834,18 +841,25 @@ class BotPollHandler(_BotBaseHandler):
     }
     self.send_response(utils.to_json_encodable(out))
 
-  def _cmd_sleep(self, sleep_streak, quarantined, rbe_bot_params):
+  def _cmd_sleep(self, sleep_streak, quarantined):
     duration = task_scheduler.exponential_backoff(sleep_streak)
     logging.debug('Sleep: streak: %d; duration: %ds; quarantined: %s',
                   sleep_streak, duration, quarantined)
-    out = {
+    self.send_response({
         'cmd': 'sleep',
         'duration': duration,
         'quarantined': quarantined,  # TODO(vadimsh): Appears to be ignored.
-    }
-    if rbe_bot_params:
-      out['rbe'] = rbe_bot_params
-    self.send_response(out)
+    })
+
+  def _cmd_rbe(self, rbe_instance, poll_token):
+    logging.info('RBE mode: %s', rbe_instance)
+    self.send_response({
+        'cmd': 'rbe',
+        'rbe': {
+            'instance': rbe_instance,
+            'poll_token': poll_token,
+        },
+    })
 
   def _cmd_terminate(self, task_id):
     logging.info('Terminate: %s', task_id)
