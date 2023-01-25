@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfa13de8_b9f7fa4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-25T23:02:28Z",
+      "side": 1,
+      "message": "LGTM, just had a comment about potential further refactoring.",
+      "revId": "80e8a11b044f1b5c017eeee96d711a90b526492e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86bc893b_54629b92",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-25T23:02:28Z",
+      "side": 1,
+      "message": "Nit but I think there could be some benefit splitting this method up into 3 additional subroutines. \n\nThis method seems to have 4 logical functions:\n1. loads manipulates `bot_info`\n2. it creates a new `bot_event`\n3. decides whether or not the event should be stored\n4. calls `_insert_bot_with_txn` to insert `bot_info` and `bot_event`. \n\nSo it could potentially be broken up into:\n\n```python\ndef bot_event(...):\n  info \u003d _get_bot_info(...)\n  event \u003d _create_event(info, ...)\n  if _should_store_event(info)\n    insert_event_txn([event, info])\n....\n```\n\nWhich to someone reading this code from scratch, it would clarify that there is some optionality about whether a `bot_event` would actually be created.",
+      "range": {
+        "startLine": 547,
+        "startChar": 4,
+        "endLine": 547,
+        "endChar": 13
+      },
+      "revId": "80e8a11b044f1b5c017eeee96d711a90b526492e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6cc8f2d_29115c3a",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-25T23:02:28Z",
+      "side": 1,
+      "message": "since we are doing a more general refactoring should we change this to `bot_info.calc_composite` since it is a public class method.",
+      "range": {
+        "startLine": 624,
+        "startChar": 28,
+        "endLine": 624,
+        "endChar": 43
+      },
+      "revId": "80e8a11b044f1b5c017eeee96d711a90b526492e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
