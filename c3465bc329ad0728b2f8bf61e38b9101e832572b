@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "810acd5f_6c63bfe1",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-01-25T20:04:40Z",
+      "side": 1,
+      "message": "got it. Turns out I don\u0027t need the proto in this file so just gonna get rid of the import too.",
+      "parentUuid": "83f1d6fd_441e4868",
+      "range": {
+        "startLine": 28,
+        "startChar": 41,
+        "endLine": 28,
+        "endChar": 76
+      },
+      "revId": "c3465bc329ad0728b2f8bf61e38b9101e832572b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3ad448f_4ea26fab",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de62b5f1_9338df3c",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-01-25T20:04:40Z",
+      "side": 1,
+      "message": "changed them all!",
+      "parentUuid": "f3ad448f_4ea26fab",
+      "range": {
+        "startLine": 79,
+        "startChar": 3,
+        "endLine": 79,
+        "endChar": 26
+      },
+      "revId": "c3465bc329ad0728b2f8bf61e38b9101e832572b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3509c070_bc57d5e0",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-01-25T19:28:13Z",
       "side": 1,
       "message": "Does this need to be regenerated? I don\u0027t think this file exists anymore.",
+      "range": {
+        "startLine": 2,
+        "startChar": 10,
+        "endLine": 2,
+        "endChar": 37
+      },
+      "revId": "c3465bc329ad0728b2f8bf61e38b9101e832572b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc07d1bc_cf57ffdf",
+        "filename": "appengine/swarming/proto/api/swarming_v2_prpc_pb2.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-01-25T20:04:40Z",
+      "side": 1,
+      "message": "removed the file",
+      "parentUuid": "3509c070_bc57d5e0",
       "range": {
         "startLine": 2,
         "startChar": 10,
