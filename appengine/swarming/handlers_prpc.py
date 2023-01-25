@@ -6,6 +6,7 @@
 
 from components import prpc
 from components import auth
+from infra.luci.appengine.swarming.handlers_task_backend import TaskBackendAPIService
 import proto.api_v2.swarming_prpc_pb2 as swarming_prpc_pb2
 import proto.api_v2.swarming_pb2 as swarming_pb2
 from server import realms
@@ -62,5 +63,6 @@ class BotsService(object):
 def get_routes():
   s = prpc.Server()
   s.add_service(BotsService())
+  s.add_service(TaskBackendAPIService())
   s.add_interceptor(auth.prpc_interceptor)
   return s.get_routes()
