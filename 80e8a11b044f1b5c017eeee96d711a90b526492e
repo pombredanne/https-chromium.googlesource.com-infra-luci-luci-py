@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b970bb8e_3a991777",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-26T00:29:32Z",
+      "side": 1,
+      "message": "Done, sort of. It is structurally somewhat different. The bulk of the function is mutating BotInfo, not creating BotEvent. Not sure it improved readability much.",
+      "parentUuid": "86bc893b_54629b92",
+      "range": {
+        "startLine": 547,
+        "startChar": 4,
+        "endLine": 547,
+        "endChar": 13
+      },
+      "revId": "80e8a11b044f1b5c017eeee96d711a90b526492e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6cc8f2d_29115c3a",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-01-25T23:02:28Z",
       "side": 1,
       "message": "since we are doing a more general refactoring should we change this to `bot_info.calc_composite` since it is a public class method.",
+      "range": {
+        "startLine": 624,
+        "startChar": 28,
+        "endLine": 624,
+        "endChar": 43
+      },
+      "revId": "80e8a11b044f1b5c017eeee96d711a90b526492e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b077560f_716ed437",
+        "filename": "appengine/swarming/server/bot_management.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-26T00:29:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6cc8f2d_29115c3a",
       "range": {
         "startLine": 624,
         "startChar": 28,
