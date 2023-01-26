@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96baec00_f59f6228",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-26T19:31:47Z",
+      "side": 1,
+      "message": "This is not a correct ACL check.",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 42
+      },
+      "revId": "f93a76bfc08192c45f02f32efe378c9bf0972b35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "599ff601_74ee6af6",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-26T19:31:47Z",
+      "side": 1,
+      "message": "Have you tried `request.HasField(\u0027start\u0027)`? This is a canonical way to check if a message-valued field is set (and datetime is represented by a message-valued field in proto).",
+      "range": {
+        "startLine": 85,
+        "startChar": 7,
+        "endLine": 85,
+        "endChar": 21
+      },
+      "revId": "f93a76bfc08192c45f02f32efe378c9bf0972b35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d88faa7f_8e44e43a",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-26T19:31:47Z",
+      "side": 1,
+      "message": "Lets avoid doing string math and treat enums like integer enums. E.g. have a dict mapping from protobuf enum to the enum required by list_bot_tasks. String math is brittle.",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 70
+      },
+      "revId": "f93a76bfc08192c45f02f32efe378c9bf0972b35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06138031_6246d481",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-26T19:31:47Z",
+      "side": 1,
+      "message": "what does this do?",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 38
+      },
+      "revId": "f93a76bfc08192c45f02f32efe378c9bf0972b35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
