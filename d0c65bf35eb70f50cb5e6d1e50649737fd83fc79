@@ -18,6 +18,184 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "035b53b7_d4d944ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-27T23:08:34Z",
+      "side": 1,
+      "message": "lgtm w/ comments",
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f22dc77_bb18d06a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-27T23:08:34Z",
+      "side": 1,
+      "message": "why passed in instead of initialized here and used by the creator of the Clock?",
+      "range": {
+        "startLine": 28,
+        "startChar": 21,
+        "endLine": 28,
+        "endChar": 31
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6d32822_c1872ec5",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-27T23:08:34Z",
+      "side": 1,
+      "message": "can we drop these older flavors? Presumably this should never need python2... time.monotonic was added in python3.3",
+      "range": {
+        "startLine": 40,
+        "startChar": 57,
+        "endLine": 40,
+        "endChar": 66
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "710f3aa9_57805769",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-27T23:08:34Z",
+      "side": 1,
+      "message": "log?",
+      "range": {
+        "startLine": 52,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 12
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05a68ff1_8195715b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-27T23:08:34Z",
+      "side": 1,
+      "message": "log if len(self._timers) \u003e (limit where we should switch to a queue instead of a linear scan)?",
+      "range": {
+        "startLine": 69,
+        "startChar": 17,
+        "endLine": 69,
+        "endChar": 23
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aedb1451_4c084561",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-27T23:08:34Z",
+      "side": 1,
+      "message": "iiuc this means that the amount of sleep will always be \u003e\u003d `duration`, according to `now()`?",
+      "range": {
+        "startLine": 73,
+        "startChar": 34,
+        "endLine": 73,
+        "endChar": 47
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff8267a7_49d05a71",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-27T23:08:34Z",
+      "side": 1,
+      "message": "signal",
+      "range": {
+        "startLine": 79,
+        "startChar": 49,
+        "endLine": 79,
+        "endChar": 57
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8ff7a75_dbdb5fe7",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-01-27T23:08:34Z",
+      "side": 1,
+      "message": "I think the answer is \"no, because all uses of Clock are single-threaded\", but should it be possible to interrupt this on `timer()`?\n\nedit: ah, docstring says this should never happen",
+      "range": {
+        "startLine": 108,
+        "startChar": 11,
+        "endLine": 108,
+        "endChar": 16
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d279b40b_7058acbd",
