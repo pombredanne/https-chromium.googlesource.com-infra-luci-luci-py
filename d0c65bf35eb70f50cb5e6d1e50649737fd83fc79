@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e79cef58_94bd9aa7",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-27T23:39:10Z",
+      "side": 1,
+      "message": "Because the bot code initializes it way earlier before Clock exists.",
+      "parentUuid": "6f22dc77_bb18d06a",
+      "range": {
+        "startLine": 28,
+        "startChar": 21,
+        "endLine": 28,
+        "endChar": 31
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6d32822_c1872ec5",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-01-27T23:08:34Z",
       "side": 1,
       "message": "can we drop these older flavors? Presumably this should never need python2... time.monotonic was added in python3.3",
+      "range": {
+        "startLine": 40,
+        "startChar": 57,
+        "endLine": 40,
+        "endChar": 66
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60330d1f_aa800fe0",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-27T23:39:10Z",
+      "side": 1,
+      "message": "The doc is sketchy:\n\n```\nNew in version 3.3.\nChanged in version 3.5: The function is now always available and always system-wide.\nChanged in version 3.10: On macOS, the function is now system-wide.\n\n```\n\nDoes it mean it is not always available prior to 3.5?.. Also what does \"system-wide\" mean?\n\nI\u0027m afraid to brick bots that may be use old Python. Though it appears all bots are at least 3.5, so I guess I can just use time.monotonic...",
+      "parentUuid": "f6d32822_c1872ec5",
       "range": {
         "startLine": 40,
         "startChar": 57,
@@ -104,6 +152,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb4de8e6_e7b4e75a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-27T23:39:10Z",
+      "side": 1,
+      "message": "No longer relevant.",
+      "parentUuid": "710f3aa9_57805769",
+      "range": {
+        "startLine": 52,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 12
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05a68ff1_8195715b",
@@ -117,6 +189,30 @@
       "writtenOn": "2023-01-27T23:08:34Z",
       "side": 1,
       "message": "log if len(self._timers) \u003e (limit where we should switch to a queue instead of a linear scan)?",
+      "range": {
+        "startLine": 69,
+        "startChar": 17,
+        "endLine": 69,
+        "endChar": 23
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0c16851_d760b3f6",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-27T23:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05a68ff1_8195715b",
       "range": {
         "startLine": 69,
         "startChar": 17,
@@ -150,6 +246,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4023a6ee_b3f7406b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-27T23:39:10Z",
+      "side": 1,
+      "message": "Yes, clarified.",
+      "parentUuid": "aedb1451_4c084561",
+      "range": {
+        "startLine": 73,
+        "startChar": 34,
+        "endLine": 73,
+        "endChar": 47
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff8267a7_49d05a71",
@@ -163,6 +283,30 @@
       "writtenOn": "2023-01-27T23:08:34Z",
       "side": 1,
       "message": "signal",
+      "range": {
+        "startLine": 79,
+        "startChar": 49,
+        "endLine": 79,
+        "endChar": 57
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c97bc293_e09cf92f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-27T23:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff8267a7_49d05a71",
       "range": {
         "startLine": 79,
         "startChar": 49,
@@ -209,6 +353,30 @@
       "writtenOn": "2023-01-27T22:48:37Z",
       "side": 1,
       "message": "Should this be a public property of `Timer`?",
+      "range": {
+        "startLine": 114,
+        "startChar": 49,
+        "endLine": 114,
+        "endChar": 54
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5c5bde4_5e18bc82",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-27T23:39:10Z",
+      "side": 1,
+      "message": "Nothing outside of clock.py needs it, so no. It is easier to add things than remove them.",
+      "parentUuid": "d279b40b_7058acbd",
       "range": {
         "startLine": 114,
         "startChar": 49,
