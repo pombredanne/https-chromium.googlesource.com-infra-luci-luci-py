@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df536d23_ebf7d7b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-27T21:17:32Z",
+      "side": 1,
+      "message": "Will need to include another CL in order to update the protobufs.",
+      "revId": "cf098fbf7b0da428ba5ea3f9fee6881439ddf4cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
