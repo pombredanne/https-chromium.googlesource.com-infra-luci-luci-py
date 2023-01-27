@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1250b3d1_dd4a4fdd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-27T23:55:02Z",
+      "side": 1,
+      "message": "PTAL.\n\nIt may not look like simplification at first, but it is way easier to integrate RBE cycle with this (the RBE cycle ticks at a different frequency and can be turned on/off dynamically based on `rbe` command... It will be represented by an _rbe_poll_timer).",
+      "revId": "841b221a2eecd4efdee88c226a2ce78d09e85a24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
