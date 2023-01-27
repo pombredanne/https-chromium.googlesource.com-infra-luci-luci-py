@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "611e3c0b_4e32023a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-27T22:48:37Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d279b40b_7058acbd",
+        "filename": "appengine/swarming/swarming_bot/bot_code/clock.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-27T22:48:37Z",
+      "side": 1,
+      "message": "Should this be a public property of `Timer`?",
+      "range": {
+        "startLine": 114,
+        "startChar": 49,
+        "endLine": 114,
+        "endChar": 54
+      },
+      "revId": "d0c65bf35eb70f50cb5e6d1e50649737fd83fc79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
