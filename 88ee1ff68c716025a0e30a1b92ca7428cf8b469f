@@ -22,6 +22,30 @@
       },
       "revId": "88ee1ff68c716025a0e30a1b92ca7428cf8b469f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1f99c52_2e1f1326",
+        "filename": "appengine/swarming/bb/update_taskbackend_protos.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-01-30T20:26:32Z",
+      "side": 1,
+      "message": "thought it would be hard to do, but it turned out to be an easy thing. I added it to the script.",
+      "parentUuid": "8d7d943e_1b14e84f",
+      "range": {
+        "startLine": 27,
+        "startChar": 3,
+        "endLine": 27,
+        "endChar": 27
+      },
+      "revId": "88ee1ff68c716025a0e30a1b92ca7428cf8b469f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
