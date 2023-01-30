@@ -16,6 +16,52 @@
       "message": "Another gentle ping.",
       "revId": "a88715e3474a24fcfaf87ec72e73eb683b2115c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3596cebe_a53f76ed",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-30T19:34:40Z",
+      "side": 1,
+      "message": "https://crbug.com/1407381\n\nhttp://go is google-internal thing",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 35
+      },
+      "revId": "a88715e3474a24fcfaf87ec72e73eb683b2115c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5748d996_b7f89303",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-30T19:34:40Z",
+      "side": 1,
+      "message": "I think this might hit useless bugs-inducing ndb request cache: https://cloud.google.com/appengine/docs/legacy/standard/python/ndb/cache#incontext and \"discover\" that BotInfo is still missing, even through it exists.\n\nPass `use_cache\u003dFalse` here.",
+      "range": {
+        "startLine": 55,
+        "startChar": 48,
+        "endLine": 55,
+        "endChar": 53
+      },
+      "revId": "a88715e3474a24fcfaf87ec72e73eb683b2115c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
