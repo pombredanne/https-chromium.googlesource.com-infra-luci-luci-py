@@ -46,6 +46,30 @@
       },
       "revId": "88ee1ff68c716025a0e30a1b92ca7428cf8b469f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bed3eb22_e654a303",
+        "filename": "appengine/swarming/bb/update_taskbackend_protos.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-01-30T20:34:42Z",
+      "side": 1,
+      "message": "Why spend 5 min doing a repetitive task if you can spend 2h automating it and then perform once, right? 😊",
+      "parentUuid": "a1f99c52_2e1f1326",
+      "range": {
+        "startLine": 27,
+        "startChar": 3,
+        "endLine": 27,
+        "endChar": 27
+      },
+      "revId": "88ee1ff68c716025a0e30a1b92ca7428cf8b469f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
