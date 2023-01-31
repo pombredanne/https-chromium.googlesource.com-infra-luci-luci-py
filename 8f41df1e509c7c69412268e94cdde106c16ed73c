@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15804ce3_60eee4c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-01-31T20:06:10Z",
+      "side": 1,
+      "message": "I added some auth code so that only luci services can access RunTask and CancelTasks (should I add the same for FetchTasks and ValidateConfig?).\n\nAlso, lots of the functionality on the CancelTasks endpoint will be done down the line, so I created a bug for that.",
+      "revId": "8f41df1e509c7c69412268e94cdde106c16ed73c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29d1f2e9_cb92cf1c",
@@ -31,6 +48,30 @@
       "writtenOn": "2023-01-31T01:06:21Z",
       "side": 1,
       "message": "IIRC, Task Backends API is supposed to be used only by Buildbucket?\n\nThese (acl.can_xxx) and realms.check_xxx are for authorizing users of existing public Swarming API. I\u0027m not sure it is appropriate to allow existing Swarming users (which includes humans and various services) ability to hit Task Backends API.\n\nFor example, it might be possible to do something \"weird\" by passing manually constructed `backend_config` here.\n\nI\u0027m especially worried about this during the initial development phase. This code will be deployed into real production Swarming instance. If it has bugs in ACLs, they might be abused.\n\nI think we should introduce `acl.can_use_task_backend` and restrict access only to very few accounts there. We might still need to do realms.check_xxx though (for authorizing things that cross-project reuse of Swarming pools, i.e. acl.can_use_task_backend will verify the caller is Buildbucket, calling Swarming in a context of some LUCI project, and realms.check_xxx will verify it is OK to access the corresponding Swarming resource from this LUCI project).",
+      "range": {
+        "startLine": 40,
+        "startChar": 16,
+        "endLine": 40,
+        "endChar": 35
+      },
+      "revId": "8f41df1e509c7c69412268e94cdde106c16ed73c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa538c2e_1ff470aa",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-01-31T20:06:10Z",
+      "side": 1,
+      "message": "SGTM. I adding this in patchset 4.",
+      "parentUuid": "29d1f2e9_cb92cf1c",
       "range": {
         "startLine": 40,
         "startChar": 16,
@@ -64,6 +105,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "931cb1b2_124d124a",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-01-31T20:06:10Z",
+      "side": 1,
+      "message": "changed it to a set.",
+      "parentUuid": "31631c60_1a0b2f6c",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 86,
+        "endChar": 14
+      },
+      "revId": "8f41df1e509c7c69412268e94cdde106c16ed73c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e534dfc2_f3059658",
@@ -87,6 +152,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "706587b4_ff5b339f",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-01-31T20:06:10Z",
+      "side": 1,
+      "message": "I agree we should use dimensions. I\u0027ll add it to the requirements for when we work on CancelTask.\n\nhttps://bugs.chromium.org/p/chromium/issues/detail?id\u003d1411717",
+      "parentUuid": "e534dfc2_f3059658",
+      "range": {
+        "startLine": 89,
+        "startChar": 63,
+        "endLine": 89,
+        "endChar": 70
+      },
+      "revId": "8f41df1e509c7c69412268e94cdde106c16ed73c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "946e0fcb_e69a28aa",
@@ -100,6 +189,30 @@
       "writtenOn": "2023-01-31T01:06:21Z",
       "side": 1,
       "message": "This will be slow and limited. Cloud Datastore is not a SQL service. Queries are much heavier and restricted than direct gets. In particular, this will work only for up to 10 tasks: https://cloud.google.com/datastore/docs/concepts/queries#in\n\nThis should instead get all TaskResultSummary with a single ndb.get_multi and then filter/sort them locally.\n\nIf `cancel_tasks` needs a query specifically, it should be refactored to accept a list of keys (or whatever).",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 58
+      },
+      "revId": "8f41df1e509c7c69412268e94cdde106c16ed73c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "154afc77_d810637d",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-01-31T20:06:10Z",
+      "side": 1,
+      "message": "SGTM. Added this to the CancelTask bug and in the doc and linked this comment.",
+      "parentUuid": "946e0fcb_e69a28aa",
       "range": {
         "startLine": 92,
         "startChar": 0,
