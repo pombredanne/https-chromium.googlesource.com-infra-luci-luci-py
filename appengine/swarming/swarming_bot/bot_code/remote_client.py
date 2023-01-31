@@ -20,6 +20,7 @@ from bot_code.remote_client_errors import InitializationError
 from bot_code.remote_client_errors import InternalError
 from bot_code.remote_client_errors import MintTokenError
 from bot_code.remote_client_errors import PollError
+from bot_code.remote_client_errors import RBEError
 
 
 # RemoteClient will attempt to refresh the authentication headers once they are
