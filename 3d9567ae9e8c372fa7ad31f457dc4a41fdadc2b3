@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "984392db_372f7550",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-31T22:30:50Z",
+      "side": 1,
+      "message": "I added some tests to make sure that the mapping between the `filters` and the `SortQuery` and `StateQuery` were correct. \n\nThat uncovered some issues. It seems like the old API doesn\u0027t actually use the `TaskSortQuery` and `TaskStateQuery` . The new `pRPC` api does so there must be a mapping between these string sorts and states. \n\nFurther, the same `sorts` and `states` are used for `TaskResultSummary` as well as `TaskRunResult` which are different datastore entities and have slightly differ fields which means re use is not as convenient. So I also added some validations to ensure more consistent error handling in the `pRPC` api.",
+      "revId": "3d9567ae9e8c372fa7ad31f457dc4a41fdadc2b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b14cfdc0_3664c4dd",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-31T22:30:50Z",
+      "side": 1,
+      "message": "The reason we need this is because:\n1. The `TaskRunResult` and `TaskResultSummary` are different but very similar entities\n2. `QueryState` and `QuerySort` are used to query both of those entities but do not apply exactly correctly to both. \n3. `TaskRunResult` is queries for tasks associated with bots while `TaskResultSummary` is used for the more general `tasks/list` request.\n\nThis exists in the old api so having these somewhat cleans up the behaviour.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 71
+      },
+      "revId": "3d9567ae9e8c372fa7ad31f457dc4a41fdadc2b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
