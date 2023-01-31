@@ -571,6 +571,26 @@ def check_tasks_list_acl(pools):
   _check_pools_filters_acl(realms_pb2.REALM_PERMISSION_POOLS_LIST_TASKS, pools)
 
 
+def check_tasks_create_acl(pools):
+  """Checks if the caller is allowed to create tasks in the given pools.
+
+
+  It checks realm permission 'swarming.pools.createTasks'.
+  The caller is required to specify pools, and have the permission
+  in *all* pools.
+
+  Args:
+    pools: List of pools for filtering.
+
+  Returns:
+    None
+
+  Raises:
+    auth.AuthorizationError: if the caller is not allowed.
+  """
+  _check_pools_filters_acl(realms_pb2.REALM_PERMISSION_POOLS_CREATE_TASK, pools)
+
+
 def can_list_tasks(pool):
   """Checks if the caller is allowed to list tasks of the pool.
 

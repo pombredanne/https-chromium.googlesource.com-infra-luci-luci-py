@@ -47,6 +47,11 @@ def _is_admin():
   return auth.is_group_member(group) or auth.is_admin()
 
 
+def _is_luci_service_caller():
+  """Verification if buildbucket is the caller"""
+  return auth.get_current_identity().kind == auth.IDENTITY_PROJECT
+
+
 def _is_privileged_user():
   """Can edit all bots and tasks."""
   group = config.settings().auth.privileged_users_group
@@ -188,6 +193,11 @@ def can_view_all_tasks():
 
 
 ### Other
+
+
+def can_use_task_backend():
+  """Can call RunTask and CancelTasks for task backend"""
+  return _is_luci_service_caller()
 
 
 def bootstrap_dev_server_acls():
