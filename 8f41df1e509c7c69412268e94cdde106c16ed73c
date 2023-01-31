@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b4bcf89e_4573bd27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003293
+      },
+      "writtenOn": "2023-01-31T20:19:45Z",
+      "side": 1,
+      "message": "\u003e I added some auth code so that only luci services can access RunTask and CancelTasks (should I add the same for FetchTasks and ValidateConfig?).\n\nYes. There is proper public API for regular users to check task status. These methods should only by used by buildbucket.\n\n\u003e \n\u003e Also, lots of the functionality on the CancelTasks endpoint will be done down the line, so I created a bug for that.",
+      "parentUuid": "15804ce3_60eee4c0",
+      "revId": "8f41df1e509c7c69412268e94cdde106c16ed73c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "29d1f2e9_cb92cf1c",
         "filename": "appengine/swarming/handlers_task_backend.py",
         "patchSetId": 3
