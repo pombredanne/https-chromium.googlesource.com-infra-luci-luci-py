@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "586508b4_dd5183c2",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-31T22:33:31Z",
+      "side": 1,
+      "message": "I am removing these for now.",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 60
+      },
+      "revId": "3d9567ae9e8c372fa7ad31f457dc4a41fdadc2b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b14cfdc0_3664c4dd",
         "filename": "appengine/swarming/server/task_result.py",
         "patchSetId": 14
@@ -36,6 +59,29 @@
         "startChar": 0,
         "endLine": 98,
         "endChar": 71
+      },
+      "revId": "3d9567ae9e8c372fa7ad31f457dc4a41fdadc2b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f3a319c_1212f2e3",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 1614,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-01-31T22:33:31Z",
+      "side": 1,
+      "message": "I don\u0027t think this error message makes sense. Will change it a bit.",
+      "range": {
+        "startLine": 1613,
+        "startChar": 2,
+        "endLine": 1614,
+        "endChar": 72
       },
       "revId": "3d9567ae9e8c372fa7ad31f457dc4a41fdadc2b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
