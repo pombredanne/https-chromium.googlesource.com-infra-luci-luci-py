@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de25f2e0_4e33b1ff",
+        "filename": "appengine/swarming/handlers_task_backend_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-01T22:38:45Z",
+      "side": 1,
+      "message": "This test is weird. It tests both the service logic and pRPC encoding guts (and also authentication guts, except they are almost entirely mocked out). pRPC guts are already tested elsewhere. Ideally this test should just call methods directly, passing protobuf messages to them and examining protobuf responses.\n\nCan be done in a separate CL I guess...\n\nThe success criteria: we should theoretically be able to switch to real gRPC without rewriting tests.",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 61,
+        "endChar": 31
+      },
+      "revId": "bf3f4283587276c4ca47f204927a63652e62bd33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "933992b4_1e068b24",
+        "filename": "appengine/swarming/server/acl.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-01T22:38:45Z",
+      "side": 1,
+      "message": "nit: \"\"\"Can call TaskBackend API methods.\"\"\"\n\nThe list of methods can become stale (and already is).",
+      "range": {
+        "startLine": 194,
+        "startChar": 5,
+        "endLine": 194,
+        "endChar": 54
+      },
+      "revId": "bf3f4283587276c4ca47f204927a63652e62bd33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77c143d0_2ef50598",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-01T22:38:45Z",
+      "side": 1,
+      "message": "luci-project",
+      "range": {
+        "startLine": 185,
+        "startChar": 41,
+        "endLine": 185,
+        "endChar": 48
+      },
+      "revId": "bf3f4283587276c4ca47f204927a63652e62bd33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
