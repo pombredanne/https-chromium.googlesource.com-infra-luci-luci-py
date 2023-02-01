@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b14b5d7_70d284bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-01T05:29:02Z",
+      "side": 1,
+      "message": "Deployed to chromium-swarm-dev as a tainted version. Appears to be working, yay! I see all requests as HTTP 200 in server logs and tasks submitted to RBE are \"executed\" by bots:\n\n```\n$ go run main.go -pool \"infra.loadtest.rbe\" -tasks 5\n[I2023-01-31T21:26:45.579945-08:00 38193 0 main.go:127] b27ad2f8-2b3a-4c66-8ea5-9d23a0250a7c-0002: dev-infra-rbe-bionic-1-4b6p\n[I2023-01-31T21:27:00.695059-08:00 38193 0 main.go:127] b27ad2f8-2b3a-4c66-8ea5-9d23a0250a7c-0004: dev-infra-rbe-bionic-0-jvsx\n[I2023-01-31T21:27:10.956533-08:00 38193 0 main.go:127] b27ad2f8-2b3a-4c66-8ea5-9d23a0250a7c-0003: dev-infra-rbe-bionic-0-jvsx\n[I2023-01-31T21:27:21.217826-08:00 38193 0 main.go:127] b27ad2f8-2b3a-4c66-8ea5-9d23a0250a7c-0001: dev-infra-rbe-bionic-0-jvsx\n[I2023-01-31T21:27:31.421041-08:00 38193 0 main.go:127] b27ad2f8-2b3a-4c66-8ea5-9d23a0250a7c-0000: dev-infra-rbe-bionic-0-jvsx\n```\n\n(not sure why so unfair, but it doesn\u0027t really matter yet at this stage)",
+      "revId": "84c2958d255dd1b3eb33afe486e6911bbc01d2ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
