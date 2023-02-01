@@ -49,6 +49,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2cea7180_a75ecf63",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-01T22:39:09Z",
+      "side": 1,
+      "message": "set_as_project\n\nit will be more consistent with how these calls are represented in ACL model",
+      "range": {
+        "startLine": 183,
+        "startChar": 6,
+        "endLine": 183,
+        "endChar": 25
+      },
+      "revId": "bf3f4283587276c4ca47f204927a63652e62bd33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77c143d0_2ef50598",
         "filename": "appengine/swarming/test_env_handlers.py",
         "patchSetId": 6
