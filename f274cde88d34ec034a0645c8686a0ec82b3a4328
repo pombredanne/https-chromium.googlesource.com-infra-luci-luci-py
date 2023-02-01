@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1c087c3_40fc060f",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-01T22:46:31Z",
+      "side": 1,
+      "message": "IIUC, this can now only happen if request.start or request.end are wrong (since list_bot_tasks catches ValueError itself). Please make except block wrap only the lines it actually protects:\n\n```\ntry:\n  start \u003d ...\n  end \u003d ...\nexcept ValueError as e:\n  raise ....(\"Invalid timestamp\")\n```",
+      "range": {
+        "startLine": 893,
+        "startChar": 4,
+        "endLine": 895,
+        "endChar": 55
+      },
+      "revId": "f274cde88d34ec034a0645c8686a0ec82b3a4328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c39ab7c_06b6be26",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-01T22:46:31Z",
+      "side": 1,
+      "message": "I thought we are putting all ACL checks into api_common implementation now?",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 36
+      },
+      "revId": "f274cde88d34ec034a0645c8686a0ec82b3a4328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e20ff50e_56d0cf0d",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-01T22:46:31Z",
+      "side": 1,
+      "message": "This should also be caught in get_bot_events.",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 56
+      },
+      "revId": "f274cde88d34ec034a0645c8686a0ec82b3a4328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4db7754_6a409add",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-01T22:46:31Z",
+      "side": 1,
+      "message": "How is this possible?",
+      "range": {
+        "startLine": 103,
+        "startChar": 11,
+        "endLine": 103,
+        "endChar": 26
+      },
+      "revId": "f274cde88d34ec034a0645c8686a0ec82b3a4328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
