@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0519bf5f_26d028f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003293
+      },
+      "writtenOn": "2023-02-01T04:38:34Z",
+      "side": 1,
+      "message": "PTAL. This is surprisingly hairy CL 😞\n\n(Also I... dislike python. So much tests to cover all stupid type checks and catch all potential typos... And not writing them always risks to blow up in production when this one single line of code executed once in a blue moon, which was not covered by tests, happens to contain a typo).",
+      "revId": "a75250cfa446e1a029cf4239170338eca503efac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
