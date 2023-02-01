@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc0c029f_bec72062",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-02-01T17:14:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "268b7660_41229443",
+      "range": {
+        "startLine": 41,
+        "startChar": 16,
+        "endLine": 41,
+        "endChar": 44
+      },
+      "revId": "fa92b74fdb392358b1bfad8fc7ffc539caadaa8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27640468_9f143d03",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-31T20:19:45Z",
       "side": 1,
       "message": "This is actually not enough. There should be 3 checks, please read this section go/luci-authorization#swarming-permissions\n\nBut they are actually all already done in api_helpers.process_task_request:\n1. https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/api_helpers.py#84\n2. https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/api_helpers.py#92\n3. https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/api_helpers.py#110\n\nSo just remove this call, it is not necessary.\n\n(Stuff like this in WIP code is why it is important to have a simple ACL check on the boundary that passes only fully trusted callers. Once ACLs are done and verifies, this boundary check can be relaxed, if necessary. This also a reason why I\u0027m asking to put this boundary check on FetchTasks as well: we wouldn\u0027t want to leak details about internal Swarming tasks due to bugs in WIP code).",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 40
+      },
+      "revId": "fa92b74fdb392358b1bfad8fc7ffc539caadaa8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2561e747_5d8c26d7",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-02-01T17:14:23Z",
+      "side": 1,
+      "message": "Good to know! I removed the call, but will keep this in mind as I work on the endpoints.",
+      "parentUuid": "27640468_9f143d03",
       "range": {
         "startLine": 59,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16ae7880_f2d349f9",
+        "filename": "appengine/swarming/server/acl.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-02-01T17:14:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "349b5b67_ee77fcdb",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 27
+      },
+      "revId": "fa92b74fdb392358b1bfad8fc7ffc539caadaa8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f11391f_aed419af",
@@ -83,6 +155,24 @@
       "writtenOn": "2023-01-31T20:19:45Z",
       "side": 1,
       "message": "nit: del extra empty line",
+      "revId": "fa92b74fdb392358b1bfad8fc7ffc539caadaa8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1529ce6a_1347df50",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-02-01T17:14:23Z",
+      "side": 1,
+      "message": "removed the whole function since it won\u0027t be used.",
+      "parentUuid": "7f11391f_aed419af",
       "revId": "fa92b74fdb392358b1bfad8fc7ffc539caadaa8c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
