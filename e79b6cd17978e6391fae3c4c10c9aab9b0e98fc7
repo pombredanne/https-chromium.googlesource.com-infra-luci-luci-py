@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "709c3dd1_e271ff5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-02T17:52:41Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "e79b6cd17978e6391fae3c4c10c9aab9b0e98fc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd6b7c02_6f4f060f",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-02T17:52:41Z",
+      "side": 1,
+      "message": "Do we also need to include `sessionExpiry` timestamp here?",
+      "range": {
+        "startLine": 532,
+        "startChar": 11,
+        "endLine": 533,
+        "endChar": 69
+      },
+      "revId": "e79b6cd17978e6391fae3c4c10c9aab9b0e98fc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1d66ef7_5568c724",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-02T17:52:41Z",
+      "side": 1,
+      "message": "Is this class responsible for executing the payload as well?",
+      "range": {
+        "startLine": 791,
+        "startChar": 11,
+        "endLine": 794,
+        "endChar": 16
+      },
+      "revId": "e79b6cd17978e6391fae3c4c10c9aab9b0e98fc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8103b705_a9d8bdd4",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-02T17:52:41Z",
+      "side": 1,
+      "message": "Nit: Could `self.healthy` come before `self.active_lease` check as in `update`?",
+      "range": {
+        "startLine": 876,
+        "startChar": 4,
+        "endLine": 877,
+        "endChar": 73
+      },
+      "revId": "e79b6cd17978e6391fae3c4c10c9aab9b0e98fc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
