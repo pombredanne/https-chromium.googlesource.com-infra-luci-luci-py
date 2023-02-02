@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f6fc342_510c95d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-02T22:07:41Z",
+      "side": 1,
+      "message": "This CL can be skipped in favor of https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/4215875 which does proper integration.\n\nI wrote it to quickly verify RBESession works.",
+      "revId": "9ebb3ce624ccf822c4c63fa2788a1f63753d79f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9205c1e_2cf64fac",
@@ -41,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "937e23bd_fa4570e4",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1465,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-02T22:07:41Z",
+      "side": 1,
+      "message": "This code is just a temporary hack to verify RBESession class works.\n\nEach 2 min it will start a completely new session, run it for 5 cycles, and then close it. This will be happening every 2 min, this is not integrated with Swarming bot poll yet. If Swarming wants to terminate the bot, it will happen outside of this loop (in swarming_handle_cmd).",
+      "parentUuid": "a9205c1e_2cf64fac",
+      "range": {
+        "startLine": 1464,
+        "startChar": 8,
+        "endLine": 1465,
+        "endChar": 77
+      },
+      "revId": "9ebb3ce624ccf822c4c63fa2788a1f63753d79f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2dec21b1_17e93e79",
@@ -54,6 +95,30 @@
       "writtenOn": "2023-02-02T18:01:57Z",
       "side": 1,
       "message": "Ah, so the payload gets executed in `cmd_rbe` and then result is passed using `finish_active_lease`?",
+      "range": {
+        "startLine": 1475,
+        "startChar": 8,
+        "endLine": 1475,
+        "endChar": 39
+      },
+      "revId": "9ebb3ce624ccf822c4c63fa2788a1f63753d79f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39dec879_354336b5",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1475,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-02T22:07:41Z",
+      "side": 1,
+      "message": "There\u0027ll be a separate method for executing payload. This is just a temporary fake.",
+      "parentUuid": "2dec21b1_17e93e79",
       "range": {
         "startLine": 1475,
         "startChar": 8,
