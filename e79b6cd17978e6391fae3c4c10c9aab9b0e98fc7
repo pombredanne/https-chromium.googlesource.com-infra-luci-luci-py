@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c5cd948_17211c42",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-02T21:54:42Z",
+      "side": 1,
+      "message": "I decided not to bother: nothing will be checking it and the chance of the session expiring is very low considering the bot refreshes it every minute (or even more often), and the expiration time is hours. If it does expire, we\u0027ll see on the server side as well.",
+      "parentUuid": "fd6b7c02_6f4f060f",
+      "range": {
+        "startLine": 532,
+        "startChar": 11,
+        "endLine": 533,
+        "endChar": 69
+      },
+      "revId": "e79b6cd17978e6391fae3c4c10c9aab9b0e98fc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1d66ef7_5568c724",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "250c62d8_3fce7464",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-02T21:54:42Z",
+      "side": 1,
+      "message": "No, just getting it (via `update`), sending keep-alives to RBE (via `ping_active_lease`) and reporting the final result (via `finish_active_lease`). The task executor will get an instance of this class to call `ping_active_lease` and `finish_active_lease`.",
+      "parentUuid": "d1d66ef7_5568c724",
+      "range": {
+        "startLine": 791,
+        "startChar": 11,
+        "endLine": 794,
+        "endChar": 16
+      },
+      "revId": "e79b6cd17978e6391fae3c4c10c9aab9b0e98fc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8103b705_a9d8bdd4",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-02-02T17:52:41Z",
       "side": 1,
       "message": "Nit: Could `self.healthy` come before `self.active_lease` check as in `update`?",
+      "range": {
+        "startLine": 876,
+        "startChar": 4,
+        "endLine": 877,
+        "endChar": 73
+      },
+      "revId": "e79b6cd17978e6391fae3c4c10c9aab9b0e98fc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8213bbb1_8cac8934",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-02T21:54:42Z",
+      "side": 1,
+      "message": "No, it will change the logic in undesirable way. Notice that `if not self.healthy` logs a warning and returns None. I.e. it is OK to call ping_active_lease() if the session is unhealhy: this is interpreted as if the lease is canceled (by returning None). This is documented in the doc string.\n\nAt the same time, it is not allowed to call ping_active_lease() without active lease. This is a programming error, it results in RBESessionException.\n\nIf we swap the checks, RBESessionException may not be raised when it should if the session is unhealthy. It is not a big deal, but it is technically incorrect 😊",
+      "parentUuid": "8103b705_a9d8bdd4",
       "range": {
         "startLine": 876,
         "startChar": 4,
