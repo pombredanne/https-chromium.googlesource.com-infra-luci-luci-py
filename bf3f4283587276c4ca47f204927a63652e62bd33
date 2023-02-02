@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90dc8fa5_b348b7a0",
+        "filename": "appengine/swarming/handlers_task_backend_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-02-02T15:29:53Z",
+      "side": 1,
+      "message": "ok makes sense and SGTM. I can add it to the todo list of this KR and do it in another CL.",
+      "parentUuid": "de25f2e0_4e33b1ff",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 61,
+        "endChar": 31
+      },
+      "revId": "bf3f4283587276c4ca47f204927a63652e62bd33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "933992b4_1e068b24",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-01T22:38:45Z",
       "side": 1,
       "message": "nit: \"\"\"Can call TaskBackend API methods.\"\"\"\n\nThe list of methods can become stale (and already is).",
+      "range": {
+        "startLine": 194,
+        "startChar": 5,
+        "endLine": 194,
+        "endChar": 54
+      },
+      "revId": "bf3f4283587276c4ca47f204927a63652e62bd33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f85431cc_d230964a",
+        "filename": "appengine/swarming/server/acl.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-02-02T15:29:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "933992b4_1e068b24",
       "range": {
         "startLine": 194,
         "startChar": 5,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfa656a5_2c3118b8",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-02-02T15:29:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cea7180_a75ecf63",
+      "range": {
+        "startLine": 183,
+        "startChar": 6,
+        "endLine": 183,
+        "endChar": 25
+      },
+      "revId": "bf3f4283587276c4ca47f204927a63652e62bd33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77c143d0_2ef50598",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-02-01T22:38:45Z",
       "side": 1,
       "message": "luci-project",
+      "range": {
+        "startLine": 185,
+        "startChar": 41,
+        "endLine": 185,
+        "endChar": 48
+      },
+      "revId": "bf3f4283587276c4ca47f204927a63652e62bd33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac7ec08c_ff9ebaf9",
+        "filename": "appengine/swarming/test_env_handlers.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-02-02T15:29:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77c143d0_2ef50598",
       "range": {
         "startLine": 185,
         "startChar": 41,
