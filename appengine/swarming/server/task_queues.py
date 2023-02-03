@@ -1280,7 +1280,9 @@ def expand_dimensions_to_flats(dimensions, is_bot_dim=False):
       return
 
     key, values = dimensions_kv[ki]
-    if vi == len(values):
+    if values is None:
+      return
+    elif vi == len(values):
       gen(ki + 1, 0)
       return
 
