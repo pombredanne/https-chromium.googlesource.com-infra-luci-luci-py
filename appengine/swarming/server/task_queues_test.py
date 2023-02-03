@@ -552,6 +552,10 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
         (u'foo:c', u'foo:z'),
     }
     self.assertEqual(actual, expected)
+    # None case
+    actual = expand({u'foo': None})
+    expected = [[]]
+    self.assertEqual(actual, expected)
 
   def test_expiry_map(self):
     sets = [

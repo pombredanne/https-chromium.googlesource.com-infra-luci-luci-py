@@ -1855,6 +1855,7 @@ def cron_handle_bot_died():
 
   def _handle_future(f):
     key = None
+    state_changed = False
     try:
       key, state_changed, latency, tags = f.get_result()
     except datastore_utils.CommitError as e:
