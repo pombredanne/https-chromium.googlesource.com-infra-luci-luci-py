@@ -521,6 +521,9 @@ class TaskQueuesApiTest(test_env_handlers.AppTestBase):
         (u'bar:x', u'bar:y', u'bar:z', u'foo:a', u'foo:b', u'foo:c'),
     }
     self.assertEqual(actual, expected)
+    actual = expand({u'foo': None})
+    expected = [[]]
+    self.assertEqual(actual, expected)
     # With OR
     actual = set(
         tuple(f) for f in expand({
