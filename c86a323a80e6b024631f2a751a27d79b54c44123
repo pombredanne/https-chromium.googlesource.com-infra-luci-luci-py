@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66d29757_128c65b9",
+        "filename": "appengine/swarming/server/task_queues.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-03T21:41:46Z",
+      "side": 1,
+      "message": "this should not be happening\n\nthe caller has a bug, it should not be passing None as a dimension value\ndo you have a stack trace of how this happens?",
+      "range": {
+        "startLine": 1283,
+        "startChar": 7,
+        "endLine": 1283,
+        "endChar": 21
+      },
+      "revId": "c86a323a80e6b024631f2a751a27d79b54c44123",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
