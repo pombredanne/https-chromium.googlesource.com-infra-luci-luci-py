@@ -262,6 +262,15 @@ def main():
   except OSError:
     logger.exception("Failed to create logging directory at path: %s\n",
                      base_dir)
+
+  # Log to a permanant location as well, these logs will be sent to the cloud
+  # Continue logging to the temp dir as a backup (in case there's an issue with
+  # this handler)
+  perm_log_location = os.path.join('logs', 'swarming_bot_init.log')
+  logging_utils.add_rotating_file_handler(
+      logger, os.path.join('logs', 'swarming_bot_init.log'))
+  logger.info("Now logging to %s as well", perm_log_location)
+
   try:
     user_agent = 'swarming_bot/' + __version__ + '@' + socket.gethostname()
   except OSError:
@@ -276,6 +285,7 @@ def main():
   # issues otherwise, especially in module os.path.
   fix_encoding.fix_encoding()
 
+  logger.info("Registering signal handlers (Mac and Linux only)")
   # This is extremely useful to debug hangs.
   signal_trace.register()
 
