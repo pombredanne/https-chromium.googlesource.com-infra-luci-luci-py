@@ -16,6 +16,23 @@
       "message": "Dots matter :)",
       "revId": "451983ca6e266f5de1a2b0aa5c317d4486dccdac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7ab372e_5319774a",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1529882
+      },
+      "writtenOn": "2023-02-08T04:08:28Z",
+      "side": 1,
+      "message": "nit: These logs are not \"piped\" to cloudtail with a unix pipe. Cloudtail polls or receives notifications about these log files.\n(You could just fix this comment next time this file is touched)",
+      "revId": "451983ca6e266f5de1a2b0aa5c317d4486dccdac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
