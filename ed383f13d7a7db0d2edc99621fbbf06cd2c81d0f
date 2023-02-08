@@ -34,6 +34,24 @@
       "parentUuid": "e60f2cc2_59a496eb",
       "revId": "ed383f13d7a7db0d2edc99621fbbf06cd2c81d0f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09af7868_4e8592af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-08T01:11:24Z",
+      "side": 1,
+      "message": "Can you remind me what are you trying to capture in this log? It will be appended to not only when the bot starts, but also by every task it runs (twice, once when running executing CMDtask_runner, another when executing CMDrun_isolated: they are called for every task).",
+      "parentUuid": "84d92fe9_cdd247da",
+      "revId": "ed383f13d7a7db0d2edc99621fbbf06cd2c81d0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
