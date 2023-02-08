@@ -52,6 +52,24 @@
       "parentUuid": "84d92fe9_cdd247da",
       "revId": "ed383f13d7a7db0d2edc99621fbbf06cd2c81d0f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aee57e68_ea71c39f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-02-08T01:21:36Z",
+      "side": 1,
+      "message": "That\u0027s correct, but i want to see how far it gets on start-up. We are still having an issue with bot restarts on some of the win-diff and mac-diff builders and it\u0027s hard for me to determine the cause. It could be swarming or the OS, but hard to say. chrome-official bots are locked down and need special perms to SSH into (not impossible, but a pain), so that\u0027s why I want to plumb these logs to cloud logging.",
+      "parentUuid": "09af7868_4e8592af",
+      "revId": "ed383f13d7a7db0d2edc99621fbbf06cd2c81d0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
