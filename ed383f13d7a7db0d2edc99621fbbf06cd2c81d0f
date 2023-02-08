@@ -95,6 +95,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50613849_d7f40368",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-02-08T02:10:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cd79d25_7cbdf8d6",
+      "range": {
+        "startLine": 255,
+        "startChar": 41,
+        "endLine": 257,
+        "endChar": 17
+      },
+      "revId": "ed383f13d7a7db0d2edc99621fbbf06cd2c81d0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8067901_832449f2",
@@ -108,6 +132,30 @@
       "writtenOn": "2023-02-08T01:40:25Z",
       "side": 1,
       "message": "nit: this function does more than one thing, please refactor to:\n\n```\ndef new_rotating_file_handler(....):\n  ...\n  \n....\n\nif filename:\n  try:\n    logger.addHandler(new_rotating_file_handler(....))\n  except Exception:\n    ...\n```\n\n(especially considering another caller already catches exceptions anyway)",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 52
+      },
+      "revId": "ed383f13d7a7db0d2edc99621fbbf06cd2c81d0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90a9dfd3_74408cbe",
+        "filename": "client/utils/logging_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-02-08T02:10:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8067901_832449f2",
       "range": {
         "startLine": 177,
         "startChar": 0,
