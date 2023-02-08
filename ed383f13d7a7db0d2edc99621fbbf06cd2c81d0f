@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e60f2cc2_59a496eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-08T00:32:29Z",
+      "side": 1,
+      "message": "No I meant what\u0027s the point of having both swarming_bot_init.log and swarming_bot.log? The only difference between them is that swarming_bot_init.log is opened slightly earlier. Why not refactor the code to open swarming_bot.log earlier instead and don\u0027t bother with swarming_bot_init.log?",
+      "revId": "ed383f13d7a7db0d2edc99621fbbf06cd2c81d0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
