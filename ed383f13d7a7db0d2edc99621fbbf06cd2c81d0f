@@ -16,6 +16,24 @@
       "message": "No I meant what\u0027s the point of having both swarming_bot_init.log and swarming_bot.log? The only difference between them is that swarming_bot_init.log is opened slightly earlier. Why not refactor the code to open swarming_bot.log earlier instead and don\u0027t bother with swarming_bot_init.log?",
       "revId": "ed383f13d7a7db0d2edc99621fbbf06cd2c81d0f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d92fe9_cdd247da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-02-08T01:00:07Z",
+      "side": 1,
+      "message": "Swarming isn\u0027t always run with \u0027start_bot\u0027, there\u0027s other options such as \u0027start_slave\u0027, \u0027task_runner\u0027 etc. Sure, we could reuse \u0027swarming_bot.log\u0027 but I\u0027d like to reserve it for \u0027start_bot\u0027, every subcommand seems to use its own log file and I\u0027d like to be consistent.",
+      "parentUuid": "e60f2cc2_59a496eb",
+      "revId": "ed383f13d7a7db0d2edc99621fbbf06cd2c81d0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
