@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb155a5e_5bfbc806",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-08T02:26:22Z",
+      "side": 1,
+      "message": "Actually not done. I still don\u0027t understand what \"will be sent to the cloud Continue logging to the temp dir as a backup\" means.",
+      "parentUuid": "50613849_d7f40368",
+      "range": {
+        "startLine": 255,
+        "startChar": 41,
+        "endLine": 257,
+        "endChar": 17
+      },
+      "revId": "ed383f13d7a7db0d2edc99621fbbf06cd2c81d0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8067901_832449f2",
         "filename": "client/utils/logging_utils.py",
         "patchSetId": 6
