@@ -143,6 +143,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70438e6a_0e10d6e5",
+        "filename": "appengine/swarming/swarming_bot/__main__.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-02-08T02:40:57Z",
+      "side": 1,
+      "message": "Probably needs a \u0027.\u0027 between cloud and Continue. We are logging to two locations here the temp directory and ./log/.The permanent log (./log/), will be piped to cloudtail and hence to cloud logging, whilst we still keep the other logger (in the temp dir) in case the permanent fails for whatever reason.",
+      "parentUuid": "eb155a5e_5bfbc806",
+      "range": {
+        "startLine": 255,
+        "startChar": 41,
+        "endLine": 257,
+        "endChar": 17
+      },
+      "revId": "ed383f13d7a7db0d2edc99621fbbf06cd2c81d0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8067901_832449f2",
