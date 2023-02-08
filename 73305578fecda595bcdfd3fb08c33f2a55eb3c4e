@@ -16,6 +16,24 @@
       "message": "So I now wonder why not just open the main log sooner?",
       "revId": "73305578fecda595bcdfd3fb08c33f2a55eb3c4e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f410a9d_712319d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-02-08T00:23:51Z",
+      "side": 1,
+      "message": "That was intentional, but now I look more closely the add_rotating_file_handler() already creates the logging directory anyway, so I\u0027ve moved it up.",
+      "parentUuid": "f2fa1379_39fd24b2",
+      "revId": "73305578fecda595bcdfd3fb08c33f2a55eb3c4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
