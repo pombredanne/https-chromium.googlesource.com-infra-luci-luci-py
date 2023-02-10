@@ -35,6 +35,29 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0b26ab1_582fb2bd",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1451,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-02-10T08:23:05Z",
+      "side": 1,
+      "message": "😊",
+      "range": {
+        "startLine": 1451,
+        "startChar": 6,
+        "endLine": 1451,
+        "endChar": 30
+      },
+      "revId": "9ebb3ce624ccf822c4c63fa2788a1f63753d79f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9205c1e_2cf64fac",
@@ -77,6 +100,29 @@
         "startChar": 8,
         "endLine": 1465,
         "endChar": 77
+      },
+      "revId": "9ebb3ce624ccf822c4c63fa2788a1f63753d79f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "930ca34e_7e255aac",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1468,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-02-10T08:23:05Z",
+      "side": 1,
+      "message": "this isn\u0027t a busyloop because session.update blocks?",
+      "range": {
+        "startLine": 1468,
+        "startChar": 10,
+        "endLine": 1468,
+        "endChar": 18
       },
       "revId": "9ebb3ce624ccf822c4c63fa2788a1f63753d79f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
