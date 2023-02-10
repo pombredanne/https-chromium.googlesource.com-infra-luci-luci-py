@@ -33,6 +33,29 @@
       "message": "This change looks good! Adding a (+1) now before looking at unit tests since I am going on vacation.",
       "revId": "2fb8e905c3468d10a5015e1a5f26845ca0943d06",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2d3eed0_5b0024c5",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1484,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-02-10T08:52:56Z",
+      "side": 1,
+      "message": "worth logging \u0027switched instance\u0027?",
+      "range": {
+        "startLine": 1484,
+        "startChar": 25,
+        "endLine": 1484,
+        "endChar": 36
+      },
+      "revId": "2fb8e905c3468d10a5015e1a5f26845ca0943d06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
