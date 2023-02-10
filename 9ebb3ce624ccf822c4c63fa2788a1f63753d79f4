@@ -128,6 +128,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af1f1c20_c36acf4b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1468,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-10T21:34:43Z",
+      "side": 1,
+      "message": "Yeah. It assumes a successful call would block waiting for the lease. The proper implementation in the next CL also adds exponentially increasing pauses if the call repeatedly fails (since when it fails, it is likely not blocking anymore and it would be a busy-loop indeed).",
+      "parentUuid": "930ca34e_7e255aac",
+      "range": {
+        "startLine": 1468,
+        "startChar": 10,
+        "endLine": 1468,
+        "endChar": 18
+      },
+      "revId": "9ebb3ce624ccf822c4c63fa2788a1f63753d79f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2dec21b1_17e93e79",
