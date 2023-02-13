@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23ac1bb4_ff51dfae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-13T23:59:28Z",
+      "side": 1,
+      "message": "Do we have a Windows arm64 bot connected to https://chromium-swarm-dev.appspot.com/? We should probably have at least one... Will speed up testing CLs like that (chromium-swarm-dev.appspot.com is auto-deployed on every commit).",
+      "revId": "3d42aa1b7662b4f99c82594d6c7e65a5efed7861",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
