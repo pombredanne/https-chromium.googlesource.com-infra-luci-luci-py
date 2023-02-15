@@ -16,6 +16,29 @@
       "message": "Please stamp again, I\u0027ve added tests.",
       "revId": "f5392f9f8454136572449609e1ec77a63bf92366",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38ac9516_2cd1a0e1",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1323,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-15T03:43:17Z",
+      "side": 1,
+      "message": "I realized there may be temporary \"tremors\" when bot\u0027s config changes since we cache configs in memory on the backend side and there\u0027s no synchronization between cache expiration across different processes:\n\n1. The bot\u0027s request hits process A, which has new config and tells bot \"use RBE now!!111\".\n2. The bot obeys and switches into RBE mode.\n3. It polls RBE and discovers there are no tasks there.\n4. It needs to report this to Swarming. It calls \u0027/bots/poll\u0027 again. This happens within seconds from (1).\n5. The bot\u0027s request hits process B now, which still has the old config cached. It tells bot \"don\u0027t use RBE!!11\".\n6. The bot disables RBE :-/\n\nI think we\u0027ll need to add some \"hysteresis\" to bot config changes on the backend side by storing the latest config and when it was picked up in BotInfo entity and refusing to update it if the last modification time is too soon (which means we might be trying to update it based on stale cached config).\n\nI\u0027ll do it after confirming it happens.",
+      "range": {
+        "startLine": 1320,
+        "startChar": 0,
+        "endLine": 1323,
+        "endChar": 35
+      },
+      "revId": "f5392f9f8454136572449609e1ec77a63bf92366",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
