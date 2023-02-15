@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a74de7bc_814e8803",
+        "filename": "appengine/swarming/proto/config/pools.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-15T05:59:12Z",
+      "side": 0,
+      "message": "This was convoluted to implemented (due to secret bytes and many slices) and I decided not to bother since I don\u0027t think determinism matters here. The deduplication check will happen anyway regardless if RBE mode is on or off.",
+      "range": {
+        "startLine": 141,
+        "startChar": 7,
+        "endLine": 141,
+        "endChar": 77
+      },
+      "revId": "f5392f9f8454136572449609e1ec77a63bf92366",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
