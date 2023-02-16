@@ -171,24 +171,74 @@ message BotSession {
 }
 
 
+// EnqueueRBETask describes payload of `rbe-enqueue` TQ tasks.
+//
+// It is submitted into `rbe-enqueue` Cloud Tasks queue by the Python side and
+// processed by the Go side (resulting in a new RBE reservation on success).
+//
+// It carries a payload that points to an existing TaskToRunShardXXX entity
+// representing the pending request to execute a single task slice. All other
+// information used for scheduling can theoretically be fetched from Datastore,
+// but in practice some of it is stored in LocalStructuredProperties which are
+// hard to parse from Go, so it is duplicated here.
+//
+// Note that TaskToRunShardXXX entity will need to be fetched at least once
+// either way to check if it is still "reapable".
+message EnqueueRBETask {
+  // Payload of the new RBE reservation. It will eventually be routed to a bot.
+  TaskPayload payload = 1;
+
+  // Field below are used to decide how to schedule the reservation. Data in
+  // them duplicate immutable data already stored in Datastore, but this data is
+  // potentially hard to get from Go.
+
+  // Full RBE instance ID to submit this task to, extracted from TaskRequest.
+  string rbe_instance = 2;
+  // When this particular slice expires, extracted from TaskToRunShard.
+  google.protobuf.Timestamp expiry = 3;
+  // A bot that should execute this slice (if any), extracted from TaskSlice.
+  string requested_bot_id = 4;
+  // Constraints on dimensions reported by a matching bot (ANDed together).
+  message Constraint {
+    string key = 1;
+    repeated string allowed_values = 2;
+  }
+  repeated Constraint constraints = 5;
+}
+
+
 // TaskPayload is used as an RBE task payload.
 //
 // It is serialized as anypb.Any when passed to RBE, and its full proto name
 // is thus sensitive.
+//
+// It points to an existing TaskToRunShardXXX entity representing the pending
+// request to execute a single task slice plus some extra information useful
+// for debugging.
 message TaskPayload {
-  // Swarming task attempt ID (i.e. packed TaskRunResult entity key).
-  //
-  // The bot will use it in an RPC to Python Swarming server to mark the task as
-  // being worked on and to get all other task properties.
-  string task_id = 1;
+  // Datastore ID of the TaskRequest root entity.
+  int64 task_request_id = 1;
+  // Shard index of TaskToRunShardXXX entity class.
+  int64 task_to_run_shard = 2;
+  // Datastore ID of TaskToRunShardXXX entity (a child of the TaskRequest).
+  int64 task_to_run_id = 3;
+
+  // Optional information used for debugging and tracing purposes.
+  message DebugInfo {
+    google.protobuf.Timestamp created = 1;  // when this message was created
+    string py_swarming_version = 2;         // version of the Python Swarming
+    string go_swarming_version = 3;         // version of the Go Swarming
+    string task_id = 4;                     // stringy encoding of the task ID
+    int32 task_slice = 5;                   // slice index extracted from run ID
+  }
+  DebugInfo debug_info = 4;
 
   // If true, the bot should not contact Python Swarming, don't execute
   // anything, just immediately move the reservation into COMPLETED state.
-  // `task_id` is ignored.
   //
   // This is useful during initial development to test RBE task distribution
   // mechanism in isolation from other Swarming guts.
-  bool noop = 2;
+  bool noop = 5;
 }
 
 

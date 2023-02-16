@@ -33,6 +33,7 @@ from server import bot_management
 from server import config
 from server import external_scheduler
 from server import pools_config
+from server import rbe
 from server import resultdb
 from server import service_accounts_utils
 from server import task_pack
@@ -82,6 +83,7 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
     if not to_run.expiration_ts:
       result_summary_future.get_result()
       return None, None, False
+    # TODO(vadimsh): But why? May end up doing weird things for RBE tasks.
     logging.info('%s/%s: not reapable. but continuing expiration.',
                  to_run.task_id, to_run.task_slice_index)
 
@@ -108,6 +110,10 @@ def _expire_task_tx(now, request, to_run_key, result_summary_key, capacity,
   for index in range(rest):
     # Use the lookup created just before the transaction. There's a small race
     # condition in here but we're willing to accept it.
+    #
+    # TODO(vadimsh): This is broken for RBE tasks currently. Also just broken
+    # in general: "a small race condition" means it is broken. It's the root
+    # cause of crbug.com/1030504.
     if len(capacity) > index and capacity[index]:
       # Enqueue a new TasktoRunShard for this next TaskSlice, it has capacity!
       new_to_run = task_to_run.new_task_to_run(request, index + offset)
@@ -199,6 +205,7 @@ def _expire_task(to_run_key, request, inline):
     if not to_run.expiration_ts:
       logging.info('Not reapable anymore')
       return None, None
+    # TODO(vadimsh): But why? May end up doing weird things for RBE tasks.
     logging.info('%s/%s: not reapable. but continuing expiration.',
                  to_run.task_id, to_run.task_slice_index)
 
@@ -243,6 +250,8 @@ def _expire_task(to_run_key, request, inline):
 
 def _reap_task(bot_dimensions, bot_details, to_run_key, request):
   """Reaps a task and insert the results entity.
+
+  TODO(vadimsh): Pass `clam_id` and use it to idempotently claim TaskToRun.
 
   Returns:
     (TaskRunResult, SecretBytes) if successful, (None, None) otherwise.
@@ -1008,6 +1017,9 @@ def _ensure_active_slice(request, task_slice_index):
                     request, and slice, if exists, or None otherwise.
     Boolean: Whether or not it should raise exception
   """
+  # External scheduler and RBE scheduler do not mix.
+  assert not request.rbe_instance
+
   def run():
     logging.debug('_ensure_active_slice(%s, %d)', request.task_id,
                   task_slice_index)
@@ -1172,7 +1184,11 @@ def schedule_request(request,
   assert isinstance(request, task_request.TaskRequest), request
   assert not request.key, request.key
 
-  task_asserted_future = task_queues.assert_task_async(request)
+  # Register the dimension set in the native scheduler only when not on RBE.
+  task_asserted_future = None
+  if not request.rbe_instance:
+    task_asserted_future = task_queues.assert_task_async(request)
+
   now = utils.utcnow()
 
   # Note: this key is not final. We may need to change it in the transaction
@@ -1208,11 +1224,14 @@ def schedule_request(request,
 
   if not dupe_summary:
     # The task has to run. Find a slice index that should be launched based
-    # on available capacity.
+    # on available capacity. For RBE tasks always start with zeroth slice, we
+    # have no visibility into RBE capacity here. If there are slices that can't
+    # executed due to missing bots, there will be ping pong between Swarming and
+    # RBE skipping them.
     for index in range(request.num_task_slices):
       t = request.task_slice(index)
-      if (t.wait_for_capacity or
-          bot_management.has_capacity(t.properties.dimensions)):
+      if (request.rbe_instance or t.wait_for_capacity
+          or bot_management.has_capacity(t.properties.dimensions)):
         # Pick this slice as the current.
         result_summary.current_task_slice = index
         to_run = task_to_run.new_task_to_run(request, index)
@@ -1235,11 +1254,14 @@ def schedule_request(request,
 
   # Determine external scheduler (if relevant) prior to making task live, to
   # make HTTP handler return as fast as possible after making task live.
-  es_cfg = external_scheduler.config_for_task(request)
+  es_cfg = None
+  if not request.rbe_instance:
+    es_cfg = external_scheduler.config_for_task(request)
 
   # This occasionally triggers a task queue. May throw, which is surfaced to the
   # user but it is safe as the task request wasn't stored yet.
-  task_asserted_future.get_result()
+  if task_asserted_future:
+    task_asserted_future.get_result()
 
   # Wait until ResultDB invocation is created to get its update token.
   if resultdb_update_token_future:
@@ -1273,6 +1295,8 @@ def schedule_request(request,
     existing = request.key.get()
     if existing:
       return existing.txn_uuid == request.txn_uuid
+    if request.rbe_instance:
+      rbe.enqueue_rbe_task(request, to_run)
     ndb.put_multi(
         filter(bool, [
             request,
