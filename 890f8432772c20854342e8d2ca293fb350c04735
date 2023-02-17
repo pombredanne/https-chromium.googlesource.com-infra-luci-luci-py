@@ -16,6 +16,24 @@
       "message": "Should we just add us as the OWNERS [at the top level](https://chromium.googlesource.com/infra/luci/luci-py/+/HEAD/OWNERS)?",
       "revId": "890f8432772c20854342e8d2ca293fb350c04735",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bf57755_14ac3b4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-02-17T18:28:13Z",
+      "side": 1,
+      "message": "That includes swarming and auth services which we don\u0027t work on. Personally speaking, I always prefer to have more access and less constraints. So I\u0027m fine to add us on either levels. \n\n@iannucci@chromium.org WDYT?",
+      "parentUuid": "543dba8c_61745691",
+      "revId": "890f8432772c20854342e8d2ca293fb350c04735",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
