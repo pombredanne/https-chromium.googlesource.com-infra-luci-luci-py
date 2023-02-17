@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39e3351f_36ba9e5d",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-02-17T22:07:41Z",
+      "side": 1,
+      "message": "I would recommend documenting exactly what this means (i.e. content is zlib compressed and then base64 encoded). I suspect that base64 encoding will be smaller than just allowing json to print hex escape codes for binary data.",
+      "revId": "28376d07258e7834054a7d0cc317c5a4151926fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "618fb4ae_e7b0eef9",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-02-17T22:07:41Z",
+      "side": 1,
+      "message": "isn\u0027t it base64 encoded?",
+      "range": {
+        "startLine": 478,
+        "startChar": 32,
+        "endLine": 478,
+        "endChar": 39
+      },
+      "revId": "28376d07258e7834054a7d0cc317c5a4151926fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
