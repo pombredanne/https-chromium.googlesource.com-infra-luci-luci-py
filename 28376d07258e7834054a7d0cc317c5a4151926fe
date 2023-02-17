@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "93af3828_d18f1930",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-02-17T22:21:54Z",
+      "side": 1,
+      "message": "will add some comment",
+      "parentUuid": "39e3351f_36ba9e5d",
+      "revId": "28376d07258e7834054a7d0cc317c5a4151926fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "618fb4ae_e7b0eef9",
         "filename": "appengine/config_service/validation.py",
         "patchSetId": 1
@@ -48,6 +66,30 @@
       "writtenOn": "2023-02-17T22:07:41Z",
       "side": 1,
       "message": "isn\u0027t it base64 encoded?",
+      "range": {
+        "startLine": 478,
+        "startChar": 32,
+        "endLine": 478,
+        "endChar": 39
+      },
+      "revId": "28376d07258e7834054a7d0cc317c5a4151926fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c7e217c_ce58ca83",
+        "filename": "appengine/config_service/validation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-02-17T22:21:54Z",
+      "side": 1,
+      "message": "It will automatically be handled when receiving `ValidateConfigRequestMessage`. It has already been base64 decoded.",
+      "parentUuid": "618fb4ae_e7b0eef9",
       "range": {
         "startLine": 478,
         "startChar": 32,
