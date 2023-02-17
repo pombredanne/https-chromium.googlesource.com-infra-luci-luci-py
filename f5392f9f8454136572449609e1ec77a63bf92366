@@ -39,6 +39,30 @@
       },
       "revId": "f5392f9f8454136572449609e1ec77a63bf92366",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d5f828f_3c2ea464",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1323,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-02-17T22:00:45Z",
+      "side": 1,
+      "message": "Makes sense... Could we version the config somehow, so it marches forward?",
+      "parentUuid": "38ac9516_2cd1a0e1",
+      "range": {
+        "startLine": 1320,
+        "startChar": 0,
+        "endLine": 1323,
+        "endChar": 35
+      },
+      "revId": "f5392f9f8454136572449609e1ec77a63bf92366",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
