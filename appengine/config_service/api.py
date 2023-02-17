@@ -159,6 +159,7 @@ class ConfigApi(remote.Service):
     class File(messages.Message):
       path = messages.StringField(1)
       content = messages.BytesField(2)
+      is_zlib_compressed = messages.BooleanField(3)
 
     config_set = messages.StringField(1)
     files = messages.MessageField(File, 2, repeated=True)
@@ -204,8 +205,13 @@ class ConfigApi(remote.Service):
     for f in request.files:
       ctx = cfg_validation.Context()
       with ctx.prefix(f.path + ': '):
-        futs.append(validation.validate_config_async(
-            request.config_set, f.path, f.content, ctx=ctx))
+        futs.append(
+            validation.validate_config_async(
+                request.config_set,
+                f.path,
+                f.content,
+                ctx=ctx,
+                is_zlib_compressed=f.is_zlib_compressed))
     ndb.Future.wait_all(futs)
 
     msgs = []

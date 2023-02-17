@@ -6,6 +6,7 @@
 import base64
 import datetime
 import httplib
+import zlib
 
 import test_env
 from test_env import future
@@ -22,6 +23,7 @@ import acl
 import api
 import gitiles_import
 import projects
+import services
 import storage
 import validation
 
@@ -854,7 +856,11 @@ class ApiTest(test_case.EndpointsTestCase):
   def test_validate_config(self):
     self.mock_config()
 
-    def validate_mock(_config_set, _path, _content, ctx=None):
+    def validate_mock(_config_set,
+                      _path,
+                      _content,
+                      ctx=None,
+                      is_zlib_compressed=False):
       ctx.warning('potential problem')
       ctx.error('real problem')
       return future(ctx.result())
@@ -882,6 +888,85 @@ class ApiTest(test_case.EndpointsTestCase):
          'text': 'myproj.cfg: real problem'},
       ]
     })
+
+  def test_validate_config_compressed_content(self):
+    self.mock_config()
+
+    def get_services_async_mock():
+      return future([service_config_pb2.Service()])
+
+    self.mock(services, 'get_services_async', mock.Mock())
+    services.get_services_async = get_services_async_mock
+
+    def validate_mock(_service, _config_set, _path, _content, ctx=None):
+      if _content == 'large':
+        ctx.warning('successfully decompressed large content')
+      return future(ctx.result())
+
+    self.mock(validation, '_validate_by_service_async', mock.Mock())
+    validation._validate_by_service_async.side_effect = validate_mock
+
+    self.mock(acl, 'can_read_config_sets',
+              mock.Mock(return_value={
+                  'services/x': True,
+              }))
+    self.mock(acl, 'can_validate', mock.Mock(return_value=True))
+    req = {
+        'config_set':
+        'services/x',
+        'files': [{
+            'path':
+            'myproj.cfg',
+            'content':
+            base64.b64encode(zlib.compress('large'.encode("utf-8"))),
+            'is_zlib_compressed':
+            True,
+        }]
+    }
+    resp = self.call_api('validate_config', req).json_body
+    self.assertEqual(
+        resp, {
+            'messages': [
+                {
+                    'path': 'myproj.cfg',
+                    'severity': 'WARNING',
+                    'text': 'successfully decompressed large content'
+                },
+            ]
+        })
+
+  def test_validate_config_bad_compressed_content(self):
+    self.mock_config()
+
+    def get_services_async_mock():
+      return future([])
+
+    self.mock(services, 'get_services_async', mock.Mock())
+    services.get_services_async = get_services_async_mock
+
+    self.mock(acl, 'can_read_config_sets',
+              mock.Mock(return_value={
+                  'services/x': True,
+              }))
+    self.mock(acl, 'can_validate', mock.Mock(return_value=True))
+    req = {
+        'config_set':
+        'services/x',
+        'files': [{
+            'path': 'myproj.cfg',
+            'content': 'aaaa',
+            'is_zlib_compressed': True,
+        }]
+    }
+    resp = self.call_api('validate_config', req).json_body
+    self.assertTrue(
+        resp['messages'][0]['text'].startswith('failed to decompress content'))
+    resp['messages'][0].pop('text', None)
+    self.assertEqual(
+        resp, {'messages': [{
+            'path': 'myproj.cfg',
+            'severity': 'ERROR',
+        }]})
 
   def test_validate_config_no_config_set(self):
     self.mock(acl, 'can_read_config_sets', mock.Mock(return_value={

@@ -21,6 +21,7 @@ from components.config.proto import service_config_pb2
 
 import common
 import services
+import zlib
 
 
 def validate_config_set(config_set, ctx=None):
@@ -458,7 +459,11 @@ def _validate_by_service_async(service, config_set, path, content, ctx):
 
 
 @ndb.tasklet
-def validate_config_async(config_set, path, content, ctx=None):
+def validate_config_async(config_set,
+                          path,
+                          content,
+                          ctx=None,
+                          is_zlib_compressed=False):
   """Validates a config against built-in and external validators.
 
   External validators are defined in validation.cfg,
@@ -468,6 +473,12 @@ def validate_config_async(config_set, path, content, ctx=None):
     components.config.validation_context.Result.
   """
   ctx = ctx or validation.Context()
+  if is_zlib_compressed:
+    try:
+      content = zlib.decompress(content)
+    except Exception as e:
+      ctx.error('failed to decompress content: %s' % e)
+      raise ndb.Return(ctx.result())
 
   # Check the config against built-in validators,
   # defined using validation.self_rule.
