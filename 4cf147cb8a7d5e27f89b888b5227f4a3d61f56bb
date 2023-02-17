@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46bed3b6_07ab0079",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-02-17T23:24:54Z",
+      "side": 1,
+      "message": "of course 😞",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 35
+      },
+      "revId": "4cf147cb8a7d5e27f89b888b5227f4a3d61f56bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77029374_d7260b03",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1222,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-02-17T23:24:54Z",
+      "side": 1,
+      "message": "extreme bleh 😞\n\nThough wouldn\u0027t this just mean that the task has two rdb invocations associated with it, and this one would be completely empty?\n\nCould we transactionally write minimal task to run first, then generate the invocation and fill the rest of the details in?",
+      "range": {
+        "startLine": 1220,
+        "startChar": 0,
+        "endLine": 1222,
+        "endChar": 37
+      },
+      "revId": "4cf147cb8a7d5e27f89b888b5227f4a3d61f56bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51324f42_43e0e665",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1298,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-02-17T23:24:54Z",
+      "side": 1,
+      "message": "in theory we could close the previous invocation and create a new one here, right?",
+      "revId": "4cf147cb8a7d5e27f89b888b5227f4a3d61f56bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
