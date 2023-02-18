@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ba0eea8_1f8e04ae",
+        "filename": "appengine/swarming/proto/internals/rbe.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-18T01:40:28Z",
+      "side": 1,
+      "message": "Strictly speaking \"data\" is plural of \"datum\" :P",
+      "parentUuid": "c0376a9c_5c29a933",
+      "range": {
+        "startLine": 183,
+        "startChar": 10,
+        "endLine": 183,
+        "endChar": 19
+      },
+      "revId": "cb32cb1935dca0bb1ac724539ef898766efd6ec9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5b66343_3b235fe1",
@@ -41,6 +65,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e92e71e1_9012b520",
+        "filename": "appengine/swarming/proto/internals/rbe.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-18T01:40:28Z",
+      "side": 1,
+      "message": "\u003e document on directly allowed_values that they are ORed.\n\nDone. I thought this is obvious from the name of the field. \n\n\u003e actually... are there RBE protos we could use for this, directly?\n\nThey\u0027ll need to be copied into luci-py. I\u0027m so tired of copying this shit across repositories. I don\u0027t want to do it just for a proto with two fields. And Go backend will need to do some transformation to them either way (append \"label:\" suffixes, since knowledge about them lives purely in the Go land).",
+      "parentUuid": "d5b66343_3b235fe1",
+      "revId": "cb32cb1935dca0bb1ac724539ef898766efd6ec9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d73ee23_a686986c",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-02-18T00:12:20Z",
       "side": 1,
       "message": "nit: within",
+      "range": {
+        "startLine": 218,
+        "startChar": 13,
+        "endLine": 218,
+        "endChar": 20
+      },
+      "revId": "cb32cb1935dca0bb1ac724539ef898766efd6ec9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65c0cda3_2a8ebfff",
+        "filename": "appengine/swarming/proto/internals/rbe.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-18T01:40:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d73ee23_a686986c",
       "range": {
         "startLine": 218,
         "startChar": 13,
@@ -87,6 +153,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "843d181a_d356a163",
+        "filename": "appengine/swarming/server/rbe.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-18T01:40:28Z",
+      "side": 1,
+      "message": "I also assume so 😄 We\u0027ll see, but I think they\u0027ll fit. I plan to use string string as an opaque label (e.g. never parse, never generate it again after it already has been stored, etc). It will allow us to change the format later if necessary.",
+      "parentUuid": "7b7bb715_3e08a5f7",
+      "range": {
+        "startLine": 220,
+        "startChar": 14,
+        "endLine": 220,
+        "endChar": 22
+      },
+      "revId": "cb32cb1935dca0bb1ac724539ef898766efd6ec9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc7869aa_1a9dda8f",
@@ -104,6 +194,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47798250_901bd732",
+        "filename": "appengine/swarming/server/rbe.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-18T01:40:28Z",
+      "side": 1,
+      "message": "The doc string starts \"Transactionally enqueues a TQ task ...\", I assume this is enough.",
+      "parentUuid": "bc7869aa_1a9dda8f",
+      "revId": "cb32cb1935dca0bb1ac724539ef898766efd6ec9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b8f280e_b4e5a28b",
@@ -117,6 +225,30 @@
       "writtenOn": "2023-02-18T00:12:20Z",
       "side": 1,
       "message": "feels like this should be like `TaskToRunShard.extract_shard_id(key)` or something...",
+      "range": {
+        "startLine": 257,
+        "startChar": 19,
+        "endLine": 257,
+        "endChar": 21
+      },
+      "revId": "cb32cb1935dca0bb1ac724539ef898766efd6ec9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a47c0705_184da29e",
+        "filename": "appengine/swarming/server/rbe.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-18T01:40:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b8f280e_b4e5a28b",
       "range": {
         "startLine": 257,
         "startChar": 19,
@@ -150,6 +282,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01d43821_bc6d576b",
+        "filename": "appengine/swarming/server/rbe.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-18T01:40:28Z",
+      "side": 1,
+      "message": "But it is free!",
+      "parentUuid": "2ca98633_9e8990fc",
+      "range": {
+        "startLine": 292,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 20
+      },
+      "revId": "cb32cb1935dca0bb1ac724539ef898766efd6ec9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b8b21f9_fb5130ca",
@@ -163,6 +319,24 @@
       "writtenOn": "2023-02-18T00:12:20Z",
       "side": 1,
       "message": "it looks like the current is_reapable is just returning if there is a queue number or not? Could this be some pre-queue compatibility thing?",
+      "revId": "cb32cb1935dca0bb1ac724539ef898766efd6ec9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b023746_5cab5b8a",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-18T01:40:28Z",
+      "side": 1,
+      "message": "I don\u0027t know. I remember I was wanting to rewrite this code when dealing with Cloud Datastore issues few month ago. I think I\u0027ll be heavily modifying it when implementing cancelation/expiration of RBE tasks. I tried to 🙈 for now to keep my sanity.",
+      "parentUuid": "5b8b21f9_fb5130ca",
       "revId": "cb32cb1935dca0bb1ac724539ef898766efd6ec9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -213,6 +387,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75ce607d_ffb22599",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-18T01:40:28Z",
+      "side": 1,
+      "message": "Changed to shellfish_id for clarify :P",
+      "parentUuid": "ce41d03d_0d52900f",
+      "range": {
+        "startLine": 253,
+        "startChar": 23,
+        "endLine": 253,
+        "endChar": 30
+      },
+      "revId": "cb32cb1935dca0bb1ac724539ef898766efd6ec9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11e6f06b_61735e73",
@@ -249,6 +447,30 @@
       "writtenOn": "2023-02-18T00:12:20Z",
       "side": 1,
       "message": "you mean issue tasks to both and then only modulate which service bots pull from?",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 51
+      },
+      "revId": "cb32cb1935dca0bb1ac724539ef898766efd6ec9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47c1fb7d_ce4093cd",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-18T01:40:28Z",
+      "side": 1,
+      "message": "Yeah, something like that. Submit the TaskToRun into the native Swarming scheduler (i.e. just keep generating `queue_number` for it), and into RBE scheduler (i.e. emit the TQ task that create the reservation).\n\nThen when transactionally consuming the item, do it only if it wasn\u0027t consumed already. RBE bots will just report the reservation as done (this will need to be implemented anyway), and Swarming bots will just go on to the next TaskToRun (like they already do).\n\nIt is all doable, but I\u0027m not sure it is needed? Seems chaotic.",
+      "parentUuid": "e93cc008_4986bfc5",
       "range": {
         "startLine": 82,
         "startChar": 0,
