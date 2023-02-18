@@ -47,6 +47,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30dd5313_40060845",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1222,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-18T01:12:32Z",
+      "side": 1,
+      "message": "I don\u0027t know how severe this is and if the invocation name must be unique. Maybe it is OK to have two invocations with the same name, as long as they are populated by two different tasks. If invocation name is used for idempotency (same name \u003d\u003e same invocation IDs), then this is definitely broken.\n\nEither way, it is a bug for another day, I just left TODO to document it exists.",
+      "parentUuid": "77029374_d7260b03",
+      "range": {
+        "startLine": 1220,
+        "startChar": 0,
+        "endLine": 1222,
+        "endChar": 37
+      },
+      "revId": "4cf147cb8a7d5e27f89b888b5227f4a3d61f56bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51324f42_43e0e665",
@@ -60,6 +84,24 @@
       "writtenOn": "2023-02-17T23:24:54Z",
       "side": 1,
       "message": "in theory we could close the previous invocation and create a new one here, right?",
+      "revId": "4cf147cb8a7d5e27f89b888b5227f4a3d61f56bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ce56e15_7ff84039",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1298,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-18T01:12:32Z",
+      "side": 1,
+      "message": "I think it will be unsafe. This previous invocation may actually already be legitimately in use by another task that grabbed the ID (and it doesn\u0027t matter that its us who triggered its creation: whoever won the race of committing TaskRequest owns the invocation now).\n\nI guess we can just try opening a new invocation and left the previous one hanging until it naturally expires.\n\nAgain, bug for another day.",
+      "parentUuid": "51324f42_43e0e665",
       "revId": "4cf147cb8a7d5e27f89b888b5227f4a3d61f56bb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
