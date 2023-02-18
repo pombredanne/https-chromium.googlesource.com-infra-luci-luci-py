@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a933f31_8a7a944c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-02-18T01:52:43Z",
+      "side": 1,
+      "message": "use this CL to replace https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/4263049",
+      "revId": "379bfdb238426bda5f432e2ea4318f4fcc8ec1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
