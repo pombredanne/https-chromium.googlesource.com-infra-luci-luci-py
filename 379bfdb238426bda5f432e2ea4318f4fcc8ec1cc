@@ -68,6 +68,29 @@
       "parentUuid": "641877f6_081a6cb5",
       "revId": "379bfdb238426bda5f432e2ea4318f4fcc8ec1cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "971a33aa_52fff240",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-02-20T17:21:03Z",
+      "side": 1,
+      "message": "I\u0027m fairly certain the json.loads here is not correct: PROTOCOL.decode_message is already doing this: https://github.com/google/protorpc/blob/master/protorpc/protojson.py#L187",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 25
+      },
+      "revId": "379bfdb238426bda5f432e2ea4318f4fcc8ec1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
