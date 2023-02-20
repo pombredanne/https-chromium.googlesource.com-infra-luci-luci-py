@@ -50,6 +50,24 @@
       "message": "Upon further reflection, I think the incoming request should just set `Content-Encoding: gzip` in addition to the normal content type? I don\u0027t think GAE will automatically decompress this (it just is able to compress responses under the right circumstances)",
       "revId": "379bfdb238426bda5f432e2ea4318f4fcc8ec1cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e4c6b2a_5faa7c07",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-02-20T17:05:57Z",
+      "side": 1,
+      "message": "(and then use gzip instead of zlib)",
+      "parentUuid": "641877f6_081a6cb5",
+      "revId": "379bfdb238426bda5f432e2ea4318f4fcc8ec1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
