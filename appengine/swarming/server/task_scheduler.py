@@ -63,6 +63,10 @@ class Error(Exception):
   pass
 
 
+class ClaimError(Error):
+  pass
+
+
 def _secs_to_ms(value):
   """Converts a seconds value in float to the number of ms as an integer."""
   return int(round(value * 1000.))
@@ -260,7 +264,7 @@ def _reap_task(bot_dimensions, bot_details, to_run_key, request):
   bot_id = bot_dimensions[u'id'][0]
   bot_info = bot_management.get_info_key(bot_id).get()
   if not bot_info:
-    raise Error("Bot %s doesn't exist." % bot_id)
+    raise ClaimError("Bot %s doesn't exist." % bot_id)
 
   now = utils.utcnow()
   # Log before the task id in case the function fails in a bad state where the
@@ -1076,7 +1080,7 @@ def _bot_reap_task_external_scheduler(bot_dimensions, bot_details, es_cfg):
   Arguments:
     - bot_dimensions: The dimensions of the bot as a dictionary in
           {string key: list of string values} format.
-    - bot_details: a BotDetails tuple, non-essential but would be porpagated to
+    - bot_details: a BotDetails tuple, non-essential but would be propagated to
           the task.
     - es_cfg: ExternalSchedulerConfig for this bot.
   """
@@ -1366,7 +1370,7 @@ def bot_reap_task(bot_dimensions, queues, bot_details, deadline):
   - bot_dimensions: The dimensions of the bot as a dictionary in
           {string key: list of string values} format.
   - queues: a list of integers with dimensions hashes of queues to poll.
-  - bot_details: a BotDetails tuple, non-essential but would be porpagated to
+  - bot_details: a BotDetails tuple, non-essential but would be propagated to
           the task.
   - deadline: datetime.datetime of when to give up.
 
@@ -1500,6 +1504,30 @@ def bot_reap_task(bot_dimensions, queues, bot_details, deadline):
         '%d stale_index, %d failed', bot_id,
         time.time() - start, iterated, reenqueued, expired, stale_index,
         failures)
+
+
+def bot_claim_slice(bot_dimensions, bot_details, to_run_key, claim_id):
+  """Transactionally assigns the given task slice to the given bot.
+
+  Unlike bot_reap_task, this function doesn't try to find a matching task
+  in Swarming scheduler queues and instead accepts a candidate TaskToRun as
+  an input.
+
+  Arguments:
+  - bot_dimensions: The dimensions of the bot as a dictionary in
+          {string key: list of string values} format.
+  - bot_details: a BotDetails tuple, non-essential but would be propagated to
+          the task.
+  - to_run_key: a key of TaskToRun entity identifying a slice to claim.
+  - claim_id: a string identifying this claim operation, for idempotency.
+
+  Returns:
+    Tuple of (TaskRequest, SecretBytes, TaskRunResult) on success.
+
+  Raises:
+    ClaimError on fatal errors (e.g. the slice was already claimed or expired).
+    CommitError etc. on transient datastore errors.
+  """
 
 
 def bot_update_task(run_result_key, bot_id, output, output_chunk_start,
