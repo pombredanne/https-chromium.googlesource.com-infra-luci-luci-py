@@ -565,6 +565,9 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             run_result.key, bot_id=test_bot_id, exit_code=0, duration=0.1))
     self.assertEqual(1, self.execute_tasks())
 
+  def test_bot_claim_slice(self):
+    pass
+
   def test_schedule_request(self):
     # It is tested indirectly in the other functions.
     # Essentially check _quick_schedule() and _register_bot() works.

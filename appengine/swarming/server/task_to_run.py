@@ -184,8 +184,9 @@ class _TaskToRunBase(ndb.Model):
   # Never reset once set.
   claim_id = ndb.StringProperty(required=False, indexed=False)
 
-  def consume(self):
+  def consume(self, claim_id):
     """Moves TaskToRun into non-reapable state (e.g. when canceling)."""
+    self.claim_id = claim_id
     self.expiration_ts = None
     self.queue_number = None
 
@@ -750,6 +751,18 @@ def task_to_run_key_slice_index(to_run_key):
   represents as pending.
   """
   return to_run_key.integer_id() >> 4
+
+
+def task_to_run_key_from_parts(request_key, shard_index, entity_id):
+  """Returns TaskToRun key given its parts.
+
+  Arguments:
+  - request_key: parent TaskRequest entity key.
+  - shard_index: index of TaskToRunShard entity class.
+  - entity_id: int64 with TaskToRunShard entity key.
+  """
+  assert request_key.kind() == 'TaskRequest', request_key
+  return ndb.Key(get_shard_kind(shard_index), entity_id, parent=request_key)
 
 
 def new_task_to_run(request, task_slice_index):
