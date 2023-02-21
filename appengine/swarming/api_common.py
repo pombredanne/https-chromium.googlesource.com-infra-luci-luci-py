@@ -14,6 +14,7 @@ from server import realms
 from server import task_scheduler
 from server import task_request
 from server import task_pack
+from server import task_result
 
 
 def _get_or_raise(key):
@@ -141,3 +142,35 @@ def terminate_bot(bot_id):
   result_summary = task_scheduler.schedule_request(request,
                                                    enable_resultdb=False)
   return task_pack.pack_result_summary_key(result_summary.key)
+
+
+def list_bot_tasks(bot_id, start, end, sort, state, cursor, limit):
+  """Lists all tasks which have been executed by a given bot which match the
+  filters.
+
+  Arguments:
+    bot_id: Show only tasks executed by a specific bot_id.
+    start: datetime.datetime object or None. Only include tasks with a `sort`
+      datetime after this date unless None.
+    end: Datetime.datetime object or None. Only include tasks with a `sort`
+      datetime before this date unless None.
+    sort: May be either 'created_ts', 'started_ts' or 'completed_ts'. Will apply
+      start and end filters to the field in datastore entity with name sort.
+    state: A string representation of possible task_state_query State.
+    cursor: Cursor returned by previous invocation of this request.
+    limit: Number of items to return per request.
+
+  Returns:
+    List of tasks results with filters applied.
+
+  Raises:
+    handlers_exceptions.BadRequestException if a filter or sort is invalid.
+    auth.AuthorizationError if bot fails realm authorization test.
+  """
+  try:
+    realms.check_bot_tasks_acl(bot_id)
+    q = task_result.get_run_results_query(start, end, sort, state, bot_id)
+    return datastore_utils.fetch_page(q, limit, cursor)
+  except ValueError as e:
+    raise handlers_exceptions.BadRequestException(
+        'Inappropriate filter for bot.tasks: %s' % e)
