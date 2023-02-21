@@ -47,13 +47,6 @@ from server import task_scheduler
 
 ### Helper Methods
 
-
-# Used by _get_task_request_async(), clearer than using True/False and important
-# as this is part of the security boundary.
-_CANCEL = object()
-_VIEW = object()
-
-
 # Add support for BooleanField in protorpc in endpoints GET requests.
 _old_decode_field = protojson.ProtoJson.decode_field
 def _decode_field(self, field, value):
@@ -250,7 +243,7 @@ class SwarmingServerService(remote.Service):
       # This is for the compatibility until Web clients send task_id.
       # return False if task_id is not given.
       return acl._is_privileged_user()
-    task_key, _ = _to_keys(task_id)
+    task_key, _ = api_common.to_keys(task_id)
     task = task_key.get()
     if not task:
       raise endpoints.NotFoundException('%s not found.' % task_id)
@@ -332,7 +325,8 @@ class SwarmingTaskService(remote.Service):
     # completed, and that the DB store succeeds *but* the memcache update fails,
     # this API will *always* return the stale version.
     try:
-      _, result = _get_request_and_result(request.task_id, _VIEW, False)
+      _, result = api_common.get_request_and_result(request.task_id,
+                                                    api_common.VIEW, False)
     except ValueError:
       raise endpoints.BadRequestException('Invalid task ID')
     return message_conversion.task_result_to_rpc(
@@ -347,9 +341,9 @@ class SwarmingTaskService(remote.Service):
   def request(self, request):
     """Returns the task request corresponding to a task ID."""
     logging.debug('%s', request)
-    request_key, _ = _to_keys(request.task_id)
-    request_obj = _get_task_request_async(
-        request.task_id, request_key, _VIEW).get_result()
+    request_key, _ = api_common.to_keys(request.task_id)
+    request_obj = api_common.get_task_request_async(
+        request.task_id, request_key, api_common.VIEW).get_result()
     return message_conversion.task_request_to_rpc(request_obj)
 
   @endpoint(TaskCancel,
@@ -363,9 +357,9 @@ class SwarmingTaskService(remote.Service):
     If a bot was running the task, the bot will forcibly cancel the task.
     """
     logging.debug('request %s', request)
-    request_key, result_key = _to_keys(request.task_id)
-    request_obj = _get_task_request_async(request.task_id, request_key,
-                                          _CANCEL).get_result()
+    request_key, result_key = api_common.to_keys(request.task_id)
+    request_obj = api_common.get_task_request_async(
+        request.task_id, request_key, api_common.CANCEL).get_result()
     ok, was_running = task_scheduler.cancel_task(request_obj, result_key,
                                                  request.kill_running or False,
                                                  None)
@@ -385,7 +379,8 @@ class SwarmingTaskService(remote.Service):
       # behavior. pRPC implementation should limit to a multiple of CHUNK_SIZE
       # (one or two?) for efficiency.
       request.length = 16*1000*1024
-    _, result = _get_request_and_result(request.task_id, _VIEW, True)
+    _, result = api_common.get_request_and_result(request.task_id,
+                                                  api_common.VIEW, True)
     output = result.get_output(request.offset or 0, request.length)
     if output:
       # That was an error, don't do that in pRPC:

@@ -97,9 +97,26 @@ class BotsService(object):
     return message_conversion_prpc.bot_tasks_response(items, cursor)
 
 
+class TasksService(object):
+  DESCRIPTION = swarming_prpc_pb2.TasksServiceDescription
+
+  @prpc_helpers.method
+  @auth.require(acl.can_access, log_identity=True)
+  def GetResult(self, request, _context):
+    try:
+      _, result = api_common.get_request_and_result(request.task_id,
+                                                    api_common.VIEW, False)
+    except ValueError as e:
+      raise handlers_exceptions.BadRequestException('Invalid task ID: %s' %
+                                                    e.message)
+    return message_conversion_prpc.task_result_response(
+        result, request.include_performance_stats)
+
+
 def get_routes():
   s = prpc.Server()
   s.add_service(BotsService())
   s.add_service(TaskBackendAPIService())
   s.add_interceptor(auth.prpc_interceptor)
+  s.add_service(TasksService())
   return s.get_routes()
