@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63234ca1_757fcb9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-21T22:25:06Z",
+      "side": 1,
+      "message": "Created `GetRequest` route for tasks. Main feature of this change is copying over a lot of code.",
+      "revId": "1240835d58da779c43d857dcf37e2ba3b31a41d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91090a70_a8a48ac1",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-21T22:25:06Z",
+      "side": 1,
+      "message": "This seems to cover a lot of possible calls which could produce `ValueError` but every `get_result` call could create a `ValueError`. The validations in `to_keys` don\u0027t seem to catch all possible invalid keys. Alternative approach would be to improve those validations in `to_keys` but I feel like the lazy way here is fine and has few downsides that I can think of.",
+      "range": {
+        "startLine": 281,
+        "startChar": 2,
+        "endLine": 281,
+        "endChar": 20
+      },
+      "revId": "1240835d58da779c43d857dcf37e2ba3b31a41d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
