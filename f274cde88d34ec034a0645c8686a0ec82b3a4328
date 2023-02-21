@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f37d3dfc_cec1bfdc",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-21T19:28:10Z",
+      "side": 1,
+      "message": "That is correct, changed it.",
+      "parentUuid": "b1c087c3_40fc060f",
+      "range": {
+        "startLine": 893,
+        "startChar": 4,
+        "endLine": 895,
+        "endChar": 55
+      },
+      "revId": "f274cde88d34ec034a0645c8686a0ec82b3a4328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c39ab7c_06b6be26",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-01T22:46:31Z",
       "side": 1,
       "message": "I thought we are putting all ACL checks into api_common implementation now?",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 36
+      },
+      "revId": "f274cde88d34ec034a0645c8686a0ec82b3a4328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f0fc988_a73c756c",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-21T19:28:10Z",
+      "side": 1,
+      "message": "Removed!",
+      "parentUuid": "8c39ab7c_06b6be26",
       "range": {
         "startLine": 66,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9656f11c_35cb0700",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-21T19:28:10Z",
+      "side": 1,
+      "message": "I don\u0027t think this is actually needed here. I must have kept this here in error.",
+      "parentUuid": "e20ff50e_56d0cf0d",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 56
+      },
+      "revId": "f274cde88d34ec034a0645c8686a0ec82b3a4328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4db7754_6a409add",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-02-01T22:46:31Z",
       "side": 1,
       "message": "How is this possible?",
+      "range": {
+        "startLine": 103,
+        "startChar": 11,
+        "endLine": 103,
+        "endChar": 26
+      },
+      "revId": "f274cde88d34ec034a0645c8686a0ec82b3a4328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccd41cdd_f7714d8b",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-21T19:28:10Z",
+      "side": 1,
+      "message": "Probably made a careless error here.",
+      "parentUuid": "a4db7754_6a409add",
       "range": {
         "startLine": 103,
         "startChar": 11,
