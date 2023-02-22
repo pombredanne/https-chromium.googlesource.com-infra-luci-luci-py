@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4506dc30_929128b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-22T21:06:51Z",
+      "side": 1,
+      "message": "LGTM! I had a few questions about how `rbe` scheduler works along side the swarming one but I will defer those until I have read previous `CLs` 😊",
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfca7cde_12d96e0c",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-22T21:06:51Z",
+      "side": 1,
+      "message": "IUUC, the `DB GET` is in `named_caches.get_hints`. Should the comment start at line 528?",
+      "range": {
+        "startLine": 523,
+        "startChar": 4,
+        "endLine": 524,
+        "endChar": 19
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19596865_c902378a",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-22T21:06:51Z",
+      "side": 1,
+      "message": "Noticed `error\u003de.message` is used in some places but `error\u003dstr(e)` in others. We should probably stick to `str(e)`. I believe it\u0027s more general as not all exception types (eg `ValueError`) will have a `.message` property.",
+      "range": {
+        "startLine": 999,
+        "startChar": 33,
+        "endLine": 999,
+        "endChar": 48
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "115770b0_a1060ea0",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1546,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-22T21:06:51Z",
+      "side": 1,
+      "message": "Should indentation be used here instead of `-` to be consistent with `Returns:` and `Raises:`?",
+      "range": {
+        "startLine": 1546,
+        "startChar": 2,
+        "endLine": 1546,
+        "endChar": 4
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18148b44_77d775e3",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1573,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-22T21:06:51Z",
+      "side": 1,
+      "message": "optional nit 😄 since we are doing the same check twice it could be worth creating a `_check_slice_available` function which can also be used in the `run` txn of `_reap_task`? This is v nit and I can certainly see it being premature since this is only used in two places and I am unsure it would improve readability thaaat much.",
+      "range": {
+        "startLine": 1573,
+        "startChar": 2,
+        "endLine": 1573,
+        "endChar": 70
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "348abdf9_5f76d57a",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1577,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-22T21:06:51Z",
+      "side": 1,
+      "message": "Does `retry` here mean that the bot is attempting to claim again, implying that previous attempt to claim wasn\u0027t transmitted to bot (or failed) or bot died? Just clarifying cus I know there were swarming retries.",
+      "range": {
+        "startLine": 1577,
+        "startChar": 4,
+        "endLine": 1577,
+        "endChar": 61
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8733f57d_36e106f6",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1582,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-22T21:06:51Z",
+      "side": 1,
+      "message": "Should this be `ClaimError`?",
+      "range": {
+        "startLine": 1582,
+        "startChar": 12,
+        "endLine": 1582,
+        "endChar": 17
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bb499bd_dbce5df2",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-22T21:06:51Z",
+      "side": 1,
+      "message": "Comment about `-` vs ` ` also applies here 😊",
+      "range": {
+        "startLine": 761,
+        "startChar": 2,
+        "endLine": 761,
+        "endChar": 4
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
