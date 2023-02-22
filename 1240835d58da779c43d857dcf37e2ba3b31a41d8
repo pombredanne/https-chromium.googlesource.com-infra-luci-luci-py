@@ -63,6 +63,30 @@
       },
       "revId": "1240835d58da779c43d857dcf37e2ba3b31a41d8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72ea9eeb_f8e6daa1",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-22T13:33:49Z",
+      "side": 1,
+      "message": "Agreed that returning `BadRequestException` with error message should help mitigate this.",
+      "parentUuid": "d7f982be_e138147f",
+      "range": {
+        "startLine": 281,
+        "startChar": 2,
+        "endLine": 281,
+        "endChar": 20
+      },
+      "revId": "1240835d58da779c43d857dcf37e2ba3b31a41d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
