@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "801ecb24_bf936ff8",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T22:59:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfca7cde_12d96e0c",
+      "range": {
+        "startLine": 523,
+        "startChar": 4,
+        "endLine": 524,
+        "endChar": 19
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19596865_c902378a",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-02-22T21:06:51Z",
       "side": 1,
       "message": "Noticed `error\u003de.message` is used in some places but `error\u003dstr(e)` in others. We should probably stick to `str(e)`. I believe it\u0027s more general as not all exception types (eg `ValueError`) will have a `.message` property.",
+      "range": {
+        "startLine": 999,
+        "startChar": 33,
+        "endLine": 999,
+        "endChar": 48
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44e1b348_c0c75678",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T22:59:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19596865_c902378a",
       "range": {
         "startLine": 999,
         "startChar": 33,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f71446f_f6ae0a8f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1546,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T22:59:01Z",
+      "side": 1,
+      "message": "I was trying to preserve the commenting style already present in this file, but looks like it already mixes two styles :-/ Switched to indentation instead of \u0027-\u0027.",
+      "parentUuid": "115770b0_a1060ea0",
+      "range": {
+        "startLine": 1546,
+        "startChar": 2,
+        "endLine": 1546,
+        "endChar": 4
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18148b44_77d775e3",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-02-22T21:06:51Z",
       "side": 1,
       "message": "optional nit 😄 since we are doing the same check twice it could be worth creating a `_check_slice_available` function which can also be used in the `run` txn of `_reap_task`? This is v nit and I can certainly see it being premature since this is only used in two places and I am unsure it would improve readability thaaat much.",
+      "range": {
+        "startLine": 1573,
+        "startChar": 2,
+        "endLine": 1573,
+        "endChar": 70
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09e63294_85535f18",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1573,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T22:59:01Z",
+      "side": 1,
+      "message": "I considered this, but it leads to messier code.\n\nThese two places have different inputs available to them and do slightly different fetches (e.g. bot_claim_slice fetches `ndb.get_multi([to_run.request_key, run_result_key])` while _reap_task only `task_pack.result_summary_key_to_run_result_key(...).get()` since it knows TaskRequest already. In the end only 4 lines are the same:\n\n```\n        if not run_result:\n          raise Error(\u0027TaskRunResult unexpectedly missing on retry\u0027)\n        if run_result.current_task_slice !\u003d to_run.task_slice_index:\n          raise ClaimError(\u0027Obsolete\u0027)\n```\n\nand I decided not to bother.",
+      "parentUuid": "18148b44_77d775e3",
       "range": {
         "startLine": 1573,
         "startChar": 2,
@@ -133,6 +229,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f17dde0_cd4e752d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1577,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T22:59:01Z",
+      "side": 1,
+      "message": "Yes, it means retry of bot_claim_slice call.",
+      "parentUuid": "348abdf9_5f76d57a",
+      "range": {
+        "startLine": 1577,
+        "startChar": 4,
+        "endLine": 1577,
+        "endChar": 61
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8733f57d_36e106f6",
@@ -156,6 +276,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5380427f_bbb97679",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1582,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T22:59:01Z",
+      "side": 1,
+      "message": "No because this is an internal error of some sort (something that should not be happening; ClaimError is for expected situations).",
+      "parentUuid": "8733f57d_36e106f6",
+      "range": {
+        "startLine": 1582,
+        "startChar": 12,
+        "endLine": 1582,
+        "endChar": 17
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bb499bd_dbce5df2",
@@ -169,6 +313,30 @@
       "writtenOn": "2023-02-22T21:06:51Z",
       "side": 1,
       "message": "Comment about `-` vs ` ` also applies here 😊",
+      "range": {
+        "startLine": 761,
+        "startChar": 2,
+        "endLine": 761,
+        "endChar": 4
+      },
+      "revId": "83c63d96eb200975abe6e6f5cc95233b24fd6546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75be3290_bf508ab8",
+        "filename": "appengine/swarming/server/task_to_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T22:59:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bb499bd_dbce5df2",
       "range": {
         "startLine": 761,
         "startChar": 2,
