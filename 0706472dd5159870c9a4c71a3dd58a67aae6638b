@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48076328_8783f6dd",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T01:14:55Z",
+      "side": 1,
+      "message": "this drops valuable information contained in ValueError message (stuff like \"Invalid task id (overflowed)\"). Maybe `\"bad task ID %s: %s\" % (task_id, exc)`.",
+      "range": {
+        "startLine": 194,
+        "startChar": 50,
+        "endLine": 194,
+        "endChar": 73
+      },
+      "revId": "0706472dd5159870c9a4c71a3dd58a67aae6638b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9de7710_496f284a",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T01:14:55Z",
+      "side": 1,
+      "message": "del",
+      "range": {
+        "startLine": 198,
+        "startChar": 10,
+        "endLine": 198,
+        "endChar": 11
+      },
+      "revId": "0706472dd5159870c9a4c71a3dd58a67aae6638b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8b043dd_7b2e210a",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T01:14:55Z",
+      "side": 1,
+      "message": "nit: `intent`? `action`? `permission`?\n\n`viewing` is kind of vague",
+      "range": {
+        "startLine": 214,
+        "startChar": 4,
+        "endLine": 214,
+        "endChar": 11
+      },
+      "revId": "0706472dd5159870c9a4c71a3dd58a67aae6638b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b6f064f_f1e54476",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T01:14:55Z",
+      "side": 1,
+      "message": "the caller\n\nthis is called primarily by end users, not bots",
+      "range": {
+        "startLine": 221,
+        "startChar": 31,
+        "endLine": 221,
+        "endChar": 34
+      },
+      "revId": "0706472dd5159870c9a4c71a3dd58a67aae6638b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4da2dce4_7d4013e2",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T01:14:55Z",
+      "side": 1,
+      "message": "del",
+      "range": {
+        "startLine": 231,
+        "startChar": 49,
+        "endLine": 231,
+        "endChar": 50
+      },
+      "revId": "0706472dd5159870c9a4c71a3dd58a67aae6638b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e077d56d_66249cea",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T01:14:55Z",
+      "side": 1,
+      "message": "del",
+      "range": {
+        "startLine": 243,
+        "startChar": 20,
+        "endLine": 243,
+        "endChar": 21
+      },
+      "revId": "0706472dd5159870c9a4c71a3dd58a67aae6638b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d3e0aae_e69d5d47",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T01:14:55Z",
+      "side": 1,
+      "message": "mention BadRequestException?",
+      "range": {
+        "startLine": 251,
+        "startChar": 2,
+        "endLine": 251,
+        "endChar": 8
+      },
+      "revId": "0706472dd5159870c9a4c71a3dd58a67aae6638b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc790c77_7a58b3a4",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T01:14:55Z",
+      "side": 1,
+      "message": "the task is missing",
+      "range": {
+        "startLine": 252,
+        "startChar": 46,
+        "endLine": 252,
+        "endChar": 76
+      },
+      "revId": "0706472dd5159870c9a4c71a3dd58a67aae6638b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb288b7c_3d4312a3",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T01:14:55Z",
+      "side": 1,
+      "message": "do this outside of try/except block, since it catches ValueError already",
+      "range": {
+        "startLine": 255,
+        "startChar": 4,
+        "endLine": 255,
+        "endChar": 46
+      },
+      "revId": "0706472dd5159870c9a4c71a3dd58a67aae6638b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

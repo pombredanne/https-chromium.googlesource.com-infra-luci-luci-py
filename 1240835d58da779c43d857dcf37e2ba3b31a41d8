@@ -39,6 +39,30 @@
       },
       "revId": "1240835d58da779c43d857dcf37e2ba3b31a41d8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7f982be_e138147f",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-22T01:14:55Z",
+      "side": 1,
+      "message": "Yes, I guess it is fine, but then propagate ValueError exception message as is into BadRequestException. We don\u0027t know if ValueError is caused by invalid task ID. It might be something else.",
+      "parentUuid": "91090a70_a8a48ac1",
+      "range": {
+        "startLine": 281,
+        "startChar": 2,
+        "endLine": 281,
+        "endChar": 20
+      },
+      "revId": "1240835d58da779c43d857dcf37e2ba3b31a41d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
