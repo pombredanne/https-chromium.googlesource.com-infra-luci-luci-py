@@ -1585,12 +1585,32 @@ class _BotLoopState:
       self.on_task_completed(True)
       return
 
-    # TODO(vadimsh): Make a Swarming API call that fetches the task manifest and
-    # marks the task as starting. Just pretend to do some work for now.
-    self._rbe_session.ping_active_lease()
-    time.sleep(5.0)
-    self._rbe_session.finish_active_lease({})
-    self.on_task_completed(True)
+    # At least `task_id` must be set. Integer-valued fields may be missing if
+    # they are equal to 0 (per protobuf jsonpb encoding rules).
+    task_id = rbe_lease.payload['task_id']
+    task_to_run_shard = rbe_lease.payload.get('task_to_run_shard', 0)
+    task_to_run_id = rbe_lease.payload.get('task_to_run_id', 0)
+
+    # Tell Swarming we are about to start working on this lease.
+    logging.info('RBE: claiming %s (shard %d, id %d)', task_id,
+                 task_to_run_shard, task_to_run_id)
+    cmd, param = self._bot.remote.claim(self._bot.attributes, rbe_lease.id,
+                                        task_id, task_to_run_shard,
+                                        task_to_run_id)
+
+    if cmd == 'skip':
+      self._rbe_session.finish_active_lease({})
+      logging.warning('RBE: skipping %s: %s', task_id, param)
+    elif cmd == 'terminate':
+      self._rbe_session.finish_active_lease({})
+      self.cmd_terminate(param)
+    elif cmd == 'run':
+      # TODO(vadimsh): Propagate the rbe_session into the task runner process
+      # and keep pinging the lease there.
+      self._rbe_session.finish_active_lease({})
+      self.cmd_run(param)
+    else:
+      raise ValueError('Unexpected claim outcome: %s' % cmd)
 
   ##############################################################################
   ## Python Swarming.

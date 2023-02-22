@@ -1286,6 +1286,15 @@ class TestBotMain(TestBotBase):
     ])
     self.poll_once()
 
+  def test_rbe_mode_claim_skip(self):
+    pass
+
+  def test_rbe_mode_claim_terminate(self):
+    pass
+
+  def test_rbe_mode_claim_run(self):
+    pass
+
   def _mock_popen(self,
                   returncode=0,
                   exit_code=0,
