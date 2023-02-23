@@ -494,6 +494,8 @@ def on_task_status_change_scheduler_latency(summary):
   fields = _extract_given_job_fields(summary.tags, [
       'pool', 'device_type',
   ])
+  logging.debug("State change latency: %s %s", summary.task_id, summary.tags)
+  logging.debug("State change dimensions: %s", summary.bot_dimensions.get('device_type'))
   fields['spec_name'] = _extract_spec_name_field(_tags_to_dict(summary.tags))
   fields['status'] = task_result.State.to_string(summary.state)
   latency = summary.pending_now(utils.utcnow())

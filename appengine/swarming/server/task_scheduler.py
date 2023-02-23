@@ -247,6 +247,7 @@ def _expire_task(to_run_key, request, inline):
         'Expired %s', task_pack.pack_result_summary_key(result_summary_key))
     ts_mon_metrics.on_task_expired(summary, to_run_key.get())
   if state_changed:
+    logging.debug("request.tags: %s", request.tags)
     ts_mon_metrics.on_task_status_change_scheduler_latency(summary)
   return summary, new_to_run
 
@@ -381,6 +382,8 @@ def _reap_task(bot_dimensions,
     run_result = None
     secret_bytes = None
   if state_changed:
+    logging.debug("request.tags: %s", request.tags)
+    logging.debug("bot_dimensions: %s", bot_dimensions)
     ts_mon_metrics.on_task_status_change_scheduler_latency(summary)
   return run_result, secret_bytes
 
@@ -1381,6 +1384,7 @@ def schedule_request(request,
                                     request,
                                     es_cfg,
                                     transactional=False)
+    logging.debug("request.tags: %s", request.tags)
     ts_mon_metrics.on_task_status_change_scheduler_latency(result_summary)
   return result_summary
 
@@ -1873,6 +1877,7 @@ def cancel_task(request, result_key, kill_running, bot_id):
   succeeded, was_running, state_changed, result_summary = \
     datastore_utils.transaction(run)
   if state_changed:
+    logging.debug("request.tags: %s", request.tags)
     ts_mon_metrics.on_task_status_change_scheduler_latency(result_summary)
   return succeeded, was_running
 
