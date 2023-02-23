@@ -917,7 +917,7 @@ class TestBotMain(TestBotBase):
     ])
     self.poll_once()
 
-    expected = [(self.bot, {'foo': 'bar'})]
+    expected = [(self.bot, {'foo': 'bar'}, None)]
     self.assertEqual(expected, manifest)
     expected = [(self.bot,)]
     self.assertEqual(expected, clean)
@@ -1389,7 +1389,8 @@ class TestBotMain(TestBotBase):
   def test_rbe_mode_claim_run(self):
     ran = []
 
-    def run_manifest(_bot, manifest):
+    def run_manifest(_bot, manifest, rbe_session):
+      rbe_session.finish_active_lease({})
       ran.append(manifest)
       return True
 
@@ -1530,7 +1531,7 @@ class TestBotMain(TestBotBase):
         'task_id': '24',
     }
     self.assertEqual(self.root_dir, self.bot.base_dir)
-    bot_main._run_manifest(self.bot, manifest)
+    bot_main._run_manifest(self.bot, manifest, None)
 
   def test_run_manifest_with_auth_headers(self):
     self.make_bot(auth_headers_cb=lambda: ({'A': 'a'}, time.time() + 3600))
@@ -1582,7 +1583,7 @@ class TestBotMain(TestBotBase):
         'task_id': '24',
     }
     self.assertEqual(self.root_dir, self.bot.base_dir)
-    bot_main._run_manifest(self.bot, manifest)
+    bot_main._run_manifest(self.bot, manifest, None)
 
   def test_run_manifest_task_failure(self):
     self.mock(bot_main, '_post_error_task', self.print_err_and_fail)
@@ -1608,7 +1609,7 @@ class TestBotMain(TestBotBase):
         'io_timeout': 60,
         'task_id': '24',
     }
-    bot_main._run_manifest(self.bot, manifest)
+    bot_main._run_manifest(self.bot, manifest, None)
 
   def test_run_manifest_internal_failure(self):
     posted = []
@@ -1635,7 +1636,7 @@ class TestBotMain(TestBotBase):
         'io_timeout': 60,
         'task_id': '24',
     }
-    bot_main._run_manifest(self.bot, manifest)
+    bot_main._run_manifest(self.bot, manifest, None)
     expected = [(self.bot, 'Execution failed: internal error (1).', '24')]
     self.assertEqual(expected, posted)
 
@@ -1701,7 +1702,7 @@ class TestBotMain(TestBotBase):
         'io_timeout': None,
         'task_id': '24',
     }
-    bot_main._run_manifest(self.bot, manifest)
+    bot_main._run_manifest(self.bot, manifest, None)
     expected = [(self.bot, 'Internal exception occurred: Dang', '24')]
     self.assertEqual(expected, posted)
 

@@ -877,7 +877,7 @@ def _post_error_task(botobj, error, task_id):
   return botobj.remote.post_task_error(task_id, error)
 
 
-def _run_manifest(botobj, manifest):
+def _run_manifest(botobj, manifest, rbe_session):
   """Defers to task_runner.py.
 
   Return True if the task succeeded.
@@ -922,6 +922,7 @@ def _run_manifest(botobj, manifest):
   msg = None
   auth_params_dumper = None
   must_reboot_reason = None
+  rbe_session_state = None
   # Use 'w' instead of 'work' because path length is precious on Windows.
   work_dir = os.path.join(botobj.base_dir, 'w')
   try:
@@ -992,10 +993,19 @@ def _run_manifest(botobj, manifest):
         '--auth-params-file',
         auth_params_file,
     ]
+
+    # If running in RBE mode, need to propagate the session state to the task
+    # runner, it will use it to ping the RBE lease.
+    if rbe_session:
+      rbe_session_state = os.path.join(work_dir, 'rbe_session.json')
+      rbe_session.dump(rbe_session_state)
+      command.extend(['--rbe-session-state', rbe_session_state])
+
     # Flags for run_isolated.py are passed through by task_runner.py as-is
     # without interpretation.
     command.append('--')
     command.extend(_run_isolated_flags(botobj))
+
     _call_hook_safe(True, botobj, 'on_before_task', bot_file, command, env)
     logging.debug('Running command: %s', command)
 
@@ -1063,14 +1073,24 @@ def _run_manifest(botobj, manifest):
   finally:
     if auth_params_dumper:
       auth_params_dumper.stop()
+
+    # Load the up-to-date session state, it might have changed while the task
+    # runner was driving it.
+    if rbe_session:
+      if rbe_session_state:
+        rbe_session.restore(rbe_session_state)
+      rbe_session.finish_active_lease({})
+
     if internal_failure and not internal_error_reported:
       _post_error_task(botobj, msg, task_id)
+
     logging.info(
         'calling on_after_task: failure=%s, internal_failure=%s, '
         'task_dimensions=%s, task_result=%s', failure, internal_failure,
         task_dimensions, task_result)
     _call_hook_safe(True, botobj, 'on_after_task', failure, internal_failure,
                     task_dimensions, task_result)
+
     if fs.isdir(work_dir):
       try:
         file_path.rmtree(work_dir)
@@ -1080,6 +1100,7 @@ def _run_manifest(botobj, manifest):
         # Failure to delete could be due to a proc with open file handles. Just
         # reboot the machine in that case.
         must_reboot_reason = 'Failure to remove %s' % work_dir
+
     if must_reboot_reason:
       botobj.host_reboot(must_reboot_reason)
 
@@ -1607,10 +1628,7 @@ class _BotLoopState:
       self.cmd_terminate(param)
       self._rbe_session.finish_active_lease({})
     elif cmd == 'run':
-      # TODO(vadimsh): Propagate the rbe_session into the task runner process
-      # and keep pinging the lease there.
-      self.cmd_run(param)
-      self._rbe_session.finish_active_lease({})
+      self.cmd_run(param, self._rbe_session)
     else:
       raise ValueError('Unexpected claim outcome: %s' % cmd)
 
@@ -1650,7 +1668,7 @@ class _BotLoopState:
     elif cmd == 'terminate':
       self.cmd_terminate(param)
     elif cmd == 'run':
-      self.cmd_run(param)
+      self.cmd_run(param, None)
     elif cmd == 'update':
       self.cmd_update(param)
     elif cmd in ('host_reboot', 'restart'):
@@ -1687,10 +1705,10 @@ class _BotLoopState:
       pass
 
   @_trap_all_exceptions
-  def cmd_run(self, manifest):
+  def cmd_run(self, manifest, rbe_session):
     """Called when Swarming asks the bot to execute a task."""
     # Actually execute the task. This can block for many hours.
-    success = _run_manifest(self._bot, manifest)
+    success = _run_manifest(self._bot, manifest, rbe_session)
     self.on_task_completed(success)
 
   @_trap_all_exceptions
