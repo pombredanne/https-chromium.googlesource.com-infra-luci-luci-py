@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2259b695_6f16e0ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-24T14:34:13Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "daab4ed08d27d02b09b7df0d5191fb716b17d264",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6bb27bb_17b9f31d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-24T14:34:13Z",
+      "side": 1,
+      "message": "Since the bot isn\u0027t doing anything should and this is an expected error scenario, should the bot increase `self._consecutive_idle_cycles`?",
+      "range": {
+        "startLine": 1603,
+        "startChar": 3,
+        "endLine": 1603,
+        "endChar": 21
+      },
+      "revId": "daab4ed08d27d02b09b7df0d5191fb716b17d264",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92b31c1d_dc9e299c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_errors.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-24T14:34:13Z",
+      "side": 1,
+      "message": "Nit: Should this also be called `ClaimError` since there is also a `ClaimError` on the server side? \n\nI think a few subtle errors that could cause: \n1. Autoimporting the incorrect `ClaimError` without noticing it. \n2. They have subtly different meanings. This `ClaimError` is an unexpected failure vs the \"server\" `ClaimError` being expected. Maybe that would be confusing to someone who is reading the code for the first time. \n\nThe unfortunate part is that if we changed `ClaimError` to `UnexpectedClaimError` or `BotClaimError` or `ClaimRpcError` it would be inconsistent with the other error names.\n\nI\u0027m not 100% sure if either of those listed things are a real issue so it\u0027s probably fine to not action? Also I am unsure whether there should actually a precedent of everything in the swarming code base having a globally (across all modules) unique name is a sensible thing to have.",
+      "range": {
+        "startLine": 22,
+        "startChar": 6,
+        "endLine": 22,
+        "endChar": 16
+      },
+      "revId": "daab4ed08d27d02b09b7df0d5191fb716b17d264",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
