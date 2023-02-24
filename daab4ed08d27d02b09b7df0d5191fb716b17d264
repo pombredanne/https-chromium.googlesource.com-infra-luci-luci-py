@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2929614_3cfa59d9",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-24T23:36:19Z",
+      "side": 1,
+      "message": "I considered it, but decided against.\n\nImagine there\u0027s a pending queue with 100000 reservations, some of which has expired (i.e. will result in `skip` outcome when claimed).\n\nFrom user PoV the bots working on this queue should never ever appear as idle. How can they be idle if there\u0027s 100000 tasks to process?\n\nIncrementing self._consecutive_idle_cycles will result in signaling to Swarming that the bot is idle. I think it will be more confusing than helpful. The bot should appear as idle if there are no pending tasks to process at all.\n\nAlso, this edge condition should happen relatively rarely, so it doesn\u0027t really matter.",
+      "parentUuid": "b6bb27bb_17b9f31d",
+      "range": {
+        "startLine": 1603,
+        "startChar": 3,
+        "endLine": 1603,
+        "endChar": 21
+      },
+      "revId": "daab4ed08d27d02b09b7df0d5191fb716b17d264",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92b31c1d_dc9e299c",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-02-24T14:34:13Z",
       "side": 1,
       "message": "Nit: Should this also be called `ClaimError` since there is also a `ClaimError` on the server side? \n\nI think a few subtle errors that could cause: \n1. Autoimporting the incorrect `ClaimError` without noticing it. \n2. They have subtly different meanings. This `ClaimError` is an unexpected failure vs the \"server\" `ClaimError` being expected. Maybe that would be confusing to someone who is reading the code for the first time. \n\nThe unfortunate part is that if we changed `ClaimError` to `UnexpectedClaimError` or `BotClaimError` or `ClaimRpcError` it would be inconsistent with the other error names.\n\nI\u0027m not 100% sure if either of those listed things are a real issue so it\u0027s probably fine to not action? Also I am unsure whether there should actually a precedent of everything in the swarming code base having a globally (across all modules) unique name is a sensible thing to have.",
+      "range": {
+        "startLine": 22,
+        "startChar": 6,
+        "endLine": 22,
+        "endChar": 16
+      },
+      "revId": "daab4ed08d27d02b09b7df0d5191fb716b17d264",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2888a879_d5f90adc",
+        "filename": "appengine/swarming/swarming_bot/bot_code/remote_client_errors.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-24T23:36:19Z",
+      "side": 1,
+      "message": "There are like 15 classes called \"Error\" in the codebase already. I think we don\u0027t try to use globally unique names. In fact, per the google python style guide, one should always prefer `import module; module.Class` over `from module import Class; Class` to avoid confusion related to generic names.",
+      "parentUuid": "92b31c1d_dc9e299c",
       "range": {
         "startLine": 22,
         "startChar": 6,
