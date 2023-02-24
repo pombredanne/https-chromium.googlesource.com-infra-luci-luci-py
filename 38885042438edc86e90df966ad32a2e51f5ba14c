@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82cd95e8_488bfe99",
+        "filename": "appengine/components/components/endpoints_flask/__init__.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1530767
+      },
+      "writtenOn": "2023-02-24T18:10:11Z",
+      "side": 1,
+      "message": "curious what is the difference for with/without \".\".",
+      "revId": "38885042438edc86e90df966ad32a2e51f5ba14c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
