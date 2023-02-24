@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b07e8476_627b94ca",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-24T15:20:01Z",
+      "side": 1,
+      "message": "This doc comment may be an unnecessary exposition for this function but could be better suited in the `swarming.proto` api documentation. I\u0027m considering moving it and just referencing it there. Thoughts?",
+      "range": {
+        "startLine": 301,
+        "startChar": 4,
+        "endLine": 301,
+        "endChar": 76
+      },
+      "revId": "038ae4447c17e521ccdcff865eef19d4b61c787a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
