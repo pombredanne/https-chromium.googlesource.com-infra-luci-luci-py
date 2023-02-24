@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7bdcdf2_03219c0c",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-02-24T17:21:47Z",
+      "side": 1,
+      "message": "I\u0027m guessing the mistake was using the `BlobProperty` type to store the task output rather than a `utf-8` encoded string ?",
+      "range": {
+        "startLine": 341,
+        "startChar": 4,
+        "endLine": 341,
+        "endChar": 47
+      },
+      "revId": "0964a6a1218d52dd9109c8e5ea14ff862e99bd6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
