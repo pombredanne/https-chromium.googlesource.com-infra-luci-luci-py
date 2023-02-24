@@ -22,6 +22,30 @@
       },
       "revId": "0964a6a1218d52dd9109c8e5ea14ff862e99bd6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46d5e5a5_829bbcfe",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-24T22:47:11Z",
+      "side": 1,
+      "message": "This is a complicated question, I don\u0027t know the answer. It depends on how Swarming bot collects output from the task process (it can open the stdout pipe in text mode or in binary mode). If it collects outputs as binary, then it should be propagated through all guts as bytes, and show up in pRPC output as `bytes` protobuf field as well, not `string`.\n\nIf it collects it as text, it should guarantee it is valid utf-8. Trying to store arbitrary bytes in string-valued fields will result in lots of pain.\n\nThis requires more digging into what outputs are stored now and how. I\u0027m not 100% convinced using `string` protobuf field is correct.",
+      "parentUuid": "d7bdcdf2_03219c0c",
+      "range": {
+        "startLine": 341,
+        "startChar": 4,
+        "endLine": 341,
+        "endChar": 47
+      },
+      "revId": "0964a6a1218d52dd9109c8e5ea14ff862e99bd6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
