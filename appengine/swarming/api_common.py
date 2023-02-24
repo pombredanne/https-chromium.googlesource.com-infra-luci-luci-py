@@ -321,3 +321,23 @@ def cancel_task(task_id, kill_running):
                                        CANCEL).get_result()
   return task_scheduler.cancel_task(request_obj, result_key, kill_running
                                     or False, None)
+
+
+def get_output(task_id, offset, length):
+  """Returns the output of the task corresponding to a task ID.
+
+  Arguments:
+    task_id: output of task_id to return.
+    offset: byte offset to start fetching.
+    length: number of bytes from offset to fetch.
+
+  Returns:
+    tuple(output, state): output is a utf-8 character stream of task output.
+      state is the current TaskState of the task.
+  """
+  _, result = get_request_and_result(task_id, VIEW, True)
+  output = result.get_output(offset or 0, length)
+  if output:
+    # That was an error, don't do that in pRPC:
+    output = output.decode('utf-8', 'replace')
+  return output, result.state
