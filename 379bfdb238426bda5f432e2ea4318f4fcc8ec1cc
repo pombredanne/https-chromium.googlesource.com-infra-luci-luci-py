@@ -125,6 +125,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a7058045_c5039595",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-02-24T02:55:05Z",
+      "side": 1,
+      "message": "We chatted before in our 1-1 Chat (https://chat.google.com/dm/zi3e6gAAAAE/bn7BW0z7GEA). It will return HTTP 400 error for the compressed data (if the decompressed data is larger than 32MB).If it\u0027s not auto-decompress by GAE, it might be some issues in the App framework lib.  \n\nBut I really hate wasting more time to dig into these rusted Python2 code. Adding a \u0027application/json-zlib\u0027 should already be a good solution.",
+      "parentUuid": "9e4c6b2a_5faa7c07",
+      "revId": "379bfdb238426bda5f432e2ea4318f4fcc8ec1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "971a33aa_52fff240",
         "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
         "patchSetId": 4
@@ -136,6 +154,30 @@
       "writtenOn": "2023-02-20T17:21:03Z",
       "side": 1,
       "message": "I\u0027m fairly certain the json.loads here is not correct: PROTOCOL.decode_message is already doing this: https://github.com/google/protorpc/blob/master/protorpc/protojson.py#L187",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 25
+      },
+      "revId": "379bfdb238426bda5f432e2ea4318f4fcc8ec1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bad9c540_51eb8697",
+        "filename": "appengine/components/components/endpoints_webapp2/adapter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-02-24T02:55:05Z",
+      "side": 1,
+      "message": "right, no need `json.loads`.  I added because my unit tests threw some errors. But it turned out my tests were wrong as they were mistakenly JSON encoded twice.",
+      "parentUuid": "971a33aa_52fff240",
       "range": {
         "startLine": 60,
         "startChar": 15,
