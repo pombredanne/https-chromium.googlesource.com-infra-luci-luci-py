@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea8a0725_ef0a2e48",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-25T02:02:52Z",
+      "side": 1,
+      "message": "this seems excessively frequent to me, but I was told the RBE bot sends pings every 10s (at least initially) and the heartbeat timeout on the backend side is 30s :-/",
+      "range": {
+        "startLine": 641,
+        "startChar": 46,
+        "endLine": 641,
+        "endChar": 72
+      },
+      "revId": "5fa6f471d29a136551a22ea3458a92209f178cf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
