@@ -116,7 +116,7 @@ def run_command(server_url, work_dir, task_details, headers_cb):
                                             work_dir)
   remote.bot_id = task_details.bot_id
   with luci_context.stage(local_auth=None) as ctx_file:
-    return task_runner.run_command(remote, task_details, work_dir, 3600.,
+    return task_runner.run_command(remote, None, task_details, work_dir, 3600.,
                                    time.time(), ['--min-free-space', '1'] +
                                    DISABLE_CIPD_FOR_TESTS, '/path/to/file',
                                    ctx_file)
@@ -131,7 +131,7 @@ def load_and_run(server_url, work_dir, manifest, auth_params_file):
   task_runner.load_and_run(in_file, server_url, server_url, 3600., time.time(),
                            out_file,
                            ['--min-free-space', '1'] + DISABLE_CIPD_FOR_TESTS,
-                           None, auth_params_file)
+                           None, auth_params_file, None)
   with open(out_file, 'rb') as f:
     return json.load(f)
 
@@ -809,7 +809,7 @@ class TestTaskRunner(TestTaskRunnerBase):
 
     def _load_and_run(manifest, swarming_server, default_swarming_server,
                       cost_usd_hour, start, json_file, run_isolated_flags,
-                      bot_file, auth_params_file):
+                      bot_file, auth_params_file, rbe_session_state):
       self.assertEqual('foo', manifest)
       self.assertEqual(self.server.url, swarming_server)
       self.assertEqual(self.server.url, default_swarming_server)
@@ -819,6 +819,7 @@ class TestTaskRunner(TestTaskRunnerBase):
       self.assertEqual(['--min-free-space', '1'], run_isolated_flags)
       self.assertEqual('/path/to/bot-file', bot_file)
       self.assertEqual('/path/to/auth-params-file', auth_params_file)
+      self.assertEqual('/path/to/rbe/session', rbe_session_state)
 
     self.mock(task_runner, 'load_and_run', _load_and_run)
     cmd = [
@@ -838,6 +839,8 @@ class TestTaskRunner(TestTaskRunnerBase):
         '/path/to/bot-file',
         '--auth-params-file',
         '/path/to/auth-params-file',
+        '--rbe-session-state',
+        '/path/to/rbe/session',
         '--',
         '--min-free-space',
         '1',
@@ -1377,8 +1380,8 @@ class TaskRunnerNoServer(auto_stub.TestCase):
   def test_load_and_run_isolated(self):
     self.mock(bot_auth, 'AuthSystem', FakeAuthSystem)
 
-    def _run_command(remote, task_details, work_dir, cost_usd_hour, start,
-                     run_isolated_flags, bot_file, ctx_file):
+    def _run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
+                     start, run_isolated_flags, bot_file, ctx_file):
       self.assertTrue(remote.uses_auth) # mainly to avoid unused arg warning
       self.assertTrue(isinstance(task_details, task_runner.TaskDetails))
       # Necessary for OSX.
@@ -1437,9 +1440,8 @@ class TaskRunnerNoServer(auto_stub.TestCase):
     }
     realm_ctx = {'name': 'test:realm'}
 
-    def _run_command(
-        remote, task_details, work_dir,
-        cost_usd_hour, start, run_isolated_flags, bot_file, ctx_file):
+    def _run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
+                     start, run_isolated_flags, bot_file, ctx_file):
       self.assertTrue(remote.uses_auth) # mainly to avoid "unused arg" warning
       self.assertTrue(isinstance(task_details, task_runner.TaskDetails))
       # Necessary for OSX.
