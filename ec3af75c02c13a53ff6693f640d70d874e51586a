@@ -16,6 +16,23 @@
       "message": "Addressed the feedback and also tested in Dev. PTAL, again, thanks.",
       "revId": "ec3af75c02c13a53ff6693f640d70d874e51586a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "459ec750_7d0a5e67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-02-25T00:23:37Z",
+      "side": 1,
+      "message": "friendly ping",
+      "revId": "ec3af75c02c13a53ff6693f640d70d874e51586a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
