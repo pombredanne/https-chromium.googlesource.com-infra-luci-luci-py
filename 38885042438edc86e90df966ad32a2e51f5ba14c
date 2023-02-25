@@ -16,6 +16,24 @@
       "message": "curious what is the difference for with/without \".\".",
       "revId": "38885042438edc86e90df966ad32a2e51f5ba14c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43c3f0bf_65fc7fbd",
+        "filename": "appengine/components/components/endpoints_flask/__init__.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2023-02-25T02:21:07Z",
+      "side": 1,
+      "message": "`.` is a \"relative import,\" meaning relative to the directory this file is in. Without `.` means \"absolute import,\" meaning relative to the directories in sys.path. Python 3 enforces that you must specify `.` for relative imports, while Python 2 doesn\u0027t.",
+      "parentUuid": "82cd95e8_488bfe99",
+      "revId": "38885042438edc86e90df966ad32a2e51f5ba14c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
