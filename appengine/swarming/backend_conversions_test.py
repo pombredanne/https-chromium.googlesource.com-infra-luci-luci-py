@@ -66,27 +66,27 @@ class TestBackendConversions(test_case.TestCase):
         backend_config=struct_pb2.Struct(
             fields={
                 'wait_for_capacity':
-                    struct_pb2.Value(bool_value=True),
+                struct_pb2.Value(bool_value=True),
                 'priority':
-                    struct_pb2.Value(number_value=5),
+                struct_pb2.Value(number_value=5),
                 'bot_ping_tolerance':
-                    struct_pb2.Value(number_value=70),
+                struct_pb2.Value(number_value=70),
                 'service_account':
-                    struct_pb2.Value(string_value='who@serviceaccount.com'),
+                struct_pb2.Value(string_value='who@serviceaccount.com'),
                 'parent_run_id':
-                    struct_pb2.Value(string_value=parent_task_id),
+                struct_pb2.Value(string_value=parent_task_id),
                 'agent_binary_cipd_filename':
-                    struct_pb2.Value(string_value='agent'),
+                struct_pb2.Value(string_value='agent'),
                 'agent_binary_cipd_pkg':
-                    struct_pb2.Value(string_value='agent/package/${platform}'),
+                struct_pb2.Value(string_value='agent/package/${platform}'),
                 'agent_binary_cipd_vers':
-                    struct_pb2.Value(string_value='latest'),
+                struct_pb2.Value(string_value='latest'),
             }),
         grace_period=duration_pb2.Duration(seconds=grace_secs),
         execution_timeout=duration_pb2.Duration(seconds=exec_secs),
         start_deadline=timestamp_pb2.Timestamp(seconds=start_deadline_secs),
         dimensions=[req_dim_prpc('required-1', 'req-1')],
-        backend_token='token-token-token',
+        register_backend_task_token='token-token-token',
         buildbucket_host='cow-buildbucket.appspot.com',
     )
 
