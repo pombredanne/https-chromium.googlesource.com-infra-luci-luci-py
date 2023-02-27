@@ -16,7 +16,6 @@ from server import task_request
 from server import task_pack
 from server import task_result
 
-
 def _get_or_raise(key):
   """Checks if ndb entity exists for key exists or else throws
   handlers_exceptions.NotFoundException.
@@ -321,3 +320,35 @@ def cancel_task(task_id, kill_running):
                                        CANCEL).get_result()
   return task_scheduler.cancel_task(request_obj, result_key, kill_running
                                     or False, None)
+
+# Maximum content fetched at once, mostly for compatibility with previous
+# behavior. pRPC implementation should limit to a multiple of CHUNK_SIZE
+# (one or two?) for efficiency.
+RECOMMENDED_OUTPUT_LENGTH = 16 * 1000 * 1024
+
+
+def get_output(task_id, offset, length):
+  """Returns the output of the task corresponding to a task ID.
+
+  Arguments:
+    task_id: output of task_id to return.
+    offset: byte offset to start fetching.
+    length: number of bytes from offset to fetch.
+
+  Returns:
+    tuple(output, state): output is a utf-8 character stream of task output.
+      state is the current TaskState of the task.
+  """
+  _, result = get_request_and_result(task_id, VIEW, True)
+  output = result.get_output(offset or 0, length or RECOMMENDED_OUTPUT_LENGTH)
+  if output:
+    # The datastore entity (TaskOutputChunk) stores output as a string blob.
+    # In python2 `str` objects are basically c-strings with no character
+    # encoding required. However, protorpc `StringField` requires that
+    # a string must be either:
+    # 1. encoded in 7bit ascii
+    # 2. have the unicode type
+    # Since the output of tasks is allowed to be utf-8 encoded strings, we must
+    # decode the string to utf-8 to be a valid StringField.
+    output = output.decode('utf-8', 'replace')
+  return output, result.state
