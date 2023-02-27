@@ -41,7 +41,7 @@ def compute_task_request(run_task_req):
 
   build_token = task_request.BuildToken(
       build_id=run_task_req.build_id,
-      token=run_task_req.backend_token,
+      token=run_task_req.register_backend_task_token,
       buildbucket_host=run_task_req.buildbucket_host)
 
   # NOTE: secret_bytes cannot be passed via `-secret_bytes` in `command`
