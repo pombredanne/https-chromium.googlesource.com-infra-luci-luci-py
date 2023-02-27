@@ -2829,7 +2829,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
     # Very unusual, the TaskRequest disappeared:
     run_result.request_key.delete()
-
     self.assertEqual(([], 1), task_scheduler.cron_handle_bot_died())
 
   def test_bot_poll_http_500_but_bot_reapears_after_BOT_PING_TOLERANCE(self):
