@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1df66ae2_540a5b8a",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2008,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-28T05:21:40Z",
+      "side": 1,
+      "message": "nit: please remove the outer try:except check while at it, it is just clutter. There are million of other places that will break if datastore indexes are not ready yet.",
+      "range": {
+        "startLine": 2008,
+        "startChar": 2,
+        "endLine": 2008,
+        "endChar": 6
+      },
+      "revId": "149131b7f98d14afee84c440660fdf7e0ba77d1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b898fbde_51ee58a6",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2020,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-28T05:21:40Z",
+      "side": 1,
+      "message": "nit: del, it is ok (even better) to log after every page now. A page can be less than 500. All this logging will stop after such incomplete page (since it will \"unsynchronize\" with \"% 500\" check).",
+      "range": {
+        "startLine": 2020,
+        "startChar": 8,
+        "endLine": 2020,
+        "endChar": 37
+      },
+      "revId": "149131b7f98d14afee84c440660fdf7e0ba77d1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "395c6e27_b8c5d997",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2039,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-28T05:21:40Z",
+      "side": 1,
+      "message": "nit: \u0027 for consistency",
+      "range": {
+        "startLine": 2039,
+        "startChar": 24,
+        "endLine": 2039,
+        "endChar": 25
+      },
+      "revId": "149131b7f98d14afee84c440660fdf7e0ba77d1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
