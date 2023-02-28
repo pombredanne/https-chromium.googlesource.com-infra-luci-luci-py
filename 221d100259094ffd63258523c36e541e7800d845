@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d3df9e7_4684c233",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-28T19:51:42Z",
+      "side": 0,
+      "message": "bring it back 😞",
+      "revId": "221d100259094ffd63258523c36e541e7800d845",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "301b5d4b_c0c42b19",
+        "filename": "appengine/swarming/handlers_endpoints.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-28T19:51:42Z",
+      "side": 0,
+      "message": "I wonder who wrote that. Maybe we should break compatibility and switch to `bytes` after all? It appears the original author wanted to do that. What are we afraid of exactly?",
+      "range": {
+        "startLine": 311,
+        "startChar": 6,
+        "endLine": 311,
+        "endChar": 49
+      },
+      "revId": "221d100259094ffd63258523c36e541e7800d845",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

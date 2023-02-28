@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4207df21_bd9d8186",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-28T19:51:42Z",
+      "side": 1,
+      "message": "\"ID of a task to return output of\"?",
+      "range": {
+        "startLine": 334,
+        "startChar": 13,
+        "endLine": 334,
+        "endChar": 40
+      },
+      "revId": "3ecbdbc170ab5d6c4cb25b2da36e2e9ac3ec54f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4939686_69b538a5",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-28T19:51:42Z",
+      "side": 1,
+      "message": "this is already not utf-8 safe 😞\n\nfetching an utf-8 buffer from a byte index can result in broken utf-8",
+      "range": {
+        "startLine": 335,
+        "startChar": 4,
+        "endLine": 335,
+        "endChar": 42
+      },
+      "revId": "3ecbdbc170ab5d6c4cb25b2da36e2e9ac3ec54f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87a4005b_a95468f9",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-02-28T19:51:42Z",
+      "side": 1,
+      "message": "this is an ugly hack to workaround API design mistakes :-/",
+      "range": {
+        "startLine": 353,
+        "startChar": 4,
+        "endLine": 353,
+        "endChar": 46
+      },
+      "revId": "3ecbdbc170ab5d6c4cb25b2da36e2e9ac3ec54f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
