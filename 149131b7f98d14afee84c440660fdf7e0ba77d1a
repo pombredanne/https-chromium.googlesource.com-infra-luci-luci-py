@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9e48377_80a0e3d0",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2008,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-02-28T06:25:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1df66ae2_540a5b8a",
+      "range": {
+        "startLine": 2008,
+        "startChar": 2,
+        "endLine": 2008,
+        "endChar": 6
+      },
+      "revId": "149131b7f98d14afee84c440660fdf7e0ba77d1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b898fbde_51ee58a6",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f987ae82_d96dc270",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2020,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-02-28T06:25:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b898fbde_51ee58a6",
+      "range": {
+        "startLine": 2020,
+        "startChar": 8,
+        "endLine": 2020,
+        "endChar": 37
+      },
+      "revId": "149131b7f98d14afee84c440660fdf7e0ba77d1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "395c6e27_b8c5d997",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-02-28T05:21:40Z",
       "side": 1,
       "message": "nit: \u0027 for consistency",
+      "range": {
+        "startLine": 2039,
+        "startChar": 24,
+        "endLine": 2039,
+        "endChar": 25
+      },
+      "revId": "149131b7f98d14afee84c440660fdf7e0ba77d1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95879ae6_92acbc09",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2039,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-02-28T06:25:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "395c6e27_b8c5d997",
       "range": {
         "startLine": 2039,
         "startChar": 24,
