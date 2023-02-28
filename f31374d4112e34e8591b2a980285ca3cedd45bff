@@ -16,6 +16,24 @@
       "message": "Can you log total time spent processing and if terminated early?",
       "revId": "f31374d4112e34e8591b2a980285ca3cedd45bff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33668ba3_07945684",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2036,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-02-28T02:02:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c5477f8_e6a84330",
+      "revId": "f31374d4112e34e8591b2a980285ca3cedd45bff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
