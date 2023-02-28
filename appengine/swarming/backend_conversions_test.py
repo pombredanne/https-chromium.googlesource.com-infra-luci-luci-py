@@ -3,6 +3,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+from cmath import exp
 import datetime
 import unittest
 import sys
@@ -106,7 +107,8 @@ class TestBackendConversions(test_case.TestCase):
                     path='.',
                     package_name=u'agent/package/${platform}',
                     version=u'latest')
-            ])))
+            ]),
+            containment=task_request.Containment(containment_type=0)))
     expected_tr = task_request.TaskRequest(
         created_ts=utils.utcnow(),
         task_slices=[expected_slice],
@@ -182,14 +184,12 @@ class TestBackendConversions(test_case.TestCase):
             ],
             has_secret_bytes=True,
             caches=[
-                task_request.CacheEntry(
-                    path=posixpath.join(backend_conversions._CACHE_DIR,
-                                        'path_1'),
-                    name='name_1'),
-                task_request.CacheEntry(
-                    path=posixpath.join(backend_conversions._CACHE_DIR,
-                                        'path_2'),
-                    name='name_2'),
+                task_request.CacheEntry(path=posixpath.join(
+                    backend_conversions._CACHE_DIR, 'path_1'),
+                                        name='name_1'),
+                task_request.CacheEntry(path=posixpath.join(
+                    backend_conversions._CACHE_DIR, 'path_2'),
+                                        name='name_2'),
             ],
             execution_timeout_secs=exec_secs,
             grace_period_secs=grace_secs,
@@ -198,7 +198,8 @@ class TestBackendConversions(test_case.TestCase):
                     path='.',
                     package_name=u'agent/package/${platform}',
                     version=u'latest')
-            ])))
+            ]),
+            containment=task_request.Containment(containment_type=0)))
 
     slice_1 = task_request.TaskSlice(
         expiration_secs=60, properties=copy.deepcopy(base_slice.properties))
@@ -280,7 +281,8 @@ class TestBackendConversions(test_case.TestCase):
                     path='.',
                     package_name=u'agent/package/${platform}',
                     version=u'latest')
-            ])),
+            ]),
+            containment=task_request.Containment(containment_type=0)),
     )
 
     self.assertEqual([base_slice],
