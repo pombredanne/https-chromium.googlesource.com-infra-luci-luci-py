@@ -33,6 +33,24 @@
       "message": "Any idea why appengine/swarming/ui2/package-lock.json has changed? It shouldn\u0027t be changing in a CL like that...",
       "revId": "322766df8f6ee5a01a055baefff5d84e613acff9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e63466d_cdfdefc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001921
+      },
+      "writtenOn": "2023-03-01T19:02:29Z",
+      "side": 1,
+      "message": "Apparently from this:\n```\n\u003e gclient sync\n\u003e make install_deps\nnpm install\nnpm WARN old lockfile \nnpm WARN old lockfile The package-lock.json file was created with an old version of npm,\nnpm WARN old lockfile so supplemental metadata must be fetched from the registry.\nnpm WARN old lockfile \nnpm WARN old lockfile This is a one-time fix-up, please be patient...\nnpm WARN old lockfile \n```",
+      "parentUuid": "3113889a_134f0100",
+      "revId": "322766df8f6ee5a01a055baefff5d84e613acff9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
