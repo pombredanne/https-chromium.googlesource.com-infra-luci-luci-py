@@ -717,7 +717,7 @@ message TasksCancelResponse {
 
 // A task's output as a string.
 message TaskOutputResponse {
-  string output = 1;
+  bytes output = 1;
   // Current state of the task (e.g. PENDING, RUNNING, COMPLETED, EXPIRED, etc).
   TaskState state = 2;
 }
