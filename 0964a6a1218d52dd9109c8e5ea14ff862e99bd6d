@@ -94,6 +94,30 @@
       },
       "revId": "0964a6a1218d52dd9109c8e5ea14ff862e99bd6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "617bfbab_6b74a4aa",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-01T20:54:38Z",
+      "side": 1,
+      "message": "Makes sense - changed to protos!",
+      "parentUuid": "94c8d433_525c2275",
+      "range": {
+        "startLine": 341,
+        "startChar": 4,
+        "endLine": 341,
+        "endChar": 47
+      },
+      "revId": "0964a6a1218d52dd9109c8e5ea14ff862e99bd6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33101748_23f3a6c4",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-01T20:54:38Z",
+      "side": 1,
+      "message": "The comment here seems to refer to a redesigned api where instead of giving a `byte` length you provide an integer number of chunks to return. \n\nIIUC the issue here is that non-integer multiples of chunk size for length means that some chunks will be fetched more than once across multiple requests. Each time we construct the output we must `get` a `TaskOutput` from datastore.  \n\nFor example:\n```\nxxxx yyyy zzzz\n\nIf chunk size \u003d 4 and length \u003d 5 then in order to fetch all the data we will have the following returned:\n\nxxxxy (we must get two chunks to construct)\nyyyyz (we must get again, two chunks)\nzzz (we get one chunk)\n\nSo in total we actually had to load 5 chunks to get all our data. \n\nWe would only need to load 3 chunks if length \u003d chunk_size\n```",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 325,
+        "endChar": 73
+      },
+      "revId": "8727576d3588622ef9e575259083b630bca6dfb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
