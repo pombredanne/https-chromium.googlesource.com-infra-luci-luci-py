@@ -72,6 +72,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "11bb8b8c_4295464c",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-02T16:55:55Z",
+      "side": 0,
+      "message": "Just making sure I understand what\u0027s happening here - the race condition is fixed by using `task_to_run.task_to_run_key_slice_index` instead of `result_summary.current_task_slice` to create the `slice_index`\n\nBefore the `result_summary.current_task_slice` may not have been up to date with the `to_run_key` - IE the actual `TaskToRunShardXXX` we are expiring.",
+      "parentUuid": "e83eda3a_b521bdc6",
+      "range": {
+        "startLine": 111,
+        "startChar": 2,
+        "endLine": 113,
+        "endChar": 27
+      },
+      "revId": "d5da1b4f0b60e1eea227849b808bb00398162003",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c0102b80_1cf005f9",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 2

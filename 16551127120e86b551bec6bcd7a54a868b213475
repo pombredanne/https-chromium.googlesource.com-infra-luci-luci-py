@@ -16,6 +16,29 @@
       "message": "PTAL",
       "revId": "16551127120e86b551bec6bcd7a54a868b213475",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a66b786e_07024633",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-02T16:55:55Z",
+      "side": 1,
+      "message": "If the `task_to_run` is already claimed why would we want to proceed? \n\nI am guessing that to get to this state, something strange must have happened - IE there was an attempt to expire the `task_to_run` which previously failed or somehow it was `claimed` but not assigned to a `bot`",
+      "range": {
+        "startLine": 195,
+        "startChar": 5,
+        "endLine": 195,
+        "endChar": 56
+      },
+      "revId": "16551127120e86b551bec6bcd7a54a868b213475",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
