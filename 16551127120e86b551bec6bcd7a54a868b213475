@@ -39,6 +39,30 @@
       },
       "revId": "16551127120e86b551bec6bcd7a54a868b213475",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89090f23_062d5447",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-02T18:14:49Z",
+      "side": 1,
+      "message": "This is a different kind of Claim :-/ This is memcache-based best effort lock to reduce datastore contention around TaskToRun entity. One reason it is \"best effort\" is because it isn\u0027t released if the process crashes. It just expires after 15s. In this code path we just grab it, if possible, to signal to concurrent bot_reap_task that they should not attempt to process this TaskToRun because we are about to expire it. Correctness is ensures by the datastore transaction.",
+      "parentUuid": "a66b786e_07024633",
+      "range": {
+        "startLine": 195,
+        "startChar": 5,
+        "endLine": 195,
+        "endChar": 56
+      },
+      "revId": "16551127120e86b551bec6bcd7a54a868b213475",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

@@ -96,6 +96,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d1c18d83_2429d4fc",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-02T18:14:49Z",
+      "side": 0,
+      "message": "Yes.\n\nAlso I strongly suspect `current_task_slice` is often wrong on chromeos-swarming when using external scheduler, since `_ensure_active_slice` called there doesn\u0027t update `current_task_slice` for some reason (not sure if intentional or a bug).\n\nI also realized `_expire_task_tx` was doing something extremely weird in this case. It was picking the next slice based on (potentially wrong) `result_summary.current_task_slice`, totally ignoring `task_to_run.task_to_run_key_slice_index`. It means it could have been reenqueuing the exact same slice it just expired. I just hope it is not something chromeos-swarming actually accidentally relies on.\n\nI also don\u0027t understand why this function consults `capacity` at all when using External Scheduler. `capacity` is populated based on Swarming native scheduler state.\n\nThis is all full of bugs 😭 I\u0027ll deploy this and hope it doesn\u0027t blow up.",
+      "parentUuid": "11bb8b8c_4295464c",
+      "range": {
+        "startLine": 111,
+        "startChar": 2,
+        "endLine": 113,
+        "endChar": 27
+      },
+      "revId": "d5da1b4f0b60e1eea227849b808bb00398162003",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c0102b80_1cf005f9",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 2
