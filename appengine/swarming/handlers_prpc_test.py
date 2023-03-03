@@ -1302,6 +1302,27 @@ class TaskServicePrpcTest(PrpcTest):
     # but, not accessible to the task with no realm.
     assertTaskIsNotAccessible(task_id_without_realm)
 
+  def _new_task_request(self):
+    return swarming_pb2.NewTaskRequest(expiration_secs=24 * 60 * 60,
+                                       name='job1',
+                                       priority=20,
+                                       tags=[u'a:tag'],
+                                       user='joe@localhost',
+                                       bot_ping_tolerance_secs=600)
+
+  def test_new_ok(self):
+    self.mock(random, 'getrandbits', lambda _: 0x88)
+    self.set_as_privileged_user()
+    ntr = self._new_task_request()
+    ntr.properties.command.extend([u'echo', u'hi'])
+    ntr.properties.dimensions.extend(
+        [swarming_pb2.StringPair(key=u'pool', value=u'default')])
+    ntr.properties.execution_timeout_secs = 30
+    response = self.post_prpc('NewTask', ntr)
+    actual = swarming_pb2.TaskRequestMetadataResponse()
+    _decode(response.body, actual)
+    self.assertEqual(u'5cee488008810', actual.task_id)
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:
