@@ -903,7 +903,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                     mock.Mock(side_effect=self.nop_async)) as mock_call:
       to_run_key = task_to_run.request_to_task_to_run_key(request, 0)
       self.mock_now(self.now, 60)
-      task_scheduler._expire_slice(request, to_run_key, False, 1, True)
+      task_scheduler._expire_slice(request, to_run_key, State.EXPIRED, False, 1,
+                                   True)
       mock_call.assert_called_once_with('1d69b9f088008911',
                                         u'resultdb-update-token')
 
@@ -2517,6 +2518,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertItemsEqual([res.task_id for res in results],
                           [res.task_id for res in pending_results])
     self.execute_tasks()
+
+  def test_expire_slice(self):
+    pass
+
+  def test_expire_slice_terminal(self):
+    pass
 
   def test_cron_abort_expired_task_to_run(self):
 
