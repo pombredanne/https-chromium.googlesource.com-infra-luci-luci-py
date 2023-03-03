@@ -124,3 +124,5 @@ To generate the HTML docs, run
     make docs
 
 which will open docs/index.html after build.
+
+[testing that gwsq picks this up]
