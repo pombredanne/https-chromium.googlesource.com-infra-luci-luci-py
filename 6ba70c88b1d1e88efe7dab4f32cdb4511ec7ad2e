@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "885eae9b_810ec6b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-06T21:24:19Z",
+      "side": 1,
+      "message": "Have you looked when get_cpu_type_with_wmi doesn\u0027t work? I\u0027d prefer if it was fixed instead if possible.",
+      "revId": "6ba70c88b1d1e88efe7dab4f32cdb4511ec7ad2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
