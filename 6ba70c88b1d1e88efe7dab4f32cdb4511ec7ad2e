@@ -16,6 +16,24 @@
       "message": "Have you looked when get_cpu_type_with_wmi doesn\u0027t work? I\u0027d prefer if it was fixed instead if possible.",
       "revId": "6ba70c88b1d1e88efe7dab4f32cdb4511ec7ad2e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e41fe731_2c24239e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115868
+      },
+      "writtenOn": "2023-03-06T22:16:20Z",
+      "side": 1,
+      "message": "That seems to only be called if platform.machine() is None? https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/swarming_bot/api/os_utilities.py\n\nBut here, platform.machine() is \"ARM64\".\n\n(I\u0027m not actually sure in what situation it returns None)",
+      "parentUuid": "885eae9b_810ec6b7",
+      "revId": "6ba70c88b1d1e88efe7dab4f32cdb4511ec7ad2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
