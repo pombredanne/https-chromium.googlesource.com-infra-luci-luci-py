@@ -5,9 +5,10 @@
 """
 
 from collections import defaultdict
-from datetime import datetime
 import json
 import logging
+import json
+from datetime import datetime
 
 from google.protobuf.timestamp_pb2 import Timestamp
 
