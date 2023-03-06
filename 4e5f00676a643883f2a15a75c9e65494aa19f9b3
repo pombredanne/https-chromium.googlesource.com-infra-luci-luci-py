@@ -16,6 +16,52 @@
       "message": "I have not created tests specifically for this module. It is covered fairly heavily in the next CL in the chain. \n\nThis is separate to make review easier.",
       "revId": "4e5f00676a643883f2a15a75c9e65494aa19f9b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be665c9f_3352f8ec",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-06T22:45:35Z",
+      "side": 1,
+      "message": "why not just `from proto.api_v2 import swarming_pb2`?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "4e5f00676a643883f2a15a75c9e65494aa19f9b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f45772e_544d1215",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-06T22:45:35Z",
+      "side": 1,
+      "message": "nit: dict(dims)\n\nif some later call tries to lookup a missing key, it should get KeyError, not an empty list",
+      "range": {
+        "startLine": 431,
+        "startChar": 22,
+        "endLine": 431,
+        "endChar": 26
+      },
+      "revId": "4e5f00676a643883f2a15a75c9e65494aa19f9b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

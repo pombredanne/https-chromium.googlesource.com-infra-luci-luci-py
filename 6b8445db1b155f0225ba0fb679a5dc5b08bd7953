@@ -22,6 +22,30 @@
       },
       "revId": "6b8445db1b155f0225ba0fb679a5dc5b08bd7953",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c968c9e_0bcfed10",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-06T22:45:35Z",
+      "side": 1,
+      "message": "Yes, it should not be used. It was used before task_slices where introduced and this is backward compatibility hacks. Protobuf API should only expose task_slices, since it doesn\u0027t need to be backward compatible with anything yet.",
+      "parentUuid": "973e64a3_0455c490",
+      "range": {
+        "startLine": 452,
+        "startChar": 4,
+        "endLine": 452,
+        "endChar": 44
+      },
+      "revId": "6b8445db1b155f0225ba0fb679a5dc5b08bd7953",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
