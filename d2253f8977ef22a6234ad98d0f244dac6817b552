@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fb4bbe3_9c23a8cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-06T23:14:40Z",
+      "side": 1,
+      "message": "I may abandon this `CL` and start again since I have messed something up with the `git` history. Somehow added a bunch of files I did not work on.",
+      "revId": "d2253f8977ef22a6234ad98d0f244dac6817b552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
