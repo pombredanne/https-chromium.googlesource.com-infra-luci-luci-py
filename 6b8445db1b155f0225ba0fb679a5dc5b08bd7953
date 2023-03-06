@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "973e64a3_0455c490",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-06T22:18:20Z",
+      "side": 1,
+      "message": "This may not be required. I have checked logs and this log line never appears in `chromium-swarming`. I\u0027m considering creating a bug to remove this from both `protorpc` and `pRPC`.",
+      "range": {
+        "startLine": 452,
+        "startChar": 4,
+        "endLine": 452,
+        "endChar": 44
+      },
+      "revId": "6b8445db1b155f0225ba0fb679a5dc5b08bd7953",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
