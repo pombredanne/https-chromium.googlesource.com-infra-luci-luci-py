@@ -6,6 +6,7 @@
 
 import datetime
 
+from google.appengine.api import datastore_errors
 from google.protobuf import empty_pb2
 
 from components import auth
@@ -134,6 +135,25 @@ class TasksService(object):
     output, state = api_common.get_output(request.task_id, request.offset,
                                           request.length)
     return swarming_pb2.TaskOutputResponse(output=output, state=state)
+
+  @prpc_helpers.method
+  @auth.require(acl.can_access, log_identity=True)
+  def NewTask(self, request, _context):
+    try:
+      request_obj, secret_bytes, template_apply = (
+          message_conversion_prpc.new_task_request_from_rpc(request))
+    except (datastore_errors.BadValueError, ValueError) as e:
+      raise handlers_exceptions.BadRequestException(str(e))
+
+    ntr = api_common.new_task(request_obj, secret_bytes, template_apply,
+                              request.evaluate_only, request.request_uuid)
+
+    return swarming_pb2.TaskRequestMetadataResponse(
+        request=message_conversion_prpc.task_request_response(ntr.request),
+        task_id=ntr.task_id,
+        task_result=message_conversion_prpc.task_result_response(
+            ntr.task_result, False) if ntr.task_result else None,
+    )
 
 
 class InternalsService(object):
