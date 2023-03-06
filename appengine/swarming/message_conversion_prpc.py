@@ -1,15 +1,20 @@
 # Copyright 2022 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
-"""Converts database entities to and from swarming api prpc objects to ndb
-database objects.
+"""Converts between ndb database entities and pRPC swarming api objects.
 """
 
-import json
+from collections import defaultdict
 from datetime import datetime
-from google.protobuf.timestamp_pb2 import Timestamp
-import proto.api_v2.swarming_pb2 as swarming_pb2
+import json
+import logging
 
+from google.protobuf.timestamp_pb2 import Timestamp
+
+import api_common
+from components import utils
+from proto.api_v2 import swarming_pb2
+from server import task_request
 from server import task_result
 from server import task_pack
 
@@ -306,6 +311,12 @@ def _task_slice(task_slice):
   )
 
 
+def _resultdb_cfg(resultdb_cfg):
+  if resultdb_cfg is None:
+    return None
+  return swarming_pb2.ResultDBCfg(enable=resultdb_cfg.enable)
+
+
 def task_request_response(request):
   """Converts a TaskRequest ndb entity into a TaskRequestResponse.
   """
@@ -315,7 +326,7 @@ def task_request_response(request):
   return swarming_pb2.TaskRequestResponse(
       created_ts=date(request.created_ts),
       properties=slices[0].properties if slices else None,
-      resultdb=_resultdb_info(request.resultdb),
+      resultdb=_resultdb_cfg(request.resultdb),
       tags=request.tags,
       user=request.user,
       authenticated=request.authenticated.to_bytes(),
@@ -331,3 +342,175 @@ def task_request_response(request):
       bot_ping_tolerance_secs=request.bot_ping_tolerance_secs,
       task_slices=slices,
   )
+
+
+def _resultdb_from_rpc(request):
+  return task_request.ResultDBCfg(enable=request.resultdb.enable)
+
+
+def _cipd_package_from_rpc(package):
+  return task_request.CipdPackage(
+      # For an ndb.Model, setting a kwarg value to None is the same as leaving
+      # it unset. Prefer that behaviour than setting the default empty value.
+      # The idea here is to mimic the protorpc implementation which will
+      # avoid setting a value if a given attribute is Falsy.
+      package_name=package.package_name or None,
+      version=package.version or None,
+      path=package.path or None,
+  )
+
+
+def _digest_from_rpc(digest):
+  return task_request.Digest(
+      hash=digest.hash or None,
+      size_bytes=digest.size_bytes or None,
+  )
+
+
+def _cache_entry_from_rpc(cache_entry):
+  return task_request.CacheEntry(
+      name=cache_entry.name or None,
+      path=cache_entry.path or None,
+  )
+
+
+def _task_properties_from_rpc(props):
+  cipd_input = None
+  if props.HasField('cipd_input'):
+    client_package = None
+    if props.cipd_input.HasField('client_package'):
+      client_package = _cipd_package_from_rpc(props.cipd_input.client_package)
+    cipd_input = task_request.CipdInput(
+        client_package=client_package,
+        packages=[
+            _cipd_package_from_rpc(pack)
+            for pack in (props.cipd_input.packages or [])
+        ])
+
+  # Default value for swarming_pb2.ContainmentType is NOT_SPECIFIED which is 0.
+  containment = task_request.Containment(
+      containment_type=int(props.containment.containment_type))
+
+  cas_input_root = None
+  if props.HasField('cas_input_root'):
+    if (props.cas_input_root.HasField('digest')
+        and props.cas_input_root.HasField('cas_instance')):
+      digest = _digest_from_rpc(props.cas_input_root.digest)
+      cas_input_root = task_request.CASReference(
+          cas_instance=props.cas_input_root.cas_instance,
+          digest=digest,
+      )
+
+  secret_bytes = None
+  # if unset, this will be empty str
+  if props.secret_bytes:
+    secret_bytes = task_request.SecretBytes(secret_bytes=props.secret_bytes)
+
+  if len(set(i.key for i in props.env)) != len(props.env):
+    raise ValueError('same environment variable key cannot be specified twice')
+  if len(set(i.key for i in props.env_prefixes)) != len(props.env_prefixes):
+    raise ValueError('same environment prefix key cannot be specified twice')
+
+  dims = defaultdict(lambda: [])
+  for i in props.dimensions:
+    dims[i.key].append(i.value)
+
+  caches = [_cache_entry_from_rpc(c) for c in props.caches]
+  env = {i.key: i.value for i in props.env}
+  env_prefixes = {i.key: i.value for i in props.env_prefixes}
+
+  out = task_request.TaskProperties(
+      caches=caches,
+      # TaskProperties ndb entity expects a list so we must convert the proto3
+      # collection to a list.
+      command=list(props.command) or [],
+      relative_cwd=props.relative_cwd,
+      inputs_ref=None,
+      cas_input_root=cas_input_root,
+      cipd_input=cipd_input,
+      dimensions_data=dict(dims),
+      env=env,
+      env_prefixes=env_prefixes,
+      execution_timeout_secs=props.execution_timeout_secs,
+      grace_period_secs=props.grace_period_secs,
+      io_timeout_secs=props.io_timeout_secs,
+      idempotent=props.idempotent,
+      outputs=list(props.outputs),
+      has_secret_bytes=secret_bytes is not None,
+      containment=containment,
+  )
+  return out, secret_bytes
+
+
+def _task_slice_from_rpc(task_slice):
+  """Converts a swarming_pb2.TaskSlice to a task_request.TaskSlice."""
+  props, secret_bytes = _task_properties_from_rpc(task_slice.properties)
+  out = task_request.TaskSlice(
+      expiration_secs=task_slice.expiration_secs,
+      wait_for_capacity=task_slice.wait_for_capacity,
+      properties=props,
+  )
+  return out, secret_bytes
+
+
+def new_task_request_from_rpc(request):
+  """Converts swarming_pb2.NewTaskRequest object to the ndb entity,
+  task_request.TaskRequest required to schedule a new task."""
+  if request.task_slices and request.HasField('properties'):
+    raise ValueError('Specify one of properties or task_slices, not both')
+
+  # TODO(https://crbug.com/1422082) This code path will likely never occur.
+  if request.HasField('properties'):
+    logging.info('Properties is still used')
+    if not request.expiration_secs:
+      raise ValueError('missing expiration_secs')
+    props, secret_bytes = _task_properties_from_rpc(request.properties)
+    slices = [
+        task_request.TaskSlice(properties=props,
+                               expiration_secs=request.expiration_secs),
+    ]
+  elif request.task_slices:
+    if request.expiration_secs:
+      raise ValueError(
+          'When using task_slices, do not specify a global expiration_secs')
+    secret_bytes = None
+    slices = []
+    for t in (request.task_slices or []):
+      sl, se = _task_slice_from_rpc(t)
+      slices.append(sl)
+      if se:
+        if secret_bytes and se != secret_bytes:
+          raise ValueError(
+              'When using secret_bytes multiple times, all values must match')
+        secret_bytes = se
+  else:
+    raise ValueError('Specify one of properties or task_slices')
+
+  pttf = swarming_pb2.NewTaskRequest.PoolTaskTemplateField
+  template_apply = {
+      pttf.AUTO: task_request.TEMPLATE_AUTO,
+      pttf.CANARY_PREFER: task_request.TEMPLATE_CANARY_PREFER,
+      pttf.CANARY_NEVER: task_request.TEMPLATE_CANARY_NEVER,
+      pttf.SKIP: task_request.TEMPLATE_SKIP,
+  }[request.pool_task_template]
+
+  out = task_request.TaskRequest(
+      name=request.name,
+      created_ts=utils.utcnow(),
+      task_slices=slices,
+      # 'tags' is now generated from manual_tags plus automatic tags.
+      manual_tags=list(request.tags),
+      user=request.user,
+      priority=request.priority,
+      realm=request.realm,
+      service_account=request.service_account,
+      # prefer to unset this if protobuf default value is used.
+      # ndb has its own default of 1200.
+      bot_ping_tolerance_secs=request.bot_ping_tolerance_secs or None,
+      resultdb=_resultdb_from_rpc(request),
+      has_build_token=False,
+      scheduling_algorithm=None,
+      rbe_instance=None,
+      txn_uuid=None)
+
+  return out, secret_bytes, template_apply
