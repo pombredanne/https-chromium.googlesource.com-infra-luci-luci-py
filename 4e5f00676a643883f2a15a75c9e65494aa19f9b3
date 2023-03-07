@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4416b4a8_99929caa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-03-07T15:31:20Z",
+      "side": 1,
+      "message": "I think adding tests for at least `new_task_request_from_rpc` would be ideal. I see in the next CL that this file doesn\u0027t get tests added and `new_task_request_from_rpc` gets tested via testing NewTask, but it would be better in the long run to add tests to this so that future developers don\u0027t break this.",
+      "parentUuid": "5a501820_5c6c07fd",
+      "revId": "4e5f00676a643883f2a15a75c9e65494aa19f9b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be665c9f_3352f8ec",
         "filename": "appengine/swarming/message_conversion_prpc.py",
         "patchSetId": 5
