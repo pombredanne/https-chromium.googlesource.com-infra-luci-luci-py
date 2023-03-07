@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a17c765d_9029846b",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-03-07T15:35:59Z",
+      "side": 1,
+      "message": "nit: can you add a comment on what the in/out types are of all these helper functions? i.e. something like https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/backend_conversions.py;l\u003d193\n\nIt would be super helpful for readability.",
+      "range": {
+        "startLine": 370,
+        "startChar": 0,
+        "endLine": 375,
+        "endChar": 0
+      },
+      "revId": "5f340075e1c8796c8573e2c06f357b7e7c4e859e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
