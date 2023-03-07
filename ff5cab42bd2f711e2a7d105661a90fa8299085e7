@@ -16,6 +16,29 @@
       "message": "PTAL",
       "revId": "ff5cab42bd2f711e2a7d105661a90fa8299085e7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89bcfc6f_dd39decc",
+        "filename": "appengine/swarming/server/rbe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-03-07T15:21:11Z",
+      "side": 1,
+      "message": "nit: interesting formatting?",
+      "range": {
+        "startLine": 350,
+        "startChar": 2,
+        "endLine": 364,
+        "endChar": 3
+      },
+      "revId": "ff5cab42bd2f711e2a7d105661a90fa8299085e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
