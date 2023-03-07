@@ -33,6 +33,24 @@
       "message": "Yes, this looks wrong, it reverts my latest CL.",
       "revId": "d2253f8977ef22a6234ad98d0f244dac6817b552",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "646c9f5d_c3391be3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-07T01:24:32Z",
+      "side": 1,
+      "message": "I\u0027m not sure what happened 😞 But I applied `git rebase` and now it seems fine",
+      "parentUuid": "8d7fb1f9_5a1eff66",
+      "revId": "d2253f8977ef22a6234ad98d0f244dac6817b552",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
