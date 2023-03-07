@@ -227,9 +227,16 @@ def get_os_name():
 @tools.cached
 def get_cpu_type():
   """Returns the type of processor: armv6l, armv7l, arm64 or x86."""
-  machine = platform.machine().lower()
-  if sys.platform == 'win32' and not machine:
+  # On Windows, prefer to use WMI as it will give the correct architecture even
+  # when running under emulation.
+  machine = None
+  if sys.platform == 'win32':
     machine = platforms.win.get_cpu_type_with_wmi()
+    if machine:
+      # Propagate this value to the CIPD client.
+      os.setenv('CIPD_ARCHITECTURE', machine)
+  if not machine:
+    machine = platform.machine().lower()
   if machine in ('amd64', 'x86_64', 'i386', 'i686'):
     return 'x86'
   if machine == 'aarch64':
