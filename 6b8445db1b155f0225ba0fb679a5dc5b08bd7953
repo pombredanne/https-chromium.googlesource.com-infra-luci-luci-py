@@ -46,6 +46,30 @@
       },
       "revId": "6b8445db1b155f0225ba0fb679a5dc5b08bd7953",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0358fff8_aee0c532",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-07T14:34:11Z",
+      "side": 1,
+      "message": "Sounds good, will create a bug to track this. Prefer to handle separately since it also requires changing `handlers_endpoints_test.py`.",
+      "parentUuid": "4c968c9e_0bcfed10",
+      "range": {
+        "startLine": 452,
+        "startChar": 4,
+        "endLine": 452,
+        "endChar": 44
+      },
+      "revId": "6b8445db1b155f0225ba0fb679a5dc5b08bd7953",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

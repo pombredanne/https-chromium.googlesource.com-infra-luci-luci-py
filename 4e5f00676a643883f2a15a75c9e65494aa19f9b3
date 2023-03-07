@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4646c1f3_159ee144",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-07T14:34:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be665c9f_3352f8ec",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "4e5f00676a643883f2a15a75c9e65494aa19f9b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f45772e_544d1215",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-03-06T22:45:35Z",
       "side": 1,
       "message": "nit: dict(dims)\n\nif some later call tries to lookup a missing key, it should get KeyError, not an empty list",
+      "range": {
+        "startLine": 431,
+        "startChar": 22,
+        "endLine": 431,
+        "endChar": 26
+      },
+      "revId": "4e5f00676a643883f2a15a75c9e65494aa19f9b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e48f025_e8c06635",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-07T14:34:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f45772e_544d1215",
       "range": {
         "startLine": 431,
         "startChar": 22,
