@@ -60,7 +60,9 @@ class TestOsUtilities(auto_stub.TestCase):
   )
   def test_get_cpu_type(self, machine, expected):
     self.mock(platform, 'machine', lambda: machine)
-    self.assertEqual(os_utilities.get_cpu_type(), expected)
+    with mock.patch('platforms.win.get_cpu_type_with_wmi',
+                    return_value=machine):
+      self.assertEqual(os_utilities.get_cpu_type(), expected)
 
   @unittest.skipUnless(sys.platform == 'linux', 'this is only for linux')
   def test_get_os_values_linux(self):
