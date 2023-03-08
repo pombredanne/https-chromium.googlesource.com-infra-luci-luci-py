@@ -285,6 +285,11 @@ def get_platform():
   if not os_name:
     raise Error('Unknown OS: %s' % sys.platform)
 
+  # Use a specific architecture it told to. Happen on Swarming bots.
+  arch_override = os.getenv('CIPD_ARCHITECTURE')
+  if arch_override:
+    return '%s-%s' % (os_name, arch_override)
+
   # Normalize machine architecture. Some architectures are identical or
   # compatible with others. We collapse them into one.
   arch = platform.machine().lower()
