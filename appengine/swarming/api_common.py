@@ -13,6 +13,7 @@ import api_helpers
 import handlers_exceptions
 from components import auth
 from components import datastore_utils
+from components import utils
 from server import task_queues
 from server import bot_management
 from server import realms
@@ -427,3 +428,31 @@ def new_task(request, secret_bytes, template_apply, evaluate_only,
                  new_task_result.request.task_id, request_uuid)
 
   return new_task_result
+
+
+TasksCancelResult = namedtuple('TasksCancelResponse',
+                               ['cursor', 'matched', 'now'])
+
+
+def cancel_tasks(tags, start, end, limit, cursor, kill_running):
+  if not tags:
+    # Prevent accidental cancellation of everything.
+    raise handlers_exceptions.BadRequestException(
+        'You must specify tags when cancelling multiple tasks.')
+
+  # Check permission.
+  # If the caller has global permission, it can access all tasks.
+  # Otherwise, it requires a pool tag to check ACL.
+  pools = bot_management.get_pools_from_dimensions_flat(tags)
+  realms.check_tasks_cancel_acl(pools)
+
+  now = utils.utcnow()
+
+  query = task_result.get_result_summaries_query(
+      start, end, 'created_ts',
+      'pending_running' if kill_running else 'pending', tags)
+  cursor, results = task_scheduler.cancel_tasks(limit,
+                                                query=query,
+                                                cursor=cursor)
+
+  return TasksCancelResult(cursor=cursor, matched=len(results), now=now)
