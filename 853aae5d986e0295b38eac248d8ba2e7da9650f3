@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c66d246a_cb202b43",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-08T01:26:45Z",
+      "side": 1,
+      "message": "Once this is deployed we would be able either to spot check it looks fine on different categories of Windows bots, or write a script that checks all bots.",
+      "revId": "853aae5d986e0295b38eac248d8ba2e7da9650f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
