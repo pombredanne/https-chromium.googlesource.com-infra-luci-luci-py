@@ -237,6 +237,144 @@ class TestGetDimensions(unittest.TestCase):
         }, android.get_dimensions([self.get_mock_galaxyS6()]))
 
 
+@unittest.skipUnless(sys.platform == 'linux', 'Android tests run only on linux')
+class TestGetState(unittest.TestCase):
+  def empty_object(self):
+    return lambda: None
+
+  def mock_android_device(self, serial, build_props, mock_props, mock_methods):
+    base = self.empty_object()
+    setattr(base, 'serial', serial)
+    cache = self.empty_object()
+    setattr(cache, 'build_props', build_props)
+    setattr(base, 'cache', cache)
+    for key, value in mock_props.items():
+      setattr(base, key, value)
+    for key, value in mock_methods.items():
+      setattr(base, key, lambda v=value: v)
+
+    return base
+
+  def test_invalid_device(self):
+    device = self.mock_android_device(
+        serial='device_serial',
+        build_props={},
+        mock_props={
+            'is_valid': False,
+            'failure': None,
+        },
+        mock_methods={},
+    )
+    expected_state = {
+        'devices': [{
+            'serial': 'device_serial',
+            'state': 'unavailable',
+        }],
+    }
+    self.assertEqual(expected_state, android.get_state([device]))
+
+  def test_failed_device(self):
+    device = self.mock_android_device(
+        serial='device_serial',
+        build_props={},
+        mock_props={
+            'is_valid': True,
+            'failure': 'I am failed',
+        },
+        mock_methods={},
+    )
+    expected_state = {
+        'devices': [{
+            'serial': 'device_serial',
+            'state': 'I am failed',
+        }],
+    }
+    self.assertEqual(expected_state, android.get_state([device]))
+
+  def test_no_prop_device(self):
+    device = self.mock_android_device(
+        serial='device_serial',
+        build_props={},
+        mock_props={
+            'is_valid': True,
+            'failure': None,
+        },
+        mock_methods={},
+    )
+    expected_state = {
+        'devices': [{
+            'serial': 'device_serial',
+            'state': 'unavailable',
+        }],
+    }
+    self.assertEqual(expected_state, android.get_state([device]))
+
+  def test_available_device(self):
+    device = self.mock_android_device(
+        serial='device_serial',
+        build_props={
+            "ro.board.platform": "platform",
+            "ro.build.fingerprint": "fingerprint",
+            "ro.build.id": "PQ3A.190801.002",
+            "ro.build.product": "sailfish",
+            "ro.build.type": "userdebug",
+            "ro.build.version.sdk": "28",
+            "ro.product.board": "board",
+            "ro.product.cpu.abi": "arm64-v8a",
+            "ro.product.device": "sailfish",
+        },
+        mock_props={
+            'is_valid': True,
+            'failure': None,
+            'port_path': '1/89',
+        },
+        mock_methods = {
+            'GetPackages': ['com.chromium.abc'],
+            'GetBattery': {'level': 90},
+            'GetCPUScale': {'governor': 'powersave'},
+            'GetDisk': {'data': {'free_mb': 1024}},
+            'GetIMEI': "12345",
+            'GetIPs': ['0.0.0.5'],
+            'GetLastUID': 19999,
+            'GetMemInfo': {'avail': 1024},
+            'GetProcessCount': 2,
+            'IsFullyBooted': [True, None],
+            'GetTemperatures': {'battery': 22.7},
+            'GetUptime': 1000.1,
+        },
+    )
+    expected_state = {
+        'devices': [{
+            'serial': 'device_serial',
+            'battery': {'level': 90},
+            'build': {
+                "board.platform": "platform",
+                "build.fingerprint": "fingerprint",
+                "build.id": "PQ3A.190801.002",
+                "build.product": "sailfish",
+                "build.type": "userdebug",
+                "build.version.sdk": "28",
+                "product.board": "board",
+                "product.cpu.abi": "arm64-v8a",
+                "product.device": "sailfish",
+            },
+            'cpu': {'governor': 'powersave'},
+            'disk': {'data': {'free_mb': 1024}},
+            'imei': "12345",
+            'ip': ['0.0.0.5'],
+            'max_uid': 19999,
+            'mem': {'avail': 1024},
+            'other_packages': ['com.chromium.abc'],
+            'port_path': '1/89',
+            'processes': 2,
+            'state': 'available',
+            'temp': {'battery': 22.7},
+            'uptime': 1000.1,
+        }],
+    }
+    self.assertEqual(expected_state, android.get_state([device]))
+
+
 if __name__ == '__main__':
   if '-v' in sys.argv:
     unittest.TestCase.maxDiff = None
