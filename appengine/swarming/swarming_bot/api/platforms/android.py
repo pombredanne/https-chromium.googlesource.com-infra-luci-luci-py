@@ -252,13 +252,18 @@ def get_state(devices):
           'product.device')
 
   def fn(device):
+    device_state = {
+        'serial': device.serial,
+    }
     if not device.is_valid or device.failure:
-      return {'state': device.failure or 'unavailable'}
+      device_state['state'] = device.failure or 'unavailable'
+      return device_state
     properties = device.cache.build_props
     if not properties:
-      return {'state': 'unavailable'}
+      device_state['state'] = 'unavailable'
+      return device_state
     no_sd_card = properties.get('ro.product.model', '') in ['Chromecast']
-    return {
+    device_state.update({
         'battery':
         device.GetBattery(),
         'build':
@@ -288,14 +293,12 @@ def get_state(devices):
         device.GetTemperatures(),
         'uptime':
         device.GetUptime(),
-    }
+    })
+    return device_state
 
   start = time.time()
   state = {
-      'devices': {
-          device.serial: out
-          for device, out in zip(devices, parallel.pmap(fn, devices))
-      }
+      'devices': parallel.pmap(fn, devices)
   }
   logging.info(
       'get_state() (device part) took %gs' %
