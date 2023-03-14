@@ -107,6 +107,17 @@ class BotsService(object):
                                               cursor, limit)
     return message_conversion_prpc.bot_tasks_response(items, cursor)
 
+  @prpc_helpers.method
+  @auth.require(acl.can_access, log_identity=True)
+  def GetBotDimensions(self, request, _context):
+    dr = api_common.get_dimensions(request.pool)
+    ts = message_conversion_prpc.date(dr.ts)
+    bd = [
+        swarming_pb2.StringListPair(key=d.dimension, value=d.values)
+        for d in dr.bots_dimensions
+    ]
+    return swarming_pb2.BotsDimensions(bots_dimensions=bd, ts=ts)
+
 
 class TasksService(object):
   DESCRIPTION = swarming_prpc_pb2.TasksServiceDescription
