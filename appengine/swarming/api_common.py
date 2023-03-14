@@ -504,8 +504,7 @@ def get_dimensions(pool):
   """
   realms.check_bots_list_acl([pool] if pool else None)
 
-  # TODO(jwata): change 'current' to 'all' once the entity is ready.
-  agg = bot_management.get_aggregation_key(pool or 'current').get()
+  agg = bot_management.get_aggregation_key(pool or 'all').get()
   if not agg:
     raise handlers_exceptions.NotFoundException(
         'Dimension aggregation for pool %s does not exit' % pool)
