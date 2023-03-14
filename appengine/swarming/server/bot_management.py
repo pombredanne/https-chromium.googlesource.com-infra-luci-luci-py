@@ -426,8 +426,8 @@ class DimensionAggregation(ndb.Model):
 
   ts = ndb.DateTimeProperty()
 
-  # Key for all dimensions. the legacy key 'current' will be removed.
-  KEY = ndb.Key('DimensionAggregation', 'current')
+  # Key for all dimensions.
+  KEY = ndb.Key('DimensionAggregation', 'all')
 
 
 ### Public APIs.
@@ -1071,10 +1071,6 @@ def cron_aggregate_dimensions():
         for k, values in sorted(dims.items())
     ]
     logging.info('Saw dimensions %s in %s', dims_prop, group)
-    # TODO(jwata): remove the 'current' key after switching to the 'all' key.
-    if group == 'all':
-      DimensionAggregation(
-          key=DimensionAggregation.KEY, dimensions=dims_prop, ts=now).put()
     DimensionAggregation(
         key=get_aggregation_key(group), dimensions=dims_prop, ts=now).put()
 
