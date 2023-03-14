@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dcfa794_bd39ac53",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-14T18:23:17Z",
+      "side": 1,
+      "message": "This change is forward and backward compatible because in both old and new versions of this code `all` is always updated to be most recent.",
+      "range": {
+        "startLine": 507,
+        "startChar": 42,
+        "endLine": 507,
+        "endChar": 63
+      },
+      "revId": "361c69a121235c01cecf390a3c92410b15adbb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
