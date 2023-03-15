@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98e6532e_e5fefcff",
+        "filename": "appengine/swarming/ui2/modules/bot-page/bot-page-live.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-15T20:09:43Z",
+      "side": 1,
+      "message": "This is not a real secret - just a client_id. It was already checked in to code.",
+      "range": {
+        "startLine": 16,
+        "startChar": 21,
+        "endLine": 16,
+        "endChar": 92
+      },
+      "revId": "9117ca4a1a4dfc289abf645c967c05680cf784e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
