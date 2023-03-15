@@ -50,6 +50,7 @@ const {glob} = require('glob');
 const path = require('path');
 const fs = require('fs');
 const {basename, join, resolve} = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -70,7 +71,7 @@ const minifyOptions = {
   removeStyleLinkTypeAttributes: true,
 };
 
-function demoFinder(dir, webpack_config) {
+function demoFinder(dir, webpackConfig, demoType) {
   // Look at all sub-directories of dir and if a directory contains
   // both a -demo.html and -demo.js file then add the corresponding
   // entry points and Html plugins to the config.
@@ -81,19 +82,24 @@ function demoFinder(dir, webpack_config) {
   const dirs = fs.readdirSync(moduleDir)
       .map((name) => join(moduleDir, name)).filter(isDir);
 
+  if (demoType !== 'demo' && demoType !== 'live') {
+    throw 'Only \'demo\' and \'live\' are valid values for demo type';
+  }
+  const htmlSuffix = `-${demoType}.html`;
+  const jsSuffix = `-${demoType}.js`;
   dirs.forEach((d) => {
     // Look for both a *-demo.js and *-demo.html file in the directory.
     const files = fs.readdirSync(d);
     let demoHTML = '';
     let demoJS = '';
     files.forEach((file) => {
-      if (file.endsWith('-demo.html')) {
+      if (file.endsWith(htmlSuffix)) {
         if (!!demoHTML) {
           throw 'Only one -demo.html file is allowed per directory: ' + file;
         }
         demoHTML = file;
       }
-      if (file.endsWith('-demo.js')) {
+      if (file.endsWith(jsSuffix)) {
         if (demoJS != '') {
           throw 'Only one -demo.js file is allowed per directory: ' + file;
         }
@@ -102,8 +108,8 @@ function demoFinder(dir, webpack_config) {
     });
     if (!!demoJS && !!demoHTML) {
       const name = basename(d);
-      webpack_config.entry[name] = join(d, demoJS);
-      webpack_config.plugins.push(
+      webpackConfig.entry[name] = join(d, demoJS);
+      webpackConfig.plugins.push(
           new HtmlWebpackPlugin({
             filename: name + '.html',
             template: join(d, demoHTML),
@@ -116,7 +122,7 @@ function demoFinder(dir, webpack_config) {
     }
   });
 
-  return webpack_config;
+  return webpackConfig;
 }
 
 
@@ -145,7 +151,7 @@ function demoFinder(dir, webpack_config) {
  *      );
  *
  */
-function pageFinder(dir, webpack_config, minifyOutput) {
+function pageFinder(dir, webpackConfig, minifyOutput) {
   // Look at all sub-directories of dir and if a directory contains
   // both a -demo.html and -demo.js file then add the corresponding
   // entry points and Html plugins to the config.
@@ -168,7 +174,7 @@ function pageFinder(dir, webpack_config, minifyOutput) {
 
     const baseHTML = basename(pageHTML);
     const name = basename(pageJS, '.js');
-    webpack_config.entry[name] = pageJS;
+    webpackConfig.entry[name] = pageJS;
     const opts = {
       filename: baseHTML,
       template: pageHTML,
@@ -177,12 +183,12 @@ function pageFinder(dir, webpack_config, minifyOutput) {
     if (minifyOutput) {
       opts.minify = minifyOptions;
     }
-    webpack_config.plugins.push(
+    webpackConfig.plugins.push(
         new HtmlWebpackPlugin(opts),
     );
   });
 
-  return webpack_config;
+  return webpackConfig;
 }
 
 module.exports = (env, argv) => {
@@ -244,6 +250,9 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
+      new webpack.DefinePlugin({
+        USE_REAL_FETCH: JSON.stringify(env.use_real_fetch),
+      }),
       new MiniCssExtractPlugin({
         filename: '[name]-bundle.css',
       }),
@@ -259,7 +268,8 @@ module.exports = (env, argv) => {
   };
   common = pageFinder(dirname, common, argv.mode === 'production');
   if (argv.mode !== 'production') {
-    common = demoFinder(dirname, common);
+    const demoType = env.demo_type === 'live' ? 'live' : 'demo';
+    common = demoFinder(dirname, common, demoType);
     common.devtool = 'eval-source-map';
   }
 
