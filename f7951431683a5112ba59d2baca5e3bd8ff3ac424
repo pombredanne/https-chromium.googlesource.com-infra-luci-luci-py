@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "173ebe6a_3e70a275",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-15T20:07:36Z",
+      "side": 1,
+      "message": "This CL does not include docs and does not change entire ui2 code yet. Will create docs when more live_demo files are created. Static demos will still be maintained, as we need them for unit testing.",
+      "revId": "f7951431683a5112ba59d2baca5e3bd8ff3ac424",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
