@@ -172,6 +172,10 @@ _hooks_durations = ts_mon.CumulativeDistributionMetric(
     units=ts_mon.MetricsDataUnits.MILLISECONDS)
 
 
+def _should_enable_ts_monitoring(config):
+  return config.get('enable_ts_monitoring')
+
+
 def _pool_from_dimensions(dimensions):
   """Return a canonical string of flattened dimensions."""
   # Keep in sync with ../../ts_mon_metrics.py
@@ -204,9 +208,8 @@ def _monitor_call(func):
   return hook
 
 
-def _init_ts_mon():
-  """Initializes ts_mon."""
-  parser = argparse.ArgumentParser(description=sys.modules[__name__].__doc__)
+def _add_ts_mon_args(parser):
+  """Allow passing tsmon command line args, with reasonable defaults"""
   ts_mon.add_argparse_options(parser)
   parser.set_defaults(
       ts_mon_target_type='task',
@@ -215,7 +218,10 @@ def _init_ts_mon():
       ts_mon_flush='auto',
       ts_mon_ca_certs=tools.get_cacerts_bundle(),
   )
-  args = parser.parse_args([])
+
+
+def _init_ts_mon(args):
+  """Initializes ts_mon."""
   ts_mon.process_argparse_options(args)
 
 
@@ -1105,7 +1111,7 @@ def _run_manifest(botobj, manifest, rbe_session):
 ### Bot lifetime management
 
 
-def _run_bot(arg_error):
+def _run_bot(arg_error, args):
   """Runs _run_bot_inner() with a signal handler."""
   # The quit_bit is to signal that the bot process must shutdown. It is
   # different from a request to restart the bot process or reboot the host.
@@ -1118,10 +1124,10 @@ def _run_bot(arg_error):
   # TODO(maruel): Set quit_bit when stdin is closed on Windows.
 
   with subprocess42.set_signal_handler(subprocess42.STOP_SIGNALS, handler):
-    return _run_bot_inner(arg_error, quit_bit)
+    return _run_bot_inner(arg_error, quit_bit, args)
 
 
-def _run_bot_inner(arg_error, quit_bit):
+def _run_bot_inner(arg_error, quit_bit, args):
   """Runs the bot until an event occurs.
 
   One of the three following even can occur:
@@ -1136,8 +1142,9 @@ def _run_bot_inner(arg_error, quit_bit):
   _ORIGINAL_BOT_ID = os.environ.get('SWARMING_BOT_ID')
 
   config = get_config()
-  if config.get('enable_ts_monitoring'):
-    _init_ts_mon()
+  if _should_enable_ts_monitoring(config):
+    _init_ts_mon(args)
+
   try:
     # First thing is to get an arbitrary url. This also ensures the network is
     # up and running, which is necessary before trying to get the FQDN below.
@@ -1961,6 +1968,12 @@ def main(argv):
   parser = argparse.ArgumentParser(description=sys.modules[__name__].__doc__)
   parser.add_argument('unsupported', nargs='*', help=argparse.SUPPRESS)
   parser.add_argument('--test-mode', action='store_true')
+
+  # Parse ts_mon args if enabled by the server in config.json
+  config = get_config()
+  if _should_enable_ts_monitoring(config):
+    _add_ts_mon_args(parser)
+
   args = parser.parse_args(argv)
 
   global _IN_TEST_MODE
@@ -1999,7 +2012,7 @@ def main(argv):
   if len(args.unsupported) != 0:
     error = 'Unexpected arguments: %s' % args
   try:
-    return _run_bot(error)
+    return _run_bot(error, args)
   finally:
     _call_hook_safe(
         True, bot.Bot(None, None, None, None, base_dir, None),
