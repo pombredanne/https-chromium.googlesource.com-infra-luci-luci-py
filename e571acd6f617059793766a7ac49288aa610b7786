@@ -16,6 +16,24 @@
       "message": "Are you sure you are the only ones who consume this value? I have no idea. It might break someone.",
       "revId": "e571acd6f617059793766a7ac49288aa610b7786",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4aca0c8e_ade3e00a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2023-03-16T20:48:21Z",
+      "side": 1,
+      "message": "Thanks for the review. Actually there are quite a bit dependencies. See https://crrev.com/i/5587373. I will abandon the migration and use a different way to parse the state.",
+      "parentUuid": "f4ca3bdb_6495a672",
+      "revId": "e571acd6f617059793766a7ac49288aa610b7786",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
