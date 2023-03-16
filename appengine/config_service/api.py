@@ -49,6 +49,11 @@ class File(messages.Message):
   """Describes a file."""
   path = messages.StringField(1)
 
+# The GFE limit is 32 MiB. Give 2MiB of buffer in the get_config endpoint
+# response.
+_GET_CONFIG_RESPONSE_SIZE_LIMIT = 30 * 1024 * 1024
+
+
 class ConfigSet(messages.Message):
   """Describes a config set."""
 
@@ -307,6 +312,7 @@ class ConfigApi(remote.Service):
     # This field is only populated if the latest revision is requested.
     # TODO(jchinlee): populate in case of specific revision requested.
     url = messages.StringField(4)
+    is_zlib_compressed = messages.BooleanField(5)
 
   @auth.endpoints_method(
       endpoints.ResourceContainer(
@@ -354,7 +360,12 @@ class ConfigApi(remote.Service):
             'File: "%s:%s:%s". Hash: %s', request.config_set,
             request.revision, request.path, res.content_hash)
         raise_config_not_found()
-
+      if len(res.content) > _GET_CONFIG_RESPONSE_SIZE_LIMIT:
+        logging.info(
+            'Config content is too large (%d bytes), trying to compress it.',
+            len(res.content))
+        res.content = zlib.compress(res.content)
+        res.is_zlib_compressed = True
     return res
 
   ##############################################################################
