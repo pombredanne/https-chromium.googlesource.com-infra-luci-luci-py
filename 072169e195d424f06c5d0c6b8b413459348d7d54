@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "657a455f_a767c407",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-03-16T06:59:22Z",
+      "side": 1,
+      "message": "nit: A docstring? \nI know its pretty self-explanatory, but to be consistent.",
+      "revId": "072169e195d424f06c5d0c6b8b413459348d7d54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
