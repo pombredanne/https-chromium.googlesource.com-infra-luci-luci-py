@@ -3,6 +3,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+import argparse
 import copy
 import datetime
 import json
@@ -103,11 +104,18 @@ class TestBotBase(net_utils.TestCase):
     self.mock(os_utilities,
               'get_dimensions', lambda: self.attributes['dimensions'])
     self.mock(os_utilities, 'get_state', lambda *_: self.attributes['state'])
-    self.mock(bot_main, 'get_config', lambda: {
-        'server': self.url,
-        'server_version': 'version1',
-    })
+    self.mock(
+        bot_main,
+        'get_config',
+        lambda: {
+            'server': self.url,
+            'server_version': 'version1',
+            # We don't want to actually enable tsmon,
+            # we just want to enable its command line arg parsing.
+            'enable_ts_monitoring': True,
+        })
     self.mock(bot_main, '_TRAP_ALL_EXCEPTIONS', False)
+    self.mock(bot_main, '_init_ts_mon', lambda args: None)
     self.quit_bit = None  # see make_bot
     self.bot = None  # see make_bot
     self.clock = None  # see make_bot
@@ -797,7 +805,9 @@ class TestBotMain(TestBotBase):
         ),
     ])
 
-    bot_main._run_bot(None)
+    parser = argparse.ArgumentParser()
+    args = parser.parse_args([])
+    bot_main._run_bot(None, args)
 
     self.assertEqual(self.attributes['dimensions']['id'][0],
                      os.environ['SWARMING_BOT_ID'])
@@ -1784,8 +1794,9 @@ class TestBotMain(TestBotBase):
       self.assertEqual(logging.WARNING, x)
     self.mock(logging_utils, 'set_console_level', check)
 
-    def run_bot(error):
+    def run_bot(error, args):
       self.assertEqual(None, error)
+      self.assertEqual("bot-hostname-test", args.ts_mon_task_hostname)
       return 0
 
     self.mock(bot_main, '_run_bot', run_bot)
@@ -1798,7 +1809,8 @@ class TestBotMain(TestBotBase):
         self.fail()
     self.mock(bot_main, 'SINGLETON', Singleton())
 
-    self.assertEqual(0, bot_main.main([]))
+    self.assertEqual(
+        0, bot_main.main(["--ts-mon-task-hostname", "bot-hostname-test"]))
 
   def test_update_lkgbc(self):
     # Create LKGBC with a timestamp from 1h ago.
