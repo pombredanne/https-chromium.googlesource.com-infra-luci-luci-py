@@ -3,6 +3,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+import argparse
 import copy
 import datetime
 import json
@@ -797,7 +798,9 @@ class TestBotMain(TestBotBase):
         ),
     ])
 
-    bot_main._run_bot(None)
+    parser = argparse.ArgumentParser()
+    args = parser.parse_args([])
+    bot_main._run_bot(None, args)
 
     self.assertEqual(self.attributes['dimensions']['id'][0],
                      os.environ['SWARMING_BOT_ID'])
@@ -1784,7 +1787,7 @@ class TestBotMain(TestBotBase):
       self.assertEqual(logging.WARNING, x)
     self.mock(logging_utils, 'set_console_level', check)
 
-    def run_bot(error):
+    def run_bot(error, args):
       self.assertEqual(None, error)
       return 0
 
