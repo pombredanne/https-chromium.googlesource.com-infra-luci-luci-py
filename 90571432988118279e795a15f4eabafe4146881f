@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5f33c36_b4301119",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-03-16T23:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47c3dcf4_4f87eaa3",
+      "range": {
+        "startLine": 378,
+        "startChar": 39,
+        "endLine": 378,
+        "endChar": 46
+      },
+      "revId": "90571432988118279e795a15f4eabafe4146881f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "acfd5259_9238262a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-16T23:51:20Z",
       "side": 1,
       "message": "I think it\u0027s encoded as `true`, actually",
+      "range": {
+        "startLine": 379,
+        "startChar": 30,
+        "endLine": 379,
+        "endChar": 34
+      },
+      "revId": "90571432988118279e795a15f4eabafe4146881f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "689a1341_74db2852",
+        "filename": "appengine/config_service/api.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-03-16T23:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acfd5259_9238262a",
       "range": {
         "startLine": 379,
         "startChar": 30,
