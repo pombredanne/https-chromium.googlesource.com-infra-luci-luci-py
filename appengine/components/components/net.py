@@ -19,6 +19,9 @@ from components.auth import tokens
 
 EMAIL_SCOPE = 'https://www.googleapis.com/auth/userinfo.email'
 
+# A sentinel value for `params` argument in request(...). See its doc.
+PARAMS_IN_URL = object()
+
 
 class Error(Exception):
   """Raised on non-transient errors.
@@ -92,6 +95,7 @@ def request_async(
     deadline=None,
     max_attempts=None,
     response_headers=None,
+    expected_codes=None,
 ):
   """Sends a REST API request, returns raw unparsed response.
 
@@ -101,7 +105,8 @@ def request_async(
     url: url to send the request to.
     method: HTTP method to use, e.g. GET, POST, PUT.
     payload: raw data to put in the request body.
-    params: dict with query GET parameters (i.e. ?key=value&key=value).
+    params: dict with query GET parameters (i.e. ?key=value&key=value). If equal
+            to PARAMS_IN_URL constant, assume `url` already contains the params.
     headers: additional request headers.
     scopes: OAuth2 scopes for the access token (ok skip auth if None).
     service_account_key: auth.ServiceAccountKey with credentials.
@@ -114,6 +119,8 @@ def request_async(
     deadline: deadline for a single attempt (10 sec by default).
     max_attempts: how many times to retry on errors (4 times by default).
     response_headers: a dict to populate with the response headers.
+    expected_codes: a set of HTTP status codes to consider successful in
+                    addition to the default set.
 
   Returns:
     Buffer with raw response.
@@ -139,8 +146,10 @@ def request_async(
     protocols = ('http://', 'https://')
   else:
     protocols = ('https://',)
-  assert url.startswith(protocols) and '?' not in url, url
-  if params:
+  assert url.startswith(protocols), url
+  if params is not PARAMS_IN_URL:
+    assert '?' not in url, url
+  if params and params is not PARAMS_IN_URL:
     url += '?' + urllib.parse.urlencode(params)
 
   headers = (headers or {}).copy()
@@ -217,7 +226,8 @@ def request_async(
       continue
 
     # Non-transient error.
-    if 300 <= response.status_code < 500:
+    if (300 <= response.status_code < 500
+        and (expected_codes and response.status_code not in expected_codes)):
       logging.warning('%s %s failed with HTTP %d\nHeaders: %r\nBody: %r',
                       method, url, response.status_code, response.headers,
                       response.content)
