@@ -122,8 +122,12 @@ export function mockAuthdAppGETs(fetchMock, permissions) {
       requireLogin(permissions));
 }
 
-export function requireLogin(logged_in, delay=100) {
+export function requireLogin(logged_in, delay=100, protocolType='fetch') {
   const original_items = logged_in.items && logged_in.items.slice();
+  const stringify = JSON.stringify;
+  if (protocolType === 'prpc') {
+    const stringify = (data) => `)]}'${JSON.stringify(data)}`;
+  }
   return function(url, opts) {
     if (opts && opts.headers && opts.headers.authorization) {
       return new Promise((resolve) => {
@@ -146,19 +150,19 @@ export function requireLogin(logged_in, delay=100) {
           if (!val) {
             return {
               status: 404,
-              body: JSON.stringify({'error': {'message': 'bot not found.'}}),
+              body: stringify({'error': {'message': 'bot not found.'}}),
               headers: {'content-type': 'application/json'},
             };
           }
           return {
             status: 200,
-            body: JSON.stringify(val),
+            body: stringify(val),
             headers: {'content-type': 'application/json'},
           };
         }
         return {
           status: 200,
-          body: JSON.stringify(logged_in),
+          body: stringify(logged_in),
           headers: {'content-type': 'application/json'},
         };
       });

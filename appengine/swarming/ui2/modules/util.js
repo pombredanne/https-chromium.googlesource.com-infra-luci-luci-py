@@ -287,11 +287,14 @@ export function timeDiffExact(first, second) {
  * for logins.
  */
 export function pointFetchAtSwarmingDev() {
+  const DEV_HOST = 'chromium-swarm-dev.appspot.com';
+  window.DEV_HOST = DEV_HOST;
   const origFetch = window.fetch;
   const fetchAboslute = (url, ...params) => {
-    if (url.startsWith('/')) return origFetch('https://chromium-swarm-dev.appspot.com/' + url, ...params);
+    if (url.startsWith('/')) return origFetch(`https://${DEV_HOST}/${url}`, ...params);
     else return origFetch(url, ...params);
   };
   window.fetch = fetchAboslute;
   return;
 }
+
