@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "047b2f05_3583a484",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-03-20T21:33:04Z",
+      "side": 1,
+      "message": "lgtm with a comment",
+      "revId": "53a01068f20e8e83cea1d3cd05790c2ff64b064b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a86438c9_4eaedc02",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-03-20T21:33:04Z",
+      "side": 1,
+      "message": "Should we set streaming based on whether the size of data exceeds _GCS_CHUNK_SIZE or not?",
+      "range": {
+        "startLine": 128,
+        "startChar": 15,
+        "endLine": 128,
+        "endChar": 29
+      },
+      "revId": "53a01068f20e8e83cea1d3cd05790c2ff64b064b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
