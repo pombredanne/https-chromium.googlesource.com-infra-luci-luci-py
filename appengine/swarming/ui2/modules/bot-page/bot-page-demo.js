@@ -20,7 +20,7 @@ import fetchMock from 'fetch-mock';
   );
 
   fetchMock.get('glob:/_ah/api/swarming/v1/bot/*/get',
-      requireLogin(botData, 100));
+      requireLogin(botData, 100, 'prpc'));
 
   fetchMock.get('glob:/_ah/api/swarming/v1/bot/*/tasks?*',
       requireLogin({items: tasksMap['SkiaGPU']}, 100));
