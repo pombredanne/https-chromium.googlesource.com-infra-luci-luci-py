@@ -63,6 +63,30 @@
       },
       "revId": "53a01068f20e8e83cea1d3cd05790c2ff64b064b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "644bd124_43276c2e",
+        "filename": "appengine/auth_service/gcs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-20T21:46:06Z",
+      "side": 1,
+      "message": "Considered it. Decided against:\n1. I want to hit this code path in chrome-infra-auth-dev. It has smaller authdb size. By explicitly using streaming\u003dTrue, we still will go through the resumable uploads protocol (just with 2 requests instead of N).\n2. The only instance of chrome-infra-auth that really matters is the prod one, and it already has a larger authdb, so the code for uploading latest.db using multipart uploads will never be running for real, which will make it rot.",
+      "parentUuid": "a86438c9_4eaedc02",
+      "range": {
+        "startLine": 128,
+        "startChar": 15,
+        "endLine": 128,
+        "endChar": 29
+      },
+      "revId": "53a01068f20e8e83cea1d3cd05790c2ff64b064b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
