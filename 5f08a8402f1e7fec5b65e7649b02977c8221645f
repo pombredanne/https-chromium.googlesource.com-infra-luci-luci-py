@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "55be225a_107dac50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-21T19:03:19Z",
+      "side": 1,
+      "message": "Looks like early call to configure_as_primary somehow upset a delicate balance of PYTHON IMPORT BULLSHIT and unit tests now mysteriously fail with InvalidModuleError from GAE API testbed 😞",
+      "revId": "5f08a8402f1e7fec5b65e7649b02977c8221645f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "baab58d1_bdf86668",
         "filename": "appengine/auth_service/appengine_config.py",
         "patchSetId": 1
