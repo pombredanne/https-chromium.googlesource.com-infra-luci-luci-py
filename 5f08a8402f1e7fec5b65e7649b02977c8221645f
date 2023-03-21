@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "baab58d1_bdf86668",
+        "filename": "appengine/auth_service/appengine_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-03-21T05:24:17Z",
+      "side": 1,
+      "message": "I forgot about this magic file...",
+      "revId": "5f08a8402f1e7fec5b65e7649b02977c8221645f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
