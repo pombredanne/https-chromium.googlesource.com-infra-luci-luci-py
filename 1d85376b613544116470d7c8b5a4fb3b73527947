@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acf18a64_6f52600b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2023-03-21T21:21:17Z",
+      "side": 1,
+      "message": "Test failures look like incompatibilities between endpoints 1.0 and endpoints 4.8.0.",
+      "revId": "1d85376b613544116470d7c8b5a4fb3b73527947",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
