@@ -8,6 +8,7 @@ import {html, render} from 'lit-html';
 import {ifDefined} from 'lit-html/directives/if-defined';
 import {jsonOrThrow} from 'common-sk/modules/jsonOrThrow';
 import {stateReflector} from 'common-sk/modules/stateReflector';
+import {GrpcError, RpcCode} from '@chopsui/prpc-client';
 
 import 'elements-sk/checkbox-sk';
 import 'elements-sk/icon/add-circle-outline-icon-sk';
@@ -22,6 +23,7 @@ import {EVENTS_QUERY_PARAMS, mpLink, parseBotData, parseEvents,
 import {stateClass as taskClass} from '../task-page/task-page-helpers';
 import {timeDiffApprox, timeDiffExact, taskPageLink} from '../util';
 import SwarmingAppBoilerplate from '../SwarmingAppBoilerplate';
+import {BotsService} from '../services/bots.js';
 
 /**
  * @module swarming-ui/modules/bot-page
@@ -424,6 +426,7 @@ window.customElements.define('bot-page', class extends SwarmingAppBoilerplate {
           this.render();
         });
 
+    this._botService = new BotsService(this.auth_header);
     this._bot = {};
     this._notFound = false;
     this._tasks = [];
@@ -497,16 +500,17 @@ window.customElements.define('bot-page', class extends SwarmingAppBoilerplate {
     // re-fetch permissions with the bot ID.
     this.app._fetchPermissions(extra, {bot_id: this._botId});
     this.app.addBusyTasks(1);
-    fetch(`/_ah/api/swarming/v1/bot/${this._botId}/get`, extra)
-        .then(jsonOrThrow)
-        .then((json) => {
+    const botService =
+      new BotsService(this.auth_header, this._fetchController.signal);
+    botService.getBot(this._botId)
+        .then((resp) => {
           this._notFound = false;
-          this._bot = parseBotData(json);
+          this._bot = parseBotData(resp);
           this.render();
           this.app.finishedTask();
         })
         .catch((e) => {
-          if (e.status === 404) {
+          if (e.codeName === 'NOT_FOUND') {
             this._bot = {};
             this._notFound = true;
             this.render();
