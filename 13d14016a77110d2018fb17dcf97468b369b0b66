@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1339e99_be615117",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-21T22:48:43Z",
+      "side": 1,
+      "message": "I don\u0027t think it would work correctly when bot self-updates itself (in reexecs itself, parameters will be lost). It is also not propagating parameters to subprocesses like task_runner.py. Propagating them correctly may be complicated.\n\nI very much prefer investigating possibility to removing tsmon here completely. I don\u0027t know anyone who looks at these metrics (but I haven\u0027t researched).",
+      "revId": "13d14016a77110d2018fb17dcf97468b369b0b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
