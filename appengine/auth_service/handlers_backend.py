@@ -87,5 +87,4 @@ def get_routes():
 
 
 def create_application(debug):
-  replication.configure_as_primary()
   return webapp2.WSGIApplication(get_routes(), debug=debug)

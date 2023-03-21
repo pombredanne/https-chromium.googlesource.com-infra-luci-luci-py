@@ -180,6 +180,7 @@ def configure_as_primary():
 
   Called during loading of backend and frontend modules before any other calls.
   """
+  logging.info('Configuring as primary')
   def replication_callback(auth_state):
     assert ndb.in_transaction()
     trigger_replication(auth_state.auth_db_rev, transactional=True)

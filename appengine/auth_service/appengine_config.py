@@ -16,3 +16,6 @@ components_auth_PROCESS_CHANGE_TASK_QUEUE = 'process-auth-db-change'
 
 from components import utils
 utils.fix_protobuf_package()
+
+import replication
+replication.configure_as_primary()

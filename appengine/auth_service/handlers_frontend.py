@@ -459,7 +459,6 @@ def get_routes():
 
 
 def create_application(debug):
-  replication.configure_as_primary()
   rest_api.set_config_locked(config.is_remote_configured)
 
   # Configure UI appearance, add all custom tabs.
