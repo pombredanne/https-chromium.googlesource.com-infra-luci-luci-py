@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b80d03fb_775e3171",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-21T16:40:41Z",
+      "side": 1,
+      "message": "Notes to reviewers:\n1. only porting over a single request (`GetBot`) in this change.\n2. We need to check in the assets built by webpack into source control.",
+      "revId": "8f8599cf0391469f02c46e6a8f444620604e2222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
