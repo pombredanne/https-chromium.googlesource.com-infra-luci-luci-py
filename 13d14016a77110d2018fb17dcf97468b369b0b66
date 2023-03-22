@@ -16,6 +16,24 @@
       "message": "I don\u0027t think it would work correctly when bot self-updates itself (in reexecs itself, parameters will be lost). It is also not propagating parameters to subprocesses like task_runner.py. Propagating them correctly may be complicated.\n\nI very much prefer investigating possibility to removing tsmon here completely. I don\u0027t know anyone who looks at these metrics (but I haven\u0027t researched).",
       "revId": "13d14016a77110d2018fb17dcf97468b369b0b66",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c07068c_8ec27de1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1529882
+      },
+      "writtenOn": "2023-03-22T06:18:35Z",
+      "side": 1,
+      "message": "Ah thanks, I did not think about handling bots updating.\n\nAs I think the only case we care about solving this is ChromeOS Skylab b/265099146 – I guess we could consider setting an env var visible to all processes inside the drone container that tells Swarming bot to use a different tsmon hostname based off its botid.\n\nOr I guess the other place for persistent config is the bot_config.py script inserted by the server.\n\nHowever I agree – I would be happy to remove these metrics. The only ones I can find are /chrome/infra/http/response_status http://shortn/_d58ghUUr6W (with HTTP client metrics only about tsmon itself!) and /chrome/infra/http/response_status http://shortn/_squMOZv9j5 – but I have not looked exhaustively.\n\nIn practice when troubleshooting swarming bot issues, I’ve always gone straight to the bot and server logs, and not metrics. I don\u0027t think we use these ones for alerting.",
+      "parentUuid": "c1339e99_be615117",
+      "revId": "13d14016a77110d2018fb17dcf97468b369b0b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
