@@ -802,8 +802,9 @@ class BotPollHandler(_BotBaseHandler):
     # TODO(crbug.com/1077188):
     #   avoid assigning to bots with another task assigned.
     if bot_info and bot_info.task_id:
-      logging.error('Task %s is already assigned to the bot %s',
-                    bot_info.task_id, res.bot_id)
+      logging.warning(
+          'Task %s is already assigned to the bot %s. The task will'
+          'be terminated on reap', bot_info.task_id, res.bot_id)
 
     # The bot is in good shape.
 
@@ -830,7 +831,8 @@ class BotPollHandler(_BotBaseHandler):
       (request, secret_bytes,
        run_result), is_deduped = api_helpers.cache_request(
            'bot_poll', request_uuid, lambda: task_scheduler.bot_reap_task(
-               res.dimensions, queues, res.bot_details, reap_deadline))
+               res.dimensions, queues, res.bot_details, reap_deadline, bot_info.
+               task_id))
     except self.TIMEOUT_EXCEPTIONS as e:
       self.abort_by_timeout('bot_reap_task', e)
 
