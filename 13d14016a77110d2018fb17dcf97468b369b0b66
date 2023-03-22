@@ -34,6 +34,24 @@
       "parentUuid": "c1339e99_be615117",
       "revId": "13d14016a77110d2018fb17dcf97468b369b0b66",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c16b72da_2d0abd55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2023-03-22T07:09:31Z",
+      "side": 1,
+      "message": "There\u0027s some ancient viceroy dashboards which use the above metrics that Doug pointed out (whether anyone uses them is another question): https://source.corp.google.com/piper///depot/google3/monitoring/viceroy/dashboards/chrome_infra/generic/_http.html\n\nThere\u0027s also some alerting tied to the /chrome/infra/presence/up metric.\nFuchsia infra uses it to detect a host down\nhttps://source.corp.google.com/piper///depot/google3/configs/monitoring/turquoise_infra/foundation/swarming/alerts.py;l\u003d166\n\nCHOPs also has this task down alert (unsure if Foundation is using this): https://source.corp.google.com/piper///depot/google3/configs/monitoring/chrome_ops_monitoring/common/gcp/presence.py;l\u003d9\n\nI think getting rid of ts_mon is a good approach and we can selectively do this for ChromeOS Swarming.\nhttps://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/swarming_bot/bot_code/bot_main.py;l\u003d1139",
+      "parentUuid": "2c07068c_8ec27de1",
+      "revId": "13d14016a77110d2018fb17dcf97468b369b0b66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
