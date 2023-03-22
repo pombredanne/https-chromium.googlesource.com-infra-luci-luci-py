@@ -406,13 +406,16 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.execute_tasks()
     self._last_registered_bot_dims = bot_dimensions.copy()
 
-  def _bot_reap_task(self, bot_dimensions=None, version=None):
+  def _bot_reap_task(self,
+                     bot_dimensions=None,
+                     version=None,
+                     previous_task_id=None):
     bot_dimensions = bot_dimensions or self._last_registered_bot_dims
     bot_id = bot_dimensions['id'][0]
     queues = task_queues.freshen_up_queues(bot_id)
     bot_details = task_scheduler.BotDetails(version or 'abc', None)
     return task_scheduler.bot_reap_task(bot_dimensions, queues, bot_details,
-                                        _deadline())
+                                        _deadline(), previous_task_id)
 
   def _quick_reap(self, **kwargs):
     """Makes sure the bot is registered and have it reap a task."""
@@ -544,6 +547,52 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         _bot_update_task(
             run_result.key, bot_id=u'bot2', exit_code=0, duration=0.1))
     self.assertEqual(1, self.execute_tasks())
+
+  def test_bot_reap_task_with_previous_task_id(self):
+    pub_sub_calls = self.mock_pub_sub()
+    # This task will be abandoned by the bot.
+    run_result = self._quick_reap(pubsub_topic='projects/abc/topics/def',
+                                  task_slices=[
+                                      task_request.TaskSlice(
+                                          expiration_secs=1200,
+                                          properties=_gen_properties(),
+                                          wait_for_capacity=False),
+                                  ])
+    request = run_result.request_key.get()
+    self.assertEqual(1, len(pub_sub_calls))  # PENDING -> RUNNING
+
+    now_0 = self.now
+    # This is not considered MIA, but the bot should terminate its currently
+    # running task if its trying to reap a new one
+    now_1 = self.mock_now(
+        self.now +
+        datetime.timedelta(seconds=request.bot_ping_tolerance_secs - 1), 1)
+    self._bot_reap_task(previous_task_id=run_result.task_id)
+    self.assertEqual(([run_result.task_id], 0),
+                     task_scheduler.cron_handle_bot_died())
+    self.assertEqual(1, self.execute_tasks())
+    self.assertEqual(2, len(pub_sub_calls))  # RUNNING -> COMPLETED
+
+    # Refresh and compare:
+    expected = self._gen_result_summary_reaped(abandoned_ts=now_1,
+                                               completed_ts=now_1,
+                                               costs_usd=[0.],
+                                               id='1d69b9f088008910',
+                                               internal_failure=True,
+                                               modified_ts=now_1,
+                                               started_ts=now_0,
+                                               state=State.BOT_DIED,
+                                               try_number=1)
+    self.assertEqual(expected, run_result.result_summary_key.get().to_dict())
+    expected = self._gen_run_result(abandoned_ts=now_1,
+                                    completed_ts=now_1,
+                                    id='1d69b9f088008911',
+                                    internal_failure=True,
+                                    modified_ts=now_1,
+                                    state=task_result.State.BOT_DIED)
+    self.assertEqual(expected, run_result.key.get().to_dict())
+
+    self.assertEqual(0, self.execute_tasks())
 
   @parameterized.expand([(0,), (1,)])
   def test_either_bot_reap_tasks_using_or_dimensions(self, bi):
