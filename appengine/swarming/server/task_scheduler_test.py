@@ -406,13 +406,13 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.execute_tasks()
     self._last_registered_bot_dims = bot_dimensions.copy()
 
-  def _bot_reap_task(self, bot_dimensions=None, version=None):
+  def _bot_reap_task(self, bot_dimensions=None, version=None, previous_task_id=None):
     bot_dimensions = bot_dimensions or self._last_registered_bot_dims
     bot_id = bot_dimensions['id'][0]
     queues = task_queues.freshen_up_queues(bot_id)
     bot_details = task_scheduler.BotDetails(version or 'abc', None)
     return task_scheduler.bot_reap_task(bot_dimensions, queues, bot_details,
-                                        _deadline())
+                                        _deadline(), previous_task_id)
 
   def _quick_reap(self, **kwargs):
     """Makes sure the bot is registered and have it reap a task."""

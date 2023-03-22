@@ -385,7 +385,7 @@ def _reap_task(bot_dimensions,
   return run_result, secret_bytes
 
 
-def _detect_dead_task_async(run_result_key):
+def _detect_dead_task_async(run_result_key, dead_check_func):
   """Checks if the bot has stopped working on the task.
 
   Transactionally updates the entities depending on the state of this task. The
@@ -432,8 +432,8 @@ def _detect_dead_task_async(run_result_key):
     if run_result.state != task_result.State.RUNNING:
       # It was updated already or not updating last. Likely DB index was stale.
       raise ndb.Return(None, False, None, None)
-
-    if not run_result.dead_after_ts or run_result.dead_after_ts > now:
+    
+    if dead_check_func(run_result, now):
       raise ndb.Return(None, False, None, None)
 
     old_abandoned_ts = run_result.abandoned_ts
@@ -1388,8 +1388,25 @@ def schedule_request(request,
     ts_mon_metrics.on_task_status_change_scheduler_latency(result_summary)
   return result_summary
 
+def _terminate_previous_task(bot_id, previous_task_id):
+  """Terminate a task a task which was previously running on the bot"""
+  logging.warning(
+      'Bot %s attempting to reap task but already running task %s. Will now terminate this task...',
+      bot_id, previous_task_id)
+  _, prev_run_result_key = task_pack.get_request_and_result_keys(previous_task_id)
+  f = _detect_dead_task_async(prev_run_result_key, lambda task_run, now: True)
+  if f and f.done():
+    try:
+      _, state_changed, latency, tags = f.get_result()
+    except datastore_utils.CommitError as e:
+      logging.error('Failed to abandoned task %s. error=%s', 
+                    previous_task_id, e)
+    if state_changed:
+      ts_mon_metrics.on_dead_task_detection_latency(tags, latency, True)
+    logging.info('Successfully terminated abandoned task %s', previous_task_id)  
 
-def bot_reap_task(bot_dimensions, queues, bot_details, deadline):
+
+def bot_reap_task(bot_dimensions, queues, bot_details, deadline, previous_task_id):
   """Reaps a TaskToRunShard if one is available.
 
   The process is to find a TaskToRunShard where its .queue_number is set, then
@@ -1407,9 +1424,16 @@ def bot_reap_task(bot_dimensions, queues, bot_details, deadline):
     tuple of (TaskRequest, SecretBytes, TaskRunResult) for the task that was
     reaped. The TaskToRunShard involved is not returned.
   """
-  start = time.time()
   bot_id = bot_dimensions[u'id'][0]
+
+  # If the bot is attempting to reap a task, it shouldn't still be running a 
+  # task so we terminate it.
+  if previous_task_id:
+    _terminate_previous_task(bot_id, previous_task_id) 
+
+  start = time.time()  
   es_cfg = external_scheduler.config_for_bot(bot_dimensions)
+  
   if es_cfg:
     request, secret_bytes, to_run_result = _bot_reap_task_external_scheduler(
         bot_dimensions, bot_details, es_cfg)
@@ -2040,6 +2064,9 @@ def cron_handle_bot_died():
       futs = _futs
     return futs
 
+  def _is_dead_task(run_result, now):
+    return not run_result.dead_after_ts or run_result.dead_after_ts > now
+
   start = utils.utcnow()
   # Timeout at 9.5 mins, we want to gracefully terminate prior to App Engine
   # handler expiry. This will reduce the deadline exceeded 500 errors arising
@@ -2058,7 +2085,7 @@ def cron_handle_bot_died():
       count['total'] += len(keys)
       logging.info('Fetched %d keys', count['total'])
       for run_result_key in keys:
-        f = _detect_dead_task_async(run_result_key)
+        f = _detect_dead_task_async(run_result_key, _is_dead_task)
         if f:
           futures.append(f)
         else:
