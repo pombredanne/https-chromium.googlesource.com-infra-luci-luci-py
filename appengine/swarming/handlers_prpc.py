@@ -101,12 +101,15 @@ class BotsService(object):
     end = request.end.ToDatetime()
     if not request.HasField("end"):
       end = None
-    sort = _SORT_MAP.get(request.sort)
-    state = _STATE_MAP.get(request.state)
     limit = request.limit
     cursor = request.cursor
-    items, cursor = api_common.list_bot_tasks(bot_id, start, end, sort, state,
-                                              cursor, limit)
+    filters = api_common.RunResultsFilter(
+        start=start,
+        end=end,
+        sort=_SORT_MAP.get(request.sort),
+        state=_STATE_MAP.get(request.state),
+    )
+    items, cursor = api_common.list_bot_tasks(bot_id, filters, cursor, limit)
     return message_conversion_prpc.bot_tasks_response(items, cursor)
 
   @prpc_helpers.method
