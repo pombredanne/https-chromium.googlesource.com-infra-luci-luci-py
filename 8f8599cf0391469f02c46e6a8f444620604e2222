@@ -33,6 +33,52 @@
       "message": "gentle reminder",
       "revId": "8f8599cf0391469f02c46e6a8f444620604e2222",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00e556aa_44236190",
+        "filename": "appengine/swarming/ui2/modules/services/bots.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-23T20:10:03Z",
+      "side": 1,
+      "message": "why is this needed?\n\nIf it is needed everywhere, can service() in PrpcService be defined as \n\n```\nget service() {\n  if (!this.Service) {\n    throw \"Subclasses must define service\"\n  }\n  return this.Service;\n}\n```\n\nto avoid copy-pasting the string.",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 37
+      },
+      "revId": "8f8599cf0391469f02c46e6a8f444620604e2222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3c039c8_2e545f44",
+        "filename": "appengine/swarming/ui2/modules/services/bots.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-23T20:10:03Z",
+      "side": 1,
+      "message": "this seems unnecessary?",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 3
+      },
+      "revId": "8f8599cf0391469f02c46e6a8f444620604e2222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
