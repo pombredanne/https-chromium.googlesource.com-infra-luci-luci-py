@@ -141,7 +141,7 @@ class TestWin(auto_stub.TestCase):
     SWbemObjectSet = mock.Mock(
         Architecture=arch, Level=level, AddressWidth=addr_width)
     SWbemServices = mock.Mock()
-    SWbemServices.ExecQuery.return_value = [SWbemObjectSet]
+    SWbemServices.query.return_value = [SWbemObjectSet]
     with mock.patch(
         'api.platforms.win._get_wmi_wbem', return_value=SWbemServices):
       self.assertEqual(win.get_cpu_type_with_wmi(), expected)
@@ -153,7 +153,7 @@ class TestWin(auto_stub.TestCase):
         VideoProcessor='GGA',
         DriverVersion='1.1.1.18')
     SWbemServices = mock.Mock()
-    SWbemServices.ExecQuery.return_value = [SWbemObjectSet]
+    SWbemServices.query.return_value = [SWbemObjectSet]
     with mock.patch(
       'api.platforms.win._get_wmi_wbem', return_value=SWbemServices):
       actual = win.get_gpu()
