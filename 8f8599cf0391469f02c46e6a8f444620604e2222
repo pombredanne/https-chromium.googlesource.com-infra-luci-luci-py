@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "845d38c5_4ebd6e75",
+        "filename": "appengine/swarming/ui2/modules/services/bots.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-23T20:22:59Z",
+      "side": 1,
+      "message": "I think I was trying something earlier and forgot to delete it 😞",
+      "parentUuid": "00e556aa_44236190",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 37
+      },
+      "revId": "8f8599cf0391469f02c46e6a8f444620604e2222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3c039c8_2e545f44",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-03-23T20:10:03Z",
       "side": 1,
       "message": "this seems unnecessary?",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 3
+      },
+      "revId": "8f8599cf0391469f02c46e6a8f444620604e2222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64e7be9c_79383ef2",
+        "filename": "appengine/swarming/ui2/modules/services/bots.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-03-23T20:22:59Z",
+      "side": 1,
+      "message": "Removed!",
+      "parentUuid": "a3c039c8_2e545f44",
       "range": {
         "startLine": 52,
         "startChar": 0,
