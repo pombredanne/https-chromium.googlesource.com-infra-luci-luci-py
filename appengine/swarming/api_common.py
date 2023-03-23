@@ -150,19 +150,34 @@ def terminate_bot(bot_id):
   return task_pack.pack_result_summary_key(result_summary.key)
 
 
-def list_bot_tasks(bot_id, start, end, sort, state, cursor, limit):
+
+# Used to generate filters for task_result.TaskResult ndb datastore entities.
+RunResultsFilter = namedtuple(
+    'RunResultsFilter',
+    [
+        # datetime.datetime object or None. If not None, only tasks where the
+        # datetime field specified by `sort` is greater than `start` will be
+        # shown.
+        'start',
+        # Datetime.datetime object or None. If not None, only tasks where the
+        # datetime field specified by `sort` is less than `end` will be shown.
+        'end',
+        # May be either 'created_ts', 'started_ts' or 'completed_ts'. Specifies
+        # which which datetime field in the task to apply [start, end] filter.
+        'sort',
+        # A string representation of possible task_state_query State.
+        'state',
+    ])
+
+
+def list_bot_tasks(bot_id, filters, cursor, limit):
   """Lists all tasks which have been executed by a given bot which match the
   filters.
 
   Arguments:
     bot_id: bot_id to filter tasks.
-    start: datetime.datetime object or None. If not None, only tasks where the
-      datetime field specified by `sort` is greater than `start` will be shown.
-    end: Datetime.datetime object or None. If not None, only tasks where the
-      datetime field specified by `sort` is less than `end` will be shown.
-    sort: May be either 'created_ts', 'started_ts' or 'completed_ts'. Specifies
-      which which datetime field in the task to apply [start, end] filter.
-    state: A string representation of possible task_state_query State.
+    filters: A RunResultsFilter object to generate query for
+      task_result.TaskResult
     cursor: Cursor returned by previous invocation of this request.
     limit: Number of items to return per request.
 
@@ -175,7 +190,8 @@ def list_bot_tasks(bot_id, start, end, sort, state, cursor, limit):
   """
   try:
     realms.check_bot_tasks_acl(bot_id)
-    q = task_result.get_run_results_query(start, end, sort, state, bot_id)
+    q = task_result.get_run_results_query(filters.start, filters.end,
+                                          filters.sort, filters.state, bot_id)
     return datastore_utils.fetch_page(q, limit, cursor)
   except ValueError as e:
     raise handlers_exceptions.BadRequestException(
@@ -510,3 +526,54 @@ def get_dimensions(pool):
     raise handlers_exceptions.NotFoundException(
         'Dimension aggregation for pool %s does not exit' % pool)
   return DimensionsResponse(bots_dimensions=agg.dimensions, ts=agg.ts)
+
+
+ResultSummaryFilters = namedtuple(
+    'ResultSummaryFilters',
+    [
+        # datetime.datetime object or None. If not None, only tasks where the
+        # datetime field specified by `sort` is greater than `start` will be
+        # shown.
+        'start',
+        # Datetime.datetime object or None. If not None, only tasks where the
+        # datetime field specified by `sort` is less than `end` will be shown.
+        'end',
+        # May be either 'created_ts', 'started_ts' or 'completed_ts'. Specifies
+        # which which datetime field in the task to apply [start, end] filter.
+        'sort',
+        # A string representation of possible task_state_query State.
+        'state',
+        # list of key:value pair strings
+        'tags',
+    ])
+
+
+def list_task_results(filters, cursor, limit):
+  """Returns a list of task results which match filters mentioned in
+  ResultSummaryFilters.
+
+  Args:
+    filters: A ResultSummaryFilters namedtuple.
+    cursor: str representing cursor from previous request.
+    limit: max number of entities to fetch per request.
+
+  Returns:
+    List of TaskResultSummary entities.
+  """
+  pools = bot_management.get_pools_from_dimensions_flat(filters.tags)
+  realms.check_tasks_list_acl(pools)
+
+  try:
+    return datastore_utils.fetch_page(
+        task_result.get_result_summaries_query(filters.start, filters.end,
+                                               filters.sort, filters.state,
+                                               filters.tags), limit, cursor)
+  except ValueError as e:
+    raise handlers_exceptions.BadRequestException(
+        'Inappropriate filter for tasks/list: %s' % e)
+  except datastore_errors.NeedIndexError as e:
+    raise handlers_exceptions.BadRequestException(
+        'Requires new index, ask admin to create one.')
+  except datastore_errors.BadArgumentError as e:
+    raise handlers_exceptions.BadRequestException(
+        'This combination is unsupported, sorry.')
