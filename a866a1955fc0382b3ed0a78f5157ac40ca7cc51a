@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "673b7849_4846c6f9",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-28T19:59:16Z",
+      "side": 1,
+      "message": "should this be `int(match.group(2), 16)` now? otherwise it will choke on [a-f]",
+      "range": {
+        "startLine": 383,
+        "startChar": 9,
+        "endLine": 383,
+        "endChar": 28
+      },
+      "revId": "a866a1955fc0382b3ed0a78f5157ac40ca7cc51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
