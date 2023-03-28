@@ -642,6 +642,40 @@ def get_reboot_required():
       k.Close()
 
 
+def is_display_attached():
+  """Returns whether a display is attached to the machine or not.
+
+  Returns:
+    None, True, or False. It is None when the presence of a display cannot be
+    determined, and a bool otherwise returning whether a display is attached.
+  """
+  # This command outputs a number of fields and their values in the format
+  # "Field=Value", one entry per line. When a display is attached and
+  # functioning properly, a number of fields should have their values properly
+  # set (i.e. not be empty), including the ones for the display resolution.
+  output = subprocess.check_output(
+      ['wmic', 'path', 'win32_videocontroller', 'get', '/format:list'])
+  for field in ('CurrentHorizontalResolution', 'CurrentVerticalResolution'):
+    for line in output.splitlines():
+      if field in line:
+        value = line.split('=', 1)[1].strip()
+        if value:
+          if value.isdigit():
+            # The value is an integer, so we appear to have gotten a valid
+            # value.
+            break
+          # We have a value, but it isn't an integer - we can't say for sure
+          # whether we have a display or not.
+          logging.warning('Got non-integer value %s for %s', value, field)
+          return None
+        # No value -> no display attached.
+        return False
+    else:
+      logging.warning('Did not find display field %s', field)
+      return None
+  return True
+
+
 @tools.cached
 def get_ssd():
   """Returns a list of SSD disks."""
