@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31d899df_2a00967d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-28T19:02:46Z",
+      "side": 1,
+      "message": "I think this will do the same thing:\n\n```\n  wbem \u003d _get_wmi_wbem()\n  if not wbem:\n    return False\n  query \u003d \u0027SELECT CurrentHorizontalResolution, CurrentVerticalResolution FROM Win32_VideoController\u0027\n  for ctl in wbem.query(query):\n    if ctl.CurrentHorizontalResolution:\n      return True\n  return False\n```\n\n(at least for an attached display)\n\nIn fact get_gpu() above already queries Win32_VideoController (just looks at different properties).",
+      "range": {
+        "startLine": 656,
+        "startChar": 0,
+        "endLine": 659,
+        "endChar": 76
+      },
+      "revId": "1fdc479432740b4a79120065a2c0307f5ec85a35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
