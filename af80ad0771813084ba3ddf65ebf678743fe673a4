@@ -80,6 +80,30 @@
       },
       "revId": "af80ad0771813084ba3ddf65ebf678743fe673a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "542feec0_90bf6f1e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-03-28T18:24:17Z",
+      "side": 1,
+      "message": "I\u0027ve been unable to get `pywin32` to work, and basically all references I\u0027ve found online suggest using the `wmi` module, which depends on `pywin32`, for accessing WMI objects.\n\nHowever, I found a command that runs through a normal command prompt instead of powershell and gives us the same information - would switching to that be acceptable?\n\n`wmic path win32_videocontroller get /format:list`",
+      "parentUuid": "78ae87bf_a951e96e",
+      "range": {
+        "startLine": 656,
+        "startChar": 2,
+        "endLine": 657,
+        "endChar": 59
+      },
+      "revId": "af80ad0771813084ba3ddf65ebf678743fe673a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
