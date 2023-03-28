@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ef10279_2f2b2a3d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-28T20:02:13Z",
+      "side": 1,
+      "message": "Also need to catch _WbemScriptingError based on other its uses.\n```\ntry:\n  ...\nexcept _WbemScriptingError as e:\n  # This generally happens when this is called as the host is shutting down.\n  logging.error(\u0027is_display_attached(): %s\u0027, e)\n  return None\n```",
+      "range": {
+        "startLine": 660,
+        "startChar": 0,
+        "endLine": 662,
+        "endChar": 17
+      },
+      "revId": "b672b14385ae874c7741acd3542e292e2c4d44c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
