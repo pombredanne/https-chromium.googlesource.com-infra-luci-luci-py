@@ -34,6 +34,24 @@
       "parentUuid": "66535c6f_3c5ccd7e",
       "revId": "239e5294148dab604215d81d5da590643d753de7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87b2bbd2_d8019384",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-28T20:19:45Z",
+      "side": 1,
+      "message": "Yeah, I\u0027m worried about the bad case too. It can be AttributeError instead of None.",
+      "parentUuid": "29a97acb_7a143d22",
+      "revId": "239e5294148dab604215d81d5da590643d753de7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
