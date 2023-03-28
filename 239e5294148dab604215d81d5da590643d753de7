@@ -16,6 +16,24 @@
       "message": "Hope it works for real 🙈",
       "revId": "239e5294148dab604215d81d5da590643d753de7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29a97acb_7a143d22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-03-28T20:15:31Z",
+      "side": 1,
+      "message": "I tested the query locally and it returned the right information (2560 x 1440), so should work. I wasn\u0027t able to test the bad case, though - I assumed that an unset value would be `None`, but that\u0027s just an educated guess.",
+      "parentUuid": "66535c6f_3c5ccd7e",
+      "revId": "239e5294148dab604215d81d5da590643d753de7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
