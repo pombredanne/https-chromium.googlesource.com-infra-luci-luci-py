@@ -175,6 +175,108 @@ class TestWin(auto_stub.TestCase):
     self.assertEqual(('10.0', '16299.19'), m.groups())
 
 
+class TestWinPlatformIndendent(auto_stub.TestCase):
+  """Like TestWin, but not limited to running on Windows."""
+  def setUp(self):
+    super().setUp()
+    tools.clear_cache_all()
+
+  def tearDown(self):
+    super().tearDown()
+    tools.clear_cache_all()
+
+  def test_is_display_attached_valid_display(self):
+    output = """\
+CurrentHorizontalResolution : 1280
+CurrentVerticalResolution   : 720
+"""
+    with mock.patch('api.platforms.win.subprocess.check_output',
+                    return_value=output):
+      self.assertTrue(win.is_display_attached())
+
+  def test_is_display_attached_missing_display(self):
+    # Both fields missing. The trailing spaces are intentional to test that
+    # functionality is correct when string splitting produces a non-empty
+    # string.
+    output = """\
+CurrentHorizontalResolution : 
+CurrentVerticalResolution   : 
+"""
+    with mock.patch('api.platforms.win.subprocess.check_output',
+                    return_value=output):
+      self.assertFalse(win.is_display_attached())
+
+    # First field missing.
+    output = """\
+CurrentHorizontalResolution :
+CurrentVerticalResolution   : 720
+"""
+    with mock.patch('api.platforms.win.subprocess.check_output',
+                    return_value=output):
+      self.assertFalse(win.is_display_attached())
+
+    # Second field missing.
+    output = """\
+CurrentHorizontalResolution : 1280
+CurrentVerticalResolution   :
+"""
+    with mock.patch('api.platforms.win.subprocess.check_output',
+                    return_value=output):
+      self.assertFalse(win.is_display_attached())
+
+  def test_is_display_attached_non_integer(self):
+    # Both fields non-integer.
+    output = """\
+CurrentHorizontalResolution : 1280.0
+CurrentVerticalResolution   : 720.0
+"""
+    with mock.patch('api.platforms.win.subprocess.check_output',
+                    return_value=output):
+      self.assertIsNone(win.is_display_attached())
+
+    # First field non-integer.
+    output = """\
+CurrentHorizontalResolution : 1280.0
+CurrentVerticalResolution   : 720
+"""
+    with mock.patch('api.platforms.win.subprocess.check_output',
+                    return_value=output):
+      self.assertIsNone(win.is_display_attached())
+
+    # Second field non-integer.
+    output = """\
+CurrentHorizontalResolution : 1280
+CurrentVerticalResolution   : 720.0
+"""
+    with mock.patch('api.platforms.win.subprocess.check_output',
+                    return_value=output):
+      self.assertIsNone(win.is_display_attached())
+
+  def test_is_display_attached_missing_field(self):
+    # Both fields missing.
+    output = """\
+"""
+    with mock.patch('api.platforms.win.subprocess.check_output',
+                    return_value=output):
+      self.assertIsNone(win.is_display_attached())
+
+    # First field missing.
+    output = """\
+CurrentVerticalResolution   : 720
+"""
+    with mock.patch('api.platforms.win.subprocess.check_output',
+                    return_value=output):
+      self.assertIsNone(win.is_display_attached())
+
+    # Second field missing.
+    output = """\
+CurrentHorizontalResolution   : 1280
+"""
+    with mock.patch('api.platforms.win.subprocess.check_output',
+                    return_value=output):
+      self.assertIsNone(win.is_display_attached())
+
+
 if __name__ == '__main__':
   if '-v' in sys.argv:
     unittest.TestCase.maxDiff = None
