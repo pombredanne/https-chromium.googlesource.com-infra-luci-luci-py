@@ -22,6 +22,30 @@
       },
       "revId": "1fdc479432740b4a79120065a2c0307f5ec85a35",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d05de6ac_9d79caa9",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2023-03-28T19:55:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31d899df_2a00967d",
+      "range": {
+        "startLine": 656,
+        "startChar": 0,
+        "endLine": 659,
+        "endChar": 76
+      },
+      "revId": "1fdc479432740b4a79120065a2c0307f5ec85a35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
