@@ -372,7 +372,7 @@ def get_cpuinfo():
   try:
     identifier, _ = winreg.QueryValueEx(k, 'Identifier')
     match = re.match(
-        r'^.+ Family (\d+) Model (\d+) (?:Stepping|Revision) ([0-9A-Fa-f]+)$',
+        r'^.+\s+Family\s+(\d+)\s+Model\s+([0-9A-Fa-f]+)\s+(?:Stepping|Revision)\s+([0-9A-Fa-f]+)$',
         identifier)
     name, _ = winreg.QueryValueEx(k, 'ProcessorNameString')
     vendor, _ = winreg.QueryValueEx(k, 'VendorIdentifier')
