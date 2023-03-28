@@ -33,6 +33,29 @@
       "message": "Seems like only your @chromium.org account is listed as an owner here, adding that instead.",
       "revId": "af80ad0771813084ba3ddf65ebf678743fe673a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8fc6463_0e87e82e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-03-28T00:40:17Z",
+      "side": 1,
+      "message": "I wonder if this can be done using pywin32 COM instead of shelling out to powershell. See e.g. how get_audio() is implemented. `SELECT * FROM win32_controller` maybe?.. I don\u0027t have access to Windows right now to experiment.\n\nI don\u0027t like reliance on powershell, it is finicky (especially its \"execution policy\" stuff).",
+      "range": {
+        "startLine": 656,
+        "startChar": 2,
+        "endLine": 657,
+        "endChar": 59
+      },
+      "revId": "af80ad0771813084ba3ddf65ebf678743fe673a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
