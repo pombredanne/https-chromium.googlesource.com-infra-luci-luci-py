@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9b891a5_39191fed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001921
+      },
+      "writtenOn": "2023-03-29T10:12:28Z",
+      "side": 1,
+      "message": "Nice, thanks for figuring out the way to check for this, Brian and Vadim!\nNext step is to see how this behaves in production.",
+      "revId": "f8140a15f3b9df9c9259115b830ed4dc06ab86f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
