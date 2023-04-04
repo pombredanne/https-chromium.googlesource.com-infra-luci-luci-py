@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "191d21a5_077dd4ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-04-04T17:43:05Z",
+      "side": 1,
+      "message": "PTAL again. I added builds_service_prpc_pb2.py proto as well, so we can connect to bb service.",
+      "revId": "38a5fd2382c38cf7079a886d46ae174f16c59500",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
