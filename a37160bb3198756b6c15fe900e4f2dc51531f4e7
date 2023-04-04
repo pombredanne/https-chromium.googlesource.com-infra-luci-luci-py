@@ -16,6 +16,23 @@
       "message": "ping",
       "revId": "a37160bb3198756b6c15fe900e4f2dc51531f4e7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e484af65_b11ba9b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-04T01:32:01Z",
+      "side": 1,
+      "message": "I don\u0027t like this approach because:\n1. It is not transactional. _detect_dead_task_async is not called in the same transaction that assigned a task to a bot. Non-transactional \"we\u0027ll get lucky\" transitions is bane of Swarming data model. They lead to weird, hard to debug, states.\n2. It needs to support /bot/claim handler as well https://chromium.googlesource.com/infra/luci/luci-py/+/c27f3d0f8e9e89dd3442cabc908e595501fb13d0/appengine/swarming/handlers_bot.py#934 /bot/claim is what RBE bots are using. task_scheduler.bot_reap_task is essentially deprecated and will be removed.\n3. /bot/claim is inherently idempotent, and the implementation in the CL is not idempotency friendly (if a request is retried, it should return the same task, not cancel it).\n\nThe approach I had in mind is:\n1. Introduce a new entity to exclusively keep track of a task assigned to a bot.\n2. Read and write this entity in the transaction inside _reap_task: https://chromium.googlesource.com/infra/luci/luci-py/+/c27f3d0f8e9e89dd3442cabc908e595501fb13d0/appengine/swarming/server/task_scheduler.py#290\n3. Also clear it when the bot finishes the task normally.\n4. If inside _reap_task we discover that the bot has a task already assigned to it (via this entity), transactionally enqueue a task queue task to mark the assigned task as dead. This should be rare code path (only when bots are crashing), it is OK to do extra hop the the task queue (to avoid doing complicated multi-entity transactions).\n\nNote we can\u0027t reuse BotInfo for storing the assigned task because BotInfo is separately modified after _reap_task transaction and datastore doesn\u0027t like multiple transactions to the same entity back-to-back.\n\n(Are reusing BotInfo without touching it twice will be basically what this CL does, i.e. it will not have integrity guarantees that transactions provide. In fact, /bot/poll making two separate transactions instead of one was/is the source of many data integrity bugs in Swarming).",
+      "revId": "a37160bb3198756b6c15fe900e4f2dc51531f4e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
