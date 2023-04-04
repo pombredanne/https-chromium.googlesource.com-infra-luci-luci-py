@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f1c9a50_f438598f",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-04T22:05:00Z",
+      "side": 1,
+      "message": "why is this necessary now?",
+      "range": {
+        "startLine": 259,
+        "startChar": 35,
+        "endLine": 259,
+        "endChar": 61
+      },
+      "revId": "9fcd7af4c9ce3dcef76ca2c8acbbd7350ba6e5c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
