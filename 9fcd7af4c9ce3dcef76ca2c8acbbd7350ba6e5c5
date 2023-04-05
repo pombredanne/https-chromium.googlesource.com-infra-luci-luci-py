@@ -22,6 +22,30 @@
       },
       "revId": "9fcd7af4c9ce3dcef76ca2c8acbbd7350ba6e5c5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "821e7f56_1e462d95",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-04-05T19:12:57Z",
+      "side": 1,
+      "message": "`try_number\u003d0` -\u003e deduped which means no performance stats. However after doing a bit more testing I discovered that there are other non-deduped tasks which could actually return performance stats even if the task did not run since `protorpc` seems to just create `non-falsy` performance stats objects.\n\nIt seems like the `performance_stats` object has a `is_valid` method which should be used for this test instead.",
+      "parentUuid": "0f1c9a50_f438598f",
+      "range": {
+        "startLine": 259,
+        "startChar": 35,
+        "endLine": 259,
+        "endChar": 61
+      },
+      "revId": "9fcd7af4c9ce3dcef76ca2c8acbbd7350ba6e5c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
