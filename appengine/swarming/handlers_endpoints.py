@@ -790,6 +790,7 @@ class SwarmingBotsService(remote.Service):
 
     Deleted bots will not be listed.
     """
+    raise Exception("Bleh")
     logging.debug('%s', request)
 
     now = utils.utcnow()
