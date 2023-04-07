@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea3f995d_b495cec0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-07T00:45:17Z",
+      "side": 1,
+      "message": "PTAL\n\nDemo https://7117-9451dc6-vadimsh-dot-chromium-swarm-dev.appspot.com/",
+      "revId": "cff97158513da551d4839da6f39a5cd07975083c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
