@@ -69,6 +69,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "344970c4_4bbe46af",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 867,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-07T19:17:20Z",
+      "side": 1,
+      "message": "yes, it will be laborious",
+      "parentUuid": "6edfadfc_10174a23",
+      "revId": "cff97158513da551d4839da6f39a5cd07975083c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ede8e50_7ccbe914",
@@ -86,6 +104,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce6a65d5_fc42ce5d",
+        "filename": "appengine/swarming/ui2/modules/oauth-login/oauth-login.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-07T19:17:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5ede8e50_7ccbe914",
+      "revId": "cff97158513da551d4839da6f39a5cd07975083c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99c90e46_77abbf76",
@@ -99,6 +135,30 @@
       "writtenOn": "2023-04-07T04:18:59Z",
       "side": 1,
       "message": "I suppose this is a pain to change?",
+      "range": {
+        "startLine": 62,
+        "startChar": 30,
+        "endLine": 62,
+        "endChar": 35
+      },
+      "revId": "cff97158513da551d4839da6f39a5cd07975083c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7a7bf74_8081d8b5",
+        "filename": "appengine/swarming/ui2/modules/oauth-login/oauth-login.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-07T19:17:20Z",
+      "side": 1,
+      "message": "I decided not to bother. The end result of this process is still an OAuth2 access token used by all other fetch calls, so it is still oauth-login, just using a different flow.",
+      "parentUuid": "99c90e46_77abbf76",
       "range": {
         "startLine": 62,
         "startChar": 30,
