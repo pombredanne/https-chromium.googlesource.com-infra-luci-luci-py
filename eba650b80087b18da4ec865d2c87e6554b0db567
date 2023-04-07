@@ -46,6 +46,47 @@
       },
       "revId": "eba650b80087b18da4ec865d2c87e6554b0db567",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99238931_bcd16064",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2023-04-07T20:59:45Z",
+      "side": 1,
+      "message": "Had a repro here:\nhttps://ci.chromium.org/ui/p/infra/builders/try/luci-py-try-bionic-64/b8784523389259536401/overview",
+      "parentUuid": "2764621c_d1003351",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 34
+      },
+      "revId": "eba650b80087b18da4ec865d2c87e6554b0db567",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "995cd3cd_02e16a97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2023-04-07T20:59:45Z",
+      "side": 1,
+      "message": "Reopening, had another repro.",
+      "revId": "eba650b80087b18da4ec865d2c87e6554b0db567",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
