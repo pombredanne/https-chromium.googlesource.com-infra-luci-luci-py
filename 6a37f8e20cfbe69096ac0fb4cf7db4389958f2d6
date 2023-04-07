@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b865a494_5cfbc957",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2023-04-07T21:04:24Z",
+      "side": 1,
+      "message": "Reopened https://crrev.com/c/3967458 for the test failure.",
+      "revId": "6a37f8e20cfbe69096ac0fb4cf7db4389958f2d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
