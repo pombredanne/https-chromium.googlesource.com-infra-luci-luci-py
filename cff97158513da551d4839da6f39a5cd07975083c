@@ -16,6 +16,114 @@
       "message": "PTAL\n\nDemo https://7117-9451dc6-vadimsh-dot-chromium-swarm-dev.appspot.com/",
       "revId": "cff97158513da551d4839da6f39a5cd07975083c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "875af3ec_be35cc93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-04-07T04:18:59Z",
+      "side": 1,
+      "message": "lgtm?",
+      "revId": "cff97158513da551d4839da6f39a5cd07975083c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69bd91a0_937cc7c9",
+        "filename": "appengine/swarming/ui2/dist/public_botlist_index-bundle.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-04-07T04:18:59Z",
+      "side": 1,
+      "message": "one line diff 👍",
+      "revId": "cff97158513da551d4839da6f39a5cd07975083c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6edfadfc_10174a23",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list_test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 867,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-04-07T04:18:59Z",
+      "side": 1,
+      "message": "I don\u0027t suppose it would be possible to move the formatting to another CL :/",
+      "revId": "cff97158513da551d4839da6f39a5cd07975083c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ede8e50_7ccbe914",
+        "filename": "appengine/swarming/ui2/modules/oauth-login/oauth-login.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-04-07T04:18:59Z",
+      "side": 1,
+      "message": "can this reference the bug #?\n\nedit: just saw your comment that this functionality just didn\u0027t exist before at all....",
+      "revId": "cff97158513da551d4839da6f39a5cd07975083c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99c90e46_77abbf76",
+        "filename": "appengine/swarming/ui2/modules/oauth-login/oauth-login.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-04-07T04:18:59Z",
+      "side": 1,
+      "message": "I suppose this is a pain to change?",
+      "range": {
+        "startLine": 62,
+        "startChar": 30,
+        "endLine": 62,
+        "endChar": 35
+      },
+      "revId": "cff97158513da551d4839da6f39a5cd07975083c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57646aae_128bc4df",
+        "filename": "appengine/swarming/ui2/modules/oauth-login/oauth-login.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-04-07T04:18:59Z",
+      "side": 1,
+      "message": "F for fancy",
+      "revId": "cff97158513da551d4839da6f39a5cd07975083c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
