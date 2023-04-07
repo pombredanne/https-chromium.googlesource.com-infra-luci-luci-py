@@ -16,6 +16,7 @@ import endpoints
 import webapp2
 import zlib
 
+from components import template
 from test_support import test_case
 import adapter
 
@@ -49,6 +50,10 @@ class EndpointsService(remote.Service):
 
 
 class EndpointsWebapp2TestCase(test_case.TestCase):
+  def setUp(self):
+    super(EndpointsWebapp2TestCase, self).setUp()
+    template.reset()
+
   def test_decode_message_post(self):
     request = webapp2.Request(
         {
