@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "268fc2ab_8bd557a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-10T23:01:41Z",
+      "side": 1,
+      "message": "PTAL\n\nExisting `state_change_scheduling_latencies` tracks something weird when multiple slices are used, since it is recorded only when the *overall* TaskResultSummary changes state.\n\nAbsolute values for `outcome \u003d\u003d expired` and `outcome \u003d\u003d canceled` are likely going to be weird (they include user-supplied parameters, like slice expiration delay, or when users send cancel requests), but they still can be used for comparisons between RBE and non-RBE tasks.",
+      "revId": "1be988050035d6fd3970baaf578cc9c579ca3da0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
