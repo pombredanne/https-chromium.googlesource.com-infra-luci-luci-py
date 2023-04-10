@@ -245,6 +245,7 @@ def _expire_slice(request, to_run_key, terminal_state, claim, txn_retries,
   if summary:
     logging.info('Expired %s/%s', request.task_id, slice_index)
     ts_mon_metrics.on_task_expired(summary, old_ttr)
+    ts_mon_metrics.on_task_to_run_consumed(summary, old_ttr, 'expired')
   if state_changed:
     ts_mon_metrics.on_task_status_change_scheduler_latency(summary)
 
@@ -297,7 +298,7 @@ def _reap_task(bot_dimensions,
       logging.error('Missing TaskToRunShard?\n%s', result_summary.task_id)
       if claim_id:
         raise ClaimError('No task slice')
-      return None, None, None, False
+      return None, None, None, None, False
 
     if not to_run.is_reapable:
       if claim_id:
@@ -311,9 +312,9 @@ def _reap_task(bot_dimensions,
           raise Error('TaskRunResult unexpectedly missing on retry')
         if run_result.current_task_slice != to_run.task_slice_index:
           raise ClaimError('Obsolete')
-        return run_result, secret_bytes, result_summary, False
+        return run_result, secret_bytes, result_summary, None, False
       logging.info('%s is not reapable', result_summary.task_id)
-      return None, None, None, False
+      return None, None, None, None, False
 
     if result_summary.bot_id == bot_id:
       # This means two things, first it's a retry, second it's that the first
@@ -323,7 +324,7 @@ def _reap_task(bot_dimensions,
       # TODO(vadimsh): This should not be possible, retries were removed.
       logging.warning('%s can\'t retry its own internal failure task',
                       result_summary.task_id)
-      return None, None, None, False
+      return None, None, None, None, False
 
     to_run.consume(claim_id)
     run_result = task_result.new_run_result(request, to_run, bot_id,
@@ -350,11 +351,11 @@ def _reap_task(bot_dimensions,
                                       es_cfg,
                                       transactional=True)
       state_changed = True
-    return run_result, secret_bytes, result_summary, state_changed
+    return run_result, secret_bytes, result_summary, to_run, state_changed
 
   state_changed = False
   try:
-    run_result, secret_bytes, summary, state_changed = \
+    run_result, secret_bytes, summary, to_run, state_changed = \
       datastore_utils.transaction(run, retries=txn_retries, deadline=30)
   except datastore_utils.CommitError:
     if not txn_catch_errors:
@@ -382,6 +383,8 @@ def _reap_task(bot_dimensions,
     secret_bytes = None
   if state_changed:
     ts_mon_metrics.on_task_status_change_scheduler_latency(summary)
+  if to_run:
+    ts_mon_metrics.on_task_to_run_consumed(summary, to_run, 'claimed')
   return run_result, secret_bytes
 
 
@@ -923,25 +926,26 @@ def _cancel_task_tx(request,
     run_result: Used when this is given, otherwise took from result_summary.
 
   Returns:
-    tuple(bool, bool)
+    tuple(bool, bool, TaskToRun)
     - True if the cancellation succeeded. Either the task atomically changed
       from PENDING to CANCELED or it was RUNNING and killing bit has been set.
     - True if the task was running while it was canceled.
+    - Canceled TaskToRunShardXXX if it was still pending.
   """
   was_running = result_summary.state == task_result.State.RUNNING
 
   # Finished tasks can't be canceled.
   if not result_summary.can_be_canceled:
-    return False, was_running
+    return False, was_running, None
   # Deny cancelling a non-running task if bot_id was specified.
   if not was_running and bot_id:
-    return False, was_running
+    return False, was_running, None
   # Deny canceling a task that started.
   if was_running and not kill_running:
-    return False, was_running
+    return False, was_running, None
   # Deny cancelling a task if it runs on unexpected bot.
   if was_running and bot_id and bot_id != result_summary.bot_id:
-    return False, was_running
+    return False, was_running, None
 
   to_put = [result_summary]
   result_summary.abandoned_ts = now
@@ -986,7 +990,7 @@ def _cancel_task_tx(request,
   for f in futures:
     f.check_success()
 
-  return True, was_running
+  return True, was_running, to_runs[0] if to_runs else None
 
 
 def _get_task_from_external_scheduler(es_cfg, bot_dimensions):
@@ -1875,15 +1879,18 @@ def cancel_task(request, result_key, kill_running, bot_id):
   def run():
     result_summary = result_key.get()
     orig_state = result_summary.state
-    succeeded, was_running = _cancel_task_tx(request, result_summary,
-                                             kill_running, bot_id, now, es_cfg)
+    succeeded, was_running, to_run = _cancel_task_tx(request, result_summary,
+                                                     kill_running, bot_id, now,
+                                                     es_cfg)
     state_changed = result_summary.state != orig_state
-    return succeeded, was_running, state_changed, result_summary
+    return succeeded, was_running, state_changed, result_summary, to_run
 
-  succeeded, was_running, state_changed, result_summary = \
+  succeeded, was_running, state_changed, result_summary, to_run = \
     datastore_utils.transaction(run)
   if state_changed:
     ts_mon_metrics.on_task_status_change_scheduler_latency(result_summary)
+  if to_run:
+    ts_mon_metrics.on_task_to_run_consumed(result_summary, to_run, 'canceled')
   return succeeded, was_running
 
 

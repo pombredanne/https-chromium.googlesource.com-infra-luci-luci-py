@@ -254,6 +254,30 @@ _task_state_change_schedule_latencies = \
 )
 
 # Instance metric. Metric fields:
+# - spec_name: name of a job specification.
+# - project_id: e.g. 'chromium'.
+# - subproject_id: e.g. 'blink'. Set to empty string if not used.
+# - pool: e.g. 'Chrome'.
+# - rbe: RBE instance of the task or literal 'none'.
+# - outcome: 'claimed', 'expired' or 'canceled'.
+# - slice_index: index of the task slice being consumed.
+_ttr_consume_latencies = \
+  gae_ts_mon.CumulativeDistributionMetric(
+    'swarming/tasks/ttr_consume_latencies',
+    'Latency (in ms) between TaskToRun is created and consumed',
+    [
+        gae_ts_mon.StringField('spec_name'),
+        gae_ts_mon.StringField('project_id'),
+        gae_ts_mon.StringField('subproject_id'),
+        gae_ts_mon.StringField('pool'),
+        gae_ts_mon.StringField('rbe'),
+        gae_ts_mon.StringField('outcome'),
+        gae_ts_mon.IntegerField('slice_index'),
+    ],
+    bucketer=_scheduler_bucketer,
+)
+
+# Instance metric. Metric fields:
 # - pool: e.g. 'skia'.
 # - queue_count: number of queues scanned in parallel (up to 30).
 _scheduler_scans = gae_ts_mon.CounterMetric(
@@ -477,6 +501,18 @@ def on_task_expired(summary, task_to_run):
   # task expiration delay
   if summary.expiration_delay:
     _tasks_expiration_delay.add(summary.expiration_delay, fields=fields)
+
+
+def on_task_to_run_consumed(summary, task_to_run, outcome):
+  """Called whenever a TaskToRun is consumed (aka dequeued, aka reaped)."""
+  assert outcome in ('claimed', 'expired', 'canceled')
+
+  fields = _extract_job_fields(_tags_to_dict(summary.tags))
+  fields['outcome'] = outcome
+  fields['slice_index'] = task_to_run.task_slice_index
+
+  latency = (utils.utcnow() - task_to_run.created_ts).total_seconds()
+  _ttr_consume_latencies.add(max(0, round(latency * 1000)), fields=fields)
 
 
 def on_bot_auth_success(auth_method, condition):
