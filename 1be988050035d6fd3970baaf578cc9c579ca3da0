@@ -16,6 +16,24 @@
       "message": "PTAL\n\nExisting `state_change_scheduling_latencies` tracks something weird when multiple slices are used, since it is recorded only when the *overall* TaskResultSummary changes state.\n\nAbsolute values for `outcome \u003d\u003d expired` and `outcome \u003d\u003d canceled` are likely going to be weird (they include user-supplied parameters, like slice expiration delay, or when users send cancel requests), but they still can be used for comparisons between RBE and non-RBE tasks.",
       "revId": "1be988050035d6fd3970baaf578cc9c579ca3da0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32c03617_6e36889f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-10T23:18:58Z",
+      "side": 1,
+      "message": "\u003e PTAL\n\u003e \n\u003e Existing `state_change_scheduling_latencies` tracks something weird when multiple slices are used, since it is recorded only when the *overall* TaskResultSummary changes state.\n\u003e \n\u003e Absolute values for `outcome \u003d\u003d expired` and `outcome \u003d\u003d canceled` are likely going to be weird (they include user-supplied parameters, like slice expiration delay, or when users send cancel requests), but they still can be used for comparisons between RBE and non-RBE tasks.\n\nActually, values for `outcome \u003d\u003d expired` and `outcome \u003d\u003d canceled` will be mostly nonsense and I don\u0027t think I\u0027ll be looking at them. I\u0027ll simplify this to track only actual scheduling latency (i.e. keep only `outcome \u003d\u003d claimed`) and remove slice index (to reduce storage space requirements, we don\u0027t really care about the index).\n\nThis will make this metric similar to state_change_scheduling_latencies, except it will not be weird for multi-slice tasks or cancelled tasks or expired tasks. It will just track the scheduler end-to-end performance (including queuing delay).",
+      "parentUuid": "268fc2ab_8bd557a0",
+      "revId": "1be988050035d6fd3970baaf578cc9c579ca3da0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
