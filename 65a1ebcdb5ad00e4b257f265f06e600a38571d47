@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07634b9b_3db406b5",
+        "filename": "appengine/swarming/ts_mon_metrics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2023-04-11T03:06:02Z",
+      "side": 1,
+      "message": "just to be defensive, I\u0027d check and log error, instead. It\u0027d be easier to debug, and metrics data will remain clean, if it was the intent of using max() here.\n\n```\nif latency \u003c 0:\n    logging.error(\"wat?\")\nelse:\n    _ttr_consume_latencies.add(round(latency * 1000), fields\u003dfields)\n```",
+      "range": {
+        "startLine": 506,
+        "startChar": 29,
+        "endLine": 506,
+        "endChar": 32
+      },
+      "revId": "65a1ebcdb5ad00e4b257f265f06e600a38571d47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
