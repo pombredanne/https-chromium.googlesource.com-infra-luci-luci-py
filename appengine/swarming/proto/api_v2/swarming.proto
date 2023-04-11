@@ -1063,7 +1063,7 @@ message BotsRequest {
 }
 
 message BotsCountRequest {
-  repeated string dimensions = 1;
+  repeated StringPair dimensions = 1;
 }
 
 message BotsDimensionsRequest {
