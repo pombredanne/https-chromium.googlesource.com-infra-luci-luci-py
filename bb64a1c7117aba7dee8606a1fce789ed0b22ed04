@@ -22,6 +22,30 @@
       },
       "revId": "bb64a1c7117aba7dee8606a1fce789ed0b22ed04",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98c0ca47_b4f2dc53",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-04-12T20:53:42Z",
+      "side": 1,
+      "message": "Ah, thanks for the explanation. I changed it back.",
+      "parentUuid": "1834f15a_11a20da2",
+      "range": {
+        "startLine": 636,
+        "startChar": 0,
+        "endLine": 652,
+        "endChar": 22
+      },
+      "revId": "bb64a1c7117aba7dee8606a1fce789ed0b22ed04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
