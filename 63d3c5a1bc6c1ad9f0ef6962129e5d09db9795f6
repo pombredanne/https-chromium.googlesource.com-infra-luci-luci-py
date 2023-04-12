@@ -22,6 +22,30 @@
       },
       "revId": "63d3c5a1bc6c1ad9f0ef6962129e5d09db9795f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "797c88da_3ff074ac",
+        "filename": "appengine/swarming/proto/api_v2/swarming.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-04-12T20:53:15Z",
+      "side": 1,
+      "message": "Updated! I believe it exposes the `TaskDimensionsInfo` to the outside world. I am unsure if it\u0027s actually used. I searched the logs for this route and did not find evidence that it\u0027s being called. Will potentially need to do more thorough search though before I consider removing it.",
+      "parentUuid": "733c59ea_a4cca543",
+      "range": {
+        "startLine": 932,
+        "startChar": 2,
+        "endLine": 932,
+        "endChar": 33
+      },
+      "revId": "63d3c5a1bc6c1ad9f0ef6962129e5d09db9795f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
