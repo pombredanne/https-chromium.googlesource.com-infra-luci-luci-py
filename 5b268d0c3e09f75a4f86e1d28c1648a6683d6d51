@@ -22,6 +22,30 @@
       },
       "revId": "5b268d0c3e09f75a4f86e1d28c1648a6683d6d51",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f24fa433_563fc0cd",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 993,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-12T20:37:25Z",
+      "side": 1,
+      "message": "😄 \n\"git cl format\" is an endless source of amusement",
+      "parentUuid": "a655912f_053f0aa2",
+      "range": {
+        "startLine": 993,
+        "startChar": 4,
+        "endLine": 993,
+        "endChar": 6
+      },
+      "revId": "5b268d0c3e09f75a4f86e1d28c1648a6683d6d51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
