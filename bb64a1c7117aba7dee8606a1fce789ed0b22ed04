@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1834f15a_11a20da2",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-12T20:34:37Z",
+      "side": 1,
+      "message": "this is different from what the original code did\n\noriginal code ran all queries *in parallel*: it launched all of them via count_async() and only then blocked on getting a result via get_result().\n\nThis tasklet will run them one by one. If you want to run them in parallel, yield a list of futures (this is an idiom for running stuff in parallel in ndb):\n\n```\ncount_fut \u003d q.count_async()\ndead_fut \u003d ...count_async()\n...\n\ncount, dead, ... \u003d yield [count_fut, dead_fut, ...]\n```\n\nI think original non-tasklet code might actually be simpler to read.",
+      "range": {
+        "startLine": 636,
+        "startChar": 0,
+        "endLine": 652,
+        "endChar": 22
+      },
+      "revId": "bb64a1c7117aba7dee8606a1fce789ed0b22ed04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
