@@ -10,6 +10,7 @@ import unittest
 
 import test_env
 test_env.setup_test_env()
+import test_env_handlers
 
 from components import config
 from components.config import validation
