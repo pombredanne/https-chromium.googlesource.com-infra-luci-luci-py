@@ -260,9 +260,11 @@ class Endpoints(object):
     if query_strings:
       path = '%s?%s' % (path, '&'.join(query_strings))
 
+    api_info = self._api_service_cls.api_info
+    path_version = (api_info.path_version
+                    if hasattr(api_info, 'path_version') else api_info.version)
     path = '/_ah/api/%s/%s/%s' % (self._api_service_cls.api_info.name,
-                                  self._api_service_cls.api_info.version,
-                                  path)
+                                  path_version, path)
     try:
       if info.http_method in ('GET', 'DELETE'):
         return self._api_app.get(path, status=status)

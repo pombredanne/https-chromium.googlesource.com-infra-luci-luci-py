@@ -2,10 +2,15 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-import endpoints
+import os
+import sys
+
 from protorpc import message_types
 from protorpc import messages
 from protorpc import remote
+
+sys.path.insert(
+    0, os.path.join(os.path.dirname(__file__), 'components', 'third_party'))
 
 from components import auth
 from components import endpoints_webapp2
