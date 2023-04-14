@@ -168,10 +168,10 @@ class ConfigApi(remote.Service):
         url='https://{hostname}/_ah/api/{name}/{version}/{path}validate'.format(
             hostname=http_headers.get('host') or http_headers['Host'],
             name=self.api_info.name,
-            version=self.api_info.version,
+            version=self.api_info.path_version if hasattr(
+                self.api_info, 'path_version') else self.api_info.version,
             path=self.api_info.path or '',
-        )
-    )
+        ))
     for p in sorted(validation.DEFAULT_RULE_SET.patterns()):
       meta.validation.patterns.append(ConfigPattern(**p._asdict()))
     return meta

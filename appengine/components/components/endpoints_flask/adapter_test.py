@@ -7,8 +7,9 @@ import json
 import sys
 import unittest
 
-# from test_support import test_env
-# test_env.setup_test_env()
+from test_support import test_env
+
+test_env.setup_test_env()
 
 from protorpc import messages
 from protorpc import remote
