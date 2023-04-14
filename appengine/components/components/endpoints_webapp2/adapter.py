@@ -180,8 +180,10 @@ def api_routes(api_classes, base_path='/_ah/api', regex='[^/]+'):
 
   # Add routes for each class.
   for api_class in api_classes:
-    api_base_path = '%s/%s/%s' % (
-        base_path, api_class.api_info.name, api_class.api_info.version)
+    api_info = api_class.api_info
+    path_version = (api_info.path_version
+                    if hasattr(api_info, 'path_version') else api_info.version)
+    api_base_path = '%s/%s/%s' % (base_path, api_info.name, path_version)
     templates = set()
 
     # Add routes for each method of each class.
@@ -243,8 +245,10 @@ def discovery_handler_factory(api_classes, base_path):
   # Create a map of (name, version) => [services...].
   service_map = collections.defaultdict(list)
   for api_class in api_classes:
-    service_map[(api_class.api_info.name, api_class.api_info.version)].append(
-        api_class)
+    api_info = api_class.api_info
+    path_version = (api_info.path_version
+                    if hasattr(api_info, 'path_version') else api_info.version)
+    service_map[(api_info.name, path_version)].append(api_class)
   class DiscoveryHandler(webapp2.RequestHandler):
     """Returns a discovery document for known services."""
 
