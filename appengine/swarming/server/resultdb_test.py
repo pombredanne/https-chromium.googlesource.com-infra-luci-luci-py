@@ -17,6 +17,7 @@ test_env.setup_test_env()
 from google.appengine.api import app_identity
 from google.appengine.ext import ndb
 
+import test_env_handlers
 from test_support import test_case
 
 from components import net

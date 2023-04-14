@@ -865,6 +865,12 @@ def import_jinja2():
   sys.path.append(os.path.join(THIS_DIR, 'third_party'))
 
 
+def import_third_party():
+  """Ensures that third_party packages are on the path."""
+  third_party_path = os.path.join(THIS_DIR, 'third_party')
+  if third_party_path not in sys.path:
+    sys.path.insert(0, third_party_path)
+
 # NDB Futures
 
 

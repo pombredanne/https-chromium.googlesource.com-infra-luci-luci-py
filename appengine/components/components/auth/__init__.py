@@ -10,15 +10,16 @@ export a portion of public API by specifying exported symbols in its __all__.
 
 from .version import __version__
 
-try:
-  import endpoints
-except ImportError:
-  endpoints = None
-
 # Auth component is using google.protobuf package, it requires some python
 # package magic hacking.
 from components import utils
 utils.fix_protobuf_package()
+
+try:
+  import endpoints
+except ImportError:
+  utils.import_third_party()
+  import endpoints
 
 from api import *
 from delegation import *
