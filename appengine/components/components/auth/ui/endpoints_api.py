@@ -4,7 +4,12 @@
 
 """Endpoints version of is_member API."""
 
-import endpoints
+PY2 = sys.version_info[0] == 2
+
+if PY2:
+  from endpoints.v1_0 import endpoints
+else:
+  from endpoints.v4_8_0 import endpoints
 from protorpc import message_types
 from protorpc import messages
 from protorpc import remote

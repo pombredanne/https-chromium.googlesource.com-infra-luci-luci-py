@@ -2,13 +2,19 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+PY2 = sys.version_info[0] == 2
+
 import collections
-import endpoints
 from six.moves import http_client
 import json
 import logging
 import os
 import posixpath
+
+if PY2:
+  from endpoints.v1_0 import endpoints
+else:
+  from endpoints.v4_8_0 import endpoints
 
 from endpoints import protojson
 from protorpc import message_types

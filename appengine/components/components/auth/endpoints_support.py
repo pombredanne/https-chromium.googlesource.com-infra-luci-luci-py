@@ -7,10 +7,15 @@
 This module is used only when 'endpoints' is importable (see auth/__init__.py).
 """
 
+PY2 = sys.version_info[0] == 2
+
 import functools
 import logging
 
-import endpoints
+if PY2:
+  from endpoints.v1_0 import endpoints
+else:
+  from endpoints.v4_8_0 import endpoints
 
 from protorpc import message_types
 from protorpc import util

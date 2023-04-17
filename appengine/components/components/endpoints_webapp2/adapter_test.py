@@ -3,6 +3,8 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+PY2 = sys.version_info[0] == 2
+
 import json
 import sys
 import unittest
@@ -12,9 +14,13 @@ test_env.setup_test_env()
 
 from protorpc import messages
 from protorpc import remote
-import endpoints
 import webapp2
 import zlib
+
+if PY2:
+  from endpoints.v1_0 import endpoints
+else:
+  from endpoints.v4_8_0 import endpoints
 
 from test_support import test_case
 import adapter

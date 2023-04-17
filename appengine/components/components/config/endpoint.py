@@ -8,13 +8,18 @@
 * Validates configs.
 * Provides service metadata.
 """
+PY2 = sys.version_info[0] == 2
 
 import logging
 
 from protorpc import messages
 from protorpc import message_types
 from protorpc import remote
-import endpoints
+
+if PY2:
+  from endpoints.v1_0 import endpoints
+else:
+  from endpoints.v4_8_0 import endpoints
 
 from components import auth
 

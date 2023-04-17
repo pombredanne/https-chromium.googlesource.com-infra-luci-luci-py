@@ -4,9 +4,14 @@
 
 """Discovery document generator for an Endpoints v1 over webapp2 service."""
 
+PY2 = sys.version_info[0] == 2
+
 import re
 
-import endpoints
+if PY2:
+  from endpoints.v1_0 import endpoints
+else:
+  from endpoints.v4_8_0 import endpoints
 
 from protorpc import message_types
 from protorpc import messages
