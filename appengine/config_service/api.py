@@ -11,6 +11,9 @@ from google.appengine.ext import ndb
 from protorpc import messages
 from protorpc import message_types
 from protorpc import remote
+from components import utils
+
+utils.ensure_endpoints_on_path()
 import endpoints
 
 from components import auth

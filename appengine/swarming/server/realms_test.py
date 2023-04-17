@@ -13,6 +13,9 @@ from parameterized import parameterized
 import test_env
 test_env.setup_test_env()
 
+from components import utils
+
+utils.ensure_endpoints_on_path()
 import endpoints
 
 from components import auth

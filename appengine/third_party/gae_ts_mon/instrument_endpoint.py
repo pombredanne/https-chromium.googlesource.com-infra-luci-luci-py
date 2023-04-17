@@ -8,6 +8,8 @@ import functools
 # Not all apps enable endpoints. If the import fails, the app will not
 # use @instrument_endpoint() decorator, so it is safe to ignore it.
 try:
+  from components.components import utils
+  utils.ensure_endpoints_on_path()
   import endpoints
 except ImportError:  # pragma: no cover
   pass

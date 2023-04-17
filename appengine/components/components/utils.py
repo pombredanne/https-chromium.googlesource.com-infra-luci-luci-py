@@ -865,6 +865,47 @@ def import_jinja2():
   sys.path.append(os.path.join(THIS_DIR, 'third_party'))
 
 
+def ensure_endpoints_on_path():
+  """
+  Hack :(
+
+  Makes sure that the correct 3rd party endpoints library may be loaded.
+
+  First checks to see whether endpoints can be imported, implying that it is
+  present on the sys.path already.
+
+  If it cannot be found, add endpoints version for python2 or one for
+  python3 depending on which version of python we are using.
+  """
+  # check whether we can already from endpoints as it may be provided
+  # by the appengine runtime environment.
+  # It probably will not be present during testing.
+  found = False
+  if sys.version_info.major == 2:
+    import imp
+    try:
+      imp.find_module('endpoints')
+      found = True
+    except ImportError:
+      found = False
+  elif sys.version_info.minor <= 3:
+    import importlib
+    if importlib.find_loader('endpoints'):
+      found = True
+  else:
+    import importlib.util
+    if importlib.util.find_spec("endpoints"):
+      found = True
+  if not found:
+    version = '2'
+    if sys.version_info.major != 2:
+      version = '3'
+    endpoints_path = os.path.join(THIS_DIR, 'third_party', 'endpoints', version)
+    sys.path.insert(0, endpoints_path)
+
+
+
+
 # NDB Futures
 
 
