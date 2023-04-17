@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25b91095_02435844",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-04-17T15:50:19Z",
+      "side": 1,
+      "message": "Approach here is to use two different versions of endpoints for different versions of python.",
+      "revId": "09a90e8b732e732b257e5d2b4e0ac205a9179ca4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
