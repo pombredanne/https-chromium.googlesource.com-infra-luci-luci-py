@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96d2203a_3666aca0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003293
+      },
+      "writtenOn": "2023-04-17T17:44:26Z",
+      "side": 1,
+      "message": "I\u0027m 60% sure this can be implemented simpler using python import magic machinery (__path__ stuff), but this can be explored later.",
+      "revId": "3ed54a573faa9479ec09904438c4f94979bc6332",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ecde802_2a3c3170",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1003293
+      },
+      "writtenOn": "2023-04-17T17:44:26Z",
+      "side": 1,
+      "message": "This should be removed (maybe in a separate CL). If we are testing against bundled version of the library, we must use the exact same bundled version in production.",
+      "range": {
+        "startLine": 889,
+        "startChar": 0,
+        "endLine": 896,
+        "endChar": 80
+      },
+      "revId": "3ed54a573faa9479ec09904438c4f94979bc6332",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
