@@ -2,6 +2,12 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
+import os
+import sys
+
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(APP_DIR, 'components', 'third_party'))
+
 import endpoints
 from protorpc import message_types
 from protorpc import messages

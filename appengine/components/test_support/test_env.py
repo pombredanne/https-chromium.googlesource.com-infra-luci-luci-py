@@ -32,3 +32,6 @@ def setup_test_env(app_id='sample-app'):
 
   from components import utils
   utils.fix_protobuf_package()
+
+  # For endpoints.
+  sys.path.insert(0, os.path.join(ROOT_DIR, 'components', 'third_party'))
