@@ -20,7 +20,7 @@ from . import zip_package
 
 # Path to (possibly extracted from zip) cacert.pem bundle file.
 # See get_cacerts_bundle().
-_ca_certs = None
+_ca_certs = '/etc/ssl/certs/ca-certificates.crt'
 _ca_certs_lock = threading.Lock()
 
 
