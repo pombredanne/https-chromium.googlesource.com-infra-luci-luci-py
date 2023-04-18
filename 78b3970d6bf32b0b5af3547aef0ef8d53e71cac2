@@ -45,6 +45,30 @@
       },
       "revId": "78b3970d6bf32b0b5af3547aef0ef8d53e71cac2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e5397c2_58b31837",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-04-18T23:03:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f277ba8_fb26f854",
+      "range": {
+        "startLine": 724,
+        "startChar": 4,
+        "endLine": 724,
+        "endChar": 22
+      },
+      "revId": "78b3970d6bf32b0b5af3547aef0ef8d53e71cac2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
