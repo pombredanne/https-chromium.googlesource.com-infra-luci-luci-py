@@ -84,7 +84,7 @@ service Tasks {
   // ListTaskStates returns task state for a specific set of tasks."""
   rpc ListTaskStates(TaskStatesRequest) returns (TaskStates);
   // GetTaskRequests returns the task request corresponding to a task ID.
-  rpc GetTaskRequests(TasksRequest) returns (TaskRequestsResponse);
+  rpc ListTaskRequests(TasksRequest) returns (TaskRequestsResponse);
   // CancelTasks cancels a subset of pending tasks based on the tags.
   // Cancellation happens asynchronously, so when this call returns,
   // cancellations will not have completed yet.
