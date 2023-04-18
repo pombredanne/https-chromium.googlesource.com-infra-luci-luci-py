@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "593ccc5d_3dab53a7",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-18T23:02:38Z",
+      "side": 1,
+      "message": "I don\u0027t like that we\u0027ll checking \"/etc/ssl/...\" path on Windows where it makes no sense. I also don\u0027t like that \"_ca_certs\" now has two meanings (it is either an OS-specific constant or a cached extracted file path). \n\nPlease change it to something like:\n\n```\ndef get_cacerts_bundle():\n  os_certs \u003d get_os_cacerts_bundle()\n  if os_certs and os.path.exists(os_certs):\n    return os_certs\n  ... # the exact same code as before\n\n\ndef get_os_cacerts_bundle():\n  if sys.platform \u003d\u003d \u0027linux\u0027:\n    return \u0027/etc/ssl/certs/ca-certificates.crt\u0027\n  return None\n```",
+      "range": {
+        "startLine": 406,
+        "startChar": 0,
+        "endLine": 414,
+        "endChar": 0
+      },
+      "revId": "5df924c96fa7a861036b11372fed853eb0cc546e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
