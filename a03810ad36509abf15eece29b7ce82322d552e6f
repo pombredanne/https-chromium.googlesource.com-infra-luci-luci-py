@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23c95e33_08c161ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003293
+      },
+      "writtenOn": "2023-04-18T22:23:28Z",
+      "side": 1,
+      "message": "I landed the exact copy of endpoints are was used by existing python2 to unbork the tests broken by removal of endpoints from gcloud. \n\nI think we\u0027ll still need a separate copy for python3 with all the hacks. I haven\u0027t tried anything python3.",
+      "revId": "a03810ad36509abf15eece29b7ce82322d552e6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
