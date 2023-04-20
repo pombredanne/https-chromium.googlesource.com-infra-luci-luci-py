@@ -2475,6 +2475,24 @@ class SwarmingServicePrpcTest(PrpcTest):
     _decode(response.body, actual)
     self.assertEqual(expected, actual)
 
+  @mock.patch('server.bot_code.generate_bootstrap_token')
+  def test_get_token_ok(self, token_mock):
+    self.set_as_admin()
+    token = 'the_token'
+    token_mock.return_value = token
+    response = self.post_prpc('GetToken', proto.empty_pb2.Empty())
+    actual = swarming_pb2.BootstrapToken()
+    _decode(response.body, actual)
+    expected = swarming_pb2.BootstrapToken(bootstrap_token=token)
+    self.assertEqual(expected, actual)
+
+  def test_get_token_forbidden(self):
+    self.set_as_anonymous()
+    response = self.post_prpc('GetDetails',
+                              proto.empty_pb2.Empty(),
+                              expect_errors=True)
+    self.assertEqual(response.status, '403 Forbidden')
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:
