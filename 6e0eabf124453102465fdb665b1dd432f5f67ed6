@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20732d8b_38f9593f",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-04-20T18:15:04Z",
+      "side": 1,
+      "message": "The current `rpc` will throw a `500` if you send it an invalid key. Added this exception.",
+      "range": {
+        "startLine": 785,
+        "startChar": 2,
+        "endLine": 785,
+        "endChar": 25
+      },
+      "revId": "6e0eabf124453102465fdb665b1dd432f5f67ed6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
