@@ -2454,7 +2454,8 @@ class SwarmingServicePrpcTest(PrpcTest):
     super(SwarmingServicePrpcTest, self).setUp()
     self.service = 'swarming.v2.Swarming'
 
-  @parameterized.expand(['GetDetails', 'GetToken', 'GetBootstrap'])
+  @parameterized.expand(
+      ['GetDetails', 'GetToken', 'GetBootstrap', 'GetBotConfig'])
   def test_forbidden(self, rpc):
     self.set_as_anonymous()
     response = self.post_prpc(rpc, proto.empty_pb2.Empty(), expect_errors=True)
@@ -2495,7 +2496,8 @@ class SwarmingServicePrpcTest(PrpcTest):
   @parameterized.expand([('GetBootstrap', 'bootstrap', '#!/usr/bin/env python\n'
                           '# coding: utf-8\n'
                           'host_url = \'\'\n'
-                          'bootstrap_token = \'\'\n')])
+                          'bootstrap_token = \'\'\n'),
+                         ('GetBotConfig', 'bot_config', '')])
   def test_boot_strap_file(self, rpc, name, header):
     # Tests either get_bootstrap or get_bot_config.
     self.set_as_admin()
