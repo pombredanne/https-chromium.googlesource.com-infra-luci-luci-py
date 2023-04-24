@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a460b16b_332b8076",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-24T20:37:21Z",
+      "side": 1,
+      "message": "del",
+      "range": {
+        "startLine": 373,
+        "startChar": 59,
+        "endLine": 373,
+        "endChar": 61
+      },
+      "revId": "b9b8c7918a7254939764dbf8c9e0a10c3e89a6a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
