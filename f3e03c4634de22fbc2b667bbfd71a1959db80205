@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5859a5d7_92239dbd",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-24T23:28:22Z",
+      "side": 1,
+      "message": "this is the real change",
+      "range": {
+        "startLine": 462,
+        "startChar": 0,
+        "endLine": 463,
+        "endChar": 66
+      },
+      "revId": "f3e03c4634de22fbc2b667bbfd71a1959db80205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
