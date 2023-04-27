@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3590a381_7bba513a",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2493,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-04-27T21:29:57Z",
+      "side": 1,
+      "message": "Deleted!",
+      "parentUuid": "4d647370_e7b87e60",
+      "range": {
+        "startLine": 2488,
+        "startChar": 2,
+        "endLine": 2493,
+        "endChar": 54
+      },
+      "revId": "75794fb51732d320342e4bde190451eb2914c014",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2507b16_a811788c",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-24T20:40:36Z",
       "side": 1,
       "message": "nit: bootstrap is a single word\n\nI believe boot straps is this https://www.verillas.com/versatta-boot-straps/?gclid\u003dCjwKCAjw0ZiiBhBKEiwA4PT9z_pP7IFCzUaIUa6rJZbITJCrJAGANxThYn7ZvJqyWufefsKNyODaZhoCFAwQAvD_BwE 😄\n\n(Though bootstrap is roughly the same thing, something you pool by, in particular to put on a boot).",
+      "range": {
+        "startLine": 2499,
+        "startChar": 11,
+        "endLine": 2499,
+        "endChar": 21
+      },
+      "revId": "75794fb51732d320342e4bde190451eb2914c014",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd1c1b59_db94d73c",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2499,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-04-27T21:29:57Z",
+      "side": 1,
+      "message": "Funnily enough, I feel like neither of those things are actually related to the concept of `bootstrapping` besides for the phrase \"pull yourself up by your bootstraps\" 😄",
+      "parentUuid": "e2507b16_a811788c",
       "range": {
         "startLine": 2499,
         "startChar": 11,
