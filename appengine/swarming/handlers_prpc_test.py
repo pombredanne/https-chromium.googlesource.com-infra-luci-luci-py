@@ -2492,7 +2492,8 @@ class SwarmingServicePrpcTest(PrpcTest):
     super(SwarmingServicePrpcTest, self).setUp()
     self.service = 'swarming.v2.Swarming'
 
-  @parameterized.expand(['GetDetails', 'GetToken', 'GetBootstrap'])
+  @parameterized.expand(
+      ['GetDetails', 'GetToken', 'GetBootstrap', 'GetBotConfig'])
   def test_forbidden(self, rpc):
     self.set_as_anonymous()
     response = self.post_prpc(rpc, proto.empty_pb2.Empty(), expect_errors=True)
@@ -2522,13 +2523,6 @@ class SwarmingServicePrpcTest(PrpcTest):
     _decode(response.body, actual)
     expected = swarming_pb2.BootstrapToken(bootstrap_token=token)
     self.assertEqual(expected, actual)
-
-  def test_get_token_forbidden(self):
-    self.set_as_anonymous()
-    response = self.post_prpc('GetDetails',
-                              proto.empty_pb2.Empty(),
-                              expect_errors=True)
-    self.assertEqual(response.status, '403 Forbidden')
 
   @parameterized.expand([('GetBootstrap', 'bootstrap', '#!/usr/bin/env python\n'
                           '# coding: utf-8\n'
