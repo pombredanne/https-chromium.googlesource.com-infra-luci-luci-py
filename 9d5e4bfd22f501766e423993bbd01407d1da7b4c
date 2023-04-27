@@ -16,6 +16,23 @@
       "message": "lgtm as a temporary measure, but we should think more about reordering the $REASONS.",
       "revId": "9d5e4bfd22f501766e423993bbd01407d1da7b4c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3646a018_e9a04602",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-04-27T18:47:41Z",
+      "side": 1,
+      "message": "I\u0027m worried SSD bots will now be picking up ssd:0 tasks for a bit, potentially starving out tasks that really need SSD.\n\nI wonder if adding `After\u003d...` to *Swarming bot\u0027s* systemd unit will resolve the startup ordering problem? This will require updating GCE Provider agent, but it is not a hugely complicated task and can do it.",
+      "revId": "9d5e4bfd22f501766e423993bbd01407d1da7b4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
