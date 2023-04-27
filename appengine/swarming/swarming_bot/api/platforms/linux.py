@@ -316,8 +316,7 @@ def get_reboot_required():
   return os.path.exists('/var/run/reboot-required')
 
 
-@tools.cached
-def get_ssd():
+def _find_ssd_in_lsblk():
   """Returns a list of SSD disks."""
   try:
     out = subprocess.check_output(['lsblk', '-d', '-o', 'name,rota'],
@@ -331,6 +330,26 @@ def get_ssd():
   except (OSError, subprocess.CalledProcessError) as e:
     logging.error('Failed to read disk info: %s', e)
     return ()
+
+
+@tools.cached
+def _get_ssd_cached():
+  return _find_ssd_in_lsblk()
+
+
+def _get_ssd_no_cached():
+  return _find_ssd_in_lsblk()
+
+
+def get_ssd():
+  """Returns a list of SSDs.
+
+  We don't trust that lsblk will return accurate information for the first
+  minute or so after boot. So we only cache its val after that point.
+  """
+  if get_uptime() < 60:
+    return _get_ssd_no_cached()
+  return _get_ssd_cached()
 
 
 @tools.cached
