@@ -33,6 +33,24 @@
       "message": "I\u0027m worried SSD bots will now be picking up ssd:0 tasks for a bit, potentially starving out tasks that really need SSD.\n\nI wonder if adding `After\u003d...` to *Swarming bot\u0027s* systemd unit will resolve the startup ordering problem? This will require updating GCE Provider agent, but it is not a hugely complicated task and can do it.",
       "revId": "9d5e4bfd22f501766e423993bbd01407d1da7b4c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "460cab81_2daad933",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2023-04-28T22:08:16Z",
+      "side": 1,
+      "message": "MA had the same suggestion in chat. That doesn\u0027t immediately work, but after a ton of bashing my head against the wall of systemd I think I figured it out: just adding `Before\u003d` to chromebuild\u0027s service (or `After\u003d...` to swarming\u0027s service) doesn\u0027t work. If you want such dependencies between two services, you have to make sure the `WantedBy` directives also line up so that the \"WantedBy\" service doesn\u0027t try starting up swarming before chromebuild starts. If there\u0027s a conflict there, then the swarming service never starts.... and systemd will never tell you why \u003e.\u003c\n\nBut if we put both services in the same WantedBy level, then it behaves exactly like we want. So I uploaded https://crrev.com/c/4492133, and I\u0027m decently sure that does what we want. I\u0027ll abandon this CL if/when that lands + rolls out + actually fixes things.",
+      "parentUuid": "3646a018_e9a04602",
+      "revId": "9d5e4bfd22f501766e423993bbd01407d1da7b4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
