@@ -16,6 +16,23 @@
       "message": "Stack trace was:\n```\nFile \"/workspace/components/endpoints_flask/adapter.py\", line 115, in path_handler\n    req \u003d decode_message(api_method.remote, flask.request, route_kwargs)\n  File \"/workspace/components/endpoints_flask/adapter.py\", line 61, in decode_message\n    data \u003d PROTOCOL.decode_message(data_type, request.data)\n  File \"/layers/google.python.pip/pip/lib/python3.9/site-packages/protorpc/protojson.py\", line 202, in decode_message\n    message \u003d self.__decode_dictionary(message_type, dictionary)\n  File \"/layers/google.python.pip/pip/lib/python3.9/site-packages/protorpc/protojson.py\", line 280, in __decode_dictionary\n    valid_value.append(self.decode_field(field, item))\n  File \"/workspace/third_party/endpoints/protojson.py\", line 108, in decode_field\n    return super(EndpointsProtoJson, self).decode_field(field, value)\n  File \"/layers/google.python.pip/pip/lib/python3.9/site-packages/protorpc/protojson.py\", line 319, in decode_field\n    return self.__decode_dictionary(field.type, value)\n  File \"/layers/google.python.pip/pip/lib/python3.9/site-packages/protorpc/protojson.py\", line 250, in __decode_dictionary\n    for key, value in six.iteritems(dictionary):\n  File \"/layers/google.python.pip/pip/lib/python3.9/site-packages/six.py\", line 589, in iteritems\n    return iter(d.items(**kw))\nAttributeError: \u0027str\u0027 object has no attribute \u0027items\u0027\"\n```",
       "revId": "a73e0820d173cd127a43245d58c181f7ea139f25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "592a5c36_f7f8ab95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2023-04-29T00:09:15Z",
+      "side": 1,
+      "message": "Is the test failure related?",
+      "revId": "a73e0820d173cd127a43245d58c181f7ea139f25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
