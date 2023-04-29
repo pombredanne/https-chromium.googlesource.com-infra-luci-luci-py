@@ -33,6 +33,24 @@
       "message": "Is the test failure related?",
       "revId": "a73e0820d173cd127a43245d58c181f7ea139f25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60b0b9d2_d988f9b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2023-04-29T00:14:42Z",
+      "side": 1,
+      "message": "No, it\u0027s a flaky test.",
+      "parentUuid": "592a5c36_f7f8ab95",
+      "revId": "a73e0820d173cd127a43245d58c181f7ea139f25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
