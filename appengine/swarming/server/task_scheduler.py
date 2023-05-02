@@ -1188,6 +1188,7 @@ def check_schedule_request_acl_service_account(request):
 
 
 def schedule_request(request,
+                     task_request_id=None,
                      enable_resultdb=False,
                      secret_bytes=None,
                      build_token=None):
@@ -1205,6 +1206,11 @@ def schedule_request(request,
   Arguments:
   - request: TaskRequest entity to be saved in the DB. It's key must not be set
              and the entity must not be saved in the DB yet.
+  - task_request_id: Optional TaskRequestID entity to be queried in the DB.
+             Defines the relationship between request_id and task_id. If found,
+             nothing is saved in the DB since there is already an existing task
+             for that request. If task_request_id is not provided, there is no
+             guarantee of idempotency.
   - enable_resultdb: Optional Boolean (default False) of whether we use resultdb
              or not for this task.
   - secret_bytes: Optional SecretBytes entity to be saved in the DB. It's key
@@ -1326,19 +1332,34 @@ def schedule_request(request,
 
   def txn():
     """Returns True if stored everything, False on an ID collision."""
+    # Checking if a request_uuid => task_id relationship exists.
+    if task_request_id:
+      task_request_id.key = task_request.TaskRequestId.create_key(
+          task_request_id.request_id)
+      task_req_id_exists = task_request.TaskRequestId.query(
+          task_request.TaskRequestId.request_id == task_request_id.request_id,
+          ancestor=task_request_id.key.parent()).get()
+      if task_req_id_exists:
+        return True
+
+      # Setting task_id for TaskRequestId.
+      task_request_id.task_id = result_summary.task_id
+
     existing = request.key.get()
     if existing:
       return existing.txn_uuid == request.txn_uuid
     if to_run and request.rbe_instance:
       rbe.enqueue_rbe_task(request, to_run)
-    ndb.put_multi(
-        filter(bool, [
-            request,
-            result_summary,
-            to_run,
-            secret_bytes,
-            build_token,
-        ]))
+    to_put = [
+        request,
+        result_summary,
+        to_run,
+        secret_bytes,
+        build_token,
+    ]
+    if task_request_id:
+      to_put.append(task_request_id)
+    ndb.put_multi(filter(bool, to_put))
     return True
 
   # Try to transactionally insert the request retrying on task ID collisions
@@ -1347,7 +1368,7 @@ def schedule_request(request,
   while True:
     attempt += 1
     try:
-      if datastore_utils.transaction(txn, retries=3):
+      if datastore_utils.transaction(txn, retries=3, xg=True):
         break
       # There was an existing *different* entity. We need a new root key.
       prev = result_summary.task_id
