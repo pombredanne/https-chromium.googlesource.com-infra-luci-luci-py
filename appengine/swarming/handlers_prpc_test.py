@@ -12,6 +12,7 @@ import sys
 import unittest
 import json
 import cgi
+import uuid
 import mock
 import base64
 from parameterized import parameterized
@@ -1669,7 +1670,8 @@ class TaskServicePrpcTest(PrpcTest):
                                       priority=20,
                                       tags=[u'a:tag'],
                                       user='joe@localhost',
-                                      bot_ping_tolerance_secs=600)
+                                      bot_ping_tolerance_secs=600,
+                                      request_uuid=str(uuid.uuid4()))
     if use_default_slice:
       ts = swarming_pb2.TaskSlice(expiration_secs=180, wait_for_capacity=True)
       # Hack to get min line length.
