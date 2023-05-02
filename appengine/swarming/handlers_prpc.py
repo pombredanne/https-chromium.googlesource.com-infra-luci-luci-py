@@ -19,6 +19,7 @@ from proto.api_v2 import swarming_prpc_pb2
 from proto.internals import rbe_pb2
 from proto.internals import rbe_prpc_pb2
 from server import acl
+from server import bot_code
 from server import config
 from server import task_result
 from server import task_scheduler
@@ -356,11 +357,69 @@ class InternalsService(object):
     return empty_pb2.Empty()
 
 
+class SwarmingService(object):
+  DESCRIPTION = swarming_prpc_pb2.SwarmingServiceDescription
+
+  @prpc_helpers.method
+  @auth.require(acl.can_access, log_identity=True)
+  def GetDetails(self, _request, _context):
+    details = api_common.get_server_details()
+    return swarming_pb2.ServerDetails(
+        bot_version=details.bot_version,
+        server_version=details.server_version,
+        display_server_url_template=details.display_server_url_template,
+        luci_config=details.luci_config,
+        cas_viewer_server=details.cas_viewer_server,
+    )
+
+  @prpc_helpers.method
+  @auth.require(acl.can_create_bot, log_identity=True)
+  def GetToken(self, _request, _context):
+    return swarming_pb2.BootstrapToken(
+        bootstrap_token=bot_code.generate_bootstrap_token())
+
+  @prpc_helpers.method
+  @auth.require(acl.can_view_config, log_identity=True)
+  def GetBootstrap(self, _request, _context):
+    obj = bot_code.get_bootstrap('', '')
+    return swarming_pb2.FileContent(content=obj.content.decode('utf-8'),
+                                    who=obj.who,
+                                    when=obj.when,
+                                    version=obj.version)
+
+  @prpc_helpers.method
+  @auth.require(acl.can_view_config, log_identity=True)
+  def GetBotConfig(self, _request, _context):
+    obj, _ = bot_code.get_bot_config()
+    return swarming_pb2.FileContent(content=obj.content.decode('utf-8'),
+                                    who=obj.who,
+                                    when=obj.when,
+                                    version=obj.version)
+
+  @prpc_helpers.method
+  @auth.public
+  def GetPermissions(self, request, _context):
+    perms = api_common.get_permissions(request.bot_id, request.task_id,
+                                       request.tags)
+    return swarming_pb2.ClientPermissions(
+        delete_bot=perms.delete_bot,
+        delete_bots=perms.delete_bots,
+        terminate_bot=perms.terminate_bot,
+        get_configs=perms.get_configs,
+        put_configs=perms.put_configs,
+        cancel_task=perms.cancel_task,
+        cancel_tasks=perms.cancel_tasks,
+        get_bootstrap_token=perms.get_bootstrap_token,
+        list_bots=perms.list_bots,
+        list_tasks=perms.list_tasks)
+
+
 def get_routes():
   s = prpc.Server()
   s.add_service(BotsService())
   s.add_service(TaskBackendAPIService())
   s.add_service(TasksService())
   s.add_service(InternalsService())
+  s.add_service(SwarmingService())
   s.add_interceptor(auth.prpc_interceptor)
   return s.get_routes()
