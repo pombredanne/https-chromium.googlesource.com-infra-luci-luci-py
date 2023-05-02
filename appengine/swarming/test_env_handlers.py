@@ -7,6 +7,7 @@
 import base64
 import json
 import os
+import uuid
 
 import mock
 
@@ -516,10 +517,12 @@ class AppTestBase(test_case.TestCase):
 
     Useful to use a swarming_rpcs.TaskSlice.
     """
+    request_uuid = str(uuid.uuid4())
     out = {
         'expiration_secs': 24 * 60 * 60,
         'name': 'job1',
         'priority': 20,
+        'request_uuid': request_uuid,
         'tags': [u'a:tag'],
         'user': 'joe@localhost',
         'bot_ping_tolerance_secs': 600,

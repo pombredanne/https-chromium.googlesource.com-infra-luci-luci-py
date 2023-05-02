@@ -1188,6 +1188,7 @@ def check_schedule_request_acl_service_account(request):
 
 
 def schedule_request(request,
+                     task_request_id,
                      enable_resultdb=False,
                      secret_bytes=None,
                      build_token=None):
@@ -1326,6 +1327,17 @@ def schedule_request(request,
 
   def txn():
     """Returns True if stored everything, False on an ID collision."""
+    # Checking if a request_uuid => task_id relationship exists.
+    task_request_id.key = task_request.TaskRequestId.create_key(
+        task_request_id.request_id)
+    task_req_id_exists = task_request.TaskRequestId.query(
+        task_request.TaskRequestId.request_id == task_request_id.request_id,
+        ancestor=task_request_id.key.parent()).get()
+    if task_req_id_exists:
+      return True
+
+    # Setting task_id for TaskRequestId.
+    task_request_id.task_id = result_summary.task_id
     existing = request.key.get()
     if existing:
       return existing.txn_uuid == request.txn_uuid
@@ -1334,6 +1346,7 @@ def schedule_request(request,
     ndb.put_multi(
         filter(bool, [
             request,
+            task_request_id,
             result_summary,
             to_run,
             secret_bytes,
@@ -1347,7 +1360,7 @@ def schedule_request(request,
   while True:
     attempt += 1
     try:
-      if datastore_utils.transaction(txn, retries=3):
+      if datastore_utils.transaction(txn, retries=3, xg=True):
         break
       # There was an existing *different* entity. We need a new root key.
       prev = result_summary.task_id

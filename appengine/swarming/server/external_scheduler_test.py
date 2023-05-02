@@ -10,6 +10,7 @@ import os
 import random
 import sys
 import unittest
+import uuid
 
 # Setups environment.
 APP_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -77,6 +78,12 @@ def _gen_request(**kwargs):
   ret = task_request.TaskRequest(**args)
   task_request.init_new_request(ret, True, task_request.TEMPLATE_AUTO)
   return ret
+
+
+def _gen_request_id(_id=None):
+  if _id is None:
+    return task_request.TaskRequestId(request_id=str(uuid.uuid4()))
+  return task_request.TaskRequestId(request_id=_id)
 
 
 class FakeExternalScheduler(object):
@@ -203,7 +210,8 @@ class ExternalSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_notify_requests(self):
     request = _gen_request()
-    result_summary = task_scheduler.schedule_request(request)
+    task_request_id = _gen_request_id()
+    result_summary = task_scheduler.schedule_request(request, task_request_id)
     external_scheduler.notify_requests(
         self.es_cfg, [(request, result_summary)], False, False)
 
@@ -304,7 +312,8 @@ class ExternalSchedulerApiTestBatchMode(test_env_handlers.AppTestBase):
 
   def test_notify_request_with_tq_batch_mode(self):
     request = _gen_request()
-    result_summary = task_scheduler.schedule_request(request)
+    task_request_id = _gen_request_id()
+    result_summary = task_scheduler.schedule_request(request, task_request_id)
     self.execute_tasks()
 
     # Create requests with different scheduler IDs.
@@ -343,7 +352,8 @@ class ExternalSchedulerApiTestBatchMode(test_env_handlers.AppTestBase):
 
   def test_notify_request_with_tq_batch_mode_false(self):
     request = _gen_request()
-    result_summary = task_scheduler.schedule_request(request)
+    task_request_id = _gen_request_id()
+    result_summary = task_scheduler.schedule_request(request, task_request_id)
     self.cfg.enable_batch_es_notifications = True
     self.execute_tasks()
 
