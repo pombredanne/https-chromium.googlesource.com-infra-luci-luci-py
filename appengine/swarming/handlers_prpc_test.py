@@ -12,6 +12,7 @@ import sys
 import unittest
 import json
 import cgi
+import uuid
 import mock
 import base64
 from parameterized import parameterized
