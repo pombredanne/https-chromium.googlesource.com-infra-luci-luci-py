@@ -145,8 +145,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     self.mock(service_accounts, 'has_token_server', lambda: True)
 
     request = self._basic_run_task_request()
-    request_id = 'cf60878f-8f2a-4f1e-b1f5-8b5ec88813a9'
-    request.request_id = request_id
+    request.build_id = "8783198670850745761"
     self.mock(random, 'getrandbits', lambda _: 0x86)
     raw_resp = self.app.post('/prpc/buildbucket.v2.TaskBackend/RunTask',
                              _encode(request), self._headers)
@@ -162,10 +161,6 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     self.assertEqual(1, task_request.TaskRequest.query().count())
     self.assertEqual(1, task_request.BuildToken.query().count())
     self.assertEqual(1, task_request.SecretBytes.query().count())
-    request_idempotency_key = 'request_id/%s/%s' % (
-        request_id, auth.get_current_identity().to_bytes())
-    self.assertIsNotNone(
-        memcache.get(request_idempotency_key, namespace='backend_run_task'))
 
     # Test requests are correctly deduped if `request_id` matches.
     raw_resp = self.app.post('/prpc/buildbucket.v2.TaskBackend/RunTask',
@@ -181,8 +176,8 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     self.assertEqual(1, task_request.BuildToken.query().count())
     self.assertEqual(1, task_request.SecretBytes.query().count())
 
-    # Test tasks with different `request_id`s are not deduped.
-    request.request_id = 'cf60878f-8f2a-4f1e-b1f5-8b5ec88813a8'
+    # Test tasks with different `build_id`s are not deduped.
+    request.build_id = '23895823794242'
     self.mock(random, 'getrandbits', lambda _: 0x87)
     raw_resp = self.app.post('/prpc/buildbucket.v2.TaskBackend/RunTask',
                              _encode(request), self._headers)
