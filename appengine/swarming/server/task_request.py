@@ -49,6 +49,7 @@ TaskProperties is embedded in TaskRequest. TaskProperties is still declared as a
 separate entity to clearly declare the boundary for task request deduplication.
 """
 
+from calendar import c
 import datetime
 import hashlib
 import logging
@@ -1099,6 +1100,30 @@ class TaskSlice(ndb.Model):
     self.properties._pre_put_hook()
     if self.wait_for_capacity is None:
       raise datastore_errors.BadValueError('wait_for_capacity is required')
+
+
+class DummyRoot(ndb.Model):
+  """Dummy root so that ancestor queries can work in a transaction.
+  """
+  pass
+
+
+class TaskRequestId(ndb.Model):
+  """Defines a mapping between request_id and task_id.
+
+  This model is immutable.
+  """
+  # ID that comes from the caller of either NewTask or RunTask.
+  request_id = ndb.StringProperty(required=True)
+
+  # something
+  # good
+  task_id = ndb.StringProperty(required=True)
+
+  @classmethod
+  def create_key(cls, request_uuid):
+    root_key = ndb.Key(DummyRoot, "global")
+    return ndb.Key(cls, request_uuid, parent=root_key)
 
 
 class TaskRequest(ndb.Model):
