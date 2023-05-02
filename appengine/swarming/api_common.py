@@ -4,6 +4,7 @@
 """Contains code which is common between bot the prpc API and the protorpc api.
 """
 import logging
+import os
 from collections import namedtuple
 
 from google.appengine.api import datastore_errors
@@ -15,8 +16,12 @@ import handlers_exceptions
 from components import auth
 from components import datastore_utils
 from components import utils
-from server import task_queues
+from server import acl
 from server import bot_management
+from server import bot_code
+from server import config
+from server import pools_config
+from server import task_queues
 from server import realms
 from server import task_scheduler
 from server import task_request
@@ -789,3 +794,102 @@ def get_states(task_ids):
       result.state if result else task_result.State.PENDING
       for result in task_results
   ]
+
+
+ServerDetails = namedtuple(
+    'ServerDetails',
+    [
+        # str of commit hash of currently deployed swarming_bot.
+        'bot_version',
+        # str of commit hash of currently deployed swarming_server.
+        'server_version',
+        # A url to a task display server (e.g. milo).  This should have a %s
+        # where a task id can go.
+        'display_server_url_template',
+        # str hostname of luci_config server.
+        'luci_config',
+        # Host of RBE-CAS viewer server.
+        'cas_viewer_server',
+    ])
+
+
+def get_server_details():
+  """Returns a ServerDetails namedtuple describing information on the swarming
+  server environment"""
+  host = 'https://' + os.environ['HTTP_HOST']
+
+  cfg = config.settings()
+  server_version = utils.get_app_version()
+
+  return ServerDetails(
+      bot_version=bot_code.get_bot_version(host)[0],
+      server_version=server_version,
+      display_server_url_template=cfg.display_server_url_template,
+      luci_config=config.config.config_service_hostname(),
+      cas_viewer_server=cfg.cas.viewer_server)
+
+
+ClientPermissions = namedtuple(
+    'ClientPermissions',
+    [
+        # Client delete a bot.
+        'delete_bot',
+        # Clients mass delete bots.
+        'delete_bots',
+        # Client can call terminate bot.
+        'terminate_bot',
+        # Client can get bot_config.
+        'get_configs',
+        'put_configs',
+        # Client can cancel a single task with given task_id.
+        'cancel_task',
+        # Client may mass cancel many tasks.
+        'cancel_tasks',
+        # Client may access the bootstrap token for a given bot.
+        'get_bootstrap_token',
+        # List of pools which client may list bots.
+        'list_bots',
+        # List of pools for which a client may list tasks.
+        'list_tasks',
+    ])
+
+
+def _can_cancel_task(task_id):
+  if not task_id:
+    # TODO(crbug.com/1066839):
+    # This is for the compatibility until Web clients send task_id.
+    # return False if task_id is not given.
+    return acl._is_privileged_user()
+  task_key, _ = to_keys(task_id)
+  task = task_key.get()
+  if not task:
+    raise handlers_exceptions.NotFoundException('%s not found.' % task_id)
+  return realms.can_cancel_task(task)
+
+
+def get_permissions(bot_id, task_id, tags):
+  """Checks what permissions are available for the client.
+
+  Args:
+    bot_id: str or None bot identifier.
+    task_id: str or None task identifier.
+    tags: list of str in the form of "key:value" describing tags.
+
+  Returns:
+    ClientPermissions named tuple.
+  """
+  pools_list_bots = [p for p in pools_config.known() if realms.can_list_bots(p)]
+  pools_list_tasks = [
+      p for p in pools_config.known() if realms.can_list_tasks(p)
+  ]
+  pool_tags = bot_management.get_pools_from_dimensions_flat(tags)
+  return ClientPermissions(delete_bot=realms.can_delete_bot(bot_id),
+                           delete_bots=realms.can_delete_bots(pool_tags),
+                           terminate_bot=realms.can_terminate_bot(bot_id),
+                           get_configs=acl.can_view_config(),
+                           put_configs=acl.can_edit_config(),
+                           cancel_task=_can_cancel_task(task_id),
+                           cancel_tasks=realms.can_cancel_tasks(pool_tags),
+                           get_bootstrap_token=acl.can_create_bot(),
+                           list_bots=pools_list_bots,
+                           list_tasks=pools_list_tasks)
