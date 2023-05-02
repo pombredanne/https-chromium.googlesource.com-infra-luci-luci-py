@@ -49,27 +49,23 @@ class TaskBackendAPIService(object):
     tr, secret_bytes, build_token = backend_conversions.compute_task_request(
         request)
 
+    caller = auth.get_current_identity().to_bytes()
+    request_id = task_request.TaskRequestId(request_id="%s:%s" %
+                                            (caller, request.build_id))
+
     api_helpers.process_task_request(tr, task_request.TEMPLATE_AUTO)
 
-    def _schedule_request():
-      try:
-        return task_scheduler.schedule_request(tr,
-                                               secret_bytes=secret_bytes,
-                                               build_token=build_token)
-      except (TypeError, ValueError) as e:
-        raise handlers_exceptions.BadRequestException(e.message)
+    try:
+      result_summary = task_scheduler.schedule_request(
+          tr, request_id, secret_bytes=secret_bytes, build_token=build_token)
+    except (TypeError, ValueError) as e:
+      raise handlers_exceptions.BadRequestException(e.message)
 
-    result, is_deduped = api_helpers.cache_request('backend_run_task',
-                                                   request.request_id,
-                                                   _schedule_request)
-    if is_deduped:
-      logging.info('Reusing task %s with uuid %s', result.task_id,
-                   request.request_id)
     hostname = app_identity.get_default_version_hostname()
-    task = task_pb2.Task(id=task_pb2.TaskID(id=result.task_id,
-                                            target=request.target),
+    task_id = task_pack.pack_result_summary_key(result_summary.key)
+    task = task_pb2.Task(id=task_pb2.TaskID(id=task_id, target=request.target),
                          link="https://%s/task?id=%s&o=true&w=true" %
-                         (hostname, result.task_id),
+                         (hostname, task_id),
                          status=common_pb2.SCHEDULED)
     return backend_pb2.RunTaskResponse(task=task)
 

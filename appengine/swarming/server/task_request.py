@@ -1101,6 +1101,29 @@ class TaskSlice(ndb.Model):
       raise datastore_errors.BadValueError('wait_for_capacity is required')
 
 
+class DummyRoot(ndb.Model):
+  """Dummy root so that ancestor queries can work in a transaction.
+  """
+
+
+class TaskRequestId(ndb.Model):
+  """Defines a mapping between request_id and task_id.
+
+  This model is immutable.
+  """
+  # ID that comes from the caller of either NewTask or RunTask.
+  request_id = ndb.StringProperty(required=True)
+
+  # something
+  # good
+  task_id = ndb.StringProperty(required=True)
+
+  @classmethod
+  def create_key(cls, request_uuid):
+    root_key = ndb.Key(DummyRoot, "global")
+    return ndb.Key(cls, request_uuid, parent=root_key)
+
+
 class TaskRequest(ndb.Model):
   """Contains a user request.
 
