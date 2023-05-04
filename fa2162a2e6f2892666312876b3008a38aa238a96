@@ -16,6 +16,29 @@
       "message": "Gentle Ping :)",
       "revId": "fa2162a2e6f2892666312876b3008a38aa238a96",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32c04a20_4949bbe5",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-04T17:22:23Z",
+      "side": 1,
+      "message": "If the task is `deduped` (`is_deduped\u003dTrue`) it means that the result of a previous task has been used. If this is the case then swarming schedules no future work. It will reuse results of previous similar task. I\u0027m wondering if this should be a different status in that case?",
+      "range": {
+        "startLine": 73,
+        "startChar": 25,
+        "endLine": 73,
+        "endChar": 52
+      },
+      "revId": "fa2162a2e6f2892666312876b3008a38aa238a96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
