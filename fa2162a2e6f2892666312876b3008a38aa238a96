@@ -56,6 +56,30 @@
       },
       "revId": "fa2162a2e6f2892666312876b3008a38aa238a96",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3705c9c0_6b7755eb",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-05-05T19:26:28Z",
+      "side": 1,
+      "message": "I see there\u0027s a state field in TaskResultSummary, maybe here the status could be derived from that?",
+      "parentUuid": "32c04a20_4949bbe5",
+      "range": {
+        "startLine": 73,
+        "startChar": 25,
+        "endLine": 73,
+        "endChar": 52
+      },
+      "revId": "fa2162a2e6f2892666312876b3008a38aa238a96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
