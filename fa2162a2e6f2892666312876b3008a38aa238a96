@@ -80,6 +80,30 @@
       },
       "revId": "fa2162a2e6f2892666312876b3008a38aa238a96",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43dc699f_713a2290",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-08T20:57:37Z",
+      "side": 1,
+      "message": "That could work - I think it could just say that the state is `COMPLETED`? Deduped is not actually represented by the task state but rather by another property of `TaskResultSummary`.",
+      "parentUuid": "3705c9c0_6b7755eb",
+      "range": {
+        "startLine": 73,
+        "startChar": 25,
+        "endLine": 73,
+        "endChar": 52
+      },
+      "revId": "fa2162a2e6f2892666312876b3008a38aa238a96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
