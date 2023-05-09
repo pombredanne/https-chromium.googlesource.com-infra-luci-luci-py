@@ -104,6 +104,30 @@
       },
       "revId": "fa2162a2e6f2892666312876b3008a38aa238a96",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa3cc3e9_6d8841ce",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-09T12:55:37Z",
+      "side": 1,
+      "message": "yeah so in the next CL, `is_deduped` is being removed. Let me just pull the status from `TaskResultSummary` like chan suggested for this CL. That will be the preferred method of obtaining status anyways.",
+      "parentUuid": "43dc699f_713a2290",
+      "range": {
+        "startLine": 73,
+        "startChar": 25,
+        "endLine": 73,
+        "endChar": 52
+      },
+      "revId": "fa2162a2e6f2892666312876b3008a38aa238a96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
