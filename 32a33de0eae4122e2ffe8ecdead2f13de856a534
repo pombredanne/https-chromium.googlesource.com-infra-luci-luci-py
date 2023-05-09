@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec98addb_3d472db2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-09T19:36:30Z",
+      "side": 1,
+      "message": "PTAL again. I refactored how task derives it status from swarming task_result.",
+      "revId": "32a33de0eae4122e2ffe8ecdead2f13de856a534",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
