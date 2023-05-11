@@ -16,6 +16,379 @@
       "message": "gentle ping",
       "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "088f9270_c427e23d",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "This is incorrect. It is possible to have multiple terminate task requests (e.g. a bot can be terminated, then it comes back online, and later terminated again). With a request_id like that, there can be only one termination task per caller per bot ever.\n\nterminate_bot(...) should accept a request_id of its own used for idempotency purposes. Or just leave it as is.",
+      "range": {
+        "startLine": 155,
+        "startChar": 42,
+        "endLine": 155,
+        "endChar": 74
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab257a18_65b5eeae",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "Hm, it is possible we need to mutate `request` inside schedule_request(...) to make sure it has the correct key if this is recognized as a retry.",
+      "range": {
+        "startLine": 437,
+        "startChar": 25,
+        "endLine": 437,
+        "endChar": 40
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42010c89_eb85ded4",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "This is not necessary and even harmful. Putting entities under a single root makes them part of a single entity group. Entity groups are supposed to be used for highly correlated data (i.e. data that is often touched at the same time). Putting *everything* under a single entity group will lead to datastore hotspotting and performance issues when doing transactions.",
+      "range": {
+        "startLine": 1104,
+        "startChar": 0,
+        "endLine": 1106,
+        "endChar": 5
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "627d57c9_4186d8f9",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1109,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "nit: TaskRequestID",
+      "range": {
+        "startLine": 1109,
+        "startChar": 6,
+        "endLine": 1109,
+        "endChar": 19
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8ec10b0_d7db020f",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "This is part of the entity key already, no need to store it separately.",
+      "range": {
+        "startLine": 1114,
+        "startChar": 0,
+        "endLine": 1115,
+        "endChar": 48
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bffd7c47_d61f10e0",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "Not very useful comment. Better to comment what kind of entity is identified by this ID e.g. \"Packed TaskResultSummary key\".",
+      "range": {
+        "startLine": 1117,
+        "startChar": 0,
+        "endLine": 1118,
+        "endChar": 8
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec88abae_af19788a",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "`ndb.StringProperty(required\u003dTrue, indexed\u003dFalse)`",
+      "range": {
+        "startLine": 1119,
+        "startChar": 12,
+        "endLine": 1119,
+        "endChar": 45
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bde35c1b_e3ab896f",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1120,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "Need to add an `expire_at` unindexed field and then enable https://cloud.google.com/datastore/docs/ttl for it (ideally via Terraform), since we don\u0027t want to keep these things in datastore forever.\n\nElsewhere we\u0027ve been using hand-written crons to cleanup old entities, but only because datastore TTL thing didn\u0027t exist before.",
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d72a5ed_0b0ee97e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1209,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "I think just passing ID string (or None) will be simpler.",
+      "range": {
+        "startLine": 1209,
+        "startChar": 30,
+        "endLine": 1209,
+        "endChar": 43
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c73c713_85f570b6",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "Need to check if TaskRequestID already exists here to skip everything else if we already scheduled the task. Will also need to fetch the corresponding TaskResultSummary to return it if TaskRequestID exists.\n\nThis is best-effort code path to make retries cheap. The correctness check will still be done in the transaction that creates new enties.",
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ef83070_1827bb06",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "We should not be normally creating invocations when retrying schedule_request(...) calls. The check at the start of the function is probably good enough: we still occasionally be creating redundant invocations, but only if two schedule_request(...) are being called at the same time (which should be rare).",
+      "range": {
+        "startLine": 1281,
+        "startChar": 0,
+        "endLine": 1283,
+        "endChar": 56
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88702dfd_d4be3034",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1341,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "`task_req_id_exists \u003d task_request.TaskRequestId.create_key(...).get()`",
+      "range": {
+        "startLine": 1339,
+        "startChar": 6,
+        "endLine": 1341,
+        "endChar": 54
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75383625_f9537b5c",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "This is not correct. The function needs to return `task_req_id_exists.task_id` and the caller will need to use it to fetching the existing TaskResultSummary instead of using `result_summary` (which will not be stored in this case at all and will have some invalid task_id that doesn\u0027t exist).",
+      "range": {
+        "startLine": 1343,
+        "startChar": 8,
+        "endLine": 1343,
+        "endChar": 19
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "273d0d2b_5f403b5e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "This comment is not very useful.",
+      "range": {
+        "startLine": 1345,
+        "startChar": 6,
+        "endLine": 1345,
+        "endChar": 42
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4da32c6c_db340961",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1361,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "```\n to_put \u003d [\n        request,\n        result_summary,\n        to_run,\n        secret_bytes,\n        build_token,\n        task_request_id,\n    ]\n```\n\nThere\u0027s `filter` below that skips None entries already.",
+      "range": {
+        "startLine": 1353,
+        "startChar": 3,
+        "endLine": 1361,
+        "endChar": 36
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff80c83e_8e196271",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1381,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "All stuff below must be skipped if we discovered this is a retry. We should not be sending duplicate notifications or emitting metrics again.",
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d1064ca_28c4c3b4",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-11T21:45:10Z",
+      "side": 1,
+      "message": "This needs a new test specifically for idempotency code path.",
+      "range": {
+        "startLine": 184,
+        "startChar": 6,
+        "endLine": 184,
+        "endChar": 26
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
