@@ -91,7 +91,8 @@ def trim_caches(caches, path, min_free_space, max_age_secs):
   total = []
   if min_ts or free_disk:
     while True:
-      oldest = [(c, c.get_oldest()) for c in caches if len(c) > 0]
+      oldest = [(c, c.get_oldest()) for c in caches
+                if len(c) > 0 and c.manual_trimming_allowed()]
       if not oldest:
         break
       oldest.sort(key=lambda k: k[1])
@@ -136,6 +137,39 @@ class CachePolicies:
     self.min_free_space = min_free_space
     self.max_items = max_items
     self.max_age_secs = max_age_secs
+
+  def __str__(self):
+    return ('CachePolicies(max_cache_size=%s (%.3f GiB); max_items=%s; '
+            'min_free_space=%s (%.3f GiB); max_age_secs=%s)') % (
+                self.max_cache_size, float(self.max_cache_size) / 1024**3,
+                self.max_items, self.min_free_space,
+                float(self.min_free_space) / 1024**3, self.max_age_secs)
+
+
+class NamedCachePolicies:
+  def __init__(self, max_cache_size, min_free_space, max_items, max_age_secs,
+               dont_evict):
+    """Common caching policies for the multiple caches (isolated, named, cipd).
+
+    Arguments:
+    - max_cache_size: Trim if the cache gets larger than this value. If 0, the
+                      cache is effectively a leak.
+    - min_free_space: Trim if disk free space becomes lower than this value. If
+                      0, it will unconditionally fill the disk.
+    - max_items: Maximum number of items to keep in the cache. If 0, do not
+                 enforce a limit.
+    - max_age_secs: Maximum age an item is kept in the cache until it is
+                    automatically evicted. Having a lot of dead luggage slows
+                    everything down.
+    - dont_evict: List str where each str is named_cache item. These items are
+                  not to be evicted when NamedCache.trim is called. This is
+                  added to prevent occurences of https://crbug.com/1234535
+    """
+    self.max_cache_size = max_cache_size
+    self.min_free_space = min_free_space
+    self.max_items = max_items
+    self.max_age_secs = max_age_secs
+    self.dont_evict = dont_evict
 
   def __str__(self):
     return ('CachePolicies(max_cache_size=%s (%.3f GiB); max_items=%s; '
@@ -217,6 +251,19 @@ class Cache:
     Used for manual trimming.
     """
     raise NotImplementedError()
+
+  def manual_trimming_allowed(self):
+    """
+    If true this cache will be eligable for manual trimming in the
+    trim_caches function. In other words its always safe to remove the oldest
+    entry in the cache.
+
+    This is only false for NamedCache to prevent some caches from being removed
+    prematurely.
+
+    See https://crbug.com/1234535
+    """
+    return True
 
   def remove_oldest(self):
     """Removes the oldest item from the cache.
@@ -823,10 +870,12 @@ class NamedCache(Cache):
       timestamps when new caches are requested. Used in unit tests.
     """
     super(NamedCache, self).__init__(cache_dir)
+    assert policies.__class__ is NamedCachePolicies
     self._policies = policies
     # LRU {cache_name -> tuple(cache_location, size)}
     self.state_file = os.path.join(cache_dir, self.STATE_FILE)
     self._lru = lru.LRUDict()
+    self._dont_evict = set(policies.dont_evict)
     if not fs.isdir(self.cache_dir):
       fs.makedirs(self.cache_dir)
     elif fs.isfile(self.state_file):
@@ -1029,6 +1078,9 @@ class NamedCache(Cache):
     with self._lock:
       return sum(size for _rel_path, size in self._lru.values())
 
+  def manual_trimming_allowed(self):
+    return False
+
   def get_oldest(self):
     with self._lock:
       try:
@@ -1056,13 +1108,28 @@ class NamedCache(Cache):
 
   def trim(self):
     evicted = []
+
+    def unexcempt_items_remain():
+      remaining_items = set(self._lru.keys())
+      unexempt_items = remaining_items - self._dont_evict
+      if not unexempt_items:
+        logging.debug("Exiting as the only items remaining are in the"
+                      "dont_evict list. Excempt: %s" % self._dont_evict)
+        return False
+      return True
+
+    # Make sure that the values in do not evict are the oldest.
+    for name in self._dont_evict:
+      self.touch(name)
+
     with self._lock:
       if not fs.isdir(self.cache_dir):
         return evicted
 
       # Trim according to maximum number of items.
       if self._policies.max_items:
-        while len(self._lru) > self._policies.max_items:
+        while len(
+            self._lru) > self._policies.max_items and unexcempt_items_remain():
           name, size = self._remove_lru_item()
           evicted.append(size)
           logging.info(
@@ -1072,7 +1139,7 @@ class NamedCache(Cache):
       # Trim according to maximum age.
       if self._policies.max_age_secs:
         cutoff = self._lru.time_fn() - self._policies.max_age_secs
-        while self._lru:
+        while self._lru and unexcempt_items_remain():
           _name, (_data, ts) = self._lru.get_oldest()
           if ts >= cutoff:
             break
@@ -1084,7 +1151,7 @@ class NamedCache(Cache):
 
       # Trim according to minimum free space.
       if self._policies.min_free_space:
-        while self._lru:
+        while self._lru and unexcempt_items_remain():
           free_space = file_path.get_free_space(self.cache_dir)
           if free_space >= self._policies.min_free_space:
             break
@@ -1096,7 +1163,7 @@ class NamedCache(Cache):
 
       # Trim according to maximum total size.
       if self._policies.max_cache_size:
-        while self._lru:
+        while self._lru and unexcempt_items_remain():
           total = sum(size for _rel_cache, size in self._lru.values())
           if total <= self._policies.max_cache_size:
             break
