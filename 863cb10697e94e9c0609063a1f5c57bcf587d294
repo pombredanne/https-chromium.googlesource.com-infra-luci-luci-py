@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6e3740a_6abb36b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-15T21:45:41Z",
+      "side": 1,
+      "message": "Here\u0027s what I propose which I think will be slightly cleaner:\n\n1. Rename Cache.get_oldest to Cache.oldest_eviction_candidate. Maybe make it return an _ID_ of an item to remove. Make NamedCache\u0027s implementation return oldest item that is not \"pinned\" (or None if all are pinned).\n2. Rename Cache.remove_oldest to Cache.remove_eviction_candidate.\n3. Pass the list of caches to keep directly to NamedCache, no need to put them in a policy.",
+      "revId": "863cb10697e94e9c0609063a1f5c57bcf587d294",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c14efcc_16e8ff04",
+        "filename": "client/local_caching.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-15T21:45:41Z",
+      "side": 1,
+      "message": "Why not just add the field to the existing class?\n\nActually, I don\u0027t think it should be part of CachePolicy at all. It is specific to NamedCache, just make it an argument in `NamedCache.__init__`.",
+      "range": {
+        "startLine": 149,
+        "startChar": 6,
+        "endLine": 149,
+        "endChar": 24
+      },
+      "revId": "863cb10697e94e9c0609063a1f5c57bcf587d294",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9bd126d_291b23ac",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1454,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-15T21:45:41Z",
+      "side": 1,
+      "message": "nit: `keep`?\n\nnegatives in names often end up increasing mental load when reading the code e.g. `cache not in dont_evict`. Here\u0027s also Dave\u0027s opinion on this https://davej.io/2018/05/negative-naming.html (first google search hit).",
+      "range": {
+        "startLine": 1454,
+        "startChar": 8,
+        "endLine": 1454,
+        "endChar": 18
+      },
+      "revId": "863cb10697e94e9c0609063a1f5c57bcf587d294",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
