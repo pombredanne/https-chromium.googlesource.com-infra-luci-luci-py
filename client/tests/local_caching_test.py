@@ -708,6 +708,73 @@ class NamedCacheTest(TestCase, CacheTestMixin):
         ['11', '12'],
         sorted(fs.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR))))
 
+  def test_trim_with_dont_evict(self):
+    policy = local_caching.NamedCachePolicies(
+        max_items=2,
+        max_cache_size=0,
+        min_free_space=0,
+        max_age_secs=0,
+        dont_evict=['1', '2'],
+    )
+    cache = self.get_cache(policy)
+    item_count = 12
+    for i in range(item_count):
+      self._add_one_item(cache, i + 1)
+    self.assertEqual(len(cache), item_count)
+    self.assertEqual([3, 4, 5, 6, 7, 8, 9, 10, 11, 12], cache.trim())
+    self.assertEqual(len(cache), 2)
+    self.assertEqual(
+        ['1', '2'],
+        sorted(fs.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR))))
+
+  def test_trim_ignores_policy_for_dont_evict(self):
+    """
+    In this case, we specify 3 items which should not be evicted but
+    a max_items value of 2.
+
+    Under these circumstances, trim will remove items until only the 3 it must
+    evict are left.
+    """
+    policy = local_caching.NamedCachePolicies(
+        max_items=2,
+        max_cache_size=0,
+        min_free_space=0,
+        max_age_secs=0,
+        dont_evict=['1', '2', '3'],
+    )
+    cache = self.get_cache(policy)
+    item_count = 12
+    for i in range(item_count):
+      self._add_one_item(cache, i + 1)
+    self.assertEqual(len(cache), item_count)
+    self.assertEqual([4, 5, 6, 7, 8, 9, 10, 11, 12], cache.trim())
+    self.assertEqual(len(cache), 3)
+    self.assertEqual(
+        ['1', '2', '3'],
+        sorted(fs.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR))))
+
+  def test_trim_ignores_irrelevant_dont_evict(self):
+    """
+    Ignore dont evict if none of its items are in the cache.
+    """
+    policy = local_caching.NamedCachePolicies(
+        max_items=2,
+        max_cache_size=0,
+        min_free_space=0,
+        max_age_secs=0,
+        dont_evict=['a', 'b'],
+    )
+    cache = self.get_cache(policy)
+    item_count = 12
+    for i in range(item_count):
+      self._add_one_item(cache, i + 1)
+    self.assertEqual(len(cache), item_count)
+    self.assertEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], cache.trim())
+    self.assertEqual(len(cache), 2)
+    self.assertEqual(
+        ['11', '12'],
+        sorted(fs.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR))))
+
   def test_load_corrupted_state(self):
     # cleanup() handles a broken state file.
     fs.mkdir(self.cache_dir)
@@ -828,8 +895,7 @@ def _gen_state(items):
 
 
 class FnTest(TestCase):
-  """Test functions that leverage both DiskContentAddressedCache and
-  NamedCache.
+  """Test functions that leverage both DiskContentAddressedCache.
   """
   def setUp(self):
     super(FnTest, self).setUp()
@@ -865,30 +931,6 @@ class FnTest(TestCase):
          for n in items])
     self.assertEqual(expected, read_tree(cache.cache_dir))
 
-  def _prepare_named_cache(self, cache):
-    self._prepare_cache(cache)
-    # Figure out the short names via the symlinks.
-    items = range(1, 11)
-    short_names = {
-        n: os.path.basename(
-            fs.readlink(os.path.join(cache.cache_dir, cache.NAMED_DIR, str(n))))
-        for n in items
-    }
-    self._verify_named_cache(cache, short_names, items)
-    return short_names
-
-  def _verify_named_cache(self, cache, short_names, items):
-    # Named cache verification. Ensures the cache contain the expected data.
-    actual = read_tree(cache.cache_dir)
-    # There's assumption about json encoding format but here it's good enough.
-    expected = {
-        os.path.join(short_names[n], 'hello'): _gen_data(n)
-        for n in items
-    }
-    expected[cache.STATE_FILE] = _gen_state(
-        [[str(n), [[short_names[n], n], self._now + n - 1]] for n in items])
-    self.assertEqual(expected, actual)
-
   def test_clean_caches_disk(self):
     # Create an isolated cache and a named cache each with 2 items. Ensure that
     # one item from each is removed.
@@ -897,29 +939,32 @@ class FnTest(TestCase):
 
     # Setup caches.
     policies = _get_policies(min_free_space=1000)
-    named_cache = local_caching.NamedCache(
-        tempfile.mkdtemp(dir=self.tempdir, prefix='nc'), policies)
-    short_names = self._prepare_named_cache(named_cache)
 
-    isolated_cache = local_caching.DiskContentAddressedCache(
-        tempfile.mkdtemp(dir=self.tempdir, prefix='ic'), policies, trim=False)
-    self._prepare_isolated_cache(isolated_cache)
+    isolated_cache1 = local_caching.DiskContentAddressedCache(tempfile.mkdtemp(
+        dir=self.tempdir, prefix='ic'),
+                                                              policies,
+                                                              trim=False)
+    isolated_cache2 = local_caching.DiskContentAddressedCache(tempfile.mkdtemp(
+        dir=self.tempdir, prefix='ic2'),
+                                                              policies,
+                                                              trim=False)
+    self._prepare_isolated_cache(isolated_cache1)
+    self._prepare_isolated_cache(isolated_cache2)
     self.assertEqual(now, self._now)
 
     # Request trimming.
     self._free_disk = 950
-    trimmed = local_caching.trim_caches(
-        [isolated_cache, named_cache],
-        self.tempdir,
-        min_free_space=policies.min_free_space,
-        max_age_secs=policies.max_age_secs)
+    trimmed = local_caching.trim_caches([isolated_cache1, isolated_cache2],
+                                        self.tempdir,
+                                        min_free_space=policies.min_free_space,
+                                        max_age_secs=policies.max_age_secs)
     # Enough to free 50 bytes. The following sums to 56.
     expected = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7]
     self.assertEqual(expected, trimmed)
 
     # Cache verification.
-    self._verify_named_cache(named_cache, short_names, range(8, 11))
-    self._verify_isolated_cache(isolated_cache, range(8, 11))
+    self._verify_isolated_cache(isolated_cache1, range(8, 11))
+    self._verify_isolated_cache(isolated_cache2, range(8, 11))
 
   def _get_5_caches(self):
     # Add items from size 1 to 101 randomly into 5 caches.

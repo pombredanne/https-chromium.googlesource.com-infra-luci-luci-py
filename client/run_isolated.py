@@ -1445,12 +1445,13 @@ def process_named_cache_options(parser, options, time_fn=None):
     # In practice, a fair chunk of bots are already recycled on a daily schedule
     # so this code doesn't have any effect to them, unless they are preloaded
     # with a really old cache.
-    policies = local_caching.CachePolicies(
+    policies = local_caching.NamedCachePolicies(
         # 1TiB.
-        max_cache_size=1024*1024*1024*1024,
+        max_cache_size=1024 * 1024 * 1024 * 1024,
         min_free_space=options.min_free_space,
         max_items=50,
-        max_age_secs=MAX_AGE_SECS)
+        max_age_secs=MAX_AGE_SECS,
+        dont_evict=[name for name, _, _ in options.named_caches])
     root_dir = os.path.abspath(options.named_cache_root)
     cache = local_caching.NamedCache(root_dir, policies, time_fn=time_fn)
     # Touch any named caches we're going to use to minimize thrashing
