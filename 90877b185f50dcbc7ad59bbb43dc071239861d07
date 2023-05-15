@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3f8dba9_2a700b60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-15T18:53:22Z",
+      "side": 1,
+      "message": "This change feels slightly hacky to me so sending this out earlier while I work on the tests. \n\nI have not made this configurable (via bot / pool cfg) because I think it should be the default behaviour. \n\nThe assumption here is that the most important thing we want to avoid is a cache miss. So we\u0027ll avoid cache trimming any `named_cache` mentioned in the dimensions. IF that leads to an increase in disk space errors while tasks are running then that outcome is okay. \n\nThe change feels \"hacky\" because we\u0027re making the caching operation more complicated by adding an additional policy. It\u0027s already quite complicated as is and I\u0027d prefer to go the other way and find things to simplify. But this also seems to be the most minimal possible change to me. wdyt?",
+      "revId": "90877b185f50dcbc7ad59bbb43dc071239861d07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3ae1330_2f655bb5",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-15T18:53:22Z",
+      "side": 1,
+      "message": "In theory this should be safe since the named cache is already trimmed according to a min free space disk space policy. I did not want to modify the `remove_oldest` function bc it may be confusing if it does not remove items which are on the `do_not_evict` list.",
+      "range": {
+        "startLine": 95,
+        "startChar": 34,
+        "endLine": 95,
+        "endChar": 61
+      },
+      "revId": "90877b185f50dcbc7ad59bbb43dc071239861d07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80ae73f2_ac4248e4",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-15T18:53:22Z",
+      "side": 1,
+      "message": "I want it to be explicitly specified as a \"cache_policy\" to make it clear that it is expected how the `NamedCache` will operate differently from other caches.",
+      "range": {
+        "startLine": 164,
+        "startChar": 3,
+        "endLine": 166,
+        "endChar": 74
+      },
+      "revId": "90877b185f50dcbc7ad59bbb43dc071239861d07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42c9ed0e_d6d4b52b",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1129,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-15T18:53:22Z",
+      "side": 1,
+      "message": "should say newest.",
+      "range": {
+        "startLine": 1129,
+        "startChar": 48,
+        "endLine": 1129,
+        "endChar": 63
+      },
+      "revId": "90877b185f50dcbc7ad59bbb43dc071239861d07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3b18dc8_40c7ae1e",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-15T18:53:22Z",
+      "side": 1,
+      "message": "Any value which is not in the `dont_evict` list will be removed before them, forcing evaluation of `unexcempt_items_remain` the next time we check whether to delete something.",
+      "range": {
+        "startLine": 1130,
+        "startChar": 4,
+        "endLine": 1131,
+        "endChar": 22
+      },
+      "revId": "90877b185f50dcbc7ad59bbb43dc071239861d07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
