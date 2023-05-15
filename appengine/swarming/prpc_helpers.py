@@ -2,11 +2,12 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 """This module implements base functionality of Swarming prpc services."""
-
 import functools
 import logging
 
 from google.appengine.api import datastore_errors
+
+from infra_libs.ts_mon.common import http_metrics
 
 from components import auth
 from components.prpc import codes
@@ -42,7 +43,6 @@ def process_exception(e, prpc_context):
 
   return code
 
-
 def method(func):
   @functools.wraps(func)
   def wrapper(self, request, prpc_context):
@@ -54,3 +54,10 @@ def method(func):
         raise
 
   return wrapper
+
+
+def metrics_recorder(service, method, status_code, elapsed_time):
+  endpoint_name = "%s/%s" % (service, method)
+  elapsed_ms = int(elapsed_time * 1000)
+  http_metrics.update_http_server_metrics(endpoint_name, status_code,
+                                          elapsed_ms)

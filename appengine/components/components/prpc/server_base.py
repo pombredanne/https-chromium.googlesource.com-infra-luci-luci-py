@@ -12,6 +12,7 @@ https://github.com/grpc/grpc/tree/master/src/python/grpcio/grpc
 
 import collections
 import logging
+from time import time
 
 from google.protobuf import symbol_database
 
@@ -66,6 +67,7 @@ class ServerBase(object):
     self.add_service(self._discovery_service)
     self.allow_cors = allow_cors
     self.allowed_origins = set(allowed_origins or [])
+    self._metrics_recorder = None
 
   def add_interceptor(self, interceptor):
     """Adds an interceptor to the interceptor chain.
@@ -126,6 +128,17 @@ class ServerBase(object):
     self._services[full_name] = _Service(servicer, methods)
 
     self._discovery_service.add_service(servicer.DESCRIPTION)
+
+  def set_metrics_recorder(self, recorder):
+    """Adds a function which allows us to record metrics about the pRPC method.
+
+    The function takes the following parameters:
+      service: pRPC service.
+      method: pRPC method.
+      status_code: http status code to be returned from request.
+      execution_time: float representing seconds elapsed processing request.
+    """
+    self._metrics_recorder = recorder
 
   def get_routes(self, prefix=''):
     """Returns a list of routes the API handles."""
@@ -280,18 +293,27 @@ class ServerBase(object):
       response: response to be set to actual flask/webapp2 response
     """
     context = ServicerContext()
+    start_time = time()
     content = self._routes_handle(context,
                                   service,
                                   method,
                                   router_request=request)
+    end_time = time()
     origin = request.headers.get('Origin')
     if origin:
       response.headers['Access-Control-Allow-Origin'] = origin
       response.headers['Vary'] = 'Origin'
       response.headers['Access-Control-Allow-Credentials'] = 'true'
-    self._response_body_and_status_writer(response,
-                                          status=StatusCode.to_http_code(
-                                              context._code))
+    status_code = StatusCode.to_http_code(context._code)
+    if self._metrics_recorder:
+      elapsed = end_time - start_time
+      try:
+        self._metrics_recorder(service, method, status_code, elapsed)
+      except Exception:
+        logging.warning(
+            "An error occurred when processing metrics. Ignoring it",
+            exc_info=True)
+    self._response_body_and_status_writer(response, status=status_code)
     response.headers['X-Prpc-Grpc-Code'] = str(context._code.value)
     response.headers['Access-Control-Expose-Headers'] = ('X-Prpc-Grpc-Code')
     response.headers['X-Content-Type-Options'] = 'nosniff'
