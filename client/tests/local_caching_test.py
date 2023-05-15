@@ -708,6 +708,73 @@ class NamedCacheTest(TestCase, CacheTestMixin):
         ['11', '12'],
         sorted(fs.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR))))
 
+  def test_trim_with_dont_evict(self):
+    policy = local_caching.NamedCachePolicies(
+        max_items=2,
+        max_cache_size=0,
+        min_free_space=0,
+        max_age_secs=0,
+        dont_evict=['1', '2'],
+    )
+    cache = self.get_cache(policy)
+    item_count = 12
+    for i in range(item_count):
+      self._add_one_item(cache, i + 1)
+    self.assertEqual(len(cache), item_count)
+    self.assertEqual([3, 4, 5, 6, 7, 8, 9, 10, 11, 12], cache.trim())
+    self.assertEqual(len(cache), 2)
+    self.assertEqual(
+        ['1', '2'],
+        sorted(fs.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR))))
+
+  def test_trim_ignores_policy_for_dont_evict(self):
+    """
+    In this case, we specify 3 items which should not be evicted but
+    a max_items value of 2.
+
+    Under these circumstances, trim will remove items until only the 3 it must
+    evict are left.
+    """
+    policy = local_caching.NamedCachePolicies(
+        max_items=2,
+        max_cache_size=0,
+        min_free_space=0,
+        max_age_secs=0,
+        dont_evict=['1', '2', '3'],
+    )
+    cache = self.get_cache(policy)
+    item_count = 12
+    for i in range(item_count):
+      self._add_one_item(cache, i + 1)
+    self.assertEqual(len(cache), item_count)
+    self.assertEqual([4, 5, 6, 7, 8, 9, 10, 11, 12], cache.trim())
+    self.assertEqual(len(cache), 3)
+    self.assertEqual(
+        ['1', '2', '3'],
+        sorted(fs.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR))))
+
+  def test_trim_ignores_irrelevant_dont_evict(self):
+    """
+    Ignore dont evict if none of its items are in the cache.
+    """
+    policy = local_caching.NamedCachePolicies(
+        max_items=2,
+        max_cache_size=0,
+        min_free_space=0,
+        max_age_secs=0,
+        dont_evict=['a', 'b'],
+    )
+    cache = self.get_cache(policy)
+    item_count = 12
+    for i in range(item_count):
+      self._add_one_item(cache, i + 1)
+    self.assertEqual(len(cache), item_count)
+    self.assertEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], cache.trim())
+    self.assertEqual(len(cache), 2)
+    self.assertEqual(
+        ['11', '12'],
+        sorted(fs.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR))))
+
   def test_load_corrupted_state(self):
     # cleanup() handles a broken state file.
     fs.mkdir(self.cache_dir)
