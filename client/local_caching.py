@@ -91,14 +91,14 @@ def trim_caches(caches, path, min_free_space, max_age_secs):
   total = []
   if min_ts or free_disk:
     while True:
-      oldest = [(c, c.get_oldest()) for c in caches if len(c) > 0]
+      oldest = [(c, c.oldest_evictable_ts()) for c in caches if len(c) > 0]
       if not oldest:
         break
       oldest.sort(key=lambda k: k[1])
       c, ts = oldest[0]
       if ts >= min_ts and free_disk >= min_free_space:
         break
-      total.append(c.remove_oldest())
+      total.append(c.remove_oldest_evictable_item())
       if min_free_space:
         free_disk = file_path.get_free_space(path)
   logging.info("free_disk after removing oldest entries: %d", free_disk)
@@ -136,6 +136,39 @@ class CachePolicies:
     self.min_free_space = min_free_space
     self.max_items = max_items
     self.max_age_secs = max_age_secs
+
+  def __str__(self):
+    return ('CachePolicies(max_cache_size=%s (%.3f GiB); max_items=%s; '
+            'min_free_space=%s (%.3f GiB); max_age_secs=%s)') % (
+                self.max_cache_size, float(self.max_cache_size) / 1024**3,
+                self.max_items, self.min_free_space,
+                float(self.min_free_space) / 1024**3, self.max_age_secs)
+
+
+class NamedCachePolicies:
+  def __init__(self, max_cache_size, min_free_space, max_items, max_age_secs,
+               dont_evict):
+    """Common caching policies for the multiple caches (isolated, named, cipd).
+
+    Arguments:
+    - max_cache_size: Trim if the cache gets larger than this value. If 0, the
+                      cache is effectively a leak.
+    - min_free_space: Trim if disk free space becomes lower than this value. If
+                      0, it will unconditionally fill the disk.
+    - max_items: Maximum number of items to keep in the cache. If 0, do not
+                 enforce a limit.
+    - max_age_secs: Maximum age an item is kept in the cache until it is
+                    automatically evicted. Having a lot of dead luggage slows
+                    everything down.
+    - dont_evict: List str where each str is named_cache item. These items are
+                  not to be evicted when NamedCache.trim is called. This is
+                  added to prevent occurences of https://crbug.com/1234535
+    """
+    self.max_cache_size = max_cache_size
+    self.min_free_space = min_free_space
+    self.max_items = max_items
+    self.max_age_secs = max_age_secs
+    self.dont_evict = dont_evict
 
   def __str__(self):
     return ('CachePolicies(max_cache_size=%s (%.3f GiB); max_items=%s; '
@@ -208,8 +241,9 @@ class Cache:
     with self._lock:
       return self._used[:]
 
-  def get_oldest(self):
-    """Returns timestamp of oldest cache entry or None.
+  def oldest_evictable_ts(self):
+    """Returns timestamp of oldest cache entry or None. If there are items in
+    the cache which are not evictable then return None.
 
     Returns:
       Timestamp of the oldest item.
@@ -218,8 +252,9 @@ class Cache:
     """
     raise NotImplementedError()
 
-  def remove_oldest(self):
-    """Removes the oldest item from the cache.
+  def remove_oldest_evictable_item(self):
+    """Removes the oldest item from the cache. If there are items in the cache
+    which are evictable then they will not be evicted and None will be returned.
 
     Returns:
       Size of the oldest item.
@@ -329,7 +364,7 @@ class MemoryContentAddressedCache(ContentAddressedCache):
     with self._lock:
       return sum(len(i) for i in self._lru.values())
 
-  def get_oldest(self):
+  def oldest_evictable_ts(self):
     with self._lock:
       try:
         # (key, (value, ts))
@@ -337,7 +372,7 @@ class MemoryContentAddressedCache(ContentAddressedCache):
       except KeyError:
         return None
 
-  def remove_oldest(self):
+  def remove_oldest_evictable_item(self):
     with self._lock:
       # TODO(maruel): Update self._added.
       # (key, (value, ts))
@@ -441,7 +476,7 @@ class DiskContentAddressedCache(ContentAddressedCache):
     with self._lock:
       return sum(self._lru.values())
 
-  def get_oldest(self):
+  def oldest_evictable_ts(self):
     with self._lock:
       try:
         # (key, (value, ts))
@@ -449,7 +484,7 @@ class DiskContentAddressedCache(ContentAddressedCache):
       except KeyError:
         return None
 
-  def remove_oldest(self):
+  def remove_oldest_evictable_item(self):
     with self._lock:
       # TODO(maruel): Update self._added.
       return self._remove_lru_file(True)
@@ -813,7 +848,7 @@ class NamedCache(Cache):
   STATE_FILE = 'state.json'
   NAMED_DIR = 'named'
 
-  def __init__(self, cache_dir, policies, time_fn=None):
+  def __init__(self, cache_dir, policies, time_fn=None, keep=None):
     """Initializes NamedCaches.
 
     Arguments:
@@ -821,12 +856,16 @@ class NamedCache(Cache):
     - policies is a CachePolicies instance.
     - time_fn is a function that returns timestamp (float) and used to take
       timestamps when new caches are requested. Used in unit tests.
+    - keep: list of str representing cache items which must not be evicted from
+      cache under any circumstances. No cache eviction policy will be applied
+      to any of these items.
     """
     super(NamedCache, self).__init__(cache_dir)
     self._policies = policies
     # LRU {cache_name -> tuple(cache_location, size)}
     self.state_file = os.path.join(cache_dir, self.STATE_FILE)
     self._lru = lru.LRUDict()
+    self._keep = set(keep or [])
     if not fs.isdir(self.cache_dir):
       fs.makedirs(self.cache_dir)
     elif fs.isfile(self.state_file):
@@ -1029,19 +1068,37 @@ class NamedCache(Cache):
     with self._lock:
       return sum(size for _rel_path, size in self._lru.values())
 
-  def get_oldest(self):
-    with self._lock:
-      try:
-        # (key, (value, ts))
-        return self._lru.get_oldest()[1][1]
-      except KeyError:
-        return None
+  def _oldest_evictable_item_unlocked(self):
+    try:
+      # (key, (value, ts))
+      for name, ts in self._lru.items_with_ts():
+        if name not in self._keep:
+          return name, ts
+      return None
+    except KeyError:
+      return None
 
-  def remove_oldest(self):
+  def _oldest_evictable_ts_unlocked(self):
+    oldest = self._oldest_evictable_item_unlocked()
+    # oldest = (name, ts)
+    if oldest:
+      return oldest[1]
+
+  def oldest_evictable_item(self):
+    with self._lock:
+      return self._oldest_evictable_item_unlocked()
+
+  def oldest_evictable_ts(self):
+    with self._lock:
+      return self._oldest_evictable_ts_unlocked()
+
+  def remove_oldest_evictable_item(self):
     with self._lock:
       # TODO(maruel): Update self._added.
-      _name, size = self._remove_lru_item()
-      return size
+      removed_item = self._remove_lru_item()
+      if removed_item:
+        _name, size = removed_item
+        return size
 
   def save(self):
     with self._lock:
@@ -1056,6 +1113,7 @@ class NamedCache(Cache):
 
   def trim(self):
     evicted = []
+
     with self._lock:
       if not fs.isdir(self.cache_dir):
         return evicted
@@ -1063,7 +1121,10 @@ class NamedCache(Cache):
       # Trim according to maximum number of items.
       if self._policies.max_items:
         while len(self._lru) > self._policies.max_items:
-          name, size = self._remove_lru_item()
+          removed = self._remove_lru_item()
+          if not removed:
+            break
+          name, size = removed
           evicted.append(size)
           logging.info(
               'NamedCache.trim(): Removed %r(%d) due to max_items(%d)',
@@ -1073,9 +1134,12 @@ class NamedCache(Cache):
       if self._policies.max_age_secs:
         cutoff = self._lru.time_fn() - self._policies.max_age_secs
         while self._lru:
-          _name, (_data, ts) = self._lru.get_oldest()
+          ts = self._oldest_evictable_ts_unlocked()
+          if not ts:
+            break
           if ts >= cutoff:
             break
+          # If we get to this point, self._remove_lru_item will not return None.
           name, size = self._remove_lru_item()
           evicted.append(size)
           logging.info(
@@ -1088,7 +1152,10 @@ class NamedCache(Cache):
           free_space = file_path.get_free_space(self.cache_dir)
           if free_space >= self._policies.min_free_space:
             break
-          name, size = self._remove_lru_item()
+          removed = self._remove_lru_item()
+          if not removed:
+            break
+          name, size = removed
           evicted.append(size)
           logging.info(
               'NamedCache.trim(): Removed %r(%d) due to min_free_space(%d)',
@@ -1100,7 +1167,10 @@ class NamedCache(Cache):
           total = sum(size for _rel_cache, size in self._lru.values())
           if total <= self._policies.max_cache_size:
             break
-          name, size = self._remove_lru_item()
+          removed = self._remove_lru_item()
+          if not removed:
+            break
+          name, size = removed
           evicted.append(size)
           logging.info(
               'NamedCache.trim(): Removed %r(%d) due to max_cache_size(%d)',
@@ -1202,10 +1272,14 @@ class NamedCache(Cache):
 
   def _remove_lru_item(self):
     """Removes the oldest LRU entry. LRU must not be empty."""
-    name, ((_rel_path, size), _ts) = self._lru.get_oldest()
-    logging.info('Removing named cache %r, %d', name, size)
-    self._remove(name)
-    return name, size
+    self._lock.assert_locked()
+    oldest = self._oldest_evictable_item_unlocked()
+    if oldest:
+      name, _ = oldest
+      _, size = self._lru.get(name)
+      logging.info('Removing named cache %r, %d', name, size)
+      self._remove(name)
+      return name, size
 
   def _allocate_dir(self):
     """Creates and returns relative path of a new cache directory.
