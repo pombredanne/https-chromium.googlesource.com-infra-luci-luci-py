@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa15e456_b98516e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-17T15:16:58Z",
+      "side": 1,
+      "message": "So in this case the bot will skip calling `bot/poll` and just go straight to an `rbe` poll?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 40
+      },
+      "revId": "22ac8817bef79b8b540516f196b9793d0357889c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9443b8f_5301a7d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-17T15:16:58Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "22ac8817bef79b8b540516f196b9793d0357889c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
