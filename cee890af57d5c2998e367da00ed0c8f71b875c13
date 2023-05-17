@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdbb5e1a_7ba562f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-17T01:12:44Z",
+      "side": 1,
+      "message": "PTAL. This hybrid mode will be a giant complicated mess with a metric ton of edge cases.",
+      "revId": "cee890af57d5c2998e367da00ed0c8f71b875c13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
