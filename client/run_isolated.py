@@ -83,6 +83,14 @@ from utils import on_error
 from utils import subprocess42
 
 
+def socket_debug(port=1234):
+  import pdb
+  import socket
+  sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+  sock.connect(('localhost', port))
+  sock_file = sock.makefile('rw')
+  pdb.Pdb(stdin=sock_file, stdout=sock_file).set_trace()
+
 # Magic variables that can be found in the isolate task command line.
 ISOLATED_OUTDIR_PARAMETER = '${ISOLATED_OUTDIR}'
 EXECUTABLE_SUFFIX_PARAMETER = '${EXECUTABLE_SUFFIX}'
@@ -859,6 +867,7 @@ def map_and_run(data, constant_run_path):
   cas_client_dir = make_temp_dir(_CAS_CLIENT_DIR, data.root_dir)
   cas_client = os.path.join(cas_client_dir, 'cas' + cipd.EXECUTABLE_SUFFIX)
 
+  socket_debug()
   data.trim_caches_fn(result['stats']['trim_caches'])
 
   nsjail_dir = None
@@ -1447,12 +1456,16 @@ def process_named_cache_options(parser, options, time_fn=None):
     # with a really old cache.
     policies = local_caching.CachePolicies(
         # 1TiB.
-        max_cache_size=1024*1024*1024*1024,
+        max_cache_size=1024 * 1024 * 1024 * 1024,
         min_free_space=options.min_free_space,
         max_items=50,
         max_age_secs=MAX_AGE_SECS)
+    keep = [name for name, _, _ in options.named_caches]
     root_dir = os.path.abspath(options.named_cache_root)
-    cache = local_caching.NamedCache(root_dir, policies, time_fn=time_fn)
+    cache = local_caching.NamedCache(root_dir,
+                                     policies,
+                                     time_fn=time_fn,
+                                     keep=keep)
     # Touch any named caches we're going to use to minimize thrashing
     # between tasks that request some (but not all) of the same named caches.
     cache.touch(*[name for name, _, _ in options.named_caches])
