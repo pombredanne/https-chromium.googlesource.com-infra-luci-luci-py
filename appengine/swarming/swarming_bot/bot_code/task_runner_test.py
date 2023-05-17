@@ -790,7 +790,8 @@ class TestTaskRunner(TestTaskRunnerBase):
         'internal_error_reported': False,
         'version': task_runner.OUT_VERSION,
     }
-    self.assertEqual(expected, self._run_command(task_details))
+    actual = self._run_command(task_details)
+    self.assertEqual(expected, actual)
     self._expect_files([
         'c/*/bar',
         'c/state.json',
