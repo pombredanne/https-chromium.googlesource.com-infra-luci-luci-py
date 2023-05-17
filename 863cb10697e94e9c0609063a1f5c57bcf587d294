@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "677a63d1_fd6b34ec",
+        "filename": "client/local_caching.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-17T20:43:21Z",
+      "side": 1,
+      "message": "Initially, I thought it may be a bit clearer but removed in most recent iteration.",
+      "parentUuid": "2c14efcc_16e8ff04",
+      "range": {
+        "startLine": 149,
+        "startChar": 6,
+        "endLine": 149,
+        "endChar": 24
+      },
+      "revId": "863cb10697e94e9c0609063a1f5c57bcf587d294",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9bd126d_291b23ac",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-05-15T21:45:41Z",
       "side": 1,
       "message": "nit: `keep`?\n\nnegatives in names often end up increasing mental load when reading the code e.g. `cache not in dont_evict`. Here\u0027s also Dave\u0027s opinion on this https://davej.io/2018/05/negative-naming.html (first google search hit).",
+      "range": {
+        "startLine": 1454,
+        "startChar": 8,
+        "endLine": 1454,
+        "endChar": 18
+      },
+      "revId": "863cb10697e94e9c0609063a1f5c57bcf587d294",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "076173fe_37243701",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1454,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-17T20:43:21Z",
+      "side": 1,
+      "message": "Had a good chuckle with that article 😄",
+      "parentUuid": "f9bd126d_291b23ac",
       "range": {
         "startLine": 1454,
         "startChar": 8,

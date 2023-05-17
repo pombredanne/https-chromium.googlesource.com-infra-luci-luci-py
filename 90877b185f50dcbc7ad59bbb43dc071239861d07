@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e67d4cc_856a2a79",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-17T20:43:21Z",
+      "side": 1,
+      "message": "Removed this.",
+      "parentUuid": "e3ae1330_2f655bb5",
+      "range": {
+        "startLine": 95,
+        "startChar": 34,
+        "endLine": 95,
+        "endChar": 61
+      },
+      "revId": "90877b185f50dcbc7ad59bbb43dc071239861d07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80ae73f2_ac4248e4",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-05-15T18:53:22Z",
       "side": 1,
       "message": "I want it to be explicitly specified as a \"cache_policy\" to make it clear that it is expected how the `NamedCache` will operate differently from other caches.",
+      "range": {
+        "startLine": 164,
+        "startChar": 3,
+        "endLine": 166,
+        "endChar": 74
+      },
+      "revId": "90877b185f50dcbc7ad59bbb43dc071239861d07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48fa1c29_220d5723",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-17T20:43:21Z",
+      "side": 1,
+      "message": "Removed so not relevant.",
+      "parentUuid": "80ae73f2_ac4248e4",
       "range": {
         "startLine": 164,
         "startChar": 3,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f1c34f7_00694ba1",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1129,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-17T20:43:21Z",
+      "side": 1,
+      "message": "Also removed this.",
+      "parentUuid": "42c9ed0e_d6d4b52b",
+      "range": {
+        "startLine": 1129,
+        "startChar": 48,
+        "endLine": 1129,
+        "endChar": 63
+      },
+      "revId": "90877b185f50dcbc7ad59bbb43dc071239861d07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3b18dc8_40c7ae1e",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-05-15T18:53:22Z",
       "side": 1,
       "message": "Any value which is not in the `dont_evict` list will be removed before them, forcing evaluation of `unexcempt_items_remain` the next time we check whether to delete something.",
+      "range": {
+        "startLine": 1130,
+        "startChar": 4,
+        "endLine": 1131,
+        "endChar": 22
+      },
+      "revId": "90877b185f50dcbc7ad59bbb43dc071239861d07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ce1462b_853adfaf",
+        "filename": "client/local_caching.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-17T20:43:21Z",
+      "side": 1,
+      "message": "Not relevant anymore.",
+      "parentUuid": "a3b18dc8_40c7ae1e",
       "range": {
         "startLine": 1130,
         "startChar": 4,
