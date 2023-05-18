@@ -422,4 +422,5 @@ def get_routes():
   s.add_service(InternalsService())
   s.add_service(SwarmingService())
   s.add_interceptor(auth.prpc_interceptor)
+  s.set_metrics_recorder(prpc_helpers.metrics_recorder)
   return s.get_routes()
