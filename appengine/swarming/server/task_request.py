@@ -1101,6 +1101,32 @@ class TaskSlice(ndb.Model):
       raise datastore_errors.BadValueError('wait_for_capacity is required')
 
 
+class DummyRoot(ndb.Model):
+  """Dummy root so that ancestor queries can work in a transaction.
+  """
+
+
+class TaskRequestID(ndb.Model):
+  """Defines a mapping between request_id and task_id.
+
+  This model is immutable.
+  """
+  # ID that comes from the caller of either NewTask or RunTask.
+  request_id = ndb.StringProperty(required=True)
+
+  # The task_id from a task that was created from a request_id.
+  task_id = ndb.StringProperty(required=True, indexed=False)
+
+  # When this entity should expire and be removed from datastore.
+  # TTL https://cloud.google.com/datastore/docs/ttl
+  expire_at = ndb.DateTimeProperty(indexed=False)
+
+  @classmethod
+  def create_key(cls, request_uuid):
+    root_key = ndb.Key(DummyRoot, "global")
+    return ndb.Key(cls, request_uuid, parent=root_key)
+
+
 class TaskRequest(ndb.Model):
   """Contains a user request.
 
