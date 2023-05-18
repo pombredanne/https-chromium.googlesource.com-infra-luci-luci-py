@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef33cfef_0de04992",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1365,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "LOVE git cl format :)",
+      "range": {
+        "startLine": 1364,
+        "startChar": 12,
+        "endLine": 1365,
+        "endChar": 23
+      },
+      "revId": "50102fa5580db2564854faf2e47d99efadb34167",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

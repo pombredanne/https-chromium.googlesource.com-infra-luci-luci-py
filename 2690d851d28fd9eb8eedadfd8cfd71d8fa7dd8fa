@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94a4ed8c_d96799b9",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "Got it. So TerminateBot doesn\u0027t have a request_id (https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/handlers_prpc.py;l\u003d119-122?)\n\nSo then I will just leave as it for terminate bot",
+      "parentUuid": "088f9270_c427e23d",
+      "range": {
+        "startLine": 155,
+        "startChar": 42,
+        "endLine": 155,
+        "endChar": 74
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab257a18_65b5eeae",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-05-11T21:45:10Z",
       "side": 1,
       "message": "Hm, it is possible we need to mutate `request` inside schedule_request(...) to make sure it has the correct key if this is recognized as a retry.",
+      "range": {
+        "startLine": 437,
+        "startChar": 25,
+        "endLine": 437,
+        "endChar": 40
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "829530ee_9e34c9e3",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "In the old flow `request` was treated the same. Should we be sending `schedule_request` a copy of `request`? To preserve the original? Or is it ok to store the modified version? https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/api_common.py;l\u003d431",
+      "parentUuid": "ab257a18_65b5eeae",
       "range": {
         "startLine": 437,
         "startChar": 25,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bdb3ecd_c79cdd02",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "Understood. This solution was used because inside a transaction, you can\u0027t have an ancestor-less entity be queried. So in order to give `TaskRequestID` an ancestor, I created `DummyRoot`. However, since the key is now the request_uuid, then we can use a get() and not have to use query inside the transaction. Deleting this DummyRoot.",
+      "parentUuid": "42010c89_eb85ded4",
+      "range": {
+        "startLine": 1104,
+        "startChar": 0,
+        "endLine": 1106,
+        "endChar": 5
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "627d57c9_4186d8f9",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-05-11T21:45:10Z",
       "side": 1,
       "message": "nit: TaskRequestID",
+      "range": {
+        "startLine": 1109,
+        "startChar": 6,
+        "endLine": 1109,
+        "endChar": 19
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9195d65_8d4bf517",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1109,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "627d57c9_4186d8f9",
       "range": {
         "startLine": 1109,
         "startChar": 6,
@@ -133,6 +229,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04c54be2_3549d5c3",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "got it! done.",
+      "parentUuid": "c8ec10b0_d7db020f",
+      "range": {
+        "startLine": 1114,
+        "startChar": 0,
+        "endLine": 1115,
+        "endChar": 48
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bffd7c47_d61f10e0",
@@ -146,6 +266,30 @@
       "writtenOn": "2023-05-11T21:45:10Z",
       "side": 1,
       "message": "Not very useful comment. Better to comment what kind of entity is identified by this ID e.g. \"Packed TaskResultSummary key\".",
+      "range": {
+        "startLine": 1117,
+        "startChar": 0,
+        "endLine": 1118,
+        "endChar": 8
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e77bae8_12a755f7",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "😳 forgot to fill this in with something good (and useful). Fixed!",
+      "parentUuid": "bffd7c47_d61f10e0",
       "range": {
         "startLine": 1117,
         "startChar": 0,
@@ -179,6 +323,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6496c6f_53d703c1",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec88abae_af19788a",
+      "range": {
+        "startLine": 1119,
+        "startChar": 12,
+        "endLine": 1119,
+        "endChar": 45
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bde35c1b_e3ab896f",
@@ -192,6 +360,24 @@
       "writtenOn": "2023-05-11T21:45:10Z",
       "side": 1,
       "message": "Need to add an `expire_at` unindexed field and then enable https://cloud.google.com/datastore/docs/ttl for it (ideally via Terraform), since we don\u0027t want to keep these things in datastore forever.\n\nElsewhere we\u0027ve been using hand-written crons to cleanup old entities, but only because datastore TTL thing didn\u0027t exist before.",
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b23f6cc9_348353a5",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1120,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "sgtm. I\u0027ll follow up this CL with the terraform one to enable ttl",
+      "parentUuid": "bde35c1b_e3ab896f",
       "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -219,6 +405,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b7457ed_ded1f794",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1209,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d72a5ed_0b0ee97e",
+      "range": {
+        "startLine": 1209,
+        "startChar": 30,
+        "endLine": 1209,
+        "endChar": 43
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c73c713_85f570b6",
@@ -236,6 +446,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28aa12d3_d45b32d2",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c73c713_85f570b6",
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ef83070_1827bb06",
@@ -249,6 +477,30 @@
       "writtenOn": "2023-05-11T21:45:10Z",
       "side": 1,
       "message": "We should not be normally creating invocations when retrying schedule_request(...) calls. The check at the start of the function is probably good enough: we still occasionally be creating redundant invocations, but only if two schedule_request(...) are being called at the same time (which should be rare).",
+      "range": {
+        "startLine": 1281,
+        "startChar": 0,
+        "endLine": 1283,
+        "endChar": 56
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c210fc09_eea8654a",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "ok good to know!",
+      "parentUuid": "3ef83070_1827bb06",
       "range": {
         "startLine": 1281,
         "startChar": 0,
@@ -282,6 +534,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6db141de_cbec2a17",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1341,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "88702dfd_d4be3034",
+      "range": {
+        "startLine": 1339,
+        "startChar": 6,
+        "endLine": 1341,
+        "endChar": 54
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75383625_f9537b5c",
@@ -295,6 +571,30 @@
       "writtenOn": "2023-05-11T21:45:10Z",
       "side": 1,
       "message": "This is not correct. The function needs to return `task_req_id_exists.task_id` and the caller will need to use it to fetching the existing TaskResultSummary instead of using `result_summary` (which will not be stored in this case at all and will have some invalid task_id that doesn\u0027t exist).",
+      "range": {
+        "startLine": 1343,
+        "startChar": 8,
+        "endLine": 1343,
+        "endChar": 19
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edbed5cc_b904920d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "the doc on `txn()` says `Returns True if stored everything, False on an ID collision.`\n\nI guess it technically should return `False` since there *is* and ID collision, but then `result_summary` should be modified in the transaction.\n\nInstead I decided to create a custom error to throw when this happens. That way there is no retries that happen and we can handle that case with an except statement.",
+      "parentUuid": "75383625_f9537b5c",
       "range": {
         "startLine": 1343,
         "startChar": 8,
@@ -328,6 +628,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29141d51_2db29772",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "273d0d2b_5f403b5e",
+      "range": {
+        "startLine": 1345,
+        "startChar": 6,
+        "endLine": 1345,
+        "endChar": 42
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4da32c6c_db340961",
@@ -341,6 +665,30 @@
       "writtenOn": "2023-05-11T21:45:10Z",
       "side": 1,
       "message": "```\n to_put \u003d [\n        request,\n        result_summary,\n        to_run,\n        secret_bytes,\n        build_token,\n        task_request_id,\n    ]\n```\n\nThere\u0027s `filter` below that skips None entries already.",
+      "range": {
+        "startLine": 1353,
+        "startChar": 3,
+        "endLine": 1361,
+        "endChar": 36
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b29f9f31_f4b24e3e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1361,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4da32c6c_db340961",
       "range": {
         "startLine": 1353,
         "startChar": 3,
@@ -368,6 +716,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53630790_eaf624ed",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1381,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "the new exception handler returns the function if it is a retry/same request ID, so code below will be skipped)",
+      "parentUuid": "ff80c83e_8e196271",
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d1064ca_28c4c3b4",
@@ -381,6 +747,30 @@
       "writtenOn": "2023-05-11T21:45:10Z",
       "side": 1,
       "message": "This needs a new test specifically for idempotency code path.",
+      "range": {
+        "startLine": 184,
+        "startChar": 6,
+        "endLine": 184,
+        "endChar": 26
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccd503b5_fd3f59a0",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-18T20:54:16Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "2d1064ca_28c4c3b4",
       "range": {
         "startLine": 184,
         "startChar": 6,
