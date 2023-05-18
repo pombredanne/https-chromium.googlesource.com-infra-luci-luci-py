@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e18f658a_a59e434f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-18T19:34:28Z",
+      "side": 1,
+      "message": "I did attempt to use interceptors but decided on this approach bc:\n1. Interceptors run after the request has been parsed and associated with a specific prpc method. That means sending metrics in such an interceptor would result in those cases being missed. \n2. The status code of the `prpc` handler can also change when running other interceptors. So rather have something which runs on the outside and catches all cases.",
+      "revId": "b42b891e14f7ef9d2930d1dce7550077626cbf19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
