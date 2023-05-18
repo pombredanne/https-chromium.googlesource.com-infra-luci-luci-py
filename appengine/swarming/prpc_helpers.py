@@ -8,6 +8,8 @@ import logging
 
 from google.appengine.api import datastore_errors
 
+from infra_libs.ts_mon.common import http_metrics
+
 from components import auth
 from components.prpc import codes
 
@@ -54,3 +56,9 @@ def method(func):
         raise
 
   return wrapper
+
+
+def metrics_recorder(service, rpc, status_code, elapsed_ms):
+  endpoint_name = "/prpc/%s/%s" % (service, rpc)
+  http_metrics.update_http_server_metrics(endpoint_name, status_code,
+                                          elapsed_ms)

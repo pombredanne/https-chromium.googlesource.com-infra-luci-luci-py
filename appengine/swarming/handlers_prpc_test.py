@@ -9,6 +9,7 @@ import logging
 import os
 import random
 import sys
+from time import time
 import unittest
 import json
 import cgi
@@ -2517,6 +2518,49 @@ class SwarmingServicePrpcTest(PrpcTest):
     actual = swarming_pb2.ServerDetails()
     _decode(response.body, actual)
     self.assertEqual(expected, actual)
+
+  @mock.patch('infra_libs.ts_mon.common.'
+              'http_metrics.update_http_server_metrics')
+  def test_metrics_are_sent_ok(self, update_metrics):
+    self.set_as_privileged_user()
+    self.mock_now(self.now)
+    self.post_prpc('GetDetails', proto.empty_pb2.Empty())
+    update_metrics.assert_called_once_with(
+        '/prpc/swarming.v2.Swarming/GetDetails', 200, 0)
+
+  @mock.patch('infra_libs.ts_mon.common.'
+              'http_metrics.update_http_server_metrics')
+  def test_metrics_send_permissions_error(self, update_metrics):
+    self.mock_now(self.now)
+    self.post_prpc('GetDetails', proto.empty_pb2.Empty(), expect_errors=True)
+    update_metrics.assert_called_once_with(
+        '/prpc/swarming.v2.Swarming/GetDetails', 403, 0)
+
+  @mock.patch('infra_libs.ts_mon.common.'
+              'http_metrics.update_http_server_metrics')
+  def test_metrics_send_with_500(self, update_metrics):
+    with mock.patch('api_common.get_server_details') as details_fn:
+
+      def boom():
+        raise Exception("booom")
+
+      details_fn.side_effect = boom
+      self.set_as_privileged_user()
+      self.mock_now(self.now)
+      self.post_prpc('GetDetails', proto.empty_pb2.Empty(), expect_errors=True)
+      update_metrics.assert_called_once_with(
+          '/prpc/swarming.v2.Swarming/GetDetails', 500, 0.0)
+
+  @mock.patch('infra_libs.ts_mon.common.'
+              'http_metrics.update_http_server_metrics')
+  def test_metrics_send_unimplemented(self, update_metrics):
+    self.mock_now(self.now)
+    self.post_prpc('Incorrect',
+                   proto.empty_pb2.Empty(),
+                   service="Confidently",
+                   expect_errors=True)
+    update_metrics.assert_called_once_with('/prpc/Confidently/Incorrect', 501,
+                                           0)
 
   @mock.patch('server.bot_code.generate_bootstrap_token')
   def test_get_token_ok(self, token_mock):
