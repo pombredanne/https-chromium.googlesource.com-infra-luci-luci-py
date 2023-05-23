@@ -112,6 +112,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f235f95f_c37e7527",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-23T15:20:39Z",
+      "side": 1,
+      "message": "I now understand what you meant by this. I modified `request` so that it has the correct key.",
+      "parentUuid": "829530ee_9e34c9e3",
+      "range": {
+        "startLine": 437,
+        "startChar": 25,
+        "endLine": 437,
+        "endChar": 40
+      },
+      "revId": "2690d851d28fd9eb8eedadfd8cfd71d8fa7dd8fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42010c89_eb85ded4",
