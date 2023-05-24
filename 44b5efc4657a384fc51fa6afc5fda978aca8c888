@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b82d084c_054b2af4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-24T16:29:20Z",
+      "side": 1,
+      "message": "LGTM! Comments are great! I am assuming tests will be added?",
+      "revId": "44b5efc4657a384fc51fa6afc5fda978aca8c888",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79c978d2_6b34889e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1651,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-24T16:29:20Z",
+      "side": 1,
+      "message": "Just to clarify, this is called `maintenance` because we are waiting on `RBE` to add a `maintenance` state to a bot?",
+      "range": {
+        "startLine": 1651,
+        "startChar": 21,
+        "endLine": 1651,
+        "endChar": 32
+      },
+      "revId": "44b5efc4657a384fc51fa6afc5fda978aca8c888",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
