@@ -16,6 +16,23 @@
       "message": "PTAL. Also lmk if I need to change anything. The goal is to add the permission to the auth service so that users can update the health.",
       "revId": "fd3b0d26728889193cf5a46483dabefeca6ac261",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "160241c1_da939a5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-26T22:10:46Z",
+      "side": 1,
+      "message": "I\u0027m not sure `owner` is the good pick. It might be better to have a separate role for it (maybe role/buildbucket.healthUpdater or something like that). IIUC, we\u0027ll have a single \"health monitor\" builder that will be tracking health of a whole bunch of builders (perhaps even release ones?). If we require using `owner` role, the service account of this health monitor will became super powerful. It doesn\u0027t need that power.\n\nSo I think we need role/buildbucket.healthUpdater that includes role/buildbucket.reader and has setHealth permission. It will be used by the builder that updates the health status. And then also include role/buildbucket.healthUpdater into role/buildbucket.owner, to allow builder administrators (usually humans) to change the health status directly, if necessary.",
+      "revId": "fd3b0d26728889193cf5a46483dabefeca6ac261",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
