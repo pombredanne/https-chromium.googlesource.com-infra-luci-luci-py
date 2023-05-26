@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a99fdb46_71aa6d1d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-26T22:14:52Z",
+      "side": 1,
+      "message": "I\u0027m not sure this is safe. Without compression we may be hitting 1MB entity size limit (these things compress really well and what takes 100KB compressed may be like 5MB uncompressed).\n\nConsidering all realms information in datastore is built exclusively from realms.cfg configs, I\u0027d recommend to use a different set of entity kinds in the Go code (built from same realms.cfg configs) to avoid accidentally breaking Python code or dealing with incompatibilities.",
+      "revId": "03f7f4250b0204133cf99950224883bd8f642db6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
