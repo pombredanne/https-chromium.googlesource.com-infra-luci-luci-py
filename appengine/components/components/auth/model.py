@@ -1340,7 +1340,7 @@ class AuthProjectRealms(ndb.Model, AuthVersionedEntityMixin):
   _use_memcache = False
 
   # All realms of a project, see the AuthProjectRealms doc string above.
-  realms = datastore_utils.ProtobufProperty(realms_pb2.Realms, compressed=True)
+  realms = datastore_utils.ProtobufProperty(realms_pb2.Realms)
   # The git revision the config was picked up from.
   config_rev = ndb.StringProperty(indexed=False)
   # Revision of permissions DB used to expand roles.
