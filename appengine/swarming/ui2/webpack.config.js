@@ -54,6 +54,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const {Exception} = require('sass');
 
 const minifyOptions = {
   caseSensitive: true,
@@ -267,6 +268,20 @@ module.exports = (env, argv) => {
     const demoType = env.demo_type === 'live' ? 'live' : 'demo';
     common = demoFinder(dirname, common, demoType);
     common.devtool = 'eval-source-map';
+    if (demoType === 'live') {
+      common.devServer.proxy = [
+        {
+          changeOrigin: true,
+          context: ['/auth'],
+          target: 'https://chromium-swarm-dev.appspot.com/',
+          bypass: function(req, res, proxyOptions) {
+            const sid = process.env.LUCISID;
+            req.headers.cookie = `LUCISID=${sid}`;
+            return null;
+          },
+        },
+      ];
+    }
   }
 
   // Make all CSS/JS files appear at the /newres location.
