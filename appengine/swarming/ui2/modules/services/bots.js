@@ -43,6 +43,9 @@ class PrpcService {
   }
 }
 
+const QUERY_START_TS = 4;
+const QUERY_ALL = 10;
+
 /**
  * Service to communicate with swarming.v2.Bots prpc service.
  */
@@ -60,6 +63,18 @@ export class BotsService extends PrpcService {
    */
   getBot(botId) {
     return this._call('GetBot', {bot_id: botId});
+  }
+
+  getTasks(botId, cursor) {
+    const request = {
+      sort: QUERY_START_TS,
+      state: QUERY_ALL,
+      bot_id: botId,
+      cursor: cursor,
+      limit: 30,
+      include_performance_stats: true,
+    };
+    return this._call('ListBotTasks', request);
   }
 }
 
