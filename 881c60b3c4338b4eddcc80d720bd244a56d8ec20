@@ -22,6 +22,30 @@
       },
       "revId": "881c60b3c4338b4eddcc80d720bd244a56d8ec20",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc313bb5_812c7e4c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-05-30T18:26:49Z",
+      "side": 1,
+      "message": "good call out. I re worded the commit msg.",
+      "parentUuid": "ac0c6169_eb3ec6c6",
+      "range": {
+        "startLine": 7,
+        "startChar": 59,
+        "endLine": 7,
+        "endChar": 87
+      },
+      "revId": "881c60b3c4338b4eddcc80d720bd244a56d8ec20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
