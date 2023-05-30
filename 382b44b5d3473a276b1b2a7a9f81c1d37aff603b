@@ -22,6 +22,30 @@
       },
       "revId": "382b44b5d3473a276b1b2a7a9f81c1d37aff603b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19bcd79e_8dfb0f84",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-05-30T19:42:19Z",
+      "side": 1,
+      "message": "This is a trick to get data from `swarming-dev` and use it locally for testing with the UI. What happens is that requests which are sent to `/auth` (so initial /auth/oid/state` request) gets proxied and sent with a `lucisid` cookie injected. That request will then be returned with the credentials needed to access swarming-dev in the `live_demo` mode. \n\nThis does not effect the actual UI since it is part of `webpack-dev-server` as a proxy.",
+      "parentUuid": "501940b6_dc7e6239",
+      "range": {
+        "startLine": 273,
+        "startChar": 8,
+        "endLine": 282,
+        "endChar": 10
+      },
+      "revId": "382b44b5d3473a276b1b2a7a9f81c1d37aff603b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
