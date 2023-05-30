@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "501940b6_dc7e6239",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-30T19:34:11Z",
+      "side": 1,
+      "message": "What does this do and what component is interpreting it?",
+      "range": {
+        "startLine": 273,
+        "startChar": 8,
+        "endLine": 282,
+        "endChar": 10
+      },
+      "revId": "382b44b5d3473a276b1b2a7a9f81c1d37aff603b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
