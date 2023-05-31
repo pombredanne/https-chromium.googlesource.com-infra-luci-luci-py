@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85e8bc6d_8dca8d83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-05-31T19:57:09Z",
+      "side": 1,
+      "message": "PTAL. It is not safe to land yet because RBE backend doesn\u0027t recognize this status yet, but I assume it will change soon.",
+      "revId": "2af407d24ae39420f1666ceae0b2e9544edad5ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
