@@ -84,5 +84,12 @@ export class BotsService extends PrpcService {
     };
     return this._call('ListBotTasks', request);
   }
+
+  terminate(botId) {
+    const request = {
+      bot_id: botId,
+    };
+    return this._call('TerminateBot', request);
+  }
 }
 
