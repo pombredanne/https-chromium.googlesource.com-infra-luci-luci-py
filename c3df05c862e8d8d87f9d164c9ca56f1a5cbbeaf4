@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c00db46_582dd808",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-06-05T20:54:26Z",
+      "side": 1,
+      "message": "This is a CL which creates a new autoformatter.\n\nThe files which were actually changed are:\n\n- `.eslintrc.yml`\n- `.prettierrc.json`\n- `package.json`",
+      "revId": "c3df05c862e8d8d87f9d164c9ca56f1a5cbbeaf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
