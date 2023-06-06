@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e81684e_66116e7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-06-06T22:46:47Z",
+      "side": 1,
+      "message": "LGTM! I\u0027m a bit unsure about where the validation that the values sum to 100 actually happens.",
+      "revId": "5a4f3aa5268fc3abc7cee4c854e44f2aa05aa060",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d04860a_ce62e1fe",
+        "filename": "appengine/swarming/server/rbe.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-06-06T22:46:47Z",
+      "side": 1,
+      "message": "Where does this validation happen?",
+      "range": {
+        "startLine": 81,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 34
+      },
+      "revId": "5a4f3aa5268fc3abc7cee4c854e44f2aa05aa060",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
