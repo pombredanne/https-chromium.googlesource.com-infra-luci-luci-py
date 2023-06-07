@@ -39,6 +39,30 @@
       },
       "revId": "5a4f3aa5268fc3abc7cee4c854e44f2aa05aa060",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8016399_45b76f8c",
+        "filename": "appengine/swarming/server/rbe.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-06-07T06:03:12Z",
+      "side": 1,
+      "message": "https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/4593450/2/appengine/swarming/server/pools_config.py#585\n\nThis validation is done whenever there\u0027s a new config available. Configs that do not pass validation are rejected and they should never, theoretically, reach get_rbe_config_for_bot. If they do, asserts will trigger.",
+      "parentUuid": "0d04860a_ce62e1fe",
+      "range": {
+        "startLine": 81,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 34
+      },
+      "revId": "5a4f3aa5268fc3abc7cee4c854e44f2aa05aa060",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
