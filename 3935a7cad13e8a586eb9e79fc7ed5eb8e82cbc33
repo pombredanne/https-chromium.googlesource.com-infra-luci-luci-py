@@ -188,6 +188,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "316f1ada_2cf2145f",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T19:20:44Z",
+      "side": 1,
+      "message": "good catch! fixed.",
+      "parentUuid": "73f65b76_9bd10a41",
+      "range": {
+        "startLine": 62,
+        "startChar": 52,
+        "endLine": 62,
+        "endChar": 61
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49869893_0e298703",
