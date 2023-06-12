@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c391c155_2092c4b2",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14f7ed61_8203b5be",
+      "range": {
+        "startLine": 432,
+        "startChar": 2,
+        "endLine": 432,
+        "endChar": 25
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c53f9b1_6bd7241d",
@@ -60,6 +84,54 @@
       "writtenOn": "2023-06-12T15:12:30Z",
       "side": 1,
       "message": "is it validated to be set? It will be sad if we discover there\u0027s a task with `\u003ccaller\u003e:None` ID.",
+      "range": {
+        "startLine": 54,
+        "startChar": 53,
+        "endLine": 54,
+        "endChar": 69
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d44f610a_cc201d29",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "on my local they are now failing though! fixed it.",
+      "parentUuid": "8c53f9b1_6bd7241d",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 71
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c809a785_31f73229",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "I added a validator function to check various items of the request before it gets sent off for conversion. I also added a unit test case to ensure this gets caught.",
+      "parentUuid": "23b93e10_e5550f9e",
       "range": {
         "startLine": 54,
         "startChar": 53,
@@ -116,6 +188,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d16d65a6_61863960",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1104,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49869893_0e298703",
+      "range": {
+        "startLine": 1104,
+        "startChar": 6,
+        "endLine": 1104,
+        "endChar": 19
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25e11004_73808395",
@@ -129,6 +225,30 @@
       "writtenOn": "2023-06-12T15:12:30Z",
       "side": 1,
       "message": "`The task_id (TaskResultSummay packed key) ...` since there are different sorts of task IDs :-/",
+      "range": {
+        "startLine": 1111,
+        "startChar": 8,
+        "endLine": 1111,
+        "endChar": 15
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eed3d768_b345ae7a",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1111,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25e11004_73808395",
       "range": {
         "startLine": 1111,
         "startChar": 8,
@@ -162,6 +282,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e02df194_1a4d8d22",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20fd9202_7290ea1a",
+      "range": {
+        "startLine": 1119,
+        "startChar": 22,
+        "endLine": 1119,
+        "endChar": 34
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbf5f2fb_3a7e5c60",
@@ -175,6 +319,30 @@
       "writtenOn": "2023-06-12T15:12:30Z",
       "side": 1,
       "message": "request_id",
+      "range": {
+        "startLine": 1214,
+        "startChar": 16,
+        "endLine": 1214,
+        "endChar": 31
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfca4c11_5edb25d7",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1214,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbf5f2fb_3a7e5c60",
       "range": {
         "startLine": 1214,
         "startChar": 16,
@@ -208,6 +376,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d913cfdc_caa5abbc",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1244,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "SGTM. I changed the keys to `task_req_to_id_key` and for the conditional `if request_id:` statements (after the first one) I used `task_req_to_id_key`.",
+      "parentUuid": "fc355cc6_89c76846",
+      "range": {
+        "startLine": 1243,
+        "startChar": 0,
+        "endLine": 1244,
+        "endChar": 19
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd73cd45_264dc7c1",
@@ -221,6 +413,30 @@
       "writtenOn": "2023-06-12T15:12:30Z",
       "side": 1,
       "message": "`task_req_to_id`",
+      "range": {
+        "startLine": 1245,
+        "startChar": 4,
+        "endLine": 1245,
+        "endChar": 15
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d5052d7_257989f6",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1245,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd73cd45_264dc7c1",
       "range": {
         "startLine": 1245,
         "startChar": 4,
@@ -254,6 +470,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c7dc65e_349c0ff3",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1361,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdf6ad4b_8d03c0ce",
+      "range": {
+        "startLine": 1359,
+        "startChar": 0,
+        "endLine": 1361,
+        "endChar": 40
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61b889c9_a17fcf96",
@@ -267,6 +507,30 @@
       "writtenOn": "2023-06-12T15:12:30Z",
       "side": 1,
       "message": "`TaskExistsException(task_req_to_id.task_id)` to avoid fetching it again in the exception handler",
+      "range": {
+        "startLine": 1363,
+        "startChar": 14,
+        "endLine": 1363,
+        "endChar": 35
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66afdf68_dab582f1",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "oh yes duh",
+      "parentUuid": "61b889c9_a17fcf96",
       "range": {
         "startLine": 1363,
         "startChar": 14,
@@ -300,6 +564,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "405a6ebf_5b357c7b",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1365,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63b1f5b8_6882ea73",
+      "range": {
+        "startLine": 1365,
+        "startChar": 33,
+        "endLine": 1365,
+        "endChar": 46
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3373292_d046f477",
@@ -313,6 +601,30 @@
       "writtenOn": "2023-06-12T15:12:30Z",
       "side": 1,
       "message": "`xg\u003dbool(task_req_to_id_key)`",
+      "range": {
+        "startLine": 1387,
+        "startChar": 53,
+        "endLine": 1387,
+        "endChar": 60
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2692a298_d383a407",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3373292_d046f477",
       "range": {
         "startLine": 1387,
         "startChar": 53,
@@ -346,6 +658,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "619dfa4e_121a57a0",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1398,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6f51d44_36ceb390",
+      "range": {
+        "startLine": 1398,
+        "startChar": 6,
+        "endLine": 1398,
+        "endChar": 40
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bb8100d_1fcd756b",
@@ -359,6 +695,30 @@
       "writtenOn": "2023-06-12T15:12:30Z",
       "side": 1,
       "message": "variables named with `_` supposed to be unused\n\nbetter to name it `rid` as in \"request ID\"",
+      "range": {
+        "startLine": 106,
+        "startChar": 20,
+        "endLine": 106,
+        "endChar": 23
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "700144b5_e3f715b8",
+        "filename": "appengine/swarming/server/task_scheduler_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-12T17:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bb8100d_1fcd756b",
       "range": {
         "startLine": 106,
         "startChar": 20,
