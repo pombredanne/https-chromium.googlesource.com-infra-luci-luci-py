@@ -167,6 +167,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73f65b76_9bd10a41",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-06-12T19:16:58Z",
+      "side": 1,
+      "message": "Prefer `str(e)` since as I believe ValueError does not have `.message` method.",
+      "range": {
+        "startLine": 62,
+        "startChar": 52,
+        "endLine": 62,
+        "endChar": 61
+      },
+      "revId": "3935a7cad13e8a586eb9e79fc7ed5eb8e82cbc33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49869893_0e298703",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 22
