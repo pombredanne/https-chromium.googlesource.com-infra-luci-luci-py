@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fac2bfae_174555bf",
+        "filename": "appengine/swarming/ui2/modules/task-page/test_data.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-06-14T21:26:37Z",
+      "side": 1,
+      "message": "I may missed something, but is casRef used anywhere after the change?",
+      "range": {
+        "startLine": 20,
+        "startChar": 13,
+        "endLine": 20,
+        "endChar": 19
+      },
+      "revId": "a8225dd75406af766c697b24e41202cda5d8d4bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b62e6102_c809e380",
+        "filename": "appengine/swarming/ui2/modules/task-page/test_data.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-06-14T21:26:37Z",
+      "side": 1,
+      "message": "Should we change \"cas_instance\" to \"casInstance\" then use it at e.g. L774?",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 21,
+        "endChar": 14
+      },
+      "revId": "a8225dd75406af766c697b24e41202cda5d8d4bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
