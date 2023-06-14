@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b4dc474f_54e87bc2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-06-14T18:50:47Z",
+      "side": 1,
+      "message": "LGTM 😊",
+      "revId": "bc13ef9509ee85db39bb4629cc9b1ca8f49977ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d432441e_822b34d4",
         "filename": "appengine/swarming/bb/update_taskbackend_protos.py",
         "patchSetId": 1
