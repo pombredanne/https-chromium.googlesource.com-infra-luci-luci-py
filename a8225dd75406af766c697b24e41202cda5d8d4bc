@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "784c60c9_eff76ce9",
+        "filename": "appengine/swarming/ui2/modules/task-page/test_data.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-06-14T21:39:19Z",
+      "side": 1,
+      "message": "Good catch - so I just copied this information into the `taskRequests` objects but not that `taskResults` where it remains unchanged. \n\nJust going to remove the `export` and then delete it in subsequent CL. I don\u0027t think this needs to be a separate variable.",
+      "parentUuid": "fac2bfae_174555bf",
+      "range": {
+        "startLine": 20,
+        "startChar": 13,
+        "endLine": 20,
+        "endChar": 19
+      },
+      "revId": "a8225dd75406af766c697b24e41202cda5d8d4bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b62e6102_c809e380",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-14T21:26:37Z",
       "side": 1,
       "message": "Should we change \"cas_instance\" to \"casInstance\" then use it at e.g. L774?",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 21,
+        "endChar": 14
+      },
+      "revId": "a8225dd75406af766c697b24e41202cda5d8d4bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32236ce8_bd4e689c",
+        "filename": "appengine/swarming/ui2/modules/task-page/test_data.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-06-14T21:39:19Z",
+      "side": 1,
+      "message": "See other comment.",
+      "parentUuid": "b62e6102_c809e380",
       "range": {
         "startLine": 21,
         "startChar": 2,
