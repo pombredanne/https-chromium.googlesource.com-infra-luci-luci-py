@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2bd45b5_d02c95a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-14T18:39:19Z",
+      "side": 1,
+      "message": "PTAL",
+      "revId": "bc13ef9509ee85db39bb4629cc9b1ca8f49977ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d432441e_822b34d4",
+        "filename": "appengine/swarming/bb/update_taskbackend_protos.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-14T18:39:19Z",
+      "side": 1,
+      "message": "Previously, the code worked really for only my workspace, but recently due to the infra_superproject, my filepath changed. I also assumed everyone has a different filepath to this dir, so it\u0027s better to split by `go/chromium/org/luci/` and get the filenames there, that way it works for any dir path where this script will be ran.",
+      "range": {
+        "startLine": 125,
+        "startChar": 4,
+        "endLine": 125,
+        "endChar": 60
+      },
+      "revId": "bc13ef9509ee85db39bb4629cc9b1ca8f49977ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
