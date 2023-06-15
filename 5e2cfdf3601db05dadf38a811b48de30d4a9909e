@@ -46,6 +46,69 @@
       },
       "revId": "5e2cfdf3601db05dadf38a811b48de30d4a9909e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9768b974_3291a9e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-06-15T22:38:50Z",
+      "side": 1,
+      "message": "lgtm w/ comments",
+      "revId": "5e2cfdf3601db05dadf38a811b48de30d4a9909e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "290e4c9d_6270fc96",
+        "filename": "appengine/swarming/ui2/modules/services/tasks.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-06-15T22:38:50Z",
+      "side": 1,
+      "message": "nit: includePerformanceStats",
+      "range": {
+        "startLine": 61,
+        "startChar": 22,
+        "endLine": 61,
+        "endChar": 39
+      },
+      "revId": "5e2cfdf3601db05dadf38a811b48de30d4a9909e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb82de9a_f7a638b6",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 888,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-06-15T22:38:50Z",
+      "side": 1,
+      "message": "This looks weird... Do you have plan to fix these fields to make them in full camel cases?",
+      "range": {
+        "startLine": 888,
+        "startChar": 17,
+        "endLine": 888,
+        "endChar": 37
+      },
+      "revId": "5e2cfdf3601db05dadf38a811b48de30d4a9909e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
