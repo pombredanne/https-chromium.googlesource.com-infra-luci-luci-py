@@ -4,6 +4,7 @@
 """This module defines Swarming Server frontend pRPC handlers."""
 
 import logging
+import time
 
 from google.appengine.api import app_identity
 from google.appengine.ext import ndb
@@ -72,7 +73,8 @@ class TaskBackendAPIService(object):
     task_id = task_pack.pack_result_summary_key(result_summary.key)
     task = task_pb2.Task(id=task_pb2.TaskID(id=task_id, target=request.target),
                          link="https://%s/task?id=%s&o=true&w=true" %
-                         (hostname, task_id))
+                         (hostname, task_id),
+                         update_id=int(time.time()))
     backend_conversions.convert_task_state_to_status(result_summary.state,
                                                      result_summary.failure,
                                                      task)

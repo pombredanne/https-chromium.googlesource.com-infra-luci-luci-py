@@ -7,6 +7,7 @@ import datetime
 import logging
 import os
 import cgi
+import time
 import random
 import sys
 import unittest
@@ -148,6 +149,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     request = self._basic_run_task_request()
     request.build_id = "8783198670850745761"
     self.mock(random, 'getrandbits', lambda _: 0x86)
+    self.mock(time, 'time', lambda: 100)
     raw_resp = self.app.post('/prpc/buildbucket.v2.TaskBackend/RunTask',
                              _encode(request), self._headers)
     actual_resp = backend_pb2.RunTaskResponse()
@@ -158,7 +160,8 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         task=task_pb2.Task(id=task_pb2.TaskID(
             id=expected_task_id, target='swarming://test-swarming'),
                            link=l,
-                           status=common_pb2.SCHEDULED))
+                           status=common_pb2.SCHEDULED,
+                           update_id=100))
     self.assertEqual(actual_resp, expected_response)
     self.assertEqual(1, task_request.TaskRequest.query().count())
     self.assertEqual(1, task_request.BuildToken.query().count())
@@ -173,7 +176,8 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         task=task_pb2.Task(id=task_pb2.TaskID(
             id=expected_task_id, target='swarming://test-swarming'),
                            link=l,
-                           status=common_pb2.SCHEDULED))
+                           status=common_pb2.SCHEDULED,
+                           update_id=100))
     self.assertEqual(actual_resp, expected_response)
     self.assertEqual(1, task_request.TaskRequest.query().count())
     self.assertEqual(1, task_request.BuildToken.query().count())
@@ -192,7 +196,8 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         task=task_pb2.Task(id=task_pb2.TaskID(
             id=new_expected_task_id, target='swarming://test-swarming'),
                            link=l,
-                           status=common_pb2.SCHEDULED))
+                           status=common_pb2.SCHEDULED,
+                           update_id=100))
     self.assertEqual(actual_resp, expected_response)
     self.assertEqual(2, task_request.TaskRequest.query().count())
     self.assertEqual(2, task_request.BuildToken.query().count())
