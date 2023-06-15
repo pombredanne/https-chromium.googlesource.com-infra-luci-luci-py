@@ -22,6 +22,30 @@
       },
       "revId": "5e2cfdf3601db05dadf38a811b48de30d4a9909e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbc2bbd9_1097a140",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-06-15T22:37:01Z",
+      "side": 1,
+      "message": "Nope! No differences. The two UIs should look identical 😊 I am thinking of adding some automation to detect diffs in screenshots but that will come in the future.",
+      "parentUuid": "7c657abe_c74e0522",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 11
+      },
+      "revId": "5e2cfdf3601db05dadf38a811b48de30d4a9909e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
