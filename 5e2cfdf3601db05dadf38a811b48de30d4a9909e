@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c657abe_c74e0522",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-06-15T22:24:15Z",
+      "side": 1,
+      "message": "QQ: Is there any difference on the UI after this change? If yes, could you point it(them) out on the screenshots?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 11
+      },
+      "revId": "5e2cfdf3601db05dadf38a811b48de30d4a9909e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
