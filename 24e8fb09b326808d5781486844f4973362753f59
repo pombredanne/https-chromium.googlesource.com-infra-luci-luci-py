@@ -16,6 +16,46 @@
       "message": "PTAL",
       "revId": "24e8fb09b326808d5781486844f4973362753f59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b951cb2_c9e9f7fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-06-15T20:18:33Z",
+      "side": 1,
+      "message": "LGTM 😊 Just have one comment",
+      "revId": "24e8fb09b326808d5781486844f4973362753f59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9df7a446_c709bfb8",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-06-15T20:18:33Z",
+      "side": 1,
+      "message": "Nit: May be useful to use `utils.utcnow()` - eg here: https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/handlers_bot.py;l\u003d742?q\u003dfilepath:handlers_bot.py\n\nIt\u0027s easier to mock `utils.utcnow()` rather than `time.time()`.",
+      "range": {
+        "startLine": 77,
+        "startChar": 39,
+        "endLine": 77,
+        "endChar": 50
+      },
+      "revId": "24e8fb09b326808d5781486844f4973362753f59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
