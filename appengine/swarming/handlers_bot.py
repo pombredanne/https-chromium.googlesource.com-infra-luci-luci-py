@@ -7,6 +7,7 @@ import base64
 import datetime
 import json
 import logging
+import os
 import urlparse
 
 import six
@@ -20,10 +21,14 @@ from google.appengine.ext import ndb
 from google.appengine import runtime
 from google.appengine.runtime import apiproxy_errors
 
+from bb.go.chromium.org.luci.buildbucket.proto import backend_prpc_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import task_pb2
+
 from components import auth
 from components import datastore_utils
 from components import decorators
 from components import ereporter2
+from components import pubsub
 from components import utils
 from server import acl
 from server import bot_auth
@@ -40,7 +45,9 @@ from server import task_request
 from server import task_result
 from server import task_scheduler
 from server import task_to_run
+import api_common
 import api_helpers
+import backend_conversions
 import ts_mon_metrics
 
 # Methods used to authenticate requests from bots, see get_auth_methods().
@@ -1328,6 +1335,24 @@ class BotIDTokenHandler(_BotTokenHandler):
       self.abort_with_error(400, error='"audience" must be a string')
     return None, audience
 
+# send_build_task_update sends an update at the end of 
+# BotTaskUpdateHandler.post. It updates buildbucket on the status of the task.
+def send_build_task_update(task):
+  # type: task_pb2.Task -> None
+  project_id = app_identity.get_application_id()
+  topic = 'projects/%s/topics/%s-backend' % (project_id, project_id)
+  print("made the topic name")
+  request_key, _ = api_common.to_keys(task.id.id)
+  print("made the req key")
+  request_obj = api_common.get_task_request_async(
+        task.id.id, request_key, api_common.VIEW).get_result()
+  print("got the request _obj")
+  build_id = request_obj.BuildToken.build_id
+  print("got the build_id")
+  msg = task_pb2.BuildTaskUpdate(build_id=build_id, task=task)
+  print("made the task req proto")
+  pubsub.publish(topic=topic, message=msg.serializeToString())
+
 
 ### Bot Task API RPC handlers
 
@@ -1495,7 +1520,15 @@ class BotTaskUpdateHandler(_BotApiHandler):
       if not state:
         logging.info('Failed to update, please retry')
         self.abort_with_error(500, error='Failed to update, please retry')
-
+      print("made it here")
+      bb_task = task_pb2.Task(
+        id=task_pb2.TaskID(
+          id=task_id,
+          target="swarming://%s" % app_identity.get_application_id(),
+        ))
+      print("made the bb task")
+      backend_conversions.convert_task_state_to_status(state, False, bb_task)
+      print("set the status for bb task")
       if state in (task_result.State.COMPLETED, task_result.State.TIMED_OUT):
         action = 'task_completed'
       elif state == task_result.State.KILLED:
@@ -1534,6 +1567,9 @@ class BotTaskUpdateHandler(_BotApiHandler):
     must_stop = state in (task_result.State.BOT_DIED, task_result.State.KILLED)
     if must_stop:
       logging.info('asking bot to kill the task')
+    print("going to send the pubsub")
+    send_build_task_update(bb_task)
+    print("sent the pubsub")
     self.send_response({'must_stop': must_stop, 'ok': True})
 
 
