@@ -316,7 +316,8 @@ def new_task_request_from_rpc(msg, now):
       has_build_token=False,
       scheduling_algorithm=None,
       rbe_instance=None,
-      txn_uuid=None)
+      txn_uuid=None,
+      is_task_backend_task=False)
 
   return req, secret_bytes, template_apply
 
