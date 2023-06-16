@@ -24,7 +24,12 @@ import {
   siblingBotsLink,
 } from "./bot-page-helpers";
 import { stateClass as taskClass } from "../task-page/task-page-helpers";
-import { timeDiffApprox, timeDiffExact, taskPageLink } from "../util";
+import {
+  humanTime,
+  timeDiffApprox,
+  timeDiffExact,
+  taskPageLink,
+} from "../util";
 import SwarmingAppBoilerplate from "../SwarmingAppBoilerplate";
 import { BotsService } from "../services/bots.js";
 import { TasksService } from "../services/tasks.js";
@@ -74,7 +79,7 @@ const statusAndTask = (ele, bot) => {
     </tr>
     <tr class=${bot.isDead ? "dead" : ""}>
       <td>Last Seen</td>
-      <td title=${bot.human_lastSeenTs}>
+      <td title=${humanTime(bot.lastSeenTs)}>
         ${timeDiffExact(bot.lastSeenTs)} ago
       </td>
       <td>
@@ -173,7 +178,7 @@ const dataAndMPBlock = (ele, bot) => html`
   </tr>
   <tr title="First time ever a bot with this id contacted the server.">
     <td>First seen</td>
-    <td colspan="2" title=${bot.human_firstSeenTs}>
+    <td colspan="2" title=${humanTime(bot.firstSeenTs)}>
       ${timeDiffApprox(bot.firstSeenTs)} ago
     </td>
   </tr>
@@ -273,8 +278,10 @@ const taskRow = (task) => html`
         ${task.name}
       </a>
     </td>
-    <td>${task.human_startedTs}</td>
-    <td title=${task.human_completedTs}>${task.human_total_duration}</td>
+    <td>${humanTime(task.startedTs)}</td>
+    <td title=${humanTime(task.completedTs)}>
+      ${humanTime(task.total_duration)}
+    </td>
     <td>${task.human_state}</td>
   </tr>
 `;
@@ -331,7 +338,7 @@ const eventRow = (event, showAll, serverVersion) => {
   return html` <tr>
     <td class="message">${msg}</td>
     <td>${event.eventType}</td>
-    <td>${event.human_ts}</td>
+    <td>${humanTime(event.ts)}</td>
     <td>
       <a target="_blank" rel="noopener" href=${taskPageLink(event.taskId)}>
         ${event.taskId}

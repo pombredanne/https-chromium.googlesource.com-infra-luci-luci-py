@@ -175,24 +175,11 @@ export function parseDuration(duration) {
  *  human.localeTime.
  */
 export function sanitizeAndHumanizeTime(obj, key) {
-  obj["human_" + key] = "--";
-  if (obj[key]) {
-    if (obj[key].endsWith && !obj[key].endsWith("Z")) {
-      // Timestamps from the server are missing the 'Z' that specifies Zulu
-      // (UTC) time. If that's not the case, add the Z. Otherwise, some
-      // browsers interpret this as local time, which throws off everything.
-      // TODO(kjlubick): Should the server output milliseconds since the
-      // epoch?  That would be more consistent.
-      // See http://crbug.com/714599
-      obj[key] += "Z";
-    }
-    obj[key] = new Date(obj[key]);
-
-    // Extract the timezone.
-    const str = obj[key].toString();
-    const timezone = str.substring(str.indexOf("("));
-
-    obj["human_" + key] = obj[key].toLocaleString() + " " + timezone;
+  try {
+    obj["human_" + key] = humanTime(obj[key]);
+  } catch (e) {
+    obj["human_" + key] = "--";
+    console.error("Error humanizing time", e);
   }
 }
 
@@ -235,6 +222,28 @@ export function taskListLink(filters = [], columns = [], start, end) {
   }
 
   return "/tasklist?" + query.fromParamSet(obj);
+}
+
+export function humanTime(theTime) {
+  if (theTime && typeof theTime === "string") {
+    if (theTime.endsWith && !theTime.endsWith("Z")) {
+      // Timestamps from the server are missing the 'Z' that specifies Zulu
+      // (UTC) time. If that's not the case, add the Z. Otherwise, some
+      // browsers interpret this as local time, which throws off everything.
+      // TODO(kjlubick): Should the server output milliseconds since the
+      // epoch?  That would be more consistent.
+      // See http://crbug.com/714599
+      theTime += "Z";
+    }
+    obj[key] = new Date(obj[key]);
+
+    // Extract the timezone.
+    const str = theTime.toString();
+    const timezone = str.substring(str.indexOf("("));
+
+    return theTime.toLocaleString() + " " + timezone;
+  }
+  throw new Error("humanDuration may only be used non empty strings");
 }
 
 /** taskPageLink creates the href attribute for linking to a single task.

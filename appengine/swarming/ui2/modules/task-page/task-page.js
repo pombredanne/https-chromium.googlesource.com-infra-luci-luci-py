@@ -44,6 +44,7 @@ import {
   botListLink,
   botPageLink,
   humanDuration,
+  humanTime,
   parseDuration,
   taskListLink,
   taskPageLink,
@@ -291,7 +292,7 @@ const stateLoadBlock = (ele, request, result) => html`
   </tr>
   <tr ?hidden=${!result.dedupedFrom}>
     <td>Deduped On</td>
-    <td title=${request.createdTs}>${request.human_createdTs}</td>
+    <td title=${request.createdTs}>${humanTime(request.createdTs)}</td>
   </tr>
 `;
 
@@ -686,11 +687,11 @@ const taskTimingSection = (ele, request, result) => {
         <tbody>
           <tr>
             <td>Created</td>
-            <td title=${request.createdTs}>${request.human_createdTs}</td>
+            <td title=${request.createdTs}>${humanTime(request.createdTs)}</td>
           </tr>
           <tr ?hidden=${!wasPickedUp(result)}>
             <td>Started</td>
-            <td title=${result.startedTs}>${result.human_startedTs}</td>
+            <td title=${result.startedTs}>${humanTime(result.startedTs)}</td>
           </tr>
           <tr>
             <td>Scheduling Deadline</td>
@@ -698,19 +699,23 @@ const taskTimingSection = (ele, request, result) => {
           </tr>
           <tr ?hidden=${!result.completedTs}>
             <td>Completed</td>
-            <td title=${result.completedTs}>${result.human_completedTs}</td>
+            <td title=${result.completedTs}>
+              ${humanTime(result.completedTs)}
+            </td>
           </tr>
           <tr ?hidden=${!result.abandonedTs}>
             <td>Abandoned</td>
-            <td title=${result.abandonedTs}>${result.human_abandonedTs}</td>
+            <td title=${result.abandonedTs}>
+              ${humanTime(result.abandonedTs)}
+            </td>
           </tr>
           <tr>
             <td>Last updated</td>
-            <td title=${result.modifiedTs}>${result.human_modifiedTs}</td>
+            <td title=${result.modifiedTs}>${humanTime(result.modifiedTs)}</td>
           </tr>
           <tr>
             <td>Pending Time</td>
-            <td class="pending">${result.human_pending}</td>
+            <td class="pending">${humanTime(result.pending)}</td>
           </tr>
           <tr>
             <td>Total Overhead</td>
@@ -724,7 +729,7 @@ const taskTimingSection = (ele, request, result) => {
               class="running"
               title="An asterisk indicates the task is still running and thus the time is dynamic."
             >
-              ${result.human_duration}
+              ${humanDuration(result.duration)}
             </td>
           </tr>
         </tbody>
@@ -885,7 +890,7 @@ const taskExecutionSection = (ele, request, result, currentSlice) => {
   </tr>
   <tr>
     <td>Bot idle since</td>
-    <td>${result.human_botIdleSinceTs}</td>
+    <td>${humanTime(result.botIdleSinceTs)}</td>
   </tr>
   <tr>
     <td rowspan=${botDimensions.length + 1}>
