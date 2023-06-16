@@ -119,7 +119,8 @@ class TestBackendConversions(test_case.TestCase):
         bot_ping_tolerance_secs=70,
         service_account='who@serviceaccount.com',
         parent_task_id=parent_task_id,
-        has_build_token=True)
+        has_build_token=True,
+        is_task_backend_task=True)
 
     expected_sb = task_request.SecretBytes(
         secret_bytes=run_task_req.secrets.SerializeToString())
