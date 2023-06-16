@@ -555,6 +555,8 @@ class TaskRequestApiTest(TestCase):
         auth_testing.DEFAULT_MOCKED_IDENTITY,
         'has_build_token':
         False,
+        "is_task_backend_task":
+        False,
         'name':
         u'Request name',
         'parent_task_id':
@@ -686,6 +688,8 @@ class TaskRequestApiTest(TestCase):
         'authenticated':
         auth_testing.DEFAULT_MOCKED_IDENTITY,
         'has_build_token':
+        False,
+        "is_task_backend_task":
         False,
         'name':
         u'Request name',

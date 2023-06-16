@@ -1250,6 +1250,11 @@ class TaskRequest(ndb.Model):
   # If True, the TaskRequest has an associated BuildToken.
   has_build_token = ndb.BooleanProperty(default=False, indexed=False)
 
+  # If true, the task will publish buildbucket.v2.BuildTaskUpdate messages
+  # to the swarming server's pubsub topic that buildbucket uses to processes
+  # task update messages.
+  is_task_backend_task = ndb.BooleanProperty(default=False, indexed=False)
+
   @property
   def num_task_slices(self):
     """Returns the number of TaskSlice, supports old entities."""
