@@ -777,6 +777,9 @@ def _run_isolated_flags(botobj):
       # Named cache option.
       '--named-cache-root',
       os.path.join(botobj.base_dir, 'c'),
+      # CIPD cache.
+      '--cipd-cache',
+      os.path.join(botobj.base_dir, 'cipd_cache'),
   ]
 
   use_kvs = True
