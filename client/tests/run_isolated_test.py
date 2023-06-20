@@ -867,6 +867,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
   def test_main_clean(self):
     cas_cache_dir = os.path.join(self.tempdir, 'cas_cache')
     named_cache_dir = os.path.join(self.tempdir, 'named_cache')
+    cipd_cache_dir = os.path.join(self.tempdir, 'cipd_cache')
     kvs_dir = os.path.join(self.tempdir, 'kvs_dir')
     os.mkdir(kvs_dir)
     with open(os.path.join(kvs_dir, 'dummy'), 'w') as f:
@@ -894,6 +895,11 @@ class RunIsolatedTest(RunIsolatedTestBase):
         named_cache_dir,
         '--kvs-dir',
         kvs_dir,
+        # CIPD cache
+        '--cipd-cache',
+        cipd_cache_dir,
+        '--cipd-enabled',
+        'true'
     ]
 
     def trim_caches_mock(caches, _root_dir, min_free_space, max_age_secs):
@@ -928,6 +934,8 @@ class RunIsolatedTest(RunIsolatedTestBase):
     with self.assertRaises(OSError):
       # kvs dir should be removed.
       fs.stat(kvs_dir)
+
+    # TODO: test that cipd_cache was cleaned.
 
   def test_modified_cwd(self):
     self._run_tha_test(command=['../out/some.exe', 'arg'], relative_cwd='some')
