@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1ed0f51_2cd16b1b",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1156,
+      "author": {
+        "id": 1115868
+      },
+      "writtenOn": "2023-06-20T05:25:33Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s confusing and I\u0027m just guessing a bit what the intent was.\n\ncache_dir seems to be a top-level working directory; it is used here both to create a \u0027bin\u0027 directory for the cipd binary to be installed to, and then for a \u0027cache\u0027 directory which is the actual cache managed by the cipd client (see comment below).",
+      "parentUuid": "f012f510_8e7af64d",
+      "range": {
+        "startLine": 1156,
+        "startChar": 69,
+        "endLine": 1156,
+        "endChar": 78
+      },
+      "revId": "a4fd57fa1d1df6922c54a4b82ddf4adbff31a48b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "71531723_df6595b8",
         "filename": "client/run_isolated.py",
         "patchSetId": 6
@@ -77,6 +101,30 @@
       "writtenOn": "2023-06-20T05:12:47Z",
       "side": 1,
       "message": "I don\u0027t think this would work. CIPD instance cache directory is managed by CIPD client and it is structured differently from cache directories managed by Swarming bot. _clean_cmd wouldn\u0027t know what to do with it.",
+      "range": {
+        "startLine": 1595,
+        "startChar": 3,
+        "endLine": 1595,
+        "endChar": 38
+      },
+      "revId": "a4fd57fa1d1df6922c54a4b82ddf4adbff31a48b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a592c282_c5a3b16b",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1595,
+      "author": {
+        "id": 1115868
+      },
+      "writtenOn": "2023-06-20T05:25:33Z",
+      "side": 1,
+      "message": "As I understand it, this is not the cache managed by the CIPD client, but is rather a cache of instances of the CIPD package itself (managed by cipd.py)\n\nIt is an instance of DiskContentAddressedCache just like the other ones added to `caches`.",
+      "parentUuid": "30d257f5_b2307f34",
       "range": {
         "startLine": 1595,
         "startChar": 3,
