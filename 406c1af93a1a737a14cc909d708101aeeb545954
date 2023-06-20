@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c63b081_d2aa55c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115868
+      },
+      "writtenOn": "2023-06-20T01:38:18Z",
+      "side": 1,
+      "message": "This won\u0027t work as-is, run_isolated --clean doesn\u0027t deal with the cipd cache",
+      "revId": "406c1af93a1a737a14cc909d708101aeeb545954",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
