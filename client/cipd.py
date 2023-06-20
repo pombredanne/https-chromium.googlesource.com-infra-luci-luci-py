@@ -398,8 +398,40 @@ def _is_valid_hash(value):
   return bool(re.match(r'^[a-fA-F0-9]{%d}$' % size, value))
 
 
+def get_caches(cache_dir):
+  # version_cache is {hash(package_name, tag) -> instance id} mapping.
+  # It does not take a lot of disk space.
+  version_cache = local_caching.DiskContentAddressedCache(
+      os.path.join(cache_dir, 'versions'),
+      local_caching.CachePolicies(
+          # 1GiB.
+          max_cache_size=1024 * 1024 * 1024,
+          min_free_space=0,
+          max_items=300,
+          # 3 weeks.
+          max_age_secs=21 * 24 * 60 * 60),
+      trim=True)
+
+  # instance_cache is {instance_id -> client binary} mapping.
+  # It is bounded by 5 client versions.
+  instance_cache = local_caching.DiskContentAddressedCache(
+      os.path.join(cache_dir, 'clients'),
+      local_caching.CachePolicies(
+          # 1GiB.
+          max_cache_size=1024 * 1024 * 1024,
+          min_free_space=0,
+          max_items=10,
+          # 3 weeks.
+          max_age_secs=21 * 24 * 60 * 60),
+      trim=True)
+
+  return version_cache, instance_cache
+
+
 @contextlib.contextmanager
-def get_client(cache_dir,
+def get_client(version_cache,
+               instance_cache,
+               cipd_bin_dir,
                service_url=_DEFAULT_CIPD_SERVER,
                package_template=_DEFAULT_CIPD_CLIENT_PACKAGE,
                version=_DEFAULT_CIPD_CLIENT_VERSION,
@@ -413,8 +445,11 @@ def get_client(cache_dir,
     service_url (str): URL of the CIPD backend.
     package_template (str): package name template of the CIPD client.
     version (str): version of CIPD client package.
-    cache_dir: directory to store instance cache, version cache
-      and a hardlink to the client binary.
+    version_cache (local_caching.ContentAddressedCache): version cache from
+      get_caches().
+    instance_cache (local_caching.ContentAddressedCache): instance cache from
+      get_caches().
+    cipd_bin_dir: Directory to make a hardlink to the client binary.
     timeout (int): if not None, timeout in seconds for this function.
 
   Yields:
@@ -434,18 +469,6 @@ def get_client(cache_dir,
   if _is_valid_hash(version):
     instance_id = version
   elif ':' in version:  # it's an immutable tag, cache the resolved version
-    # version_cache is {hash(package_name, tag) -> instance id} mapping.
-    # It does not take a lot of disk space.
-    version_cache = local_caching.DiskContentAddressedCache(
-        os.path.join(cache_dir, 'versions'),
-        local_caching.CachePolicies(
-            # 1GiB.
-            max_cache_size=1024 * 1024 * 1024,
-            min_free_space=0,
-            max_items=300,
-            # 3 weeks.
-            max_age_secs=21 * 24 * 60 * 60),
-        trim=True)
     # Convert (package_name, version) to a string that may be used as a
     # filename in disk cache by hashing it.
     version_digest = hashlib.sha256(
@@ -467,18 +490,6 @@ def get_client(cache_dir,
     instance_id = resolve_version(
         service_url, package_name, version, timeout=timeoutfn())
 
-  # instance_cache is {instance_id -> client binary} mapping.
-  # It is bounded by 5 client versions.
-  instance_cache = local_caching.DiskContentAddressedCache(
-      os.path.join(cache_dir, 'clients'),
-      local_caching.CachePolicies(
-          # 1GiB.
-          max_cache_size=1024 * 1024 * 1024,
-          min_free_space=0,
-          max_items=10,
-          # 3 weeks.
-          max_age_secs=21 * 24 * 60 * 60),
-      trim=True)
   if instance_id not in instance_cache:
     logging.info('Fetching CIPD client %s:%s', package_name, instance_id)
     fetch_url = get_client_fetch_url(
@@ -487,7 +498,6 @@ def get_client(cache_dir,
 
   # A single host can run multiple swarming bots, but they cannot share same
   # root bot directory. Thus, it is safe to use the same name for the binary.
-  cipd_bin_dir = os.path.join(cache_dir, 'bin')
   binary_path = os.path.join(cipd_bin_dir, 'cipd' + EXECUTABLE_SUFFIX)
   if fs.isfile(binary_path):
     # TODO(maruel): Do not unconditionally remove the binary.

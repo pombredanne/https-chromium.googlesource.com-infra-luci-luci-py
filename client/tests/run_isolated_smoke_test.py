@@ -326,6 +326,10 @@ class RunIsolatedTest(unittest.TestCase):
         '--clean',
         '--cas-cache',
         self._cas_cache_dir,
+        '--cipd-cache',
+        self._cipd_cache_dir,
+        '--cipd-enabled',
+        'true',
     ])
     self.assertEqual(0, returncode, (out, err, returncode))
 

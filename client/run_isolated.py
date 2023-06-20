@@ -1154,6 +1154,7 @@ def _install_packages(run_dir, cipd_cache_dir, client, packages):
 @contextlib.contextmanager
 def install_client_and_packages(run_dir, packages, service_url,
                                 client_package_name, client_version, cache_dir,
+                                cipd_version_cache, cipd_instance_cache,
                                 cas_dir, nsjail_dir):
   """Bootstraps CIPD client and installs CIPD packages.
 
@@ -1200,8 +1201,9 @@ def install_client_and_packages(run_dir, packages, service_url,
   packages = packages or []
 
   get_client_start = time.time()
-  client_manager = cipd.get_client(cache_dir, service_url, client_package_name,
-                                   client_version)
+  client_manager = cipd.get_client(cipd_version_cache, cipd_instance_cache,
+                                   os.path.join(cache_dir, 'bin'), service_url,
+                                   client_package_name, client_version)
 
   with client_manager as client:
     get_client_duration = time.time() - get_client_start
@@ -1569,16 +1571,28 @@ def main(args):
     options.min_free_space += hint
     named_cache = process_named_cache_options(parser, options)
 
-  # TODO(maruel): CIPD caches should be defined at an higher level here too, so
-  # they can be cleaned the same way.
-
   cas_cache = process_cas_cache_options(options)
+
+  cipd_version_cache = None
+  cipd_instance_cache = None
+  tmp_cipd_cache_dir = None
+  cache_dir = None
+  if options.cipd_enabled:
+    cache_dir = options.cipd_cache
+    if not cache_dir:
+      tmp_cipd_cache_dir = tempfile.mkdtemp()
+      cache_dir = tmp_cipd_cache_dir
+    cipd_version_cache, cipd_instance_cache = cipd.get_caches(cache_dir)
 
   caches = []
   if cas_cache:
     caches.append(cas_cache)
   if named_cache:
     caches.append(named_cache)
+  if cipd_version_cache:
+    caches.append(cipd_version_cache)
+  if cipd_instance_cache:
+    caches.append(cipd_instance_cache)
   root = caches[0].cache_dir if caches else os.getcwd()
   if options.clean:
     _clean_cmd(parser, options, caches, root)
@@ -1652,12 +1666,7 @@ def main(args):
   cipd.validate_cipd_options(parser, options)
 
   install_packages_fn = copy_local_packages
-  tmp_cipd_cache_dir = None
   if options.cipd_enabled:
-    cache_dir = options.cipd_cache
-    if not cache_dir:
-      tmp_cipd_cache_dir = tempfile.mkdtemp()
-      cache_dir = tmp_cipd_cache_dir
     install_packages_fn = (
         lambda run_dir, cas_dir, nsjail_dir: install_client_and_packages(
             run_dir,
@@ -1665,6 +1674,8 @@ def main(args):
             options.cipd_server,
             options.cipd_client_package,
             options.cipd_client_version,
+            cipd_version_cache=cipd_version_cache,
+            cipd_instance_cache=cipd_instance_cache,
             cache_dir=cache_dir,
             cas_dir=cas_dir,
             nsjail_dir=nsjail_dir,
