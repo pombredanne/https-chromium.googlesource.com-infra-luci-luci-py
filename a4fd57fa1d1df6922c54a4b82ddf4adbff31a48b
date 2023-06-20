@@ -16,6 +16,75 @@
       "message": "This is a bit of a guess at what is happening in bug 1456212. The behavior is consistent with the new cipd package being present in the cache index, but the cache data missing on disk. I do not know how it would have gotten into this state though (on 3 different bots, no less)",
       "revId": "a4fd57fa1d1df6922c54a4b82ddf4adbff31a48b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f012f510_8e7af64d",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1156,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-06-20T05:12:47Z",
+      "side": 1,
+      "message": "Is this still necessary? How does it relate to cipd_version_cache and cipd_instane_cache?",
+      "range": {
+        "startLine": 1156,
+        "startChar": 69,
+        "endLine": 1156,
+        "endChar": 78
+      },
+      "revId": "a4fd57fa1d1df6922c54a4b82ddf4adbff31a48b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71531723_df6595b8",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-06-20T05:12:47Z",
+      "side": 1,
+      "message": "please update",
+      "range": {
+        "startLine": 1182,
+        "startChar": 2,
+        "endLine": 1182,
+        "endChar": 6
+      },
+      "revId": "a4fd57fa1d1df6922c54a4b82ddf4adbff31a48b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30d257f5_b2307f34",
+        "filename": "client/run_isolated.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1595,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-06-20T05:12:47Z",
+      "side": 1,
+      "message": "I don\u0027t think this would work. CIPD instance cache directory is managed by CIPD client and it is structured differently from cache directories managed by Swarming bot. _clean_cmd wouldn\u0027t know what to do with it.",
+      "range": {
+        "startLine": 1595,
+        "startChar": 3,
+        "endLine": 1595,
+        "endChar": 38
+      },
+      "revId": "a4fd57fa1d1df6922c54a4b82ddf4adbff31a48b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
