@@ -1409,6 +1409,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         },
         'task_id': task_id,
     }
+    self.mock(auth, 'has_permission', lambda *_args, **_kwargs: True)
     response = self.post_json('/swarming/api/v1/bot/task_update', params)
     self.assertEqual({u'must_stop': False, u'ok': True}, response)
 
@@ -1706,6 +1707,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     response = self.post_json('/swarming/api/v1/bot/poll', params)
     task_id = response['manifest']['task_id']
     params = _params()
+    self.mock(auth, 'has_permission', lambda *_args, **_kwargs: True)
     response = self.post_json('/swarming/api/v1/bot/task_update', params)
     self.assertEqual({u'must_stop': False, u'ok': True}, response)
 
@@ -1832,6 +1834,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
         'output_chunk_start': 0,
         'task_id': task_id,
     }
+    self.mock(auth, 'has_permission', lambda *_args, **_kwargs: True)
     self.post_json('/swarming/api/v1/bot/task_update', params)
 
     self.set_as_user()
@@ -1933,6 +1936,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(expected, response)
 
     self.set_as_bot()
+    self.mock(auth, 'has_permission', lambda *_args, **_kwargs: True)
     response = self.bot_complete_task(task_id=task_id)
     self.assertEqual({u'must_stop': True, u'ok': True}, response)
 
