@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4498142d_17b14551",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115868
+      },
+      "writtenOn": "2023-06-20T03:09:00Z",
+      "side": 1,
+      "message": "This is a bit of a guess at what is happening in bug 1456212. The behavior is consistent with the new cipd package being present in the cache index, but the cache data missing on disk. I do not know how it would have gotten into this state though (on 3 different bots, no less)",
+      "revId": "a4fd57fa1d1df6922c54a4b82ddf4adbff31a48b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
