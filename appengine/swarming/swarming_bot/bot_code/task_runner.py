@@ -104,9 +104,6 @@ def get_isolated_args(work_dir, task_details, isolated_result,
           c['hint'],
       ])
 
-  # always set the cipd cache to be the bot_dir/cipd_cache
-  cmd.extend(['--cipd-cache', os.path.join(bot_dir, 'cipd_cache')])
-
   # Expected output files:
   for output in task_details.outputs:
     cmd.extend(['--output', output])
