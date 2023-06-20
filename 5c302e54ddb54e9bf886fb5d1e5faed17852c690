@@ -39,6 +39,30 @@
       },
       "revId": "5c302e54ddb54e9bf886fb5d1e5faed17852c690",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be11e36c_7f224e11",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-06-20T20:19:07Z",
+      "side": 1,
+      "message": "Good point - I will investigate this and address in another CL if necessary (this CL autocompleted before I saw your comment) 😊",
+      "parentUuid": "316a6e74_5f1a45cd",
+      "range": {
+        "startLine": 364,
+        "startChar": 62,
+        "endLine": 364,
+        "endChar": 71
+      },
+      "revId": "5c302e54ddb54e9bf886fb5d1e5faed17852c690",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
