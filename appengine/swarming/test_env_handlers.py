@@ -16,11 +16,20 @@ swarming_test_env.setup_test_env()
 from google.appengine.api import app_identity
 from google.appengine.ext import ndb
 
+from google.protobuf import duration_pb2
 from google.protobuf import json_format
+from google.protobuf import struct_pb2
+from google.protobuf import timestamp_pb2
 from protorpc.remote import protojson
 import webtest
 
+from bb.go.chromium.org.luci.buildbucket.proto import backend_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import common_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import launcher_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import task_pb2
+
 import handlers_endpoints
+import handlers_task_backend
 import swarming_rpcs
 from components import auth
 from components import auth_testing
@@ -461,6 +470,7 @@ class AppTestBase(test_case.TestCase):
     return self.post_json('/swarming/api/v1/bot/task_update', params)
 
   def bot_run_task(self):
+    self.mock(auth, 'has_permission', lambda *_args, **_kwargs: True)
     res = self.bot_poll()
     task_id = res['manifest']['task_id']
     response = self.bot_complete_task(task_id=task_id)
