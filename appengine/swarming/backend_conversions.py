@@ -69,7 +69,8 @@ def compute_task_request(run_task_req):
       priority=backend_config.priority,
       bot_ping_tolerance_secs=backend_config.bot_ping_tolerance,
       service_account=backend_config.service_account,
-      has_build_token=True)
+      has_build_token=True,
+      is_task_backend_task=True)
 
   parent_id = backend_config.parent_run_id
   if parent_id:
