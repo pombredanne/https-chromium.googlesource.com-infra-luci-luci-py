@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79494bbf_5b902a32",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1344,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-06-22T18:10:47Z",
+      "side": 1,
+      "message": "It seems like other pubsub handling - see: https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_scheduler.py;l\u003d1746?q\u003dfilepath:task_scheduler.py attempt to handle retries. \n\nThere also seems to be an exception type called `TransientError`. Should we consider retries here too?",
+      "range": {
+        "startLine": 1344,
+        "startChar": 0,
+        "endLine": 1344,
+        "endChar": 43
+      },
+      "revId": "f382cf1bc819b7210c5a2dd6603aaa74d245bd15",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f32e80f_77a1e861",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1570,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-06-22T18:10:47Z",
+      "side": 1,
+      "message": "Nit: could we log the task_id or build_id?",
+      "range": {
+        "startLine": 1570,
+        "startChar": 18,
+        "endLine": 1570,
+        "endChar": 58
+      },
+      "revId": "f382cf1bc819b7210c5a2dd6603aaa74d245bd15",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
