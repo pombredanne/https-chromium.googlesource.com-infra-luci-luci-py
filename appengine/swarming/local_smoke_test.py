@@ -1499,6 +1499,8 @@ class Test(unittest.TestCase):
         u'swarming.pool.version:pools_cfg_rev',
         u'user:joe@localhost',
     ]
+    print("here is a printout of actual_summart inside _make_wait_task:")
+    print(actual_summary)
     performance_stats = actual_summary['shards'][0].pop('performance_stats')
     self.assertPerformanceStatsEmpty(performance_stats)
     self.assertResults(

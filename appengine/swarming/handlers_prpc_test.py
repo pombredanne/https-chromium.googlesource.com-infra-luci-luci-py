@@ -448,6 +448,7 @@ class BotServicePrpcTest(PrpcTest):
     # Run one task, push an event manually.
     second = datetime.timedelta(seconds=1)
     self.mock(random, 'getrandbits', lambda _: 0x88)
+    self.mock(auth, 'has_permission', lambda *_args, **_kwargs: True)
     first_ticker = test_case.Ticker(self.now, datetime.timedelta(seconds=1))
     t1 = self.mock_now(first_ticker())
 
@@ -642,6 +643,7 @@ class BotServicePrpcTest(PrpcTest):
     self.client_create_task_raw()
     self.set_as_bot()
     res = self.bot_poll()
+    self.mock(auth, 'has_permission', lambda *_args, **_kwargs: True)
     response = self.bot_complete_task(task_id=res['manifest']['task_id'])
     self.assertEqual({u'must_stop': False, u'ok': True}, response)
 
@@ -1407,6 +1409,7 @@ class TaskServicePrpcTest(PrpcTest):
     self.set_as_bot()
     self.bot_poll()
     self.set_as_user()
+    self.mock(auth, 'has_permission', lambda *_args, **_kwargs: True)
     _, task_id = self.client_create_task_raw(properties=dict(
         command=['python', 'runtest.py']))
 
