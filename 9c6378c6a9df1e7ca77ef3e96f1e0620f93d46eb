@@ -22,6 +22,30 @@
       },
       "revId": "9c6378c6a9df1e7ca77ef3e96f1e0620f93d46eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6470aaf_28091e5c",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-23T20:57:21Z",
+      "side": 1,
+      "message": "nope. so this CL is not needed. I can just directly check if there is a BuildToken entity as my \"was this a task backend task\" check. Going to abandon this CL\n\nhttps://source.chromium.org/search?q\u003dBuildToken\u0026sq\u003d\u0026ss\u003dchromium%2Finfra%2Finfra:luci%2Fappengine%2Fswarming%2F",
+      "parentUuid": "8b1b8b69_d72a8c1b",
+      "range": {
+        "startLine": 72,
+        "startChar": 6,
+        "endLine": 72,
+        "endChar": 21
+      },
+      "revId": "9c6378c6a9df1e7ca77ef3e96f1e0620f93d46eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
