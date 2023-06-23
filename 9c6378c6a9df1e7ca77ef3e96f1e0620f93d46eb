@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b1b8b69_d72a8c1b",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-06-23T20:54:43Z",
+      "side": 1,
+      "message": "Can a task have a build token and be not a backend task?",
+      "range": {
+        "startLine": 72,
+        "startChar": 6,
+        "endLine": 72,
+        "endChar": 21
+      },
+      "revId": "9c6378c6a9df1e7ca77ef3e96f1e0620f93d46eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
