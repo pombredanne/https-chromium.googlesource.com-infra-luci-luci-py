@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e643cdf_6f60a25c",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page-helpers.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-06-23T23:37:45Z",
+      "side": 1,
+      "message": "my editor decided to swap them for some reason 😐",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 80
+      },
+      "revId": "5ee1699a789589d80306cf7670ddc23941108124",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
