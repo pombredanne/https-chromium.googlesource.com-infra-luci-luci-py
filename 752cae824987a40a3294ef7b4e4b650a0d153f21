@@ -16,6 +16,47 @@
       "message": "Customers would like to specify a reason when a bot is terminated.\nThis CL is the first to add that functionality.\n\nMy plan to do this as simply as possible is to add a termination to the\nname of the task (here - https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_request.py;l\u003d1552). That way, the reason the task was terminated\nwill be easy to determine and we don\u0027t need to modify the UI at all. wdyt?",
       "revId": "752cae824987a40a3294ef7b4e4b650a0d153f21",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fb4b297_ea6dff24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-06-23T20:52:42Z",
+      "side": 1,
+      "message": "Probably good enough, but I believe the name is limited in length. It is also not indexed. Better than nothing. On a positive side, the reason will show up in the bot event and task logs.",
+      "parentUuid": "78ef1ae0_e9bcdddf",
+      "revId": "752cae824987a40a3294ef7b4e4b650a0d153f21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0495aa5e_d95957e6",
+        "filename": "appengine/swarming/proto/api_v2/swarming.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-06-23T20:52:42Z",
+      "side": 1,
+      "message": "Just `TerminateRequest`. Or rename `TerminateResponse` to `TerminateBotResponse`. Either way *Request and *Response should be named consistently.",
+      "range": {
+        "startLine": 47,
+        "startChar": 19,
+        "endLine": 47,
+        "endChar": 38
+      },
+      "revId": "752cae824987a40a3294ef7b4e4b650a0d153f21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
