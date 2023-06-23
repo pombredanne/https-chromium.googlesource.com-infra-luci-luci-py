@@ -50,6 +50,69 @@
       "message": "PTAL",
       "revId": "a6129d9dbd9dcd82b9a5be539298ea029f6192a9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf2076f5_b88a258e",
+        "filename": "client/local_caching.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-06-23T20:41:05Z",
+      "side": 1,
+      "message": "nit:\n\n`return None, None`\n\nand then you can get rid of _oldest_evictable_ts() since it is trivially always `_oldest_evictable_item()[1]`\n\nAlso how can KeyError happen?",
+      "range": {
+        "startLine": 1050,
+        "startChar": 1,
+        "endLine": 1052,
+        "endChar": 17
+      },
+      "revId": "a6129d9dbd9dcd82b9a5be539298ea029f6192a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b6bb47f_94eb3af8",
+        "filename": "client/local_caching.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-06-23T20:41:05Z",
+      "side": 1,
+      "message": "Is this used?",
+      "range": {
+        "startLine": 1061,
+        "startChar": 0,
+        "endLine": 1063,
+        "endChar": 42
+      },
+      "revId": "a6129d9dbd9dcd82b9a5be539298ea029f6192a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98e17d26_0cd9034e",
+        "filename": "client/local_caching.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-06-23T20:41:05Z",
+      "side": 1,
+      "message": "nit: return None explicitly if other code branches have returns with values",
+      "revId": "a6129d9dbd9dcd82b9a5be539298ea029f6192a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
