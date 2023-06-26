@@ -587,7 +587,7 @@ class BotServicePrpcTest(PrpcTest):
     self.mock(random, 'getrandbits', lambda _: 0x88)
 
     self.set_as_admin()
-    request = swarming_pb2.BotRequest(bot_id="bot1")
+    request = swarming_pb2.TerminateRequest(bot_id="bot1")
     resp = self.post_prpc('TerminateBot', request)
     actual = swarming_pb2.TerminateResponse()
     _decode(resp.body, actual)
@@ -600,7 +600,7 @@ class BotServicePrpcTest(PrpcTest):
     self.mock(random, 'getrandbits', lambda _: 0x88)
 
     self.set_as_privileged_user()
-    request = swarming_pb2.BotRequest(bot_id="bot1")
+    request = swarming_pb2.TerminateRequest(bot_id="bot1")
     resp = self.post_prpc('TerminateBot', request)
     actual = swarming_pb2.TerminateResponse()
     _decode(resp.body, actual)
@@ -615,7 +615,7 @@ class BotServicePrpcTest(PrpcTest):
     # without realm permission.
     self.set_as_user()
     self.mock_auth_db([])
-    request = swarming_pb2.BotRequest(bot_id="bot1")
+    request = swarming_pb2.TerminateRequest(bot_id="bot1")
     resp = self.post_prpc('TerminateBot', request, expect_errors=True)
     expected = cgi.escape(
         'user "user@example.com" does not have '

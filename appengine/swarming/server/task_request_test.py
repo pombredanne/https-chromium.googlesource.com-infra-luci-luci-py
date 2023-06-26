@@ -1,4 +1,4 @@
-#!/usr/bin/env vpython
+#/usr/bin/env vpython
 # Copyright 2014 The LUCI Authors. All rights reserved.
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
@@ -418,6 +418,13 @@ class TaskRequestApiTest(TestCase):
     request = task_request.create_termination_task(
         u'some-bot', wait_for_capacity=True)
     self.assertTrue(request.task_slice(0).properties.is_terminate)
+
+  def test_create_termination_task_with_reason(self):
+    reason = "hello"
+    request = task_request.create_termination_task(u'some-bot',
+                                                   wait_for_capacity=True,
+                                                   reason=reason)
+    self.assertTrue(reason in request.name)
 
   def test_new_request_key(self):
     for _ in range(3):
