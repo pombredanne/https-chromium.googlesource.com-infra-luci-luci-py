@@ -215,10 +215,10 @@ export function richLogsLink(ele) {
   if (logs && miloHost) {
     logs = logs.replace("logdog://", "");
     if (logs.indexOf(TASK_ID_PLACEHOLDER) !== -1) {
-      if (!ele._result || !ele._result.run_id) {
+      if (!ele._result || !ele._result.runId) {
         return undefined;
       }
-      logs = logs.replace(TASK_ID_PLACEHOLDER, ele._result.run_id);
+      logs = logs.replace(TASK_ID_PLACEHOLDER, ele._result.runId);
     }
     return miloHost.replace("%s", logs);
   }
