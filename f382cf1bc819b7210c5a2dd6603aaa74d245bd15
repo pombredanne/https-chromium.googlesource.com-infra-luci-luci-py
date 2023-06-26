@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63c72a95_36f563fc",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1344,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-26T21:15:28Z",
+      "side": 1,
+      "message": "I added a retry loop for 3 retries. There is no backoff, but could add that. Did this in a crude and basic way (loop and counter), but if there exists a decorator or some other preffered way lmk.",
+      "parentUuid": "79494bbf_5b902a32",
+      "range": {
+        "startLine": 1344,
+        "startChar": 0,
+        "endLine": 1344,
+        "endChar": 43
+      },
+      "revId": "f382cf1bc819b7210c5a2dd6603aaa74d245bd15",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f32e80f_77a1e861",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-22T18:10:47Z",
       "side": 1,
       "message": "Nit: could we log the task_id or build_id?",
+      "range": {
+        "startLine": 1570,
+        "startChar": 18,
+        "endLine": 1570,
+        "endChar": 58
+      },
+      "revId": "f382cf1bc819b7210c5a2dd6603aaa74d245bd15",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfac3af3_147b2e47",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1570,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-06-26T21:15:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f32e80f_77a1e861",
       "range": {
         "startLine": 1570,
         "startChar": 18,
