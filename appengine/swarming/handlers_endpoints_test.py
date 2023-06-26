@@ -2070,6 +2070,7 @@ class TaskApiTest(BaseTest):
     self.set_as_bot()
     self.bot_poll()
     self.set_as_user()
+    self.mock(auth, 'has_permission', lambda *_args, **_kwargs: True)
     _, task_id = self.client_create_task_raw(
         properties=dict(command=['python', 'runtest.py']))
 
@@ -3193,6 +3194,7 @@ class BotApiTest(BaseTest):
   def test_tasks_ok(self):
     """Asserts that tasks produces bot information."""
     self.mock(random, 'getrandbits', lambda _: 0x88)
+    self.mock(auth, 'has_permission', lambda *_args, **_kwargs: True)
 
     self.set_as_bot()
     self.bot_poll()
@@ -3283,6 +3285,7 @@ class BotApiTest(BaseTest):
   def test_events(self):
     # Run one task, push an event manually.
     self.mock(random, 'getrandbits', lambda _: 0x88)
+    self.mock(auth, 'has_permission', lambda *_args, **_kwargs: True)
     first_ticker = test_case.Ticker(self.now, datetime.timedelta(seconds=1))
     t1 = self.mock_now(first_ticker())
 
