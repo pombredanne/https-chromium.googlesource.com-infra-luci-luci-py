@@ -20,10 +20,13 @@ from google.appengine.ext import ndb
 from google.appengine import runtime
 from google.appengine.runtime import apiproxy_errors
 
+from bb.go.chromium.org.luci.buildbucket.proto import task_pb2
+
 from components import auth
 from components import datastore_utils
 from components import decorators
 from components import ereporter2
+from components import pubsub
 from components import utils
 from server import acl
 from server import bot_auth
@@ -40,7 +43,9 @@ from server import task_request
 from server import task_result
 from server import task_scheduler
 from server import task_to_run
+import api_common
 import api_helpers
+import backend_conversions
 import ts_mon_metrics
 
 # Methods used to authenticate requests from bots, see get_auth_methods().
@@ -1334,6 +1339,24 @@ class BotIDTokenHandler(_BotTokenHandler):
     return None, audience
 
 
+# send_build_task_update sends an update at the end of
+# BotTaskUpdateHandler.post. It updates buildbucket on the status of the task.
+def send_build_task_update(task, build_id):
+  # type: task_pb2.Task, int -> None
+  project_id = app_identity.get_application_id()
+  topic = 'projects/%s/topics/%s-backend' % (project_id, project_id)
+  msg = task_pb2.BuildTaskUpdate(build_id=build_id, task=task)
+  try:
+    pubsub.publish(topic=topic,
+                   message=msg.SerializeToString(),
+                   attributes=None)
+    return True
+  except pubsub.TransientError:
+    return False
+  except pubsub.Error:
+    raise  # do not retry it
+
+
 ### Bot Task API RPC handlers
 
 
@@ -1500,7 +1523,17 @@ class BotTaskUpdateHandler(_BotApiHandler):
       if not state:
         logging.info('Failed to update, please retry')
         self.abort_with_error(500, error='Failed to update, please retry')
-
+      request_key, _ = api_common.to_keys(task_id)
+      build_token_key = task_pack.request_key_to_build_token_key(request_key)
+      build_token = build_token_key.get()
+      if build_token:
+        build_id = build_token.build_id
+        bb_task = task_pb2.Task(id=task_pb2.TaskID(
+            id=task_id,
+            target="swarming://%s" % app_identity.get_application_id(),
+        ),
+                                update_id=int(utils.time_time()))
+        backend_conversions.convert_task_state_to_status(state, False, bb_task)
       if state in (task_result.State.COMPLETED, task_result.State.TIMED_OUT):
         action = 'task_completed'
       elif state == task_result.State.KILLED:
@@ -1539,6 +1572,21 @@ class BotTaskUpdateHandler(_BotApiHandler):
     must_stop = state in (task_result.State.BOT_DIED, task_result.State.KILLED)
     if must_stop:
       logging.info('asking bot to kill the task')
+    if build_token:
+      logging.info('updating buildbucket build %s on task %s' %
+                   (build_id, task_id))
+      try:
+        retries = 3
+        for _ in range(retries):
+          update_was_sent = send_build_task_update(bb_task, build_id)
+          if update_was_sent:
+            break
+        if not update_was_sent:
+          raise pubsub.Error(
+              "number of retries exceeded for sending BuildTaskUpdate to pubsub"
+          )
+      except pubsub.Error:
+        raise
     self.send_response({'must_stop': must_stop, 'ok': True})
 
 

@@ -461,6 +461,7 @@ class AppTestBase(test_case.TestCase):
     return self.post_json('/swarming/api/v1/bot/task_update', params)
 
   def bot_run_task(self):
+    self.mock(auth, 'has_permission', lambda *_args, **_kwargs: True)
     res = self.bot_poll()
     task_id = res['manifest']['task_id']
     response = self.bot_complete_task(task_id=task_id)
