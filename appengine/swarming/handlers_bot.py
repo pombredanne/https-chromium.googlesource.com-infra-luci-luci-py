@@ -5,8 +5,8 @@
 
 import base64
 import datetime
-import json
 import logging
+import time
 import urlparse
 
 import six
@@ -20,10 +20,13 @@ from google.appengine.ext import ndb
 from google.appengine import runtime
 from google.appengine.runtime import apiproxy_errors
 
+from bb.go.chromium.org.luci.buildbucket.proto import task_pb2
+
 from components import auth
 from components import datastore_utils
 from components import decorators
 from components import ereporter2
+from components import pubsub
 from components import utils
 from server import acl
 from server import bot_auth
@@ -40,7 +43,9 @@ from server import task_request
 from server import task_result
 from server import task_scheduler
 from server import task_to_run
+import api_common
 import api_helpers
+import backend_conversions
 import ts_mon_metrics
 
 # Methods used to authenticate requests from bots, see get_auth_methods().
@@ -1334,6 +1339,28 @@ class BotIDTokenHandler(_BotTokenHandler):
     return None, audience
 
 
+# send_build_task_update sends an update at the end of
+# BotTaskUpdateHandler.post. It updates buildbucket on the status of the task.
+def send_build_task_update(task, build_id):
+  # type: task_pb2.Task, int -> None
+  project_id = app_identity.get_application_id()
+  topic = 'projects/%s/topics/%s-backend' % (project_id, project_id)
+  msg = task_pb2.BuildTaskUpdate(build_id=build_id, task=task)
+  try:
+    pubsub.publish(topic=topic,
+                   message=msg.SerializeToString(),
+                   attributes=None)
+    return True
+  except pubsub.TransientError:
+    return False
+  except pubsub.Error as e:
+    http_status_code = e.inner.status_code
+    logging.exception(
+        'Fatal error (status_code=%s) when sending PubSub notification',
+        http_status_code)
+    raise e  # do not retry it
+
+
 ### Bot Task API RPC handlers
 
 
@@ -1500,7 +1527,17 @@ class BotTaskUpdateHandler(_BotApiHandler):
       if not state:
         logging.info('Failed to update, please retry')
         self.abort_with_error(500, error='Failed to update, please retry')
-
+      request_key, _ = api_common.to_keys(task_id)
+      build_task_key = task_pack.request_key_to_build_task_key(request_key)
+      build_task = build_task_key.get()
+      if build_task:
+        build_id = build_task.build_id
+        bb_task = task_pb2.Task(id=task_pb2.TaskID(
+            id=task_id,
+            target="swarming://%s" % app_identity.get_application_id(),
+        ),
+                                update_id=int(utils.time_time()))
+        backend_conversions.convert_task_state_to_status(state, False, bb_task)
       if state in (task_result.State.COMPLETED, task_result.State.TIMED_OUT):
         action = 'task_completed'
       elif state == task_result.State.KILLED:
@@ -1527,6 +1564,20 @@ class BotTaskUpdateHandler(_BotApiHandler):
     except Exception as e:
       logging.exception('Internal error: %s', e)
       self.abort_with_error(500, error=str(e))
+    # send a BuildTaskUpdate pubsub message to buildbucket with retries
+    # and an "exponential backoff".
+    if build_task & (build_task.task_status != bb_task.status):
+      retries = 3
+      for _ in range(retries):
+        update_was_sent = send_build_task_update(bb_task, build_id)
+        if update_was_sent:
+          logging.info('updated buildbucket build %s on task %s' %
+                       (build_id, task_id))
+          break
+        time.sleep(retries + 1)  # "exponential" backoff
+      if not update_was_sent:
+        raise pubsub.Error(
+            "number of retries exceeded for sending BuildTaskUpdate to pubsub")
     # - BOT_DIED will occur when the following conditions are true:
     #   - The bot polled correctly, but then stopped updating for at least
     #     task_result.BOT_PING_TOLERANCE. (It can occur if the host went to
