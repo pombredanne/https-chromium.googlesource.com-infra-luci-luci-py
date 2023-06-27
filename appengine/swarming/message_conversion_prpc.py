@@ -606,7 +606,7 @@ def new_task_request_from_rpc(request):
       # ndb has its own default of 1200.
       bot_ping_tolerance_secs=request.bot_ping_tolerance_secs or None,
       resultdb=_resultdb_from_rpc(request),
-      has_build_token=False,
+      has_build_task=False,
       scheduling_algorithm=None,
       rbe_instance=None,
       txn_uuid=None)
