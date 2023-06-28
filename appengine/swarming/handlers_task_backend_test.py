@@ -60,10 +60,6 @@ def _encode(d):
 
 
 class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
-  # These test fail with 'Unknown bot ID, not in config'
-  # Need to run in sequential_test_runner.py
-  no_run = 1
-
   def setUp(self):
     super(TaskBackendAPIServiceTest, self).setUp()
     s = prpc.Server()
