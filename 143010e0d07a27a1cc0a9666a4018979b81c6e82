@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ad59adb_4e22b7b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-06-28T22:16:20Z",
+      "side": 1,
+      "message": "lgtm. But the \u0027Unknown bot ID, not in config\u0027 failure still happens.",
+      "revId": "143010e0d07a27a1cc0a9666a4018979b81c6e82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
