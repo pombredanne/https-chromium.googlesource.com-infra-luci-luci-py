@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64ea7a72_b1e53d3a",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-06-28T17:12:30Z",
+      "side": 1,
+      "message": "I think this will be more \"correct\" and explanatory, even though verbose:\n\n```\ntask_id \u003d task_pack.pack_run_result_key(\n    task_pack.result_summary_key_to_run_result_key(result_summary))\n```",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 54
+      },
+      "revId": "90631957e1c5db5661077749e647e8ed538fb971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
