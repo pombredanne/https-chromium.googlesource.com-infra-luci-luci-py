@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83f14784_bdbf3951",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-06-28T17:00:46Z",
+      "side": 1,
+      "message": "+meiring@ for role definitions\n+vadimsh@ for luci auth approvals/rollout",
+      "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
