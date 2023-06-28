@@ -143,6 +143,9 @@ def db():
       permission('resultdb.invocations.create'),
       permission('resultdb.invocations.update'),
   ])
+  role('role/resultdb.baselineCreator', [
+      permission('resultdb.baselines.put'),
+  ])
   role('role/resultdb.limitedReader', [
       permission('resultdb.testResults.listLimited'),
       permission('resultdb.testExonerations.listLimited'),
@@ -158,6 +161,7 @@ def db():
       permission('resultdb.artifacts.get'),
       permission('resultdb.testExonerations.list'),
       permission('resultdb.testExonerations.get'),
+      permission('resultdb.baselines.get'),
   ])
 
   # Weetbix permissions and roles (b/239768873).
