@@ -56,6 +56,24 @@
       "message": "Does LUCI CV know the project it started the tryjobs in (e.g. chromium, chrome)?\n\nIf so -\u003e add \u0027role/resultdb.baselineCreator\u0027 here to allow LUCI CV to make the MarkInvocationSubmitted RPC to ResultDB with auth.AsProject?\n\nIf not -\u003e add \u0027role/resultdb.baselineCreator\u0027 at implicit_root_bindings (line 524) to allow LUCI CV to create baselines on any project when authenticating with auth.AsSelf. (Warning: risk of confused deputy problems, careful implementation required).",
       "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a6b7450_8efb90ce",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-06-29T02:55:00Z",
+      "side": 1,
+      "message": "I\u0027m not familiar with the CV project just yet, but from a quick scan it seems tryjobs do have the capability to determine which LUCI project it was triggered from [1]. It seems to also be used for checking cross-project tryjob re-use.\n\n[1] https://source.chromium.org/chromium/infra/infra/+/main:go/src/go.chromium.org/luci/cv/internal/tryjob/model.go;l\u003d151;drc\u003d3cd0449af297561ae2d6f09e7ac52e3d42a3786a\n\nBased on this, save to take approach 1?",
+      "parentUuid": "dcddd2da_efbc891b",
+      "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
