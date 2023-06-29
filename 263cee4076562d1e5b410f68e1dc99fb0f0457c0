@@ -16,6 +16,46 @@
       "message": "+meiring@ for role definitions\n+vadimsh@ for luci auth approvals/rollout",
       "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56ba3044_b14c70a9",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1386944
+      },
+      "writtenOn": "2023-06-29T01:22:57Z",
+      "side": 1,
+      "message": "maybe: Unlike the other permissions here, this is a project-scoped permission and  should only be called from the CQ recipe and maybe a few devs. Maybe lock this down further by putting it into a different role (baselineReader?) which we will grant only to the needed group.",
+      "range": {
+        "startLine": 165,
+        "startChar": 6,
+        "endLine": 165,
+        "endChar": 43
+      },
+      "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcddd2da_efbc891b",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1386944
+      },
+      "writtenOn": "2023-06-29T01:22:57Z",
+      "side": 1,
+      "message": "Does LUCI CV know the project it started the tryjobs in (e.g. chromium, chrome)?\n\nIf so -\u003e add \u0027role/resultdb.baselineCreator\u0027 here to allow LUCI CV to make the MarkInvocationSubmitted RPC to ResultDB with auth.AsProject?\n\nIf not -\u003e add \u0027role/resultdb.baselineCreator\u0027 at implicit_root_bindings (line 524) to allow LUCI CV to create baselines on any project when authenticating with auth.AsSelf. (Warning: risk of confused deputy problems, careful implementation required).",
+      "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
