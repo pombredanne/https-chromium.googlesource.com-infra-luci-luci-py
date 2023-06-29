@@ -74,6 +74,24 @@
       "parentUuid": "dcddd2da_efbc891b",
       "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fee6cda_0ef434d8",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1386944
+      },
+      "writtenOn": "2023-06-29T06:28:46Z",
+      "side": 1,
+      "message": "[1] talks through a case where v8 project configures a chromium tryjob to run. LUCIProject() returns \"v8\" in this case.\n\nHowever, the chromium tryjob will be uploading test results to a realm in chromium (e.g. chromium:try), and this is the project that LUCI CV will need to access ResultDB with, not \"v8\".\n\nThat said, maybe you can still get at the builder project somehow? The description references a config \"chromium/try/linux_rel\", so somewhere in CV there might be the actual project for the tryjob?",
+      "parentUuid": "3a6b7450_8efb90ce",
+      "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
