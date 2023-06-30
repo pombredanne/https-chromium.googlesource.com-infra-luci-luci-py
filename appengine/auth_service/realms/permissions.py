@@ -143,6 +143,9 @@ def db():
       permission('resultdb.invocations.create'),
       permission('resultdb.invocations.update'),
   ])
+  role('role/resultdb.baselineCreator', [
+      permission('resultdb.baselines.put'),
+  ])
   role('role/resultdb.limitedReader', [
       permission('resultdb.testResults.listLimited'),
       permission('resultdb.testExonerations.listLimited'),
@@ -159,6 +162,9 @@ def db():
       permission('resultdb.testExonerations.list'),
       permission('resultdb.testExonerations.get'),
       permission('resultdb.testMetadata.list'),
+  ])
+  role('role/resultdb.baselineReader', [
+      permission('resultdb.baselines.get')
   ])
 
   # Weetbix permissions and roles (b/239768873).
@@ -374,6 +380,8 @@ def db():
       # ResultDB invocations) for ingestion.
       permission('buildbucket.builds.get'),
       include('role/resultdb.reader'),
+      # Allow LUCI CV to call ResultDB for marking invocations submitted.
+      include('role/resultdb.baselineReader'),
   ])
 
   # Allows to see the list of builders and read builds in a LUCI project.
