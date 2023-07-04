@@ -189,6 +189,17 @@ class TestMessageConversion(test_case.TestCase):
     props_proto = message_conversion_prpc._task_properties(props)
     self.assertFalse(props_proto.env)
 
+  def test_defaults_are_properly_filled(self):
+    ntr = self._create_default_new_task_request()
+    ntr.bot_ping_tolerance_secs = 0
+    ntr.task_slices[0].properties.grace_period_secs = 0
+    actual, _, _ = message_conversion_prpc.new_task_request_from_rpc(ntr)
+    self.assertEqual(actual.bot_ping_tolerance_secs,
+                     task_request.DEFAULT_BOT_PING_TOLERANCE)
+    self.assertEqual(
+        actual.task_slice(0).properties.grace_period_secs,
+        task_request.DEFAULT_GRACE_PERIOD_SECS)
+
 
 if __name__ == '__main__':
   if '-v' in sys.argv:

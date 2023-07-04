@@ -515,7 +515,8 @@ def _task_properties_from_rpc(props):
       env=env,
       env_prefixes=env_prefixes,
       execution_timeout_secs=props.execution_timeout_secs,
-      grace_period_secs=props.grace_period_secs,
+      grace_period_secs=props.grace_period_secs
+      or task_request.DEFAULT_GRACE_PERIOD_SECS,
       io_timeout_secs=props.io_timeout_secs,
       idempotent=props.idempotent,
       outputs=list(props.outputs),
@@ -604,7 +605,8 @@ def new_task_request_from_rpc(request):
       service_account=request.service_account,
       # prefer to unset this if protobuf default value is used.
       # ndb has its own default of 1200.
-      bot_ping_tolerance_secs=request.bot_ping_tolerance_secs or None,
+      bot_ping_tolerance_secs=request.bot_ping_tolerance_secs
+      or task_request.DEFAULT_BOT_PING_TOLERANCE,
       resultdb=_resultdb_from_rpc(request),
       has_build_token=False,
       scheduling_algorithm=None,
