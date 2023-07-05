@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c1059f7_586120e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-07-05T21:44:02Z",
+      "side": 1,
+      "message": "So the `StringProperty` of ndb already limits the length of a task name according to the docs - https://googleapis.dev/python/python-ndb/latest/model.html#google.cloud.ndb.model.StringProperty\n\nIf you make a `reason` that is too long the request will 400. \n\nI\u0027ve also added a `_pre_commit_hook` which removes `\\t|\\n` and replaces them with spaces. This will apply to all of `TaskRequest#name`.\n\nNo sonnets or fancy Haikus will be possible task names!",
+      "parentUuid": "fdf50a19_95710ebe",
+      "revId": "b4ac20e167c9ef79e06fcc44a33e78f39fa3d028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ab1844e_9a138ce9",
@@ -58,6 +76,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5029416_1f47a125",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-07-05T21:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ab1844e_9a138ce9",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 68
+      },
+      "revId": "b4ac20e167c9ef79e06fcc44a33e78f39fa3d028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "876f3b6d_808326cd",
@@ -71,6 +113,30 @@
       "writtenOn": "2023-07-05T21:07:24Z",
       "side": 1,
       "message": "too many words, it will likely not fit into UI\n\nwhy not `Terminate %s: %s`?",
+      "range": {
+        "startLine": 1550,
+        "startChar": 13,
+        "endLine": 1550,
+        "endChar": 55
+      },
+      "revId": "b4ac20e167c9ef79e06fcc44a33e78f39fa3d028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bdb18f9_e3e61589",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1550,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-07-05T21:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "876f3b6d_808326cd",
       "range": {
         "startLine": 1550,
         "startChar": 13,
