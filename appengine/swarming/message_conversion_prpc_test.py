@@ -12,8 +12,6 @@ import unittest
 import swarming_test_env
 
 swarming_test_env.setup_test_env()
-from google.appengine.ext import ndb
-from parameterized import parameterized
 
 import message_conversion_prpc
 from proto.api_v2 import swarming_pb2
@@ -66,6 +64,11 @@ class TestMessageConversion(test_case.TestCase):
     props.io_timeout_secs = 1200
     props.outputs[:] = ['foo', 'path/to/foobar']
     props.command[:] = ['python', 'run_test.py']
+    props.cas_input_root.cas_instance = ("projects/chromium-swarm-dev/ins"
+                                         "tances/default_instance")
+    props.cas_input_root.digest.hash = (b"d00b122490e024587990b55c248dc82d3"
+                                        b"46c54d89019d6eff61ddc9743ea0442")
+    props.cas_input_root.digest.size_bytes = 258
 
     return ts
 
@@ -74,7 +77,13 @@ class TestMessageConversion(test_case.TestCase):
         expiration_secs=180,
         properties=task_request.TaskProperties(
             caches=[],
-            cas_input_root=None,
+            cas_input_root=task_request.CASReference(
+                cas_instance=
+                "projects/chromium-swarm-dev/instances/default_instance",
+                digest=task_request.Digest(
+                    hash=(b"d00b122490e024587990b55c248dc82d346c54"
+                          b"d89019d6eff61ddc9743ea0442"),
+                    size_bytes=258)),
             cipd_input=task_request.CipdInput(
                 client_package=task_request.CipdPackage(
                     package_name=u'infra/tools/cipd/${platform}',
