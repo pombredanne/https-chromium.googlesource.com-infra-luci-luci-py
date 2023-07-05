@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0159e99_57ac7c58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-07-05T19:36:53Z",
+      "side": 1,
+      "message": "Fixes a bug I noticed when testing `NewTask` on development environment.",
+      "revId": "e77e6d66c2ed71f5362e54ab47310eacd81f90e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
