@@ -16,6 +16,69 @@
       "message": "PTAL 😊",
       "revId": "b4ac20e167c9ef79e06fcc44a33e78f39fa3d028",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdf50a19_95710ebe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-05T21:07:24Z",
+      "side": 1,
+      "message": "lgtm\n\nI wonder if we should put a limit on total reason length and validate it doesn\u0027t have \"\\n\", otherwise people may start writing poems there which will look bad in the UI..",
+      "revId": "b4ac20e167c9ef79e06fcc44a33e78f39fa3d028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ab1844e_9a138ce9",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-05T21:07:24Z",
+      "side": 1,
+      "message": "nit:\n\n```\n  bot_id: the bot to terminate.\n  reason: a user supplied ...\n```\n\nto be consistent with the rest of docstrings",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 68
+      },
+      "revId": "b4ac20e167c9ef79e06fcc44a33e78f39fa3d028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "876f3b6d_808326cd",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1550,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-05T21:07:24Z",
+      "side": 1,
+      "message": "too many words, it will likely not fit into UI\n\nwhy not `Terminate %s: %s`?",
+      "range": {
+        "startLine": 1550,
+        "startChar": 13,
+        "endLine": 1550,
+        "endChar": 55
+      },
+      "revId": "b4ac20e167c9ef79e06fcc44a33e78f39fa3d028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
