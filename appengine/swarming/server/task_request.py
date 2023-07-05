@@ -153,6 +153,10 @@ _MIN_BOT_PING_TOLERANCE_SECS = 60
 # The name should be `projects/{project}/instances/{instance}`.
 _CAS_INSTANCE_RE = re.compile(r'^projects/[a-z0-9-]+/instances/[a-z0-9-_]+$')
 
+
+# Whitespace replacement regexp
+_WHITESPACE_RE = re.compile(r'[\t|\n]+')
+
 ### Properties validators must come before the models.
 
 
@@ -1415,6 +1419,7 @@ class TaskRequest(ndb.Model):
       raise datastore_errors.BadValueError('task_slices is missing')
     if not self.name:
       raise datastore_errors.BadValueError('name is missing')
+    self.name = re.sub(_WHITESPACE_RE, ' ', self.name)
     if len(self.task_slices) > 8:
       # The objects are large so use a low limit to start, and increase if
       # there's user request.
@@ -1530,7 +1535,7 @@ def get_automatic_tags(request, index):
   return tags
 
 
-def create_termination_task(bot_id, wait_for_capacity):
+def create_termination_task(bot_id, wait_for_capacity, reason=None):
   """Returns a task to terminate the given bot.
 
   ACL check must have been done before.
@@ -1546,10 +1551,14 @@ def create_termination_task(bot_id, wait_for_capacity):
       grace_period_secs=0,
       io_timeout_secs=0)
   now = utils.utcnow()
+  if reason:
+    name = u'Terminate %s: %s' % (bot_id, reason)
+  else:
+    name = u'Terminate %s' % bot_id
   request = TaskRequest(
       created_ts=now,
       expiration_ts=now + datetime.timedelta(days=1),
-      name=u'Terminate %s' % bot_id,
+      name=name,
       priority=0,
       scheduling_algorithm=pools_pb2.Pool.SCHEDULING_ALGORITHM_FIFO,
       task_slices=[

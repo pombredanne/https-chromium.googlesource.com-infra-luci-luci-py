@@ -129,8 +129,12 @@ def get_bot_events(bot_id, start, end, limit, cursor):
   return datastore_utils.fetch_page(q, limit, cursor)
 
 
-def terminate_bot(bot_id):
+def terminate_bot(bot_id, reason=None):
   """Terminates a bot with a given bot_id.
+
+  Arguments:
+    bot_id: of the bot to terminate.
+    reason: is a user supplied reason that termination was requested.
 
   Returns:
     task_id of the task to terminate the bot.
@@ -147,9 +151,10 @@ def terminate_bot(bot_id):
   try:
     # Craft a special priority 0 task to tell the bot to shutdown.
     request = task_request.create_termination_task(bot_id,
-                                                   wait_for_capacity=True)
+                                                   wait_for_capacity=True,
+                                                   reason=reason)
   except (datastore_errors.BadValueError, TypeError, ValueError) as e:
-    raise handlers_exceptions.BadRequestException(e.message)
+    raise handlers_exceptions.BadRequestException(str(e))
 
   result_summary = task_scheduler.schedule_request(request,
                                                    enable_resultdb=False)
