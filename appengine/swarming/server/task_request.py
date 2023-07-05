@@ -1530,7 +1530,7 @@ def get_automatic_tags(request, index):
   return tags
 
 
-def create_termination_task(bot_id, wait_for_capacity):
+def create_termination_task(bot_id, wait_for_capacity, reason=None):
   """Returns a task to terminate the given bot.
 
   ACL check must have been done before.
@@ -1546,10 +1546,14 @@ def create_termination_task(bot_id, wait_for_capacity):
       grace_period_secs=0,
       io_timeout_secs=0)
   now = utils.utcnow()
+  if reason:
+    name = u'Termination of %s requested for reason: %s' % (bot_id, reason)
+  else:
+    name = u'Terminate %s' % bot_id
   request = TaskRequest(
       created_ts=now,
       expiration_ts=now + datetime.timedelta(days=1),
-      name=u'Terminate %s' % bot_id,
+      name=name,
       priority=0,
       scheduling_algorithm=pools_pb2.Pool.SCHEDULING_ALGORITHM_FIFO,
       task_slices=[
