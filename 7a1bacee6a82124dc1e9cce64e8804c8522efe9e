@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83ff915e_63421334",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-05T21:55:13Z",
+      "side": 1,
+      "message": "I\u0027m not sure it is OK to modify a property from _pre_put_hook. IIUC, they are supposed to be used only for validation. Either way it is confusing and may lead to bugs in the future (e.g. one doesn\u0027t expect `entity.put()` to modify the entity).\n\nIMO better to just reject `\\n`. Or do the substitution on RPC layer before touching entities.",
+      "range": {
+        "startLine": 1422,
+        "startChar": 4,
+        "endLine": 1422,
+        "endChar": 54
+      },
+      "revId": "7a1bacee6a82124dc1e9cce64e8804c8522efe9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
