@@ -22,6 +22,30 @@
       },
       "revId": "7a1bacee6a82124dc1e9cce64e8804c8522efe9e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de03fb93_47f91934",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-07-06T19:44:05Z",
+      "side": 1,
+      "message": "Makes sense! Moved to `rpc` world.",
+      "parentUuid": "83ff915e_63421334",
+      "range": {
+        "startLine": 1422,
+        "startChar": 4,
+        "endLine": 1422,
+        "endChar": 54
+      },
+      "revId": "7a1bacee6a82124dc1e9cce64e8804c8522efe9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
