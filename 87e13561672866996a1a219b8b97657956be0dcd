@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac6a3a87_71734971",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-07-06T19:20:57Z",
+      "side": 1,
+      "message": "Relands all changes from:\n\nhttps://chromium-review.googlesource.com/c/infra/luci/luci-py/+/4645948\n\nI will add small fixes in subsequent CLs. Those CLs are expected to fail \"DIFF ASSET CHECK\" bc I did not run `make release` to avoid dealing with merge conflicts. \n\n I\u0027m more confident about relanding since discovering a bunch of issues in NewTask for `prpc`.",
+      "revId": "87e13561672866996a1a219b8b97657956be0dcd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
