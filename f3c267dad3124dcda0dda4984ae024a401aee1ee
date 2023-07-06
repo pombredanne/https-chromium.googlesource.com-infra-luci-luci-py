@@ -43,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c51d995_0afa931f",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 1530,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-07-06T19:54:44Z",
+      "side": 1,
+      "message": "Prefer using `task_pack.unpack_request_key` since we don\u0027t need the error handling in `api_common.to_keys` as the `task_id` is already valid at this point.",
+      "range": {
+        "startLine": 1530,
+        "startChar": 23,
+        "endLine": 1530,
+        "endChar": 50
+      },
+      "revId": "f3c267dad3124dcda0dda4984ae024a401aee1ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7e16ccf0_e4228be0",
         "filename": "appengine/swarming/handlers_bot.py",
         "patchSetId": 21
