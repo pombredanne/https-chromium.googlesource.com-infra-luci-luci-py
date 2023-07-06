@@ -199,6 +199,24 @@
       "parentUuid": "4fee6cda_0ef434d8",
       "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcbdbe89_c024f7e0",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2023-07-06T21:02:02Z",
+      "side": 1,
+      "message": "Sorry for the late response. To the question, LUCI CV knows about the project that it starts the tryjobs in. LUCI CV, when scheduling a build in buildbucket, will always use the project scoped credential for the project managing the CL (i.e the example of LUCI CV use v8 project credential to schedule a chromium builder for a v8 CL). This is achieved by explicitly granting the `buildbucket.trigger` role to v8 in [chromium project config](https://chromium.googlesource.com/chromium/src/+/2106425b7ecd7b88cad2d6066b2e7ee68c98f8b1/infra/config/generated/luci/realms.cfg#555).\n\nI do think we should follow the same pattern here. Otherwise, everything will seems to be from chromium when accessing chromium resource even though the requester is actually from v8.",
+      "parentUuid": "740b005a_6489f907",
+      "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
