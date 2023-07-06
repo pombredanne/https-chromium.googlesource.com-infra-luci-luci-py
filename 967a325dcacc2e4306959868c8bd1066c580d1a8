@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f67bed66_9c5b88df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-06T17:14:25Z",
+      "side": 1,
+      "message": "Yeah none in prod.",
+      "parentUuid": "2e1d32ab_dd143cdf",
+      "revId": "967a325dcacc2e4306959868c8bd1066c580d1a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25b59c99_76a8c815",
@@ -48,6 +66,30 @@
       "writtenOn": "2023-07-06T17:05:22Z",
       "side": 1,
       "message": "BuildTask\n\nAlso maybe this reasoning is no longer correct?",
+      "range": {
+        "startLine": 1278,
+        "startChar": 34,
+        "endLine": 1278,
+        "endChar": 44
+      },
+      "revId": "967a325dcacc2e4306959868c8bd1066c580d1a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a611a843_c8750fff",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1278,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-06T17:14:25Z",
+      "side": 1,
+      "message": "Changed to BuildTask.\n\n\nI think the reasoning is still fine. We would still be able to get the stored `BuildTask` from `TaskRequest` or `TaskResultSummary`, and we don\u0027t need to store another copy of it. Since we are using build_id as part of the idempotent key, then we know the mapping will be 1:1 of builds -\u003e swarming tasks (more specifically `BuildTask` in this case).\n\nUnless I\u0027m missing something here?",
+      "parentUuid": "25b59c99_76a8c815",
       "range": {
         "startLine": 1278,
         "startChar": 34,
