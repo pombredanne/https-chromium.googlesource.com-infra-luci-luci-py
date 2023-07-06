@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "907d30e3_90a8674a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-06T17:27:29Z",
+      "side": 1,
+      "message": "The logic should be implemented inside task_scheduler.bot_update_task(...), or at least somewhere under server/*. Doing it inside HTTP handler is a layering violation (and, for example, will make it harder converting bot handlers to pRPC). In fact, bot_update_task(...) already has some pubsub stuff that can likely be reused, at least partially. For example, it reports some metrics related to pubsub pushes. We should report similar metrics for new pushes.\n\nI also have concerns related to idempotency of this. With existing pubsub stuff, if it fails, it aborts the handler relatively early, before bot_management.bot_event(...). With new pubsub stuff, failures (+ subsequent retries by the bot) will result in repeated calls to bot_management.bot_event(...) which is potentially not very good.\n\nFinally, PubSub messages can be delivered out of order. Will BB be able to handle this correctly?\n\nAlso what\u0027s up with random `has_permission` mocks?",
+      "revId": "f3c267dad3124dcda0dda4984ae024a401aee1ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4646c6f3_2cac1ede",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-06T17:27:29Z",
+      "side": 1,
+      "message": "Isn\u0027t it supposed to be `cr-buildbucket`? Topics are hosted in Buildbucket project.",
+      "range": {
+        "startLine": 1347,
+        "startChar": 45,
+        "endLine": 1347,
+        "endChar": 55
+      },
+      "revId": "f3c267dad3124dcda0dda4984ae024a401aee1ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e16ccf0_e4228be0",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 1570,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-06T17:27:29Z",
+      "side": 1,
+      "message": "where is this set?",
+      "range": {
+        "startLine": 1570,
+        "startChar": 9,
+        "endLine": 1570,
+        "endChar": 31
+      },
+      "revId": "f3c267dad3124dcda0dda4984ae024a401aee1ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
