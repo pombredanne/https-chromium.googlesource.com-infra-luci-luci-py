@@ -235,6 +235,24 @@
       "parentUuid": "bcbdbe89_c024f7e0",
       "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13abefc3_21cb8eb4",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2023-07-07T00:16:23Z",
+      "side": 1,
+      "message": "\u003e Thanks Yiwei. Just so we\u0027re all on the same page here, you\u0027re suggesting that we auth using the project associated with the change instead of the invocations themselves, is that correct?\n\n\nYes, that is correct. Taking the above example, LUCI CV should use **v8** project credential for a **v8** CL to create/update/access **chromium** resource. This is exactly what CV did when interacting with other LUCI services like buildbucket.",
+      "parentUuid": "ea7dbc04_0d116ddd",
+      "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
