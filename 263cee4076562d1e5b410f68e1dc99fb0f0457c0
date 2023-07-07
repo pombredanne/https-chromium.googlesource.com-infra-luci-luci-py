@@ -253,6 +253,24 @@
       "parentUuid": "ea7dbc04_0d116ddd",
       "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62815e31_1a619253",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1386944
+      },
+      "writtenOn": "2023-07-07T00:30:07Z",
+      "side": 1,
+      "message": "May be worth setting up a meeting as resolving this through CR comments could be slow given timezones...\n\nAfter some thought:\n- The update invocation RPC should check baseline put access when a baseline is set.\n- The purpose of the authorisation check on the MarkInvocationSubmitted RPC should be to verify the source of CL submission information is valid, not to verify access to the baseline. I.E. The MarkInvocationSubmitted RPC should be taken as more of a notification to ResultDB that the CL has been submitted. LUCI CV does not control the recipe itself so it should not own having to prove it has access to the baseline it nominated.\n\nFor example, I would consider having ResultDB listen to LUCI CV run completions as equivalent to this design but if we did this, no authorisation checks would be involved.",
+      "parentUuid": "13abefc3_21cb8eb4",
+      "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
