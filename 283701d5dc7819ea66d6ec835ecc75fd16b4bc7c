@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4ac6692_9f279577",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1578,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-11T16:58:55Z",
+      "side": 1,
+      "message": "now that I look at this, I do worry about a previous bot_update call overwriting a new one....\n\nShould we incldue an \"update_timestamp\" field as well to ensure that only the latest task status is updated? or does bot_update already handle this? (or at least insures that the updates will be in order...)",
+      "range": {
+        "startLine": 1576,
+        "startChar": 6,
+        "endLine": 1578,
+        "endChar": 24
+      },
+      "revId": "283701d5dc7819ea66d6ec835ecc75fd16b4bc7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
