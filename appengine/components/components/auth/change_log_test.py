@@ -30,8 +30,6 @@ class MakeInitialSnapshotTest(test_case.TestCase):
     @ndb.transactional
     def make_auth_db():
       model.AuthGlobalConfig(key=model.root_key()).put()
-      model.AuthIPWhitelistAssignments(
-          key=model.ip_whitelist_assignments_key()).put()
       model.AuthGroup(key=model.group_key('A group')).put()
       model.AuthIPWhitelist(key=model.ip_whitelist_key('A whitelist')).put()
       model.replicate_auth_db()
@@ -52,9 +50,6 @@ class MakeInitialSnapshotTest(test_case.TestCase):
     p = model.historical_revision_key(3)
     self.assertIsNotNone(
         ndb.Key('AuthGlobalConfigHistory', 'root', parent=p).get())
-    self.assertIsNotNone(
-        ndb.Key(
-            'AuthIPWhitelistAssignmentsHistory', 'default', parent=p).get())
     self.assertIsNotNone(ndb.Key('AuthGroupHistory', 'A group', parent=p).get())
     self.assertIsNotNone(
         ndb.Key('AuthIPWhitelistHistory', 'A whitelist', parent=p).get())
