@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8353e10_f2914934",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-11T16:56:58Z",
+      "side": 1,
+      "message": "yes. changing. gonna add in a \"isDev\"? check too.",
+      "parentUuid": "4646c6f3_2cac1ede",
+      "range": {
+        "startLine": 1347,
+        "startChar": 45,
+        "endLine": 1347,
+        "endChar": 55
+      },
+      "revId": "f3c267dad3124dcda0dda4984ae024a401aee1ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c51d995_0afa931f",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c38b676_3a65623d",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 1530,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-11T16:56:58Z",
+      "side": 1,
+      "message": "sgtm! changed.",
+      "parentUuid": "3c51d995_0afa931f",
+      "range": {
+        "startLine": 1530,
+        "startChar": 23,
+        "endLine": 1530,
+        "endChar": 50
+      },
+      "revId": "f3c267dad3124dcda0dda4984ae024a401aee1ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e16ccf0_e4228be0",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-07-06T17:27:29Z",
       "side": 1,
       "message": "where is this set?",
+      "range": {
+        "startLine": 1570,
+        "startChar": 9,
+        "endLine": 1570,
+        "endChar": 31
+      },
+      "revId": "f3c267dad3124dcda0dda4984ae024a401aee1ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ebba94a_48c612f1",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 1570,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-11T16:56:58Z",
+      "side": 1,
+      "message": "good call out. I was confusing the pb.Task.Status being set with BuildTask.task_status being set.\n\nI added in logic that sets the task status for BuildTask",
+      "parentUuid": "7e16ccf0_e4228be0",
       "range": {
         "startLine": 1570,
         "startChar": 9,
