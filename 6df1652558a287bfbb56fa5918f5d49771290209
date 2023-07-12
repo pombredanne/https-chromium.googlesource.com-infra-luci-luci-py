@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a5b52b4_0d8788fa",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 1688,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-12T18:55:29Z",
+      "side": 0,
+      "message": "Is this automatically included into every pRPC request already?",
+      "range": {
+        "startLine": 1688,
+        "startChar": 10,
+        "endLine": 1688,
+        "endChar": 41
+      },
+      "revId": "6df1652558a287bfbb56fa5918f5d49771290209",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
