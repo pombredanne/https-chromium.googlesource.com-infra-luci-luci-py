@@ -16,6 +16,24 @@
       "message": "LGTM, but I think it would be safer to also replace https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/auth_service/config.py#341 and related code with a check that `assignments` in the config is empty.",
       "revId": "0d8560a364f28f30d2bc193767cbf4745956abb8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "413dcce1_4aa54a6c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-07-12T21:08:57Z",
+      "side": 1,
+      "message": "Thanks for the tip, I\u0027ve added a check for that in the config. Not sure if assertion error is the best way as I\u0027m not too familiar with Python best practices or if it\u0027d be better to do an if \u0026 log",
+      "parentUuid": "c9f07408_a4971dfe",
+      "revId": "0d8560a364f28f30d2bc193767cbf4745956abb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
