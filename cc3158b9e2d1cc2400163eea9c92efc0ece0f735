@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84cbfa93_68ace30b",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1386944
+      },
+      "writtenOn": "2023-07-12T05:43:24Z",
+      "side": 1,
+      "message": "nit: This would give the dev LUCI CV permissions in prod.\nSuggest you update this to the group name you want, file a ticket for the new group and link that ticket here. If the ticket is not already actioned by the time Vadim looks at this, maybe Vadim will be able to action that ticket when he reviews this CL.",
+      "revId": "cc3158b9e2d1cc2400163eea9c92efc0ece0f735",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
