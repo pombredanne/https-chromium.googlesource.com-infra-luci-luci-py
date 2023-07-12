@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e169ebb1_8b64ed0c",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-12T21:17:12Z",
+      "side": 1,
+      "message": "Add this explanation into TODO 😊",
+      "parentUuid": "52da0868_ceffcd41",
+      "range": {
+        "startLine": 598,
+        "startChar": 0,
+        "endLine": 600,
+        "endChar": 52
+      },
+      "revId": "bd4fb05a2108791d6bd7e88df07dd46a3b6eed98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2abd0f5_0f2eee04",
