@@ -271,6 +271,24 @@
       "parentUuid": "13abefc3_21cb8eb4",
       "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53523601_5866b58d",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-07-12T05:36:29Z",
+      "side": 1,
+      "message": "Per our conversations, I\u0027ve created role/resultdb.invocationSubmittedSetter) in which we intend to apply to LUCI CV SAs so that it can call ResultDB\u0027s RPC to mark invocations submitted.\n\nFor now, I\u0027ve added them as users, but if we have groups I can update as well.",
+      "parentUuid": "62815e31_1a619253",
+      "revId": "263cee4076562d1e5b410f68e1dc99fb0f0457c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
