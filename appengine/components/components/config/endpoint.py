@@ -65,6 +65,13 @@ def is_trusted_requester():
     identity = auth.get_current_identity()
     if identity == settings.trusted_config_account:
       return True
+    # TODO(yiwzhang): Remove this change once LUCI Config is fully launched
+    # and the app is updated with new LUCI Config host and account using the
+    # post config setting method below
+    new_sa = "config-service@luci-config%s.iam.gserviceaccount.com" % (
+        '-dev' if 'dev' in settings.trusted_config_account else '')
+    if identity == auth.Identity('user', new_sa):
+      return True
 
   return False
 
