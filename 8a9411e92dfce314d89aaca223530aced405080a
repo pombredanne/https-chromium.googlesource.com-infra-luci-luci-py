@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40e32514_1ce3394e",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-07-12T21:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cc67ad8_c7784f57",
+      "range": {
+        "startLine": 340,
+        "startChar": 2,
+        "endLine": 340,
+        "endChar": 13
+      },
+      "revId": "8a9411e92dfce314d89aaca223530aced405080a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c995a3b6_5069489f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-12T21:13:58Z",
       "side": 1,
       "message": "```\nif conf.assignments:\n  raise ValueError(\u0027assignments are not supported anymore\u0027)\n```\n\nThis will propagate to whoever modifies the config as a validation error.\n\nAssertion will just result in the validation request crashing without any explanation.",
+      "range": {
+        "startLine": 341,
+        "startChar": 2,
+        "endLine": 341,
+        "endChar": 59
+      },
+      "revId": "8a9411e92dfce314d89aaca223530aced405080a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73f4231a_3ff25690",
+        "filename": "appengine/auth_service/config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-07-12T21:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c995a3b6_5069489f",
       "range": {
         "startLine": 341,
         "startChar": 2,
