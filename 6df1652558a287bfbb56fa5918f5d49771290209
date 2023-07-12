@@ -34,6 +34,24 @@
       "parentUuid": "061de0a7_912915b8",
       "revId": "6df1652558a287bfbb56fa5918f5d49771290209",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "100b3401_443bed6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-12T21:02:39Z",
+      "side": 1,
+      "message": "Well, now you need another LGTM stamp because new files added to the CL :P",
+      "parentUuid": "7bdbfff4_96b64541",
+      "revId": "6df1652558a287bfbb56fa5918f5d49771290209",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
