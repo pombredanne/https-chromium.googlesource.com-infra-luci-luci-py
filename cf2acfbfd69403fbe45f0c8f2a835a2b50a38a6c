@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8728bab1_f9061385",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-07-12T20:13:50Z",
+      "side": 1,
+      "message": "1. Remove diffing functionality in change_log from Python version\n2. Remove change types for allowlist assignments from Go\n3. Remove triggering diff function in python version when generating changes\n\nI figured I could leave the model there since there might be some other stuff depending on the model and that can get removed later when the project gets cleaned up. I don\u0027t plan to support this in the go version so I will not be writing it into the replication proto unless necessary, if necessary then I will revisit the python model support and clean up the usages there.",
+      "parentUuid": "f78c5fb5_9df26a3d",
+      "revId": "cf2acfbfd69403fbe45f0c8f2a835a2b50a38a6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd3c338c_67fa07cf",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-07-12T20:09:15Z",
       "side": 1,
       "message": "this too?",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 32
+      },
+      "revId": "cf2acfbfd69403fbe45f0c8f2a835a2b50a38a6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b3cb470_eed27ed9",
+        "filename": "appengine/components/components/auth/change_log.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-07-12T20:13:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd3c338c_67fa07cf",
       "range": {
         "startLine": 118,
         "startChar": 0,
