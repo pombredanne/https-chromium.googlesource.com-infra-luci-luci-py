@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52da0868_ceffcd41",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-07-12T21:11:22Z",
+      "side": 1,
+      "message": "It\u0027s a hacky \"deep copy\". The `cipdInput` object gets some fields added in other parts of the UI. `pPRPC` before https://chromium.googlesource.com/infra/luci/luci-py/+/442e2aee5c8eddc235e593fbfb54f8697351cb1d rejected unknown fields. \n\nJust to double make sure there are no backcompat issues with those two changes landing I added this deep copy so that the unknown fields are not added.",
+      "parentUuid": "48419224_6b8fd015",
+      "range": {
+        "startLine": 598,
+        "startChar": 0,
+        "endLine": 600,
+        "endChar": 52
+      },
+      "revId": "bd4fb05a2108791d6bd7e88df07dd46a3b6eed98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2abd0f5_0f2eee04",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-12T18:55:29Z",
       "side": 1,
       "message": "nit: `const s \u003d  resp.output ? b64toUtf8(resp.output) : \"\";`",
+      "range": {
+        "startLine": 1540,
+        "startChar": 12,
+        "endLine": 1543,
+        "endChar": 13
+      },
+      "revId": "bd4fb05a2108791d6bd7e88df07dd46a3b6eed98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c53c8e87_cb617796",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 1543,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-07-12T21:11:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2abd0f5_0f2eee04",
       "range": {
         "startLine": 1540,
         "startChar": 12,
