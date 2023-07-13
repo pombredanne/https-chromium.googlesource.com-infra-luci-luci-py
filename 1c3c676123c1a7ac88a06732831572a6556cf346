@@ -16,6 +16,23 @@
       "message": "+yiwzhang@ as reviewer since this affects cv",
       "revId": "1c3c676123c1a7ac88a06732831572a6556cf346",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6df838b8_33d4217e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-07-13T16:04:32Z",
+      "side": 1,
+      "message": "+vadimsh@ - could I get your help reviewing these changes and rolling them out?",
+      "revId": "1c3c676123c1a7ac88a06732831572a6556cf346",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
