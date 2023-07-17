@@ -52,6 +52,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b44dd4da_90ca50b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-07-17T19:09:58Z",
+      "side": 1,
+      "message": "AH, it got removed. Thanks. This will also be used by end users, specifically chromium cq SA only.",
+      "parentUuid": "50dc5285_7592ffe1",
+      "revId": "1c3c676123c1a7ac88a06732831572a6556cf346",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3bc23e63_fb920ce2",
@@ -65,6 +83,30 @@
       "writtenOn": "2023-07-17T18:44:14Z",
       "side": 1,
       "message": "Will this role be used by end users in their project configs? If not, better to rename it \"role/luci.internal.resultdb.invocationSubmittedSetter\". That way it won\u0027t be allowed in realms.cfg and will not show up in docs/UI (when we have docs and UI...).",
+      "range": {
+        "startLine": 544,
+        "startChar": 16,
+        "endLine": 544,
+        "endChar": 55
+      },
+      "revId": "1c3c676123c1a7ac88a06732831572a6556cf346",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a1ca4ae_53938f6f",
+        "filename": "appengine/auth_service/realms/permissions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1368332
+      },
+      "writtenOn": "2023-07-17T19:09:58Z",
+      "side": 1,
+      "message": "Got it. The current design only has LUCI CV calling through this. Updated to internal.\n\nDoes this mean we need to set internal\u003dTrue under permission too?",
+      "parentUuid": "3bc23e63_fb920ce2",
       "range": {
         "startLine": 544,
         "startChar": 16,
