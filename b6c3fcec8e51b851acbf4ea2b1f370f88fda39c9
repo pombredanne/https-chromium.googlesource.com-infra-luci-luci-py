@@ -16,6 +16,23 @@
       "message": "ping",
       "revId": "b6c3fcec8e51b851acbf4ea2b1f370f88fda39c9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ad7acc7_c48dd624",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-07-18T18:32:55Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "b6c3fcec8e51b851acbf4ea2b1f370f88fda39c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
