@@ -595,6 +595,9 @@ const cipdBlock = (cipdInput, result) => {
       <td>false</td>
     </tr>`;
   }
+  // TODO(jonahhooper) Remove this hack when it is possible to send uknown
+  // fields to swarming pRPC
+  cipdInput = JSON.parse(JSON.stringify(cipdInput));
   const requestedPackages = cipdInput.packages || [];
   const actualPackages = (result.cipdPins && result.cipdPins.packages) || [];
   for (let i = 0; i < requestedPackages.length; i++) {
@@ -1073,7 +1076,9 @@ const reproduceSection = (ele, currentSlice) => {
         # '-realm' is only needed if resultdb is enabled for the task.<br />
         # Please use a realm that has 'role/resultdb.invocationCreator' in the
         realms.cfg of your project.<br />
-        ./bar/swarming reproduce -S ${hostUrl} -realm project:foo ${ele._taskId}
+        mkdir repro_dir && cd repro_dir<br />
+        ../bar/swarming reproduce -S ${hostUrl} -realm project:foo
+        ${ele._taskId}
       </div>
 
       <div>Download output results into directory <i>foo</i>:</div>
@@ -1081,7 +1086,8 @@ const reproduceSection = (ele, currentSlice) => {
         # (if needed, use "\\\${platform}" as-is) cipd install
         "infra/tools/luci/swarming/\\\${platform}" -root bar<br />
         # (if needed) ./bar/swarming login<br />
-        ./bar/swarming collect -S ${hostUrl} -output-dir=foo ${ele._taskId}
+        mkdir collect_dir && cd collect_dir<br />
+        ../bar/swarming collect -S ${hostUrl} -output-dir=foo ${ele._taskId}
       </div>
     </div>
   `;
@@ -1534,7 +1540,10 @@ time.sleep(${leaseDuration})`,
             if (!previousState) {
               previousState = resp.state;
             }
-            const s = b64toUtf8(resp.output) || "";
+            let s = "";
+            if (resp.output) {
+              s = b64toUtf8(resp.output);
+            }
             // s.length returns number of UTF-8 code points
             // `offset` and `length` are in bytes
             const sLengthBytes = new Blob([s]).size;
@@ -1682,25 +1691,18 @@ time.sleep(${leaseDuration})`,
     _newTask(newTask) {
       newTask.properties.idempotent = false;
       this.app.addBusyTasks(1);
-      fetch("/_ah/api/swarming/v1/tasks/new", {
-        method: "POST",
-        headers: {
-          authorization: this.authHeader,
-          "content-type": "application/json; charset=UTF-8",
-        },
-        body: JSON.stringify(newTask),
-      })
-        .then(jsonOrThrow)
+      this._createTasksService()
+        .new(newTask)
         .then((response) => {
-          if (response && response.task_id) {
-            this._taskId = response.task_id;
+          if (response && response.taskId) {
+            this._taskId = response.taskId;
             this._stateChanged();
             this._fetch();
             this.render();
             this.app.finishedTask();
           }
         })
-        .catch((e) => this.fetchError(e, "newtask"));
+        .catch((e) => this.prpcError(e, "newtask"));
     }
 
     _promptCancel() {
