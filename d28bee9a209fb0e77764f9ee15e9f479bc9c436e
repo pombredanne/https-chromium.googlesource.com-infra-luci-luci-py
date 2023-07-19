@@ -16,6 +16,24 @@
       "message": "lgtm but how will it be used?",
       "revId": "d28bee9a209fb0e77764f9ee15e9f479bc9c436e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cbf0b68_e4bf8bd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-07-19T16:29:01Z",
+      "side": 1,
+      "message": "Oh, I just noticed that the `swarming_rpcs.py` file returns the `rbe_instance` so I wanted to make them consistent. \n\nShould we rather delete both of them? I am not sure if its used anywhere.",
+      "parentUuid": "e8a39bf4_f6b0ec18",
+      "revId": "d28bee9a209fb0e77764f9ee15e9f479bc9c436e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
