@@ -1086,7 +1086,10 @@ def _run_manifest(botobj, manifest, rbe_session):
     if auth_params_dumper:
       auth_params_dumper.stop()
     if rbe_session and rbe_session.active_lease:
-      rbe_session.finish_active_lease({})
+      try:
+        rbe_session.finish_active_lease({}, flush=True)
+      except remote_client_errors.RBEServerError as e:
+        botobj.post_error('finish_active_lease failed: %s', e)
     if internal_failure and not internal_error_reported:
       _post_error_task(botobj, msg, task_id)
     logging.info(
