@@ -16,6 +16,23 @@
       "message": "PTAL, should at most affect some monitoring graphs",
       "revId": "11c23cb9399f482278b5c64b5fccf3edf606448f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c75f5760_3163add1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-07-25T15:53:07Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "11c23cb9399f482278b5c64b5fccf3edf606448f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
