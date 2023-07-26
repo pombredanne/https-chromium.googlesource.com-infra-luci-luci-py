@@ -131,7 +131,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         dimensions=[self._req_dim_prpc('pool', 'default')],
         register_backend_task_token='token-token-token',
         buildbucket_host='cow-buildbucket.appspot.com',
-    )
+        pubsub_subscription_name="my_subscription_topic")
 
   # Tests
   def test_run_task(self):
@@ -226,8 +226,10 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
 
   def test_run_task_exceptions_bad_conversion(self):
     self.set_as_project()
-    request = backend_pb2.RunTaskRequest(build_id="12345",
-                                         target="swarming://test-swarming")
+    request = backend_pb2.RunTaskRequest(
+        build_id="12345",
+        target="swarming://test-swarming",
+        pubsub_subscription_name="my_subscription_topic")
     raw_resp = self.app.post('/prpc/buildbucket.v2.TaskBackend/RunTask',
                              _encode(request),
                              self._headers,

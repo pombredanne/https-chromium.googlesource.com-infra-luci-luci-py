@@ -616,6 +616,9 @@ class BuildTask(ndb.Model):
   # A buildbucket.v2.Status that will keep the latest updated status
   # for the task.
   task_status = ndb.IntegerProperty(required=True, indexed=False)
+  # The pubsub subscription name that will be used to send UpdateBuildTask
+  # messages to buildbucket.
+  pubsub_subscription_name = ndb.StringProperty(required=True, indexed=False)
 
 
 class CipdPackage(ndb.Model):
