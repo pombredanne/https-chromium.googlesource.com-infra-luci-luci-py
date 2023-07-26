@@ -41,6 +41,54 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c59b63a_53be3469",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-26T14:43:52Z",
+      "side": 1,
+      "message": "I ended up making the CL to propagate this field from bb in https://crrev.com/c/4715699.\n\nRemoved this code!",
+      "parentUuid": "bc0f29cc_76a062cc",
+      "range": {
+        "startLine": 1347,
+        "startChar": 0,
+        "endLine": 1349,
+        "endChar": 25
+      },
+      "revId": "283701d5dc7819ea66d6ec835ecc75fd16b4bc7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44f9cc68_4551c981",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-26T14:43:52Z",
+      "side": 1,
+      "message": "Yeah sorry w",
+      "parentUuid": "bc0f29cc_76a062cc",
+      "range": {
+        "startLine": 1347,
+        "startChar": 0,
+        "endLine": 1349,
+        "endChar": 25
+      },
+      "revId": "283701d5dc7819ea66d6ec835ecc75fd16b4bc7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "772a29c6_c3490d4a",
@@ -54,6 +102,30 @@
       "writtenOn": "2023-07-18T19:29:24Z",
       "side": 1,
       "message": "This should be skipped if has_build_task is False. BotTaskUpdateHandler is the hottest RPC handler in Swarming. Adding +1 unconditional datastore get matters, especially if large chunks of tasks are not associated with Buildbucket builds and this get is just a waste of time.",
+      "range": {
+        "startLine": 1537,
+        "startChar": 6,
+        "endLine": 1537,
+        "endChar": 39
+      },
+      "revId": "283701d5dc7819ea66d6ec835ecc75fd16b4bc7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "478da12c_4eb566f9",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1537,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-26T14:43:52Z",
+      "side": 1,
+      "message": "sgtm. Added the logic to check `if has_build_task` instead.",
+      "parentUuid": "772a29c6_c3490d4a",
       "range": {
         "startLine": 1537,
         "startChar": 6,
@@ -101,6 +173,30 @@
       "side": 1,
       "message": "Let me summarize my understanding of what you are implementing:\n\n1. There\u0027s `BuildTask` entity, it has `task_status` that tracks the latest *successfully published* (to PubSub) status of the build. Not the current status. They may end up being different if PubSub publishing fails, for example.\n2. In BotTaskUpdateHandler let Swarming update its own task state however it wishes. \n3. Derive new BB `task_status` based on latest Swarming status.\n4. If the last stored `BuildTask.task_status` doesn\u0027t match the new task status, publish the PubSub message. Update stored `task_status`.\n\nIs that correct? If so, there are some things that need improvements:\n\n1. `BuildTask.task_status` should be stored only *after successful publish to pubsub*, otherwise if publishing fails, on a retry, nothing will be published (because `BuildTask.task_status` will be up-to-date).\n2. This whole publishing business should happen right after the transaction that updates Swarming task status, in bot_update_task, the same place _maybe_pubsub_notify_now is happening now. That way if publishing fails, and BotTaskUpdateHandler is retried by the bot, only _bot_update_tx will be retried. It is idempotent and can handle retries. But if publishing happens where it is now in the CL, bot_management.bot_event(...) will be retried as well. It is not idempotent. It will result in duplication of events in the bot event log.\n3. BotTaskUpdateHandler is called serially by the bot (including all retries). A bot never calls it in parallel. Swarming task state in datastore will not jump back in time. BUT PubSub itself can reorder messages when delivering them. Thus it is still a good idea to include some monotonically increasing number into PubSub messages and skip \"late\" ones on Buildbucket side. This can be timestamp or just an integer stored in `BuildTask` and incremented with every `put`.\n\nI would also recommend rename `task_status` to `published_task_status` for clarity.\n\nFinally, I still insist on moving this out of handlers_bot.py and into task_scheduler.py.",
       "parentUuid": "f4ac6692_9f279577",
+      "range": {
+        "startLine": 1576,
+        "startChar": 6,
+        "endLine": 1578,
+        "endChar": 24
+      },
+      "revId": "283701d5dc7819ea66d6ec835ecc75fd16b4bc7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3bac42b_79cd9ba3",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1578,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-26T14:43:52Z",
+      "side": 1,
+      "message": "Yes this is the intended code. I changed the code to now be in task_scheduler and follow the same pattern `_maybe_pubsub_notify_now` uses. I am now also able to take advantage of `request.has_build_task` since there was already a datastore read before.",
+      "parentUuid": "0a62d905_0f9e5621",
       "range": {
         "startLine": 1576,
         "startChar": 6,
