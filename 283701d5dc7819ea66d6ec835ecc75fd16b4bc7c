@@ -89,6 +89,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a8b3ea4_16f00fff",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-26T16:51:07Z",
+      "side": 1,
+      "message": "Interesting, some old draft published... top comment is correct though! removed the code.",
+      "parentUuid": "44f9cc68_4551c981",
+      "range": {
+        "startLine": 1347,
+        "startChar": 0,
+        "endLine": 1349,
+        "endChar": 25
+      },
+      "revId": "283701d5dc7819ea66d6ec835ecc75fd16b4bc7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "772a29c6_c3490d4a",
