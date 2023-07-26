@@ -27,6 +27,7 @@ from components import pubsub
 from components import utils
 
 import handlers_exceptions
+import backend_conversions
 import ts_mon_metrics
 
 from server import bot_management
@@ -41,6 +42,8 @@ from server import task_queues
 from server import task_request
 from server import task_result
 from server import task_to_run
+
+from bb.go.chromium.org.luci.buildbucket.proto import task_pb2
 
 
 ### Private stuff.
@@ -542,6 +545,37 @@ def _maybe_pubsub_notify_now(result_summary, request):
       return False
     except pubsub.Error:
       return True # do not retry it
+  return True
+
+
+def _maybe_pubsub_send_build_task_update(task, build_task):
+  """Sends an update message to buoldbucket about the task's current status.
+  type: task_pb2.Task, BuildTask -> None
+  """
+  assert not ndb.in_transaction()
+  assert isinstance(task, task_pb2.Task), task
+  assert isinstance(build_task, task_request.BuildTask), build_task
+  msg = task_pb2.BuildTaskUpdate(build_id=build_task.build_id, task=task)
+  try:
+    pubsub.publish(topic=build_task.pubsub_subscription_name,
+                   message=msg.SerializeToString(),
+                   attributes=None)
+  except pubsub.TransientError as e:
+    http_status_code = e.inner.status_code
+    logging.exception(
+        'Transient error (status_code=%s) when sending PubSub notification',
+        http_status_code)
+    return False
+  except pubsub.Error as e:
+    http_status_code = e.inner.status_code
+    logging.exception(
+        'Fatal error (status_code=%s) when sending PubSub notification',
+        http_status_code)
+    return True  # do not retry it
+  except Exception as e:
+    logging.exception("Unknown exception (%s) not handled by " \
+                      "_maybe_pubsub_send_build_task_update", e)
+    raise e  # raise the error if it is unknown
   return True
 
 
@@ -1763,6 +1797,25 @@ def bot_update_task(run_result_key, bot_id, output, output_chunk_start,
   # kind of an ugly hack but the other option is to return the whole run_result.
   if run_result.killing:
     return task_result.State.KILLED
+  if request.has_build_task:
+    build_task = request.build_task_key.get()
+    task_id = task_pack.pack_run_result_key(
+        task_pack.result_summary_key_to_run_result_key(result_summary_key))
+    bb_task = task_pb2.Task(id=task_pb2.TaskID(
+        id=task_id,
+        target="swarming://%s" % app_identity.get_application_id(),
+    ),
+                            update_id=int(utils.time_time()))
+    backend_conversions.convert_task_state_to_status(run_result.state, False,
+                                                     bb_task)
+    if build_task.published_task_status != bb_task.status:
+      update_buildbucket_pubsub_success = _maybe_pubsub_send_build_task_update(
+          bb_task, build_task)
+      # Caller must retry if PubSub enqueue fails.
+      if not update_buildbucket_pubsub_success:
+        return None
+    build_task.published_task_status = bb_task.status
+    build_task.put()
   return run_result.state
 
 
