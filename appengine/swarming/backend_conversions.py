@@ -43,7 +43,7 @@ def compute_task_request(run_task_req):
   build_task = task_request.BuildTask(
       build_id=run_task_req.build_id,
       buildbucket_host=run_task_req.buildbucket_host,
-      task_status=common_pb2.STATUS_UNSPECIFIED,
+      published_task_status=common_pb2.STATUS_UNSPECIFIED,
       pubsub_subscription_name=run_task_req.pubsub_subscription_name)
 
   # NOTE: secret_bytes cannot be passed via `-secret_bytes` in `command`

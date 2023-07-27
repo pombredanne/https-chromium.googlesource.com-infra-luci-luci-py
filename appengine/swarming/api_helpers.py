@@ -10,6 +10,7 @@ import re
 
 from google.appengine.api import datastore_errors
 from google.appengine.api import memcache
+from google.protobuf import struct_pb2
 
 from components import auth
 
@@ -202,3 +203,10 @@ def validate_backend_configs(configs):
       errors.append((i, 'missing `agent_binary_cipd_filename`'))
 
   return errors
+
+
+def convert_dict_to_structpb_list_value(d):
+  # type: Dict > struct_pb2.StructListValue
+  res = struct_pb2.ListValue()
+  for k, v in d:
+    res.append()
