@@ -46,6 +46,30 @@
       },
       "revId": "036e2b28e7b3228be3858485082f08238b6dc280",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a71a96f_3d144d46",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-27T18:46:43Z",
+      "side": 1,
+      "message": "The answer depends on what component owns the topic (\u003d\u003d comes up with how to name it, creates it).\n\nIf the topic is owned by Buildbucket (which looks like it is), then we need to send the topic name to the task backend. Subscription name in this case is Buildbucket own implementation detail. The task backend doesn\u0027t care about it. The contract in this case is that the task backend just publishes messages to the provided topic and that\u0027s it. If we go this route, Buildbucket will need to know names of both the topic (to send it to the task backend) and the subscription (to validate received messages).\n\nAn alternative is to make the topic be owned by the task backend (e.g. \"projects/chromium-swarm-dev/topics/bb-task-notifications\"). Then we don\u0027t need to send its name from Buildbucket. Buildbucket service itself doesn\u0027t even need to know it. But the Buildbucket service will still own (and know about) a subscription to this topic (\"projects/cr-buildbucket-dev/subscriptions/chromium-swarm-dev\"). The contract in this case is that:\n* The topic is owned by the task backend.\n* The task backend publishes message to it.\n* A subscription owned by Buildbucket is subscribed to this topic. This happens once when the task backend is being registered.\n\nIn we go this route, there\u0027s no need to put the topic name into any protos. And we won\u0027t need to hardcode `cr-buildbucket-dev` in Swarming code (it will use a hardcoded topic name like e.g. `projects/{swarming-app-id}/topics/bb-task-notifications`). But we\u0027ll need to change Terraform configs to setup the topic and the subscription differently.",
+      "parentUuid": "81f778ed_1ec78a8b",
+      "range": {
+        "startLine": 619,
+        "startChar": 0,
+        "endLine": 621,
+        "endChar": 77
+      },
+      "revId": "036e2b28e7b3228be3858485082f08238b6dc280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
