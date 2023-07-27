@@ -22,6 +22,30 @@
       },
       "revId": "036e2b28e7b3228be3858485082f08238b6dc280",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81f778ed_1ec78a8b",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-27T18:31:21Z",
+      "side": 1,
+      "message": "I was using this because we check the subscription_name in buildbucket (https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/4702065)\n\nI was going off what pubsub has here https://screenshot.googleplex.com/3v9LGuRYdxBmRLj\n\nIt makes sense that we have to send to a topic from swarming, and bb subscribes to the topic via a subscription. \n\nSo I should then change the buildbucket side to also include a topic that gets sent to swarming via RunTask, so that swarming can send to the topic and bb can validate and receive from the subscription?",
+      "parentUuid": "9b6b859d_79873750",
+      "range": {
+        "startLine": 619,
+        "startChar": 0,
+        "endLine": 621,
+        "endChar": 77
+      },
+      "revId": "036e2b28e7b3228be3858485082f08238b6dc280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
