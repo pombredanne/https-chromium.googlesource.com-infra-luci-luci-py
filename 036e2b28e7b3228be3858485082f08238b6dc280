@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b6b859d_79873750",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-27T18:25:27Z",
+      "side": 1,
+      "message": "Publishing always happens into a PubSub Topic, not a subscription. This should have been `pubsub_topic_name`.\n\nThe next CL has\n```\npubsub.publish(topic\u003dbuild_task.pubsub_subscription_name, ...\n```\n\nwhich looks wrong",
+      "range": {
+        "startLine": 619,
+        "startChar": 0,
+        "endLine": 621,
+        "endChar": 77
+      },
+      "revId": "036e2b28e7b3228be3858485082f08238b6dc280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
