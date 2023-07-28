@@ -14,6 +14,7 @@ import logging
 import os
 import re
 import sys
+import time
 import threading
 
 from six.moves import urllib
@@ -161,6 +162,11 @@ def utcnow():
 def time_time():
   """Returns the equivalent of time.time() as mocked if applicable."""
   return (utcnow() - EPOCH).total_seconds()
+
+
+def time_time_ns():
+  """Returns the equivalent of time.time_ns() as mocked if applicable."""
+  return int((utcnow() - EPOCH).total_seconds() * 1e9)
 
 
 def milliseconds_since_epoch(now=None):
