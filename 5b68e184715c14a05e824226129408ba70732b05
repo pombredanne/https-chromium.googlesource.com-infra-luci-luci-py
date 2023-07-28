@@ -16,6 +16,161 @@
       "message": "This CL has been now updated to reflect the changed from https://crrev.com/c/4726326 and https://crrev.com/c/4715699",
       "revId": "5b68e184715c14a05e824226129408ba70732b05",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccf723e3_eac43cc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-28T20:34:47Z",
+      "side": 1,
+      "message": "How solid does this notification need to be?\n\nBecause Swarming task can change state in a bunch of other ways (when it expires, when the bot that executes it dies, when the task fails with an internal error). See calls to _maybe_taskupdate_notify_via_tq.",
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4beebea3_bf0d7b1f",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-28T20:34:47Z",
+      "side": 1,
+      "message": "topic",
+      "range": {
+        "startLine": 619,
+        "startChar": 15,
+        "endLine": 619,
+        "endChar": 27
+      },
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f219726f_e660afc7",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-28T20:34:47Z",
+      "side": 1,
+      "message": "buildbucket",
+      "range": {
+        "startLine": 553,
+        "startChar": 32,
+        "endLine": 553,
+        "endChar": 43
+      },
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad6c62cb_578fae70",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 1800,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-28T20:34:47Z",
+      "side": 1,
+      "message": "task cancelation should probably propagate to BB as well?\n\nHow about:\n\n```\nrun_result_state \u003d run_result.state\nif run_result.killing:\n  run_result_state \u003d task_result.State.KILLED\n\nif request.has_build_task:\n  ...\n\nreturn run_result_state\n```",
+      "range": {
+        "startLine": 1799,
+        "startChar": 0,
+        "endLine": 1800,
+        "endChar": 35
+      },
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b55bf4c_a5af3331",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 1817,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-28T20:34:47Z",
+      "side": 1,
+      "message": "why is it Struct instead of something with a realm schema? What will be interpreting it?",
+      "range": {
+        "startLine": 1817,
+        "startChar": 26,
+        "endLine": 1817,
+        "endChar": 45
+      },
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f63130db_b4f6f870",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 1822,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-28T20:34:47Z",
+      "side": 1,
+      "message": "This will be 1s granularity, i.e. if updates happen within the same second they\u0027ll have the same ID. This not good. Better to increase the precision or use something else instead (e.g. a counter stored in build_task).",
+      "range": {
+        "startLine": 1822,
+        "startChar": 28,
+        "endLine": 1822,
+        "endChar": 60
+      },
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba00fc5b_41ba5db0",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 1836,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-28T20:34:47Z",
+      "side": 1,
+      "message": "Should this be inside `if build_task.published_task_status !\u003d bb_task.status:` condition? Why do we store build_task all the time, even if nothing has changed?",
+      "range": {
+        "startLine": 1832,
+        "startChar": 0,
+        "endLine": 1836,
+        "endChar": 20
+      },
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
