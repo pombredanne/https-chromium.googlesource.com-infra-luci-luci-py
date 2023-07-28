@@ -680,7 +680,7 @@ def get_ssd():
   try:
     return sorted(d.DeviceId
                   for d in wbem.query('SELECT * FROM MSFT_PhysicalDisk')
-                  if d.MediaType == 4)
+                  if d.MediaType == 4 or d.Model == 'nvme_card')
   except AttributeError:
     return ()
 
