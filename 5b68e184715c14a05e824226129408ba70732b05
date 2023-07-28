@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24dbefbe_7c506190",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-28T21:32:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4beebea3_bf0d7b1f",
+      "range": {
+        "startLine": 619,
+        "startChar": 15,
+        "endLine": 619,
+        "endChar": 27
+      },
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f219726f_e660afc7",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-07-28T20:34:47Z",
       "side": 1,
       "message": "buildbucket",
+      "range": {
+        "startLine": 553,
+        "startChar": 32,
+        "endLine": 553,
+        "endChar": 43
+      },
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d91e0a94_127b01aa",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-28T21:32:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f219726f_e660afc7",
       "range": {
         "startLine": 553,
         "startChar": 32,
@@ -104,6 +152,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a61512e_774ae347",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 1800,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-28T21:32:37Z",
+      "side": 1,
+      "message": "SGTM. Changed!",
+      "parentUuid": "ad6c62cb_578fae70",
+      "range": {
+        "startLine": 1799,
+        "startChar": 0,
+        "endLine": 1800,
+        "endChar": 35
+      },
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b55bf4c_a5af3331",
@@ -117,6 +189,30 @@
       "writtenOn": "2023-07-28T20:34:47Z",
       "side": 1,
       "message": "why is it Struct instead of something with a realm schema? What will be interpreting it?",
+      "range": {
+        "startLine": 1817,
+        "startChar": 26,
+        "endLine": 1817,
+        "endChar": 45
+      },
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d10dd30_e2b3c0de",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 1817,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-28T21:32:37Z",
+      "side": 1,
+      "message": "This struct is \"generic\" for backend owners to interpret downstream. BB does nothing with this info other than store it in the Task proto and export that to BQ. So far the first usecase of the Task.Details will be for recipes that lookup hardcoded bot info (in Build.Infra.Swarming.BotDimensions). They will now need to pull bot info from Build.Infra.Backend.Task.Details.\n\nIt is intentionally not a specific schema and a struct so we don\u0027t silo backend owners.",
+      "parentUuid": "1b55bf4c_a5af3331",
       "range": {
         "startLine": 1817,
         "startChar": 26,
@@ -150,6 +246,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "570f1d5a_0e0849b3",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 1822,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-28T21:32:37Z",
+      "side": 1,
+      "message": "I decided to make a time_time_ns util instead, that way we can use nanoseconds for update_id. it would be easier to use a counter stored in build_task, but I worry that it could lead to race-y things, and only BB needs to worry about update_id, so I think using ns is ok here.",
+      "parentUuid": "f63130db_b4f6f870",
+      "range": {
+        "startLine": 1822,
+        "startChar": 28,
+        "endLine": 1822,
+        "endChar": 60
+      },
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba00fc5b_41ba5db0",
@@ -163,6 +283,30 @@
       "writtenOn": "2023-07-28T20:34:47Z",
       "side": 1,
       "message": "Should this be inside `if build_task.published_task_status !\u003d bb_task.status:` condition? Why do we store build_task all the time, even if nothing has changed?",
+      "range": {
+        "startLine": 1832,
+        "startChar": 0,
+        "endLine": 1836,
+        "endChar": 20
+      },
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "460979f1_b5f6caeb",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 1836,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-07-28T21:32:37Z",
+      "side": 1,
+      "message": "good call out. shifted all this code over to be in that conditional block.",
+      "parentUuid": "ba00fc5b_41ba5db0",
       "range": {
         "startLine": 1832,
         "startChar": 0,
