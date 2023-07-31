@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "137eb32a_58309502",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-31T20:41:25Z",
+      "side": 1,
+      "message": "This is a hack since `X:\\b\\` directory is a detail of how Chrome bots are deployed. It is not part of Swarming bot code. A swarming bot can run from other directories. \n\nHow about getting the current working directory (e.g. `C:\\b\\w\\blah`) and converting it into a list of paths like `[\u0027C:\\\u0027, \u0027C:\\b\\\u0027, \u0027C:\\b\\w\\\u0027, \u0027C:\\b\\w\\blah\u0027]` and checking all of them? (in addition to all of letters of the alphabet).",
+      "range": {
+        "startLine": 56,
+        "startChar": 46,
+        "endLine": 56,
+        "endChar": 52
+      },
+      "revId": "cdd27e17dca7483bf9ed30e5e85cc018c142ce4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
