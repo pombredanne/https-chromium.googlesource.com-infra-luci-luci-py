@@ -46,6 +46,30 @@
       },
       "revId": "cdd27e17dca7483bf9ed30e5e85cc018c142ce4c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd2d85b7_88f82433",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-07-31T21:42:38Z",
+      "side": 1,
+      "message": "I\u0027m asking you not to hardcode \"..:\\b\" in Swarming source code.",
+      "parentUuid": "34aebb2e_d0ec9f7b",
+      "range": {
+        "startLine": 56,
+        "startChar": 46,
+        "endLine": 56,
+        "endChar": 52
+      },
+      "revId": "cdd27e17dca7483bf9ed30e5e85cc018c142ce4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
