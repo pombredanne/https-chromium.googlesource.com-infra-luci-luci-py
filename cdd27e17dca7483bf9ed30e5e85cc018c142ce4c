@@ -22,6 +22,30 @@
       },
       "revId": "cdd27e17dca7483bf9ed30e5e85cc018c142ce4c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34aebb2e_d0ec9f7b",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1546477
+      },
+      "writtenOn": "2023-07-31T21:39:09Z",
+      "side": 1,
+      "message": "Not sure I follow, the only directories we map additional drives to are ```c:\\b```. This is a new change as of last week.\n\nhttps://source.corp.google.com/h/chrome-internal/infra/infra_internal/+/main:ccompute/images/win10/bootstrap/tools/installers/provision.py;l\u003d943\n\nAre you wanting to make this more dynamic in the event we move attaching the swarming drive to something other than ```c:\\b```?",
+      "parentUuid": "137eb32a_58309502",
+      "range": {
+        "startLine": 56,
+        "startChar": 46,
+        "endLine": 56,
+        "endChar": 52
+      },
+      "revId": "cdd27e17dca7483bf9ed30e5e85cc018c142ce4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
