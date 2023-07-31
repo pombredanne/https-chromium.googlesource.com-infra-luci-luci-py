@@ -52,8 +52,9 @@ def _get_mount_points():
   DRIVE_FIXED = 3
   # https://msdn.microsoft.com/library/windows/desktop/aa364939.aspx
   return [
-      '%s:\\' % letter for letter in string.ascii_lowercase
-      if ctypes.windll.kernel32.GetDriveTypeW(letter + ':\\') == DRIVE_FIXED
+      drive for letter in string.ascii_lowercase
+      for drive in [letter + ':\\', letter + ':\\b\\']
+      if ctypes.windll.kernel32.GetDriveTypeW(drive) == DRIVE_FIXED
   ]
 
 
