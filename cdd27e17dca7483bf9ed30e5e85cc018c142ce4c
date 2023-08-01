@@ -70,6 +70,30 @@
       },
       "revId": "cdd27e17dca7483bf9ed30e5e85cc018c142ce4c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e728596e_33ce8295",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1546477
+      },
+      "writtenOn": "2023-08-01T21:58:00Z",
+      "side": 1,
+      "message": "It appears GetDriveTypeW doesn\u0027t work as I expect either as any directory under the C drive will return 3 (DRIVE_FIXED).\n\nLooking through fileapi.h it looks like GetVolumePathNameW may do what I want.\nhttps://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-getvolumepathnamew\nI\u0027ve played around with trying to build this out but haven\u0027t had much luck. The value in vol always returns None. No doubt I\u0027m doing something wrong below.\n\n```\nvol \u003d ctypes.c_wchar_p()\npath \u003d \u0027C:\\\\b\\\\w\\\\\u0027\nctypes.windll.kernel32.GetVolumePathNameW(\n  ctypes.c_wchar_p(path), ctypes.pointer(vol), ctypes.c_ulong()\n)\nprint(vol.value)\n```\n\nReading the docs on GetVolumePathNameW if ```C:\\\\b\\\\w\\\\``` is the input then ```C:\\\\b\\\\``` should be the output, assuming the SSD is mapped to c:\\b",
+      "parentUuid": "bd2d85b7_88f82433",
+      "range": {
+        "startLine": 56,
+        "startChar": 46,
+        "endLine": 56,
+        "endChar": 52
+      },
+      "revId": "cdd27e17dca7483bf9ed30e5e85cc018c142ce4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
