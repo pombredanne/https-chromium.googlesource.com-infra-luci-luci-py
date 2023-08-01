@@ -378,6 +378,12 @@ class BotManagementTest(test_case.TestCase):
     self.assertEqual(
         expected, [i.to_dict() for i in bot_management.get_events_query('id1')])
 
+  def test_get_latest_info(self):
+    pass  # TODO
+
+  def test_get_latest_pools(self):
+    pass  # TODO
+
   @parameterized.expand([
       (u'request_sleep', ),
       (u'bot_idle', ),
