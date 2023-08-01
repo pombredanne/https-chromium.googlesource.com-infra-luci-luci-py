@@ -16,6 +16,23 @@
       "message": "I\u0027m making changes to route termination tasks through RBE. This is some cleanup before adding new code.",
       "revId": "d6828b599bb78a9500d410d51524bb326ffe4b7f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccd520d9_547a2aa6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-08-01T15:22:33Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "d6828b599bb78a9500d410d51524bb326ffe4b7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
