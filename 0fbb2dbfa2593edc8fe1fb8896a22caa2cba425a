@@ -16,6 +16,23 @@
       "message": "PTAL\n\nI was working on making terminate_bot route requests to RBE if a bot is fully on RBE and discovered some inefficiencies in how ACLs are checked. This is the first CL in a chain of maybe 3.",
       "revId": "0fbb2dbfa2593edc8fe1fb8896a22caa2cba425a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd9a1c21_6cac3341",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-08-02T16:54:06Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "0fbb2dbfa2593edc8fe1fb8896a22caa2cba425a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
