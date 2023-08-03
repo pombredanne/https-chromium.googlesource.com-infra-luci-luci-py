@@ -34,6 +34,24 @@
       "parentUuid": "398d12fd_1e733dc9",
       "revId": "2cb0d3bbdf81c59bcd4ec12e199055effd5c9aac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1508977_6db98f0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-03T18:14:57Z",
+      "side": 1,
+      "message": "That would\u0027ve worked too. I think its better that BB sends it since BB owns the topic, so other task backends can just expect that BB got the topic right and not have to worry about configuring it/keeping it up to date on their end.",
+      "parentUuid": "408a92a1_641aaf34",
+      "revId": "2cb0d3bbdf81c59bcd4ec12e199055effd5c9aac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
