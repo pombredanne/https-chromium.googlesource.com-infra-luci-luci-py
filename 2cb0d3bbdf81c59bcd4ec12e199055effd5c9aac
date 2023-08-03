@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "398d12fd_1e733dc9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-03T17:31:17Z",
+      "side": 1,
+      "message": "Please don\u0027t have me, but I realized another option would have been just to put the topic name into the *global* Swarming config, since we don\u0027t anticipate using the same swarming instance with different copies of cr-buildbucket. It would have been easier than propagating it per-task. But it is already done...",
+      "revId": "2cb0d3bbdf81c59bcd4ec12e199055effd5c9aac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
