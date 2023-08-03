@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8561f830_fe8c8c16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-03T17:35:27Z",
+      "side": 1,
+      "message": "lgtm but please answer the question I asked in the previous patchset.",
+      "revId": "914f6ad8b30724f0f80c7a9324c0b9d900a5663e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78cd9a7e_05f3dcfc",
+        "filename": "appengine/components/components/utils.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-03T17:35:27Z",
+      "side": 1,
+      "message": "it\u0027s not worth its own function, just do `int(utils.time_time() * 1e9)` at the callsite",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 54
+      },
+      "revId": "914f6ad8b30724f0f80c7a9324c0b9d900a5663e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
