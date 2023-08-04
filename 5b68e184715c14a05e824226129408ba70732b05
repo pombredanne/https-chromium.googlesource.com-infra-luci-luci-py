@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3b962846_8319222c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-04T18:02:22Z",
+      "side": 1,
+      "message": "This code will miss task states such as CLIENT_ERROR, BOT_DIED, some of CANCELED, NO_RESOURCE, EXPIRED.\n\nIt handles only the happy path of bot calling /bot/task_update. But if the bot dies, or the task never reaches the bot, or the bot can\u0027t start it, no notifications to BB will be sent.",
+      "parentUuid": "627d1c7c_cab9d743",
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4beebea3_bf0d7b1f",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 31
