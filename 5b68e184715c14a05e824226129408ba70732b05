@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "627d1c7c_cab9d743",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-04T17:37:39Z",
+      "side": 1,
+      "message": "Code has been updated to only send bb updates on swarming task state changes, and BuildTask now stores previous updated swarming task state instead of a bb status.",
+      "parentUuid": "8034efde_aa83961f",
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4beebea3_bf0d7b1f",
         "filename": "appengine/swarming/server/task_request.py",
         "patchSetId": 31
