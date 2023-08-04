@@ -107,6 +107,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3be741e_d2636788",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-04T18:26:43Z",
+      "side": 1,
+      "message": "Got it. In a follow up CL (or CLs, depending on the scope), I will check each /bots/ endpoint, `cron_handle_bot_died`, and other locations where bot state is updated to ensure that updates to buildbucket are appropriately made.",
+      "parentUuid": "3b962846_8319222c",
+      "revId": "5b68e184715c14a05e824226129408ba70732b05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4beebea3_bf0d7b1f",
