@@ -464,7 +464,8 @@ class _BotBaseHandler(_BotApiHandler):
       dimensions[dim_key] = from_cfg
 
     # Check the config to see if this bot is in the RBE mode.
-    rbe_cfg = rbe.get_rbe_config_for_bot(bot_id, dimensions.get('pool'))
+    pools = dimensions.get('pool', [])
+    rbe_cfg = rbe.get_rbe_config_for_bot(bot_id, pools) if pools else None
 
     # These are passed to the scheduler as is to be stored with the task.
     bot_details = task_scheduler.BotDetails(version,

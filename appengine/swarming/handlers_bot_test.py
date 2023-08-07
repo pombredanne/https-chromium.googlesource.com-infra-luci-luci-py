@@ -156,7 +156,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
       errors.append(message)
 
     self.mock(ereporter2, 'log_request', add_error)
-    params = {'dimensions': {'id': ['id1']}}
+    params = {'dimensions': {'id': ['id1'], 'pool': ['default']}}
     response = self.app.post_json('/swarming/api/v1/bot/handshake', params).json
     self.assertEqual([
         u'bot_config_name',

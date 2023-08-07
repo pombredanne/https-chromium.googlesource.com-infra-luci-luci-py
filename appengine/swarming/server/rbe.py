@@ -25,6 +25,7 @@ from components import utils
 
 from proto.config import pools_pb2
 from proto.internals import rbe_pb2
+from server import bot_management
 from server import pools_config
 from server.constants import OR_DIM_SEP
 
@@ -45,6 +46,10 @@ RBEBotConfig = collections.namedtuple(
     ])
 
 
+class UnknownBotError(Exception):
+  """Raised by get_rbe_config_for_bot for unrecognized bots."""
+
+
 def warmup():
   """Warms up local in-memory caches, best effort."""
   try:
@@ -53,23 +58,28 @@ def warmup():
     logging.exception('Failed to warmup up RBE HMAC key')
 
 
-def get_rbe_config_for_bot(bot_id, pools):
+def get_rbe_config_for_bot(bot_id, pools=None):
   """Returns an RBE instance (and related parameters) to use for the given bot.
 
   If the bot should not be using RBE, returns None.
 
   Args:
     bot_id: ID of the bot as a string.
-    pools: pool IDs the bot belongs to.
+    pools: pool IDs the bot belongs to if known. If None, will be fetched from
+        the datastore based on the bot ID.
 
   Returns:
     An RBEBotConfig tuple or None if the bot should not be using RBE.
+
+  Raises:
+    UnknownBotError if the bot is not recognized or has no pools.
   """
   BotMode = pools_pb2.Pool.RBEMigration.BotModeAllocation.BotMode
 
-  # This can happen during a handshake with a broken/misconfigured bot.
+  if pools is None:
+    pools = bot_management.get_bot_pools(bot_id)
   if not pools:
-    return None
+    raise UnknownBotError('Bot %s is not in any pool' % bot_id)
 
   # This an int in range [0, 100).
   bot_rand = _quasi_random_100(bot_id)
