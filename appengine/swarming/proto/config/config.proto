@@ -75,6 +75,10 @@ message SettingsCfg {
 
   // Configuration for RBE-CAS integration.
   CASSettings cas = 20;
+
+  // If true, and the bot's pools are 100% in RBE mode, send termination tasks
+  // to this bot through the RBE scheduler.
+  bool route_termination_through_rbe = 21;
 }
 
 
