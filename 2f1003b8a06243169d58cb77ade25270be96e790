@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "590d7dd9_a9ff7ce4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 40
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-07T15:14:47Z",
+      "side": 1,
+      "message": "Ping because need stamp due to reparent after first CL merge.",
+      "revId": "2f1003b8a06243169d58cb77ade25270be96e790",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
