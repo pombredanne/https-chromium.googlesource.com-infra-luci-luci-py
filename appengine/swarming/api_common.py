@@ -126,10 +126,8 @@ def terminate_bot(bot_id, reason=None):
   except (datastore_errors.BadValueError, TypeError, ValueError) as e:
     raise handlers_exceptions.BadRequestException(str(e))
 
-  result_summary = task_scheduler.schedule_request(request,
-                                                   enable_resultdb=False)
+  result_summary = task_scheduler.schedule_request(request)
   return task_pack.pack_result_summary_key(result_summary.key)
-
 
 
 # Stores a list of filters for the function task_result.get_run_results_query
