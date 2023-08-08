@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b400c93_f5482144",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-08-08T15:56:40Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "8dbc67abcc8e4a78ae1093cac4ec4ee2092403e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ef54a2d_1ff9e90d",
+        "filename": "appengine/swarming/server/bot_groups_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-08-08T15:56:40Z",
+      "side": 1,
+      "message": "What does `sfx` stand for here?",
+      "range": {
+        "startLine": 117,
+        "startChar": 25,
+        "endLine": 117,
+        "endChar": 28
+      },
+      "revId": "8dbc67abcc8e4a78ae1093cac4ec4ee2092403e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
