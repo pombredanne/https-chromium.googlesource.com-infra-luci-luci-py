@@ -39,6 +39,30 @@
       },
       "revId": "a3aa75a41105f3d5bde52c127b211c3593e782f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00cd1f16_8d5dc07a",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-10T21:24:47Z",
+      "side": 1,
+      "message": "Not sure what exactly you are asking to clarify, but wrote something.",
+      "parentUuid": "06fe6cd0_6443c367",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 53
+      },
+      "revId": "a3aa75a41105f3d5bde52c127b211c3593e782f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
