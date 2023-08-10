@@ -479,7 +479,23 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
 
   def test_bot_reap_task(self):
     # Essentially check _quick_reap() works.
-    run_result = self._quick_reap(has_build_task=True)
+    run_result = self._quick_reap()
+    self.assertEqual('localhost', run_result.bot_id)
+    self.assertEqual(1, run_result.try_number)
+    to_run_key = task_to_run.request_to_task_to_run_key(
+        run_result.request_key.get(), 0)
+    self.assertIsNone(to_run_key.get().queue_number)
+    self.assertIsNone(to_run_key.get().expiration_ts)
+
+  def test_bot_reap_build_task(self):
+    self.mock_pub_sub()
+    run_result = self._quick_reap(
+        has_build_task=True,
+        build_task=task_request.BuildTask(
+            build_id="1234",
+            buildbucket_host="buildbucket_host",
+            latest_task_status=task_result.State.PENDING,
+            pubsub_topic="backend_pubsub_topic"))
     self.assertEqual('localhost', run_result.bot_id)
     self.assertEqual(1, run_result.try_number)
     to_run_key = task_to_run.request_to_task_to_run_key(
@@ -1875,9 +1891,59 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(
         State.COMPLETED,
         _bot_update_task(run_result.key, exit_code=0, duration=0.1))
-    self.assertEqual(1, len(pub_sub_calls))  # notification is sent
+    # 2 calls because _quick_reap sends one and _bot_update_task sends another
+    self.assertEqual(2, len(pub_sub_calls))
     self.assertEqual(pub_sub_calls[0][1]["topic"], "backend_pubsub_topic")
     self.assertEqual(1, self.execute_tasks())
+
+  def test_handle_buildbucket_update(self):
+    self.mock(utils, "time_time", lambda: 12345678)
+    pub_sub_calls = self.mock_pub_sub()
+    run_result = self._quick_reap(
+        has_build_task=True,
+        build_task=task_request.BuildTask(
+            build_id="1234",
+            buildbucket_host="buildbucket_host",
+            latest_task_status=task_result.State.PENDING,
+            pubsub_topic="backend_pubsub_topic"))
+    self.assertEqual(1, len(pub_sub_calls))  # notification is sent
+
+    # Check that an update is not sent due to no change of state
+    is_updated = task_scheduler.handle_buildbucket_update({
+        "packed_request_key":
+        task_pack.pack_request_key(run_result.request_key),
+        "packed_result_summary_key":
+        task_pack.pack_result_summary_key(run_result.result_summary_key),
+        "state":
+        task_result.State.RUNNING
+    })
+    self.assertEqual(is_updated, True)
+    self.assertEqual(1, len(pub_sub_calls))
+
+    # Check that an update is sent due to change of state
+    is_updated = task_scheduler.handle_buildbucket_update({
+        "packed_request_key":
+        task_pack.pack_request_key(run_result.request_key),
+        "packed_result_summary_key":
+        task_pack.pack_result_summary_key(run_result.result_summary_key),
+        "state":
+        task_result.State.BOT_DIED
+    })
+    self.assertEqual(is_updated, True)
+    self.assertEqual(2, len(pub_sub_calls))
+
+    # Check that an update is not sent due to pubsub error
+    self.publish_successful = False
+    is_updated = task_scheduler.handle_buildbucket_update({
+        "packed_request_key":
+        task_pack.pack_request_key(run_result.request_key),
+        "packed_result_summary_key":
+        task_pack.pack_result_summary_key(run_result.result_summary_key),
+        "state":
+        task_result.State.CANCELED
+    })
+    self.assertEqual(is_updated, False)
+    self.assertEqual(2, len(pub_sub_calls))
 
   def _bot_update_timeouts(self, hard, io):
     run_result = self._quick_reap()
