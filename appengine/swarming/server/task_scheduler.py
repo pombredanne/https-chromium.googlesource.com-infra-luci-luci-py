@@ -18,7 +18,6 @@ import urlparse
 import uuid
 
 from google.appengine.api import app_identity
-from google.appengine.api import datastore_errors
 from google.appengine.ext import ndb
 from google.protobuf import struct_pb2, json_format
 
@@ -549,16 +548,22 @@ def _maybe_pubsub_notify_now(result_summary, request):
   return True
 
 
-def _maybe_pubsub_send_build_task_update(task, build_task):
+def _maybe_pubsub_send_build_task_update(bb_task, build_id, pubsub_topic):
   """Sends an update message to buildbucket about the task's current status.
-  type: task_pb2.Task, BuildTask -> None
+  Args:
+    bb_task task_pb2.Task: Created by caller of this funciton to send to
+      Buildbucket.
+    build_id string: buildbucket build id provided by buildbucket.
+    pubsub_topic string: pubsub topic to publish to. Provided by buildbucket.
+
+  Returns:
+    bool
   """
   assert not ndb.in_transaction()
-  assert isinstance(task, task_pb2.Task), task
-  assert isinstance(build_task, task_request.BuildTask), build_task
-  msg = task_pb2.BuildTaskUpdate(build_id=build_task.build_id, task=task)
+  assert isinstance(bb_task, task_pb2.Task), bb_task
+  msg = task_pb2.BuildTaskUpdate(build_id=build_id, task=bb_task)
   try:
-    pubsub.publish(topic=build_task.pubsub_topic,
+    pubsub.publish(topic=pubsub_topic,
                    message=msg.SerializeToString(),
                    attributes=None)
   except pubsub.TransientError as e:
@@ -597,8 +602,8 @@ def _maybe_taskupdate_notify_via_tq(result_summary, request, es_cfg,
   assert isinstance(result_summary,
                     task_result.TaskResultSummary), result_summary
   assert isinstance(request, task_request.TaskRequest), request
+  task_id = task_pack.pack_result_summary_key(result_summary.key)
   if request.pubsub_topic:
-    task_id = task_pack.pack_result_summary_key(result_summary.key)
     payload = {
         'task_id': task_id,
         'topic': request.pubsub_topic,
@@ -623,11 +628,19 @@ def _maybe_taskupdate_notify_via_tq(result_summary, request, es_cfg,
         es_cfg, [(request, result_summary)], True, False)
 
   if request.has_build_task:
-    task_id = task_pack.pack_result_summary_key(result_summary.key)
+    payload = {
+        'packed_request_key':
+        task_pack.pack_request_key(request.key),
+        'packed_result_summary_key':
+        task_pack.pack_result_summary_key(result_summary.key),
+        'state':
+        result_summary.state,
+    }
     ok = utils.enqueue_task(
         '/internal/taskqueue/important/buildbucket/notify-task/%s' % task_id,
         'buildbucket-notify',
-        transactional=transactional)
+        transactional=transactional,
+        payload=utils.encode_to_json(payload))
     if not ok:
       raise datastore_utils.CommitError(
           'Failed to enqueue buildbucket notify task')
@@ -1800,41 +1813,15 @@ def bot_update_task(run_result_key, bot_id, output, output_chunk_start,
   if run_result.killing:
     run_result_state = task_result.State.KILLED
   if request.has_build_task:
-    build_task = request.build_task_key.get()
-    if run_result_state != build_task.latest_task_status:
-      task_id = task_pack.pack_run_result_key(
-          task_pack.result_summary_key_to_run_result_key(result_summary_key))
-
-      task_details_struct = struct_pb2.Struct()
-
-      # Need to try to get bot_dimensions from build_task first, if not get it
-      # from result_summary.
-      if build_task.bot_dimensions:
-        bot_dimensions = build_task.bot_dimensions
-      else:
-        result_summary = result_summary_key.get()
-        bot_dimensions = result_summary.bot_dimensions
-
-      json_format.ParseDict({"bot_dimensions": bot_dimensions},
-                            task_details_struct)
-      bb_task = task_pb2.Task(id=task_pb2.TaskID(
-          id=task_id,
-          target="swarming://%s" % app_identity.get_application_id(),
-      ),
-                              update_id=int(utils.time_time() * 1e9),
-                              details=task_details_struct)
-      backend_conversions.convert_task_state_to_status(run_result_state, False,
-                                                       bb_task)
-      update_buildbucket_pubsub_success = _maybe_pubsub_send_build_task_update(
-          bb_task, build_task)
-      # Caller must retry if PubSub enqueue fails.
-      if not update_buildbucket_pubsub_success:
-        return None
-      build_task.latest_task_status = run_result_state
-      # If build_task doesn't have bot_dimensions, add it.
-      if not build_task.bot_dimensions:
-        build_task.bot_dimensions = bot_dimensions
-      build_task.put()
+    if not handle_buildbucket_update({
+        "packed_request_key":
+        task_pack.pack_request_key(request.key),
+        "packed_result_summary_key":
+        task_pack.pack_result_summary_key(result_summary_key),
+        "state":
+        run_result_state
+    }):
+      return None
   return run_result_state
 
 
@@ -2069,6 +2056,61 @@ def expire_slice(to_run_key, terminal_state):
                 claim=False,
                 txn_retries=4,
                 txn_catch_errors=False)
+
+
+def handle_buildbucket_update(payload):
+  """Handles sending a pubsub update to buildbucket or not. Called directly, or
+  by TQ via _maybe_taskupdate_notify_via_tq.
+
+  Args:
+    payload is expected to be a dict containing the following keys:
+      {
+        "packed_request_key": "",
+        "packed_result_summary_key": "",
+        "state": ""
+      }
+  Returns:
+    bool. False if there was a transient error, True otherwise.
+  """
+  build_task_key = task_pack.request_key_to_build_task_key(
+      task_pack.unpack_request_key(payload["packed_request_key"]))
+  result_summary_key = task_pack.unpack_result_summary_key(
+      payload["packed_result_summary_key"])
+  state = payload["state"]
+  task_id = task_pack.pack_run_result_key(
+      task_pack.result_summary_key_to_run_result_key(result_summary_key))
+  build_task = build_task_key.get()
+  if state != build_task.latest_task_status:
+    task_details_struct = struct_pb2.Struct()
+
+    # Need to try to get bot_dimensions from build_task first, if not get it
+    # from result_summary.
+    if build_task.bot_dimensions:
+      bot_dimensions = build_task.bot_dimensions
+    else:
+      result_summary = result_summary_key.get()
+      bot_dimensions = result_summary.bot_dimensions
+
+    json_format.ParseDict({"bot_dimensions": bot_dimensions},
+                          task_details_struct)
+    bb_task = task_pb2.Task(id=task_pb2.TaskID(
+        id=task_id,
+        target="swarming://%s" % app_identity.get_application_id(),
+    ),
+                            update_id=int(utils.time_time() * 1e9),
+                            details=task_details_struct)
+    backend_conversions.convert_task_state_to_status(state, False, bb_task)
+    update_buildbucket_pubsub_success = _maybe_pubsub_send_build_task_update(
+        bb_task, build_task.build_id, build_task.pubsub_topic)
+    # Caller must retry if PubSub enqueue fails.
+    if not update_buildbucket_pubsub_success:
+      return False
+    build_task.latest_task_status = state
+    # If build_task doesn't have bot_dimensions, add it.
+    if not build_task.bot_dimensions:
+      build_task.bot_dimensions = bot_dimensions
+    build_task.put()
+  return True
 
 
 ### Cron job.

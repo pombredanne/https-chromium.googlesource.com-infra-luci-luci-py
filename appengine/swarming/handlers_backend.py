@@ -325,8 +325,7 @@ class TaskNotifyBuildbucketHandler(webapp2.RequestHandler):
 
   @decorators.require_taskqueue('buildbucket-notify')
   def post(self, task_id):  # pylint: disable=unused-argument
-    # TODO(crbug/1236848): Call buildbucket's UpdateBuildTask.
-    pass
+    task_scheduler.handle_buildbucket_update(json.loads(self.request.body))
 
 
 class TaskESNotifyTasksHandler(webapp2.RequestHandler):
