@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53bca632_fcf1c93e",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1527672
+      },
+      "writtenOn": "2023-08-10T16:45:58Z",
+      "side": 1,
+      "message": "I\u0027m not sure how the zero value size_bytes is passed through prpc but it  may already be dropped before sending to server. If this doesn\u0027t work, we may need something like this\n\n```\ndef _digest_from_rpc(digest):\n  # type: (swarming_pb2.Digest) -\u003e task_request.Digest\n  ret_digest \u003d task_request.Digest(\n      hash\u003ddigest.hash or None,\n      size_bytes\u003ddigest.size_bytes or None,\n  )\n  if ret_digest.hash is not None and ret_digest.size_bytes is None:\n     ret_digest.size_bytes \u003d 0\n  return ret_digest   \n```",
+      "revId": "ee604ec63657452061c374c32f241c44b254e63e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
