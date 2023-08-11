@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b88613f_f8a764b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1527672
+      },
+      "writtenOn": "2023-08-11T00:50:24Z",
+      "side": 1,
+      "message": "I know it would take sometime to propagate the change but how do I check if it is ready for realtime testing?",
+      "revId": "ac02ac81eeefe44a90f49b73a3dee9171168eec5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
