@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18e112a6_1204c7d0",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-11T19:22:06Z",
+      "side": 1,
+      "message": "task",
+      "range": {
+        "startLine": 324,
+        "startChar": 40,
+        "endLine": 324,
+        "endChar": 45
+      },
+      "revId": "984c785c417b12e06e9946318b3281811e16a729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d45cd671_8fb55036",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-11T19:22:06Z",
+      "side": 1,
+      "message": "nit: `task_buildbucket_update` to be consistent how other task queue handlers are called",
+      "range": {
+        "startLine": 328,
+        "startChar": 19,
+        "endLine": 328,
+        "endChar": 44
+      },
+      "revId": "984c785c417b12e06e9946318b3281811e16a729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e5b314c_1c723a96",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-11T19:22:06Z",
+      "side": 1,
+      "message": "nit: empty line before Args\n\nalso other comments in this file use \"Arguments\" not \"Args\"",
+      "range": {
+        "startLine": 553,
+        "startChar": 2,
+        "endLine": 553,
+        "endChar": 6
+      },
+      "revId": "984c785c417b12e06e9946318b3281811e16a729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ec286a3_28f6aa85",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-11T19:22:06Z",
+      "side": 1,
+      "message": "But what does it mean?",
+      "range": {
+        "startLine": 560,
+        "startChar": 4,
+        "endLine": 560,
+        "endChar": 8
+      },
+      "revId": "984c785c417b12e06e9946318b3281811e16a729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21858bba_86d21980",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-11T19:22:06Z",
+      "side": 1,
+      "message": "this is unnecessary, it can be derived from request key and vice versa\n\nin fact it would be best just to pass `task_id` the same way as the other handler does",
+      "range": {
+        "startLine": 634,
+        "startChar": 8,
+        "endLine": 635,
+        "endChar": 62
+      },
+      "revId": "984c785c417b12e06e9946318b3281811e16a729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caa3ba5f_fef9ba8e",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1815,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-11T19:22:06Z",
+      "side": 1,
+      "message": "this is a task queue task handler, calling it not via task queue is confusing\n\nplease split it into two: an actual function that takes request.key and run_result_state (and called from here) and the task queue task handler that interprets the task dict and calls this new function.",
+      "range": {
+        "startLine": 1815,
+        "startChar": 11,
+        "endLine": 1815,
+        "endChar": 36
+      },
+      "revId": "984c785c417b12e06e9946318b3281811e16a729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab1dd4da_13b8e68f",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2072,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-11T19:22:06Z",
+      "side": 1,
+      "message": "This is ignored by TaskNotifyBuildbucketHandler. As a result transient errors won\u0027t be retried and the notification will be lost.",
+      "range": {
+        "startLine": 2072,
+        "startChar": 10,
+        "endLine": 2072,
+        "endChar": 46
+      },
+      "revId": "984c785c417b12e06e9946318b3281811e16a729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0701a447_21f64027",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2078,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-11T19:22:06Z",
+      "side": 1,
+      "message": "by the time this handler is called, this might be stale already\nTasks in task queue can also be reordered (and this will happen often if some task fail due to transient errors: a failed task is retried after some delay).",
+      "range": {
+        "startLine": 2078,
+        "startChar": 2,
+        "endLine": 2078,
+        "endChar": 7
+      },
+      "revId": "984c785c417b12e06e9946318b3281811e16a729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89d3e964_050b164c",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2082,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-11T19:22:06Z",
+      "side": 1,
+      "message": "now that this is a separate function, better to do an early exit to avoid nesting:\n\n```\nif state \u003d\u003d build_task.latest_task_status:\n  return True\n```",
+      "range": {
+        "startLine": 2082,
+        "startChar": 2,
+        "endLine": 2082,
+        "endChar": 44
+      },
+      "revId": "984c785c417b12e06e9946318b3281811e16a729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
