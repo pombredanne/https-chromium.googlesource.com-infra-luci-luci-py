@@ -46,6 +46,30 @@
       },
       "revId": "ac958d5d360b909f7afed6469c817e00e6469fd4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dee900d4_14aa79c7",
+        "filename": "appengine/components/components/config/proto/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-08-15T19:00:21Z",
+      "side": 1,
+      "message": "It was just I didn\u0027t want to touch the existing `service_config.proto` file and thought they wouldn\u0027t use new validate api anyway.",
+      "parentUuid": "e4848bd6_cf53f131",
+      "range": {
+        "startLine": 5,
+        "startChar": 43,
+        "endLine": 5,
+        "endChar": 79
+      },
+      "revId": "ac958d5d360b909f7afed6469c817e00e6469fd4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
