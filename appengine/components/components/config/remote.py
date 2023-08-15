@@ -2,7 +2,7 @@
 # Use of this source code is governed under the Apache License, Version 2.0
 # that can be found in the LICENSE file.
 
-"""remote.Provider reads configs from a remote config service."""
+"""remote.Provider reads configs from a remote config service. """
 
 import base64
 import datetime
