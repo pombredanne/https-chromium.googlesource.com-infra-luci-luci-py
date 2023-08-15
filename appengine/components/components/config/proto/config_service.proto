@@ -1,0 +1,196 @@
+// Copyright 2023 The LUCI Authors. All rights reserved.
+// Use of this source code is governed under the Apache License, Version 2.0
+// that can be found in the LICENSE file.
+
+syntax = "proto3";
+
+package config.service.v2;
+
+option go_package = "go.chromium.org/luci/config_service/proto;configpb";
+
+// Allow to generate *_pb2.py files.
+option py_generic_services = true;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+
+// Configs Service.
+service Configs {
+  // Get one configuration.
+  rpc GetConfig(GetConfigRequest) returns (Config) {};
+
+  // Get the specified project configs from all projects.
+  rpc GetProjectConfigs(GetProjectConfigsRequest) returns (GetProjectConfigsResponse) {};
+
+  // List config sets.
+  rpc ListConfigSets(ListConfigSetsRequest) returns (ListConfigSetsResponse) {};
+
+  // Get a single config set.
+  rpc GetConfigSet(GetConfigSetRequest) returns (ConfigSet) {};
+}
+
+// A request message for GetConfig rpc.
+message GetConfigRequest {
+  // Requires path. Mutually exclusive with content_sha256.
+  string config_set = 1;
+
+  // Requires config_set. Mutually exclusive with content_sha256.
+  string path = 2;
+
+  // Mutually exclusive with config_set and path.
+  string content_sha256 = 3;
+
+  // Fields of the Config proto to include.
+  //
+  // By default, all fields are included.
+  //
+  // Note: For content field, the client should always pass "content" to get
+  // the content. Populating "raw_content" or "signed_url" is a pure server
+  // side decision based on the size of the config. Therefore, explicitly
+  // passing one of "raw_content" or "signed_url" may cause unexpected
+  // behavior. For example, "raw_content" is passed and the content is large
+  // and supposed to return by signed_url field, the client would get an
+  // empty "raw_content".
+  google.protobuf.FieldMask fields = 4;
+}
+
+// A single config.
+message Config {
+  // Name of the config set.
+  // For a service config set, "services/<service_id>".
+  // For a project config set, "projects/<project_id>".
+  string config_set = 1;
+
+  // Path of the config file relative to the config directory.
+  string path = 2;
+
+  // Content of the config.
+  oneof content {
+    // For small content where the gzipped size is less than 800KB, raw and
+    // uncompressed content will be included directly.
+    bytes raw_content = 3;
+
+    // For large content, a sign_url which points the actual config content
+    // will be provided.
+    // Note: The signed url is set to expire in 10 minutes. And it's encouraged
+    // to use "Accept-Encoding: gzip" header in the request to minimize the size
+    // in data transfer, and decompress it by yourself.
+    string signed_url = 4;
+  }
+
+  // SHA256 value of the raw content.
+  string content_sha256 = 5;
+
+  // Git revision
+  string revision = 6;
+
+  // Original config file url on Git repo.
+  string url = 7;
+}
+
+// Get project-level configs matched with the provided path in all `projects/xxx`
+// config_sets.
+message GetProjectConfigsRequest {
+  // Required
+  // Path to the desired config in each project config set.
+  //
+  // TODO: In future, it can expand to support regex match in some ways, since
+  // in v2, Luci-config is supposed to support multi-file configuration.
+  // For example, `cr-buildbucket.cfg` can be split into smaller configs,
+  // e.g. `bucket-a.cfg`, `bucket-b.cfg`, etc. But file names might be dynamic
+  // and how these files are organized with other project configs are undecided.
+  // It's better to implement the regex check logic when there is a concrete
+  // use case.
+  string path = 1;
+
+  // Fields of Config proto to include.
+  //
+  // By default, all fields are included.
+  google.protobuf.FieldMask fields = 2;
+}
+
+// GetProjectConfigsResponse is the response of GetProjectConfigs rpc.
+message GetProjectConfigsResponse {
+  // The requested configs in each project.
+  repeated Config configs = 1;
+}
+
+// ListConfigSetsRequest is the request of ListConfigSets rpc.
+message ListConfigSetsRequest {
+  enum ConfigSetDomain {
+    // The default value when domain is omitted. Used to retrieve config sets
+    // in all domains.
+    ALL = 0;
+    // Service domain.
+    SERVICE = 1;
+    // Project domain.
+    PROJECT = 2;
+  }
+
+  // List config sets in the specified domain.
+  ConfigSetDomain domain = 1;
+
+  // Fields of ConfigSet proto to include.
+  // By default, only return config_set, url and revision fields.
+  // Note: "file_paths" is not supported in this rpc and only be supported in
+  // GetConfigSet rpc.
+  google.protobuf.FieldMask fields = 2;
+}
+
+// ListConfigSetsResponse is the response of ListConfigSets rpc.
+message ListConfigSetsResponse {
+  // A list of config sets.
+  repeated ConfigSet config_sets = 1;
+}
+
+// A single ConfigSet.
+message ConfigSet {
+  message Revision {
+    // Revision id.
+    string id = 1;
+    // Repo url points to this revision of config set.
+    string url = 2;
+    // Committer email who commit this revision
+    string committer_email = 3;
+    // Time of this committed revision.
+    google.protobuf.Timestamp timestamp = 4;
+  }
+
+  // Attempt information about importing this config set.
+  message Attempt {
+    // Human-readable message of the attempt.
+    string message = 1;
+    // Whether this attempt is successful or not.
+    bool success = 2;
+    // Git revision attempt to import
+    Revision revision = 3;
+    // Time of this attempt.
+    google.protobuf.Timestamp timestamp = 4;
+  }
+
+  // Name of the config set.
+  string name = 1;
+
+  // Git Repo url which holds configs of this config set.
+  string url = 2;
+
+  // Latest imported Git revision.
+  Revision revision = 3;
+
+  // All file paths related to the corresponding config set location.
+  repeated string file_paths = 4;
+
+  // Last import attempt information.
+  Attempt last_import_attempt = 5;
+}
+
+// GetConfigSetRequest is the request of GetConfigSet rpc.
+message GetConfigSetRequest {
+  // Config set to fetch.
+  string config_set = 1;
+
+  // Fields of ConfigSet proto to include.
+  // By default, only return config_set, url and revision fields.
+  google.protobuf.FieldMask fields = 2;
+}
