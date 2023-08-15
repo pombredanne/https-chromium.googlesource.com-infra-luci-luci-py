@@ -22,6 +22,30 @@
       },
       "revId": "ac958d5d360b909f7afed6469c817e00e6469fd4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4848bd6_cf53f131",
+        "filename": "appengine/components/components/config/proto/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2023-08-15T16:48:15Z",
+      "side": 1,
+      "message": "fwiw, I\u0027m less worried about any user accidentally use the api if that\u0027s the concern as everything is encapsulated behind the config module and the config module is in our control. They have the ability to bypass the module and consume the raw rpc interface. But I\u0027d be extremely surprised if they decide to do that and I can\u0027t think of any reason why.",
+      "parentUuid": "09b8d961_e50807f4",
+      "range": {
+        "startLine": 5,
+        "startChar": 43,
+        "endLine": 5,
+        "endChar": 79
+      },
+      "revId": "ac958d5d360b909f7afed6469c817e00e6469fd4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
