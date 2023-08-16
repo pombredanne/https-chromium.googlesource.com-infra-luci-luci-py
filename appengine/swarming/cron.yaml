@@ -112,7 +112,7 @@ cron:
 
 - description: Report RBE migration metrics
   target: monitor
-  url: /internal/cron/report-rbe-bots
+  url: /internal/cron/report-bots
   schedule: every 1 minutes
 
 
