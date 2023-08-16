@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bdfd117_0eb728e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-16T22:00:44Z",
+      "side": 1,
+      "message": "Oh I forgot cron.yaml is in a different repo. This needs to be done more carefully then:\n\n1. Make Go code expose two cron jobs, which both do the same thing. Land it. It will be auto-deployed to chromium-swarm-dev.\n2. Change cron.yaml (like in this CL). Land it. It will be auto-deployed to chromium-swarm-dev (and will work, because there\u0027s already new handler there).\n3. Deploy both changes to prod Swarming.\n4. Remove the old cron job from the go code.\n\nThat way no cron job calls will be lost.",
+      "revId": "62eab85455d29ea6c75159c5ab6ef6c8d45ecab3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
