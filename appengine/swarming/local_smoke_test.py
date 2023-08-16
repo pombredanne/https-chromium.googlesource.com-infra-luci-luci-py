@@ -344,16 +344,8 @@ class SwarmingClient(object):
 
 def gen_expected(**kwargs):
   expected = {
-      u'bot_dimensions':
-      None,
       u'bot_id':
       unicode(socket.getfqdn().split('.', 1)[0]),
-      u'current_task_slice':
-      u'0',
-      u'exit_code':
-      u'0',
-      u'name':
-      u'',
       u'output':
       re.compile(u'(\\s|\\S)*hi\n'),
       u'server_versions': [u'N/A'],
