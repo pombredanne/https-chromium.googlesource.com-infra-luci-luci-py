@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "334e361e_03538eca",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page_test.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 1069,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-08-17T21:25:41Z",
+      "side": 1,
+      "message": "Test needed to be updated bc `prpc` transmits request information in the body of the request rather in query params of `uri`.",
+      "range": {
+        "startLine": 1067,
+        "startChar": 10,
+        "endLine": 1069,
+        "endChar": 12
+      },
+      "revId": "9c8ce497ced5671fe6ac02aed50003d9d2ed6c6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
