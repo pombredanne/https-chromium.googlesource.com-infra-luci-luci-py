@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ba5dd50_4aabc1df",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-17T18:40:10Z",
+      "side": 1,
+      "message": "ended up removing the python test.",
+      "parentUuid": "2b1cbeff_e681809f",
+      "range": {
+        "startLine": 953,
+        "startChar": 0,
+        "endLine": 954,
+        "endChar": 36
+      },
+      "revId": "45ca8107996997ff7e9e472984530ec42da40430",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d219a145_a8a96604",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a64649b_a7f0a1ed",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-17T18:40:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d219a145_a8a96604",
+      "range": {
+        "startLine": 966,
+        "startChar": 4,
+        "endLine": 966,
+        "endChar": 56
+      },
+      "revId": "45ca8107996997ff7e9e472984530ec42da40430",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6bbf165_033bdd54",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-08-17T18:17:45Z",
       "side": 1,
       "message": "these can be deleted now, testing non-functionality is weird (there are infinite other non-functionalities that can be tested, why this one)",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 40
+      },
+      "revId": "45ca8107996997ff7e9e472984530ec42da40430",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81013b6e_d5069a36",
+        "filename": "client/tests/tools_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-17T18:40:10Z",
+      "side": 1,
+      "message": "very true! removed.",
+      "parentUuid": "d6bbf165_033bdd54",
       "range": {
         "startLine": 88,
         "startChar": 0,
