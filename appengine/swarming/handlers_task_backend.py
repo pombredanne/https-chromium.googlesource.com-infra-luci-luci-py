@@ -70,6 +70,10 @@ class TaskBackendAPIService(object):
     try:
       result_summary = task_scheduler.schedule_request(
           tr, request_id, secret_bytes=secret_bytes, build_task=build_task)
+      # Need to get the most up to date build_task entity.
+      build_task = task_pack.request_key_to_build_task_key(
+          task_pack.result_summary_key_to_request_key(
+              result_summary.key)).get()
     except (TypeError, ValueError) as e:
       raise handlers_exceptions.BadRequestException(str(e))
     hostname = app_identity.get_default_version_hostname()
@@ -78,7 +82,7 @@ class TaskBackendAPIService(object):
     task = task_pb2.Task(id=task_pb2.TaskID(id=task_id, target=request.target),
                          link="https://%s/task?id=%s&o=true&w=true" %
                          (hostname, task_id),
-                         update_id=int(utils.time_time() * 1e9))
+                         update_id=build_task.update_id)
     backend_conversions.convert_task_state_to_status(result_summary.state,
                                                      result_summary.failure,
                                                      task)
