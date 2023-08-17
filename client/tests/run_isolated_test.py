@@ -963,8 +963,7 @@ class RunIsolatedTest(RunIsolatedTestBase):
           'containment': None,
         },
         args)
-    self.assertIn('python', cmd[0])
-    self.assertEqual([os.path.join('..', 'out', 'cmd.py'), 'arg'], cmd[1:])
+    self.assertEqual([os.path.join('..', 'out', 'cmd.py'), 'arg'], cmd)
 
   @unittest.skipIf(sys.platform == 'win32', 'crbug.com/1148174')
   def test_run_tha_test_non_isolated(self):
