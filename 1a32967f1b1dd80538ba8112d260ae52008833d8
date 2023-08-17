@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e53b951_bd347281",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-17T14:45:43Z",
+      "side": 0,
+      "message": "modifying this passes the test, but doesn\u0027t feel right....\n\nwhen this test runs, cmd looks like\n\n`[\"/b/s/w/ir/x/t/run_isolated_test4p9tm56x/ir/out/cmd.py\", \"arg\"]`\nso, the `assertIn` clearly works, but not sure if this the expected behavior.\n\nI suspect more changed are going to be needed in `find_executable`...\n\nWDYT?",
+      "range": {
+        "startLine": 966,
+        "startChar": 4,
+        "endLine": 967,
+        "endChar": 75
+      },
+      "revId": "1a32967f1b1dd80538ba8112d260ae52008833d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
