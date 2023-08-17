@@ -377,6 +377,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64888b9c_2b19abcc",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2078,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-17T15:49:34Z",
+      "side": 1,
+      "message": "Per our conversation in pod meeting yesterday, I added a check on the update_id to not send updates that were stale.",
+      "parentUuid": "73f70d90_47628699",
+      "range": {
+        "startLine": 2078,
+        "startChar": 2,
+        "endLine": 2078,
+        "endChar": 7
+      },
+      "revId": "984c785c417b12e06e9946318b3281811e16a729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89d3e964_050b164c",
