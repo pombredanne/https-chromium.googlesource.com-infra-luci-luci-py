@@ -254,17 +254,35 @@ const stringify = function (data) {
  * @param {fetchMock} fetchMock instance to use for mocking.
  * @param {service} service is the string prpc service we wish to call.
  * @param {rpc} rpc string that service we want to call.
- * @param {data} data which is mocked as the response to the prpc rpc.
+ * @param {data} data which is mocked as the response to the prpc rpc. May also be a function called on json of the request body
  * @param {matcher} matcher is an optional predicate called on the body of the request. If false do not match it.
  */
-export function mockPrpc(fetchMock, service, rpc, data, matcher = null) {
-  const response = new Response(stringify(data), {
-    status: 200,
-    headers: {
-      "x-prpc-grpc-code": "0",
-      "content-type": "application/json",
-    },
-  });
+export function mockPrpc(
+  fetchMock,
+  service,
+  rpc,
+  data,
+  matcher = null,
+  overwriteRoutes = undefined
+) {
+  const prpcHeaders = {
+    "x-prpc-grpc-code": "0",
+    "content-type": "application/json",
+  };
+  let response = (_url, _opts) =>
+    new Response(stringify(data), {
+      status: 200,
+      headers: prpcHeaders,
+    });
+  if (typeof data === "function") {
+    response = (_url, opts) => {
+      const body = JSON.parse(opts.body);
+      return new Response(stringify(data(body)), {
+        status: 200,
+        headers: prpcHeaders,
+      });
+    };
+  }
   if (matcher) {
     const matchingFn = (url, opts) => {
       return (
@@ -273,10 +291,30 @@ export function mockPrpc(fetchMock, service, rpc, data, matcher = null) {
         matcher(JSON.parse(opts.body))
       );
     };
-    fetchMock.mock(matchingFn, response);
+    fetchMock.mock(matchingFn, response, { overwriteRoutes });
   } else {
-    fetchMock.post(`path:/prpc/${service}/${rpc}`, response);
+    fetchMock.post(`path:/prpc/${service}/${rpc}`, response, {
+      overwriteRoutes,
+    });
   }
+}
+
+export function mockUnauthorizedPrpc(fetchMock, service, rpc) {
+  fetchMock.post(
+    `path:/prpc/${service}/${rpc}`,
+    (_url, _opts) => {
+      return new Response(`)]}'"403 Unauthorized"`, {
+        status: 403,
+        headers: {
+          "x-prpc-grpc-code": "7",
+          "content-type": "application/json",
+        },
+      });
+    },
+    {
+      overwriteRoutes: true,
+    }
+  );
 }
 
 // Add an event listener which will fire after everything is done on the
