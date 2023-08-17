@@ -77,4 +77,8 @@ export class TasksService extends PrpcService {
   new(newTaskSpec) {
     return this._call("NewTask", newTaskSpec);
   }
+
+  count(tags, start, state) {
+    return this._call("CountTasks", { tags, start, state });
+  }
 }

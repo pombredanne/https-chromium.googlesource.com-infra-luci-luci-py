@@ -88,4 +88,8 @@ export class BotsService extends PrpcService {
   delete(botId) {
     return this._call("DeleteBot", { bot_id: botId });
   }
+
+  count(dimensions) {
+    return this._call("CountBots", { dimensions });
+  }
 }
