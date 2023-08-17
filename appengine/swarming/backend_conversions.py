@@ -39,12 +39,15 @@ def compute_task_request(run_task_req):
     datastore_errors.BadValueError if any converted ndb object values are
         invalid.
   """
-
+  # update_id gets set to 0 here because it is required. 0 is the update_id
+  # set by buildbucket when a build/task is created. The update_id will only
+  # change if an actual update has been made and sent back to buildbucket.
   build_task = task_request.BuildTask(
       build_id=run_task_req.build_id,
       buildbucket_host=run_task_req.buildbucket_host,
       latest_task_status=task_result.State.PENDING,
-      pubsub_topic=run_task_req.pubsub_topic)
+      pubsub_topic=run_task_req.pubsub_topic,
+      update_id=0)
 
   # NOTE: secret_bytes cannot be passed via `-secret_bytes` in `command`
   # because tasks in swarming can view command details of other tasks.
