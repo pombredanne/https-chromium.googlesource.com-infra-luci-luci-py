@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b1cbeff_e681809f",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-17T18:17:45Z",
+      "side": 1,
+      "message": "I think this is wrong now. In fact this whole test is probably non-sensical now.",
+      "range": {
+        "startLine": 953,
+        "startChar": 0,
+        "endLine": 954,
+        "endChar": 36
+      },
+      "revId": "45ca8107996997ff7e9e472984530ec42da40430",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d219a145_a8a96604",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-17T18:17:45Z",
+      "side": 1,
+      "message": "I think a better check would be \n\n```\nself.assertEqual(self.ir_dir(\u0027out\u0027, \u0027cmd.py\u0027), cmd[0])\n```\n\nBut again I\u0027m not sure what this test is testing anymore.",
+      "range": {
+        "startLine": 966,
+        "startChar": 4,
+        "endLine": 966,
+        "endChar": 56
+      },
+      "revId": "45ca8107996997ff7e9e472984530ec42da40430",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6bbf165_033bdd54",
+        "filename": "client/tests/tools_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-17T18:17:45Z",
+      "side": 1,
+      "message": "these can be deleted now, testing non-functionality is weird (there are infinite other non-functionalities that can be tested, why this one)",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 40
+      },
+      "revId": "45ca8107996997ff7e9e472984530ec42da40430",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

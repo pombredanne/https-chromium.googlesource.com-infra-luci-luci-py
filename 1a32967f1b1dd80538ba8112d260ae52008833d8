@@ -22,6 +22,30 @@
       },
       "revId": "1a32967f1b1dd80538ba8112d260ae52008833d8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "246a513a_c3630c7d",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-17T18:17:45Z",
+      "side": 0,
+      "message": "Why do you think it is unexpected? The test creates a temp directory representing the task root and puts out/cmd.py in there and then asks to resolve \"../out/cmd.py\" in relation to \"\u003ctask-root\u003e/some\".",
+      "parentUuid": "9e53b951_bd347281",
+      "range": {
+        "startLine": 966,
+        "startChar": 4,
+        "endLine": 967,
+        "endChar": 75
+      },
+      "revId": "1a32967f1b1dd80538ba8112d260ae52008833d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
