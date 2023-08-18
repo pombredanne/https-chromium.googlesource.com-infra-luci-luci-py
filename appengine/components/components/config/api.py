@@ -233,26 +233,3 @@ def get_ref_configs_async(path, dest_type=None):
 def get_ref_configs(path, dest_type=None):
   """Blocking version of get_ref_configs_async."""
   return get_ref_configs_async(path, dest_type).get_result()
-
-
-@ndb.tasklet
-def get_config_set_location_async(config_set):  # pragma: no cover
-  """Returns URL of where configs for a given config set are stored.
-
-  It is a heavy call that always makes an RPC to the config service. Cache
-  results appropriately.
-
-  Args:
-    config_set: name of the config set, e.g 'service/<id>' or 'projects/<id>'.
-
-  Returns:
-    URL or None if no such config set. In file system mode always None.
-  """
-  provider = yield _get_config_provider_async()
-  location = yield provider.get_config_set_location_async(config_set)
-  raise ndb.Return(location)
-
-
-def get_config_set_location(config_set):  # pragma: no cover
-  """Blocking version of get_config_set_location_async."""
-  return get_config_set_location_async(config_set).get_result()
