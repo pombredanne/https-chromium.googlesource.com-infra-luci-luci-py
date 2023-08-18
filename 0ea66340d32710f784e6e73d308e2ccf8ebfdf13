@@ -16,6 +16,52 @@
       "message": "gentle ping",
       "revId": "0ea66340d32710f784e6e73d308e2ccf8ebfdf13",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32fafef4_6a6b2959",
+        "filename": "appengine/components/components/config/remote.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2023-08-18T23:45:19Z",
+      "side": 1,
+      "message": "This sounds like a true error to me? Any reason we set it to warning? same for L139",
+      "range": {
+        "startLine": 123,
+        "startChar": 14,
+        "endLine": 123,
+        "endChar": 21
+      },
+      "revId": "0ea66340d32710f784e6e73d308e2ccf8ebfdf13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "635b4fb6_81b1a790",
+        "filename": "appengine/components/components/config/remote.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2023-08-18T23:45:19Z",
+      "side": 1,
+      "message": "I don\u0027t recall the new LUCI Config service base64 encode the stored config content. Is that something net component does?",
+      "range": {
+        "startLine": 137,
+        "startChar": 41,
+        "endLine": 137,
+        "endChar": 63
+      },
+      "revId": "0ea66340d32710f784e6e73d308e2ccf8ebfdf13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
