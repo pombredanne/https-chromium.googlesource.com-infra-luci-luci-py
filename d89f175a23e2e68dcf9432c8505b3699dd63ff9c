@@ -22,6 +22,30 @@
       },
       "revId": "d89f175a23e2e68dcf9432c8505b3699dd63ff9c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f992869b_4a7f6db6",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1568168
+      },
+      "writtenOn": "2023-08-18T21:19:40Z",
+      "side": 1,
+      "message": "I think the default choice of platform.machine().lower() is probably okay for us, but we\u0027ll have to see and run it by you for the new variants.",
+      "parentUuid": "cf791c73_b041bba8",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 299,
+        "endChar": 63
+      },
+      "revId": "d89f175a23e2e68dcf9432c8505b3699dd63ff9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
