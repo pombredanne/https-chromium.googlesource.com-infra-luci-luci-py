@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d4cb8a7_f4a56480",
+        "filename": "appengine/components/components/config/remote.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-08-18T00:02:29Z",
+      "side": 1,
+      "message": "double checked. No `refs` related requests this year.",
+      "range": {
+        "startLine": 310,
+        "startChar": 15,
+        "endLine": 310,
+        "endChar": 25
+      },
+      "revId": "1525bfa5c9caada95ad94234cb0d61e8e9c5f3e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18092866_f05078b9",
+        "filename": "appengine/components/components/config/remote_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-08-18T00:02:29Z",
+      "side": 1,
+      "message": "Even in luci-config v1, the server replies an empty response instead of a 404 for NotFound err in Get_projects_configs API. So I assert the empty result in the corresponding v2 test - `test_get_project_configs_async_v2_not_found`",
+      "range": {
+        "startLine": 276,
+        "startChar": 46,
+        "endLine": 276,
+        "endChar": 49
+      },
+      "revId": "1525bfa5c9caada95ad94234cb0d61e8e9c5f3e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
