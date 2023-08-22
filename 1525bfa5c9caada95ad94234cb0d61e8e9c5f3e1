@@ -97,6 +97,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5171228e_11eaca21",
+        "filename": "appengine/components/components/config/remote.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2023-08-22T19:07:59Z",
+      "side": 1,
+      "message": "\u003e But I can try to delete get_ref_configs_async in another CL and see if it will lead to any Swarming side tests failures\n\n\nsgtm",
+      "parentUuid": "e7a85e3a_52268ff1",
+      "range": {
+        "startLine": 301,
+        "startChar": 35,
+        "endLine": 301,
+        "endChar": 74
+      },
+      "revId": "1525bfa5c9caada95ad94234cb0d61e8e9c5f3e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "8d4cb8a7_f4a56480",
         "filename": "appengine/components/components/config/remote.py",
         "patchSetId": 1
