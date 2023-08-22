@@ -197,14 +197,6 @@ class Provider(object):
     """
     return self._get_configs_multi(format_url('configs/projects/%s', path))
 
-  def get_ref_configs_async(self, path):
-    """Reads a config file in all refs of all projects.
-
-    Returns:
-      {"config_set -> (revision, content)} map.
-    """
-    return self._get_configs_multi(format_url('configs/refs/%s', path))
-
   @ndb.tasklet
   def get_projects_async(self):
     res = yield self._api_call_async('projects', allow_not_found=False)
