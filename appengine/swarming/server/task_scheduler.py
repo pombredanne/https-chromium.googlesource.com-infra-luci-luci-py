@@ -1410,6 +1410,8 @@ def schedule_request(request,
       return existing.txn_uuid == request.txn_uuid
     if to_run and request.rbe_instance:
       rbe.enqueue_rbe_task(request, to_run)
+    if build_task:
+      build_task.bump_update_id()
     ndb.put_multi(
         filter(bool, [
             request, result_summary, to_run, secret_bytes, build_task,
