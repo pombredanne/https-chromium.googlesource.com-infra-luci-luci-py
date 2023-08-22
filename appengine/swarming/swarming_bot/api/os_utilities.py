@@ -176,7 +176,10 @@ def get_os_values():
       version += '.' + i
       out.append('%s-%s' % (os_name, version[1:]))
   else:
-    out.append('%s-%s' % (os_name, platform.release()))
+    parts = re.split(r'([-._])', platform.release())
+    for i in range(len(parts) // 2 + 1):
+      out.append('%s-%s' % (os_name, ''.join(parts[:i * 2 + 1])))
+
   out.sort()
   return out
 
@@ -223,7 +226,7 @@ def get_os_name():
       # Uppercase the first letter for consistency with the other platforms.
       return os_id[0].upper() + os_id[1:]
 
-  return sys.platform
+  return sys.platform.lower().rstrip('0123456789.-_')
 
 
 @tools.cached
