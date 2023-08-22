@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3867e35_b20efd66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-08-22T02:33:32Z",
+      "side": 1,
+      "message": "PTAL, again",
+      "revId": "24c87f536406ace97cd28def5d2b31993b9e69a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dee283b1_e2889e04",
+        "filename": "appengine/components/components/config/remote.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-08-22T02:33:32Z",
+      "side": 1,
+      "message": "When doing the testing in Cloud, I found out the keys are lower case. But to be safe, converted keys to be lower case explicitly, in case it contains upper case and leads to no corresponding value is found.",
+      "range": {
+        "startLine": 137,
+        "startChar": 32,
+        "endLine": 137,
+        "endChar": 50
+      },
+      "revId": "24c87f536406ace97cd28def5d2b31993b9e69a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

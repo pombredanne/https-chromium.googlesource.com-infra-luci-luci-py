@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d5b5014_fcefcefa",
+        "filename": "appengine/components/components/config/remote.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-08-22T02:33:32Z",
+      "side": 1,
+      "message": "Done. I saw v1 `_api_call_async` logs all http errors as warnings. So I followed the same. I don\u0027t find out a reason behind it. Using logging.error should also be good.",
+      "parentUuid": "32fafef4_6a6b2959",
+      "range": {
+        "startLine": 123,
+        "startChar": 14,
+        "endLine": 123,
+        "endChar": 21
+      },
+      "revId": "0ea66340d32710f784e6e73d308e2ccf8ebfdf13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "635b4fb6_81b1a790",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-08-18T23:45:19Z",
       "side": 1,
       "message": "I don\u0027t recall the new LUCI Config service base64 encode the stored config content. Is that something net component does?",
+      "range": {
+        "startLine": 137,
+        "startChar": 41,
+        "endLine": 137,
+        "endChar": 63
+      },
+      "revId": "0ea66340d32710f784e6e73d308e2ccf8ebfdf13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f2efc30_64f8f2b9",
+        "filename": "appengine/components/components/config/remote.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-08-22T02:33:32Z",
+      "side": 1,
+      "message": "I thought it was a framework thing which b64encode all bytes. But I tested in a Cloud Dev env, the blob from gcs signed url is not b64encoded.",
+      "parentUuid": "635b4fb6_81b1a790",
       "range": {
         "startLine": 137,
         "startChar": 41,
