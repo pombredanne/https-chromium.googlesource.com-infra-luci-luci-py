@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5cf993a7_5bd748e3",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-22T20:16:53Z",
+      "side": 1,
+      "message": "\u003e I did consider it. I figured that it would be more beneficial to have the update_id be created closer to the actual transaction to eliminate some of the race risk.\n\u003e \nThere are no races yet while the transaction is running. Whatever it writes becomes visible only once it commits. There can no be concurrent updates because there\u0027s nothing to update yet. But once it is committed, all bets are off and the data can be overwrite right away.\n\nThese two are identical in all observable behaviors:\n\n```\nentity \u003d Entity()\nentity.stuff \u003d generate()\n\n@txn\ndef txn():\n  entity.put()\n  \nprint entity.stuff # can be already stale\n```\n\n```\nentity \u003d Entity()\n\n@txn\ndef txn():\n  entity.stuff \u003d generate()\n  entity.put()\n  \nprint entity.stuff # can be already stale\n```\n\n(in fact they translate to exact same sequence of RPC calls to datastore).\n\n\n\u003e I did think that this extra datastore call was too much, but RunTask shouldn\u0027t be called too too frequently (once per build).\n\u003e \n\nYes, but why add cost and flakiness if it can be avoided. I don\u0027t know about Cloud Firestore in Datastore mode, but in old Cloud Datastore reads immediately after writes were more costly and flakier (something related to \"rushing\" consistency).\n\n\u003e We could also force BB to re-enqueue the UpdateBuildTask messages if update_id is still set at it\u0027s initial 0 for the task (i.e. RunTask has not returned yet).\n\nNothing can ever see update_id being 0. This state is never committed into the datastore.\n\n\u003e \n\u003e This would eliminate race risk between RunTask and UpdateBuildTask and allow us to set the update_id when BuildTask is created in line 65.\n\u003e \n\nThere\u0027s still a race, it is unavoidable. Buildbucket should be aware of it and be able to handle it. In particular, Buildbucket may see a pubsub message from a build *before RunTask RPC even returns*. As soon as the transaction in schedule_build(...) lands, this build exists and can start running and emit updates. There\u0027s no way of preventing this.",
+      "parentUuid": "2991c115_00ccb14d",
+      "range": {
+        "startLine": 72,
+        "startChar": 53,
+        "endLine": 76,
+        "endChar": 40
+      },
+      "revId": "5ae8ec751b80472aba5f035821e2c40894824dc3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "637aba87_6418a5d6",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 3
