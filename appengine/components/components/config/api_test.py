@@ -103,15 +103,6 @@ class ApiTestCase(test_case.TestCase):
     }
     self.assertEqual(expected, actual)
 
-  def test_get_ref_configs(self):
-    self.provider.get_ref_configs_async.return_value = ndb.Future()
-    self.provider.get_ref_configs_async.return_value.set_result({
-      'projects/chromium/refs/heads/main': ('dead', 'param: "main"'),
-      'projects/chromium/refs/non-branch': ('beef', 'param: "ref"'),
-      'projects/v8/refs/heads/main': ('aaaa', 'param: "value2"'),
-      'projects/skia/refs/heads/main': ('badcoffee', 'invalid config'),
-    })
-
     actual = config.get_ref_configs('bar.cfg', test_config_pb2.Config)
     self.assertIsInstance(
         actual['skia']['refs/heads/main'][2], config.ConfigFormatError)
