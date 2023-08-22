@@ -286,19 +286,10 @@ export function timeDiffExact(first, second) {
  * the only swarming environment which allowlists origin http://localhost:8080
  * for logins.
  */
-export function pointFetchAtSwarmingDev() {
+export function setLiveDemoFlag() {
   // We set DEV_HOST so that other parts of the UI can figure out that it must
   // communicate with the development environment version of swarming.
-  const DEV_HOST = "chromium-swarm-dev.appspot.com";
-  window.DEV_HOST = DEV_HOST;
-  const origFetch = window.fetch;
-  const fetchAboslute = (url, ...params) => {
-    if (url.startsWith("/")) {
-      return origFetch(`https://${DEV_HOST}/${url}`, ...params);
-    } else return origFetch(url, ...params);
-  };
-  window.fetch = fetchAboslute;
-  return;
+  window.LIVE_DEMO = true
 }
 
 function _base64ToBytes(base64) {
