@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a45a1eb7_18ef9202",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-22T19:05:34Z",
+      "side": 1,
+      "message": "Have you considered  populating `build_task.update_id` before calling schedule_request(...) and then just using this ID below to avoid doing extra datastore get?\n\nThis call is racy no matter what (i.e. by the time RunTask returns, there in theory could have been multiple pubsub notifications already sent, with newer update IDs).",
+      "range": {
+        "startLine": 72,
+        "startChar": 53,
+        "endLine": 76,
+        "endChar": 40
+      },
+      "revId": "5ae8ec751b80472aba5f035821e2c40894824dc3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "637aba87_6418a5d6",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1414,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-22T19:05:34Z",
+      "side": 1,
+      "message": "IIRC there is an identical line somewhere? Better to extract this logic into a function to make sure it is the same in both places `build_task.bump_update_id()`",
+      "range": {
+        "startLine": 1414,
+        "startChar": 6,
+        "endLine": 1414,
+        "endChar": 57
+      },
+      "revId": "5ae8ec751b80472aba5f035821e2c40894824dc3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
