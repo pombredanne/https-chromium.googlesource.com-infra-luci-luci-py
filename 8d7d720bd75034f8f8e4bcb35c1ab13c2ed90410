@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb8f84c4_47e8f6e7",
+        "filename": "appengine/components/components/config/remote.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1381059
+      },
+      "writtenOn": "2023-08-22T19:10:53Z",
+      "side": 1,
+      "message": "error",
+      "range": {
+        "startLine": 371,
+        "startChar": 16,
+        "endLine": 371,
+        "endChar": 23
+      },
+      "revId": "8d7d720bd75034f8f8e4bcb35c1ab13c2ed90410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
