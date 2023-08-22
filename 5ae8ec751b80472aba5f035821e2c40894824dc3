@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2991c115_00ccb14d",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-22T20:02:07Z",
+      "side": 1,
+      "message": "I did consider it. I figured that it would be more beneficial to have the update_id be created closer to the actual transaction to eliminate some of the race risk.\n\nI did think that this extra datastore call was too much, but RunTask shouldn\u0027t be called too too frequently (once per build).\n\nWe could also force BB to re-enqueue the UpdateBuildTask messages if update_id is still set at it\u0027s initial 0 for the task (i.e. RunTask has not returned yet).\n\nThis would eliminate race risk between RunTask and UpdateBuildTask and allow us to set the update_id when BuildTask is created in line 65.\n\nWDYT?",
+      "parentUuid": "a45a1eb7_18ef9202",
+      "range": {
+        "startLine": 72,
+        "startChar": 53,
+        "endLine": 76,
+        "endChar": 40
+      },
+      "revId": "5ae8ec751b80472aba5f035821e2c40894824dc3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "637aba87_6418a5d6",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-22T19:05:34Z",
       "side": 1,
       "message": "IIRC there is an identical line somewhere? Better to extract this logic into a function to make sure it is the same in both places `build_task.bump_update_id()`",
+      "range": {
+        "startLine": 1414,
+        "startChar": 6,
+        "endLine": 1414,
+        "endChar": 57
+      },
+      "revId": "5ae8ec751b80472aba5f035821e2c40894824dc3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23af9a8f_1e1124c7",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1414,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-22T20:02:07Z",
+      "side": 1,
+      "message": "yeah it\u0027s used in the next CL. SGTM. Done.",
+      "parentUuid": "637aba87_6418a5d6",
       "range": {
         "startLine": 1414,
         "startChar": 6,
