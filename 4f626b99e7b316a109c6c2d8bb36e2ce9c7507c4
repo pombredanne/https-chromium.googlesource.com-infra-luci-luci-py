@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ba1139b_0ebedaae",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-22T17:53:30Z",
+      "side": 1,
+      "message": "please leave a comment with an example of the transformation is does, it looks cryptic otherwise (especially \u0027// 2\u0027 part).",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 65
+      },
+      "revId": "4f626b99e7b316a109c6c2d8bb36e2ce9c7507c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "869462db_012354ed",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-22T17:53:30Z",
+      "side": 1,
+      "message": "haha, no one likes \"darwin\" name apparently",
+      "range": {
+        "startLine": 211,
+        "startChar": 55,
+        "endLine": 211,
+        "endChar": 79
+      },
+      "revId": "4f626b99e7b316a109c6c2d8bb36e2ce9c7507c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
