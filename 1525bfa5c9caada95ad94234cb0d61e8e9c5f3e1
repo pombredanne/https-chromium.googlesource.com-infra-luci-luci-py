@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e10dd269_9941cae9",
+        "filename": "appengine/components/components/config/remote.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-08-22T18:59:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "237ddfcd_7abd8131",
+      "range": {
+        "startLine": 271,
+        "startChar": 16,
+        "endLine": 271,
+        "endChar": 23
+      },
+      "revId": "1525bfa5c9caada95ad94234cb0d61e8e9c5f3e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bc260d4_0903c6d2",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-18T23:56:10Z",
       "side": 1,
       "message": "nit-nit: maybe this could just be moved to L257 as this is v1 specific if it\u0027s not too complicated so it\u0027s easier to clean up in the future?",
+      "range": {
+        "startLine": 301,
+        "startChar": 35,
+        "endLine": 301,
+        "endChar": 74
+      },
+      "revId": "1525bfa5c9caada95ad94234cb0d61e8e9c5f3e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7a85e3a_52268ff1",
+        "filename": "appengine/components/components/config/remote.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-08-22T18:59:29Z",
+      "side": 1,
+      "message": "Because the `get_ref_configs_async()` below also calls the same function, but it\u0027s url path is different. So have to pass the url_path. \n\nBut I can try to delete `get_ref_configs_async` in another CL and see if it will lead to any Swarming side tests failures",
+      "parentUuid": "9bc260d4_0903c6d2",
       "range": {
         "startLine": 301,
         "startChar": 35,
