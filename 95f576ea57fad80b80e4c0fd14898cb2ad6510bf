@@ -16,6 +16,23 @@
       "message": "PTAL now",
       "revId": "95f576ea57fad80b80e4c0fd14898cb2ad6510bf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fd3902b_7013dd76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2023-08-24T02:47:42Z",
+      "side": 1,
+      "message": "oops, just saw it. Since it\u0027s late, it might be better to manually submit tmr.",
+      "revId": "95f576ea57fad80b80e4c0fd14898cb2ad6510bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
