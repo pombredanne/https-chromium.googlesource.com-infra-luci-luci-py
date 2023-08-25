@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe44b3b9_6679fcd9",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-08-25T21:34:59Z",
+      "side": 1,
+      "message": "This is not called in https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_scheduler.py;l\u003d1824?q\u003d%22int(utils.time_time()%20*%201e9)%22\u0026ss\u003dchromium nor in https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/4770638/12\n\nI find this suspicious. Is anything storing update_id back into datastore after updating (I haven\u0027t reviewed the next CL yet, maybe it is stored there somewhere)?",
+      "range": {
+        "startLine": 641,
+        "startChar": 0,
+        "endLine": 642,
+        "endChar": 49
+      },
+      "revId": "6c083ecae390d47a0f080ff6ef6fd5090aba95df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
