@@ -22,6 +22,54 @@
       },
       "revId": "6c083ecae390d47a0f080ff6ef6fd5090aba95df",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d782805b_f85d527f",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-28T14:24:26Z",
+      "side": 1,
+      "message": "Yeah good point. Now that I take a look at it again, this function doesn\u0027t really serve much of a purpose besides the one case in this CL.\n\nin task_scheduler, it is not used because in the next CL (that you linked), the code gets refactored, and a new function `_buildbucket_update(request_key, run_result_state, update_id)` uses the update_id provided in the args. This is because update_id will be sent as part of the payload to the task queue. It was sent as part of the payload to ensure that when `update_id` and `latest_task_status` were stored in `BuildTask`, only the latest non-stale entities were stored.\n\nI think I will remove this function then.\n\nWDYT?",
+      "parentUuid": "fe44b3b9_6679fcd9",
+      "range": {
+        "startLine": 641,
+        "startChar": 0,
+        "endLine": 642,
+        "endChar": 49
+      },
+      "revId": "6c083ecae390d47a0f080ff6ef6fd5090aba95df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea3c17b0_cd0214a3",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-28T14:24:26Z",
+      "side": 1,
+      "message": "Yea",
+      "parentUuid": "fe44b3b9_6679fcd9",
+      "range": {
+        "startLine": 641,
+        "startChar": 0,
+        "endLine": 642,
+        "endChar": 49
+      },
+      "revId": "6c083ecae390d47a0f080ff6ef6fd5090aba95df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
