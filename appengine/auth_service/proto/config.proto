@@ -44,7 +44,6 @@ message SettingsCfg {
   string auth_db_gs_path = 2;
 }
 
-
 // Configuration of groups imported from external sources.
 //
 // Provided via 'imports.cfg' config file.
@@ -148,4 +147,91 @@ message IPAllowlistConfig {
   repeated IPAllowlist ip_allowlists = 1;
   // A mapping "identity name -> IP allowlist name".
   repeated Assignment assignments = 2;
+}
+
+// NOTE: There is another definition here:
+// https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/main/server/auth/service/protocol/components/auth/proto/realms.proto#72
+// these two must always stay the same.
+//
+//
+// Permission is a symbol that has form "<service>.<subject>.<verb>", which
+// describes some elementary action ("<verb>") that can be done to some category
+// of resources ("<subject>"), managed by some particular kind of LUCI service
+// ("<service>").
+//
+// Within each individual realm (see Realm message), a principal (such as an end
+// user or a service account) can have zero or more permissions that describe
+// what this user can actually do to resources belonging to the realm. See Realm
+// message for the definition of what "belonging to the realm" means.
+//
+// Examples of permissions:
+//   * buildbucket.build.create
+//   * swarming.pool.listBots
+//   * swarming.task.cancel
+//
+// Note that permission names are composed of generic terms, not some specific
+// IDs of service deployments or resources. Generally, using a concrete
+// permission name in the service's source code as a constant should look
+// natural.
+//
+// A permission can be marked as "internal". Internal permissions are not
+// allowed to appear in custom roles in user-defined project realms.cfg files.
+// They can be used in internal realms (defined in realms.cfg in the LUCI Auth
+// service config set, see comments for Realm message) and they are added to
+// some predefined roles by the LUCI Auth service itself. They are used to setup
+// ACLs for internal interactions between LUCI components.
+//
+// Each individual LUCI service should document what permissions it checks and
+// when. It becomes a part of service's public API. Usually services should
+// check only permissions of resources they own (e.g. "<service>.<subject>.*"),
+// but in exceptional cases they may also check permissions intended for other
+// services. This is primarily useful for services that somehow "proxy" access
+// to resources.
+//
+// Field `permissions` in Realms message describes all permissions known to the
+// LUCI Auth service. The LUCI Auth service guarantees that all permissions
+// mentioned in all realms (in `realms` field) are among `permissions` set.
+//
+// If a LUCI service checks a permission that is no longer (or not yet) listed
+// in the `permissions` set, the check should succeed with "no permission"
+// result, and produce a warning in service's logs.
+message Permission {
+  string name = 1;  // "<service>.<subject>.<verb>"
+  bool internal = 2; // internal permissions cannot be used in project realms
+}
+
+
+// Provided via 'permissions.cfg' config file.
+// Defines the list of roles and their respective permissions.
+message PermissionsConfig {
+  // Defines a role that includes given permissions and other roles.
+  // The role should not have been defined before. To include this role into another
+  // role, you can specify this role by name.
+  message Role {
+    // Identifier for a role, will have the form <prefix><project>.<noun>
+    //  examples:
+    //    "role/exampleproject.reader"
+    //    "role/exampleproject.owner"
+    //
+    // Prefixes:
+    //  "role/" -- role names defined in Auth service code.
+    //  "customRole/" -- role names that can be defined in user-supplied realms.cfg.
+    //  "role/luci.internal." -- interally used roles that are forbidden in realms.cfg.
+    string name = 1;
+
+    // List of permissions associated with this role, same permission may not be
+    // declared more than once per role.
+    // Permissions should be of the form: <service>.<subject>.<verb>
+    repeated Permission permissions = 2;
+
+    // List of other roles to include in this role, includes all the permissions
+    // that the included role contains. The referenced role should be defined already.
+    repeated string includes = 3;
+  }
+
+  // Representation of all defined roles.
+  repeated Role role = 1;
+
+  // Defines attributes that can be referenced in certain conditions.
+  repeated string attribute = 2;
 }

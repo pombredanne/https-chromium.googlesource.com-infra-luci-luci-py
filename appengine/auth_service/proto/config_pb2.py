@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x63onfig.proto\x12\x0c\x61uth_service\"D\n\x0bSettingsCfg\x12\x1c\n\x14\x65nable_ts_monitoring\x18\x01 \x01(\x08\x12\x17\n\x0f\x61uth_db_gs_path\x18\x02 \x01(\t\"\x93\x04\n\x13GroupImporterConfig\x12?\n\x07tarball\x18\x01 \x03(\x0b\x32..auth_service.GroupImporterConfig.TarballEntry\x12\x43\n\tplainlist\x18\x02 \x03(\x0b\x32\x30.auth_service.GroupImporterConfig.PlainlistEntry\x12L\n\x0etarball_upload\x18\x03 \x03(\x0b\x32\x34.auth_service.GroupImporterConfig.TarballUploadEntry\x1a\x62\n\x0cTarballEntry\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x14\n\x0coauth_scopes\x18\x02 \x03(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0f\n\x07systems\x18\x04 \x03(\t\x12\x0e\n\x06groups\x18\x05 \x03(\t\x1ap\n\x12TarballUploadEntry\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1b\n\x13\x61uthorized_uploader\x18\x02 \x03(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0f\n\x07systems\x18\x04 \x03(\t\x12\x0e\n\x06groups\x18\x05 \x03(\t\x1aR\n\x0ePlainlistEntry\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x14\n\x0coauth_scopes\x18\x02 \x03(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\r\n\x05group\x18\x04 \x01(\t\"u\n\x0bOAuthConfig\x12\x19\n\x11primary_client_id\x18\x01 \x01(\t\x12\x1d\n\x15primary_client_secret\x18\x02 \x01(\t\x12\x12\n\nclient_ids\x18\x03 \x03(\t\x12\x18\n\x10token_server_url\x18\x04 \x01(\t\"\x93\x02\n\x11IPAllowlistConfig\x12\x42\n\rip_allowlists\x18\x01 \x03(\x0b\x32+.auth_service.IPAllowlistConfig.IPAllowlist\x12?\n\x0b\x61ssignments\x18\x02 \x03(\x0b\x32*.auth_service.IPAllowlistConfig.Assignment\x1a>\n\x0bIPAllowlist\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07subnets\x18\x02 \x03(\t\x12\x10\n\x08includes\x18\x03 \x03(\t\x1a\x39\n\nAssignment\x12\x10\n\x08identity\x18\x01 \x01(\t\x12\x19\n\x11ip_allowlist_name\x18\x02 \x01(\tb\x06proto3'
+  serialized_pb=b'\n\x0c\x63onfig.proto\x12\x0c\x61uth_service\"D\n\x0bSettingsCfg\x12\x1c\n\x14\x65nable_ts_monitoring\x18\x01 \x01(\x08\x12\x17\n\x0f\x61uth_db_gs_path\x18\x02 \x01(\t\"\x93\x04\n\x13GroupImporterConfig\x12?\n\x07tarball\x18\x01 \x03(\x0b\x32..auth_service.GroupImporterConfig.TarballEntry\x12\x43\n\tplainlist\x18\x02 \x03(\x0b\x32\x30.auth_service.GroupImporterConfig.PlainlistEntry\x12L\n\x0etarball_upload\x18\x03 \x03(\x0b\x32\x34.auth_service.GroupImporterConfig.TarballUploadEntry\x1a\x62\n\x0cTarballEntry\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x14\n\x0coauth_scopes\x18\x02 \x03(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0f\n\x07systems\x18\x04 \x03(\t\x12\x0e\n\x06groups\x18\x05 \x03(\t\x1ap\n\x12TarballUploadEntry\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1b\n\x13\x61uthorized_uploader\x18\x02 \x03(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0f\n\x07systems\x18\x04 \x03(\t\x12\x0e\n\x06groups\x18\x05 \x03(\t\x1aR\n\x0ePlainlistEntry\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x14\n\x0coauth_scopes\x18\x02 \x03(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\r\n\x05group\x18\x04 \x01(\t\"u\n\x0bOAuthConfig\x12\x19\n\x11primary_client_id\x18\x01 \x01(\t\x12\x1d\n\x15primary_client_secret\x18\x02 \x01(\t\x12\x12\n\nclient_ids\x18\x03 \x03(\t\x12\x18\n\x10token_server_url\x18\x04 \x01(\t\"\x93\x02\n\x11IPAllowlistConfig\x12\x42\n\rip_allowlists\x18\x01 \x03(\x0b\x32+.auth_service.IPAllowlistConfig.IPAllowlist\x12?\n\x0b\x61ssignments\x18\x02 \x03(\x0b\x32*.auth_service.IPAllowlistConfig.Assignment\x1a>\n\x0bIPAllowlist\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07subnets\x18\x02 \x03(\t\x12\x10\n\x08includes\x18\x03 \x03(\t\x1a\x39\n\nAssignment\x12\x10\n\x08identity\x18\x01 \x01(\t\x12\x19\n\x11ip_allowlist_name\x18\x02 \x01(\t\",\n\nPermission\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08internal\x18\x02 \x01(\x08\"\xb1\x01\n\x11PermissionsConfig\x12\x32\n\x04role\x18\x01 \x03(\x0b\x32$.auth_service.PermissionsConfig.Role\x12\x11\n\tattribute\x18\x02 \x03(\t\x1aU\n\x04Role\x12\x0c\n\x04name\x18\x01 \x01(\t\x12-\n\x0bpermissions\x18\x02 \x03(\x0b\x32\x18.auth_service.Permission\x12\x10\n\x08includes\x18\x03 \x03(\tb\x06proto3'
 )
 
 
@@ -454,6 +454,129 @@ _IPALLOWLISTCONFIG = _descriptor.Descriptor(
   serialized_end=1029,
 )
 
+
+_PERMISSION = _descriptor.Descriptor(
+  name='Permission',
+  full_name='auth_service.Permission',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='auth_service.Permission.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='internal', full_name='auth_service.Permission.internal', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1031,
+  serialized_end=1075,
+)
+
+
+_PERMISSIONSCONFIG_ROLE = _descriptor.Descriptor(
+  name='Role',
+  full_name='auth_service.PermissionsConfig.Role',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='auth_service.PermissionsConfig.Role.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='permissions', full_name='auth_service.PermissionsConfig.Role.permissions', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='includes', full_name='auth_service.PermissionsConfig.Role.includes', index=2,
+      number=3, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1170,
+  serialized_end=1255,
+)
+
+_PERMISSIONSCONFIG = _descriptor.Descriptor(
+  name='PermissionsConfig',
+  full_name='auth_service.PermissionsConfig',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='role', full_name='auth_service.PermissionsConfig.role', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='attribute', full_name='auth_service.PermissionsConfig.attribute', index=1,
+      number=2, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[_PERMISSIONSCONFIG_ROLE, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1078,
+  serialized_end=1255,
+)
+
 _GROUPIMPORTERCONFIG_TARBALLENTRY.containing_type = _GROUPIMPORTERCONFIG
 _GROUPIMPORTERCONFIG_TARBALLUPLOADENTRY.containing_type = _GROUPIMPORTERCONFIG
 _GROUPIMPORTERCONFIG_PLAINLISTENTRY.containing_type = _GROUPIMPORTERCONFIG
@@ -464,10 +587,15 @@ _IPALLOWLISTCONFIG_IPALLOWLIST.containing_type = _IPALLOWLISTCONFIG
 _IPALLOWLISTCONFIG_ASSIGNMENT.containing_type = _IPALLOWLISTCONFIG
 _IPALLOWLISTCONFIG.fields_by_name['ip_allowlists'].message_type = _IPALLOWLISTCONFIG_IPALLOWLIST
 _IPALLOWLISTCONFIG.fields_by_name['assignments'].message_type = _IPALLOWLISTCONFIG_ASSIGNMENT
+_PERMISSIONSCONFIG_ROLE.fields_by_name['permissions'].message_type = _PERMISSION
+_PERMISSIONSCONFIG_ROLE.containing_type = _PERMISSIONSCONFIG
+_PERMISSIONSCONFIG.fields_by_name['role'].message_type = _PERMISSIONSCONFIG_ROLE
 DESCRIPTOR.message_types_by_name['SettingsCfg'] = _SETTINGSCFG
 DESCRIPTOR.message_types_by_name['GroupImporterConfig'] = _GROUPIMPORTERCONFIG
 DESCRIPTOR.message_types_by_name['OAuthConfig'] = _OAUTHCONFIG
 DESCRIPTOR.message_types_by_name['IPAllowlistConfig'] = _IPALLOWLISTCONFIG
+DESCRIPTOR.message_types_by_name['Permission'] = _PERMISSION
+DESCRIPTOR.message_types_by_name['PermissionsConfig'] = _PERMISSIONSCONFIG
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 SettingsCfg = _reflection.GeneratedProtocolMessageType('SettingsCfg', (_message.Message,), {
@@ -537,6 +665,28 @@ IPAllowlistConfig = _reflection.GeneratedProtocolMessageType('IPAllowlistConfig'
 _sym_db.RegisterMessage(IPAllowlistConfig)
 _sym_db.RegisterMessage(IPAllowlistConfig.IPAllowlist)
 _sym_db.RegisterMessage(IPAllowlistConfig.Assignment)
+
+Permission = _reflection.GeneratedProtocolMessageType('Permission', (_message.Message,), {
+  'DESCRIPTOR' : _PERMISSION,
+  '__module__' : 'config_pb2'
+  # @@protoc_insertion_point(class_scope:auth_service.Permission)
+  })
+_sym_db.RegisterMessage(Permission)
+
+PermissionsConfig = _reflection.GeneratedProtocolMessageType('PermissionsConfig', (_message.Message,), {
+
+  'Role' : _reflection.GeneratedProtocolMessageType('Role', (_message.Message,), {
+    'DESCRIPTOR' : _PERMISSIONSCONFIG_ROLE,
+    '__module__' : 'config_pb2'
+    # @@protoc_insertion_point(class_scope:auth_service.PermissionsConfig.Role)
+    })
+  ,
+  'DESCRIPTOR' : _PERMISSIONSCONFIG,
+  '__module__' : 'config_pb2'
+  # @@protoc_insertion_point(class_scope:auth_service.PermissionsConfig)
+  })
+_sym_db.RegisterMessage(PermissionsConfig)
+_sym_db.RegisterMessage(PermissionsConfig.Role)
 
 
 # @@protoc_insertion_point(module_scope)

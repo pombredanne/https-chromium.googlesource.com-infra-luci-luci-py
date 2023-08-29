@@ -182,6 +182,8 @@ def validate_oauth_config(conf, ctx):
     ctx.error(str(exc))
 
 
+# TODO (cjacomet): Implement validation for permissions.cfg
+
 # Simple auth_service own configs stored in the datastore as plain text.
 # They are different from imports.cfg (no GUI to update them other), and from
 # ip_allowlist.cfg and oauth.cfg (not tied to AuthDB changes).
