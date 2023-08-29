@@ -94,6 +94,30 @@
       },
       "revId": "6c083ecae390d47a0f080ff6ef6fd5090aba95df",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37ef6d68_08e395e3",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-08-29T17:11:58Z",
+      "side": 1,
+      "message": "So in the end there should be a total of 3 `int(utils.time_time() * 1e9)` calls.\n\n1. The first in backend_conversions to set the inital update_id when instantiating BuildTask. This is changed in this CL.\n\nIn the follow up CL, the other cases come up:\n\n2. During `task_scheduler._maybe_taskupdate_notify_via_tq`. This handles sending the updates via pubsub for non `bot_update_task` updates (bot_reap_task, cancel_task...)\n\n3. And during `task_scheduler.bot_update_task`, when we send update_id to `_buildbucket_update` to perform the pubsub update. This is live and not via tq. We could technically use _maybe_taskupdate_notify_via_tq during `bot_update_task`, but the pattern for the other pubsub messages is to send it live and not via tq.\n\nWe need both of these calls because the `update_id` must be set before sending an update to tq, and in order to abstract the logic to send buildbucket updates live or via tq, the `_buildbucket_update` function needs to take in update_id as an input. So there is \"repetition\" but it is needed since both events need to track `update_id` differently (live or before sending an update to tq).\n\nI removed the `bump_update_id`. The follow up CL is now up to date reflecting these changes.",
+      "parentUuid": "e1017ff2_7ffd8e42",
+      "range": {
+        "startLine": 641,
+        "startChar": 0,
+        "endLine": 642,
+        "endChar": 49
+      },
+      "revId": "6c083ecae390d47a0f080ff6ef6fd5090aba95df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
