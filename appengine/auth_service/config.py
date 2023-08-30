@@ -182,7 +182,12 @@ def validate_oauth_config(conf, ctx):
     ctx.error(str(exc))
 
 
-# TODO (cjacomet): Implement validation for permissions.cfg
+@validation.self_rule('permissions.cfg', config_pb2.PermissionsConfig)
+def validate_permissions_config(conf, ctx):
+  try:
+    _validate_permissions_config(conf)
+  except ValueError as exc:
+    ctx.error(str(exc))
 
 # Simple auth_service own configs stored in the datastore as plain text.
 # They are different from imports.cfg (no GUI to update them other), and from
@@ -438,6 +443,29 @@ def _validate_oauth_config(conf):
     raise ValueError('Wrong message type')
   if conf.token_server_url:
     utils.validate_root_service_url(conf.token_server_url)
+
+def _validate_permissions_config(conf):
+  roles = dict()
+  # Checking roles.
+  if not isinstance(conf, config_pb2.PermissionsConfig):
+    raise ValueError('Wrong message type')
+  for role in conf.role:
+    if role.name == '':
+      raise ValueError('Invalid role, name is required')
+    # test prefixes
+    if role.name in roles:
+      raise ValueError('Role %s is defined twice' % role.name)
+    
+    roles[role.name] = role
+
+  # Checking permissions and includes.
+  for role in dict.values():
+    for perm in role.permissions:
+      if perm.count(".") != 2:
+        raise ValueError('invalid format: Permissions must have the form <service>.<subject>.<verb>')
+  # Checking for cycles.
+
+
 
 
 def _update_oauth_config(root, _rev, conf):
