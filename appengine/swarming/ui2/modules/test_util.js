@@ -248,6 +248,19 @@ const stringify = function (data) {
   return `)]}'${JSON.stringify(data)}`;
 };
 
+const prpcHeaders = {
+  "x-prpc-grpc-code": "0",
+  "content-type": "application/json",
+};
+
+export function prpcResponse(data) {
+  return (_url, _opts) =>
+    new Response(stringify(data), {
+      status: 200,
+      headers: prpcHeaders,
+    });
+}
+
 /**
  * @callback fn
  * @param {string} url url sent to fetch for the request
@@ -272,12 +285,16 @@ const stringify = function (data) {
  * @param {string} rpc string that service we want to call.
  * @param {(fn|Object)} data data can be either a function or a callback which produces data.
  * @param {(matcher|undefined)} matcher is a predicate which determines whether the request should be matched.
+ * @param {boolean} overwriteRoutes
  */
-export function mockPrpc(fetchMock, service, rpc, data, matcher = null) {
-  const prpcHeaders = {
-    "x-prpc-grpc-code": "0",
-    "content-type": "application/json",
-  };
+export function mockPrpc(
+  fetchMock,
+  service,
+  rpc,
+  data,
+  matcher = null,
+  overwriteRoutes = undefined
+) {
   let response = (_url, _opts) =>
     new Response(stringify(data), {
       status: 200,
@@ -300,9 +317,11 @@ export function mockPrpc(fetchMock, service, rpc, data, matcher = null) {
         matcher(JSON.parse(opts.body))
       );
     };
-    fetchMock.mock(matchingFn, response);
+    fetchMock.mock(matchingFn, response, { overwriteRoutes });
   } else {
-    fetchMock.post(`path:/prpc/${service}/${rpc}`, response);
+    fetchMock.post(`path:/prpc/${service}/${rpc}`, response, {
+      overwriteRoutes,
+    });
   }
 }
 
@@ -337,4 +356,32 @@ export function eventually(ele, callback) {
   ele.addEventListener("busy-end", (e) => {
     callback(ele);
   });
+}
+
+export function deepEquals(obja, objb) {
+  // If we have two equal primitives, one (or both) these two will be true
+  if (obja == objb || obja === objb) {
+    return true;
+  }
+  // Check if we have two arrays of equal length
+  if (
+    Array.isArray(obja) &&
+    Array.isArray(objb) &&
+    obja.length === objb.length
+  ) {
+    // compare each iterm in array recursively
+    for (let i = 0; i < obja.length; i++)
+      if (!deepEquals(obja[i], objb[i])) return false;
+    return true;
+  }
+  // Check if we have two objects, recurse though
+  if (Object(obja) === obja && Object(objb) === objb) {
+    const keya = Object.keys(obja);
+    const keyb = Object.keys(objb);
+    if (keya.length !== keyb.length) return false;
+    for (const key of keya) if (!deepEquals(obja[key], objb[key])) return false;
+    return true;
+  }
+
+  return false;
 }

@@ -89,7 +89,18 @@ export class TasksService extends PrpcService {
    *
    * @returns {Object} TasksCount object described in https://chromium.googlesource.com/infra/luci/luci-py/+/ba4f94742a3ce94c49432417fbbe3bf1ef9a1fa0/appengine/swarming/proto/api_v2/swarming.proto#917
    **/
-  count(tags, start, state) {
-    return this._call("CountTasks", { tags, start, state });
+  count(query) {
+    return this._call("CountTasks", query);
+  }
+
+  list(query) {
+    if (!query.state) {
+      query = { ...query, state: "QUERY_ALL" };
+    }
+    return this._call("ListTasks", query);
+  }
+
+  massCancel(query) {
+    return this._call("CancelTasks", query);
   }
 }
