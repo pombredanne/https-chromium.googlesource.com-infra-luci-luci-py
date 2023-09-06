@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6eb52a2_f9caf413",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-06T17:45:33Z",
+      "side": 1,
+      "message": "LGTM! I think you will need to run `make release` to generate new assets.",
+      "revId": "7641bb5673114536230edd85006cea5adaec9bf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
