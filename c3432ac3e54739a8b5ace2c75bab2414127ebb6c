@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa5482dd_f0adbb29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-06T18:09:51Z",
+      "side": 1,
+      "message": "Please cleanup the actual dead python code too (the HTTP handler, the function that collects the metric, unit test, if any).",
+      "revId": "c3432ac3e54739a8b5ace2c75bab2414127ebb6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
