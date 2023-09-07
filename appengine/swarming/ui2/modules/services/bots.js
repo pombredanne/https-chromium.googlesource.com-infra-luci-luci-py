@@ -99,4 +99,11 @@ export class BotsService extends PrpcService {
   count(dimensions) {
     return this._call("CountBots", { dimensions });
   }
+
+  /**
+   * Fetches bot dimensions useful for a specific pool.
+   **/
+  dimensions(pool) {
+    return this._call("GetBotDimensions", { pool });
+  }
 }
