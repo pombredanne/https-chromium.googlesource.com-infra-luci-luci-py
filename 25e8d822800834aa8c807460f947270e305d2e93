@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9e20882_ba4b870f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-07T20:55:09Z",
+      "side": 1,
+      "message": "**Testing**\n\nTesting an old link with new UI: http://localhost:8080/newres/task-list.html?c\u003dname\u0026c\u003dcreated_ts\u0026c\u003dpending_time\u0026c\u003dduration\u0026c\u003dbot\u0026c\u003dpool-tag\u0026c\u003dstate\u0026d\u003ddesc\u0026et\u003d1694119291852\u0026f\u003dstate%3ABOT_DIED\u0026f\u003dpool-tag%3Aluci.chromium.ci\u0026k\u003dpool-tag\u0026n\u003dfalse\u0026s\u003dcreated_ts\u0026st\u003d1693946460000\n\nMass cancel still works: https://screenshot.googleplex.com/8QfWDp4h93Cty7s\n\nScreencast clicking around manually to perform testing: https://screencast.googleplex.com/cast/NDg1Njg0Nzc5OTQxODg4MHxmYmRhYzYzNi05NQ",
+      "revId": "25e8d822800834aa8c807460f947270e305d2e93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
