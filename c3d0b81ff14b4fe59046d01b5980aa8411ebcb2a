@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24782b3b_22258c25",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-07T18:46:10Z",
+      "side": 1,
+      "message": "I am basing this comment on the following assumptions:\n\n1. `datetime.utcnow` could produce \"out of order\" `update_ids` where two updates are causally ordered. \n2. `update_id` must be meaningfully ordered. \n\nIf we consider clock drift, we could have two events which are causal where the `update_id` is out of order. If two `tasks` are initiated on different hosts there is no guarantee that those machines have synchronized clocks. So we could end up with a scenario like the following:\n\nExample:\n```\n# arrives first\ntask_id: 1\nstate: running\nupdate_id: some_timestamp\n\n# arrives second\ntask_id: 1\nstate: completed\nupdate_id: some_timestamp-200ms\n```\n\nI may be misunderstanding how things are handled on the buildbucket side but do we need to rely on the `update_id` being used to order things?",
+      "range": {
+        "startLine": 636,
+        "startChar": 8,
+        "endLine": 636,
+        "endChar": 49
+      },
+      "revId": "c3d0b81ff14b4fe59046d01b5980aa8411ebcb2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75312794_bea0f5f2",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-07T18:46:10Z",
+      "side": 1,
+      "message": "nit: `task_result`",
+      "range": {
+        "startLine": 652,
+        "startChar": 22,
+        "endLine": 652,
+        "endChar": 33
+      },
+      "revId": "c3d0b81ff14b4fe59046d01b5980aa8411ebcb2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfdbf865_36becf32",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-07T18:46:10Z",
+      "side": 1,
+      "message": "nit: only",
+      "range": {
+        "startLine": 654,
+        "startChar": 9,
+        "endLine": 654,
+        "endChar": 13
+      },
+      "revId": "c3d0b81ff14b4fe59046d01b5980aa8411ebcb2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ca31c8c_914ac02c",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-07T18:46:10Z",
+      "side": 1,
+      "message": "Just to confirm my understanding - there is a `1-1` correspondance between a `build_task` and `swarming task`?",
+      "range": {
+        "startLine": 672,
+        "startChar": 4,
+        "endLine": 672,
+        "endChar": 46
+      },
+      "revId": "c3d0b81ff14b4fe59046d01b5980aa8411ebcb2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20396d8d_33c202d7",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1869,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-07T18:46:10Z",
+      "side": 1,
+      "message": "Very Nit 😄 `_create_update_id`?",
+      "range": {
+        "startLine": 1869,
+        "startChar": 16,
+        "endLine": 1869,
+        "endChar": 44
+      },
+      "revId": "c3d0b81ff14b4fe59046d01b5980aa8411ebcb2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
