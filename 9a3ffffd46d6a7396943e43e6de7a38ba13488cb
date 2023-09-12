@@ -70,6 +70,30 @@
       },
       "revId": "9a3ffffd46d6a7396943e43e6de7a38ba13488cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3399ee9_9c420a6f",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1568168
+      },
+      "writtenOn": "2023-09-12T21:22:55Z",
+      "side": 1,
+      "message": "The logic seems sound, and it would simplify our configs a bit too, so I\u0027m certainly not opposed. I think it\u0027ll be easy enough to migrate our existing builders.\n\nHow sure are you that it should keep the darwin/mac substitution? On the one hand, being inconsistent with cipd is annoying; on the other, this is an opportunity to start fresh and make a clean break. Guess it depends on the long-term plans, if any, for this stuff.\n\n+Robbie since this a continuation of the discussion linked above.",
+      "parentUuid": "1ff5227e_4ade3921",
+      "range": {
+        "startLine": 217,
+        "startChar": 17,
+        "endLine": 217,
+        "endChar": 18
+      },
+      "revId": "9a3ffffd46d6a7396943e43e6de7a38ba13488cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
