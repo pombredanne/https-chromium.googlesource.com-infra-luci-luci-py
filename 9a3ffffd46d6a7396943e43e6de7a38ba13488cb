@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5df1baba_15d7ac3f",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-12T19:17:58Z",
+      "side": 1,
+      "message": "I hate it, but it should probably be \"Solaris\" for consistency with \"Windows\", \"Mac\".",
+      "range": {
+        "startLine": 217,
+        "startChar": 17,
+        "endLine": 217,
+        "endChar": 18
+      },
+      "revId": "9a3ffffd46d6a7396943e43e6de7a38ba13488cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
