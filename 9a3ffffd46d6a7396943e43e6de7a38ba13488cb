@@ -46,6 +46,30 @@
       },
       "revId": "9a3ffffd46d6a7396943e43e6de7a38ba13488cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ff5227e_4ade3921",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-12T19:44:37Z",
+      "side": 1,
+      "message": "get_os_name() already returns random crap like \"Ubuntu\". It is supposedly identifies a concrete OS distribution, kind of. It is vague... It is used only in dimensions. I think it would be better to be consistent here and return \"Solaris\", to avoid making it even more vague.\n\ncipd.get_platform() is another matter, its return value actually used to identify what flavors of binaries to fetch and its return value is expected to be in a set of \"known\" platforms.\n\nI think we should leave \"os\" alone with it half-assed vague definition and introduce a new \"platform\" dimension which will always match cipd platform (basically ${GOOS}-${GOARCH} sans darwin/mac inconsistency...), and use it where it matters what platform to hit, but doesn\u0027t matter what exact OS it is (e.g. Ubuntu and Debian both will be linux-amd64). Wdyt?",
+      "parentUuid": "41fc276a_0ba0283c",
+      "range": {
+        "startLine": 217,
+        "startChar": 17,
+        "endLine": 217,
+        "endChar": 18
+      },
+      "revId": "9a3ffffd46d6a7396943e43e6de7a38ba13488cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
