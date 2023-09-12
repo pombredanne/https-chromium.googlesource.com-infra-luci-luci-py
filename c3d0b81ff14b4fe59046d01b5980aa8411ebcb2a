@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9371cea8_c3bdafa2",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-12T14:37:24Z",
+      "side": 1,
+      "message": "\u003e If two tasks are initiated on different hosts\n\nBy this do you mean two different machines running swarming server? (i.e. swarming server has been scaled up and appengine is running on N machines)\n\nThe update_id\u0027s are created in swarming server. So if we are considering a multi-instance appengine service, I\u0027m going to trust that appengine is handling clock drift.\n(See https://stackoverflow.com/questions/18264338/google-appengine-server-instance-clock-synchronization)",
+      "parentUuid": "24782b3b_22258c25",
+      "range": {
+        "startLine": 636,
+        "startChar": 8,
+        "endLine": 636,
+        "endChar": 49
+      },
+      "revId": "c3d0b81ff14b4fe59046d01b5980aa8411ebcb2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75312794_bea0f5f2",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-07T18:46:10Z",
       "side": 1,
       "message": "nit: `task_result`",
+      "range": {
+        "startLine": 652,
+        "startChar": 22,
+        "endLine": 652,
+        "endChar": 33
+      },
+      "revId": "c3d0b81ff14b4fe59046d01b5980aa8411ebcb2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8916e286_c3b75e87",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-12T14:37:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75312794_bea0f5f2",
       "range": {
         "startLine": 652,
         "startChar": 22,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eede34fa_b95bf1ee",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-12T14:37:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfdbf865_36becf32",
+      "range": {
+        "startLine": 654,
+        "startChar": 9,
+        "endLine": 654,
+        "endChar": 13
+      },
+      "revId": "c3d0b81ff14b4fe59046d01b5980aa8411ebcb2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ca31c8c_914ac02c",
@@ -93,6 +165,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04d83af7_ea4317fc",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-12T14:37:24Z",
+      "side": 1,
+      "message": "Yes this is correct!",
+      "parentUuid": "5ca31c8c_914ac02c",
+      "range": {
+        "startLine": 672,
+        "startChar": 4,
+        "endLine": 672,
+        "endChar": 46
+      },
+      "revId": "c3d0b81ff14b4fe59046d01b5980aa8411ebcb2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20396d8d_33c202d7",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-09-07T18:46:10Z",
       "side": 1,
       "message": "Very Nit 😄 `_create_update_id`?",
+      "range": {
+        "startLine": 1869,
+        "startChar": 16,
+        "endLine": 1869,
+        "endChar": 44
+      },
+      "revId": "c3d0b81ff14b4fe59046d01b5980aa8411ebcb2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a2f178e_53ffbfa8",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1869,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-12T14:37:24Z",
+      "side": 1,
+      "message": "Yeah I thought about this. It looks ugly, but is the least lines of code. I could add a util for it `utils.time_time_ns`, which would make it cleaner. Thoughts?",
+      "parentUuid": "20396d8d_33c202d7",
       "range": {
         "startLine": 1869,
         "startChar": 16,
