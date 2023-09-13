@@ -118,6 +118,30 @@
       },
       "revId": "9a3ffffd46d6a7396943e43e6de7a38ba13488cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e5cf084_8598ce1e",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1568168
+      },
+      "writtenOn": "2023-09-13T21:02:31Z",
+      "side": 1,
+      "message": "Done, I think. See what you think.\n\nI\u0027ll get rid of the lowercasing of the OS dimension once this lands and I\u0027ve updated our configs.",
+      "parentUuid": "7dfe6620_d131d7c6",
+      "range": {
+        "startLine": 217,
+        "startChar": 17,
+        "endLine": 217,
+        "endChar": 18
+      },
+      "revId": "9a3ffffd46d6a7396943e43e6de7a38ba13488cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
