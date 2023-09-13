@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af4f8ea6_64dbb120",
+        "filename": "appengine/auth_service/proto/config_pb2.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-09-13T17:17:15Z",
+      "side": 1,
+      "message": "will this affect how other packages import this proto?",
+      "range": {
+        "startLine": 3,
+        "startChar": 8,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "42e5479b082a1609d109a286327889f44ae8a65d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03f781f5_94dc6e7f",
+        "filename": "appengine/auth_service/proto/import_luci_go.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-09-13T17:17:15Z",
+      "side": 1,
+      "message": "I\u0027m having a bit of confusion figuring out how this command works wrt to proto path and importing protos, I need the proto_path here to import the other realms proto successfully but that changes the source location for the proto",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 75,
+        "endChar": 46
+      },
+      "revId": "42e5479b082a1609d109a286327889f44ae8a65d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
