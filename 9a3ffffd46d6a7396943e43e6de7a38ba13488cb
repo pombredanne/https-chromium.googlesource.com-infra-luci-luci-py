@@ -94,6 +94,30 @@
       },
       "revId": "9a3ffffd46d6a7396943e43e6de7a38ba13488cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dfe6620_d131d7c6",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-09-13T20:26:46Z",
+      "side": 1,
+      "message": "100% agreed with introducing a new platform dimension... \"os\" is really weird.\n\nI suspect that it\u0027s probably better to live with the weird API lump (darwin/mac) than introduce a second weird API lump (darwin/mac... except for here!), unless we can fully remove the first lump (and I think doing so would be wayyy out of scope for this particular change).\n\nMaybe split the difference and just make the dimension explicitly \"cipd_platform\"?",
+      "parentUuid": "b3399ee9_9c420a6f",
+      "range": {
+        "startLine": 217,
+        "startChar": 17,
+        "endLine": 217,
+        "endChar": 18
+      },
+      "revId": "9a3ffffd46d6a7396943e43e6de7a38ba13488cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
