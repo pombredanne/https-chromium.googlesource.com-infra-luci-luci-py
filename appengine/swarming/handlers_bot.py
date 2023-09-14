@@ -572,6 +572,12 @@ class _BotBaseHandler(_BotApiHandler):
     if request.realm:
       realm_context['name'] = request.realm
 
+    is_using_bb_agent_context = False
+    if request.has_build_task:
+      for arg in props.command:
+        if 'ContextFilePath' in arg:
+          is_using_bb_agent_context = True
+
     out = {
         'bot_id':
         bot_request_info.bot_id,
@@ -637,6 +643,8 @@ class _BotBaseHandler(_BotApiHandler):
         task_pack.pack_run_result_key(run_result.key),
         'bot_dimensions':
         bot_request_info.dimensions,
+        'is_using_bb_agent_context':
+        is_using_bb_agent_context
     }
     return utils.to_json_encodable(out)
 
