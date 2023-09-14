@@ -33,6 +33,24 @@
       "message": "I don\u0027t see any proto changes? I assume this is just updating generated code only?",
       "revId": "bd67f731b052aa1fe0f3eba7adc87483f03c9347",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0b87bbc_d0ba78f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-14T15:33:14Z",
+      "side": 1,
+      "message": "oh yeah the protos themselves aren\u0027t here, only the python bindings. the script makes a tmp dir, pulls the protos, makes the python bindings, then deletes the protos.\n\nSo yes, only generated code is updated. (probably should change the commit message to be \"Update bb proto python bindings\")",
+      "parentUuid": "cf43ae7f_33dbb3d5",
+      "revId": "bd67f731b052aa1fe0f3eba7adc87483f03c9347",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
