@@ -109,4 +109,8 @@ export class BotsService extends PrpcService {
   dimensions(pool) {
     return this._call("GetBotDimensions", { pool });
   }
+
+  list(request) {
+    return this._call("ListBots", request);
+  }
 }

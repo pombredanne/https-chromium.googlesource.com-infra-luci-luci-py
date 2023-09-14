@@ -391,3 +391,12 @@ export function deepEquals(obja, objb) {
 
   return false;
 }
+
+export function createRequestFilter(service, rpc, data) {
+  return (call) => {
+    if (!call[0].endsWith(`${service}/${rpc}`)) return false;
+    if (typeof data === "undefined") return true;
+    const request = JSON.parse(call[1].body);
+    return deepEquals(request, data);
+  };
+}

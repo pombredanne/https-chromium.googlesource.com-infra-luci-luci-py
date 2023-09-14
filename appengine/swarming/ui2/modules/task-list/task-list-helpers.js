@@ -19,6 +19,7 @@ import {
   humanDuration,
   sanitizeAndHumanizeTime,
   taskPageLink,
+  toCamelCase,
 } from "../util";
 import { EXCEPTIONAL_STATES, FILTER_STATES, ONGOING_STATES } from "../task";
 
@@ -674,14 +675,6 @@ function sortableDuration(attr) {
 
     return dir * (aCol - bCol);
   };
-}
-
-const re = /_[a-zA-Z]/g;
-
-function toCamelCase(str) {
-  return str.replace(re, function (match) {
-    return match.replace("_", "").toUpperCase();
-  });
 }
 
 /**
