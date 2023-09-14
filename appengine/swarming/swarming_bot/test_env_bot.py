@@ -30,6 +30,9 @@ def setup_test_env():
   # libusb1 expects to be directly in sys.path.
   sys.path.insert(0, os.path.join(BOT_DIR, 'python_libusb1'))
 
+  # bb expects to be directly in sys.path.
+  sys.path.insert(0, os.path.join(BOT_DIR, 'bb'))
+
   # For python-rsa.
   sys.path.insert(0, os.path.join(tp, 'rsa'))
   sys.path.insert(0, os.path.join(tp, 'pyasn1'))
