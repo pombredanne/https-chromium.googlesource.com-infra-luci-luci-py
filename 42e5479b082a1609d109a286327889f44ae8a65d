@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f51fb7e_5a42b716",
+        "filename": "appengine/auth_service/proto/import_luci_go.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-09-14T20:08:43Z",
+      "side": 1,
+      "message": "Maybe, but then I\u0027d have to replace realms_config.proto which requires options.proto which is already compiled to pb2.py here: https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/bb/go/chromium/org/luci/common/proto/options_pb2.py;drc\u003d49329bc4b7d648ecdb56a1a52fb556054c6f34a1 So I\u0027d have to move that one too.",
+      "parentUuid": "4b0efc65_2d73d5c0",
+      "range": {
+        "startLine": 27,
+        "startChar": 7,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "42e5479b082a1609d109a286327889f44ae8a65d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "03f781f5_94dc6e7f",
         "filename": "appengine/auth_service/proto/import_luci_go.sh",
         "patchSetId": 8
