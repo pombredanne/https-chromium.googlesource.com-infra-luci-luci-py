@@ -1773,3 +1773,29 @@ def fetch_task_results(task_ids):
         task_results[i] = more_results.pop(0)
 
   return task_results
+
+
+def fetch_task_result_summaries(keys):
+  """Returns the task results for the given tasks in the same order."""
+
+  # TODO(vadimsh): This memcache business is most likely FUD and it would be
+  # sufficient just to do a regular ndb.get_multi(...).
+
+   # Hot path. Fetch everything we can from memcache.
+  results = ndb.get_multi(keys, use_datastore=False)
+
+  # Find which results need to be fetched from the datastore.
+  fetch = []
+  indexes = []
+  for idx, result in enumerate(results):
+    if result is None or result.state in State.STATES_RUNNING:
+      fetch.append(keys[idx])
+      indexes.append(idx)
+
+  # Fetch missing results from datastore in inject into correct positions.
+  if fetch:
+    more = ndb.get_multi(fetch, use_cache=False, use_memcache=False)
+    for idx, result in zip(indexes, more):
+      results[idx] = result
+
+  return results
