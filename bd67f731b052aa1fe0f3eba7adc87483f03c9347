@@ -16,6 +16,23 @@
       "message": "PTAL. just updating the protos to latest.",
       "revId": "bd67f731b052aa1fe0f3eba7adc87483f03c9347",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf43ae7f_33dbb3d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-14T15:29:18Z",
+      "side": 1,
+      "message": "I don\u0027t see any proto changes? I assume this is just updating generated code only?",
+      "revId": "bd67f731b052aa1fe0f3eba7adc87483f03c9347",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
