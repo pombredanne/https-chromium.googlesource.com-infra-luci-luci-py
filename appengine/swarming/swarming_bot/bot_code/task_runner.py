@@ -21,18 +21,22 @@ import os
 import random
 import signal
 import sys
+import tempfile
 import time
 import traceback
 
 from api import os_utilities
 from bot_code import bot_auth
 from bot_code import remote_client
+from google.protobuf.json_format import MessageToJson
 from libs import luci_context
 from utils import file_path
 from utils import net
 from utils import on_error
 from utils import subprocess42
 from utils import zip_package
+
+from bb.go.chromium.org.luci.buildbucket.proto import launcher_pb2
 
 # Path to this file or the zip containing this file.
 THIS_FILE = os.path.abspath(zip_package.get_main_script_path())
@@ -207,6 +211,7 @@ class TaskDetails:
       'hard_timeout',
       'host',
       'io_timeout',
+      'is_using_bbagent_context',
       'outputs',
       'realm',
       'relative_cwd',
@@ -239,6 +244,7 @@ class TaskDetails:
     self.grace_period = data['grace_period']
     self.hard_timeout = data['hard_timeout']
     self.io_timeout = data['io_timeout']
+    self.is_using_bb_agent_context = data['is_using_bb_agent_context']
     self.task_id = data['task_id']
     self.outputs = data['outputs']
     self.secret_bytes = data['secret_bytes']
@@ -270,6 +276,30 @@ class ExitSignal(Exception):
 class InternalError(Exception):
   """Raised on unrecoverable errors that abort task with 'internal error'."""
 
+
+def tmp_bb_agent_context_file(secret_bytes, task_id, workdir):
+  tf = tempfile.NamedTemporaryFile(
+    mode='w', prefix='bb_agent_ctx.', suffix='.json', delete=False, dir=workdir)
+  logging.debug('Writing BuildbuckerAgentContext file %r', tf.name)
+
+  try:
+    secrets = launcher_pb2.BuildSecrets()
+    secrets.ParseFromString(secret_bytes)
+    content = launcher_pb2.BuildbucketAgentContext(
+      task_id=task_id,
+      secrets= secrets)
+    tf.write(MessageToJson(content))
+    tf.close()
+    # Export the file path to env variable so that bbagent can use it.
+    os.environ['ContextFilePath'] = tf.name
+    yield tf.name
+  finally:
+    try:
+        os.unlink(tf.name)
+    except OSError as ex:
+      logging.error(
+        'Failed to delete written BuildbuckerAgentContext file %r: %s', 
+        tf.name, ex)
 
 def load_and_run(in_file, swarming_server, default_swarming_server,
                  cost_usd_hour, start, out_file, run_isolated_flags, bot_file,
@@ -329,6 +359,7 @@ def load_and_run(in_file, swarming_server, default_swarming_server,
         },
       }
 
+      #TODO (randymaldonado): remove swarming from LUCI_CONTEXT
       # Override LUCI_CONTEXT['swarming'].
       bot_dimensions = []
       for k, vs in task_details.bot_dimensions.items():
@@ -390,9 +421,19 @@ def load_and_run(in_file, swarming_server, default_swarming_server,
       # Auth environment is up, start the command. task_result is dumped to
       # disk in 'finally' block.
       with luci_context.stage(_tmpdir=work_dir, **context_edits) as ctx_file:
-        task_result = run_command(remote, rbe_session, task_details, work_dir,
+        # If the build is using a buildbucket agent, we must write the custom
+        # context file for the agent to use.
+        if task_details.is_using_bb_agent_context:
+          with tmp_bb_agent_context_file(
+            task_details.secret_bytes, task_details.task_id, work_dir) as _:
+
+            task_result = run_command(remote, rbe_session, task_details, work_dir,
                                   cost_usd_hour, start, run_isolated_flags,
                                   bot_file, ctx_file)
+        else:
+          task_result = run_command(remote, rbe_session, task_details, work_dir,
+                                    cost_usd_hour, start, run_isolated_flags,
+                                    bot_file, ctx_file)
   except (ExitSignal, InternalError, remote_client.InternalError) as e:
     # This normally means run_command() didn't get the chance to run, as it
     # itself traps exceptions and will report accordingly. In this case, we want
