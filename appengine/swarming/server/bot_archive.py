@@ -49,6 +49,7 @@ FILES = (
     'api/platforms/osx.py',
     'api/platforms/posix.py',
     'api/platforms/win.py',
+    'bb/go/chromium/org/luci/buildbucket/proto/launcher_pb2.py',
     'bot_code/__init__.py',
     'bot_code/bot_auth.py',
     'bot_code/bot_main.py',
