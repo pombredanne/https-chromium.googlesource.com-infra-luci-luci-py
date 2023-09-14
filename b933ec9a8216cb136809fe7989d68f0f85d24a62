@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49685c1a_545acd76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-14T00:42:03Z",
+      "side": 1,
+      "message": "PTAL\n\nThe implementation in inline in pRPC server because there\u0027s no Cloud Endpoint couterpart (and because I don\u0027t care anymore, can\u0027t wait until all this python crap is deleted).",
+      "revId": "b933ec9a8216cb136809fe7989d68f0f85d24a62",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
