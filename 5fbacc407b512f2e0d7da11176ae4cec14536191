@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0703948_70315080",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1568168
+      },
+      "writtenOn": "2023-09-14T17:16:47Z",
+      "side": 1,
+      "message": "Indeed. Thanks.",
+      "parentUuid": "83507fff_351e1f84",
+      "range": {
+        "startLine": 297,
+        "startChar": 17,
+        "endLine": 297,
+        "endChar": 24
+      },
+      "revId": "5fbacc407b512f2e0d7da11176ae4cec14536191",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e0f1075_9c9647c7",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-09-13T21:37:09Z",
       "side": 1,
       "message": "I suppose this will need to be fixed in a followup? This is also missing a few from https://github.com/golang/go/blob/master/src/go/build/syslist.go#L56",
+      "revId": "5fbacc407b512f2e0d7da11176ae4cec14536191",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "108f277a_bd1a2f4e",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1568168
+      },
+      "writtenOn": "2023-09-14T17:16:47Z",
+      "side": 1,
+      "message": "I expect it will; my plan is to finish up Solaris, then bring up as many bots as we can and send one CL to address all of them.",
+      "parentUuid": "7e0f1075_9c9647c7",
       "revId": "5fbacc407b512f2e0d7da11176ae4cec14536191",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
