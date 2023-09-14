@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97e17f53_8b9c086d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-14T15:14:24Z",
+      "side": 1,
+      "message": "PTAL. just updating the protos to latest.",
+      "revId": "bd67f731b052aa1fe0f3eba7adc87483f03c9347",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
