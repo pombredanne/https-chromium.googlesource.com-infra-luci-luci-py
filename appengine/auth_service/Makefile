@@ -17,7 +17,7 @@
 #   server/auth/service/protocol/replication.proto
 #   server/auth/service/protocol/security_config.proto
 #
-# Commit: fa4aae38c4440165422afb3f29aab1b42cf5de9f
+# Commit:845d2488debda8b8d3d36b89e3f646ce4b26493d
 # Modifications: see import_luci_go.sh
 
 compile:
@@ -28,4 +28,4 @@ compile:
 	# Move the proto path to //appengine/components to "namespace" proto files.
 	# This is consistent with other components assuming that "components" is in
 	# the import path.
-	../../../tools/compile_proto.py --proto_path=../../../ .
+	./tools/compile_proto.py --proto_path=./ ./proto/tempconfig/
