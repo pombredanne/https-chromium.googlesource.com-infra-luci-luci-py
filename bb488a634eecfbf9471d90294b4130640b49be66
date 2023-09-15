@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d359a393_3161fece",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-15T20:37:25Z",
+      "side": 1,
+      "message": "I also tried a cheat like:\n\n```\nclass TaskResultSummary(...):\n   def reconstruct_task_request(self):\n      return TaskRequest(\n         key\u003dself.task_request_key(),\n         slices\u003d[...],\n         ...\n      )\n      \ntask_res_summary \u003d ...\nrealms.check_task_get_acl(task_res_summary.reconstruct_task_request())\n```\n\nBut I think it is less maintainable, since it is not clear what parts of TaskRequest are important in reconstruct_task_request. Also it hits various validations in TaskRequest, which don\u0027t like such reduced entity.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 14
+      },
+      "revId": "bb488a634eecfbf9471d90294b4130640b49be66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d84c2fa8_f81a5aed",
+        "filename": "appengine/swarming/server/realms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-15T20:37:25Z",
+      "side": 1,
+      "message": "I tried making it a method in TaskRequest, but it introduces module import cycle. Stupid python.",
+      "range": {
+        "startLine": 423,
+        "startChar": 4,
+        "endLine": 423,
+        "endChar": 33
+      },
+      "revId": "bb488a634eecfbf9471d90294b4130640b49be66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
