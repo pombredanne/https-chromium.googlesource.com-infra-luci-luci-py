@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "531032b2_a3d11ed9",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-15T20:53:31Z",
+      "side": 1,
+      "message": "I think the idea was to make it similar to existing magical command line tokens as https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/doc/Magic-Values.md#run_isolated\n\nso this will be e.g. \"${BBAGENT_CONTEXT_FILE}\".",
+      "range": {
+        "startLine": 577,
+        "startChar": 0,
+        "endLine": 580,
+        "endChar": 15
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc5b53f4_c72b42cf",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-15T20:53:31Z",
+      "side": 1,
+      "message": "I actually very much prefer prepare_manifest(...) to be not aware of any of this.\n\n1. Make the TaskBackend layer prepare the task command line as `bbagent -context-file ${BBAGENT_CONTEXT_FILE}` (in _compute_command presumably).\n2. Let it propagate to task_runner.py as usual. No need to make other Swarming guts aware of it.\n3. In task_runner.py populate the context file if the command line has `${BBAGENT_CONTEXT_FILE}` token in it. Replace this token with the path to the populated context file.",
+      "range": {
+        "startLine": 647,
+        "startChar": 1,
+        "endLine": 648,
+        "endChar": 33
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6cd7271_86851092",
+        "filename": "appengine/swarming/server/bot_archive.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-15T20:53:31Z",
+      "side": 1,
+      "message": "This is a lot of code just to populate ~3 JSON fields. I think it would be better to be pragmatic here is just construct necessary JSON \"by hand\".",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 65
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38b2fa2e_e75e28be",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-15T20:53:31Z",
+      "side": 1,
+      "message": "BuildbucketAgentContext, not bucker",
+      "range": {
+        "startLine": 285,
+        "startChar": 26,
+        "endLine": 285,
+        "endChar": 49
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14a781e5_2f810de4",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-15T20:53:31Z",
+      "side": 1,
+      "message": "This is a weird name for an environment variable. Where is it coming from?",
+      "range": {
+        "startLine": 302,
+        "startChar": 16,
+        "endLine": 302,
+        "endChar": 31
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "385bceed_6c6697a9",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-15T20:53:31Z",
+      "side": 1,
+      "message": "Why? What these handlers have to do with bb agent context?",
+      "range": {
+        "startLine": 304,
+        "startChar": 2,
+        "endLine": 311,
+        "endChar": 12
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21aaa652_4f58ddd1",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-15T20:53:31Z",
+      "side": 1,
+      "message": "please don\u0027t copy-paste big calls like that, they will diverge\n\nconsider using https://docs.python.org/3/library/contextlib.html#contextlib.ExitStack instead",
+      "range": {
+        "startLine": 447,
+        "startChar": 0,
+        "endLine": 449,
+        "endChar": 77
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
