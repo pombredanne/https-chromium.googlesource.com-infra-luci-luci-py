@@ -93,6 +93,7 @@ def get_manifest(script=None, **kwargs):
       'hard_timeout': 10.,
       'host': 'bar',
       'io_timeout': 10.,
+      'is_using_bb_agent_context': False,
       'cas_input_root': None,
       'outputs': [],
       'realm': None,
