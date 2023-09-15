@@ -105,10 +105,7 @@ class TestBackendConversions(test_case.TestCase):
             execution_timeout_secs=exec_secs,
             grace_period_secs=grace_secs,
             dimensions_data={u'required-1': [u'req-1']},
-            command=[
-                u'agent', '-fantasia', 'pegasus', '-cache-base', 'cache',
-                '-task-id', '${SWARMING_TASK_ID}'
-            ],
+            command=[u'agent', '-fantasia', 'pegasus', '-cache-base', 'cache'],
             cipd_input=task_request.CipdInput(packages=[
                 task_request.CipdPackage(
                     path='.',
@@ -188,8 +185,7 @@ class TestBackendConversions(test_case.TestCase):
         wait_for_capacity=True,
         properties=task_request.TaskProperties(
             command=[
-                u'agent', '-chicken', '1', '-cow', '3', '-cache-base', 'cache',
-                '-task-id', '${SWARMING_TASK_ID}'
+                u'agent', '-chicken', '1', '-cow', '3', '-cache-base', 'cache'
             ],
             has_secret_bytes=True,
             caches=[
@@ -274,10 +270,7 @@ class TestBackendConversions(test_case.TestCase):
         wait_for_capacity=True,
         expiration_secs=120,
         properties=task_request.TaskProperties(
-            command=[
-                u'agent', '-cache-base', 'cache', '-task-id',
-                '${SWARMING_TASK_ID}'
-            ],
+            command=[u'agent', '-cache-base', 'cache'],
             has_secret_bytes=False,
             execution_timeout_secs=exec_secs,
             grace_period_secs=grace_secs,
