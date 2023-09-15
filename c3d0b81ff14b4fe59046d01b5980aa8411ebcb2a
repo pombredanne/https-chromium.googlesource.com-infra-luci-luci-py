@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44741758_d5030ec9",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-15T20:32:18Z",
+      "side": 1,
+      "message": "Had to do some more research and besides the linked SO post I could not find any information online about the accuracy of `ntp` in `appengine`. I\u0027m referring specifically to two different `workers` on appengine processing the events and having clock drift. \n\nIt may be quite rare that this happens so it could be a good idea to leave a log message containing state if we do not proceed when the `update` bc of `update_id`",
+      "parentUuid": "9371cea8_c3bdafa2",
+      "range": {
+        "startLine": 636,
+        "startChar": 8,
+        "endLine": 636,
+        "endChar": 49
+      },
+      "revId": "c3d0b81ff14b4fe59046d01b5980aa8411ebcb2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75312794_bea0f5f2",
@@ -226,6 +250,30 @@
       "side": 1,
       "message": "Yeah I thought about this. It looks ugly, but is the least lines of code. I could add a util for it `utils.time_time_ns`, which would make it cleaner. Thoughts?",
       "parentUuid": "20396d8d_33c202d7",
+      "range": {
+        "startLine": 1869,
+        "startChar": 16,
+        "endLine": 1869,
+        "endChar": 44
+      },
+      "revId": "c3d0b81ff14b4fe59046d01b5980aa8411ebcb2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14e935ae_0e30f0c1",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1869,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-15T20:32:18Z",
+      "side": 1,
+      "message": "Solid idea!",
+      "parentUuid": "6a2f178e_53ffbfa8",
       "range": {
         "startLine": 1869,
         "startChar": 16,
