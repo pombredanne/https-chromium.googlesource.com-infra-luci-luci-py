@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af962cf2_c32e79ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-15T15:22:24Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "1e2257e1706474dce7b18502bfbeb46dc1321be8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e9560fe_5d29ab0a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1798,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-15T15:22:24Z",
+      "side": 1,
+      "message": "IUUC, the bug is that this call does not expect an active lease and the request will fail if the previous lease (before bot crashed) was not completed?",
+      "range": {
+        "startLine": 1797,
+        "startChar": 14,
+        "endLine": 1798,
+        "endChar": 70
+      },
+      "revId": "1e2257e1706474dce7b18502bfbeb46dc1321be8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
