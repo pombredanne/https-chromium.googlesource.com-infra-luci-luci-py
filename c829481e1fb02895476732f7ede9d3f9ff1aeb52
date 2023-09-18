@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ed5d22d_cdcb2dc1",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-18T15:03:00Z",
+      "side": 1,
+      "message": "SGTM. Was going off what was discussed in bb pod room chat, but I changed it \"${BUILDBUCKET_AGENT_CONTEXT_FILE}\" since chan thought it\u0027d be best to not make this \"bbagent\" specific, but rather \"a buildbucket agent\" specific.",
+      "parentUuid": "531032b2_a3d11ed9",
+      "range": {
+        "startLine": 577,
+        "startChar": 0,
+        "endLine": 580,
+        "endChar": 15
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc5b53f4_c72b42cf",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-15T20:53:31Z",
       "side": 1,
       "message": "I actually very much prefer prepare_manifest(...) to be not aware of any of this.\n\n1. Make the TaskBackend layer prepare the task command line as `bbagent -context-file ${BBAGENT_CONTEXT_FILE}` (in _compute_command presumably).\n2. Let it propagate to task_runner.py as usual. No need to make other Swarming guts aware of it.\n3. In task_runner.py populate the context file if the command line has `${BBAGENT_CONTEXT_FILE}` token in it. Replace this token with the path to the populated context file.",
+      "range": {
+        "startLine": 647,
+        "startChar": 1,
+        "endLine": 648,
+        "endChar": 33
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d35c8f9_ba82034a",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-18T15:03:00Z",
+      "side": 1,
+      "message": "Not too sure about this. The only reason I needed to do this in `prepare_manifest` is because I need to make use of the `request.is_build_task` bool. If we can pass that bool via the manifest then it makes sense to do the checking for `is_using_bb_agent_context` inside task_runner. Thoughts?\n\n\n(Also, for #1, that plan seems to be that we are going to have buildbucket prepare the command args so that the backend is unaware of what agent it is using and only has to check for what args to fill in. Doesn\u0027t really change much here but just so you don\u0027t expect to see it on a revision of this CL.)",
+      "parentUuid": "cc5b53f4_c72b42cf",
       "range": {
         "startLine": 647,
         "startChar": 1,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8dcb16e9_16e9459f",
+        "filename": "appengine/swarming/server/bot_archive.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-18T15:03:00Z",
+      "side": 1,
+      "message": "Yeah... as I was adding these files I thought the same :/\n\nThe issue is that we need to Unmarshal the secret_bytes into the BuildSecret proto. BuildbucketAgentContext expects this. \n\nWe went with using the BuildSecret directly (instead of passing secret_bytes) because RunTaskRequest sends it in this format and backends should be able to propagate the secrets it quickly. \n\nNow (working on a backend) it seems that some backends will always have to serialize/deserialize the message to save it in some database and retrieve it...\n\nWe could have BuildbucketAgentContext just use a bytes field for this (and the agent does the unmarshaling), but it does seem like a \"lets just do it this way to make it easier for use in swarming\" case.",
+      "parentUuid": "d6cd7271_86851092",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 65
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "38b2fa2e_e75e28be",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 10
@@ -83,6 +155,30 @@
       "writtenOn": "2023-09-15T20:53:31Z",
       "side": 1,
       "message": "BuildbucketAgentContext, not bucker",
+      "range": {
+        "startLine": 285,
+        "startChar": 26,
+        "endLine": 285,
+        "endChar": 49
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "312249c5_2962d4b7",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-18T15:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38b2fa2e_e75e28be",
       "range": {
         "startLine": 285,
         "startChar": 26,
@@ -116,6 +212,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68135383_44baf236",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-18T15:03:00Z",
+      "side": 1,
+      "message": "bb pod room chat. I changed it to `BUILDBUCKET_AGENT_CONTEXT_FILE` now.",
+      "parentUuid": "14a781e5_2f810de4",
+      "range": {
+        "startLine": 302,
+        "startChar": 16,
+        "endLine": 302,
+        "endChar": 31
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "385bceed_6c6697a9",
@@ -139,6 +259,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0607d4e2_60244f23",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-18T15:03:00Z",
+      "side": 1,
+      "message": "Sorry, was debugging and forgot to take the `except Exception as e:` lines out.",
+      "parentUuid": "385bceed_6c6697a9",
+      "range": {
+        "startLine": 304,
+        "startChar": 2,
+        "endLine": 311,
+        "endChar": 12
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21aaa652_4f58ddd1",
@@ -152,6 +296,30 @@
       "writtenOn": "2023-09-15T20:53:31Z",
       "side": 1,
       "message": "please don\u0027t copy-paste big calls like that, they will diverge\n\nconsider using https://docs.python.org/3/library/contextlib.html#contextlib.ExitStack instead",
+      "range": {
+        "startLine": 447,
+        "startChar": 0,
+        "endLine": 449,
+        "endChar": 77
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b845fea8_8c4febb8",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-18T15:03:00Z",
+      "side": 1,
+      "message": "Oh this is nice. will use, thanks for showing me this!",
+      "parentUuid": "21aaa652_4f58ddd1",
       "range": {
         "startLine": 447,
         "startChar": 0,
