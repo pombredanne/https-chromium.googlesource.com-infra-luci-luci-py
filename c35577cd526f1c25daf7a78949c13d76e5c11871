@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0c092f1_55e44ac7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-18T21:26:50Z",
+      "side": 1,
+      "message": "This is entirely refactoring and changes only tests + adds some new linting.",
+      "revId": "c35577cd526f1c25daf7a78949c13d76e5c11871",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
