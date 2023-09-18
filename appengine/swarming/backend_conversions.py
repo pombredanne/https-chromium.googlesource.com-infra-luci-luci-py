@@ -206,7 +206,10 @@ def _compute_task_slices(run_task_req, backend_config, has_secret_bytes):
 def _compute_command(run_task_req, agent_binary_name):
   # type: (backend_pb2.RunTaskRequest, str) -> Sequence[str]
   args = [agent_binary_name] + run_task_req.agent_args[:]
-  args.extend(['-cache-base', _CACHE_DIR, '-task-id', '${SWARMING_TASK_ID}'])
+  args.extend([
+      '-cache-base',
+      _CACHE_DIR,
+  ])
   return args
 
 

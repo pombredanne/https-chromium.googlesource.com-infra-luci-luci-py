@@ -694,6 +694,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
                 'os': ['Amiga'],
                 'pool': ['default'],
             },
+            u'is_using_bb_agent_context': False,
         },
     }
     self.assertEqual(expected, response)
@@ -771,6 +772,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
                 'os': ['Amiga'],
                 'pool': ['default'],
             },
+            u'is_using_bb_agent_context': False,
         },
     }
     self.assertEqual(expected, response)
@@ -861,6 +863,8 @@ class BotApiTest(test_env_handlers.AppTestBase):
                 'os': ['Amiga'],
                 'pool': ['default'],
             },
+            u'is_using_bb_agent_context':
+            False,
         },
     }
     self.assertEqual(expected, response)
@@ -987,6 +991,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
                 'os': ['Amiga'],
                 'pool': ['default'],
             },
+            u'is_using_bb_agent_context': False,
         },
     }
     self.assertEqual(expected, response)
@@ -1289,6 +1294,7 @@ class BotApiTest(test_env_handlers.AppTestBase):
                 u'hard_timeout': 3600,
                 u'host': u'http://localhost:8080',
                 u'io_timeout': 1200,
+                u'is_using_bb_agent_context': False,
                 u'outputs': [u'foo', u'path/to/foobar'],
                 u'realm': {},
                 u'relative_cwd': None,
