@@ -39,6 +39,30 @@
       },
       "revId": "889179432cac22f86edcdb90c2d11dbb5ad4ccca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cd85c9f_f599f9c8",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-18T17:19:36Z",
+      "side": 1,
+      "message": "Yeah, this CL is unfinished, I need to add tests (I tried and gave up, mocking of auth crap in Swarming tests is spectacularly broken, will try again)",
+      "parentUuid": "546040de_0657e865",
+      "range": {
+        "startLine": 269,
+        "startChar": 17,
+        "endLine": 269,
+        "endChar": 23
+      },
+      "revId": "889179432cac22f86edcdb90c2d11dbb5ad4ccca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
