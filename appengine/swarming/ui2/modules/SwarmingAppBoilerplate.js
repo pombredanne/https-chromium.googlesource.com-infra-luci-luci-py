@@ -129,7 +129,7 @@ export default class SwarmingAppBoilerplate extends HTMLElement {
       @param {boolean} ignoreAuthError - A flag to ignore 403 error.
    */
   prpcError(e, loadingWhat, ignoreAuthError) {
-    if (e.codeName === "PERMISSION_DENIED") {
+    if (e.codeName === "PERMISSION_DENIED" && !ignoreAuthError) {
       this._message =
         "User unauthorized - try logging in " + "with a different account";
       this._notAuthorized = true;
