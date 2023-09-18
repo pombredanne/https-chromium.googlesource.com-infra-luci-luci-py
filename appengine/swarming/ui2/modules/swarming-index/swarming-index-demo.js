@@ -3,11 +3,11 @@
 // that can be found in the LICENSE file.
 
 import "./index.js";
-import { requireLogin, mockAuthdAppGETs } from "../test_util";
+import { requireLogin, mockAuthorizedSwarmingService } from "../test_util";
 import fetchMock from "fetch-mock";
 
 (function () {
-  mockAuthdAppGETs(fetchMock, {
+  mockAuthorizedSwarmingService(fetchMock, {
     get_bootstrap_token: true,
   });
 
