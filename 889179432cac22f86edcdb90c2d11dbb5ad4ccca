@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "796590d1_0d1104c3",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-18T16:14:52Z",
+      "side": 1,
+      "message": "nit blank line",
+      "revId": "889179432cac22f86edcdb90c2d11dbb5ad4ccca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "546040de_0657e865",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-18T16:14:52Z",
+      "side": 1,
+      "message": "do we need to import `realms` to use this function?",
+      "range": {
+        "startLine": 269,
+        "startChar": 17,
+        "endLine": 269,
+        "endChar": 23
+      },
+      "revId": "889179432cac22f86edcdb90c2d11dbb5ad4ccca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
