@@ -22,6 +22,30 @@
       },
       "revId": "3ec6152fceabcc9a1aef8b6dd4ea39a1877a75a6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc4cb267_bb8a5efd",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-19T18:23:01Z",
+      "side": 1,
+      "message": "SGTM. Did both. Also added a check on update_id for the tests in addition to task_id.",
+      "parentUuid": "2910ee00_be248c6d",
+      "range": {
+        "startLine": 659,
+        "startChar": 0,
+        "endLine": 661,
+        "endChar": 0
+      },
+      "revId": "3ec6152fceabcc9a1aef8b6dd4ea39a1877a75a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
