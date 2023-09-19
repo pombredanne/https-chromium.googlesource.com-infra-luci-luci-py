@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a5a0f038_be8bce38",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-09-19T18:24:44Z",
+      "side": 1,
+      "message": "`-cache-base` is already set in Buildbucket: https://source.chromium.org/chromium/infra/infra/+/main:go/src/go.chromium.org/luci/buildbucket/appengine/tasks/backend.go;l\u003d196;drc\u003da89b716996a8cfcae2c5073b7194fed6a4e563ac\n\nSo we should remove it here.",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 17
+      },
+      "revId": "e2c3b7a030a58ff0f003744078a8c2f6243dad47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "caa3ae21_5ec88769",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 11
