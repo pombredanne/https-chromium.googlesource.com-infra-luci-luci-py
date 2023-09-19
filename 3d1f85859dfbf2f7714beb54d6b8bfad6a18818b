@@ -22,6 +22,30 @@
       },
       "revId": "3d1f85859dfbf2f7714beb54d6b8bfad6a18818b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad216add_8d9bb499",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-19T22:57:44Z",
+      "side": 1,
+      "message": "Oh also creds.json contains many tokens generally. `[0]` is not necessarily usable with Swarming (it may not have https://www.googleapis.com/auth/userinfo.email scope). `luci-auth token` by default produces a token with `https://www.googleapis.com/auth/userinfo.email` scope which should always work.",
+      "parentUuid": "5c9ca38e_48cd3f1f",
+      "range": {
+        "startLine": 295,
+        "startChar": 37,
+        "endLine": 295,
+        "endChar": 67
+      },
+      "revId": "3d1f85859dfbf2f7714beb54d6b8bfad6a18818b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
