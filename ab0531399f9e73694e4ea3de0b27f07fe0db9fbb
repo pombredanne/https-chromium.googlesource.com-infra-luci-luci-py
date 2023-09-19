@@ -16,6 +16,47 @@
       "message": "Note that even if this helps Swarming bot (which I doubt), other random stuff running inside the task will still be randomly failing when trying to access metadata. At least some of bugs dedupped into crbug.com/1475114 were about non-Swarming failing trying to access VM metadata (e.g. to lookup the cloud region).",
       "revId": "ab0531399f9e73694e4ea3de0b27f07fe0db9fbb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c70769a_f86b3e4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2023-09-19T18:47:40Z",
+      "side": 1,
+      "message": "Ack. Thanks for throwing this together all the same",
+      "parentUuid": "bec3f6da_7d1295cd",
+      "revId": "ab0531399f9e73694e4ea3de0b27f07fe0db9fbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "308c14d4_6532e22e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2023-09-19T18:47:40Z",
+      "side": 1,
+      "message": "Could keep the timeout the same, but change this to \"i**2\" ? Not sure which would be best; lgtm either way",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "ab0531399f9e73694e4ea3de0b27f07fe0db9fbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
