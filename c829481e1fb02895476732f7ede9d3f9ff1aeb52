@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0d2584a_03077154",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-19T18:24:07Z",
+      "side": 1,
+      "message": "\u003e I need to make use of the request.is_build_task bool\n\nwhy do we care about that? If the command line has ${BUILDBUCKET_AGENT_CONTEXT_FILE}, replace it in task_runner.",
+      "parentUuid": "1d35c8f9_ba82034a",
+      "range": {
+        "startLine": 647,
+        "startChar": 1,
+        "endLine": 648,
+        "endChar": 33
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d6cd7271_86851092",
         "filename": "appengine/swarming/server/bot_archive.py",
         "patchSetId": 10

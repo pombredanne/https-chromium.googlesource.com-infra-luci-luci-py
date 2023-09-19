@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5778e6b_bcee0e15",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-19T18:24:07Z",
+      "side": 1,
+      "message": "should this add `-context-file ${BUILDBUCKET_AGENT_CONTEXT_FILE}` to args?",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 20
+      },
+      "revId": "e2c3b7a030a58ff0f003744078a8c2f6243dad47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caa3ae21_5ec88769",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-19T18:24:07Z",
+      "side": 1,
+      "message": "this is not necessary and harmful, since someone will inevitably \"discover\" this env var exists and will use in in their random build scripts",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 58
+      },
+      "revId": "e2c3b7a030a58ff0f003744078a8c2f6243dad47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c47aa5a_453c0d58",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-19T18:24:07Z",
+      "side": 1,
+      "message": "This is all more complicated than it should be.\n\n```\nbbctx \u003d None\nif \u0027${BUILDBUCKET_AGENT_CONTEXT_FILE}\u0027 in task_details.command:\n  bbctx \u003d tmp_bb_agent_context_file(...)\n  idx \u003d task_details.command.index(\u0027${BUILDBUCKET_AGENT_CONTEXT_FILE}\u0027)\n  task_details.command[idx] \u003d bbctx\n  \n...\n\nfinally:\n  if bbctx:\n    try:\n      os.unlink(bbctx)\n    except:\n      ...\n```",
+      "range": {
+        "startLine": 433,
+        "startChar": 0,
+        "endLine": 444,
+        "endChar": 72
+      },
+      "revId": "e2c3b7a030a58ff0f003744078a8c2f6243dad47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
