@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bec3f6da_7d1295cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-19T18:40:44Z",
+      "side": 1,
+      "message": "Note that even if this helps Swarming bot (which I doubt), other random stuff running inside the task will still be randomly failing when trying to access metadata. At least some of bugs dedupped into crbug.com/1475114 were about non-Swarming failing trying to access VM metadata (e.g. to lookup the cloud region).",
+      "revId": "ab0531399f9e73694e4ea3de0b27f07fe0db9fbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
