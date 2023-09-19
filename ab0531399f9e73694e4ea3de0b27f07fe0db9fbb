@@ -57,6 +57,30 @@
       },
       "revId": "ab0531399f9e73694e4ea3de0b27f07fe0db9fbb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c86257a3_7e9dfde3",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/gce.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-19T18:51:25Z",
+      "side": 1,
+      "message": "Replaced with `i**2`, but also kept higher timeout. Maybe we need just one extra second beyond 10s timeout for everything to start working...",
+      "parentUuid": "308c14d4_6532e22e",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "ab0531399f9e73694e4ea3de0b27f07fe0db9fbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
