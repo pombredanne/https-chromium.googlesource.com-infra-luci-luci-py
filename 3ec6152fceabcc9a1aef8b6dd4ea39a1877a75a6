@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2910ee00_be248c6d",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1529627
+      },
+      "writtenOn": "2023-09-19T17:40:10Z",
+      "side": 1,
+      "message": "Nit:\n1. for better readability, move the statement on line #680 where task_id is used \n2. task_id should be covered in unit test to make sure that the right task gets updated",
+      "range": {
+        "startLine": 659,
+        "startChar": 0,
+        "endLine": 661,
+        "endChar": 0
+      },
+      "revId": "3ec6152fceabcc9a1aef8b6dd4ea39a1877a75a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
