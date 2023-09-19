@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e4a4fc8_9b754494",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-19T22:05:45Z",
+      "side": 1,
+      "message": "- swarming-index demo: https://screenshot.googleplex.com/JLBDjb9DTws2NYB\n  - this confirms that GetToken request should be working. I don\u0027t have permissions to test this on a live demo so needed to use offline demo files\n- screen capture: https://screencast.googleplex.com/cast/NTcyODE4MDcwNTk1MTc0NHxjMzRhOGM0MS0wZQ\n  - I repeated this process with bot-page, bot-list and task-page but did not record.",
+      "revId": "583382ea229d6cd0e2ed4d63d15f7eb6f40bcc28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
