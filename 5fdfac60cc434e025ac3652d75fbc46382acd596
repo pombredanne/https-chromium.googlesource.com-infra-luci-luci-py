@@ -16,6 +16,23 @@
       "message": "PTAL. I added a test to catch this bug.",
       "revId": "5fdfac60cc434e025ac3652d75fbc46382acd596",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66cc437d_5e3501e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-20T18:08:46Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "5fdfac60cc434e025ac3652d75fbc46382acd596",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
