@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8ab25fc_8f6ca90a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-20T17:41:04Z",
+      "side": 1,
+      "message": "PTAL. I added a test to catch this bug.",
+      "revId": "5fdfac60cc434e025ac3652d75fbc46382acd596",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
