@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6a106c9_64c40122",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2448,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-20T01:04:02Z",
+      "side": 0,
+      "message": "I needed two pending tasks and two non-pending tasks for the test. It was extremely hard to mock all the bot bits correctly to end in this state. I gave up and use CANCELED tasks instead of COMPLETED. For the code under test it makes no difference, but it is much easier to setup.",
+      "range": {
+        "startLine": 2444,
+        "startChar": 0,
+        "endLine": 2448,
+        "endChar": 33
+      },
+      "revId": "7f571c915400e6e2c0baf5a5a7f9de911afa9ac4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
