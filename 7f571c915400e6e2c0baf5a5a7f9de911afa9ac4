@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbd97380_87d742fd",
+        "filename": "appengine/components/components/prpc/server_base.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1529627
+      },
+      "writtenOn": "2023-09-20T01:10:13Z",
+      "side": 1,
+      "message": "Why traceback is not added directly in context module? E.g.\n`def set_details(self, details, debug\u003dFalse)`\nThe caller (ServerBase) will pass the message and debug flag to context.set_details method which would append traceback when needed. Then the context module will be fully responsible for setting \u0026 formatting RPC details. Other callers won\u0027t need to import traceback dependency and worry about message format.",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 207,
+        "endChar": 59
+      },
+      "revId": "7f571c915400e6e2c0baf5a5a7f9de911afa9ac4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
