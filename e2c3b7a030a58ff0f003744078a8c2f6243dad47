@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd634951_6c7c6c02",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-21T20:26:13Z",
+      "side": 1,
+      "message": "We discussed this in chat, but BB will be adding that arg. https://crrev.com/c/4874962\n\nAlso per chan\u0027s comment above, we are moving towards bb creating the args for bbagent, so going to remove this function and just have command be `[agent_binary_name] + run_task_req.agent_args[:]`",
+      "parentUuid": "b5778e6b_bcee0e15",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 20
+      },
+      "revId": "e2c3b7a030a58ff0f003744078a8c2f6243dad47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5a0f038_be8bce38",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-19T18:24:44Z",
       "side": 1,
       "message": "`-cache-base` is already set in Buildbucket: https://source.chromium.org/chromium/infra/infra/+/main:go/src/go.chromium.org/luci/buildbucket/appengine/tasks/backend.go;l\u003d196;drc\u003da89b716996a8cfcae2c5073b7194fed6a4e563ac\n\nSo we should remove it here.",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 17
+      },
+      "revId": "e2c3b7a030a58ff0f003744078a8c2f6243dad47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "937e8fb3_10199b46",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-21T20:26:13Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "a5a0f038_be8bce38",
       "range": {
         "startLine": 210,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f086acd_b7049ef3",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-21T20:26:13Z",
+      "side": 1,
+      "message": "We discussed in chat. removed this in favor of inplace replacement.",
+      "parentUuid": "caa3ae21_5ec88769",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 58
+      },
+      "revId": "e2c3b7a030a58ff0f003744078a8c2f6243dad47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c47aa5a_453c0d58",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-09-19T18:24:07Z",
       "side": 1,
       "message": "This is all more complicated than it should be.\n\n```\nbbctx \u003d None\nif \u0027${BUILDBUCKET_AGENT_CONTEXT_FILE}\u0027 in task_details.command:\n  bbctx \u003d tmp_bb_agent_context_file(...)\n  idx \u003d task_details.command.index(\u0027${BUILDBUCKET_AGENT_CONTEXT_FILE}\u0027)\n  task_details.command[idx] \u003d bbctx\n  \n...\n\nfinally:\n  if bbctx:\n    try:\n      os.unlink(bbctx)\n    except:\n      ...\n```",
+      "range": {
+        "startLine": 433,
+        "startChar": 0,
+        "endLine": 444,
+        "endChar": 72
+      },
+      "revId": "e2c3b7a030a58ff0f003744078a8c2f6243dad47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31dffe76_61d948e1",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-21T20:26:13Z",
+      "side": 1,
+      "message": "SGTM. I think the context manager helped handle the closing of the tmp file, but we can manually do it too.",
+      "parentUuid": "4c47aa5a_453c0d58",
       "range": {
         "startLine": 433,
         "startChar": 0,

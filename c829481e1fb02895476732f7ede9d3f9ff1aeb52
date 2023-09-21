@@ -119,6 +119,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fa4a610_4a1b11d6",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-21T20:26:13Z",
+      "side": 1,
+      "message": "Ah I see! OK will do this.",
+      "parentUuid": "b0d2584a_03077154",
+      "range": {
+        "startLine": 647,
+        "startChar": 1,
+        "endLine": 648,
+        "endChar": 33
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6cd7271_86851092",
@@ -156,6 +180,30 @@
       "side": 1,
       "message": "Yeah... as I was adding these files I thought the same :/\n\nThe issue is that we need to Unmarshal the secret_bytes into the BuildSecret proto. BuildbucketAgentContext expects this. \n\nWe went with using the BuildSecret directly (instead of passing secret_bytes) because RunTaskRequest sends it in this format and backends should be able to propagate the secrets it quickly. \n\nNow (working on a backend) it seems that some backends will always have to serialize/deserialize the message to save it in some database and retrieve it...\n\nWe could have BuildbucketAgentContext just use a bytes field for this (and the agent does the unmarshaling), but it does seem like a \"lets just do it this way to make it easier for use in swarming\" case.",
       "parentUuid": "d6cd7271_86851092",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 65
+      },
+      "revId": "c829481e1fb02895476732f7ede9d3f9ff1aeb52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "069d0cbf_aba54281",
+        "filename": "appengine/swarming/server/bot_archive.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-21T20:26:13Z",
+      "side": 1,
+      "message": "Marking as resolved. Please re-open if needed.",
+      "parentUuid": "8dcb16e9_16e9459f",
       "range": {
         "startLine": 52,
         "startChar": 0,
