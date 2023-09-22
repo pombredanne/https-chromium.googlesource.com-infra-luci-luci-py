@@ -1948,7 +1948,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             latest_task_status=task_result.State.PENDING,
             pubsub_topic="backend_pubsub_topic",
             update_id=0))
+    result = task_pb2.BuildTaskUpdate()
+    result.ParseFromString(pub_sub_calls[0][1]['message'])
     self.assertEqual(1, len(pub_sub_calls))  # notification is sent
+    self.assertEqual(result.build_id, "1234")
+    self.assertEqual(result.task.id.id, "1d69b9f088008910")
+    self.assertEqual(result.task.update_id, 12345678)
 
     # Check that an update is not sent due to no change of state
     task_scheduler.task_buildbucket_update({
@@ -1970,7 +1975,12 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         'update_id':
         12345678000000003
     })
-    self.assertEqual(2, len(pub_sub_calls))
+    result = task_pb2.BuildTaskUpdate()
+    result.ParseFromString(pub_sub_calls[1][1]['message'])
+    self.assertEqual(2, len(pub_sub_calls))  # second notification is sent
+    self.assertEqual(result.build_id, "1234")
+    self.assertEqual(result.task.id.id, "1d69b9f088008910")
+    self.assertEqual(result.task.update_id, 12345678000000003)
 
     # Check that no update was made due to prior update_id
     task_scheduler.task_buildbucket_update({
