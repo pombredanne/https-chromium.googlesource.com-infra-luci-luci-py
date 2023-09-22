@@ -778,7 +778,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
   def test_schedule_request_no_capacity_backend_task(self):
     # No capacity, denied. That's the default.
     pub_sub_calls = self.mock_pub_sub()
-    self.mock(utils, "time_time", lambda: 12345678)
+    self.mock(utils, "time_time_ns", lambda: 12345678)
     request = _gen_request_slices(pubsub_topic='projects/abc/topics/def',
                                   has_build_task=True,
                                   created_ts=(self.now -
@@ -1919,7 +1919,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             fields=_update_fields_pubsub(http_status_code=200)).sum)
 
   def test_bot_update_buildbucket_pubsub_ok(self):
-    self.mock(utils, "time_time", lambda: 12345678)
+    self.mock(utils, "time_time_ns", lambda: 12345678)
     pub_sub_calls = self.mock_pub_sub()
     run_result = self._quick_reap(
         has_build_task=True,
@@ -1936,6 +1936,65 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(2, len(pub_sub_calls))
     self.assertEqual(pub_sub_calls[0][1]["topic"], "backend_pubsub_topic")
     self.assertEqual(1, self.execute_tasks())
+
+  def test_task_buildbucket_update(self):
+    self.mock(utils, "time_time_ns", lambda: 12345678)
+    pub_sub_calls = self.mock_pub_sub()
+    run_result = self._quick_reap(
+        has_build_task=True,
+        build_task=task_request.BuildTask(
+            build_id="1234",
+            buildbucket_host="buildbucket_host",
+            latest_task_status=task_result.State.PENDING,
+            pubsub_topic="backend_pubsub_topic",
+            update_id=0))
+    self.assertEqual(1, len(pub_sub_calls))  # notification is sent
+
+    # Check that an update is not sent due to no change of state
+    task_scheduler.task_buildbucket_update({
+        "task_id":
+        task_pack.pack_result_summary_key(run_result.result_summary_key),
+        "state":
+        task_result.State.RUNNING,
+        'update_id':
+        12345678000000002
+    })
+    self.assertEqual(1, len(pub_sub_calls))
+
+    # Check that an update is sent due to change of state
+    task_scheduler.task_buildbucket_update({
+        "task_id":
+        task_pack.pack_result_summary_key(run_result.result_summary_key),
+        "state":
+        task_result.State.BOT_DIED,
+        'update_id':
+        12345678000000003
+    })
+    self.assertEqual(2, len(pub_sub_calls))
+
+    # Check that no update was made due to prior update_id
+    task_scheduler.task_buildbucket_update({
+        "task_id":
+        task_pack.pack_result_summary_key(run_result.result_summary_key),
+        "state":
+        task_result.State.CLIENT_ERROR,
+        'update_id':
+        12345678000000001
+    })
+    self.assertEqual(2, len(pub_sub_calls))
+
+    # Check that an update was not sent due to pubsub transient error
+    self.publish_successful = False
+    with self.assertRaises(task_scheduler.Error):
+      task_scheduler.task_buildbucket_update({
+          "task_id":
+          task_pack.pack_result_summary_key(run_result.result_summary_key),
+          "state":
+          task_result.State.CANCELED,
+          'update_id':
+          12345678000000004
+      })
+    self.assertEqual(2, len(pub_sub_calls))
 
   def _bot_update_timeouts(self, hard, io):
     run_result = self._quick_reap()
