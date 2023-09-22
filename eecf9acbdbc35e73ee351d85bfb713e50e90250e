@@ -22,6 +22,30 @@
       },
       "revId": "eecf9acbdbc35e73ee351d85bfb713e50e90250e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6ec5dac_f2d9b0ea",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-22T14:28:16Z",
+      "side": 1,
+      "message": "Good point. It was originally there because I was going to open with statement contextmanager thingie if we needed to. With this code approach I can do it outside of the `luci_context.stage`. Made the necessary code changes to do this.",
+      "parentUuid": "c866011e_db2a58bf",
+      "range": {
+        "startLine": 427,
+        "startChar": 9,
+        "endLine": 434,
+        "endChar": 54
+      },
+      "revId": "eecf9acbdbc35e73ee351d85bfb713e50e90250e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
