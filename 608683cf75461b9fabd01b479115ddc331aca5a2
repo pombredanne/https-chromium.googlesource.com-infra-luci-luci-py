@@ -16,6 +16,23 @@
       "message": "PTAL. This CL will land at the same time with: https://crrev.com/c/4879785.",
       "revId": "608683cf75461b9fabd01b479115ddc331aca5a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e25bf75e_69313964",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-09-25T16:42:51Z",
+      "side": 1,
+      "message": "Um, I think ValidateConfigs just doesn\u0027t need to fail the validation if those fields are not there. It should still validate those fields if they are provided though.",
+      "revId": "608683cf75461b9fabd01b479115ddc331aca5a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
