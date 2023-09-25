@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "586bc1af_d7d2d585",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-25T16:40:26Z",
+      "side": 1,
+      "message": "PTAL. This CL will land at the same time with: https://crrev.com/c/4879785.",
+      "revId": "608683cf75461b9fabd01b479115ddc331aca5a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
