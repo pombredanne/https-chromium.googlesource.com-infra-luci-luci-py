@@ -271,17 +271,18 @@ class TestCheckIdenticalRequest(test_case.TestCase):
     expected_errors = [
         (0, "priority (256) must be between 0 and 255 (inclusive)"),
         (0, "bot_ping_tolerance (1201) must range between 60 and 1200"),
-        (0, "parent_run_id (123) got error: Invalid key u'12'"),
+        (0, u"parent_run_id (123) got error: Invalid key u'12'"),
         (0, ("service_account must be an email, \"bot\" or \"none\""
              " string, got u\'bokbok\'")),
-        (0, ("agent_binary_cipd_pkg must be a valid CIPD package name"
+        (0, (u"agent_binary_cipd_pkg must be a valid CIPD package name"
              " template, got \"agent/package/${platform}??\"")),
         (0, "tag must be in key:value form, not onlykey"),
         (0, "tag must be in key:value form, not "),
         (1, "bot_ping_tolerance (0) must range between 60 and 1200"),
-        (1, ("agent_binary_cipd_pkg must be a valid CIPD package name"
+        (1, (u"agent_binary_cipd_pkg must be a valid CIPD package name"
              " template, got \"\"")),
-        (1, "agent_binary_cipd_vers must be a valid package version, got \"\""),
+        (1,
+         u"agent_binary_cipd_vers must be a valid package version, got \"\""),
         (1, "missing `agent_binary_cipd_filename`"),
     ]
     self.assertEqual(expected_errors, errors)
