@@ -33,6 +33,24 @@
       "message": "Um, I think ValidateConfigs just doesn\u0027t need to fail the validation if those fields are not there. It should still validate those fields if they are provided though.",
       "revId": "608683cf75461b9fabd01b479115ddc331aca5a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c0e8c7c_a77376f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-25T17:01:43Z",
+      "side": 1,
+      "message": "I updated the code (and added a test in `api_helpers_test.py`) to reflect the following logic:\n\n1. If `limited_validation\u003d\u003dFalse`: Validate every field (optional ones are still optional).\n2. Else, validate the limited fields (`bot_ping_tolerance`, `service_account`, `tags`) and optionally validate all other fields.\n\nI updated the commit message to include this.",
+      "parentUuid": "e25bf75e_69313964",
+      "revId": "608683cf75461b9fabd01b479115ddc331aca5a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
