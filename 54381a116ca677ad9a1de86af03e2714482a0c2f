@@ -70,6 +70,30 @@
       },
       "revId": "54381a116ca677ad9a1de86af03e2714482a0c2f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "691a2313_8995a333",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-25T19:32:49Z",
+      "side": 1,
+      "message": "\u003e What fields remain optional in RunTask validation? service_account and tags?\n\nCurrently `parent_run_id`, `service_account`, and `tags` are optional. \n\nI think service_account should actually be required since it is not optional when creating the TaskRequest entity (https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/backend_conversions.py;l\u003d74) for new buildbucket task backend tasks (technically it can be `None` though).\n\nCurrently swarming NewTask has it as \"optional\" (allowing it to be `None`) https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/swarming_rpcs.py;l\u003d487-501\n\nbut for buildbucket build tasks running on task backend we should probably require it? WDYT? Also @vadimsh@chromium.org thoughts?",
+      "parentUuid": "995e1e59_da5e86fb",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 16
+      },
+      "revId": "54381a116ca677ad9a1de86af03e2714482a0c2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
