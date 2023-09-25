@@ -152,28 +152,39 @@ def cache_request(namespace, request_uuid, func):
   return result, False
 
 
-def validate_backend_configs(configs):
-  # type: (Sequence[swarming_pb2.SwarmingTaskBackendConfig]) ->
+def validate_backend_configs(configs, limited_validation=False):
+  # type: (Sequence[swarming_pb2.SwarmingTaskBackendConfig], Bool) ->
   #     Sequence[Tuple[int, str]]
   """Checks the validity of each config.
-
-    Returns a tuple of (i, error_message) where i is the index of the
-    config that has the error.
+    Args
+      configs: The configs that need to be validated.
+      limited_validation: (optional) If set True, only a select set of fields
+      will be validated:
+          - bot_ping_tolerance
+          - service_account
+          - tags
+      This is due to only certain config fields being set at the time
+      task_backend.ValidateConfigs RPC is called (during builder
+      config generation).
+    Return
+      A tuple of (i, error_message) where i is the index of the
+      config that has the error.
   """
   errors = []  # type: Sequence[Tuple[int, str]]
   for i, cfg in enumerate(configs):
     try:
-      task_request.validate_priority(cfg.priority)
+      if not limited_validation:
+        task_request.validate_priority(cfg.priority)
     except (datastore_errors.BadValueError, TypeError) as e:
       errors.append((i, e.message))
 
     try:
-      task_request.validate_ping_tolerance(
-          'bot_ping_tolerance', cfg.bot_ping_tolerance)
+      task_request.validate_ping_tolerance('bot_ping_tolerance',
+                                           cfg.bot_ping_tolerance)
     except datastore_errors.BadValueError as e:
       errors.append((i, e.message))
 
-    if cfg.parent_run_id:  # Optional value.
+    if cfg.parent_run_id and not limited_validation:  # Optional value.
       try:
         task_request.validate_task_run_id('parent_run_id', cfg.parent_run_id)
       except (ValueError, TypeError) as e:
@@ -187,18 +198,20 @@ def validate_backend_configs(configs):
         errors.append((i, e.message))
 
     try:
-      task_request.validate_package_name_template(
-          'agent_binary_cipd_pkg', cfg.agent_binary_cipd_pkg)
+      if not limited_validation:
+        task_request.validate_package_name_template('agent_binary_cipd_pkg',
+                                                    cfg.agent_binary_cipd_pkg)
     except datastore_errors.BadValueError as e:
       errors.append((i, e.message))
 
     try:
-      task_request.validate_package_version(
-          'agent_binary_cipd_vers', cfg.agent_binary_cipd_vers)
+      if not limited_validation:
+        task_request.validate_package_version('agent_binary_cipd_vers',
+                                              cfg.agent_binary_cipd_vers)
     except datastore_errors.BadValueError as e:
       errors.append((i, e.message))
 
-    if not cfg.agent_binary_cipd_filename:
+    if not limited_validation and not cfg.agent_binary_cipd_filename:
       errors.append((i, 'missing `agent_binary_cipd_filename`'))
 
     for tag in cfg.tags:
