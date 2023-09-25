@@ -777,7 +777,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
   def test_schedule_request_no_capacity_backend_task(self):
     # No capacity, denied. That's the default.
     pub_sub_calls = self.mock_pub_sub()
-    self.mock(utils, "time_time", lambda: 12345678)
+    self.mock(utils, "time_time_ns", lambda: 12345678)
     request = _gen_request_slices(pubsub_topic='projects/abc/topics/def',
                                   has_build_task=True,
                                   created_ts=(self.now -
@@ -1918,7 +1918,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             fields=_update_fields_pubsub(http_status_code=200)).sum)
 
   def test_bot_update_buildbucket_pubsub_ok(self):
-    self.mock(utils, "time_time", lambda: 12345678)
+    self.mock(utils, "time_time_ns", lambda: 12345678)
     pub_sub_calls = self.mock_pub_sub()
     run_result = self._quick_reap(
         has_build_task=True,
@@ -1937,7 +1937,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(1, self.execute_tasks())
 
   def test_task_buildbucket_update(self):
-    self.mock(utils, "time_time", lambda: 12345678)
+    self.mock(utils, "time_time_ns", lambda: 12345678)
     pub_sub_calls = self.mock_pub_sub()
     run_result = self._quick_reap(
         has_build_task=True,
