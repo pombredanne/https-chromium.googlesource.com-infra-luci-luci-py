@@ -69,6 +69,24 @@
       "parentUuid": "0c0e8c7c_a77376f9",
       "revId": "608683cf75461b9fabd01b479115ddc331aca5a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b53aca6_ac7fac2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-25T17:15:59Z",
+      "side": 1,
+      "message": "Sorry 😊, `git cl upload` didn\u0027t finish running. See patchset 4!",
+      "parentUuid": "2d611cb9_39009da3",
+      "revId": "608683cf75461b9fabd01b479115ddc331aca5a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
