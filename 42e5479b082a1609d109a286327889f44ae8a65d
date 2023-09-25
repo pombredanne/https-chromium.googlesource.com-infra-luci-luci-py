@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "169f2c1b_404d7a51",
+        "filename": "appengine/auth_service/proto/config_pb2.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-09-25T20:37:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af4f8ea6_64dbb120",
+      "range": {
+        "startLine": 3,
+        "startChar": 8,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "42e5479b082a1609d109a286327889f44ae8a65d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c22cb6b9_83e9e9ac",
         "filename": "appengine/auth_service/proto/import_luci_go.sh",
         "patchSetId": 8
