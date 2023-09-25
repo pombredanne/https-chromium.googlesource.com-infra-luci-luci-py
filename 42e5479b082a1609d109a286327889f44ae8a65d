@@ -88,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de40c99b_1863e84e",
+        "filename": "appengine/auth_service/proto/import_luci_go.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-09-25T20:37:02Z",
+      "side": 1,
+      "message": "Tried this and added too much complexity to migration of protos and compilation, leaving as two simple similar scripts to minimize how complicated a script to write.",
+      "parentUuid": "5f51fb7e_5a42b716",
+      "range": {
+        "startLine": 27,
+        "startChar": 7,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "42e5479b082a1609d109a286327889f44ae8a65d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03f781f5_94dc6e7f",
@@ -135,6 +159,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3899de1d_2297bff3",
+        "filename": "appengine/auth_service/proto/import_luci_go.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-09-25T20:37:02Z",
+      "side": 1,
+      "message": "Changing proto path should be relatively safe, it won\u0027t break normal code. It may break code that tries to work with protos dynamically, but there\u0027s no such code in luci-py.",
+      "parentUuid": "f66ced17_2319557a",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 75,
+        "endChar": 46
+      },
+      "revId": "42e5479b082a1609d109a286327889f44ae8a65d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5feb5722_3ce46902",
@@ -148,6 +196,30 @@
       "writtenOn": "2023-09-13T23:16:42Z",
       "side": 1,
       "message": "2020?",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "42e5479b082a1609d109a286327889f44ae8a65d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67e84cf3_9116640e",
+        "filename": "appengine/components/components/auth/proto/import_luci_go.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-09-25T20:37:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5feb5722_3ce46902",
       "range": {
         "startLine": 2,
         "startChar": 12,
