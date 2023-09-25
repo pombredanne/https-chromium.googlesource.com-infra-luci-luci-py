@@ -51,6 +51,24 @@
       "parentUuid": "e25bf75e_69313964",
       "revId": "608683cf75461b9fabd01b479115ddc331aca5a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d611cb9_39009da3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-09-25T17:09:32Z",
+      "side": 1,
+      "message": "The code is not updated: currently if limited_validation, some fields are not validated even if they are in the config. Should I expect another patch set?",
+      "parentUuid": "0c0e8c7c_a77376f9",
+      "revId": "608683cf75461b9fabd01b479115ddc331aca5a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
