@@ -22,6 +22,30 @@
       },
       "revId": "54381a116ca677ad9a1de86af03e2714482a0c2f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22eb28ca_6f138969",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-25T18:04:47Z",
+      "side": 1,
+      "message": "I can edit the comment (and code) to make them optional. I could make an `optional_mode` instead that makes validation on all fields optional (and if optional mode is off, then full validation occurs).\n\n\u003eAnd bot_ping_tolerance is no difference than agent_binary_xx fields.\n\nNone of the fields are required until RunTask is called, so yeah during ValidateConfigs, we should just validate fields that are provided (and not require any). \n\nWhen Config is presented at the time RunTask is called, a full validation needs to be done (optional ones still remain optional). \n\nWDYT?",
+      "parentUuid": "315bec37_e8776e36",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 16
+      },
+      "revId": "54381a116ca677ad9a1de86af03e2714482a0c2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
