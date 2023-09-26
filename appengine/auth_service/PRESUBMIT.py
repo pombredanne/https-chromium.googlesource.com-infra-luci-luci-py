@@ -34,3 +34,12 @@ def CheckChangeOnUpload(input_api, output_api):
 
 def CheckChangeOnCommit(input_api, output_api):
   return CommonChecks(input_api, output_api)
+
+def CheckPermissionsFooter(input_api, output_api):
+  footers = input_api.change.GitFootersFromDescription().get('permissions.py')
+  if not footers:
+    return []
+
+  return [
+    "change the permissions.cfg file too..."
+  ]
