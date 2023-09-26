@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65bfa027_2c8fdf21",
+        "filename": "appengine/auth_service/proto/config.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-09-26T19:34:33Z",
+      "side": 1,
+      "message": "self reference now? 😊\n\nCan fix in followup on luci-go side and then also here.\nMaybe just point at the new script from luci-go side comment.",
+      "revId": "bf62870688ee78a6ef0c7cdedff6ed47a8bd3b35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "244a4b2a_7cd9a701",
+        "filename": "appengine/auth_service/proto/config.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-09-26T19:34:33Z",
+      "side": 1,
+      "message": "same",
+      "revId": "bf62870688ee78a6ef0c7cdedff6ed47a8bd3b35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01d1d2a4_2efd95f8",
+        "filename": "appengine/auth_service/proto/config.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-09-26T19:34:33Z",
+      "side": 1,
+      "message": "same",
+      "revId": "bf62870688ee78a6ef0c7cdedff6ed47a8bd3b35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

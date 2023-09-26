@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6860320e_cb1d9e73",
+        "filename": "appengine/auth_service/proto/config.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-09-26T19:34:33Z",
+      "side": 0,
+      "message": "did this move? Or is it just unnecessary now?",
+      "revId": "79ca9644b647cd659e82fc5e5de433a0e840971f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
