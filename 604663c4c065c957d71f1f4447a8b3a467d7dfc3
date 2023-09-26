@@ -16,6 +16,24 @@
       "message": "PTAL one more time. I found the same bug as https://crbug.com/1485184 in this code so I made a change to fix it.\n\nI also added a status check for the pubsub messages in task_scheduler_test. These status checks ensure not only that pubsub messages are being sent, but that the correct status is being set.\n\nResolve this comment (or comment on it) if it LG.",
       "revId": "604663c4c065c957d71f1f4447a8b3a467d7dfc3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b98d66a_b9abd7ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-26T13:07:52Z",
+      "side": 1,
+      "message": "Talked offline with Jonah and Sergey, it LG to them.",
+      "parentUuid": "836d88c1_0b541afb",
+      "revId": "604663c4c065c957d71f1f4447a8b3a467d7dfc3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
