@@ -166,7 +166,7 @@ class TaskBackendAPIService(object):
             config.config_json) for config in request.configs
     ]
 
-    errors = api_helpers.validate_backend_configs(configs)
+    errors = api_helpers.validate_backend_configs(configs, True)
 
     return backend_pb2.ValidateConfigsResponse(config_errors=[
         backend_pb2.ValidateConfigsResponse.ErrorDetail(index=i, error=error)
