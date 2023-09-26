@@ -554,7 +554,7 @@ def db():
 
 class Builder(object):
   """Builder is used internally by db() to assemble the permissions DB."""
-
+  #this isa nothr change
   PermRef = collections.namedtuple('PermRef', ['name'])
   RoleRef = collections.namedtuple('RoleRef', ['name'])
 
