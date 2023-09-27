@@ -94,6 +94,30 @@
       },
       "revId": "54381a116ca677ad9a1de86af03e2714482a0c2f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85cd633e_e60c78f4",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-09-27T00:13:37Z",
+      "side": 1,
+      "message": "\u003e I think service_account should actually be required since it is not optional when creating the TaskRequest entity (https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/backend_conversions.py;l\u003d74) for new buildbucket task backend tasks (technically it can be `None` though).\n\nLooking at the code, it\u0027s just using the `service_account` from backend_config, and I don\u0027t see where it requires the value to be not empty. So it WAI for making it optional, right?",
+      "parentUuid": "691a2313_8995a333",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 16
+      },
+      "revId": "54381a116ca677ad9a1de86af03e2714482a0c2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
