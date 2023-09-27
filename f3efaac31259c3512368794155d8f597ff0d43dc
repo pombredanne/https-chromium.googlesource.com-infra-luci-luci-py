@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd1bdbaa_ef7ce676",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-27T21:34:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8130eba9_e846a4ae",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 38
+      },
+      "revId": "f3efaac31259c3512368794155d8f597ff0d43dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "370a5023_79d42c51",
@@ -41,6 +65,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "921cc652_2e6a7fd4",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-27T21:34:23Z",
+      "side": 1,
+      "message": "SGTM. I separated it and have it following the other environment setups.",
+      "parentUuid": "370a5023_79d42c51",
+      "revId": "f3efaac31259c3512368794155d8f597ff0d43dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2859584_fa834898",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-09-27T21:25:10Z",
       "side": 1,
       "message": "logging.exception(...) and ignore it.\n\nit is too late to raise InternalError. Also it is not a big issue.",
+      "range": {
+        "startLine": 456,
+        "startChar": 8,
+        "endLine": 456,
+        "endChar": 72
+      },
+      "revId": "f3efaac31259c3512368794155d8f597ff0d43dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da121795_e71b486b",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-27T21:34:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2859584_fa834898",
       "range": {
         "startLine": 456,
         "startChar": 8,
