@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8130eba9_e846a4ae",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-27T21:25:10Z",
+      "side": 1,
+      "message": "`bb_ctx_tf \u003d None` here\n\notherwise there will be UnboundLocalError if exception happens before bb_ctx_tf is assigned to.",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 38
+      },
+      "revId": "f3efaac31259c3512368794155d8f597ff0d43dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "370a5023_79d42c51",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-27T21:25:10Z",
+      "side": 1,
+      "message": "newline before that line\n\nbasically this code sets up a bunch of environment for the task and the launches the task\n\nbb_ctx_tf is nothing special compared to other setups. It means:\n\n1. It should look structurally like other set ups (e.g. declare vars before try, do something before run_command, do cleanup in finally). \n2. It should not be a separate try:except block. If other things following this convention, we\u0027d had a tower of try:try:try:try:... blocks.\n3. It should not be grouped with other things.",
+      "revId": "f3efaac31259c3512368794155d8f597ff0d43dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2859584_fa834898",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-09-27T21:25:10Z",
+      "side": 1,
+      "message": "logging.exception(...) and ignore it.\n\nit is too late to raise InternalError. Also it is not a big issue.",
+      "range": {
+        "startLine": 456,
+        "startChar": 8,
+        "endLine": 456,
+        "endChar": 72
+      },
+      "revId": "f3efaac31259c3512368794155d8f597ff0d43dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
