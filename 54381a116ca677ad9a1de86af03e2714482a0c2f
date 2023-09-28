@@ -118,6 +118,30 @@
       },
       "revId": "54381a116ca677ad9a1de86af03e2714482a0c2f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "740aaaff_8ba15d52",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-28T17:18:16Z",
+      "side": 1,
+      "message": "OK SGTM, `service_account` will remain optional. I also edited the comment to remove the \"required\".",
+      "parentUuid": "85cd633e_e60c78f4",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 16
+      },
+      "revId": "54381a116ca677ad9a1de86af03e2714482a0c2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
