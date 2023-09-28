@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96ca1078_fe87b0a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-09-28T17:05:16Z",
+      "side": 1,
+      "message": "PTAL. I added some test cases to ensure the file is being written and the content is correct.",
+      "revId": "c6b83b03013f1737a8707a5dfe11eaf4795a6cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
