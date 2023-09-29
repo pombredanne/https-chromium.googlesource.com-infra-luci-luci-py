@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a928c47_8622c477",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-09-29T19:39:15Z",
+      "side": 1,
+      "message": "A bit confused about the docs here. To me this implies that all validations besides those fields listed below get skipped entirely if this flag is set to true. \n\nBut it seems like this applies to `tags` but not `bot_ping_tolerance` which is effected by the value of the flag. \n\nFurther, IUUC, this is the behaviour of `limited_validation` for some fields:\n1. limited_validation\u003dTrue-\u003e We ignore some some of the fields and do not validate them if they are empty. But we will still validate them if they are truthy.\n2. if limited_validation\u003dFalse -\u003e we have to validate these fields, even if they are \"falsey\".\n\nIn the case of `priority` this means we are not actually skipping the validation if it is already set. If `limited_validation\u003dTrue` and `priority\u003eMAX_PRIORITY` then we will have a validation error. Is this the intended behaviour?\n\nWe may prefer something like:\n```\nvalidate(tags)\nvalidate(service_account)\nvalidate(bot_ping_tolerance)\nif not limited_validation:\n  validate(other_fields)\n  ...\n```",
+      "range": {
+        "startLine": 161,
+        "startChar": 6,
+        "endLine": 165,
+        "endChar": 16
+      },
+      "revId": "532e3885997b404cdb63a95f7d723db7257f4717",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d558806d_da2c4371",
         "filename": "appengine/swarming/handlers_task_backend_test.py",
         "patchSetId": 7
