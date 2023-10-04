@@ -16,6 +16,29 @@
       "message": "I\u0027ve put this presubmit warning together for freezing, lmk what you think",
       "revId": "2bd713d80edc3a0893b561d619a6ea696292044a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "354a99af_52511d3f",
+        "filename": "appengine/auth_service/realms/PRESUBMIT.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-10-04T17:35:37Z",
+      "side": 1,
+      "message": "imo this is not enough; I would make this an error which requires the CL to also include a footer in the commit.",
+      "range": {
+        "startLine": 13,
+        "startChar": 21,
+        "endLine": 13,
+        "endChar": 43
+      },
+      "revId": "2bd713d80edc3a0893b561d619a6ea696292044a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
