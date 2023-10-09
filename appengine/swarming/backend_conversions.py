@@ -10,7 +10,7 @@ import logging
 
 from google.appengine.api import app_identity
 from google.appengine.api import datastore_errors
-from google.protobuf import json_format
+from google.protobuf import json_format, struct_pb2
 
 import handlers_exceptions
 from components import utils
@@ -290,3 +290,8 @@ def convert_task_state_to_status(state, failure, task):
       task.summary_html = ('Task completed with failure.')
     else:
       task.status = common_pb2.SUCCESS
+
+
+def insert_bot_dimensions_into_task(bot_dimensions, task):
+  if bot_dimensions:
+    json_format.ParseDict({"bot_dimensions": bot_dimensions}, task.details)
