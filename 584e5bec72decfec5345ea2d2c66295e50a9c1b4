@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc1652dc_0ec388fc",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-10-10T18:42:44Z",
+      "side": 0,
+      "message": "this comment was stale, nothing is being unset",
+      "range": {
+        "startLine": 621,
+        "startChar": 6,
+        "endLine": 622,
+        "endChar": 40
+      },
+      "revId": "584e5bec72decfec5345ea2d2c66295e50a9c1b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ca6f9e3_a63db3cd",
+        "filename": "appengine/swarming/message_conversion_prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-10-10T18:42:44Z",
+      "side": 0,
+      "message": "there\u0027s no need to populate defaults, it just leads to inconsistencies when new fields with default values are added, but get forgotten to be specified here (because adding them doesn\u0027t break any tests)",
+      "range": {
+        "startLine": 626,
+        "startChar": 6,
+        "endLine": 629,
+        "endChar": 19
+      },
+      "revId": "584e5bec72decfec5345ea2d2c66295e50a9c1b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

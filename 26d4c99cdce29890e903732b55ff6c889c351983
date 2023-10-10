@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cf99e19_31037d9c",
+        "filename": "appengine/swarming/message_conversion_prpc_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-10-10T18:42:44Z",
+      "side": 1,
+      "message": "new",
+      "range": {
+        "startLine": 30,
+        "startChar": 38,
+        "endLine": 30,
+        "endChar": 52
+      },
+      "revId": "26d4c99cdce29890e903732b55ff6c889c351983",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdc3b8cb_a3afc79b",
+        "filename": "appengine/swarming/message_conversion_prpc_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-10-10T18:42:44Z",
+      "side": 1,
+      "message": "new\n\nthe rest of fields are just sorted alphabetically in vain attempt to keep track if all fields are being exercised",
+      "range": {
+        "startLine": 32,
+        "startChar": 38,
+        "endLine": 34,
+        "endChar": 65
+      },
+      "revId": "26d4c99cdce29890e903732b55ff6c889c351983",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
