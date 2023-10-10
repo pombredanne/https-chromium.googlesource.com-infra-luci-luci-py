@@ -465,9 +465,9 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
       queued_tasks += 1
 
     if kwargs.get('has_build_task', False):
-      self.assertEqual(1,
+      # Should not be making a pubsub call to buildbucket.
+      self.assertEqual(0,
                        len(self._taskqueue_stub.GetTasks('buildbucket-notify')))
-      queued_tasks += 1
 
     self.assertEqual(queued_tasks, self.execute_tasks())
     return run_result
@@ -504,7 +504,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertIsNone(to_run_key.get().expiration_ts)
 
   def test_bot_reap_build_task(self):
-    pub_sub_calls = self.mock_pub_sub()
     run_result = self._quick_reap(
         has_build_task=True,
         build_task=task_request.BuildTask(
@@ -519,10 +518,6 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         run_result.request_key.get(), 0)
     self.assertIsNone(to_run_key.get().queue_number)
     self.assertIsNone(to_run_key.get().expiration_ts)
-    self.assertEqual(1, len(pub_sub_calls))
-    self.assertEqual(pub_sub_calls[0][1]["topic"], "backend_pubsub_topic")
-    self._assert_buildbucket_update_status(pub_sub_calls[0][1]['message'],
-                                           common_pb2.STARTED)
 
   @parameterized.expand([
       ({
@@ -806,11 +801,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(State.NO_RESOURCE, result_summary.state)
     self.execute_tasks()
 
-    self.assertEqual(2, len(pub_sub_calls))
-    self.assertEqual(pub_sub_calls[0][1]["topic"], "backend_pubsub_topic")
-    self._assert_buildbucket_update_status(pub_sub_calls[0][1]['message'],
-                                           common_pb2.INFRA_FAILURE)
-    self.assertEqual(pub_sub_calls[1][1]["topic"], "projects/abc/topics/def")
+    self.assertEqual(1, len(pub_sub_calls))
+    self.assertEqual(pub_sub_calls[0][1]["topic"], "projects/abc/topics/def")
     status = State.to_string(State.NO_RESOURCE)
     self.assertLessEqual(
         0,
@@ -1945,19 +1937,14 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(
         State.COMPLETED,
         _bot_update_task(run_result.key, exit_code=0, duration=0.1))
-    # 2 calls because _quick_reap sends one and _bot_update_task sends another
-    self.assertEqual(2, len(pub_sub_calls))
+    # 1 calls because only _bot_update_task sends one
+    self.assertEqual(1, len(pub_sub_calls))
     self.assertEqual(1, self.execute_tasks())
 
-    # Asserting that first pubsub call sent a STARTED status (_quick_reap ran)
+    # Asserting that the only pubsub call sent a SUCCESS status
     self._assert_buildbucket_update_status(pub_sub_calls[0][1]['message'],
-                                           common_pb2.STARTED)
-    self.assertEqual(pub_sub_calls[0][1]["topic"], "backend_pubsub_topic")
-
-    # Asserting that second pubsub call sent a SUCCESS status
-    self._assert_buildbucket_update_status(pub_sub_calls[1][1]['message'],
                                            common_pb2.SUCCESS)
-    self.assertEqual(pub_sub_calls[1][1]["topic"], "backend_pubsub_topic")
+    self.assertEqual(pub_sub_calls[0][1]["topic"], "backend_pubsub_topic")
 
   def test_bot_update_buildbucket_pubsub_ok_failed_task(self):
     self.mock(utils, "time_time", lambda: 12345678)
@@ -1973,16 +1960,13 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
     self.assertEqual(
         State.COMPLETED,
         _bot_update_task(run_result.key, exit_code=1, duration=0.1))
-    self.assertEqual(2, len(pub_sub_calls))  # notification is sent
+    self.assertEqual(1,
+                     len(pub_sub_calls))  # non-buildbucket notification is sent
     self.assertEqual(1, self.execute_tasks())
 
     self._assert_buildbucket_update_status(pub_sub_calls[0][1]['message'],
-                                           common_pb2.STARTED)
-    self.assertEqual(pub_sub_calls[0][1]["topic"], "backend_pubsub_topic")
-
-    self._assert_buildbucket_update_status(pub_sub_calls[1][1]['message'],
                                            common_pb2.FAILURE)
-    self.assertEqual(pub_sub_calls[1][1]["topic"], "backend_pubsub_topic")
+    self.assertEqual(pub_sub_calls[0][1]["topic"], "backend_pubsub_topic")
 
   def test_task_buildbucket_update(self):
     self.mock(utils, "time_time_ns", lambda: 12345678)
@@ -1996,7 +1980,10 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             pubsub_topic="backend_pubsub_topic",
             update_id=0))
 
-    # Check that an update is not sent due to no change of state
+    # Check that an update was not sent due to no change of state.
+    # This is because _reap_task will update the state with RUNNING
+    # and will send an update via buildbuckets StartBuildTask RPC.
+    # Thus, an update via pubsub is not needed.
     task_scheduler.task_buildbucket_update({
         "task_id":
         task_pack.pack_result_summary_key(run_result.result_summary_key),
@@ -2005,13 +1992,7 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
         'update_id':
         12345678000000002
     })
-    self.assertEqual(1, len(pub_sub_calls))  # notification is sent
-    result = task_pb2.BuildTaskUpdate()
-    result.ParseFromString(pub_sub_calls[0][1]['message'])
-    self.assertEqual(result.task.status, common_pb2.STARTED)
-    self.assertEqual(result.build_id, "1234")
-    self.assertEqual(result.task.id.id, "1d69b9f088008910")
-    self.assertEqual(result.task.update_id, 12345678)
+    self.assertEqual(1, len(pub_sub_calls))
 
     # Check that an update is sent due to change of state
     task_scheduler.task_buildbucket_update({
@@ -2260,9 +2241,9 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             latest_task_status=task_result.State.PENDING,
             pubsub_topic="backend_pubsub_topic",
             update_id=0))
-    self.assertEqual(2, len(pub_sub_calls))  # PENDING -> RUNNING
-    self._assert_buildbucket_update_status(pub_sub_calls[0][1]['message'],
-                                           common_pb2.STARTED)
+    # only a pubsub call to 'projects/abc/topics/def' was made.
+    # no pubsub call was made to buildbucket.
+    self.assertEqual(1, len(pub_sub_calls))  # PENDING -> RUNNING
 
     self.assertEqual(
         None,
@@ -2286,8 +2267,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                                     state=State.BOT_DIED)
     self.assertEqual(expected, run_result.key.get().to_dict())
     self.assertEqual(2, self.execute_tasks())
-    self.assertEqual(4, len(pub_sub_calls))  # RUNNING -> BOT_DIED
-    self._assert_buildbucket_update_status(pub_sub_calls[2][1]['message'],
+    self.assertEqual(3, len(pub_sub_calls))  # RUNNING -> BOT_DIED
+    self._assert_buildbucket_update_status(pub_sub_calls[1][1]['message'],
                                            common_pb2.INFRA_FAILURE)
     status = State.to_string(State.BOT_DIED)
     self.assertLessEqual(
@@ -3259,10 +3240,8 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
             latest_task_status=task_result.State.PENDING,
             pubsub_topic="backend_pubsub_topic",
             update_id=0))
-    # 2 because pubsub_nofity + bb update
-    self.assertEqual(2, len(pub_sub_calls))  # PENDING -> RUNNING
-    self._assert_buildbucket_update_status(pub_sub_calls[0][1]['message'],
-                                           common_pb2.STARTED)
+    # 1 because pubsub_nofity
+    self.assertEqual(1, len(pub_sub_calls))  # PENDING -> RUNNING
     request = run_result.request_key.get()
 
     key = task_to_run.request_to_task_to_run_key(request, 0)
@@ -3276,8 +3255,9 @@ class TaskSchedulerApiTest(test_env_handlers.AppTestBase):
                      task_scheduler.cron_handle_bot_died())
     #2 because pubsub_nofity + bb update TQ tasks were executed
     self.assertEqual(2, self.execute_tasks())
-    self.assertEqual(4, len(pub_sub_calls))  # RUNNING -> COMPLETED
-    self._assert_buildbucket_update_status(pub_sub_calls[2][1]['message'],
+    # 3 because 2 were added. pubsub_nofity + bb update
+    self.assertEqual(3, len(pub_sub_calls))  # RUNNING -> COMPLETED
+    self._assert_buildbucket_update_status(pub_sub_calls[1][1]['message'],
                                            common_pb2.INFRA_FAILURE)
     self.assertEqual(False, task_to_run.Claim.check(key))
     status = State.to_string(State.BOT_DIED)
