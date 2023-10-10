@@ -39,6 +39,30 @@
       },
       "revId": "2bd713d80edc3a0893b561d619a6ea696292044a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff85cb25_e0e41916",
+        "filename": "appengine/auth_service/realms/PRESUBMIT.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-10-10T01:27:24Z",
+      "side": 1,
+      "message": "Okay, I added it to require the \"Ignore-Freeze\" footer.",
+      "parentUuid": "354a99af_52511d3f",
+      "range": {
+        "startLine": 13,
+        "startChar": 21,
+        "endLine": 13,
+        "endChar": 43
+      },
+      "revId": "2bd713d80edc3a0893b561d619a6ea696292044a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
