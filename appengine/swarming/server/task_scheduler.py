@@ -19,10 +19,11 @@ import uuid
 
 from google.appengine.api import app_identity
 from google.appengine.ext import ndb
-from google.protobuf import struct_pb2, json_format
+from google.protobuf import struct_pb2
 
 from components import auth
 from components import datastore_utils
+from components import prpc
 from components import pubsub
 from components import utils
 
@@ -43,6 +44,8 @@ from server import task_request
 from server import task_result
 from server import task_to_run
 
+from bb.go.chromium.org.luci.buildbucket.proto import builds_service_pb2
+from bb.go.chromium.org.luci.buildbucket.proto import builds_service_prpc_pb2
 from bb.go.chromium.org.luci.buildbucket.proto import task_pb2
 
 
@@ -175,7 +178,8 @@ def _expire_slice_tx(request, to_run_key, terminal_state, capacity, es_cfg):
   _maybe_taskupdate_notify_via_tq(result_summary,
                                   request,
                                   es_cfg,
-                                  transactional=True)
+                                  transactional=True,
+                                  buildbucket_update=True)
   if new_to_run and request.rbe_instance:
     rbe.enqueue_rbe_task(request, new_to_run)
   for f in futures:
@@ -297,10 +301,18 @@ def _reap_task(bot_dimensions,
   if request.task_slice(slice_index).properties.has_secret_bytes:
     keys_to_fetch.append(request.secret_bytes_key)
 
+    # Secret Bytes are required if the task is a buildbucket task backend task.
+    # Therefore nesting this ensures that secret_bytes_key will be in
+    # keys_to_fetch and it will be in position [2] so that build_task_key (if
+    # exists) will be in position [3].
+    if request.has_build_task:
+      keys_to_fetch.append(request.build_task_key)
+
   def run():
     entities = ndb.get_multi(keys_to_fetch)
     to_run, result_summary = entities[0], entities[1]
-    secret_bytes = entities[2] if len(entities) == 3 else None
+    secret_bytes = entities[2] if len(entities) >= 3 else None
+    build_task = entities[3] if len(entities) == 4 else None
     orig_summary_state = result_summary.state
 
     if not to_run:
@@ -355,10 +367,57 @@ def _reap_task(bot_dimensions,
     ndb.put_multi([to_run, run_result, result_summary])
     state_changed = result_summary.state != orig_summary_state
     if result_summary.state != orig_summary_state:
+      if build_task:
+        # The task has started, so we must call buildbucket StartBuildTask RPC.
+        # Set buildbucket_update to False since StartBuildTask will be used.
+        hostname = app_identity.get_default_version_hostname()
+        update_id = utils.time_time_ns()
+        buildbucket_task = task_pb2.Task(
+            id=task_pb2.TaskID(
+                id=result_summary.task_id,
+                target="swarming://%s" % app_identity.get_application_id(),
+            ),
+            update_id=update_id,
+            link="https://%s/task?id=%s&o=true&w=true" %
+            (hostname, result_summary.task_id),
+            details=struct_pb2.Struct())
+        backend_conversions.convert_task_state_to_status(
+            result_summary.state, result_summary.failure, buildbucket_task)
+        # At this point in time bot_dimensions have not been associated
+        # with the BuildTask yet, so we must associate them now.
+        build_task.bot_dimensions = bot_dimensions
+        backend_conversions.insert_bot_dimensions_into_task(
+            bot_dimensions, buildbucket_task)
+        req = builds_service_pb2.StartBuildTaskRequest(
+            request_id=result_summary.task_id,
+            build_id=build_task.build_id,
+            task=buildbucket_task)
+        bb_client = prpc.Client(hostname=build_task.buildbucket_host,
+                                service_description=builds_service_prpc_pb2.
+                                BuildsServiceDescription)
+        try:
+          resp = bb_client.StartBuildTask(
+              req, metadata={"x-buildbucket-token": secret_bytes.secret_bytes})
+          if resp:
+            # Store the secrets in secret_bytes so that
+            # it can be passed to the bot for use with a buildbucket agent.
+            # The contents of secrets should be the StartBuildToken and the
+            # ResultdbInvocationUpdateToken.
+            secret_bytes.secret_bytes = resp.secrets.SerializeToString()
+            # Store the pubsub_topic that will be used to send BuildTaskUpdate
+            # messages to buildbucket.
+            build_task.pubsub_topic = resp.pubsub_topic
+            build_task.latest_task_status = result_summary.state
+            build_task.update_id = update_id
+            ndb.put_multi([build_task, secret_bytes])
+        except prpc.client.RpcError as rpce:
+          logging.error('RpcError for StartBuildTask(%s): %s\n' % (req, rpce))
+          raise rpce
       _maybe_taskupdate_notify_via_tq(result_summary,
                                       request,
                                       es_cfg,
-                                      transactional=True)
+                                      transactional=True,
+                                      buildbucket_update=False)
       state_changed = True
     return run_result, secret_bytes, result_summary, to_run, state_changed
 
@@ -497,7 +556,8 @@ def _detect_dead_task_async(run_result_key):
       _maybe_taskupdate_notify_via_tq(result_summary,
                                       request,
                                       es_cfg,
-                                      transactional=True)
+                                      transactional=True,
+                                      buildbucket_update=True)
     yield futures
     latency = utils.utcnow() - actual_state_change_time
     logging.warning('Task state was successfully updated. task: %s',
@@ -589,8 +649,11 @@ def _maybe_pubsub_send_build_task_update(bb_task, build_id, pubsub_topic):
   return True
 
 
-def _maybe_taskupdate_notify_via_tq(result_summary, request, es_cfg,
-                                    transactional):
+def _maybe_taskupdate_notify_via_tq(result_summary,
+                                    request,
+                                    es_cfg,
+                                    transactional,
+                                    buildbucket_update=False):
   """Enqueues tasks to send PubSub, es, and bb notifications for given request.
 
   Arguments:
@@ -599,6 +662,8 @@ def _maybe_taskupdate_notify_via_tq(result_summary, request, es_cfg,
     es_cfg: a pool_config.ExternalSchedulerConfig instance if one exists
             for this task, or None otherwise.
     transactional: if runs as part of a db transaction.
+    buildbucket_update: sends an update to buildbucket if True and
+                        request.has_build_task is True.
 
   Raises CommitError on errors (to abort the transaction).
   """
@@ -631,7 +696,7 @@ def _maybe_taskupdate_notify_via_tq(result_summary, request, es_cfg,
     external_scheduler.notify_requests(
         es_cfg, [(request, result_summary)], True, False)
 
-  if request.has_build_task:
+  if buildbucket_update and request.has_build_task:
     payload = {
         'task_id': task_id,
         'state': result_summary.state,
@@ -673,11 +738,6 @@ def _buildbucket_update(request_key, run_result_state, update_id):
     bot_dimensions = build_task.bot_dimensions
   else:
     bot_dimensions = result_summary.bot_dimensions
-
-  task_details_struct = struct_pb2.Struct()
-  if bot_dimensions:
-    json_format.ParseDict({"bot_dimensions": bot_dimensions},
-                          task_details_struct)
   task_id = task_pack.pack_result_summary_key(
       task_pack.request_key_to_result_summary_key(request_key))
   bb_task = task_pb2.Task(id=task_pb2.TaskID(
@@ -685,10 +745,11 @@ def _buildbucket_update(request_key, run_result_state, update_id):
       target="swarming://%s" % app_identity.get_application_id(),
   ),
                           update_id=update_id,
-                          details=task_details_struct)
+                          details=struct_pb2.Struct())
   backend_conversions.convert_task_state_to_status(run_result_state,
                                                    result_summary.failure,
                                                    bb_task)
+  backend_conversions.insert_bot_dimensions_into_task(bot_dimensions, bb_task)
   update_buildbucket_pubsub_success = _maybe_pubsub_send_build_task_update(
       bb_task, build_task.build_id, build_task.pubsub_topic)
   # Caller must retry if PubSub enqueue fails with a transient error.
@@ -1090,7 +1151,8 @@ def _cancel_task_tx(request,
   _maybe_taskupdate_notify_via_tq(result_summary,
                                   request,
                                   es_cfg,
-                                  transactional=True)
+                                  transactional=True,
+                                  buildbucket_update=True)
 
   # Enqueue TQ tasks to cancel RBE reservations if in the RBE mode.
   if request.rbe_instance:
@@ -1538,10 +1600,17 @@ def schedule_request(request,
   # Either the task was deduped, or forcibly refused. Notify through PubSub.
   if result_summary.state != task_result.State.PENDING:
     # TODO(vadimsh): This should be moved into txn() above.
+    #
+    # We do not send a task backend update to buildbucket because this function
+    # returns to RunTask, which will update buildbucket itself. Also, the
+    # pubsub topic used to send buildbucket updates is not avaiable at this
+    # time since it is returned by StartBuildTaskResponse, which is called
+    # in task_scheduler._reap_task().
     _maybe_taskupdate_notify_via_tq(result_summary,
                                     request,
                                     es_cfg,
-                                    transactional=False)
+                                    transactional=False,
+                                    buildbucket_update=False)
     ts_mon_metrics.on_task_status_change_scheduler_latency(result_summary)
   return result_summary
 
@@ -1949,7 +2018,8 @@ def bot_terminate_task(run_result_key, bot_id, start_time, client_error):
     _maybe_taskupdate_notify_via_tq(result_summary,
                                     request,
                                     es_cfg,
-                                    transactional=True)
+                                    transactional=True,
+                                    buildbucket_update=True)
     for f in futures:
       f.check_success()
     latency = utils.utcnow() - actual_state_change_time
