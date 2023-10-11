@@ -630,7 +630,7 @@ class BuildTask(ndb.Model):
   latest_task_status = ndb.IntegerProperty(required=True, indexed=False)
   # The pubsub topic name that will be used to send UpdateBuildTask
   # messages to buildbucket.
-  pubsub_topic = ndb.StringProperty(required=True, indexed=False)
+  pubsub_topic = ndb.StringProperty(required=True, indexed=False, default="")
   # Bot dimensions for the task. Stored when bot_update_task is first called for
   # a task backend build, thus that bot_update_task does not have to make any
   # more extra datastore calls in subsequent bot_update_task calls.

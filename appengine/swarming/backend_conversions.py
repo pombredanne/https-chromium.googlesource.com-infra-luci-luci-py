@@ -10,7 +10,7 @@ import logging
 
 from google.appengine.api import app_identity
 from google.appengine.api import datastore_errors
-from google.protobuf import json_format
+from google.protobuf import json_format, struct_pb2
 
 import handlers_exceptions
 from components import utils
@@ -44,15 +44,16 @@ def compute_task_request(run_task_req):
       build_id=run_task_req.build_id,
       buildbucket_host=run_task_req.buildbucket_host,
       latest_task_status=task_result.State.PENDING,
-      pubsub_topic=run_task_req.pubsub_topic,
       update_id=utils.time_time_ns())
 
   # NOTE: secret_bytes cannot be passed via `-secret_bytes` in `command`
   # because tasks in swarming can view command details of other tasks.
-  secret_bytes = None
-  if run_task_req.secrets:
-    secret_bytes = task_request.SecretBytes(
-        secret_bytes=run_task_req.secrets.SerializeToString())
+  #
+  # We are storing the start_build_task_token in secret bytes here.
+  # When the task starts up, StartBuildTask will be called and will return the
+  # StartBuildToken which will be stored in task_request.SecretBytes.
+  secret_bytes = task_request.SecretBytes(
+      secret_bytes=str(run_task_req.start_build_task_token))
 
   backend_config = ingest_backend_config_with_default(
       run_task_req.backend_config)
@@ -290,3 +291,8 @@ def convert_task_state_to_status(state, failure, task):
       task.summary_html = ('Task completed with failure.')
     else:
       task.status = common_pb2.SUCCESS
+
+
+def insert_bot_dimensions_into_task(bot_dimensions, task):
+  if bot_dimensions:
+    json_format.ParseDict({"bot_dimensions": bot_dimensions}, task.details)

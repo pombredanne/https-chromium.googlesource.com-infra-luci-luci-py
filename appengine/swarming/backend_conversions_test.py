@@ -58,7 +58,7 @@ class TestBackendConversions(test_case.TestCase):
     self.mock(task_pack, 'unpack_run_result_key', lambda _: None)
 
     run_task_req = backend_pb2.RunTaskRequest(
-        secrets=launcher_pb2.BuildSecrets(build_token='tok'),
+        start_build_task_token='token',
         realm='some:realm',
         build_id='4242',
         agent_args=['-fantasia', 'pegasus'],
@@ -81,20 +81,16 @@ class TestBackendConversions(test_case.TestCase):
                 'agent_binary_cipd_vers':
                 struct_pb2.Value(string_value='latest'),
                 'tags':
-                  struct_pb2.Value(list_value=struct_pb2.ListValue(
-                      values=[
-                          struct_pb2.Value(string_value ='k1:v1'),
-                          struct_pb2.Value(string_value ='k2:v2'),
-                      ],
-                  )),
+                struct_pb2.Value(list_value=struct_pb2.ListValue(values=[
+                    struct_pb2.Value(string_value='k1:v1'),
+                    struct_pb2.Value(string_value='k2:v2'),
+                ], )),
             }),
         grace_period=duration_pb2.Duration(seconds=grace_secs),
         execution_timeout=duration_pb2.Duration(seconds=exec_secs),
         start_deadline=timestamp_pb2.Timestamp(seconds=start_deadline_secs),
         dimensions=[req_dim_prpc('required-1', 'req-1')],
-        register_backend_task_token='token-token-token',
         buildbucket_host='cow-buildbucket.appspot.com',
-        pubsub_topic="my_subscription_topic",
     )
 
     expected_slice = task_request.TaskSlice(
@@ -127,13 +123,11 @@ class TestBackendConversions(test_case.TestCase):
         has_build_task=True,
         manual_tags=['k1:v1', 'k2:v2'])
 
-    expected_sb = task_request.SecretBytes(
-        secret_bytes=run_task_req.secrets.SerializeToString())
+    expected_sb = task_request.SecretBytes(secret_bytes='token')
     expected_bt = task_request.BuildTask(
         build_id='4242',
         buildbucket_host='cow-buildbucket.appspot.com',
         latest_task_status=task_result.State.PENDING,
-        pubsub_topic="my_subscription_topic",
         update_id=1546398000000000000)
 
     actual_tr, actual_sb, actual_bt = backend_conversions.compute_task_request(
