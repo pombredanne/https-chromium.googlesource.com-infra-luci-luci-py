@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "852d3136_74e24229",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-10-11T17:32:52Z",
+      "side": 1,
+      "message": "Calling RPCs in transactions is not safe:\n1. The transaction can be rolled back or be failed to commit, but the RPC is already done.\n2. There\u0027ll be a race condition between the RPC handler and the transaction. If the handler is fast enough, it will see pre-committed state.\n3. A transaction can get retried, resulting in multiple RPCs.\n\nThis RPC need to happen from a transactionally enqueued task (submitted by _maybe_taskupdate_notify_via_tq in this case). That way the RPC will happen if and only if the transaction lands (but RPC or the TQ handler still needs to be idempotent, since a TQ task may be delivered more than once due to transient errors and retries).",
+      "range": {
+        "startLine": 399,
+        "startChar": 10,
+        "endLine": 400,
+        "endChar": 79
+      },
+      "revId": "2184416b3eb0fe84f569986fd0818fd92423c898",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
