@@ -22,6 +22,30 @@
       },
       "revId": "2184416b3eb0fe84f569986fd0818fd92423c898",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d30867fc_b3eec697",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-10-12T17:19:47Z",
+      "side": 1,
+      "message": "\u003e Calling RPCs in transactions is not safe\n\nI understand this\n\n\u003e This RPC need to happen from a transactionally enqueued task\n\nI don\u0027t think TQ is the right choice here. \n\n`StartBuildTask` needs to return before `bot/poll` or `bot/claim` returns. This is because the `secret_bytes` that get updated with `StartBuildTaskResponse.Secrets` are used to construct the `BuildbucketAgentContext` file. `secret_bytes` is returned by `task_scheduler.bot_claim_slice` (or `task_scheduler.bot_reap_task`).\nand in both of those functions they use `_reap_task`, which is why I\u0027m editing it. \n\nI think that the `StartBuildTask` RPC call can be pulled out of the transaction, but it should happen right after the transaction (right after this call https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_scheduler.py;l\u003d371-372)\n\nWDYT?",
+      "parentUuid": "852d3136_74e24229",
+      "range": {
+        "startLine": 399,
+        "startChar": 10,
+        "endLine": 400,
+        "endChar": 79
+      },
+      "revId": "2184416b3eb0fe84f569986fd0818fd92423c898",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
