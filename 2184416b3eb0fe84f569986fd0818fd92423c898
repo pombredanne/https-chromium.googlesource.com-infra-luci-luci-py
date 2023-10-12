@@ -46,6 +46,30 @@
       },
       "revId": "2184416b3eb0fe84f569986fd0818fd92423c898",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e5ca29b_aa9d86f0",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-10-12T19:26:29Z",
+      "side": 1,
+      "message": "Doing it outside of the transaction leads to a problem of handling retries. _reap_task can crash at any point. The bot will retry calling the corresponding RPC endpoint.\n\nFor concreteness, there\u0027s /bot/claim endpoint. When a bot calls it the following happens:\n1. bot_claim_slice fetches the current state of the task. If it sees it is already assigned to this bot (or some other bot), it does nothing, returning either success (if the task is already assigned to the requesting bot) or an error (if some other bot got it).\n2. Otherwise it calls _reap_task.\n3. _reap_task opens a transaction, then does the exact same checks as in (1) again (because the state of the task could have changed), and if the task is still unassigned, actually makes datastore write to assign it to the bot. In the same transaction, it also enqueues a TQ task that eventually propagates this event wherever it is needed.\n\nThat way /bot/claim is 100% idempotent. If the handler crashes at any point, the bot can safely call /bot/claim again. If the transaction on a previous attempt actually landed, the handle will exit early without hitting _reap_task at all.\n\n/bot/poll does something similar (except worse and more buggy).\n\nThis makes StartBuildTask call problematic. If I understand correctly, it serves two purposes:\n1. Getting the secret bytes and pubsub topic from BB.\n2. Updating the state of the build on BB side to \"started\" (?).\n\nPart 1 need to happen before the transaction lands (because we need the secret bytes to land it), but part 2 needs to happen only after the transaction lands successfully.\n\nI think we\u0027ll have to split this RPC into two because of that. If we keep it as one, and call it after the transaction, then if the /bot/claim crashes, StartBuildTask may not be called on a retry (in case the transaction actually landed, and /bot/claim notices that). We could theoretically modify /bot/claim (and /bot/poll) to be aware of this and retry StartBuildTask itself, but I think it will be messy. If we go this route, we should pull it out of _reap_task completely (basically I\u0027m against splitting retry handling logic across multiple layers, it should be in one layer).\n\n-----------\n\n\nSeparate question: why can\u0027t be secret populate when the task is submitted, just as it usually happens for secrets? What is the purpose of delaying this until the bot picks up the task?\n\nGenerally, task backends supposed to be wrappers over original task distribution API. I don\u0027t like that BB task backend is getting more and more invasive integration into Swarming.",
+      "parentUuid": "d30867fc_b3eec697",
+      "range": {
+        "startLine": 399,
+        "startChar": 10,
+        "endLine": 400,
+        "endChar": 79
+      },
+      "revId": "2184416b3eb0fe84f569986fd0818fd92423c898",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
