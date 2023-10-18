@@ -181,6 +181,10 @@ def validate_oauth_config(conf, ctx):
   except ValueError as exc:
     ctx.error(str(exc))
 
+@validation.self_rule('permissions.cfg', config_pb2.PermissionsConfig)
+def validate_permissions_config(conf, ctx):
+  return True
+
 
 # Simple auth_service own configs stored in the datastore as plain text.
 # They are different from imports.cfg (no GUI to update them other), and from
@@ -458,6 +462,10 @@ def _update_oauth_config(root, _rev, conf):
   root.populate(**new_as_dict)
   return True
 
+def _update_permissions_config(root, rev, conf):
+  logging.info('updating permissions.cfg...')
+  return True
+
 
 ### SecurityConfig ingestion.
 
@@ -519,6 +527,12 @@ _CONFIG_SCHEMAS = {
         'proto_class': config_pb2.OAuthConfig,
         'revision_getter': lambda: _get_authdb_config_rev_async('oauth.cfg'),
         'updater': _update_oauth_config,
+        'use_authdb_transaction': True,
+    },
+    'permissions.cfg': {
+        'proto_class': config_pb2.PermissionsConfig,
+        'revision_getter': lambda: _get_authdb_config_rev_async('permissions.cfg'),
+        'updater': _update_permissions_config,
         'use_authdb_transaction': True,
     },
     'settings.cfg': {
