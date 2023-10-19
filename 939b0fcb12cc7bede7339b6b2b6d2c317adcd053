@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e801cab8_ade5ccf1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-10-19T14:23:52Z",
+      "side": 1,
+      "message": "Should this be \"golang GAE\"?",
+      "range": {
+        "startLine": 18,
+        "startChar": 46,
+        "endLine": 18,
+        "endChar": 56
+      },
+      "revId": "939b0fcb12cc7bede7339b6b2b6d2c317adcd053",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fce2d6e5_7d8f79fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-10-19T14:23:52Z",
+      "side": 1,
+      "message": "LGTM!\n\nI\u0027m confused about how this works with backwards compatibility - is datastore storing this as compressed (with `zlib`) if the `compressed\u003dTrue` is set? \n\nIf that is the case, then if the `golang` code decides to read an older entity (say for UI2 or swarming cli call) will it be able to interpret a previously stored value?",
+      "revId": "939b0fcb12cc7bede7339b6b2b6d2c317adcd053",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
