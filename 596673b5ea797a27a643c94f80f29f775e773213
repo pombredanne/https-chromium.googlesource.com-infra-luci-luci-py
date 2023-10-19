@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13c5c3f0_42af87ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-10-19T15:59:33Z",
+      "side": 1,
+      "message": "lgtm, but I think vadim and/or jonah should give the stamp 😊",
+      "revId": "596673b5ea797a27a643c94f80f29f775e773213",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71d3d56e_6ad3207d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1161,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2023-10-19T15:59:33Z",
+      "side": 1,
+      "message": "I think this change will need a PSA to luci-announce with some basic rationale",
+      "revId": "596673b5ea797a27a643c94f80f29f775e773213",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
