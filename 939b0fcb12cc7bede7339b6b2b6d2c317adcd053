@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "424a8e8e_a27d37ec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-10-19T17:04:28Z",
+      "side": 1,
+      "message": "No, I meant Python GAE. Whatever golang stores (be it compressed or not), Python GAE will treat as decompressed, because it will see \"meaning_uri\" empty.",
+      "parentUuid": "e801cab8_ade5ccf1",
+      "range": {
+        "startLine": 18,
+        "startChar": 46,
+        "endLine": 18,
+        "endChar": 56
+      },
+      "revId": "939b0fcb12cc7bede7339b6b2b6d2c317adcd053",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "fce2d6e5_7d8f79fb",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -37,6 +61,24 @@
       "writtenOn": "2023-10-19T14:23:52Z",
       "side": 1,
       "message": "LGTM!\n\nI\u0027m confused about how this works with backwards compatibility - is datastore storing this as compressed (with `zlib`) if the `compressed\u003dTrue` is set? \n\nIf that is the case, then if the `golang` code decides to read an older entity (say for UI2 or swarming cli call) will it be able to interpret a previously stored value?",
+      "revId": "939b0fcb12cc7bede7339b6b2b6d2c317adcd053",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebc000e3_711fb959",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-10-19T17:04:28Z",
+      "side": 1,
+      "message": "`compressed\u003dTrue` in python means the value should be compressed when being stored.\nRegardless of `compressed\u003dTrue` setting, if an existing value is compressed (based on `meaning_uri`), it will be decompressed when read. That way python is fully backward compatible. I\u0027ll confirm this on staging.\n\nFor go, there are 3 options:\n1. Wait long enough for all compressed properties to be aged out (this will be 6 months IIRC).\n2. Run (once) some kind of a mapper that will decompress all existing compressed properties.\n3. Teach Go GAE library to recognize compressed properties just by their byte values (probably using a magical zlib header), and do decompression when reading. Store them back uncompressed when writing.\n\nI\u0027m leaning towards 3.",
+      "parentUuid": "fce2d6e5_7d8f79fb",
       "revId": "939b0fcb12cc7bede7339b6b2b6d2c317adcd053",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
