@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd60faa9_8a6d3584",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-10-20T21:14:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ae60dfd_86dd3e21",
+      "range": {
+        "startLine": 270,
+        "startChar": 4,
+        "endLine": 273,
+        "endChar": 6
+      },
+      "revId": "42380ac42999594c7c9ed8b6ff90b2d25fd93a29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "933edb82_77e6eae4",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-10-20T13:47:29Z",
       "side": 1,
       "message": "can remove?",
+      "range": {
+        "startLine": 283,
+        "startChar": 66,
+        "endLine": 283,
+        "endChar": 68
+      },
+      "revId": "42380ac42999594c7c9ed8b6ff90b2d25fd93a29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "246ed11a_7776d15c",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-10-20T21:14:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "933edb82_77e6eae4",
       "range": {
         "startLine": 283,
         "startChar": 66,
