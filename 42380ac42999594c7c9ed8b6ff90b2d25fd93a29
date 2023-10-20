@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8026a90c_26a9a580",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-10-20T13:47:29Z",
+      "side": 1,
+      "message": "s",
+      "revId": "42380ac42999594c7c9ed8b6ff90b2d25fd93a29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ae60dfd_86dd3e21",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-10-20T13:47:29Z",
+      "side": 1,
+      "message": "We need to include update_id and task details here.",
+      "range": {
+        "startLine": 270,
+        "startChar": 4,
+        "endLine": 273,
+        "endChar": 6
+      },
+      "revId": "42380ac42999594c7c9ed8b6ff90b2d25fd93a29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "933edb82_77e6eae4",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-10-20T13:47:29Z",
+      "side": 1,
+      "message": "can remove?",
+      "range": {
+        "startLine": 283,
+        "startChar": 66,
+        "endLine": 283,
+        "endChar": 68
+      },
+      "revId": "42380ac42999594c7c9ed8b6ff90b2d25fd93a29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dd938e5_2f779e9e",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-10-20T13:47:29Z",
+      "side": 1,
+      "message": "nit: can remove once task.details is added.",
+      "range": {
+        "startLine": 285,
+        "startChar": 4,
+        "endLine": 285,
+        "endChar": 45
+      },
+      "revId": "42380ac42999594c7c9ed8b6ff90b2d25fd93a29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
