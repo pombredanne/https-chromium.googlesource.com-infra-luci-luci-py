@@ -152,7 +152,7 @@ class TaskBackendAPIService(object):
     task_results = task_result.fetch_task_results(requested_task_ids)
 
     return backend_pb2.FetchTasksResponse(
-        tasks=backend_conversions.convert_results_to_tasks(
+        responses=backend_conversions.convert_results_to_fetch_tasks_responses(
             task_results, requested_task_ids))
 
   @prpc_helpers.method

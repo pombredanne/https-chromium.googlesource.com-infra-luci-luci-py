@@ -11,9 +11,11 @@ import logging
 from google.appengine.api import app_identity
 from google.appengine.api import datastore_errors
 from google.protobuf import json_format
+from google.rpc import status_pb2
 
 import handlers_exceptions
 from components import utils
+from components.prpc import codes
 from server import task_request
 from server import task_result
 
@@ -240,6 +242,49 @@ def convert_results_to_tasks(task_results, task_ids):
     # TODO(crbug/1236848): Fill Task.details.
     tasks.append(task)
   return tasks
+
+
+def convert_results_to_fetch_tasks_responses(task_results, task_ids):
+  # type: (Sequence[Union[task_result._TaskResultCommon, None]], Sequence[str])
+  #     -> (Sequence[backend_pb2.FetchTasksResponse.Response]
+  """Converts the given task results to FetchTasksResponse.Responses.
+
+  The length and order of `responses` is expected to match those of
+  `task_ids`.
+
+  Raises:
+    handlers_exceptions.InternalException if any tasks have an
+        unexpected state.
+  """
+  responses = []
+  for i, result in enumerate(task_results):
+    if result is None:
+      response = backend_pb2.FetchTasksResponse.Response(
+          error=status_pb2.Status(
+              code=codes.StatusCode.NOT_FOUND.value,
+              message='Swarming task %s not found' % task_ids[i],
+          ), )
+      responses.append(response)
+      continue
+
+    task = task_pb2.Task(id=task_pb2.TaskID(
+        target='swarming://%s' % app_identity.get_application_id(),
+        id=task_ids[i],
+    ))
+    convert_task_state_to_status(result.state, result.failure, task)
+
+    if task.status == common_pb2.STATUS_UNSPECIFIED:
+      response = backend_pb2.FetchTasksResponse.Response(
+          error=status_pb2.Status(
+              code=codes.StatusCode.INTERNAL.value,
+              message='Unexpected state for task %s' % task_ids[i],
+          ), )
+    else:
+      response = backend_pb2.FetchTasksResponse.Response(task=task, )
+
+    # TODO(crbug/1236848): Fill Task.details.
+    responses.append(response)
+  return responses
 
 
 def convert_task_state_to_status(state, failure, task):

@@ -21,6 +21,7 @@ import webtest
 from google.appengine.api import app_identity
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
+from google.rpc import status_pb2
 
 from google.protobuf import struct_pb2
 from google.protobuf import timestamp_pb2
@@ -31,6 +32,7 @@ from test_support import test_case
 from components import auth
 from components import utils
 from components import prpc
+from components.prpc import codes
 from components.prpc import encoding
 
 from bb.go.chromium.org.luci.buildbucket.proto import backend_pb2
@@ -424,14 +426,17 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
     ])
 
     target = 'swarming://%s' % app_identity.get_application_id()
-    expected_response = backend_pb2.FetchTasksResponse(tasks=[
-        task_pb2.Task(id=task_pb2.TaskID(target=target, id=first_id),
-                      status=common_pb2.SUCCESS),
-        task_pb2.Task(id=task_pb2.TaskID(target=target, id=second_id),
-                      status=common_pb2.SCHEDULED),
-        task_pb2.Task(id=task_pb2.TaskID(target=target, id='1d69b9f088008810'),
-                      summary_html='Swarming task 1d69b9f088008810 not found',
-                      status=common_pb2.INFRA_FAILURE),
+    expected_response = backend_pb2.FetchTasksResponse(responses=[
+        backend_pb2.FetchTasksResponse.Response(task=task_pb2.Task(
+            id=task_pb2.TaskID(target=target, id=first_id),
+            status=common_pb2.SUCCESS), ),
+        backend_pb2.FetchTasksResponse.Response(task=task_pb2.Task(
+            id=task_pb2.TaskID(target=target, id=second_id),
+            status=common_pb2.SCHEDULED), ),
+        backend_pb2.FetchTasksResponse.Response(error=status_pb2.Status(
+            code=codes.StatusCode.NOT_FOUND.value,
+            message='Swarming task 1d69b9f088008810 not found',
+        ), ),
     ])
 
     self.mock_auth_db([auth.Permission('swarming.pools.listTasks')])
