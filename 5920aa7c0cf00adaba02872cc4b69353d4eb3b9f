@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80f46fc2_81078944",
+        "filename": "appengine/swarming/backend_conversions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-10-23T13:37:05Z",
+      "side": 1,
+      "message": "nit: remove this now that Task.details is filled.",
+      "range": {
+        "startLine": 328,
+        "startChar": 4,
+        "endLine": 328,
+        "endChar": 45
+      },
+      "revId": "5920aa7c0cf00adaba02872cc4b69353d4eb3b9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f551710b_f9e5aaff",
+        "filename": "appengine/swarming/handlers_task_backend_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-10-23T13:37:05Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 171,
+        "startChar": 4,
+        "endLine": 174,
+        "endChar": 41
+      },
+      "revId": "5920aa7c0cf00adaba02872cc4b69353d4eb3b9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
