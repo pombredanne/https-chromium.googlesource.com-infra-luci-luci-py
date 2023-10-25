@@ -29,6 +29,8 @@ from google.appengine.runtime import apiproxy_errors
 from components import config
 from components import utils
 from components.auth import model
+from components.auth.proto import realms_pb2, permissions_pb2
+
 
 from proto import realms_config_pb2
 
@@ -144,6 +146,12 @@ def check_permission_changes(db):
   perms_to_map = lambda perms: {p.name: p for p in perms}
 
   stored = model.realms_globals_key().get()
+  if stored.permissionslist:
+    logging.info('have something for permissions')
+  # # logging.info('Permissions list = %s', stored.permissionslist)
+  # # for perm in stored.permissionslist.permissions:
+  # #   logging.info('perm = %s', perm)
+
   if stored and perms_to_map(stored.permissions) == db.permissions:
     return []  # permissions in the AuthDB are up to date
 
@@ -158,6 +166,11 @@ def check_permission_changes(db):
       logging.info('Skipping, already up-to-date')
       return
     stored.permissions = sorted(db.permissions.values(), key=lambda p: p.name)
+    def perms(permissions):
+      return [realms_pb2.Permission(name=p.name, internal=p.internal) for p in permissions]
+    perms_list = permissions_pb2.PermissionsList(permissions=perms(stored.permissions))
+    logging.info('perms_list=%s', perms_list)
+
     stored.record_revision(
         modified_by=model.get_service_self_identity(),
         comment='Updating permissions to rev "%s"' % db.revision)
