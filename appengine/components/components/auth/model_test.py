@@ -15,7 +15,7 @@ from google.appengine.ext import ndb
 from components import utils
 from components.auth import ipaddr
 from components.auth import model
-from components.auth.proto import realms_pb2
+from components.auth.proto import permissions_pb2, realms_pb2
 from test_support import test_case
 
 
@@ -990,6 +990,8 @@ class AuditLogTest(test_case.TestCase):
           modified_ts=datetime.datetime(2015, 1, 1, 1, 1),
           comment='Comment')
       e.permissions = permissions
+      e.permissionslist = permissions_pb2.PermissionsList(
+          permissions=permissions)
       e.put()
       model.replicate_auth_db()
 
@@ -1000,38 +1002,51 @@ class AuditLogTest(test_case.TestCase):
     cpy = lambda rev: ndb.Key(
         'Rev', rev, 'AuthRealmsGlobalsHistory', 'globals',
         parent=model.root_key())
-    self.assertEqual({
-      cpy(1): {
-        'permissions': [],
-        'auth_db_rev': 1,
-        'auth_db_prev_rev': None,
-        'auth_db_app_version': u'v1a',
-        'auth_db_deleted': False,
-        'auth_db_change_comment': u'Comment',
-        'modified_by': model.Identity.from_bytes('user:a@example.com'),
-        'modified_ts': datetime.datetime(2015, 1, 1, 1, 1),
-      },
-      cpy(2): {
-        'permissions': [realms_pb2.Permission(name='luci.dev.p1')],
-        'auth_db_rev': 2,
-        'auth_db_prev_rev': 1,
-        'auth_db_app_version': u'v1a',
-        'auth_db_deleted': False,
-        'auth_db_change_comment': u'Comment',
-        'modified_by': model.Identity.from_bytes('user:a@example.com'),
-        'modified_ts': datetime.datetime(2015, 1, 1, 1, 1),
-      },
-      cpy(3): {
-        'permissions': [],
-        'auth_db_rev': 3,
-        'auth_db_prev_rev': 2,
-        'auth_db_app_version': u'v1a',
-        'auth_db_deleted': False,
-        'auth_db_change_comment': u'Comment',
-        'modified_by': model.Identity.from_bytes('user:a@example.com'),
-        'modified_ts': datetime.datetime(2015, 1, 1, 1, 1),
-      },
-    }, self.grab_log(model.AuthRealmsGlobals))
+    self.assertEqual(
+        {
+            cpy(1): {
+                'permissions': [],
+                'permissionslist': permissions_pb2.PermissionsList(),
+                'auth_db_rev': 1,
+                'auth_db_prev_rev': None,
+                'auth_db_app_version': u'v1a',
+                'auth_db_deleted': False,
+                'auth_db_change_comment': u'Comment',
+                'modified_by': model.Identity.from_bytes('user:a@example.com'),
+                'modified_ts': datetime.datetime(2015, 1, 1, 1, 1),
+            },
+            cpy(2): {
+                'permissions': [realms_pb2.Permission(name='luci.dev.p1')],
+                'permissionslist':
+                permissions_pb2.PermissionsList(
+                    permissions=[realms_pb2.Permission(name='luci.dev.p1')], ),
+                'auth_db_rev':
+                2,
+                'auth_db_prev_rev':
+                1,
+                'auth_db_app_version':
+                u'v1a',
+                'auth_db_deleted':
+                False,
+                'auth_db_change_comment':
+                u'Comment',
+                'modified_by':
+                model.Identity.from_bytes('user:a@example.com'),
+                'modified_ts':
+                datetime.datetime(2015, 1, 1, 1, 1),
+            },
+            cpy(3): {
+                'permissions': [],
+                'permissionslist': permissions_pb2.PermissionsList(),
+                'auth_db_rev': 3,
+                'auth_db_prev_rev': 2,
+                'auth_db_app_version': u'v1a',
+                'auth_db_deleted': False,
+                'auth_db_change_comment': u'Comment',
+                'modified_by': model.Identity.from_bytes('user:a@example.com'),
+                'modified_ts': datetime.datetime(2015, 1, 1, 1, 1),
+            },
+        }, self.grab_log(model.AuthRealmsGlobals))
 
   def test_project_realms_log(self):
     PROJECT_ID = 'pid'
@@ -1105,6 +1120,26 @@ class AuditLogTest(test_case.TestCase):
         'modified_ts': datetime.datetime(2015, 1, 1, 1, 1),
       },
     }, self.grab_log(model.AuthProjectRealms))
+
+
+class AuthRealmsGlobalsTest(test_case.TestCase):
+  def test_permissions_list_in_datastore(self):
+    @ndb.transactional
+    def modify(perms):
+      key = model.realms_globals_key()
+      e = key.get() or model.AuthRealmsGlobals(key=key)
+      e.permissionslist = perms
+      e.put()
+
+    perms_list = permissions_pb2.PermissionsList(permissions=[
+        realms_pb2.Permission(name='a.b.c'),
+        realms_pb2.Permission(name='d.e.f'),
+    ])
+    modify(perms_list)
+
+    key = model.realms_globals_key()
+    fetched = key.get() or model.AuthRealmsGlobals(key=key)
+    self.assertEqual(fetched.permissionslist, perms_list)
 
 
 if __name__ == '__main__':

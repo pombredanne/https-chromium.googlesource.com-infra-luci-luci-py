@@ -22,16 +22,17 @@ cp \
   ${LUCI_GO_PROTOS_DIR}/realms.proto \
   ${LUCI_GO_PROTOS_DIR}/replication.proto \
   ${LUCI_GO_PROTOS_DIR}/security_config.proto \
+  ${LUCI_GO}/auth_service/internal/permissions/proto/permissions.proto \
   \
   .
 
 # Make proto import paths relative to the new root.
-sed -i '' 's|import "go.chromium.org/luci/server/auth/service/protocol/components/auth/proto/|import "components/auth/proto/|g' ./*.proto
+sed -i  's|import "go.chromium.org/luci/server/auth/service/protocol/components/auth/proto/|import "components/auth/proto/|g' ./*.proto
 
 # Put the revision of copied files into generate.go for posterity.
 luci_go_rev=$(git -C ${LUCI_GO} rev-parse HEAD)
 
-sed -i "" "s|# Commit:.*|# Commit:${luci_go_rev}|g" ./Makefile
+sed -i  "s|# Commit:.*|# Commit:${luci_go_rev}|g" ./Makefile
 
 
 # Generate *.pb2.py.

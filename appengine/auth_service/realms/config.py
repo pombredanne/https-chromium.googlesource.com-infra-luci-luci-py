@@ -144,6 +144,16 @@ def check_permission_changes(db):
   perms_to_map = lambda perms: {p.name: p for p in perms}
 
   stored = model.realms_globals_key().get()
+  logging.debug('[PL] stored: %s', stored)
+  if stored:
+    if stored.permissionslist:
+      logging.debug('[PL] stored.permissionslist (type %s): %s',
+                    type(stored.permissionslist), stored.permissionslist)
+      for p in stored.permissionslist.permissions:
+        logging.debug('[PL]    p (type %s) = %s', type(p), p)
+    else:
+      logging.debug('[PL] stored.permissionslist undefined')
+
   if stored and perms_to_map(stored.permissions) == db.permissions:
     return []  # permissions in the AuthDB are up to date
 
