@@ -78,7 +78,7 @@ from components import utils
 
 from . import globmatch
 from . import ipaddr
-from .proto import realms_pb2
+from .proto import realms_pb2, permissions_pb2
 
 # Part of public API of 'auth' component, exposed by this module.
 __all__ = [
@@ -1321,6 +1321,7 @@ class AuthRealmsGlobals(ndb.Model, AuthVersionedEntityMixin):
   # All globally defined permissions, in alphabetical order.
   permissions = datastore_utils.ProtobufProperty(
       realms_pb2.Permission, repeated=True)
+  permissionslist = ndb.BlobProperty(indexed=False)
 
 
 class AuthProjectRealms(ndb.Model, AuthVersionedEntityMixin):
