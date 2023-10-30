@@ -16,6 +16,47 @@
       "message": "@cjacomet@google.com any ideas why this works??",
       "revId": "4895385ad6eaace5bdc2192a0d8953cf3792b2fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f73be709_3d540c92",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-10-30T23:44:32Z",
+      "side": 1,
+      "message": "I do not, I will defer to chat we had regarding this with extra character for Python.",
+      "parentUuid": "5ba7da31_6ffa3fd1",
+      "revId": "4895385ad6eaace5bdc2192a0d8953cf3792b2fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b4b6ded_974025f2",
+        "filename": "appengine/auth_service/realms/config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1473902
+      },
+      "writtenOn": "2023-10-30T23:44:32Z",
+      "side": 1,
+      "message": "nit: I think this is a bit confusing, I think either remove it and use permissions_list.permissions or use name that is related to it being from permissionslist otherwise it gets confusing with the old permissions.",
+      "range": {
+        "startLine": 154,
+        "startChar": 6,
+        "endLine": 154,
+        "endChar": 17
+      },
+      "revId": "4895385ad6eaace5bdc2192a0d8953cf3792b2fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
