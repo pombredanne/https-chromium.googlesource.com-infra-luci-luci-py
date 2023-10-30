@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83732600_79be4db8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1529627
+      },
+      "writtenOn": "2023-10-30T16:38:04Z",
+      "side": 1,
+      "message": "Please consider splitting this change into a chain of smaller CLs.",
+      "revId": "28eb8cc26d15e50ed34dbe56008b72305f3deb43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15c61df3_f11c08e7",
