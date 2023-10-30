@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c3889725_1138524d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1529627
+      },
+      "writtenOn": "2023-10-30T16:38:21Z",
+      "side": 1,
+      "message": "Please consider splitting this change into a chain of smaller CLs.",
+      "parentUuid": "83732600_79be4db8",
+      "revId": "28eb8cc26d15e50ed34dbe56008b72305f3deb43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15c61df3_f11c08e7",
         "filename": "appengine/swarming/server/bot_archive.py",
         "patchSetId": 5
