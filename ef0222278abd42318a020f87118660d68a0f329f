@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92d34456_313e01be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-10-30T16:23:32Z",
+      "side": 1,
+      "message": "Upgraded some packages so that `swarming_bot` works with `python 3.12.0` (see bug for description of issue).  \n\nThere may still be some work wrt to the vendored `3rd party` packages since they now produce a bunch of syntax warnings. See https://adamj.eu/tech/2022/11/04/why-does-python-deprecationwarning-invalid-escape-sequence/ for a description of what is going on. We may need to go and fix all of those syntax issues. They are currently warnings but may become fatal errors in the future...",
+      "revId": "ef0222278abd42318a020f87118660d68a0f329f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
