@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15c61df3_f11c08e7",
+        "filename": "appengine/swarming/server/bot_archive.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1529627
+      },
+      "writtenOn": "2023-10-30T16:37:07Z",
+      "side": 1,
+      "message": "Please sort the files alphabetically",
+      "range": {
+        "startLine": 326,
+        "startChar": 0,
+        "endLine": 345,
+        "endChar": 39
+      },
+      "revId": "28eb8cc26d15e50ed34dbe56008b72305f3deb43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9c26d5e_5f57c46d",
+        "filename": "appengine/swarming/server/bot_archive.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1529627
+      },
+      "writtenOn": "2023-10-30T16:37:07Z",
+      "side": 1,
+      "message": "Same - please sort alphabetically.",
+      "range": {
+        "startLine": 366,
+        "startChar": 0,
+        "endLine": 399,
+        "endChar": 44
+      },
+      "revId": "28eb8cc26d15e50ed34dbe56008b72305f3deb43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
