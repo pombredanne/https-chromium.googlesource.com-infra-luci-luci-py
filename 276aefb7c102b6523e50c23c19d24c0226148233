@@ -16,6 +16,24 @@
       "message": "AFAIK, the entire containment feature wasn\u0027t finished and is unused",
       "revId": "276aefb7c102b6523e50c23c19d24c0226148233",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8389cef6_fd6cc7ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-10-31T18:22:12Z",
+      "side": 1,
+      "message": "From checking bigquery and reading code - I think some parts of it are \"used\". \n\n`containmentType\u003dAUTO` actually does something on windows. It turns on `job_object` for processes. \n\nCurrently, no customization is possible of the default values. But I\u0027d still like to know whether windows users even notice that `job_object` is switched on.\n\nThere are some basic restrictions of the process for `jobobject` on windows but I\u0027m not an expert on whether there is a delta between a \"normal\" windows process and `jobobject`. \n\nSee https://source.chromium.org/chromium/infra/infra/+/main:luci/client/utils/subprocess42.py;l\u003d260-264?q\u003dfilepath:subprocess42.py\n\nI\u0027ll chat with some of the windows users to see if `job_object` is important. If not makes sense to delete entire containment_type feature.",
+      "parentUuid": "0e5524e8_193493f3",
+      "revId": "276aefb7c102b6523e50c23c19d24c0226148233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
