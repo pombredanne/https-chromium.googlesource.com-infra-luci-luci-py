@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e5524e8_193493f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-10-31T17:45:31Z",
+      "side": 1,
+      "message": "AFAIK, the entire containment feature wasn\u0027t finished and is unused",
+      "revId": "276aefb7c102b6523e50c23c19d24c0226148233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
