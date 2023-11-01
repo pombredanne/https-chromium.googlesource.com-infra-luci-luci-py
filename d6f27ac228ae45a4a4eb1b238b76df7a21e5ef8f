@@ -16,6 +16,52 @@
       "message": "I\u0027ve verified the following cases:\n1. credentials not found (I deleted `.config/chrome-infra/auth`)\n2. credentials are found",
       "revId": "d6f27ac228ae45a4a4eb1b238b76df7a21e5ef8f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfd37ef6_ded9795c",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-01T20:16:53Z",
+      "side": 1,
+      "message": "This will return a token that can expire as soon as 1m from now (see `-lifetime` in `luci-auth token -help`). IIUC findLiveDemoTokens() is called only once. One option would be to set `-lifetime 20m` or something, but the token will still eventually expire.\n\nAnother option is to use `luci-auth token -json-output -` and use `expiry` field from the output to know when this token expires, and ask a new one when it does. It means /auth/openid/state bypass will have to call some function every time.\n\nI guess /auth/openid/state bypass can also just always call the current implementation of findLiveDemoTokens(), and it will be mostly OK, except `luci-auth info` actually makes a backend call to resolve the token and thus it is relatively slow. We can precache email, but keep always calling `luci-auth token` (it should be super fast if the token is up-to-date).",
+      "range": {
+        "startLine": 82,
+        "startChar": 35,
+        "endLine": 82,
+        "endChar": 68
+      },
+      "revId": "d6f27ac228ae45a4a4eb1b238b76df7a21e5ef8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baa5eda3_79e0d931",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-01T20:16:53Z",
+      "side": 1,
+      "message": "This is unfortunate. This output can change in the future, it was not meant to be parsed like that.\n\nWhat email is used for here?",
+      "range": {
+        "startLine": 116,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 20
+      },
+      "revId": "d6f27ac228ae45a4a4eb1b238b76df7a21e5ef8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
