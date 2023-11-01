@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38aa0e22_c5c9a526",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-01T19:22:03Z",
+      "side": 1,
+      "message": "I\u0027ve verified the following cases:\n1. credentials not found (I deleted `.config/chrome-infra/auth`)\n2. credentials are found",
+      "revId": "d6f27ac228ae45a4a4eb1b238b76df7a21e5ef8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
