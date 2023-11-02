@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e7fb7ec_649ece20",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-02T17:18:31Z",
+      "side": 1,
+      "message": "they do because `luci-auth info` always makes a call to check the token state",
+      "range": {
+        "startLine": 359,
+        "startChar": 15,
+        "endLine": 359,
+        "endChar": 55
+      },
+      "revId": "7bfdd0c0de2fec07be618c84ef72aa725d91ebcd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

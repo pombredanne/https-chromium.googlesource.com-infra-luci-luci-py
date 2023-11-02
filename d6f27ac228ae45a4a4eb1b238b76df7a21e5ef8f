@@ -110,6 +110,30 @@
       },
       "revId": "d6f27ac228ae45a4a4eb1b238b76df7a21e5ef8f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "627a50e1_88f076e0",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-02T17:18:31Z",
+      "side": 1,
+      "message": "Yeah. Options are:\n1. Add `email` field to `luci-auth token -json-output` output.\n2. Add -json-output to `luci-auth info` (but if you just need an email, it will suck, since it always makes a request to resolve the token, even though email is usually already cached locally).\n3. Add `luci-auth email` that just fetches email from the cache.\n\nEh, no big deal.",
+      "parentUuid": "9fba614f_25daefcb",
+      "range": {
+        "startLine": 116,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 20
+      },
+      "revId": "d6f27ac228ae45a4a4eb1b238b76df7a21e5ef8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
