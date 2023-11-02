@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2064a098_d9e8266f",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-02T15:06:35Z",
+      "side": 1,
+      "message": "Thanks for the comment! Was not aware of the `-lifetime` flag. Ended up doing the 3rd option + longer lifetime to make token refresh over network less likely.",
+      "parentUuid": "bfd37ef6_ded9795c",
+      "range": {
+        "startLine": 82,
+        "startChar": 35,
+        "endLine": 82,
+        "endChar": 68
+      },
+      "revId": "d6f27ac228ae45a4a4eb1b238b76df7a21e5ef8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "baa5eda3_79e0d931",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-11-01T20:16:53Z",
       "side": 1,
       "message": "This is unfortunate. This output can change in the future, it was not meant to be parsed like that.\n\nWhat email is used for here?",
+      "range": {
+        "startLine": 116,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 20
+      },
+      "revId": "d6f27ac228ae45a4a4eb1b238b76df7a21e5ef8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fba614f_25daefcb",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-02T15:06:35Z",
+      "side": 1,
+      "message": "The email is inserted in the title of termination tasks if you create it from the UI and is also displayed as the \"logged in\" user. \nI\u0027m okay if this breaks in the future and we need to change the parsing logic. Otherwise we can always use a `dummy` email. I have no strong feelings either way. Wdyt?  \n\nMight make sense to add a `json` output mode to `luci-auth info` to make this data more parsable?",
+      "parentUuid": "baa5eda3_79e0d931",
       "range": {
         "startLine": 116,
         "startChar": 4,
