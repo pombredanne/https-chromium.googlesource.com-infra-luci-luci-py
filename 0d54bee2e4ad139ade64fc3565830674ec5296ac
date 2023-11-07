@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b4464447_31045abd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-07T15:56:42Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "0d54bee2e4ad139ade64fc3565830674ec5296ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "57236519_e36741e2",
         "filename": "appengine/swarming/api_common.py",
         "patchSetId": 2
