@@ -29,6 +29,7 @@ from google.appengine.runtime import apiproxy_errors
 from components import config
 from components import utils
 from components.auth import model
+from components.auth.proto import permissions_pb2
 
 from proto import realms_config_pb2
 
@@ -125,6 +126,16 @@ def execute_jobs(jobs, txn_sleep_time):
   return success
 
 
+def _parse_permissionslist(blob):
+  """Helper to deserialize the given blob as a PermissionsList proto."""
+  # The value was serialized by Auth Service v2; the first byte is
+  # reserved for denoting the format (i.e. compression/encoding), so it
+  # must be dropped first.
+  if len(blob) > 0:
+    blob = blob[1:]
+  return permissions_pb2.PermissionsList.FromString(blob)
+
+
 def check_permission_changes(db):
   """Returns jobs to update permissions list stored in the AuthDB.
 
@@ -144,6 +155,20 @@ def check_permission_changes(db):
   perms_to_map = lambda perms: {p.name: p for p in perms}
 
   stored = model.realms_globals_key().get()
+  if stored and stored.permissionslist:
+    permissionslist = _parse_permissionslist(stored.permissionslist)
+
+    permissionslist_map = perms_to_map(permissionslist.permissions)
+    if permissionslist_map == perms_to_map(stored.permissions):
+      logging.info('stored.permissions matches stored.permissionslist')
+    else:
+      logging.info('stored.permissions does not match stored.permissionslist')
+
+    if permissionslist_map == db.permissions:
+      logging.info('[permissionslist] Permissions in the AuthDB are up to date')
+    else:
+      logging.info('[permissionslist] Permissions should be updated')
+
   if stored and perms_to_map(stored.permissions) == db.permissions:
     return []  # permissions in the AuthDB are up to date
 

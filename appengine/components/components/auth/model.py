@@ -1321,6 +1321,7 @@ class AuthRealmsGlobals(ndb.Model, AuthVersionedEntityMixin):
   # All globally defined permissions, in alphabetical order.
   permissions = datastore_utils.ProtobufProperty(
       realms_pb2.Permission, repeated=True)
+  permissionslist = ndb.BlobProperty(indexed=False)
 
 
 class AuthProjectRealms(ndb.Model, AuthVersionedEntityMixin):
