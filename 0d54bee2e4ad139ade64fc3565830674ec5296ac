@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57236519_e36741e2",
+        "filename": "appengine/swarming/api_common.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-07T02:33:23Z",
+      "side": 1,
+      "message": "There\u0027s a test that expects BadRequestException if the reason is too long. It was relying on datastore limit on indexed string size (which is 1500 chars, but I arbitrarily decided to limit this by 1000 instead, no one would need such long \"reason\" anyway...).",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 76
+      },
+      "revId": "0d54bee2e4ad139ade64fc3565830674ec5296ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
