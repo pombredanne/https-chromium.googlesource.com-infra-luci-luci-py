@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "248a22ab_3481353b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-07T02:26:53Z",
+      "side": 1,
+      "message": "Noticed that it is completely missing from datastore when looking at indexes in the previous CL.",
+      "revId": "1776d833d3eb1e9ccdff087416b30826676b902b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
