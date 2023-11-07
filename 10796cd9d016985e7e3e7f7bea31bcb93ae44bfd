@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eee50958_4c40fdfc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-07T15:55:52Z",
+      "side": 1,
+      "message": "LGTM! Finding child tasks is still achievable as long as we set the `parent_task_id` tag. That is how the UI figures out parent/child task relations.",
+      "revId": "10796cd9d016985e7e3e7f7bea31bcb93ae44bfd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
