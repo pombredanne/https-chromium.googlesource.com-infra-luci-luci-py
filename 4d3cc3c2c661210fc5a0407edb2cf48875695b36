@@ -16,6 +16,40 @@
       "message": "LGTM!",
       "revId": "4d3cc3c2c661210fc5a0407edb2cf48875695b36",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "659753e4_eb6bbde9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-11-08T19:05:55Z",
+      "side": 1,
+      "message": "lgtm with a nit",
+      "revId": "4d3cc3c2c661210fc5a0407edb2cf48875695b36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60c44387_ceb0179a",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-11-08T19:05:55Z",
+      "side": 1,
+      "message": "Does this file need to be formatted?",
+      "revId": "4d3cc3c2c661210fc5a0407edb2cf48875695b36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
