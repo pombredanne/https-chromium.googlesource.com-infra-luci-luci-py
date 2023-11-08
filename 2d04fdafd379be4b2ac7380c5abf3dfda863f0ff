@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8f4d88d_753f39fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-08T21:23:45Z",
+      "side": 1,
+      "message": "In this change I simplified the implementation of the python bq exporter.\n\nIUUC it will never execute the second loop, so that code is effectively dead.",
+      "revId": "2d04fdafd379be4b2ac7380c5abf3dfda863f0ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
