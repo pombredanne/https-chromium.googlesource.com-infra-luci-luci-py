@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "004894c7_34be33b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-11-08T17:28:41Z",
+      "side": 1,
+      "message": "PTAL. I did a refactor and added lots of comments on the function.\n\nAlso PTAL at the buildbucket side CL https://crrev.com/c/4879785",
+      "revId": "eda6d2a0f4a343213d32c49132c785da0ae9b429",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

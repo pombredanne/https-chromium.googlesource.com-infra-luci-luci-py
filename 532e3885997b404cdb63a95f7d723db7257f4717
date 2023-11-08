@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acb0d8c0_1d8aaaf7",
+        "filename": "appengine/swarming/api_helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-11-08T17:28:41Z",
+      "side": 1,
+      "message": "I ended up refactoring the function to call the bool variable `full_validation`. I also beefed up the comments on the function to explain exactly what should happen. Feel free to re-open this comment if it needs more context!",
+      "parentUuid": "2a928c47_8622c477",
+      "range": {
+        "startLine": 161,
+        "startChar": 6,
+        "endLine": 165,
+        "endChar": 16
+      },
+      "revId": "532e3885997b404cdb63a95f7d723db7257f4717",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d558806d_da2c4371",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-28T17:44:04Z",
       "side": 1,
       "message": "I don\u0027t quite understand this test case.\n\nWe only do \"normal\" validation on the backend_config in RunTask request, but this test still on ValidateConfigs",
+      "range": {
+        "startLine": 494,
+        "startChar": 6,
+        "endLine": 494,
+        "endChar": 34
+      },
+      "revId": "532e3885997b404cdb63a95f7d723db7257f4717",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa0f036d_e9483f0b",
+        "filename": "appengine/swarming/handlers_task_backend_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-11-08T17:28:41Z",
+      "side": 1,
+      "message": "I removed this test case as it essentially did the same thing as test_validate_configs_limited_config (just with one more field).\n\nI am keeping the name `test_validate_configs` for the \"happy case\".",
+      "parentUuid": "d558806d_da2c4371",
       "range": {
         "startLine": 494,
         "startChar": 6,
