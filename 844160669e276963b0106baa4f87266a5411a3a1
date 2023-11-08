@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3bae745_c8c636bf",
+        "filename": "client/cipd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1568168
+      },
+      "writtenOn": "2023-11-08T21:32:23Z",
+      "side": 1,
+      "message": "Sigh. Every time. Thanks.",
+      "parentUuid": "ddf87a5c_df061bb1",
+      "range": {
+        "startLine": 307,
+        "startChar": 4,
+        "endLine": 307,
+        "endChar": 10
+      },
+      "revId": "844160669e276963b0106baa4f87266a5411a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e800830_d38b0f97",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-08T21:30:57Z",
       "side": 1,
       "message": "and here",
+      "range": {
+        "startLine": 309,
+        "startChar": 4,
+        "endLine": 309,
+        "endChar": 10
+      },
+      "revId": "844160669e276963b0106baa4f87266a5411a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd88879c_ee732af5",
+        "filename": "client/cipd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1568168
+      },
+      "writtenOn": "2023-11-08T21:32:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e800830_d38b0f97",
       "range": {
         "startLine": 309,
         "startChar": 4,
