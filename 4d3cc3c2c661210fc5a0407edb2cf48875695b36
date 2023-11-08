@@ -68,6 +68,24 @@
       "parentUuid": "60c44387_ceb0179a",
       "revId": "4d3cc3c2c661210fc5a0407edb2cf48875695b36",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fd7c858_0831ad8a",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-11-08T20:51:37Z",
+      "side": 1,
+      "message": "gonna add some formatter options in another CL and reformat the whole repository 😊.",
+      "parentUuid": "f34ba9aa_a08c5d28",
+      "revId": "4d3cc3c2c661210fc5a0407edb2cf48875695b36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
