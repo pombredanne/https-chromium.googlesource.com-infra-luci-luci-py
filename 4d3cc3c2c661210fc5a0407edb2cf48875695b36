@@ -50,6 +50,24 @@
       "message": "Does this file need to be formatted?",
       "revId": "4d3cc3c2c661210fc5a0407edb2cf48875695b36",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f34ba9aa_a08c5d28",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-11-08T20:13:25Z",
+      "side": 1,
+      "message": "I ran `git cl format` before uploading (and just ran it now to make sure nothing changed). \n\nThis has happened before with formatting in this code base... I will try and see if there is another out of the box formatter (black or Flake8?) in vpython. Else I\u0027m gonna merge as is.",
+      "parentUuid": "60c44387_ceb0179a",
+      "revId": "4d3cc3c2c661210fc5a0407edb2cf48875695b36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
