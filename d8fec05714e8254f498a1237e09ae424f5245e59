@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a3193d3_7c47bcbc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-09T00:12:43Z",
+      "side": 1,
+      "message": "Yeah, that looks like a code that was used once to gradually backfill 1 year worth of past events.",
+      "revId": "d8fec05714e8254f498a1237e09ae424f5245e59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdd1a30b_7d6c8447",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-09T00:12:43Z",
+      "side": 1,
+      "message": "This comment looks wrong. This doesn\u0027t \"flushes\" anything, it just creates a new entity if there\u0027s no existing one. I think \"oldest\" was somehow related to this \"flushing deprecated way\" process.",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 17
+      },
+      "revId": "d8fec05714e8254f498a1237e09ae424f5245e59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
