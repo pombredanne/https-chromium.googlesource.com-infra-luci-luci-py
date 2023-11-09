@@ -39,6 +39,30 @@
       },
       "revId": "d8fec05714e8254f498a1237e09ae424f5245e59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "129af40d_5d9bdd45",
+        "filename": "appengine/swarming/server/bq_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-09T16:15:08Z",
+      "side": 1,
+      "message": "Yeah, wasn\u0027t sure about this one. I think I\u0027ll just delete the comment.",
+      "parentUuid": "cdd1a30b_7d6c8447",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 17
+      },
+      "revId": "d8fec05714e8254f498a1237e09ae424f5245e59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
