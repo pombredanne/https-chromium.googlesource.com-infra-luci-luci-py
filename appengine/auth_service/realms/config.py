@@ -37,6 +37,7 @@ from realms import permissions
 from realms import rules
 from realms import validation
 
+import permissions_config
 import replication
 
 
@@ -75,6 +76,12 @@ def refetch_config():
   """
   jobs = []
   db = permissions.db()
+
+  try:
+    cfg_db = permissions_config.as_db()
+    compare_permissions_dbs(db, cfg_db)
+  except permissions_config.PermissionsConfigMissingError:
+    logging.error("missing PermissionsConfig entity.")
 
   # If db.permissions has changed, we need to propagate changes into the AuthDB.
   jobs.extend(check_permission_changes(db))
@@ -423,3 +430,33 @@ def project_realms_meta_key(project_id):
   return ndb.Key(
       AuthProjectRealmsMeta, 'meta',
       parent=model.project_realms_key(project_id))
+
+
+def compare_permissions_dbs(a, b):
+  logging.debug('Revision: %s vs %s', a.revision, b.revision)
+
+  if a.permissions != b.permissions:
+    logging.debug('Permissions are not equal: %d vs %d entries',
+                  len(a.permissions), len(b.permissions))
+  else:
+    logging.debug('Permissions are identical')
+
+  if a.roles != b.roles:
+    logging.debug('Roles are not equal: %d vs %d entries', len(a.roles),
+                  len(b.roles))
+  else:
+    logging.debug('Roles are identical')
+
+  if a.attributes != b.attributes:
+    logging.debug('Attributes are not equal: %d vs %d entries',
+                  len(a.attributes), len(b.attributes))
+  else:
+    logging.debug('Attributes are identical')
+
+  projID = 'dummy-project-id'
+  a_bindings = a.implicit_root_bindings(projID)
+  b_bindings = b.implicit_root_bindings(projID)
+  if a_bindings != b_bindings:
+    logging.debug('implicit_root_bindings are not equal')
+  else:
+    logging.debug('implicit_root_bindings are identical')

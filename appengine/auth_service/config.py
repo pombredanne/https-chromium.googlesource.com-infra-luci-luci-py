@@ -11,6 +11,7 @@ Following files are fetched:
   imports.cfg - configuration for group importer cron job.
   ip_allowlist.cfg - IP allowlists.
   oauth.cfg - OAuth client_id allowlist.
+  permissions.cfg - Global definitions of roles and permissions.
 
 Configs are ASCII serialized protocol buffer messages. The schema is defined in
 proto/config.proto.
@@ -39,7 +40,7 @@ from components.config import validation
 
 from proto import config_pb2
 import importer
-
+import permissions_config
 
 # Config file revision number and where it came from.
 Revision = collections.namedtuple('Revision', ['revision', 'url'])
@@ -145,6 +146,16 @@ def refetch_config(force=False):
 ### Integration with config validation framework.
 
 
+@validation.self_rule('permissions.cfg', config_pb2.PermissionsConfig)
+def validate_permissions_config(conf, ctx):
+  # permissions.cfg in Auth Service v1 here is temporary;
+  # Auth Service v2 in Go will be launched soon.
+  # More complex validation is skipped here as it should have been run
+  # as part of presubmit on permissions.cfg file.
+  assert isinstance(conf, config_pb2.PermissionsConfig)
+  logging.info("permissions.cfg is valid")
+
+
 @validation.self_rule('settings.cfg', config_pb2.SettingsCfg)
 def validate_settings_cfg(conf, ctx):
   assert isinstance(conf, config_pb2.SettingsCfg)
@@ -225,6 +236,38 @@ def _update_service_config(cfg_name, rev, conf):
   e.populate(config=conf, revision=rev.revision, url=rev.url)
   e.put()
   return old != conf
+
+
+@ndb.tasklet
+def _get_permissions_config_rev_async():
+  """Returns last processed Revision of permissions config."""
+  e = yield permissions_config.config_key().get_async()
+  if not e or not isinstance(e.config, config_pb2.PermissionsConfig):
+    logging.debug("No such entity with key '(_PermissionsConfig, config)'")
+    raise ndb.Return(None)
+
+  raise ndb.Return(Revision(e.revision, e.url))
+
+
+@ndb.transactional
+def _update_permissions_config(_root, new_rev, new_conf):
+  """Stores new permissions config (and its revision).
+
+  This function is called only if config has already been validated.
+  """
+  assert ndb.in_transaction(), 'Must be called in AuthDB transaction'
+
+  old = permissions_config.config_key().get()
+  old_conf = old.config if old else None
+
+  new = permissions_config.PermissionsConfig(
+      key=permissions_config.config_key(),
+      config=new_conf,
+      revision=new_rev.revision,
+      url=new_rev.url)
+  new.put()
+
+  return old_conf != new_conf
 
 
 ### Group importer config implementation details.
@@ -509,11 +552,11 @@ _CONFIG_SCHEMAS = {
         'use_authdb_transaction': False,
     },
     'ip_allowlist.cfg': {
-      'proto_class': config_pb2.IPAllowlistConfig,
-      'revision_getter':
-    lambda: _get_authdb_config_rev_async('ip_allowlist.cfg'),
-      'updater': _update_ip_allowlist_config,
-      'use_authdb_transaction': True,
+        'proto_class': config_pb2.IPAllowlistConfig,
+        'revision_getter':
+        lambda: _get_authdb_config_rev_async('ip_allowlist.cfg'),
+        'updater': _update_ip_allowlist_config,
+        'use_authdb_transaction': True,
     },
     'oauth.cfg': {
         'proto_class': config_pb2.OAuthConfig,
@@ -521,17 +564,20 @@ _CONFIG_SCHEMAS = {
         'updater': _update_oauth_config,
         'use_authdb_transaction': True,
     },
+    'permissions.cfg': {
+        'proto_class': config_pb2.PermissionsConfig,
+        'revision_getter': _get_permissions_config_rev_async,
+        'updater': _update_permissions_config,
+        'use_authdb_transaction': False,
+    },
     'settings.cfg': {
-        'proto_class':
-            None,  # settings are stored as text in datastore
-        'default':
-            '',  # it's fine if config file is not there
+        'proto_class': None,  # settings are stored as text in datastore
+        'default': '',  # it's fine if config file is not there
         'revision_getter':
-            lambda: _get_service_config_rev_async('settings.cfg'),
+        lambda: _get_service_config_rev_async('settings.cfg'),
         'updater':
-            lambda _, rev, c: _update_service_config('settings.cfg', rev, c),
-        'use_authdb_transaction':
-            False,
+        lambda _, rev, c: _update_service_config('settings.cfg', rev, c),
+        'use_authdb_transaction': False,
     },
     'security.cfg': {
         'proto_class': security_config_pb2.SecurityConfig,
