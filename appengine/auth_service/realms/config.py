@@ -30,10 +30,11 @@ from components import config
 from components import utils
 from components.auth import model
 
-from proto import realms_config_pb2
+from proto import config_pb2, realms_config_pb2
 
 from realms import common
 from realms import permissions
+from realms import permissions_config
 from realms import rules
 from realms import validation
 
@@ -75,6 +76,30 @@ def refetch_config():
   """
   jobs = []
   db = permissions.db()
+
+  # For now, fetch permissions.cfg and only compare to permissions.db()
+  try:
+    latest_perms = _get_latest_permissions_async()
+    stored_perms = _get_stored_permissions_rev_async()
+    latest_perms_rev, latest_perms_cfg = latest_perms.get_result()
+    stored_perms_rev = stored_perms.get_result()
+
+    if latest_perms_rev != stored_perms_rev:
+      changed = _update_permissions_config(latest_perms_rev, latest_perms_cfg)
+      logging.info('Processed %s at rev %s: %s', permissions_config.FILENAME,
+                   latest_perms_rev, 'updated' if changed else 'up-to-date')
+    else:
+      logging.info('Config %s is up-to-date at rev %s',
+                   permissions_config.FILENAME, latest_perms_rev)
+
+    cfg_db = permissions_config.to_db(latest_perms_rev, latest_perms_cfg)
+    dissimilar_fields = compare_permissions_dbs(db, cfg_db)
+    if not dissimilar_fields:
+      logging.info('permissions.cfg is functionally identical to '
+                   'permissions.db()')
+
+  except Exception as e:
+    logging.error('Failed processing permissions config: %s', e)
 
   # If db.permissions has changed, we need to propagate changes into the AuthDB.
   jobs.extend(check_permission_changes(db))
@@ -123,6 +148,59 @@ def execute_jobs(jobs, txn_sleep_time):
           exc.__class__.__name__, exc)
       success = False
   return success
+
+
+@ndb.tasklet
+def _get_latest_permissions_async():
+  """Returns the latest permissions config by querying LUCI Config."""
+  # Fetch the config from LUCI Config
+  latest_rev, latest_cfg = yield config.get_self_config_async(
+      permissions_config.FILENAME,
+      dest_type=config_pb2.PermissionsConfig,
+      store_last_good=False)
+
+  if latest_cfg is None:
+    raise config.CannoutLoadConfigError('Config %s is missing' %
+                                        permissions_config.FILENAME)
+
+  if not isinstance(latest_cfg, config_pb2.PermissionsConfig):
+    raise config.CannoutLoadConfigError(
+        'Config %s at rev %s is invalid' %
+        (permissions_config.FILENAME, latest_rev))
+
+  raise ndb.Return((latest_rev, latest_cfg))
+
+
+@ndb.tasklet
+def _get_stored_permissions_rev_async():
+  """Returns last processed Revision of permissions config."""
+  e = yield permissions_config.config_key().get_async()
+  if not e or not isinstance(e.config, config_pb2.PermissionsConfig):
+    logging.error('no PermissionsConfig entity in datastore')
+    raise ndb.Return(None)
+
+  raise ndb.Return(e.revision)
+
+
+@ndb.transactional
+def _update_permissions_config(new_rev, new_conf):
+  """Stores new permissions config (and its revision).
+
+  This function is called only if config has already been validated.
+  """
+  assert ndb.in_transaction(), 'Must be called in AuthDB transaction'
+
+  old = permissions_config.config_key().get()
+  old_conf = old.config if old else None
+
+  new = permissions_config.PermissionsConfig(
+      key=permissions_config.config_key(),
+      config=new_conf,
+      revision=new_rev.revision,
+      url=new_rev.url)
+  new.put()
+
+  return old_conf != new_conf
 
 
 def check_permission_changes(db):
@@ -423,3 +501,45 @@ def project_realms_meta_key(project_id):
   return ndb.Key(
       AuthProjectRealmsMeta, 'meta',
       parent=model.project_realms_key(project_id))
+
+
+def compare_permissions_dbs(a, b):
+  """Compares the given permissions.DB's, and returns the names of the
+  fields that are different (excluding revision).
+  """
+  dissimilar_fields = set()
+
+  # We expect revision to be different.
+  logging.debug('Revision: %s vs %s', a.revision, b.revision)
+
+  if a.permissions != b.permissions:
+    logging.debug('Permissions are not equal: %d vs %d entries',
+                  len(a.permissions), len(b.permissions))
+    dissimilar_fields.add('permissions')
+  else:
+    logging.debug('Permissions are identical')
+
+  if a.roles != b.roles:
+    logging.debug('Roles are not equal: %d vs %d entries', len(a.roles),
+                  len(b.roles))
+    dissimilar_fields.add('roles')
+  else:
+    logging.debug('Roles are identical')
+
+  if a.attributes != b.attributes:
+    logging.debug('Attributes are not equal: %d vs %d entries',
+                  len(a.attributes), len(b.attributes))
+    dissimilar_fields.add('attributes')
+  else:
+    logging.debug('Attributes are identical')
+
+  projID = 'dummy-project-id'
+  a_bindings = a.implicit_root_bindings(projID)
+  b_bindings = b.implicit_root_bindings(projID)
+  if a_bindings != b_bindings:
+    logging.debug('implicit_root_bindings are not equal')
+    dissimilar_fields.add('implicit_root_bindings')
+  else:
+    logging.debug('implicit_root_bindings are identical')
+
+  return dissimilar_fields
