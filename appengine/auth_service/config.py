@@ -40,7 +40,6 @@ from components.config import validation
 from proto import config_pb2
 import importer
 
-
 # Config file revision number and where it came from.
 Revision = collections.namedtuple('Revision', ['revision', 'url'])
 
@@ -509,11 +508,11 @@ _CONFIG_SCHEMAS = {
         'use_authdb_transaction': False,
     },
     'ip_allowlist.cfg': {
-      'proto_class': config_pb2.IPAllowlistConfig,
-      'revision_getter':
-    lambda: _get_authdb_config_rev_async('ip_allowlist.cfg'),
-      'updater': _update_ip_allowlist_config,
-      'use_authdb_transaction': True,
+        'proto_class': config_pb2.IPAllowlistConfig,
+        'revision_getter':
+        lambda: _get_authdb_config_rev_async('ip_allowlist.cfg'),
+        'updater': _update_ip_allowlist_config,
+        'use_authdb_transaction': True,
     },
     'oauth.cfg': {
         'proto_class': config_pb2.OAuthConfig,
@@ -522,16 +521,13 @@ _CONFIG_SCHEMAS = {
         'use_authdb_transaction': True,
     },
     'settings.cfg': {
-        'proto_class':
-            None,  # settings are stored as text in datastore
-        'default':
-            '',  # it's fine if config file is not there
+        'proto_class': None,  # settings are stored as text in datastore
+        'default': '',  # it's fine if config file is not there
         'revision_getter':
-            lambda: _get_service_config_rev_async('settings.cfg'),
+        lambda: _get_service_config_rev_async('settings.cfg'),
         'updater':
-            lambda _, rev, c: _update_service_config('settings.cfg', rev, c),
-        'use_authdb_transaction':
-            False,
+        lambda _, rev, c: _update_service_config('settings.cfg', rev, c),
+        'use_authdb_transaction': False,
     },
     'security.cfg': {
         'proto_class': security_config_pb2.SecurityConfig,
