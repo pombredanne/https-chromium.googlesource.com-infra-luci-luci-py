@@ -1030,6 +1030,22 @@ def rmtree(root):
   raise errors[0][2][1]
 
 
+def is_empty_dir_recursive(rootpath):
+  """Returns true if all directories and subdirectories do not contain files.
+
+  Simlinks are not followed, and are considered files.
+  """
+  stack = [rootpath]
+  while stack:
+    path = stack.pop()
+    for entry in os.scandir(path):
+      if entry.is_file() or _is_symlink_entry(entry):
+        return False
+      elif entry.is_dir():
+        stack.append(entry.path)
+    return True
+
+
 def get_recursive_size(path):
   # type: (str) -> int
   """Returns the total data size for the specified path.
@@ -1046,7 +1062,7 @@ def get_recursive_size(path):
         'files: %d, links: %d, dirs: %d, others: %d', path, elapsed, n_files,
         n_links, n_dirs, n_others)
     return total
-  except (IOError, OSError, UnicodeEncodeError):
+  except (IOError, OSError, UnicodeEncodeError) as e:
     logging.exception('Exception while getting the size of %s', path)
     return None
 

@@ -1512,6 +1512,9 @@ def _clean_cmd(parser, options, caches, root):
       logging.info("remove kvs dir with size: %d", size)
       file_path.rmtree(kvs_dir)
 
+  # First, make sure caches have the correct size.
+  for c in caches:
+    c.ensure_correct_total_size()
   # Trim first, then clean.
   local_caching.trim_caches(
       caches,
