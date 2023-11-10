@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95ec4f8b_7071dc5a",
+        "filename": "appengine/swarming/handlers_task_backend_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2023-11-10T15:25:08Z",
+      "side": 0,
+      "message": "took this out as it no longer part of the RunTaskRequest https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/5002600",
+      "range": {
+        "startLine": 136,
+        "startChar": 8,
+        "endLine": 136,
+        "endChar": 35
+      },
+      "revId": "6f3b25a989679581f7c5f824ef324dae4025c536",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
