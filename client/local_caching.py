@@ -255,6 +255,13 @@ class Cache:
     """
     raise NotImplementedError()
 
+  def ensure_correct_total_size(self):
+    """Ensures that the cache is accurately reporting its true size in terms
+    of memory. Does nothing for all caches except NamedCache which has a more
+    expensive cache size calculation.
+    """
+    pass
+
 
 class ContentAddressedCache(Cache):
   """Content addressed cache that stores objects temporarily.
@@ -856,8 +863,6 @@ class NamedCache(Cache):
         file_path.rmtree(self.cache_dir)
         fs.makedirs(self.cache_dir)
         self._lru = lru.LRUDict()
-      with self._lock:
-        self._try_upgrade()
     if time_fn:
       self._lru.time_fn = time_fn
 
@@ -884,7 +889,7 @@ class NamedCache(Cache):
 
     dst must be absolute, unicode and must not exist.
 
-    Returns the reused named cache size in bytes, or 0 if none was present.
+    Returns True if a NamedCache was reused, otherwise False
 
     Raises NamedCacheError if cannot install the cache.
     """
@@ -905,12 +910,13 @@ class NamedCache(Cache):
           rel_cache, size = self._lru.get(name)
           abs_cache = os.path.join(self.cache_dir, rel_cache)
           if fs.isdir(abs_cache):
-            logging.info('- reusing %r; size was %d', rel_cache, size)
+            logging.info('- reusing %r; size was %r', rel_cache,
+                         str(size or 'unknown'))
             file_path.ensure_tree(os.path.dirname(dst))
             self._sudo_chown(abs_cache)
             fs.rename(abs_cache, dst)
             self._remove(name)
-            return size
+            return True
 
           logging.warning('- expected directory %r, does not exist', rel_cache)
           self._remove(name)
@@ -920,7 +926,7 @@ class NamedCache(Cache):
         # entry.
         logging.info('- creating new directory')
         file_path.ensure_tree(dst)
-        return 0
+        return False
       except (IOError, OSError, PermissionError) as ex:
         if sys.platform == 'win32':
           print("There may be running process in cache"
@@ -945,7 +951,8 @@ class NamedCache(Cache):
     src must be absolute and unicode. Its content is moved back into the local
     named caches cache.
 
-    Returns the named cache size in bytes.
+    Returns True if the named_cache was uninstalled.
+      Always happens unless the directory was empty.
 
     Raises NamedCacheError if cannot uninstall the cache.
     """
@@ -965,14 +972,9 @@ class NamedCache(Cache):
           logging.error('- overwriting existing cache!')
           self._remove(name)
 
-        # Calculate the size of the named cache to keep. It's important because
-        # if size is zero (it's empty), we do not want to add it back to the
-        # named caches cache.
-        size = file_path.get_recursive_size(src)
-        logging.info('- Size is %d', size)
-        if not size:
-          # Do not save empty named cache.
-          return size
+        # If the directory is empty, do not add to the named_cache
+        if file_path.is_empty_dir_recursive(src):
+          return False
 
         # Move the dir and create an entry for the named cache.
         rel_cache = self._allocate_dir()
@@ -982,8 +984,7 @@ class NamedCache(Cache):
         self._sudo_chown(src)
         fs.rename(src, abs_cache)
 
-        self._lru.add(name, (rel_cache, size))
-        self._added.append(size)
+        self._lru.add(name, (rel_cache, 0))
 
         # Create symlink <cache_dir>/<named>/<name> -> <cache_dir>/<short name>
         # for user convenience.
@@ -1002,7 +1003,7 @@ class NamedCache(Cache):
           # UAC is enabled and the user is a filtered administrator account.
           if sys.platform != 'win32':
             raise
-        return size
+        return True
       except (IOError, OSError, PermissionError) as ex:
         # Raise using the original traceback.
         exc = NamedCacheError(
@@ -1043,8 +1044,8 @@ class NamedCache(Cache):
   def _oldest_evictable_item(self):
     self._lock.assert_locked()
     for name, ts in self._lru.items_with_ts():
-        if name not in self._keep:
-          return name, ts
+      if name not in self._keep:
+        return name, ts
     return None, None
 
   def oldest_evictable_ts(self):
@@ -1135,10 +1136,7 @@ class NamedCache(Cache):
     return evicted
 
   def cleanup(self):
-    """Removes unknown directories.
-
-    Does not recalculate the cache size since it's surprisingly slow on some
-    OSes.
+    """Removes unknown directories and updates cache sizes, if needed.
     """
     logging.info('NamedCache.cleanup(): Cleaning %s', self.cache_dir)
     success = True
@@ -1205,25 +1203,35 @@ class NamedCache(Cache):
         self._save()
     return success
 
-  # Internal functions.
+  def ensure_correct_total_size(self):
+    """Method ensures that the named_cache is correctly sized.
 
-  def _try_upgrade(self):
-    """Upgrades from the old format to the new one if necessary.
-
-    This code can be removed so all bots are known to have the right new format.
+    NamedCache.uninstall has two invariants:
+    1. It never adds a comletely empty directory.
+    2. If the NamedCache was actually used by previous task, it will set
+       its initial starting size to zero.
+    Using this information, we determine whether to do the expensive directory
+    size operation. This is intended to be called subsequent to cache.cleanup
+    during `swarming_bot.zip start_bot --clean`.
     """
-    if not self._lru:
-      return
-    _name, (data, _ts) = self._lru.get_oldest()
-    if isinstance(data, (list, tuple)):
-      return
-    # Update to v2.
-    def upgrade(_name, rel_cache):
-      abs_cache = os.path.join(self.cache_dir, rel_cache)
-      return rel_cache, file_path.get_recursive_size(abs_cache)
+    def update_size(name, val):
+      rel_path, size = val
+      if not size:
+        cache_path = os.path.join(self.cache_dir, rel_path)
+        size = file_path.get_recursive_size(cache_path)
+        if size is None:
+          # there would already be an error message in get_recursive_size
+          # swallow and continue.
+          logging.warning("ensure_correct_total_size: failed to calculate size")
+          size = 0
+        self._added.append(size)
+      return rel_path, size
 
-    self._lru.transform(upgrade)
-    self._save()
+    with self._lock:
+      self._lru.transform(update_size)
+      self._save()
+
+  # Internal functions.
 
   def _remove_lru_item(self):
     """Removes the oldest LRU entry. LRU must not be empty."""

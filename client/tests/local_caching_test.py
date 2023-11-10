@@ -107,6 +107,7 @@ class TestCase(auto_stub.TestCase):
         f.write(data)
       cache.uninstall(dest_dir, name)
       self.assertFalse(fs.exists(dest_dir))
+      cache.ensure_correct_total_size()
       return name
     self.fail('Unexpected cache type %r' % cache)
     return None
@@ -546,8 +547,8 @@ class NamedCacheTest(TestCase, CacheTestMixin):
     write_file(os.path.join(a_path, 'x'), b'x')
     write_file(os.path.join(b_path, 'y'), b'y')
 
-    self.assertEqual(1, cache.uninstall(a_path, '1'))
-    self.assertEqual(1, cache.uninstall(b_path, '2'))
+    self.assertEqual(True, cache.uninstall(a_path, '1'))
+    self.assertEqual(True, cache.uninstall(b_path, '2'))
 
     self.assertEqual(4, len(fs.listdir(cache.cache_dir)))
     path1 = os.path.join(cache.cache_dir, cache._lru['1'][0])
@@ -572,7 +573,7 @@ class NamedCacheTest(TestCase, CacheTestMixin):
 
     self.assertEqual(0, cache.install(a_path, '1'))
     write_file(os.path.join(dest_dir, 'a', 'x'), b'x')
-    self.assertEqual(1, cache.uninstall(a_path, '1'))
+    self.assertEqual(True, cache.uninstall(a_path, '1'))
 
     # Test starts here.
     self.assertEqual(1, cache.install(a_path, '1'))
@@ -589,8 +590,8 @@ class NamedCacheTest(TestCase, CacheTestMixin):
     write_file(os.path.join(a_path, 'x'), b'x2')
     write_file(os.path.join(b_path, 'y'), b'y')
 
-    self.assertEqual(2, cache.uninstall(a_path, '1'))
-    self.assertEqual(1, cache.uninstall(b_path, '2'))
+    self.assertEqual(True, cache.uninstall(a_path, '1'))
+    self.assertEqual(True, cache.uninstall(b_path, '2'))
 
     self.assertEqual(4, len(fs.listdir(cache.cache_dir)))
     path1 = os.path.join(cache.cache_dir, cache._lru['1'][0])
@@ -649,12 +650,12 @@ class NamedCacheTest(TestCase, CacheTestMixin):
     self.assertEqual(0, cache.install(dest_dir, '1'))
     with fs.open(os.path.join(dest_dir, 'hi'), 'wb') as f:
       f.write(b'hello')
-    self.assertEqual(5, cache.uninstall(dest_dir, '1'))
+    self.assertEqual(True, cache.uninstall(dest_dir, '1'))
     self.assertEqual(['1'],
                      fs.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR)))
     self.assertEqual(True, cache.cleanup())
-    self.assertEqual(5, cache.install(dest_dir, '1'))
-    self.assertEqual(5, cache.uninstall(dest_dir, '1'))
+    self.assertEqual(True, cache.install(dest_dir, '1'))
+    self.assertEqual(True, cache.uninstall(dest_dir, '1'))
     self.assertEqual(['1'],
                      fs.listdir(os.path.join(cache.cache_dir, cache.NAMED_DIR)))
     self.assertEqual(['hi'],
