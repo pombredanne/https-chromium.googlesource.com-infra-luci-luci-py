@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "754d65ef_e591b126",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-11T01:43:37Z",
+      "side": 1,
+      "message": "This will notice `active_lease` is None and will execute _ping_session branch.",
+      "range": {
+        "startLine": 686,
+        "startChar": 4,
+        "endLine": 691,
+        "endChar": 26
+      },
+      "revId": "0c70c5a3f02c0b720efb087d3badac618ef63bcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
