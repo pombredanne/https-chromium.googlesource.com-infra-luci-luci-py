@@ -16,6 +16,46 @@
       "message": "Would like some early feedback on this approach before I spend more time fixing tests and doing cleanup. \n\nMy first attempt at the linked bug was to find a faster way to write `get_recursive_size`. I think `os.scandir` is actually quite fast already, at least on `linux`. I tested it against `du` and it was actually faster. Have not tested on `macos` yet. \n\nIt occurred to me that we probably don\u0027t need to actually calculate the sizes of the `named_cache` until after the task is complete. IUUC its not used for anything useful besides logging.\n\nEven if some caches show `zero` for their file size, this probably won\u0027t effect the name cache hints bc https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/named_caches.py;l\u003d208\n\nTrimming function which runs before execution doesn\u0027t even rely on the actual sizes of the `NamedCache`. Only the `hints` which it gets from the server. \n\nSo I don\u0027t see why we need to calculate `cache size` during a task, specially if it\u0027s expensive.",
       "revId": "c237de85ba230893660ce24cce941f41659e425c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcc4d359_78c49e61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-11T00:45:27Z",
+      "side": 1,
+      "message": "I think this can have negative consequences, worse than the current state.\n\nCache cleaning happens between tasks. This is currently totally \"invisible\" activity that doesn\u0027t show up any event logs, BQ, metrics, etc. From monitoring graphs it will look like bots sit idle for no apparent reason. \n\nEven worse, during the cleaning the bot is not sending any keep-alive pings to Swarming or RBE. If it takes too long, the bot will be considered dead. If this is last bot of its class, this will result in all tasks pending for this bot class dropped with \"no resources\" error (this has happened for real in a similar scenario where a bot hook takes too long).\n\nConsidering we are in a middle of rewrite and don\u0027t have capacity to do big changes (like introduction of a special maintenance state that shows up in event logs and monitoring), I think we should just try to optimize the cache size evaluation. Or maybe get rid of it completely (e.g. do it only when there\u0027s a disk pressure and we need to evict some caches).",
+      "revId": "c237de85ba230893660ce24cce941f41659e425c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c32d203_b780a90e",
+        "filename": "client/utils/file_path.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1033,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-11T00:45:27Z",
+      "side": 1,
+      "message": "This may be as slow as get_recursive_size itself, since scandir actually returns file sizes. This only difference between is_empty_dir_recursive and _get_recur_size_with_scandir is absence of some summing, which is likely very minor part of _get_recur_size_with_scandir runtime.",
+      "range": {
+        "startLine": 1033,
+        "startChar": 4,
+        "endLine": 1033,
+        "endChar": 26
+      },
+      "revId": "c237de85ba230893660ce24cce941f41659e425c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
