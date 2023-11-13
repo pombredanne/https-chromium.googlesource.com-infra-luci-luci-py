@@ -16,6 +16,23 @@
       "message": "PTAL. This is a bug because we should be using this `request_id` per the docs. https://source.chromium.org/chromium/infra/infra/+/main:go/src/go.chromium.org/luci/buildbucket/proto/backend.proto;l\u003d216-228",
       "revId": "89e4e83177526cbf2211880e6accffb320078802",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4313840_889e651c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-13T21:57:33Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "89e4e83177526cbf2211880e6accffb320078802",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
