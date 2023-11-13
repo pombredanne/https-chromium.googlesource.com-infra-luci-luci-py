@@ -50,6 +50,24 @@
       "message": "Debugging file?",
       "revId": "f4d74dcbbfa9afb8bc52c11de0eda212397ec776",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38c05b9b_e5b0a208",
+        "filename": "appengine/auth_service/realms/test_data/services/auth-service-app-id/CONFIGS/permissions.cfg",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1544922
+      },
+      "writtenOn": "2023-11-13T22:28:45Z",
+      "side": 1,
+      "message": "It\u0027s for a unit test that checks fetching of permissions.cfg in `realms/config_test.py`.",
+      "parentUuid": "0b314a7f_0737474a",
+      "revId": "f4d74dcbbfa9afb8bc52c11de0eda212397ec776",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
