@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21af4842_bb4f7761",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-14T17:20:02Z",
+      "side": 1,
+      "message": "That makes a lot of sense! I think I assumed too much about how the `clean` function works then! \n\nWrt optimizations, we could possibly expect a 2x speedup in some cases. I did the following experiment on `macos`.\n\n1. Generated a 6 level deep directory structure with ~\u003d 800k 1byte files.\n2. Compared a series of tools to measure their performance against the current python implementation.\n3. Calculated the average wallclock time of the tools execution.\n\nBut first some notes about my investigation into this. \n\nWe cannot directly use `du` because it is calculating `disk space` while the `get_recursive_size` is calculating the sum of all file sizes. \nSo they are not doing the same thing. In hindsight, I think `du` may have been a more realistic to use. To get `du` to produce the same result as `get_recursive_size`, it becomes non cross platform and actually a bit slower. \n\nThat said, I found a rust `cli` tool (https://github.com/solidiquis/erdtree) which does a `logical` disk size calculation which is the same as what we want. I\u0027m not saying we use this specific tool but wanted to use it as a `baseline` to see what sort of performance we could hope for. \n\nRunning (avg time 20 runs `5.71415`): \n```\nerd --level 0 --no-ignore --disk-usage logical test_dir_1\n\n817645 B test_dir_1\n13606 directories, 817645 files\n```\n\nAvg for `get_recursive_file_size` was `11.9888`. \n\nWe can conclude from this that we may see a `2x` or so speed up on `macos` for similar directory structures I tested if we heavily optimize the `get_recursive_file_size` routine. \n\nIf the results of the experiment are generalizable, then we could, with some sort of optimization shave off ~\u003d 150seconds of time. But I think this assertion is highly speculative. \n\nOther caveats, I did not measure cpu or memory usage. But could look into that in the future.",
+      "parentUuid": "fcc4d359_78c49e61",
+      "revId": "c237de85ba230893660ce24cce941f41659e425c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c32d203_b780a90e",
