@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bfdb1cf_f8d6d4ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2023-11-17T21:29:56Z",
+      "side": 1,
+      "message": "Follow the presubmit message:\n```\n** Presubmit ERRORS: 1 **\n\n        There is a freeze in effect on permissions.py.\n\n        If changing the PermissionsDB, please go make the same change at\n        configs/chrome-infra-auth-dev/permissions.cfg and include a git\n        footer that looks like:\n\n        Ignore-Freeze: {_INFRA_DATA}\n```\n\n\nbut I\u0027m really not sure about this line... I.e. Should I replace {_INFRA_DATA} with something? And... the footer is supposed to be added in this CL, right? \n\nAnyway, chrome-infra-auth-dev counterpart is at https://crrev.com/i/6678839",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "b72b6f716744ecac55d1647e3238e3072f4b5c52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
