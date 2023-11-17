@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "502f772f_8829474d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1544922
+      },
+      "writtenOn": "2023-11-17T07:09:22Z",
+      "side": 1,
+      "message": "Logging of update-realms in chrome-infra-auth-dev: https://cloudlogging.app.goo.gl/C9t1pB3XQtyoCAZy9",
+      "revId": "7c135796ac4939fd6906c0063a7e7834c2f5c55d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
