@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba55aa0b_8340d806",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-20T17:40:30Z",
+      "side": 1,
+      "message": "This change is the simplest solution to the linked bug IMO. We could do more work on this like figure out the \"default\" realm or show users a list of realms they have access too but I don\u0027t think doing that really adds much value on top of just doing this frontend change. I intend this as a \"power user\" feature and most people probably not change the realm. \n\nScreenshot: https://screenshot.googleplex.com/BTyEekfEARjTnFQ",
+      "revId": "612d64937a7bb6f3c38681c52533ce5cd7f0c9e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
