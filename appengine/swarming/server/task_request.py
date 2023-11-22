@@ -491,8 +491,8 @@ def _validate_realm(_prop, value):
 
 def _validate_cas_instance(_prop, value):
   if not value:
-    return
-  if _CAS_INSTANCE_RE.match(value):
+    raise datastore_errors.BadValueError('non-empty cas_instance required')
+  if value and _CAS_INSTANCE_RE.match(value):
     return value
   raise datastore_errors.BadValueError('invalid cas_instance: %s' % value)
 

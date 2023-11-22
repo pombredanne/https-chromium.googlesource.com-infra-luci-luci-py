@@ -203,9 +203,10 @@ class TaskRequestPrivateTest(TestCase):
     self.assertEqual(
         valid_cas_instance,
         task_request._validate_cas_instance(Prop(), valid_cas_instance))
-    self.assertEqual(None, task_request._validate_cas_instance(Prop(), ''))
     with self.assertRaises(datastore_errors.BadValueError):
       task_request._validate_cas_instance(Prop(), 'invalid')
+    with self.assertRaises(datastore_errors.BadValueError):
+      task_request._validate_cas_instance(Prop(), None)
 
   def test_apply_template_simple(self):
     tt = _gen_task_template(
