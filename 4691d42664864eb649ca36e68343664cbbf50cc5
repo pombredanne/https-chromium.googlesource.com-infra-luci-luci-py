@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7602828f_6fd342c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-22T17:43:25Z",
+      "side": 1,
+      "message": "I\u0027ve verified that there are no cases where `digest` is `non-empty` and `cas_instance` is empty using this bq query:\n\n```sql\nSELECT COUNT(*) FROM `chrome-swarming.swarming.task_requests`\nWHERE TIMESTAMP_TRUNC(create_time, DAY) \u003d TIMESTAMP(\"2023-11-21\")\nAND (\n  SELECT COUNT(*) \n  FROM UNNEST(task_slices) \n  WHERE (properties.cas_input_root.cas_instance IS NULL OR properties.cas_input_root.cas_instance \u003d \"\")\n  AND properties.cas_input_root.digest IS NOT NULL\n) \u003e 0\n```\n\nI\u0027m not sure why this value was allowed to be empty in the past.",
+      "revId": "4691d42664864eb649ca36e68343664cbbf50cc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
