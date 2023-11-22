@@ -923,8 +923,11 @@ def map_and_run(data, constant_run_path):
       # Try to link files to the output directory, if specified.
       link_outputs_to_outdir(run_dir, out_dir, data.outputs)
       isolated_stats = result['stats'].setdefault('isolated', {})
-      result['cas_output_root'], upload_stats = upload_outdir(
-          cas_client, data.cas_instance, out_dir, tmp_dir)
+      result['cas_output_root'] = None
+      upload_stats = None
+      if data.cas_instance:
+        result['cas_output_root'], upload_stats = upload_outdir(
+            cas_client, data.cas_instance, out_dir, tmp_dir)
       if upload_stats:
         isolated_stats['upload'] = upload_stats
 
