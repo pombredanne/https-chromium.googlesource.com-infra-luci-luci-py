@@ -112,6 +112,7 @@ class NewAuthDBSnapshotTest(test_case.TestCase):
         'modified_by': None,
         'modified_ts': None,
         'permissions': [],
+        'permissionslist': None,
       },
       'project_realms': [],
     }
@@ -302,6 +303,7 @@ class NewAuthDBSnapshotTest(test_case.TestCase):
           realms_pb2.Permission(name='luci.dev.p1'),
           realms_pb2.Permission(name='luci.dev.p2'),
         ],
+        'permissionslist': None,
       },
       'project_realms': [
         {
