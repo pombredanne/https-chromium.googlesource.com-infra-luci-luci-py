@@ -16,6 +16,69 @@
       "message": "Please let me know if these queue configs are correct. \n\nIIUC, it is better to land the `golang` CL first before merging this one. \n\nSee: https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/5054492?tab\u003dcomments",
       "revId": "e0801b6ed3b856977a763ca0df9d222d87ed9195",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1e84d51_81eff49a",
+        "filename": "appengine/swarming/cron.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-27T21:33:35Z",
+      "side": 1,
+      "message": "if you rebase, there\u0027s already a section for crons implemented in Go https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/cron.yaml#128\n\nThis handler should be added there.",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 0
+      },
+      "revId": "e0801b6ed3b856977a763ca0df9d222d87ed9195",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b848883f_dec18909",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-27T21:33:35Z",
+      "side": 1,
+      "message": "nit: this should be its own \"section\", it is not RBE migration\n\n```\n## Tasks handled in Go\n```\n\n(or something)",
+      "revId": "e0801b6ed3b856977a763ca0df9d222d87ed9195",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94897532_3c1540a2",
+        "filename": "appengine/swarming/queue.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-11-27T21:33:35Z",
+      "side": 1,
+      "message": "I think `rate` is required.  Existing BQ export queues use `10/s`.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 20
+      },
+      "revId": "e0801b6ed3b856977a763ca0df9d222d87ed9195",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
