@@ -137,12 +137,13 @@ def find_gcloud():
     if os.path.isfile(exe_file) and os.access(exe_file, os.X_OK):
       return os.path.realpath(exe_file)
 
-    # infra.git installs gcloud as //cipd/gcloud
-    #
-    # This is all terrible :/
-    exe_file = os.path.join(search_dir, 'cipd', 'gcloud', 'bin', binary)
-    if os.path.isfile(exe_file) and os.access(exe_file, os.X_OK):
-      return os.path.realpath(exe_file)
+    # Comment out changes from crrev/c/4634059.
+    # # infra.git installs gcloud as //cipd/gcloud
+    # #
+    # # This is all terrible :/
+    # exe_file = os.path.join(search_dir, 'cipd', 'gcloud', 'bin', binary)
+    # if os.path.isfile(exe_file) and os.access(exe_file, os.X_OK):
+    #   return os.path.realpath(exe_file)
 
     prev_dir = search_dir
     search_dir = os.path.dirname(search_dir)
