@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c3051ad_5aaefbc6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-27T17:39:26Z",
+      "side": 1,
+      "message": "Please let me know if these queue configs are correct. \n\nIIUC, it is better to land the `golang` CL first before merging this one. \n\nSee: https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/5054492?tab\u003dcomments",
+      "revId": "e0801b6ed3b856977a763ca0df9d222d87ed9195",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
