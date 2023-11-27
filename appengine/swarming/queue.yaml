@@ -82,6 +82,11 @@ queue:
   bucket_size: 100
   rate: 500/s
 
+# /internal/tasks/t/bq-export-interval
+# This is served by Swarming Go via go.chromium.org/luci/server/tq.
+# Job is bigquery exporter.
+- name: bq-export-interval
+  target: default-go
 
 ## External Scheduler
 
