@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71e6c88f_f61f8233",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1544922
+      },
+      "writtenOn": "2023-11-28T04:32:02Z",
+      "side": 1,
+      "message": "Patchset #1 was a no-op change, extending a comment in `components/components/auth/model.py`, and the `luci-py-try-bionic-64` tryjob failed.\n\nAfter a bit of time isolating tests, I believe the `Internal Error: runTests aborted` error is caused by the template not rendering successfully, and ungracefully failing. Adding the `is defined` check I think is conceptually the same, and all the tryjobs succeeded with that.",
+      "revId": "085ef71cc0ceab5c346243646a3b39888416a46d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
