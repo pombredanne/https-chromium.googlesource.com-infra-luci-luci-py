@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0f7b1f0_30a14ab2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3072438
+      },
+      "writtenOn": "2023-11-29T17:57:38Z",
+      "side": 1,
+      "message": "3017894: logdog: fix typo in docstring | https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3017894\n302a102a3c72224d2039df35fe4b292e9dd540d3Ife854a4ac590c43f1a39b79d5eb891f1f69b52bd[logdog: fix typo in docstring](https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/3017894)",
+      "revId": "302a102a3c72224d2039df35fe4b292e9dd540d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
