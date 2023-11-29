@@ -1944,7 +1944,10 @@ class _BotLoopState:
       # if there's an error here before, so let's preserve that behavior
       # (though anything that's not a remote_client.InternalError will make
       # it through, again preserving prior behavior).
-      self._bot.remote.post_task_update(task_id, {'duration': 0}, None, 0)
+      self._bot.remote.post_task_update(task_id, {'duration': 0},
+                                        None,
+                                        0,
+                                        retry_transient=True)
     except remote_client_errors.InternalError:
       pass
 

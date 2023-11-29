@@ -15,6 +15,9 @@ failure and to cancel this task run and ask the server to retry it.
 """
 
 import base64
+import collections
+import dataclasses
+import enum
 import json
 import logging
 import optparse
@@ -25,6 +28,8 @@ import sys
 import tempfile
 import time
 import traceback
+import typing
+from typing import Optional
 
 from google.protobuf.json_format import MessageToJson
 from google.protobuf.message import DecodeError
@@ -660,7 +665,106 @@ class _OutputBuffer:
     return max(out, 0)
 
 
-class _RBEPinger:
+class _Pinger:
+  def __init__(self):
+    self._next_ping_time = monotonic_time()  # ASAP
+
+  def time_until_next_ping(self):
+    """Returns how many seconds to wait until the next ping."""
+    return max(0.0, self._next_ping_time - monotonic_time())
+
+  def _schedule_next_ping(self, delta):
+    self._next_ping_time = monotonic_time() + random.uniform(delta, delta * 1.5)
+
+  def __repr__(self):
+    return f"{self.__class__} - {self.time_until_next_ping()}"
+
+
+class _Action(enum.Enum):
+  WAIT_FOR_OUTPUT = 1
+  POST_TASK_OUTPUT = 2
+  PING_RBE = 3
+  CHECK_FOR_TIMEOUT = 4
+  SLEEP_BETWEEN_RETRY = 5
+  END_LOOP = 6
+
+
+class _ActionQueue(object):
+  def __init__(self, state, debug=True):
+    self._debug = debug
+    self._last_action = None
+    self._state = state
+    self._queue = collections.deque([])
+
+  def add(self, *actions):
+    assert (actions)
+    if self._debug:
+      logging.debug("ADDING\nActions: [%s]\nState: %s",
+                    ", ".join(str(a) for a in actions), self._state)
+    for action in actions:
+      # Adds to right of queue
+      self._queue.append(action)
+
+  def next(self):
+    if self.empty:
+      logging.debug("No more inputs, ending loop")
+      return _Action.END_LOOP
+    # pops item from the left of the queue
+    return self._queue.popleft()
+
+  @property
+  def empty(self):
+    return len(self._queue) < 1
+
+
+_TaskUpdateResult = collections.namedtuple('TaskUpdateResult', [
+    'success',
+    'task_canceled',
+])
+
+
+class _SwarmingPinger(_Pinger):
+  def __init__(self, remote):
+    super().__init__()
+    self._remote = remote
+    self._consecutive_errors = 0
+    self._err = None
+
+  def ping(self, task_id, params, stdout_and_chunk=None, exit_code=None):
+    try:
+      task_cancelled = self._remote.post_task_update(
+          **dict(task_id=task_id,
+                 params=params,
+                 stdout_and_chunk=stdout_and_chunk,
+                 exit_code=exit_code))
+      self._consecutive_errors = 0
+      # if a request is success, we should be able to immediately send another
+      # this will be defered to the task process output
+      self._schedule_next_ping(0)
+      self._err = None
+      return _TaskUpdateResult(task_canceled=task_cancelled, success=True)
+    except remote_client.InternalError as e:
+      logging.warning("Internal error encountered %s, scheduling sleep cycle",
+                      str(e))
+      self._consecutive_errors += 1
+      self._schedule_next_ping(60)
+      self._err = e
+      return _TaskUpdateResult(task_canceled=None, success=False)
+
+  @property
+  def is_crash_loop(self):
+    return self._consecutive_errors > 0
+
+  @property
+  def max_retries_reached(self):
+    return self._consecutive_errors >= 6
+
+  @property
+  def previous_error(self):
+    return self._err
+
+
+class _RBEPinger(_Pinger):
   """Knows when and how to ping the RBE session to keep it alive.
 
   Currently ignores lease cancellation signals: cancellations still happen
@@ -670,12 +774,8 @@ class _RBEPinger:
   """
 
   def __init__(self, rbe_session):
+    super().__init__()
     self._rbe_session = rbe_session
-    self._next_ping_time = monotonic_time()  # ASAP
-
-  def time_until_next_ping(self):
-    """Returns how many seconds to wait until the next ping."""
-    return max(0.0, self._next_ping_time - monotonic_time())
 
   def ping(self):
     """Sends a ping to RBE, keeping the lease alive, if it's time."""
@@ -689,9 +789,6 @@ class _RBEPinger:
     else:
       self._schedule_next_ping(60.0)
       self._ping_session()
-
-  def _schedule_next_ping(self, delta):
-    self._next_ping_time = monotonic_time() + random.uniform(delta, delta * 1.5)
 
   def _ping_active_lease(self):
     try:
@@ -721,6 +818,138 @@ class _RBEPinger:
       logging.error('Failed to ping RBE session: %s', e)
 
 
+@dataclasses.dataclass
+class _LoopState:
+  swarming_pinger: _SwarmingPinger
+  buf: _OutputBuffer = dataclasses.field(repr=False)
+  rbe_pinger: Optional[_RBEPinger] = None
+  had_io_timeout = False
+  term_sent = False
+  kill_sent = False
+  timed_out = None
+  payload: Optional[str] = dataclasses.field(repr=False, default=None)
+
+
+def process_command_output(state, proc, params, task_details, cost_usd_hour,
+                           task_start):
+  """
+  Arguments:
+    state: _LoopState which keeps track of information about the execution
+      of the task in the loop. Object is mutated during the execution of the loop.
+    proc: a subprocess42.Proc which is executing `run_isolated.py`
+    params: extra parameters to send to swarming task updates
+    task_details: immutable input parameters to the input task.
+    cost_usd_hour: price per hour to execute the task
+    task_start: when did the task officially start
+  Raises:
+    remote_client.InternalError if loop fails to contact swarming server after a given number of retries.
+    ExitSignal, InternalError, IOError, OSError if extracting next input from process fails.
+  """
+  def yield_timeout():
+    buf_wait = state.buf.calc_yield_wait(state.timed_out)
+    rbe_wait = state.rbe_pinger.time_until_next_ping(
+    ) if state.rbe_pinger else None
+    if rbe_wait is None:
+      return buf_wait
+    return min(buf_wait, rbe_wait)
+
+  q = _ActionQueue(state)
+  q.add(_Action.WAIT_FOR_OUTPUT)
+  proc_output = proc.yield_any(maxsize=state.buf.maxsize, timeout=yield_timeout)
+  while not q.empty:
+    action = q.next()
+    if action == _Action.END_LOOP:
+      break
+    elif action == _Action.WAIT_FOR_OUTPUT:
+      try:
+        channel, new_data = next(proc_output)
+      except StopIteration:
+        logging.debug("No more output from process, exiting loop")
+        q.add(_Action.END_LOOP)
+        continue
+      state.buf.add(channel, new_data)
+      next_actions = []
+      if state.buf.should_post_update():
+        next_actions.append(_Action.POST_TASK_OUTPUT)
+        state.payload = state.buf.pop()
+      else:
+        next_actions.append(_Action.WAIT_FOR_OUTPUT)
+      if state.rbe_pinger:
+        next_actions.append(_Action.PING_RBE)
+      q.add(*next_actions)
+    elif action == _Action.POST_TASK_OUTPUT:
+      params['cost_usd'] = (cost_usd_hour * (monotonic_time() - task_start) /
+                            60. / 60.)
+      res = state.swarming_pinger.ping(task_details.task_id, params,
+                                       state.payload)
+      if not res.success:
+        q.add(_Action.SLEEP_BETWEEN_RETRY)
+        continue
+      state.payload = None
+      if not res.task_canceled:
+        logging.debug('Server induced stop; kill_sent: %s, term_sent: %s',
+                      state.kill_sent, state.term_sent)
+        # Server is telling us to stop. Normally task cancellation.
+        if not state.kill_sent and not state.term_sent:
+          logging.warning('Server induced stop; sending SIGTERM')
+          state.term_sent = True
+          proc.terminate()
+          state.timed_out = monotonic_time()
+          q.add(_Action.CHECK_FOR_TIMEOUT)
+        else:
+          q.add(_Action.WAIT_FOR_OUTPUT)
+    elif action == _Action.PING_RBE:
+      # Keep RBE updated as well.
+      if state.rbe_pinger and state.rbe_pinger.time_until_next_ping() <= 0:
+        state.rbe_pinger.ping()
+      if state.swarming_pinger.is_crash_loop:
+        q.add(_Action.SLEEP_BETWEEN_RETRY)
+      else:
+        q.add(_Action.WAIT_FOR_OUTPUT)
+    elif action == _Action.SLEEP_BETWEEN_RETRY:
+      if state.swarming_pinger.max_retries_reached:
+        raise state.swarming_pinger.previous_error
+      swarming_time_to_sleep = state.swarming_pinger.time_until_next_ping()
+      if state.rbe_pinger:
+        rbe_time_to_sleep = state.rbe_pinger.time_until_next_ping()
+        if rbe_time_to_sleep <= 0:
+          q.add(_Action.PING_RBE)
+      if swarming_time_to_sleep <= 0:
+        q.add(_Action.POST_TASK_OUTPUT)
+      rbe_time_to_sleep = state.swarming_pinger.time_until_next_ping()
+      time.sleep(min(rbe_time_to_sleep, swarming_time_to_sleep))
+    elif action == _Action.CHECK_FOR_TIMEOUT:
+      # Send signal on timeout if necessary. Both are failures, not
+      # internal_failures.
+      # Eventually kill but return 0 so bot_main.py doesn't cancel the task.
+      if not state.timed_out:
+        if (task_details.io_timeout
+            and state.buf.since_last_io > task_details.io_timeout):
+          state.had_io_timeout = True
+          if not state.term_sent:
+            logging.warning(
+                'I/O timeout is %.3fs; no update for %.3fs sending SIGTERM',
+                task_details.io_timeout, state.buf.since_last_io)
+            proc.terminate()
+            state.timed_out = monotonic_time()
+      else:
+        # During grace period.
+        if (not state.kill_sent and
+            state.buf.last_loop - state.timed_out >= task_details.grace_period):
+          # Now kill for real. The user can distinguish between the following
+          # states:
+          # - signal but process exited within grace period,
+          #   (hard_|io_)_timed_out will be set but the process exit code will
+          #   be script provided.
+          # - processed exited late, exit code will be -9 on posix.
+          logging.warning('Grace of %.3fs exhausted at %.3fs; sending SIGKILL',
+                          task_details.grace_period,
+                          state.buf.last_loop - state.timed_out)
+          proc.kill()
+          state.kill_sent = True
+      q.add(_Action.WAIT_FOR_OUTPUT)
+
+
 def run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
                 task_start, run_isolated_flags, bot_file, ctx_file):
   """Runs a command and sends packets to the server to stream results back.
@@ -744,7 +973,8 @@ def run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
   params = {
       'cost_usd': cost_usd_hour * (start - task_start) / 60. / 60.,
   }
-  if not remote.post_task_update(task_details.task_id, params):
+  if not remote.post_task_update(
+      task_details.task_id, params, retry_transient=True):
     # Don't even bother, the task was already canceled.
     logging.debug('Task has been already canceled. Won\'t start it. '
                   'task_id: %s. Sending update...', task_details.task_id)
@@ -753,7 +983,10 @@ def run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
     # Sending 'canceled' signal to the server for the task to be 'CANCELED'
     # instead of 'KILLED'.
     params['canceled'] = True
-    remote.post_task_update(task_details.task_id, params, exit_code=-1)
+    remote.post_task_update(task_details.task_id,
+                            params,
+                            exit_code=-1,
+                            retry_transient=True)
     return {
         'exit_code': -1,
         'hard_timeout': False,
@@ -786,94 +1019,29 @@ def run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
                                 cost_usd_hour, task_start, e.exit_code,
                                 e.stdout)
 
-  buf = _OutputBuffer(task_details, start)
+  missing_cas = []
+  missing_cipd = []
+  state = _LoopState(buf=_OutputBuffer(task_details, start),
+                     swarming_pinger=_SwarmingPinger(remote),
+                     rbe_pinger=rbe_pinger)
   try:
     # Monitor the task
-    exit_code = None
-    had_io_timeout = False
-    missing_cas = []
-    missing_cipd = []
-    internal_error = None
-    internal_error_reported = False
-    term_sent = False
-    kill_sent = False
-    timed_out = None
-    try:
-      # Calculates how soon to unblock in proc.yield_any(...).
-      def yield_timeout():
-        buf_wait = buf.calc_yield_wait(timed_out)
-        rbe_wait = rbe_pinger.time_until_next_ping() if rbe_pinger else None
-        if rbe_wait is None:
-          return buf_wait
-        return min(buf_wait, rbe_wait)
-
-      for channel, new_data in proc.yield_any(maxsize=buf.maxsize,
-                                              timeout=yield_timeout):
-        buf.add(channel, new_data)
-
-        # Post update if necessary.
-        if buf.should_post_update():
-          params['cost_usd'] = (
-              cost_usd_hour * (monotonic_time() - task_start) / 60. / 60.)
-          if not remote.post_task_update(task_details.task_id, params,
-                                         buf.pop()):
-            logging.debug('Server induced stop; kill_sent: %s, term_sent: %s',
-                          kill_sent, term_sent)
-            # Server is telling us to stop. Normally task cancellation.
-            if not kill_sent and not term_sent:
-              logging.warning('Server induced stop; sending SIGTERM')
-              term_sent = True
-              proc.terminate()
-              timed_out = monotonic_time()
-
-        # Keep RBE updated as well.
-        if rbe_pinger:
-          rbe_pinger.ping()
-
-        # Send signal on timeout if necessary. Both are failures, not
-        # internal_failures.
-        # Eventually kill but return 0 so bot_main.py doesn't cancel the task.
-        if not timed_out:
-          if (task_details.io_timeout and
-              buf.since_last_io > task_details.io_timeout):
-            had_io_timeout = True
-            if not term_sent:
-              logging.warning(
-                  'I/O timeout is %.3fs; no update for %.3fs sending SIGTERM',
-                  task_details.io_timeout, buf.since_last_io)
-              proc.terminate()
-              timed_out = monotonic_time()
-        else:
-          # During grace period.
-          if (not kill_sent and
-              buf.last_loop - timed_out >= task_details.grace_period):
-            # Now kill for real. The user can distinguish between the following
-            # states:
-            # - signal but process exited within grace period,
-            #   (hard_|io_)_timed_out will be set but the process exit code will
-            #   be script provided.
-            # - processed exited late, exit code will be -9 on posix.
-            logging.warning(
-                'Grace of %.3fs exhausted at %.3fs; sending SIGKILL',
-                task_details.grace_period, buf.last_loop - timed_out)
-            proc.kill()
-            kill_sent = True
-      logging.info('Waiting for process exit')
-      exit_code = proc.wait()
-
-      # the process group / job object may be dangling so if we didn't kill
-      # it already, give it a poke now.
-      if not kill_sent:
-        logging.info('got exit code %d, but kill whole process group',
-                     exit_code)
-        proc.kill()
-    except (
-        ExitSignal, InternalError, IOError,
-        OSError, remote_client.InternalError) as e:
-      logging.exception('got some exception, killing process')
-      # Something wrong happened, try to kill the child process.
-      internal_error = str(e) or 'unknown error'
-      exit_code = kill_and_wait(proc, task_details.grace_period, str(e))
+    # Calculates how soon to unblock in proc.yield_any(...).
+    process_command_output(state, proc, params, task_details, cost_usd_hour,
+                           task_start)
+    logging.info('Waiting for process exit')
+    exit_code = proc.wait()
+    # the process group / job object may be dangling so if we didn't kill
+    # it already, give it a poke now.
+    if not state.kill_sent:
+      logging.info('got exit code %d, but kill whole process group', exit_code)
+      proc.kill()
+  except (ExitSignal, InternalError, IOError, OSError,
+          remote_client.InternalError) as e:
+    logging.exception('got some exception, killing process')
+    # Something wrong happened, try to kill the child process.
+    internal_error = str(e) or 'unknown error'
+    exit_code = kill_and_wait(proc, task_details.grace_period, str(e))
 
     logging.info('Subprocess for run_isolated was completed or killed')
 
@@ -985,8 +1153,11 @@ def run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
         params.pop('named_caches_stats', None)
         params.pop('cache_trim_stats', None)
         params.pop('cleanup_stats', None)
-      remote.post_task_update(task_details.task_id, params, buf.pop(),
-                              exit_code)
+      remote.post_task_update(task_details.task_id,
+                              params,
+                              buf.pop(),
+                              exit_code,
+                              retry_transient=True)
       logging.debug('Last task update finished. task_id: %s, exit_code: %s, '
                     'params: %s.', task_details.task_id, exit_code, params)
       if internal_error:

@@ -268,7 +268,8 @@ class RemoteClientNative(object):
                        task_id,
                        params,
                        stdout_and_chunk=None,
-                       exit_code=None):
+                       exit_code=None,
+                       retry_transient=False):
     """Posts task update to task_update.
 
     Arguments:
@@ -298,8 +299,9 @@ class RemoteClientNative(object):
     if exit_code != None:
       data['exit_code'] = exit_code
 
-    resp = self._url_read_json(
-        '/swarming/api/v1/bot/task_update/%s' % task_id, data)
+    resp = self._url_read_json('/swarming/api/v1/bot/task_update/%s' % task_id,
+                               data,
+                               retry_transient=retry_transient)
     logging.debug('post_task_update() = %s', resp)
     if not resp or resp.get('error'):
       raise InternalError(
