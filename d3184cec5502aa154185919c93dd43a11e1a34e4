@@ -18,6 +18,70 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70b4f623_7215dc01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-30T15:17:35Z",
+      "side": 1,
+      "message": "\u003e I will add doc comments and more specific unit tests if reviewers think that this is a viable solution.\n\nI am refering to this CL here.",
+      "parentUuid": "ccc197dc_fcd586bf",
+      "revId": "d3184cec5502aa154185919c93dd43a11e1a34e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "476126b0_734f23f3",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-30T15:17:35Z",
+      "side": 1,
+      "message": "We may need to borrow `net.is_transient_http_error` for use here - I can imagine this might cause issues for `404` tasks or something otherwise.",
+      "range": {
+        "startLine": 709,
+        "startChar": 4,
+        "endLine": 709,
+        "endChar": 44
+      },
+      "revId": "d3184cec5502aa154185919c93dd43a11e1a34e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "884c44f6_ccfe83e3",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-30T15:17:35Z",
+      "side": 1,
+      "message": "This should actually be 5, not 6. Current implementation retries for 240 min in 60s intervals.",
+      "range": {
+        "startLine": 712,
+        "startChar": 34,
+        "endLine": 712,
+        "endChar": 37
+      },
+      "revId": "d3184cec5502aa154185919c93dd43a11e1a34e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "932f4f01_224db64d",
