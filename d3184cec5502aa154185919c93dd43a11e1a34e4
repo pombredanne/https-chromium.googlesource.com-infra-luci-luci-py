@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccc197dc_fcd586bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-30T15:05:33Z",
+      "side": 1,
+      "message": "IMO, this is the simplest fix to the problem that will prevent incident from reoccurring.\nThis solution preserves the blocking nature of the `remote_client.post_task_update` implementation. IE, we wait until a succesful `task_update` until doing further work. This helps with the semantics of keeping chunks sent to swarming small and allows us to modify less code. \n\nI attempted a larger refactoring, but it quickly got too complicated for my liking. \nThe idea was to maintain an \"implicit\" statemachine by pushing actions onto a queue and keeping a state running while the loop was executing. Unfortunately the `run_command` loop uses various variables in many modes of control flow which meant that this refactoring was pretty difficult and would probably take at least a week to do in a reasonable way. Those interested can see the attempt here: https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/5075452 \nIt /might/ be a good idea to do something similar to task_runner in the future, but in my opinion it ended up making things more complicated than a simple `for ... in` loop. \n\nI will add doc comments and more specific unit tests if reviewers think that this is a viable solution.",
+      "revId": "d3184cec5502aa154185919c93dd43a11e1a34e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "932f4f01_224db64d",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-11-30T15:05:33Z",
+      "side": 1,
+      "message": "Should we add these calls to `combined_pinger` as well? IUUC, RBE does not know that swarming has started working on the lease yet at this point. \n\nShould we tell it early or just let failures here not talk to `rbe` at all?",
+      "range": {
+        "startLine": 865,
+        "startChar": 9,
+        "endLine": 865,
+        "endChar": 63
+      },
+      "revId": "d3184cec5502aa154185919c93dd43a11e1a34e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
