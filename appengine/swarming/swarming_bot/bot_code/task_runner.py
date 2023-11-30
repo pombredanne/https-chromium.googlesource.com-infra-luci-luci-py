@@ -15,6 +15,7 @@ failure and to cancel this task run and ask the server to retry it.
 """
 
 import base64
+import collections
 import json
 import logging
 import optparse
@@ -660,7 +661,90 @@ class _OutputBuffer:
     return max(out, 0)
 
 
-class _RBEPinger:
+class _Pinger:
+  def __init__(self):
+    self._next_ping_time = monotonic_time()  # ASAP
+
+  def time_until_next_ping(self):
+    """Returns how many seconds to wait until the next ping."""
+    return max(0.0, self._next_ping_time - monotonic_time())
+
+  def time_to_ping(self):
+    return self.time_until_next_ping() <= 0
+
+  def pause_until_next_ping(self):
+    time.sleep(self.time_until_next_ping())
+
+  def _schedule_next_ping(self, delta):
+    self._next_ping_time = monotonic_time() + random.uniform(delta, delta * 1.5)
+
+  def __repr__(self):
+    return f"{self.__class__} - {self.time_until_next_ping()}"
+
+
+_SwarmingPingResult = collections.namedtuple('SwarmingPingResult', [
+    'failed',
+    'result',
+])
+
+
+class _TaskErrorPinger(_Pinger):
+  def __init__(self, remote):
+    super().__init__()
+    self._remote = remote
+    self._consecutive_errors = 0
+
+  def ping(self, task_id, message, missing_cas, missing_cipd):
+    try:
+      self._remote.post_task_error(task_id,
+                                   message,
+                                   missing_cas,
+                                   missing_cipd,
+                                   retry_transient=False)
+      self._consecutive_errors = 0
+      # if a request is success, we should be able to immediately send another
+      # this will be defered to the task process output
+      self._schedule_next_ping(0)
+      return _SwarmingPingResult(result=None, failed=False)
+    except remote_client.InternalError as e:
+      logging.warning("Internal error encountered %s, scheduling sleep cycle",
+                      str(e))
+      if self._consecutive_errors < 6:
+        self._consecutive_errors += 1
+        self._schedule_next_ping(60)
+        return _SwarmingPingResult(result=None, failed=True)
+      raise
+
+
+class _TaskUpdatePinger(_Pinger):
+  def __init__(self, remote):
+    super().__init__()
+    self._remote = remote
+    self._consecutive_errors = 0
+
+  def ping(self, task_id, params, stdout_and_chunk=None, exit_code=None):
+    try:
+      cancelled = self._remote.post_task_update(task_id,
+                                                params,
+                                                stdout_and_chunk,
+                                                exit_code,
+                                                retry_transient=False)
+      self._consecutive_errors = 0
+      # if a request is success, we should be able to immediately send another
+      # this will be defered to the task process output
+      self._schedule_next_ping(0)
+      return _SwarmingPingResult(result=cancelled, failed=False)
+    except remote_client.InternalError as e:
+      logging.warning("Internal error encountered %s, scheduling sleep cycle",
+                      str(e))
+      if self._consecutive_errors < 6:
+        self._consecutive_errors += 1
+        self._schedule_next_ping(60)
+        return _SwarmingPingResult(result=None, failed=True)
+      raise
+
+
+class _RBEPinger(_Pinger):
   """Knows when and how to ping the RBE session to keep it alive.
 
   Currently ignores lease cancellation signals: cancellations still happen
@@ -670,12 +754,8 @@ class _RBEPinger:
   """
 
   def __init__(self, rbe_session):
+    super().__init__()
     self._rbe_session = rbe_session
-    self._next_ping_time = monotonic_time()  # ASAP
-
-  def time_until_next_ping(self):
-    """Returns how many seconds to wait until the next ping."""
-    return max(0.0, self._next_ping_time - monotonic_time())
 
   def ping(self):
     """Sends a ping to RBE, keeping the lease alive, if it's time."""
@@ -719,6 +799,44 @@ class _RBEPinger:
                         self._rbe_session.session_id)
     except remote_client.RBEServerError as e:
       logging.error('Failed to ping RBE session: %s', e)
+
+
+class _CombinedPinger(_Pinger):
+  def __init__(self, rbe_pinger, swarming_pinger):
+    super().__init__()
+    self._rbe = rbe_pinger
+    self._swarming = swarming_pinger
+    self._payload = None
+
+  def with_payload(self, **payload):
+    self._payload = payload
+    return self
+
+  def _schedule_next_ping(self, delta):
+    self._next_ping_time = monotonic_time() + delta
+
+  def _next_rbe_ping(self):
+    return self._rbe.time_until_next_ping() if self._rbe else 0
+
+  def _next_swarming_ping(self):
+    return self._swarming.time_until_next_ping()
+
+  def ping(self):
+    res = _SwarmingPingResult(failed=True, result=None)
+    while res.failed:
+      self.pause_until_next_ping()
+      try:
+        assert (self._payload)
+        if self._swarming.time_to_ping():
+          res = self._swarming.ping(**self._payload)
+        if self._rbe and self._rbe.time_to_ping():
+          self._rbe.ping()
+        self._schedule_next_ping(
+            min(self._next_rbe_ping(), self._next_swarming_ping()))
+      except remote_client.InternalError as e:
+        logging.warning("Failed to ping %s", str(e))
+        raise
+    return res.result
 
 
 def run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
@@ -775,9 +893,8 @@ def run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
 
   # Send the initial ping to RBE to let it know we have started.
   rbe_pinger = _RBEPinger(rbe_session) if rbe_session else None
-  if rbe_pinger:
-    rbe_pinger.ping()
-
+  swarming_pinger = _TaskUpdatePinger(remote)
+  pinger = _CombinedPinger(rbe_pinger, swarming_pinger)
   try:
     proc = _start_task_runner(args, work_dir, ctx_file)
     logging.info('Subprocess for run_isolated started')
@@ -815,8 +932,9 @@ def run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
         if buf.should_post_update():
           params['cost_usd'] = (
               cost_usd_hour * (monotonic_time() - task_start) / 60. / 60.)
-          if not remote.post_task_update(task_details.task_id, params,
-                                         buf.pop()):
+          if not pinger.with_payload(task_id=task_details.task_id,
+                                     params=params,
+                                     stdout_and_chunk=buf.pop()).ping():
             logging.debug('Server induced stop; kill_sent: %s, term_sent: %s',
                           kill_sent, term_sent)
             # Server is telling us to stop. Normally task cancellation.
@@ -985,15 +1103,18 @@ def run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
         params.pop('named_caches_stats', None)
         params.pop('cache_trim_stats', None)
         params.pop('cleanup_stats', None)
-      remote.post_task_update(task_details.task_id, params, buf.pop(),
-                              exit_code)
+      pinger.with_payload(task_id=task_details.task_id,
+                          params=params,
+                          exit_code=exit_code,
+                          stdout_and_chunk=buf.pop()).ping()
       logging.debug('Last task update finished. task_id: %s, exit_code: %s, '
                     'params: %s.', task_details.task_id, exit_code, params)
       if internal_error:
-        remote.post_task_error(task_details.task_id,
-                               internal_error,
-                               missing_cas=missing_cas,
-                               missing_cipd=missing_cipd)
+        error_pinger = _CombinedPinger(rbe_pinger, _TaskErrorPinger(remote))
+        error_pinger.with_payload(task_id=task_details.task_id,
+                                  message=internal_error,
+                                  missing_cas=missing_cas,
+                                  missing_cipd=missing_cipd).ping()
         # We've reported the error, bot_main.py should not report it again
         internal_error_reported = True
     except remote_client.InternalError as e:
