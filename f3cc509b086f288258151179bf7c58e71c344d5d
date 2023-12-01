@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbf5fb1d_86de9e2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-12-01T00:10:22Z",
+      "side": 1,
+      "message": "lgmt, but don\u0027t forget to land only after https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/5054492 otherwise the new cron route will be failing on -dev, generating errors.",
+      "revId": "f3cc509b086f288258151179bf7c58e71c344d5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
