@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7443c1b5_fd8d31e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-12-04T23:43:33Z",
+      "side": 1,
+      "message": "Oh wow this has much better effect than I expected. Here\u0027 media latency of /bot/poll (that updated BotInfo): https://screenshot.googleplex.com/92bDDZeFQyACNCB\n\nI attribute \"the stabilization\" at the end to this CL.",
+      "revId": "ec41bb1403c609ad6a2b8a2e904ef59ac78df08d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
