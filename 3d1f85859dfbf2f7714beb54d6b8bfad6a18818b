@@ -94,6 +94,30 @@
       },
       "revId": "3d1f85859dfbf2f7714beb54d6b8bfad6a18818b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58f7cca2_c313d6d7",
+        "filename": "appengine/swarming/ui2/webpack.config.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-12-04T16:32:46Z",
+      "side": 1,
+      "message": "Resolving since implemented in separate CL and don\u0027t want it to appear on CL list.",
+      "parentUuid": "5e79d14f_36e80aea",
+      "range": {
+        "startLine": 295,
+        "startChar": 37,
+        "endLine": 295,
+        "endChar": 67
+      },
+      "revId": "3d1f85859dfbf2f7714beb54d6b8bfad6a18818b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
