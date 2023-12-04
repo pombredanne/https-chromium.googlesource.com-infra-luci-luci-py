@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df8abc29_0689dc67",
+        "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1529627
+      },
+      "writtenOn": "2023-12-04T17:53:13Z",
+      "side": 1,
+      "message": "Please define a constant `_MAX_CONSECUTIVE_ERRORS` to make it consistent across all places. And also consider exponential backoff (e.g. 20s -\u003e ... -\u003e 120s)",
+      "parentUuid": "884c44f6_ccfe83e3",
+      "range": {
+        "startLine": 712,
+        "startChar": 34,
+        "endLine": 712,
+        "endChar": 37
+      },
+      "revId": "d3184cec5502aa154185919c93dd43a11e1a34e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "932f4f01_224db64d",
         "filename": "appengine/swarming/swarming_bot/bot_code/task_runner.py",
         "patchSetId": 1
