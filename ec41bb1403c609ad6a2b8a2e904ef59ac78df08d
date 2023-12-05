@@ -16,6 +16,24 @@
       "message": "Oh wow this has much better effect than I expected. Here\u0027 media latency of /bot/poll (that updated BotInfo): https://screenshot.googleplex.com/92bDDZeFQyACNCB\n\nI attribute \"the stabilization\" at the end to this CL.",
       "revId": "ec41bb1403c609ad6a2b8a2e904ef59ac78df08d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3659adde_57bdbf9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2023-12-05T15:38:08Z",
+      "side": 1,
+      "message": "Awesome!!! I\u0027m going to remember this and try and avoid creating unnecessary transactions in datastore as much as possible. It seems like that has a significant effect on performance even if you\u0027re only writing one entity.",
+      "parentUuid": "7443c1b5_fd8d31e0",
+      "revId": "ec41bb1403c609ad6a2b8a2e904ef59ac78df08d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
