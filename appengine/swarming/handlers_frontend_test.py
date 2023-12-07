@@ -160,10 +160,6 @@ class FrontendTest(test_env_handlers.AppTestBase):
               'bootstrap_token = \'bootstrap-token\'\n')
     self.assertEqual(header + expected, actual)
 
-  def test_config(self):
-    self.set_as_admin()
-    self.app.get('/restricted/config')
-
 
 if __name__ == '__main__':
   if '-v' in sys.argv:

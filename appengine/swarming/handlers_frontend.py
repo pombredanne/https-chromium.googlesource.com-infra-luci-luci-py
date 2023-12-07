@@ -35,18 +35,6 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 SortOptions = collections.namedtuple('SortOptions', ['key', 'name'])
 
 
-### is_admin pages.
-
-
-class RestrictedConfigHandler(auth.AuthenticatingHandler):
-  @auth.autologin
-  @auth.require(acl.can_view_config)
-  def get(self):
-    # Template parameters schema matches settings_info() return value.
-    self.response.write(template.render(
-        'swarming/restricted_config.html', config.settings_info()))
-
-
 ### Redirectors.
 
 
@@ -195,10 +183,6 @@ def get_routes():
         ('/user/task/<task_id:[0-9a-fA-F]+>', TaskHandler),
         ('/restricted/bots', BotsListHandler),
         ('/restricted/bot/<bot_id:[^/]+>', BotHandler),
-
-        # Admin pages.
-        # TODO(maruel): Get rid of them.
-        ('/restricted/config', RestrictedConfigHandler),
     ])
 
   return [webapp2.Route(*i) for i in routes]

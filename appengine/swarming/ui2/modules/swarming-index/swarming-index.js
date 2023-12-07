@@ -111,9 +111,6 @@ const template = (ele) => html`
     <ul>
       <!-- TODO(kjlubick) convert these linked pages to new UI-->
       <li>
-        <a href="/restricted/config">View server config</a>
-      </li>
-      <li>
         <a href="/restricted/upload/bootstrap">View/upload bootstrap.py</a>
       </li>
       <li>
