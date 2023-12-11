@@ -16,6 +16,23 @@
       "message": "lgmt, but don\u0027t forget to land only after https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/5054492 otherwise the new cron route will be failing on -dev, generating errors.",
       "revId": "f3cc509b086f288258151179bf7c58e71c344d5d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e0b6d26_9d8f9f32",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2023-12-11T21:45:01Z",
+      "side": 1,
+      "message": "I\u0027m curious to see how the new BQ cron behaves on -dev, so I\u0027m landing this.",
+      "revId": "f3cc509b086f288258151179bf7c58e71c344d5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
