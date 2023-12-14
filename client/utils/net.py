@@ -425,19 +425,19 @@ class HttpService:
     if self.authenticator and self.authenticator.supports_login:
       self.authenticator.logout()
 
-  def request(
-      self,
-      urlpath,
-      data=None,
-      content_type=None,
-      max_attempts=URL_OPEN_MAX_ATTEMPTS,
-      expected_error_codes=None,
-      timeout=URL_OPEN_TIMEOUT,
-      read_timeout=URL_READ_TIMEOUT,
-      stream=True,
-      method=None,
-      headers=None,
-      follow_redirects=True):
+  def request(self,
+              urlpath,
+              data=None,
+              content_type=None,
+              max_attempts=URL_OPEN_MAX_ATTEMPTS,
+              expected_error_codes=None,
+              timeout=URL_OPEN_TIMEOUT,
+              read_timeout=URL_READ_TIMEOUT,
+              stream=True,
+              method=None,
+              headers=None,
+              follow_redirects=True,
+              between_retry_callback=None):
     """Attempts to open the given url multiple times.
 
     |urlpath| is relative to the server root, i.e. '/some/request?param=1'.
@@ -476,6 +476,10 @@ class HttpService:
     If |expected_error_codes| is given, it is a set of integer HTTP status codes
     that are treated as successful replies in additional to standard codes like
     200. Useful when the caller wants to read a body of e.g. HTTP 400 reply.
+
+    |retry_callback| is optional callback which will accept the `HttpError` and
+    will be called between retries. It will be invoked before the first retry
+    is called.
 
     Returns a file-like object, where the response may be read from, or None
     if it was unable to connect. If |stream| is False will read whole response
@@ -590,6 +594,9 @@ class HttpService:
         logging.warning(
             'Server responded with error on %s on attempt %d: %s',
             request.get_full_url(), attempt.attempt, e.description())
+        if last_error and between_retry_callback:
+          logging.debug("Invoking retry callback")
+          between_retry_callback(last_error)
         continue
 
     if isinstance(last_error, HttpError):

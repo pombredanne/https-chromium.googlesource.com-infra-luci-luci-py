@@ -237,7 +237,8 @@ class RemoteClientNative(object):
                      url_path,
                      data=None,
                      expected_error_codes=None,
-                     retry_transient=True):
+                     retry_transient=True,
+                     between_retry_callback=None):
     """Does POST (if data is not None) or GET request to a JSON endpoint."""
     logging.info('Calling %s', url_path)
     return net.url_read_json(
@@ -247,7 +248,8 @@ class RemoteClientNative(object):
         timeout=NET_CONNECTION_TIMEOUT_SEC,
         follow_redirects=False,
         expected_error_codes=expected_error_codes,
-        max_attempts=NET_MAX_ATTEMPTS if retry_transient else 1)
+        max_attempts=NET_MAX_ATTEMPTS if retry_transient else 1,
+        between_retry_callback=between_retry_callback)
 
   def _url_retrieve(self, filepath, url_path):
     """Fetches the file from the given URL path on the server."""
@@ -268,7 +270,8 @@ class RemoteClientNative(object):
                        task_id,
                        params,
                        stdout_and_chunk=None,
-                       exit_code=None):
+                       exit_code=None,
+                       between_retry_callback=None):
     """Posts task update to task_update.
 
     Arguments:
@@ -298,8 +301,9 @@ class RemoteClientNative(object):
     if exit_code != None:
       data['exit_code'] = exit_code
 
-    resp = self._url_read_json(
-        '/swarming/api/v1/bot/task_update/%s' % task_id, data)
+    resp = self._url_read_json('/swarming/api/v1/bot/task_update/%s' % task_id,
+                               data,
+                               between_retry_callback=between_retry_callback)
     logging.debug('post_task_update() = %s', resp)
     if not resp or resp.get('error'):
       raise InternalError(
@@ -310,7 +314,8 @@ class RemoteClientNative(object):
                       task_id,
                       message,
                       missing_cas=None,
-                      missing_cipd=None):
+                      missing_cipd=None,
+                      between_retry_callback=None):
     """Logs task-specific info to the server"""
     data = {
         'id': self._bot_id,
@@ -322,9 +327,9 @@ class RemoteClientNative(object):
         },
     }
 
-    resp = self._url_read_json(
-        '/swarming/api/v1/bot/task_error/%s' % task_id,
-        data=data)
+    resp = self._url_read_json('/swarming/api/v1/bot/task_error/%s' % task_id,
+                               data=data,
+                               between_retry_callback=between_retry_callback)
     return resp and resp['resp'] == 1
 
   def do_handshake(self, attributes):

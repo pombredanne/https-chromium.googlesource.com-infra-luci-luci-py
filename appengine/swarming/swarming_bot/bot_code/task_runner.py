@@ -775,6 +775,8 @@ def run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
 
   # Send the initial ping to RBE to let it know we have started.
   rbe_pinger = _RBEPinger(rbe_session) if rbe_session else None
+  between_retry_callback = (
+      lambda _err: rbe_pinger.ping()) if rbe_session else None
   if rbe_pinger:
     rbe_pinger.ping()
 
@@ -815,8 +817,11 @@ def run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
         if buf.should_post_update():
           params['cost_usd'] = (
               cost_usd_hour * (monotonic_time() - task_start) / 60. / 60.)
-          if not remote.post_task_update(task_details.task_id, params,
-                                         buf.pop()):
+          if not remote.post_task_update(
+              task_details.task_id,
+              params,
+              buf.pop(),
+              between_retry_callback=between_retry_callback):
             logging.debug('Server induced stop; kill_sent: %s, term_sent: %s',
                           kill_sent, term_sent)
             # Server is telling us to stop. Normally task cancellation.
@@ -985,15 +990,19 @@ def run_command(remote, rbe_session, task_details, work_dir, cost_usd_hour,
         params.pop('named_caches_stats', None)
         params.pop('cache_trim_stats', None)
         params.pop('cleanup_stats', None)
-      remote.post_task_update(task_details.task_id, params, buf.pop(),
-                              exit_code)
+      remote.post_task_update(task_details.task_id,
+                              params,
+                              buf.pop(),
+                              exit_code,
+                              between_retry_callback=between_retry_callback)
       logging.debug('Last task update finished. task_id: %s, exit_code: %s, '
                     'params: %s.', task_details.task_id, exit_code, params)
       if internal_error:
         remote.post_task_error(task_details.task_id,
                                internal_error,
                                missing_cas=missing_cas,
-                               missing_cipd=missing_cipd)
+                               missing_cipd=missing_cipd,
+                               between_retry_callback=between_retry_callback)
         # We've reported the error, bot_main.py should not report it again
         internal_error_reported = True
     except remote_client.InternalError as e:
