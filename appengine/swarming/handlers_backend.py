@@ -163,15 +163,6 @@ class CronTasksStats(_CronHandlerBase):
   def run_cron(self):
     stats_tasks.cron_generate_stats()
 
-
-class CronTSMonJobs(_CronHandlerBase):
-  """Exports task metrics."""
-
-  @decorators.require_cronjob
-  def run_cron(self):
-    ts_mon_metrics.set_jobs_metrics()
-
-
 class CronSendToBQ(_CronHandlerBase):
   """Triggers many tasks queues to send data to BigQuery."""
 
