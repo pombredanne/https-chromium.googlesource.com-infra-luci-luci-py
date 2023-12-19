@@ -136,3 +136,8 @@ cron:
   target: default-go
   url: /internal/cron/bq-export
   schedule: every 1 minutes
+
+- description: Deletes old bq.ExportState entities
+  target: default-go
+  url: /internal/cron/bq-export-cleanup
+  schedule: every 10 minutes
