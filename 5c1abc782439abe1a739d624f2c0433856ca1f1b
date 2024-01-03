@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d3be029_8d074087",
+        "filename": "appengine/swarming/handlers_prpc_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2675,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-01-03T20:09:14Z",
+      "side": 0,
+      "message": "I\u0027m sorry you had to write this test 😞",
+      "range": {
+        "startLine": 2675,
+        "startChar": 6,
+        "endLine": 2675,
+        "endChar": 27
+      },
+      "revId": "5c1abc782439abe1a739d624f2c0433856ca1f1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
