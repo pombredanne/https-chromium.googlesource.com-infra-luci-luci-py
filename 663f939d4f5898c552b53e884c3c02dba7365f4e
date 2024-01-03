@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79c655d7_34fe7cff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2024-01-03T21:03:15Z",
+      "side": 1,
+      "message": "I also don\u0027t think this script is actually used anywhere. We would also need to port it over to use new swarming API.",
+      "revId": "663f939d4f5898c552b53e884c3c02dba7365f4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
