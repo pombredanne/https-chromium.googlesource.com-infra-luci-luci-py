@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2af81364_2d0d5c73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547372
+      },
+      "writtenOn": "2024-01-03T20:24:43Z",
+      "side": 1,
+      "message": "I don\u0027t think anyone uses these scripts anymore and we would need to port them off `swarming.py`. So removing them.\n\nI checked whether anything in code search references a specific script with this name.\n\nIf anyone complains, we can bring them back temporarily.",
+      "revId": "b2772df60990fbf8029b1cb8ef7025c38dd777d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
