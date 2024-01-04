@@ -20,19 +20,19 @@ except ImportError:
 from components import utils
 utils.fix_protobuf_package()
 
-from api import *
-from delegation import *
-from exceptions import *
-from gce_vm_auth import *
-from handler import *
-from ipaddr import *
-from machine_auth import *
-from model import *
-from prpc import *
-from service_account import *
-from signature import *
-from tokens import *
-from ui.app import *
+from . import api
+from . import delegation
+from . import exceptions
+from . import gce_vm_auth
+from . import handler
+from . import ipaddr
+from . import machine_auth
+from . import model
+from . import prpc
+from . import service_account
+from . import signature
+from . import tokens
+from . import ui.app
 
 # Endpoints support is optional, enabled only when endpoints library is
 # specified in app.yaml.
