@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d15b3c2d_d8a1e15d",
+        "filename": "appengine/components/components/auth/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2024-01-04T23:40:44Z",
+      "side": 1,
+      "message": "Sorry, should be `from .api import *`",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 17
+      },
+      "revId": "42d0e7cbf3e282465e8a1977657b81f1e8c39422",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
