@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b9a52a8_740b8879",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001921
+      },
+      "writtenOn": "2024-01-05T16:02:02Z",
+      "side": 1,
+      "message": "You\u0027d probably also want the GPU name to display nicely in Swarming, I believe you need to modify appengine/swarming/ui2/modules/alias.js and then generate some other files like in https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/4300491",
+      "revId": "bd6fada8eb1af5051cc530b85bb307735041037c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
