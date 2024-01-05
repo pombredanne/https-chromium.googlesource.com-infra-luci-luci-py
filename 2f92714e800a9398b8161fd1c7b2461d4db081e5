@@ -16,6 +16,24 @@
       "message": "components/auth is not py3 and will never be. Why does Monorail try to import it?",
       "revId": "2f92714e800a9398b8161fd1c7b2461d4db081e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aee8ed4_0c54b17d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1407252
+      },
+      "writtenOn": "2024-01-05T19:51:01Z",
+      "side": 1,
+      "message": "It seems like it was added as part of an older Monorail API https://crbug.com/monorail/1619. I was exploring this as part of moving Monorail to LUCI Config v2 and to use the pRPC client. But given this pain and the increased friction I\u0027m seeing in Python imports and other PEEPs project plans I will withdraw this change and try a different approach to updating to LUCI Config v2.",
+      "parentUuid": "4590891e_bc12f40d",
+      "revId": "2f92714e800a9398b8161fd1c7b2461d4db081e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
