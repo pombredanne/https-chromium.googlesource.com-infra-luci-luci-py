@@ -16,6 +16,23 @@
       "message": "Hi Vadim, could you take a look at this CL? This is to help Go\u0027s bots have dimensions to distinguish between different types of POWER machines (POWER 8 vs 9 vs 10).",
       "revId": "785ed0be7268384c0249b00a0499ce6c387dbeff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ec1bb51_7fb1150d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-01-08T21:30:26Z",
+      "side": 1,
+      "message": "(Due to some new review rules, this change will need LGTM from one more googler. Due to bugs in these new review rules, I sometimes am not considered as a googler, so this change may actually need two more LGTM stamps from googlers...)",
+      "revId": "785ed0be7268384c0249b00a0499ce6c387dbeff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
