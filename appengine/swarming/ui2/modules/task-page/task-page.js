@@ -27,6 +27,7 @@ import {
   hasRichOutput,
   humanState,
   firstDimension,
+  isFromBuildBucket,
   parseRequest,
   parseResult,
   richLogsLink,
@@ -1060,7 +1061,7 @@ const performanceStatsSection = (ele, performanceStats) => {
 };
 
 const reproduceSection = (ele, currentSlice) => {
-  if (!ele._taskId || ele._notFound) {
+  if (!ele._taskId || ele._notFound || isFromBuildBucket(ele._request)) {
     return "";
   }
   const casRef =
