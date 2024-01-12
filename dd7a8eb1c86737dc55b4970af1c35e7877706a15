@@ -22,6 +22,30 @@
       },
       "revId": "dd7a8eb1c86737dc55b4970af1c35e7877706a15",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d273102_5f27e713",
+        "filename": "appengine/swarming/proto/api_v2/swarming.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1527672
+      },
+      "writtenOn": "2024-01-12T19:53:12Z",
+      "side": 1,
+      "message": "ack.. rebased the CL",
+      "parentUuid": "a10e88aa_c3a9236a",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 682,
+        "endChar": 0
+      },
+      "revId": "dd7a8eb1c86737dc55b4970af1c35e7877706a15",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
