@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7242e142_ec0889ba",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page-helpers.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1549129
+      },
+      "writtenOn": "2024-01-12T18:27:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a69f113_fbd3bb9d",
+      "range": {
+        "startLine": 340,
+        "startChar": 9,
+        "endLine": 340,
+        "endChar": 59
+      },
+      "revId": "2224ce225b6db8df98a92cda6b08c902a0c7622d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d8f7e69_e7690bde",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-01-12T17:28:01Z",
       "side": 1,
       "message": "Is there a reason to have this call here? (I\u0027m assuming left over from debugging).",
+      "range": {
+        "startLine": 727,
+        "startChar": 10,
+        "endLine": 727,
+        "endChar": 35
+      },
+      "revId": "2224ce225b6db8df98a92cda6b08c902a0c7622d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "292c5aa1_979cc309",
+        "filename": "appengine/swarming/ui2/modules/task-page/task-page_test.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1549129
+      },
+      "writtenOn": "2024-01-12T18:27:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d8f7e69_e7690bde",
       "range": {
         "startLine": 727,
         "startChar": 10,
