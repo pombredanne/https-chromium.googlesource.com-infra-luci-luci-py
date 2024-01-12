@@ -329,3 +329,24 @@ const TASK_TIMES = [
   "modifiedTs",
   "startedTs",
 ];
+
+/** isFromBuildBucket returns true if a task comes from BuildBucket.
+ */
+export function isFromBuildBucket(request) {
+  if (!request || !request.tags || !request.tags.length) {
+    return false;
+  }
+  // BuildBucket adds specific tags to the Swarming task.
+  // See luci/buildbucket/appengine/tasks/swarming.go;l=659.
+  const buildBucketTags = [
+    "buildbucket_bucket",
+    "buildbucket_build_id",
+    "buildbucket_hostname",
+  ];
+  // Exits on the first BuildBucket tag found.
+  return request.tags.some((tag) => {
+    buildBucketTags.some((bbTag) => {
+      tag.startsWith(bbTag);
+    });
+  });
+}
