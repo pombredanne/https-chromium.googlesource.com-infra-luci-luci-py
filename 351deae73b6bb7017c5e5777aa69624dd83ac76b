@@ -16,6 +16,23 @@
       "message": "addressed comment. Let\u0027s merge tomorrow if they look good.",
       "revId": "351deae73b6bb7017c5e5777aa69624dd83ac76b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "521bf894_76464f86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-01-12T19:36:10Z",
+      "side": 1,
+      "message": "There are more calls to `ts_mon_metrics.initialize()` that results in local dev crash looping and the local smoke test being stuck forever.",
+      "revId": "351deae73b6bb7017c5e5777aa69624dd83ac76b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
