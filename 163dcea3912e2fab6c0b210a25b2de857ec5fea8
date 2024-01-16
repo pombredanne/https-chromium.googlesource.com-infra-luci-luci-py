@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "bc0e588f_3dfa2342",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1605837
+      },
+      "writtenOn": "2024-01-16T06:50:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e480882_eb56cabc",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 23
+      },
+      "revId": "163dcea3912e2fab6c0b210a25b2de857ec5fea8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "00562244_343cc3a1",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -87,6 +111,54 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f88d8856_aaaa7c1d",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1605837
+      },
+      "writtenOn": "2024-01-16T06:50:00Z",
+      "side": 1,
+      "message": "Yes, it will return 64.",
+      "parentUuid": "25c00524_69e79b98",
+      "range": {
+        "startLine": 325,
+        "startChar": 26,
+        "endLine": 325,
+        "endChar": 41
+      },
+      "revId": "163dcea3912e2fab6c0b210a25b2de857ec5fea8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0c8f0be_9fe5bbc2",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1605837
+      },
+      "writtenOn": "2024-01-16T06:50:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1118653c_3e067a94",
+      "range": {
+        "startLine": 325,
+        "startChar": 4,
+        "endLine": 325,
+        "endChar": 6
+      },
+      "revId": "163dcea3912e2fab6c0b210a25b2de857ec5fea8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06750ef1_63f23380",
@@ -100,6 +172,24 @@
       "writtenOn": "2024-01-12T22:33:23Z",
       "side": 1,
       "message": "Consider also adding a test case here to cover the new case in added to `get_cipd_architecture`.\n\n(If you need to do more than the cases above, you can probably create a new dedicated test named `test_get_cipd_architecture_riscv` or so. For example, see `test_get_cpu_dimensions_mips` below.)",
+      "revId": "163dcea3912e2fab6c0b210a25b2de857ec5fea8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e26cc6e_956cd5d2",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1605837
+      },
+      "writtenOn": "2024-01-16T06:50:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06750ef1_63f23380",
       "revId": "163dcea3912e2fab6c0b210a25b2de857ec5fea8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
