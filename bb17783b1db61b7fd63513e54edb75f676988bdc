@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f42709d5_091ac4e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1544922
+      },
+      "writtenOn": "2024-01-17T01:07:41Z",
+      "side": 1,
+      "message": "Note that Auth Service v1 enqueues to the endpoints:\n* `\u0027/internal/taskqueue/replication/%d\u0027 % auth_db_rev\u0027`\n* `\u0027/internal/auth/taskqueue/process-change/%d\u0027 % auth_db_rev\u0027`\nso this should not intercept the Python tasks.",
+      "revId": "bb17783b1db61b7fd63513e54edb75f676988bdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
