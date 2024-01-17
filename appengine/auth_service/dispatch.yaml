@@ -1,0 +1,9 @@
+dispatch:
+
+# Add override of routing rules so that tasks enqueued to the two URLs
+# below by Auth Service v1 (Python) are processed by
+# Auth Service v2 (Go).
+- url: "*/internal/tasks/t/process-auth-db-change/*"
+  service: backendv2
+- url: "*/internal/tasks/t/replication/*"
+  service: backendv2
