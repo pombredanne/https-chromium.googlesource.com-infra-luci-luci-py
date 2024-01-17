@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac564826_a6abb39a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3246085
+      },
+      "writtenOn": "2024-01-17T22:11:32Z",
+      "side": 1,
+      "message": "ping. Is there anything else I need to do for this patch?",
+      "revId": "12c4ddbe9d9cc543d1670c77ee725c0feb1a4bd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
