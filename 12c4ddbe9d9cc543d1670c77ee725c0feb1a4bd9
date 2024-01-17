@@ -16,6 +16,23 @@
       "message": "ping. Is there anything else I need to do for this patch?",
       "revId": "12c4ddbe9d9cc543d1670c77ee725c0feb1a4bd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f39a25df_c677e173",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-01-17T22:18:17Z",
+      "side": 1,
+      "message": "No, it needs a Code-Review +1 vote from another googler to satisfy Review-Enforcement requirement. This repo is enrolled into \"at least two googlers need to approve or be authors\" review policy :-/\n\nMichael, please stamp this CL.",
+      "revId": "12c4ddbe9d9cc543d1670c77ee725c0feb1a4bd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
