@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "161effa4_6281749b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1544922
+      },
+      "writtenOn": "2024-01-19T06:21:52Z",
+      "side": 1,
+      "message": "Note: this CL requires https://chrome-internal-review.googlesource.com/c/infradata/gae/+/6876885 to have landed so the `dispatch.yaml` is in effect.",
+      "revId": "abf83ecdc0450445a7aa671eca813f6831fd9562",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
