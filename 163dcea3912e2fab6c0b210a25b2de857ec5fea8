@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c80a248_fd09f896",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1568167
+      },
+      "writtenOn": "2024-01-19T18:09:56Z",
+      "side": 1,
+      "message": "It looks like this change wasn\u0027t applied, can you take another look? This is minor of course.",
+      "parentUuid": "bc0e588f_3dfa2342",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 23
+      },
+      "revId": "163dcea3912e2fab6c0b210a25b2de857ec5fea8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "00562244_343cc3a1",
@@ -154,6 +178,30 @@
         "startChar": 4,
         "endLine": 325,
         "endChar": 6
+      },
+      "revId": "163dcea3912e2fab6c0b210a25b2de857ec5fea8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f054a3d_f4334188",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1568167
+      },
+      "writtenOn": "2024-01-19T18:09:56Z",
+      "side": 1,
+      "message": "Great, thanks.",
+      "parentUuid": "f88d8856_aaaa7c1d",
+      "range": {
+        "startLine": 325,
+        "startChar": 26,
+        "endLine": 325,
+        "endChar": 41
       },
       "revId": "163dcea3912e2fab6c0b210a25b2de857ec5fea8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
