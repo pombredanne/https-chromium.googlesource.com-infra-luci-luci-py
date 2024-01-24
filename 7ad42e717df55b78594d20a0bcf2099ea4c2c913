@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4416c1c_22e57c3e",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-01-24T19:44:47Z",
+      "side": 1,
+      "message": "This is not correct logic: if check_task_get_acl succeeds for task A, it doesn\u0027t imply it will succeed for task B, even if they are in the same pool. Task\u0027s visibility is controlled by multiple factors, not just the pool (see check_task_get_acl implementation).\n\nI think it should be OK to just call `check_task_get_acl` in a loop for every task. The very first check it does is:\n\n```\n  if auth.get_current_identity() \u003d\u003d access_info.submitter:\n    return\n```\n\nWhich should be true for all task backend tasks, so this check will be very fast in practice. And if for whatever reason this condition is false (e.g. a bug in the code or a rogue call), it will hit the actual ACL logic (which is checking the task realm, and then checking the pool realm). That way ACL logic is concentrated in one place.\n\nIf for whatever reason we still need to optimize it, then:\n1. We\u0027ll do it in Go already. Python code is ~\u003d dead.\n2. It should be part of ACL module (e.g. a new batch check API). It is very important for the auditability of authorization logic to keep it all contained in a single place.",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 48
+      },
+      "revId": "7ad42e717df55b78594d20a0bcf2099ea4c2c913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
