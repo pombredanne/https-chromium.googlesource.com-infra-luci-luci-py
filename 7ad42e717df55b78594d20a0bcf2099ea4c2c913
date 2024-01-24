@@ -22,6 +22,30 @@
       },
       "revId": "7ad42e717df55b78594d20a0bcf2099ea4c2c913",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "781d5f84_d73971f8",
+        "filename": "appengine/swarming/handlers_task_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2024-01-24T20:38:11Z",
+      "side": 1,
+      "message": "SGTM. I simplified it and will keep this in mind in the go implementation.",
+      "parentUuid": "f4416c1c_22e57c3e",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 48
+      },
+      "revId": "7ad42e717df55b78594d20a0bcf2099ea4c2c913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
