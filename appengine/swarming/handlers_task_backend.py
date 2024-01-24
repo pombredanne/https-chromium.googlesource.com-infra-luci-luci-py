@@ -146,11 +146,20 @@ class TaskBackendAPIService(object):
         for task_id in requested_task_ids
     ]
 
-    pools = []
+    seen_pools = set()
     for tr in ndb.get_multi(request_keys):
       if tr:
-        pools += bot_management.get_pools_from_dimensions_flat(tr.tags)
-    realms.check_tasks_list_acl(pools)
+        pools = bot_management.get_pools_from_dimensions_flat(tr.tags)
+        unchecked_pool = False
+        for pool in pools:
+          if pool not in seen_pools:
+            unchecked_pool = True
+            seen_pools.add(pool)
+        # We only want to perform an ACL check on the task request if it
+        # contains a new pool we have not checked.
+        if unchecked_pool:
+          access_info = realms.task_access_info_from_request(tr)
+          realms.check_task_get_acl(access_info)
 
     task_results = task_result.fetch_task_results(requested_task_ids)
 
