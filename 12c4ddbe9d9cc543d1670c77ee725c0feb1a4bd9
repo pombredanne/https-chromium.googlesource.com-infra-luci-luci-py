@@ -33,6 +33,29 @@
       "message": "No, it needs a Code-Review +1 vote from another googler to satisfy Review-Enforcement requirement. This repo is enrolled into \"at least two googlers need to approve or be authors\" review policy :-/\n\nMichael, please stamp this CL.",
       "revId": "12c4ddbe9d9cc543d1670c77ee725c0feb1a4bd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ecb79fc_3a51a24f",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-01-25T21:42:28Z",
+      "side": 1,
+      "message": "It is very likely some followup will be needed here too at some point. This function should return essentially GOARCH matching the machine the bot is running in. It is used to decide what variant of binary dependencies to fetch.",
+      "range": {
+        "startLine": 323,
+        "startChar": 6,
+        "endLine": 323,
+        "endChar": 31
+      },
+      "revId": "12c4ddbe9d9cc543d1670c77ee725c0feb1a4bd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
