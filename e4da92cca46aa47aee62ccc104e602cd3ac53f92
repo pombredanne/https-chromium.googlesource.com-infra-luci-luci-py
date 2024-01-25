@@ -16,6 +16,23 @@
       "message": "Sorry for late reply, done.",
       "revId": "e4da92cca46aa47aee62ccc104e602cd3ac53f92",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3023648e_d5c57ece",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1568167
+      },
+      "writtenOn": "2024-01-25T14:22:00Z",
+      "side": 1,
+      "message": "Thanks.",
+      "revId": "e4da92cca46aa47aee62ccc104e602cd3ac53f92",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
