@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90115e75_fab19a47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-01-29T19:24:29Z",
+      "side": 1,
+      "message": "_install_packages is also used to install user-supplied packages. We don\u0027t know how big they are (there are no limits). Hardcoding 10m may not be enough. I think it would be safer to set timeout only when installing _CAS_PACKAGE for now.",
+      "revId": "442ca7e4ee82faa077cf8247a62fabee8985d385",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
