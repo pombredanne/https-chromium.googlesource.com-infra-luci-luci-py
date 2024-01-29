@@ -1124,10 +1124,11 @@ def _install_packages(run_dir, cipd_cache_dir, client, packages):
   pins = client.ensure(
       run_dir,
       {
-          subdir: [(name, vers) for name, vers, _ in pkgs
-                  ] for subdir, pkgs in by_path.items()
+          subdir: [(name, vers) for name, vers, _ in pkgs]
+          for subdir, pkgs in by_path.items()
       },
       cache_dir=cipd_cache_dir,
+      timeout=10 * 60,
   )
 
   for subdir, pin_list in sorted(pins.items()):
