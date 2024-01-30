@@ -200,7 +200,12 @@ class RunIsolatedTest(RunIsolatedTestBase):
         return ()
 
       def wait(self2, timeout=None):
-        self.assertIn(timeout, (None, 30, 60))
+        # 599 is expected because of the timeout created in
+        # tools.sliding_timeout. When passed 600s, there is a small delta
+        # taken away which does not make the timeout 600s but rather 599.xxx
+        # seconds. tools.sliding_timeout returns an int, so the timeout is
+        # floored to the nearest second.
+        self.assertIn(timeout, (None, 30, 60, 599))
         self2.returncode = 0
         for mock_fn in self.popen_fakes:
           ret = mock_fn(self2.args, **self2.kwargs)

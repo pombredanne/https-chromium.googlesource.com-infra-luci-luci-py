@@ -411,7 +411,7 @@ def sliding_timeout(timeout):
   if timeout is None:
     return lambda: None
   deadline = time.time() + timeout
-  return lambda: deadline - time.time()
+  return lambda: int(deadline - time.time())
 
 
 _THIRD_PARTY_FIXED = False
