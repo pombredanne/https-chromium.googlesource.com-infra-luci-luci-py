@@ -22,6 +22,30 @@
       },
       "revId": "42cc2bf490fc234f96101a1e361465a9340c6abd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca2bc550_fcaae6ab",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-01-30T18:44:55Z",
+      "side": 1,
+      "message": "I think rounding to integers is not good, since timeouts can really be \u003c1s. Why is rounding necessary? If it is to pass some tests, tests probably need to be modified somehow...",
+      "parentUuid": "326415fe_ac1ee87e",
+      "range": {
+        "startLine": 415,
+        "startChar": 21,
+        "endLine": 415,
+        "endChar": 31
+      },
+      "revId": "42cc2bf490fc234f96101a1e361465a9340c6abd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
