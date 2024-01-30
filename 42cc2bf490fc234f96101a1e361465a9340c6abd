@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "326415fe_ac1ee87e",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2024-01-30T18:40:02Z",
+      "side": 1,
+      "message": "`math.floor` did not work for windows for some reason. Since this function is only used by cipd client to provide timeouts for some api calls, I figure using `math.ceil` here is ok.",
+      "range": {
+        "startLine": 415,
+        "startChar": 21,
+        "endLine": 415,
+        "endChar": 31
+      },
+      "revId": "42cc2bf490fc234f96101a1e361465a9340c6abd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
