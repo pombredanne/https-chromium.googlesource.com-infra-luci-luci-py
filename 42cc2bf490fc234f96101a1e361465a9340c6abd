@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f8d98411_edff2455",
+        "filename": "client/tests/run_isolated_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2024-01-30T18:47:21Z",
+      "side": 1,
+      "message": "is it safe to remove this assertion? Or change it to assert that timeout is non-negative as long as it is not None?",
+      "range": {
+        "startLine": 203,
+        "startChar": 8,
+        "endLine": 203,
+        "endChar": 51
+      },
+      "revId": "42cc2bf490fc234f96101a1e361465a9340c6abd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "326415fe_ac1ee87e",
         "filename": "client/utils/tools.py",
         "patchSetId": 6
@@ -38,6 +61,30 @@
       "side": 1,
       "message": "I think rounding to integers is not good, since timeouts can really be \u003c1s. Why is rounding necessary? If it is to pass some tests, tests probably need to be modified somehow...",
       "parentUuid": "326415fe_ac1ee87e",
+      "range": {
+        "startLine": 415,
+        "startChar": 21,
+        "endLine": 415,
+        "endChar": 31
+      },
+      "revId": "42cc2bf490fc234f96101a1e361465a9340c6abd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17471cd8_36f44068",
+        "filename": "client/utils/tools.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1551397
+      },
+      "writtenOn": "2024-01-30T18:47:21Z",
+      "side": 1,
+      "message": "100% to pass a test. Ok I will undo this change. PTAL at the other comment I made about the assertion I was trying to get this to pass for.",
+      "parentUuid": "ca2bc550_fcaae6ab",
       "range": {
         "startLine": 415,
         "startChar": 21,
