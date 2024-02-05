@@ -16,6 +16,24 @@
       "message": "Note most of this code is py2 and will stay py2 until deleted (if everything goes according to plan). The only py3 part in this CL is AFAIK is third_party/endpoints and components/prpc (as dependencies of Monorail).",
       "revId": "a593e4f85fd4faa5d837d3163dd46a319f374e94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9de9684_0136da68",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115868
+      },
+      "writtenOn": "2024-02-05T23:02:04Z",
+      "side": 1,
+      "message": "Thanks, I reverted the swarming change to avoid confusion.\n\nIs components/auth definitely not used by anything on py3, and won\u0027t ever be?",
+      "parentUuid": "85bba814_077b69b8",
+      "revId": "a593e4f85fd4faa5d837d3163dd46a319f374e94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
