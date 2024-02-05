@@ -70,6 +70,24 @@
       "parentUuid": "b1d74b9d_2d2b0a36",
       "revId": "a593e4f85fd4faa5d837d3163dd46a319f374e94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "216d6ada_64cb5cc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115868
+      },
+      "writtenOn": "2024-02-05T23:17:39Z",
+      "side": 1,
+      "message": "Ok, reverted all of those py2-only files to avoid confusion. PTAL",
+      "parentUuid": "ad4d9fdd_b8ff272e",
+      "revId": "a593e4f85fd4faa5d837d3163dd46a319f374e94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
