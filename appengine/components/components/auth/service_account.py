@@ -12,6 +12,7 @@ Supports three ways to generate OAuth2 tokens:
 """
 
 import base64
+import binascii
 import collections
 import hashlib
 import json
@@ -530,7 +531,7 @@ def _log_jwt(email, method, jwt):
     hdr = _b64_decode(parts[0])     # includes key ID
     claims = _b64_decode(parts[1])  # includes scopes and timestamp
     sig = parts[2][:12]             # only 9 bytes of the signature
-  except (TypeError, ValueError):
+  except (TypeError, ValueError, binascii.Error):
     logging.error(
         'Got broken JWT (can\'t base64-decode): by=%s method=%s jwt=%r',
         email, method, jwt)

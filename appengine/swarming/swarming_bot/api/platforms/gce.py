@@ -5,6 +5,7 @@
 """Google Compute Engine specific utility functions."""
 
 import base64
+import binascii
 import json
 import logging
 import re
@@ -226,7 +227,7 @@ def signed_metadata_token(audience):
     try:
       payload = json.loads(_padded_b64_decode(jwt.split(b'.')[1]))
       exp = int(time.time()) + (payload['exp'] - payload['iat'])
-    except (IndexError, KeyError, TypeError, ValueError) as exc:
+    except (IndexError, KeyError, TypeError, ValueError, binascii.Error) as exc:
       logging.error('Metadata server returned invalid JWT (%s):\n%s', exc, jwt)
       return None, None
 

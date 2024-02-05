@@ -101,7 +101,7 @@ def machine_authentication(request):
   # Deserialize both envelope and the body.
   try:
     token = b64_decode(token)
-  except TypeError as exc:
+  except (TypeError, binascii.Error) as exc:
     log_error(request, None, exc, 'Failed to decode base64')
     raise BadTokenError()
 

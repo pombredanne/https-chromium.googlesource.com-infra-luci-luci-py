@@ -4,6 +4,7 @@
 """Internal bot API handlers."""
 
 import base64
+import binascii
 import datetime
 import json
 import logging
@@ -1463,7 +1464,7 @@ class BotTaskUpdateHandler(_BotApiHandler):
       except UnicodeEncodeError as e:
         logging.error('Failed to decode output\n%s\n%r', e, output)
         output = output.encode('ascii', 'replace')
-      except TypeError as e:
+      except (TypeError, binascii.Error) as e:
         # Save the output as-is instead. The error will be logged in ereporter2
         # and returning a HTTP 500 would only force the bot to stay in a retry
         # loop.

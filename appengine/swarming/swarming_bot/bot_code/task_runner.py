@@ -15,6 +15,7 @@ failure and to cancel this task run and ask the server to retry it.
 """
 
 import base64
+import binascii
 import json
 import logging
 import optparse
@@ -293,7 +294,7 @@ def tmp_bb_agent_context_file(secret_bytes, task_id, workdir):
   try:
     secrets = launcher_pb2.BuildSecrets()
     secrets.ParseFromString(base64.b64decode(secret_bytes))
-  except (DecodeError, TypeError):
+  except (DecodeError, TypeError, binascii.Error):
     raise InternalError("could not decode secret_bytes")
   content = launcher_pb2.BuildbucketAgentContext(task_id=task_id,
                                                  secrets=secrets)
