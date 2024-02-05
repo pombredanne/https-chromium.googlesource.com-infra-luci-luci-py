@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85bba814_077b69b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-02-05T20:16:53Z",
+      "side": 1,
+      "message": "Note most of this code is py2 and will stay py2 until deleted (if everything goes according to plan). The only py3 part in this CL is AFAIK is third_party/endpoints and components/prpc (as dependencies of Monorail).",
+      "revId": "a593e4f85fd4faa5d837d3163dd46a319f374e94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
