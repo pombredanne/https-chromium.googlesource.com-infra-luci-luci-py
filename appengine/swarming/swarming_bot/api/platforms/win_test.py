@@ -192,6 +192,45 @@ class TestWin(auto_stub.TestCase):
         win._CMD_RE, 'Microsoft Windows [version 10.0.16299.19]', re.IGNORECASE)
     self.assertEqual(('10.0', '16299.19'), m.groups())
 
+  def test_get_screen_scaling_percent_success(self):
+    cases = [
+        (100, 100, '100'),
+        (100, 50, '200'),
+        (100, 80, '125'),
+    ]
+    for physical, logical, result in cases:
+      with mock.patch('api.platforms.win.is_display_attached',
+                      return_value=True):
+        call_count = 0
+
+        def mock_impl(*_, **__):
+          call_count += 1
+          if call_count == 1:
+            return logical
+          elif call_count == 2:
+            return physical
+          raise RuntimeError('Called more than 2 times')
+
+        with mock.patch('win32ui.GetDeviceCaps', side_effect=mock_impl):
+          with mock.patch('win32gui.GetDC'):
+            self.assertEqual(win.get_screen_scaling_percent(), result)
+
+  def test_get_screen_scaling_percent_zero_logical_height(self):
+    with mock.patch('api.platforms.win.is_display_attached', return_value=True):
+      call_count = 0
+
+      def mock_impl(*_, **__):
+        call_count += 1
+        if call_count == 1:
+          return 0
+        elif call_count == 2:
+          return 100
+        raise RuntimeError('Called more than 2 times')
+
+      with mock.patch('win32ui.GetDeviceCaps', side_effect=mock_impl):
+        with mock.patch('win32gui.GetDC'):
+          self.assertIsNone(win.get_screen_scaling_percent())
+
 
 class TestWinPlatformIndendent(auto_stub.TestCase):
   """Like TestWin, but not limited to running on Windows."""
@@ -250,6 +289,11 @@ class TestWinPlatformIndendent(auto_stub.TestCase):
     with mock.patch('api.platforms.win._get_wmi_wbem',
                     return_value=SWbemServices):
       self.assertIsNone(win.is_display_attached())
+
+  def test_get_screen_scaling_percent_no_display(self):
+    with mock.patch('api.platforms.win.is_display_attached',
+                    return_value=False):
+      self.assertIsNone(win.get_screen_scaling_percent())
 
 
 if __name__ == '__main__':
