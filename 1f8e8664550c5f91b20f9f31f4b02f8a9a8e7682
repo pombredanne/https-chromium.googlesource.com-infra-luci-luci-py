@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b2e2fe9_4558f7a1",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-02-09T21:34:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1aca60ef_7e165517",
+      "range": {
+        "startLine": 688,
+        "startChar": 0,
+        "endLine": 690,
+        "endChar": 16
+      },
+      "revId": "1f8e8664550c5f91b20f9f31f4b02f8a9a8e7682",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd9080dd_95f7d906",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-02-09T21:15:21Z",
       "side": 1,
       "message": "Does this need ReleaseDC to avoid handle leaks?",
+      "range": {
+        "startLine": 692,
+        "startChar": 2,
+        "endLine": 692,
+        "endChar": 16
+      },
+      "revId": "1f8e8664550c5f91b20f9f31f4b02f8a9a8e7682",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "001ce7ce_0ab4cdaa",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/win.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-02-09T21:34:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd9080dd_95f7d906",
       "range": {
         "startLine": 692,
         "startChar": 2,
