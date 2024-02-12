@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a0877c0_fda67fd1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115868
+      },
+      "writtenOn": "2024-02-12T03:41:43Z",
+      "side": 1,
+      "message": "I considered trying to separate out endpoints_test_case.py, but it would require changing call sites in infra/infra, and I wasn\u0027t sure it was worth it. WDYT?",
+      "revId": "d3a4e4e01136f9a6e0bcd5af4e69878df3c7e580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
