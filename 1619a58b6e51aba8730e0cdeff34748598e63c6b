@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cf827f7_07b27f9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115868
+      },
+      "writtenOn": "2024-02-13T06:12:09Z",
+      "side": 1,
+      "message": "I\u0027d be open to doing this a different way if you have a better idea.\n\nI considered just making the gae_ts_mon tests not use test_support.test_case, because they don\u0027t really need it (except for the webapp2 / endpoints tests which we will skip anyway for py3). But they would still need test_support in general for test_env, and it seemed strange to use test_support but leave test_case broken for py3.",
+      "revId": "1619a58b6e51aba8730e0cdeff34748598e63c6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
