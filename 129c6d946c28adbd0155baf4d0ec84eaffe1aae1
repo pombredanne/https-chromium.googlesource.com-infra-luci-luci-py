@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40aae251_d15a36d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115868
+      },
+      "writtenOn": "2024-02-14T00:48:06Z",
+      "side": 1,
+      "message": "It turns out I had the py3 logic flipped in has_failed, which was masking another issue. PTAL.",
+      "revId": "129c6d946c28adbd0155baf4d0ec84eaffe1aae1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
