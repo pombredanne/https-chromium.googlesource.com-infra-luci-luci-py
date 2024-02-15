@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f673e183_fdb0326c",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1869,
+      "author": {
+        "id": 1393275
+      },
+      "writtenOn": "2024-02-15T03:24:27Z",
+      "side": 1,
+      "message": "q: that i sonly for bear metal cases?",
+      "range": {
+        "startLine": 1868,
+        "startChar": 6,
+        "endLine": 1869,
+        "endChar": 19
+      },
+      "revId": "f03d1ca625f8b2faa81e38f875eb875ccb1fb53e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc197ce4_2f8bc728",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 1393275
+      },
+      "writtenOn": "2024-02-15T03:24:27Z",
+      "side": 1,
+      "message": "nit: remove extra empty line, probably better to have after return if needed for readability",
+      "revId": "f03d1ca625f8b2faa81e38f875eb875ccb1fb53e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
