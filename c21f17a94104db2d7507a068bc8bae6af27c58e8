@@ -16,6 +16,46 @@
       "message": "PTAL, I made some minor changes to improve handling of a situation when RBE asks the bot to terminate while it is currently running a task. In the prevision the code was doing one unnecessary RBE poll.",
       "revId": "c21f17a94104db2d7507a068bc8bae6af27c58e8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23abd500_51b75b61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1393275
+      },
+      "writtenOn": "2024-02-15T20:50:20Z",
+      "side": 1,
+      "message": "LGTM % question",
+      "revId": "c21f17a94104db2d7507a068bc8bae6af27c58e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c01b009e_6088b64a",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1860,
+      "author": {
+        "id": 1393275
+      },
+      "writtenOn": "2024-02-15T20:50:20Z",
+      "side": 1,
+      "message": "q: i think that is ok to tell RBE termination as RBE will not terminate it as RBE knows the task and also wait for termination? \n\nI think this termination need to be sent only when bot became idle even it received signal for termination.",
+      "range": {
+        "startLine": 1860,
+        "startChar": 8,
+        "endLine": 1860,
+        "endChar": 70
+      },
+      "revId": "c21f17a94104db2d7507a068bc8bae6af27c58e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
