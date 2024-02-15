@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77042847_23df5b09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-02-15T20:22:42Z",
+      "side": 1,
+      "message": "PTAL, I made some minor changes to improve handling of a situation when RBE asks the bot to terminate while it is currently running a task. In the prevision the code was doing one unnecessary RBE poll.",
+      "revId": "c21f17a94104db2d7507a068bc8bae6af27c58e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
