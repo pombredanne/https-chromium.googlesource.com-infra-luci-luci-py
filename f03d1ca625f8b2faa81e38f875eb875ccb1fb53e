@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b37397f9_5b20a1c3",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1869,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-02-15T18:53:18Z",
+      "side": 1,
+      "message": "No, this can also happen for VMs if they are about to restart in response to some Swarming command (like \"update\" or \"restart\"). The sequence is:\n\n1. In `run(...)` loop, swarming_poll returns \"restart\" command.\n2. self.rbe_status(remote_client.RBESessionStatus.HOST_REBOOTING) is called. It just updates a local variable with the intended status of the session.\n3. `rbe_poll` is called. It calls rbe_session.update(HOST_REBOOTING).\n5. RBE server replies with acknowledgment. This indicates the session is closed now.\n6. remote_client.RBESession.alive is False now (because the session has terminated gracefully).\n7. rbe_maybe_abandon_closed_session notices the session is not alive and resets \"self._rbe_session \u003d None\".\n8. rbe_poll notices that and does nothing (this if we are discussing).\n9. Execution in run(...) proceeds to swarming_handle_cmd(...).\n10. It actually terminates the process as part of \"restart\" implementation. The control flow never returns to the \"run(...)\" loop.",
+      "parentUuid": "f673e183_fdb0326c",
+      "range": {
+        "startLine": 1868,
+        "startChar": 6,
+        "endLine": 1869,
+        "endChar": 19
+      },
+      "revId": "f03d1ca625f8b2faa81e38f875eb875ccb1fb53e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc197ce4_2f8bc728",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-02-15T03:24:27Z",
       "side": 1,
       "message": "nit: remove extra empty line, probably better to have after return if needed for readability",
+      "revId": "f03d1ca625f8b2faa81e38f875eb875ccb1fb53e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be1aa783_b8ce79f1",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-02-15T18:53:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc197ce4_2f8bc728",
       "revId": "f03d1ca625f8b2faa81e38f875eb875ccb1fb53e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
