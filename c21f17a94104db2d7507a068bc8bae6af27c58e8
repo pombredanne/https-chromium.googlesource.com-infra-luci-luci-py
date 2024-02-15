@@ -56,6 +56,30 @@
       },
       "revId": "c21f17a94104db2d7507a068bc8bae6af27c58e8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a81ef10_9f62b29e",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1860,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-02-15T20:57:31Z",
+      "side": 1,
+      "message": "This loop in bot_main is the outer bot loop that manages stuff that happens between tasks. When a task is running, RBE is updated via another inner loop in task_runner.py. We never terminate the session there (but we may notice RBE server wants the server gone: the session will have \"session.terminating \u003d\u003d True\"). We react to this signal in the main bot loop (i.e. after the task finished running and returned control to the main bot loop), but changing the RBE session status to BOT_TERMINATING.",
+      "parentUuid": "c01b009e_6088b64a",
+      "range": {
+        "startLine": 1860,
+        "startChar": 8,
+        "endLine": 1860,
+        "endChar": 70
+      },
+      "revId": "c21f17a94104db2d7507a068bc8bae6af27c58e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
