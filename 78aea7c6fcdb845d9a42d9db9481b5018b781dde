@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86fd1831_c0063442",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1544922
+      },
+      "writtenOn": "2024-03-04T05:12:19Z",
+      "side": 1,
+      "message": "This should only be merged after https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/5335523",
+      "revId": "78aea7c6fcdb845d9a42d9db9481b5018b781dde",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
