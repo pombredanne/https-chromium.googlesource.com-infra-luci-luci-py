@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf0e5b06_23d7af78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-06T00:31:45Z",
+      "side": 1,
+      "message": "Please confirm you have signed Google CLA https://chromium.googlesource.com/infra/luci/luci-py#contributing",
+      "revId": "b02bdc7b6d8f499bf04021996490ce6cc098a9c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
