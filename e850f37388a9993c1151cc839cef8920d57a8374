@@ -16,6 +16,29 @@
       "message": "Gentle ping.",
       "revId": "e850f37388a9993c1151cc839cef8920d57a8374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31f36451_dc7df890",
+        "filename": "client/cipd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-08T19:27:38Z",
+      "side": 1,
+      "message": "`arch \u003d\u003d \u0027loongarch64\u0027`\n\nAs written currently, it checks if `arch` is a substring of \"loongarch64\" (missing a comma to make it into a 1-tuple, but a tuple is not really needed here anyway).",
+      "range": {
+        "startLine": 310,
+        "startChar": 7,
+        "endLine": 310,
+        "endChar": 30
+      },
+      "revId": "e850f37388a9993c1151cc839cef8920d57a8374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
