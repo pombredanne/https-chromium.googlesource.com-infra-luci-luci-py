@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba4800c5_78019444",
+        "filename": "client/cipd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-11T18:06:35Z",
+      "side": 1,
+      "message": "`()` are unnecessary, please remove them",
+      "range": {
+        "startLine": 310,
+        "startChar": 15,
+        "endLine": 310,
+        "endChar": 30
+      },
+      "revId": "e344c5a40dd775b607d4132e97d8a3732d9ba44c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
