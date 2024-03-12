@@ -33,6 +33,24 @@
       "message": "(I have a feeling we should move it into a proper configuration...)",
       "revId": "1df31962755106893758ba4799d0167f4b723d20",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a7666d2_a7aa4c3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-03-12T21:46:55Z",
+      "side": 1,
+      "message": "No objections from me on that front.",
+      "parentUuid": "b143e796_233c4cbf",
+      "revId": "1df31962755106893758ba4799d0167f4b723d20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
