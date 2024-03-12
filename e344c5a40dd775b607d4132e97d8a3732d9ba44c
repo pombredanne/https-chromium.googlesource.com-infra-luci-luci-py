@@ -22,6 +22,30 @@
       },
       "revId": "e344c5a40dd775b607d4132e97d8a3732d9ba44c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "668e4981_97546ba6",
+        "filename": "client/cipd.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1585327
+      },
+      "writtenOn": "2024-03-12T00:56:52Z",
+      "side": 1,
+      "message": "Sorry, This is my negligence",
+      "parentUuid": "ba4800c5_78019444",
+      "range": {
+        "startLine": 310,
+        "startChar": 15,
+        "endLine": 310,
+        "endChar": 30
+      },
+      "revId": "e344c5a40dd775b607d4132e97d8a3732d9ba44c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
