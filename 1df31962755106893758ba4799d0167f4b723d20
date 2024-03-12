@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "1df31962755106893758ba4799d0167f4b723d20",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b143e796_233c4cbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-12T21:38:22Z",
+      "side": 1,
+      "message": "(I have a feeling we should move it into a proper configuration...)",
+      "revId": "1df31962755106893758ba4799d0167f4b723d20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
