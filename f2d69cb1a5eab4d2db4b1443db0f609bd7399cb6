@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc971326_a46aacd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2024-03-13T23:48:05Z",
+      "side": 1,
+      "message": "It was in a wrong format - https://screenshot.googleplex.com/DqErzsfJFCCH8QV.\n\nThis fix works and I\u0027ve tested in Dev(https://screenshot.googleplex.com/A5aVGd94Qyahmc7).  Buildbucket can receive the update msg as well.",
+      "revId": "f2d69cb1a5eab4d2db4b1443db0f609bd7399cb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
