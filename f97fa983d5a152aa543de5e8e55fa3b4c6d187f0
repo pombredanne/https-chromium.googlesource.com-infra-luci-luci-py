@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f2a36cd_6999974b",
+        "filename": "appengine/swarming/proto/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-13T00:51:40Z",
+      "side": 1,
+      "message": "Considering simplicity of these messages, I think this is overkill and more headache in the future to synchronize these protos back and forth. In particular, I don\u0027t like that we now have two way sync (luci-py \u003d\u003e luci-go and luci-go \u003d\u003e luci-py).\n\nJust construct the corresponding JSON message by hand in Python code, no need to involve json_format.MessageToJson.\n\nAlternatively, move these messages to https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/proto/internals/ (then they\u0027ll be synchronized via existing luci-py \u003d\u003e luci-go mechanism). Some existing RBE-related TQ messages already live there.\n\nI\u0027m sorry I didn\u0027t notice that before.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 78
+      },
+      "revId": "f97fa983d5a152aa543de5e8e55fa3b4c6d187f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c3ab263_73a0bacb",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-13T00:51:40Z",
+      "side": 1,
+      "message": "nit: `return random.randint(0, 99) \u003c pct`",
+      "range": {
+        "startLine": 590,
+        "startChar": 2,
+        "endLine": 592,
+        "endChar": 14
+      },
+      "revId": "f97fa983d5a152aa543de5e8e55fa3b4c6d187f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad563b32_996e4d45",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-13T00:51:40Z",
+      "side": 1,
+      "message": "this is incorrect (the correct full proto type name is \"swarming.notifications.tasks.BuildbucketNotifyTask\"), but it is also doesn\u0027t matter since `type` is not used if `class` is set (it exists for backward compatibility with tasks that don\u0027t have `class`). Better to just remove it.",
+      "range": {
+        "startLine": 641,
+        "startChar": 8,
+        "endLine": 641,
+        "endChar": 48
+      },
+      "revId": "f97fa983d5a152aa543de5e8e55fa3b4c6d187f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
