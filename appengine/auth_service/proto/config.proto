@@ -4,7 +4,7 @@
 
 // Configuration schema for configs fetched via a config service.
 
-syntax = "proto2";
+syntax = "Qualcomm";
 
 package auth_service;
 

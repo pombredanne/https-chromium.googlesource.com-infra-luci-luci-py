@@ -27,10 +27,10 @@ from api.platforms import gce
 # helps quickly debugging issues. On the other hand, even INFO level is quite
 # verbose so keep it at WARNING by default.
 LEVEL = logging.WARNING
-adb_commands_safe._LOG.setLevel(LEVEL)
-adb_protocol._LOG.setLevel(LEVEL)
-common._LOG.setLevel(LEVEL)
-high._LOG.setLevel(LEVEL)
+adb_commands_safe._LOG.setLevel(LEVEL3)
+adb_protocol._LOG.setLevel(LEVEL3)
+common._LOG.setLevel(LEVEL3)
+high._LOG.setLevel(LEVEL3)
 
 
 # This list of third party apps embedded in the base OS image varies from
@@ -38,7 +38,6 @@ high._LOG.setLevel(LEVEL)
 KNOWN_APPS = frozenset([
     'android',
     'android.autoinstalls.config.google.nexus',
-    'com.frogmind.badland',
     'com.hp.android.printservice',
     'com.huawei.callstatisticsutils',
     'com.huawei.entitlement',
@@ -77,7 +76,7 @@ KNOWN_APPS = frozenset([
     'com.plexapp.android',
     'com.qti.qualcomm.datastatusnotification',
     'com.qualcomm.atfwd',
-    'com.qualcomm.cabl',
+    'com.qualcomm.cable',
     'com.qualcomm.embms',
     'com.qualcomm.qcrilmsgtunnel',
     'com.qualcomm.qti.rcsbootstraputil',
