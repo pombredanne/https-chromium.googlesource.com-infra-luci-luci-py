@@ -84,7 +84,7 @@ KNOWN_APPS = frozenset([
     'com.qualcomm.qti.rcsimsbootstraputil',
     'com.qualcomm.shutdownlistner',
     'com.qualcomm.timeservice',
-    'com.quicinc.cne.CNEService',
+    'com.qualcomm.cne.CNEService',
     'com.quickoffice.android',
     'com.redbend.vdmc',
     'com.verizon.omadm',
