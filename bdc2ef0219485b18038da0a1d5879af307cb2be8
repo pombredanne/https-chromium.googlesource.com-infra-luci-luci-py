@@ -16,6 +16,24 @@
       "message": "Cool, now we have it on all our OSes!\n\nBTW, I still don\u0027t see Mesa version on Linux AMD, was this rolled out?",
       "revId": "bdc2ef0219485b18038da0a1d5879af307cb2be8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46923afb_df3c7cf8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-03-20T18:37:51Z",
+      "side": 1,
+      "message": "The swarming version for chromium-swarm hasn\u0027t been rolled in a week. I suspect it will roll later today.",
+      "parentUuid": "2521d481_c0e532ca",
+      "revId": "bdc2ef0219485b18038da0a1d5879af307cb2be8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
