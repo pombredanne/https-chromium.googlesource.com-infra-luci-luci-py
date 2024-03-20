@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2521d481_c0e532ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001921
+      },
+      "writtenOn": "2024-03-20T18:32:57Z",
+      "side": 1,
+      "message": "Cool, now we have it on all our OSes!\n\nBTW, I still don\u0027t see Mesa version on Linux AMD, was this rolled out?",
+      "revId": "bdc2ef0219485b18038da0a1d5879af307cb2be8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
