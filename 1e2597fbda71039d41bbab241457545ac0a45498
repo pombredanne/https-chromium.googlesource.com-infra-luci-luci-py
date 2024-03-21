@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f911c867_07bc60b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1544922
+      },
+      "writtenOn": "2024-03-21T06:38:35Z",
+      "side": 1,
+      "message": "This restores enqueuing of tasks to v2, but to the new dedicated queues.\n\nNote: this CL should only be merged after [1] is deployed.\n[1] https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/5382006",
+      "revId": "1e2597fbda71039d41bbab241457545ac0a45498",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
