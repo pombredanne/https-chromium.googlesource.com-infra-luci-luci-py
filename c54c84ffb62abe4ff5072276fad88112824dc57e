@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3f56dda_536123ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-03-21T00:12:05Z",
+      "side": 1,
+      "message": "PTAL\n\nWould it be possible to roll this to stable sometime before the weekly roll next Wednesday? It\u0027d be unfortunate if we had to wait another week to start auto-quarantining bad machines.",
+      "revId": "c54c84ffb62abe4ff5072276fad88112824dc57e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
