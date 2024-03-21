@@ -34,6 +34,24 @@
       "parentUuid": "f3f56dda_536123ab",
       "revId": "c54c84ffb62abe4ff5072276fad88112824dc57e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7631dbf_6f0541f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-03-21T00:33:35Z",
+      "side": 1,
+      "message": "I don\u0027t think I can confirm that it works on dev since AFAIK there aren\u0027t any bots there with displays attached. I\u0027ll be able to confirm that nothing breaks, though. We aren\u0027t using `display_attached` for anything on Linux atm, so an incorrect value won\u0027t have any negative effects.",
+      "parentUuid": "51748b42_96f4dd58",
+      "revId": "c54c84ffb62abe4ff5072276fad88112824dc57e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
