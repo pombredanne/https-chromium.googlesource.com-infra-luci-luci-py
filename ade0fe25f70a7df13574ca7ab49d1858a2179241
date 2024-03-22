@@ -16,6 +16,29 @@
       "message": "I\u0027ve tested this code on Dev and it worked.",
       "revId": "ade0fe25f70a7df13574ca7ab49d1858a2179241",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "678e9491_04342090",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-22T22:50:21Z",
+      "side": 1,
+      "message": "This is non-standard (the standard jsonpb encoding for Timestamp is RFC 3339 date string, see https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp). \n\nI assume you verified stuff that depends in startTime (metrics?) works too.",
+      "range": {
+        "startLine": 624,
+        "startChar": 14,
+        "endLine": 626,
+        "endChar": 15
+      },
+      "revId": "ade0fe25f70a7df13574ca7ab49d1858a2179241",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
