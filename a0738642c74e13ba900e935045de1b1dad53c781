@@ -16,6 +16,24 @@
       "message": "Please change https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/main/swarming/server/cmd/queue.yaml instead.\n\nI forgot to remove these YAML from luci-py. Will do that.",
       "revId": "a0738642c74e13ba900e935045de1b1dad53c781",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d393883e_caddeaaf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2024-03-25T22:27:48Z",
+      "side": 1,
+      "message": "ah, it has been moved to Go.",
+      "parentUuid": "8c7a718a_dc6518a4",
+      "revId": "a0738642c74e13ba900e935045de1b1dad53c781",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
