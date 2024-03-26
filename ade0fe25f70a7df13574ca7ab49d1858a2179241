@@ -43,6 +43,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5d8030c2_e1c0bda5",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2024-03-26T01:02:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "deb95163_af94f201",
+      "range": {
+        "startLine": 611,
+        "startChar": 59,
+        "endLine": 611,
+        "endChar": 71
+      },
+      "revId": "ade0fe25f70a7df13574ca7ab49d1858a2179241",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "678e9491_04342090",
         "filename": "appengine/swarming/server/task_scheduler.py",
         "patchSetId": 2
@@ -54,6 +78,30 @@
       "writtenOn": "2024-03-22T22:50:21Z",
       "side": 1,
       "message": "This is non-standard (the standard jsonpb encoding for Timestamp is RFC 3339 date string, see https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp). \n\nI assume you verified stuff that depends in startTime (metrics?) works too.",
+      "range": {
+        "startLine": 624,
+        "startChar": 14,
+        "endLine": 626,
+        "endChar": 15
+      },
+      "revId": "ade0fe25f70a7df13574ca7ab49d1858a2179241",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b012241_2fd134e4",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1398165
+      },
+      "writtenOn": "2024-03-26T01:02:13Z",
+      "side": 1,
+      "message": "I looked into a wrong log last Friday. Changed the startTime to RFC 3339 date string. The entire msg was able to parsed and I could see the TsMon pubsub metric with latency log was printed correctly.",
+      "parentUuid": "678e9491_04342090",
       "range": {
         "startLine": 624,
         "startChar": 14,
