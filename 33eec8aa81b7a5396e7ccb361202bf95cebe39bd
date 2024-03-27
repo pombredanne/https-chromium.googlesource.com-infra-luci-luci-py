@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e6bd6ce_2a27b765",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-27T22:23:48Z",
+      "side": 1,
+      "message": "I\u0027ll do Swarming deployment, since we are switching to go122 GAE runtime and it needs a canary.",
+      "revId": "33eec8aa81b7a5396e7ccb361202bf95cebe39bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
