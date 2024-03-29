@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69ff6a24_ae46be07",
+        "filename": "appengine/swarming/proto/plugin/plugin.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-03-29T00:53:12Z",
+      "side": 1,
+      "message": "Is this needed here?",
+      "range": {
+        "startLine": 25,
+        "startChar": 7,
+        "endLine": 25,
+        "endChar": 20
+      },
+      "revId": "0d63b0d8475f03ebf42ccf8d5dd3710039ce9e1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
