@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa7a6ca0_e3102f57",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-29T23:51:07Z",
+      "side": 1,
+      "message": "https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/server/task_request.py;l\u003d1445?q\u003droot_run_id%20\u0026ss\u003dchromium\u0026start\u003d21",
+      "range": {
+        "startLine": 10,
+        "startChar": 42,
+        "endLine": 11,
+        "endChar": 49
+      },
+      "revId": "12feaab725b07bfd114199ad972f786397aaf1ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
