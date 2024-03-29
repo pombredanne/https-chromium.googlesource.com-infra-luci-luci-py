@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d00b47cc_62e82fbd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-29T22:32:15Z",
+      "side": 1,
+      "message": "PTAL\n\nThis is primarily for BQ exports for now.",
+      "revId": "552d50a61d94e7a32d737adcecee353375b227c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
