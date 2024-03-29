@@ -22,6 +22,30 @@
       },
       "revId": "0d63b0d8475f03ebf42ccf8d5dd3710039ce9e1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1782d77a_35d00f7f",
+        "filename": "appengine/swarming/proto/plugin/plugin.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-03-29T18:01:55Z",
+      "side": 1,
+      "message": "Quota Scheduler needs these values. I considered just replacing enums with magical constants, but the result ends up looking very mysterious. \n\nhttps://source.chromium.org/chromium/infra/infra/+/main:go/src/infra/qscheduler/service/app/state/operations/operations.go;l\u003d212?q\u003dCATEGORY_EXECUTION_DONE%20lang:go\u0026ss\u003dchromium",
+      "parentUuid": "69ff6a24_ae46be07",
+      "range": {
+        "startLine": 25,
+        "startChar": 7,
+        "endLine": 25,
+        "endChar": 20
+      },
+      "revId": "0d63b0d8475f03ebf42ccf8d5dd3710039ce9e1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
