@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16c0b8d5_47e9ab38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-09T17:03:47Z",
+      "side": 1,
+      "message": "Hi Vadim,\n\nThese aliases will make it easier to search for pixel devices, e.g. https://chrome-swarming.appspot.com/botlist?c\u003did\u0026c\u003dtask\u0026c\u003dos\u0026c\u003dstatus\u0026d\u003dasc\u0026f\u003ddevice_type%3Araven\u0026k\u003ddevice_type\u0026s\u003did\n\nThanks,\nPeter",
+      "revId": "ad7433f7f6893804c552f924ea8662c92d2f6fad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
