@@ -16,6 +16,52 @@
       "message": "Haiyang, PTAL.\nRobbie, could you do OWNERS?",
       "revId": "5f1240d42994feae93e7fe06c8da01e0888659c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74988727_3854f204",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-04-12T18:39:47Z",
+      "side": 1,
+      "message": "As its value can be \u00278.0.0\u0027 (Oreo) or \u00278.1.2\u0027 (Oreo MR1), can we follow a similar practice for `device_os` in line 189, i.e. set the dimension values to be `[\u00278\u0027, \u00278.1\u0027, \u00278.1.2\u0027]` for \u00278.1.2\u0027?\n\nThis will make it support the use case like picking a general Oreo device or Oreo MR1 specific device, and also avoid the potential noise from the 3rd digit, e.g.\u00278.1.**2**\u0027 which could vary between builds.",
+      "range": {
+        "startLine": 153,
+        "startChar": 29,
+        "endLine": 153,
+        "endChar": 50
+      },
+      "revId": "5f1240d42994feae93e7fe06c8da01e0888659c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b0a74fe_1241e3eb",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-04-12T18:39:47Z",
+      "side": 1,
+      "message": "Can we add `build.version.release` to device\u0027s state as well?",
+      "range": {
+        "startLine": 251,
+        "startChar": 2,
+        "endLine": 251,
+        "endChar": 6
+      },
+      "revId": "5f1240d42994feae93e7fe06c8da01e0888659c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
