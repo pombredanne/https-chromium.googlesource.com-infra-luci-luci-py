@@ -50,6 +50,23 @@
       "message": "Move iannucci@ to cc since Robbie is now OOO too.\n\n+dheriot@ and +justinluong@ for /OWNERS as both current appengine/swarming/OWNERS are OOO.",
       "revId": "39379ba1fcacdb7761d7c728840e394b306cb307",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c349190_645a6de1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1530772
+      },
+      "writtenOn": "2024-04-16T01:43:18Z",
+      "side": 1,
+      "message": "@dheriot@google.com and I are no longer part of Chrome Operations SRE and don\u0027t work on Swarming anymore.\n\nReviews should still go to Robbie and/or Vadim.",
+      "revId": "39379ba1fcacdb7761d7c728840e394b306cb307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
