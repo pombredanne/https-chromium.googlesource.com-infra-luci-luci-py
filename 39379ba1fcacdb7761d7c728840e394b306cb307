@@ -103,6 +103,23 @@
       "parentUuid": "4a569679_17dd6431",
       "revId": "39379ba1fcacdb7761d7c728840e394b306cb307",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb7e335c_4bc8f064",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-16T18:22:30Z",
+      "side": 1,
+      "message": "Hi Haiyang,\n\nWould you mind taking a look at this CL? I just noticed that 3 existing OWNERS are gone now so I\u0027ll remove them from this CL.\n\nThanks,\nPeter",
+      "revId": "39379ba1fcacdb7761d7c728840e394b306cb307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
