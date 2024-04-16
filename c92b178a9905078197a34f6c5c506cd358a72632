@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d78aadec_44e2bc87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-16T18:33:41Z",
+      "side": 1,
+      "message": "Hi Haiyang and Vadim,\n\nWDYT about this OWNERS clean-up?\n\nThanks,\nPeter",
+      "revId": "c92b178a9905078197a34f6c5c506cd358a72632",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
