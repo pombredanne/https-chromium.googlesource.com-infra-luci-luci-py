@@ -154,6 +154,41 @@
       "message": "LGTM. Thanks for add the aliases for Pixel phones!",
       "revId": "39379ba1fcacdb7761d7c728840e394b306cb307",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d436d61_52248a23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-16T19:22:37Z",
+      "side": 1,
+      "message": "Just noticed Justin\u0027s clean-up CL: https://crrev.com/c/5456611 Thanks Justin!\n\nResolving this with https://crrev.com/c/5459690 when Vadim comes back.",
+      "parentUuid": "8ef91f80_18838b27",
+      "revId": "39379ba1fcacdb7761d7c728840e394b306cb307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "319208ad_12d7ef8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-16T19:22:37Z",
+      "side": 1,
+      "message": "Thanks for the review, Haiyang!\n\n+vadimsh@ for OWNERS.",
+      "revId": "39379ba1fcacdb7761d7c728840e394b306cb307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
