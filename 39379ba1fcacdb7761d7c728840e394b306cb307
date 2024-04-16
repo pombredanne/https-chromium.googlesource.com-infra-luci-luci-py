@@ -67,6 +67,24 @@
       "message": "@dheriot@google.com and I are no longer part of Chrome Operations SRE and don\u0027t work on Swarming anymore.\n\nReviews should still go to Robbie and/or Vadim.",
       "revId": "39379ba1fcacdb7761d7c728840e394b306cb307",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a569679_17dd6431",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-16T15:47:43Z",
+      "side": 1,
+      "message": "Thanks for the update, Justin. Just to confirm, are Vadim and Robbie the only ones left out of this list for the luci-py repo? https://chromium.googlesource.com/infra/luci/luci-py\n\n$ cat luci/OWNERS \ndheriot@google.com \u003c-- no longer Chrome SRE\niannucci@chromium.org \u003c-- OOO\njonahhooper@google.com \u003c-- no longer at Google\njustinluong@google.com \u003c-- no longer Chrome SRE\nmaruel@chromium.org \u003c-- no longer at Google\nmkiedys@google.com \u003c-- Also no longer Chrome SRE (can you confirm Justin?)\nvadimsh@chromium.org \u003c-- OOO\n\nSeems like if that\u0027s the case, perhaps the `luci/OWNERS` file needs to be cleaned up?",
+      "parentUuid": "8c349190_645a6de1",
+      "revId": "39379ba1fcacdb7761d7c728840e394b306cb307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
