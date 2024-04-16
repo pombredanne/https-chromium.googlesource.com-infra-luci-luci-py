@@ -85,6 +85,24 @@
       "parentUuid": "8c349190_645a6de1",
       "revId": "39379ba1fcacdb7761d7c728840e394b306cb307",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ef91f80_18838b27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-16T18:01:26Z",
+      "side": 1,
+      "message": "Marking as unresolved to continue the discussion.",
+      "parentUuid": "4a569679_17dd6431",
+      "revId": "39379ba1fcacdb7761d7c728840e394b306cb307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
