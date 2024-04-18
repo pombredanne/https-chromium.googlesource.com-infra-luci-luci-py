@@ -16,6 +16,23 @@
       "message": "Hi Haiyang and Vadim,\n\nWDYT about this OWNERS clean-up?\n\nThanks,\nPeter",
       "revId": "c92b178a9905078197a34f6c5c506cd358a72632",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4c82257_9b1a9aef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-18T16:06:53Z",
+      "side": 1,
+      "message": "Friendly ping @vadimsh@chromium.org 😊",
+      "revId": "c92b178a9905078197a34f6c5c506cd358a72632",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
