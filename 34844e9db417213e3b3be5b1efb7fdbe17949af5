@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33537524_e30516ef",
+        "filename": "appengine/auth_service/change_log.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1272455
+      },
+      "writtenOn": "2024-04-19T09:01:25Z",
+      "side": 1,
+      "message": "Nit: Normally Python docstrings start with a single-line summary: https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings\n\nI don\u0027t care too much though since this code isn\u0027t going to live long.",
+      "revId": "34844e9db417213e3b3be5b1efb7fdbe17949af5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e6ba723_ed87bad5",
+        "filename": "appengine/auth_service/change_log.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1272455
+      },
+      "writtenOn": "2024-04-19T09:01:25Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "34844e9db417213e3b3be5b1efb7fdbe17949af5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b5bd4cf_8489cbff",
+        "filename": "appengine/auth_service/change_log.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1272455
+      },
+      "writtenOn": "2024-04-19T09:01:25Z",
+      "side": 1,
+      "message": "nit: formatting here is a bit weird, suggest removing newlines after keys and the trailing comma after auth_db_rev\n```suggestion\n  payload \u003d {\n      \u0027class\u0027: \u0027process-change-task\u0027,\n      \u0027body\u0027: json_format.MessageToDict(\n          tasks_pb2.ProcessChangeTask(auth_db_rev\u003dauth_db_rev)),\n  }\n```",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 3
+      },
+      "revId": "34844e9db417213e3b3be5b1efb7fdbe17949af5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
