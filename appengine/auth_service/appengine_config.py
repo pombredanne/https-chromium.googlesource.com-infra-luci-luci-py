@@ -7,8 +7,15 @@
 https://developers.google.com/appengine/docs/python/tools/appengineconfig
 """
 
+import change_log
+
 # Auth component UI is tweaked manually, see handlers_frontend.py.
 components_auth_UI_CUSTOM_CONFIG = True
+
+# Use a custom change task enqueuer so changelog generation is handled by
+# Auth Service v2.
+components_auth_CUSTOM_PROCESS_CHANGE_TASK_ENQUEUER = \
+    change_log.enqueue_v2_changelog_task
 
 # Use backend module and dedicated task queue for change log generation.
 components_auth_BACKEND_MODULE = 'backend'
