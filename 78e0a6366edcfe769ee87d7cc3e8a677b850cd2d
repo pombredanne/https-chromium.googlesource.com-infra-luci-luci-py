@@ -16,6 +16,23 @@
       "message": "Dry run for changelog generation in v2 should be disabled before this CL lands: https://chromium-review.googlesource.com/c/infra/luci/luci-go/+/5465291",
       "revId": "78e0a6366edcfe769ee87d7cc3e8a677b850cd2d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcd19234_f6cd26f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1272455
+      },
+      "writtenOn": "2024-04-19T08:52:40Z",
+      "side": 1,
+      "message": "add bug id?",
+      "revId": "78e0a6366edcfe769ee87d7cc3e8a677b850cd2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
