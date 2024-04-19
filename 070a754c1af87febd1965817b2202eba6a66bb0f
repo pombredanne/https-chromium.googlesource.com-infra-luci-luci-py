@@ -16,6 +16,23 @@
       "message": "LGTM. Thanks for adding this new dimension!",
       "revId": "070a754c1af87febd1965817b2202eba6a66bb0f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85e21126_879b6ab6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001921
+      },
+      "writtenOn": "2024-04-19T12:33:40Z",
+      "side": 1,
+      "message": "Vadim, PTAL.",
+      "revId": "070a754c1af87febd1965817b2202eba6a66bb0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
