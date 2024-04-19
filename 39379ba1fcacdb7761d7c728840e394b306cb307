@@ -189,6 +189,23 @@
       "message": "Thanks for the review, Haiyang!\n\n+vadimsh@ for OWNERS.",
       "revId": "39379ba1fcacdb7761d7c728840e394b306cb307",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf6aa657_0d47326a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2024-04-19T19:02:12Z",
+      "side": 1,
+      "message": "Thanks to Vadim approving the OWNERS change (https://crrev.com/c/5459690) I can land this now. Thanks Haiyang for the review and being willing to step up to own this repo!",
+      "revId": "39379ba1fcacdb7761d7c728840e394b306cb307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
