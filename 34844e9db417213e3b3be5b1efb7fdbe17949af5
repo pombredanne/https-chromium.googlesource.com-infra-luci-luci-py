@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccca3f3b_571b564b",
+        "filename": "appengine/auth_service/change_log.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1544922
+      },
+      "writtenOn": "2024-04-22T00:20:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33537524_e30516ef",
+      "revId": "34844e9db417213e3b3be5b1efb7fdbe17949af5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e6ba723_ed87bad5",
@@ -35,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb47a161_7e205c82",
+        "filename": "appengine/auth_service/change_log.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1544922
+      },
+      "writtenOn": "2024-04-22T00:20:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e6ba723_ed87bad5",
+      "revId": "34844e9db417213e3b3be5b1efb7fdbe17949af5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b5bd4cf_8489cbff",
@@ -48,6 +84,30 @@
       "writtenOn": "2024-04-19T09:01:25Z",
       "side": 1,
       "message": "nit: formatting here is a bit weird, suggest removing newlines after keys and the trailing comma after auth_db_rev\n```suggestion\n  payload \u003d {\n      \u0027class\u0027: \u0027process-change-task\u0027,\n      \u0027body\u0027: json_format.MessageToDict(\n          tasks_pb2.ProcessChangeTask(auth_db_rev\u003dauth_db_rev)),\n  }\n```",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 3
+      },
+      "revId": "34844e9db417213e3b3be5b1efb7fdbe17949af5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d3e64b1_14454c0f",
+        "filename": "appengine/auth_service/change_log.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1544922
+      },
+      "writtenOn": "2024-04-22T00:20:34Z",
+      "side": 1,
+      "message": "I\u0027ve removed the trailing comma. `git cl format` likes the newline after keys. Pretty sure this could be changed with a `.style.yapf` setting but as this is temporary transition code anyway, I\u0027m gonna leave it as-is.",
+      "parentUuid": "1b5bd4cf_8489cbff",
       "range": {
         "startLine": 31,
         "startChar": 2,
