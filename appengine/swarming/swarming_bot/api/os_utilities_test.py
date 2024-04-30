@@ -238,6 +238,8 @@ class TestOsUtilities(auto_stub.TestCase):
     if sys.platform == 'darwin':
       expected.add('mac_model')
       expected.add('display_attached')
+      expected.add('display_horizontal_resolution')
+      expected.add('display_vertical_resolution')
       # Bot may not have HiDPI and Xcode preinstalled
       actual.discard('hidpi')
       actual.discard('xcode_version')
@@ -246,9 +248,13 @@ class TestOsUtilities(auto_stub.TestCase):
       expected.add('kernel')
       expected.add('kvm')
       expected.add('display_attached')
+      expected.add('display_horizontal_resolution')
+      expected.add('display_vertical_resolution')
     if sys.platform == 'win32':
       expected.add('integrity')
       expected.add('display_attached')
+      expected.add('display_horizontal_resolution')
+      expected.add('display_vertical_resolution')
     self.assertEqual(expected, actual)
 
   def test_override_id_via_env(self):

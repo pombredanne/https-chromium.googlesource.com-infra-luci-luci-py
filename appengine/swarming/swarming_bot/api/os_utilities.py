@@ -1074,8 +1074,17 @@ def get_dimensions():
     display_attached = platforms.linux.is_display_attached()
     if display_attached:
       dimensions['display_attached'] = ['1']
+      resolution = platforms.linux.get_display_resolution()
+      if resolution:
+        dimensions['display_horizontal_resolution'] = [str(resolution[0])]
+        dimensions['display_vertical_resolution'] = [str(resolution[1])]
+      else:
+        dimensions['display_horizontal_resolution'] = ['unknown']
+        dimensions['display_vertical_resolution'] = ['unknown']
     else:
       dimensions['display_attached'] = ['0']
+      dimensions['display_horizontal_resolution'] = ['unavailable']
+      dimensions['display_vertical_resolution'] = ['unavailable']
 
   if sys.platform == 'darwin':
     model = platforms.osx.get_hardware_model_string()
@@ -1087,8 +1096,17 @@ def get_dimensions():
     display_attached = platforms.osx.is_display_attached()
     if display_attached:
       dimensions['display_attached'] = ['1']
+      resolution = platforms.osx.get_display_resolution()
+      if resolution:
+        dimensions['display_horizontal_resolution'] = [str(resolution[0])]
+        dimensions['display_vertical_resolution'] = [str(resolution[1])]
+      else:
+        dimensions['display_horizontal_resolution'] = ['unknown']
+        dimensions['display_vertical_resolution'] = ['unknown']
     else:
       dimensions['display_attached'] = ['0']
+      dimensions['display_horizontal_resolution'] = ['unavailable']
+      dimensions['display_vertical_resolution'] = ['unavailable']
 
     # iOS devices
     udids = platforms.osx.get_ios_device_ids()
@@ -1120,8 +1138,18 @@ def get_dimensions():
       screen_scaling_percent = platforms.win.get_screen_scaling_percent()
       if screen_scaling_percent:
         dimensions['screen_scaling_percent'] = [screen_scaling_percent]
+
+      resolution = platforms.win.get_display_resolution()
+      if resolution:
+        dimensions['display_horizontal_resolution'] = [str(resolution[0])]
+        dimensions['display_vertical_resolution'] = [str(resolution[1])]
+      else:
+        dimensions['display_horizontal_resolution'] = ['unknown']
+        dimensions['display_vertical_resolution'] = ['unknown']
     else:
       dimensions['display_attached'] = ['0']
+      dimensions['display_horizontal_resolution'] = ['unavailable']
+      dimensions['display_vertical_resolution'] = ['unavailable']
 
   return dimensions
 
