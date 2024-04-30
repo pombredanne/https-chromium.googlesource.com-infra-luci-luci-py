@@ -87,6 +87,24 @@
       "parentUuid": "a011f11f_e76445a5",
       "revId": "0318579a649a8c70610fecd15e0ecd9d06ff3424",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9aaf543c_3ef4a4dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-04-30T21:12:18Z",
+      "side": 1,
+      "message": "\u003e Can you point me to documentation on these APIs?\n\nIt is just the bot listing API, e.g. https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/main/swarming/proto/api_v2/swarming.proto#54 The state is a JSON-string in `state` field https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/main/swarming/proto/api_v2/swarming.proto#983\n\nIn `swarming` CLI it is also returned by `bots` subcommand, e.g.\n\n\n```\n\u003e swarming bots -S chromium-swarm.appspot.com -dimension pool\u003dluci.chromium.ci\n...\n  \"task_name\": \"bb-8749204643883781841-chromium/ci/Windows deterministic-24521\",\n  \"version\": \"a4425343ce27e9d5841379ce38c374db2cec72715c730bd0865c589bb2dabe1b\",\n  \"state\": \"{\\\"audio\\\":[],\\\"bot_config\\\":{\\\"name\\\":\\\"bot_config.py\\\",\\\"revision\\\":\\\"6ed1c135649e7bfd4a3c1d19375a10a1238f49f3\\\"},\\\"bot_group_cfg_version\\\":\\\"hash:be77159de73158\\\",\\\"cost_usd_hour\\\":1.2868843695746528,\\\"cpu_name\\\":\\\"Intel(R) Xeon(R) CPU Cascade Lake GCE\\\",\\\"cwd\\\":\\\"C:\\\\\\\\b\\\\\\\\s\\\",\\\"cygwin\\\":[false],\\\"disks\\\":{\\\"c:\\\\\\\\\\\":{\\\"free_mb\\\":472579.5,\\\"size_mb\\\":509998.0}},\\\"env\\\":{\\\"PATH\\\":\\\"C:\\\\\\\\Program F.....\n }\n]\n```\n\n(still need to parse it separately though)",
+      "parentUuid": "e7bac087_9fb9e604",
+      "revId": "0318579a649a8c70610fecd15e0ecd9d06ff3424",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

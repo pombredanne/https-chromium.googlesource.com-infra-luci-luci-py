@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62a3415e_888d642d",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1214,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-04-30T21:12:18Z",
+      "side": 1,
+      "message": "nit: unlike dimensions, state is structured, i.e. this can be\n\n```\nstate[\u0027display_resolution\u0027] \u003d {\n  \u0027horizontal\u0027: ...,\n  \u0027vertical\u0027: ...,\n}\n```\n\nbut as you prefer",
+      "range": {
+        "startLine": 1209,
+        "startChar": 2,
+        "endLine": 1214,
+        "endChar": 56
+      },
+      "revId": "17e4db3212124671c3e1066b1d04716731a3e9f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b1484ae_b46b224d",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-04-30T21:12:18Z",
+      "side": 1,
+      "message": "I wonder what happens if there\u0027s no display attached?",
+      "range": {
+        "startLine": 808,
+        "startChar": 0,
+        "endLine": 810,
+        "endChar": 51
+      },
+      "revId": "17e4db3212124671c3e1066b1d04716731a3e9f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
