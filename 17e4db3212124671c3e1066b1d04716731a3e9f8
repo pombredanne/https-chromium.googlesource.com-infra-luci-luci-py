@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d66cb61_80568620",
+        "filename": "appengine/swarming/swarming_bot/api/os_utilities.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1214,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-04-30T21:22:29Z",
+      "side": 1,
+      "message": "Switched to your suggestion.",
+      "parentUuid": "62a3415e_888d642d",
+      "range": {
+        "startLine": 1209,
+        "startChar": 2,
+        "endLine": 1214,
+        "endChar": 56
+      },
+      "revId": "17e4db3212124671c3e1066b1d04716731a3e9f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b1484ae_b46b224d",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-30T21:12:18Z",
       "side": 1,
       "message": "I wonder what happens if there\u0027s no display attached?",
+      "range": {
+        "startLine": 808,
+        "startChar": 0,
+        "endLine": 810,
+        "endChar": 51
+      },
+      "revId": "17e4db3212124671c3e1066b1d04716731a3e9f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "006e0420_c3363c99",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-04-30T21:22:29Z",
+      "side": 1,
+      "message": "I was wondering that too, but neither [CGMainDisplayID](https://developer.apple.com/documentation/coregraphics/1455620-cgmaindisplayid) nor [CGDisplayPixelsWide/High](https://developer.apple.com/documentation/coregraphics/1456361-cgdisplaypixelswide) have any information on behavior related to that. I also can\u0027t really test since my local Mac is a Macbook and every Mac in swarming *should* have a display attached (either a built-in screen or a KVM).",
+      "parentUuid": "1b1484ae_b46b224d",
       "range": {
         "startLine": 808,
         "startChar": 0,
