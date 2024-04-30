@@ -33,6 +33,24 @@
       "message": "There\u0027s a global limit (25K) on various combinations of different dimensions. Right now we are at ~6K (see \"Bot classes\" at http://shortn/_7jezgg00ZS). Due to how bot updating happens (and bots reporting their version as a dimension value), the real limit is more like 12K.\n\nI\u0027m beginning to worry that we keep adding more and more stuff into dimensions. Just adding one new dimension with two possible values may, at worst, double the number of bot classes.\n\nWill display resolution be used for scheduling? If not, maybe it is OK to add it to \"get_state()\" instead? Then for each concrete bot you will be able to see the resolution it has. https://screenshot.googleplex.com/7jxPrtehKshwXPA \n\nThere are also APIs to list states of all bots. There\u0027s no API to search based on state though.",
       "revId": "0318579a649a8c70610fecd15e0ecd9d06ff3424",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceb535f8_e06384e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001921
+      },
+      "writtenOn": "2024-04-30T15:24:03Z",
+      "side": 1,
+      "message": "The intended usage is to automatically quarantine misconfigured machines.\nMaybe we can do it in puppet instead?\nWe could also simplify this to a single \"width x height\" dimension.",
+      "parentUuid": "bba009e8_563e493a",
+      "revId": "0318579a649a8c70610fecd15e0ecd9d06ff3424",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
