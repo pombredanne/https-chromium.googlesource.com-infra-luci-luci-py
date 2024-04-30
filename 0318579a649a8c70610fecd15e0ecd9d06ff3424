@@ -51,6 +51,24 @@
       "parentUuid": "bba009e8_563e493a",
       "revId": "0318579a649a8c70610fecd15e0ecd9d06ff3424",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a011f11f_e76445a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-04-30T17:10:34Z",
+      "side": 1,
+      "message": "We shouldn\u0027t need this for scheduling, so moving this to get_state should be fine. I\u0027ll upload a new version later today.\n\n\u003e There are also APIs to list states of all bots. There\u0027s no API to search based on state though.\n\nThat should be sufficient to get the list of valid resolutions that we want to enforce. Can you point me to documentation on these APIs?",
+      "parentUuid": "ceb535f8_e06384e0",
+      "revId": "0318579a649a8c70610fecd15e0ecd9d06ff3424",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
