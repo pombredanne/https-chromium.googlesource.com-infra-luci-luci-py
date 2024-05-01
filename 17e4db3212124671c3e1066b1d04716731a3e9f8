@@ -141,6 +141,30 @@
       },
       "revId": "17e4db3212124671c3e1066b1d04716731a3e9f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e768f579_add7ae6a",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-05-01T17:16:13Z",
+      "side": 1,
+      "message": "That\u0027s weird, but shouldn\u0027t be an issue for our intended uses - we\u0027ll likely only be applying the quarantine to bots in the GPU pools, and we already quarantine those if they don\u0027t have a display.",
+      "parentUuid": "848eacab_968d1e50",
+      "range": {
+        "startLine": 808,
+        "startChar": 0,
+        "endLine": 810,
+        "endChar": 51
+      },
+      "revId": "17e4db3212124671c3e1066b1d04716731a3e9f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
