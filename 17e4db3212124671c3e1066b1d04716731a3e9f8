@@ -93,6 +93,30 @@
       },
       "revId": "17e4db3212124671c3e1066b1d04716731a3e9f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3df1b9b3_7c3c4a49",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1001921
+      },
+      "writtenOn": "2024-05-01T16:34:05Z",
+      "side": 1,
+      "message": "Looks like there are some machines you can test this on:\nhttps://chromium-swarm.appspot.com/botlist?f\u003dos%3AMac\u0026f\u003ddisplay_attached%3A0",
+      "parentUuid": "006e0420_c3363c99",
+      "range": {
+        "startLine": 808,
+        "startChar": 0,
+        "endLine": 810,
+        "endChar": 51
+      },
+      "revId": "17e4db3212124671c3e1066b1d04716731a3e9f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
