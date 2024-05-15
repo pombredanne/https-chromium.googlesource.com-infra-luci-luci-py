@@ -336,7 +336,7 @@ class TestBackendConversions(test_case.TestCase):
       if task_id is not None:
         task.id.id = str(task_id)
       if summary is not None:
-        task.summary_html = summary
+        task.summary_markdown = summary
       if set_timeout:
         task.status_details.timeout.SetInParent()
       if set_exhaustion:
