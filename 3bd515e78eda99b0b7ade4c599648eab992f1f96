@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "291c8876_78aae2e2",
+        "filename": "appengine/swarming/bb/go/chromium/org/luci/resultdb/proto/v1/instruction_pb2.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-05-16T00:32:07Z",
+      "side": 1,
+      "message": "The instruction_pb2 is added here. But in swarming_bot test, it still has issue importing it: https://screenshot.googleplex.com/C8yvPPjMr6xfPuz\n\nLooking at my local test log, it seems this file is not included in swarming bot zip...\n\nAnd I\u0027m not sure if that\u0027s why the bot_code.task_runner_test.TestTaskRunnerKilled.test_signal test fails...",
+      "fixSuggestions": [
+        {
+          "fixId": "66aed424_845e3a03",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "appengine/swarming/bb/go/chromium/org/luci/resultdb/proto/v1/instruction_pb2.py",
+              "range": {
+                "startLine": 4,
+                "startChar": 0,
+                "endLine": 5,
+                "endChar": 0
+              },
+              "replacement": "\"\"\"Generated protocol buffer code.\"\"\"  # pylint: disable\u003dline-too-long\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3bd515e78eda99b0b7ade4c599648eab992f1f96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
