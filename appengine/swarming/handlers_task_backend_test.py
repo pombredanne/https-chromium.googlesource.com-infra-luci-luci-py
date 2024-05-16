@@ -324,7 +324,7 @@ class TaskBackendAPIServiceTest(test_env_handlers.AppTestBase):
         task_pb2.Task(id=task_pb2.TaskID(target=target, id=second_id),
                       status=common_pb2.SCHEDULED),
         task_pb2.Task(id=task_pb2.TaskID(target=target, id='1d69b9f088008810'),
-                      summary_html='Swarming task 1d69b9f088008810 not found',
+                      summary_markdown='Swarming task 1d69b9f088008810 not found',
                       status=common_pb2.INFRA_FAILURE),
     ])
 
