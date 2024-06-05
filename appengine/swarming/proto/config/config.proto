@@ -75,6 +75,9 @@ message SettingsCfg {
 
   // Configuration for RBE-CAS integration.
   CASSettings cas = 20;
+
+  // Configuration for Python => Go RPC servers migration.
+  TrafficMigration traffic_migration = 21;
 }
 
 
@@ -176,4 +179,16 @@ message CASSettings {
   // Must start with "https://" or "http://",
   // e.g. "https://cas-viewer.appspot.com".
   string viewer_server = 1;
+}
+
+// Configuration for Python => Go RPC servers migration.
+message TrafficMigration {
+  message RouteOptions {
+    // A portion of requests (in percents) to route to the Go version.
+    int32 route_to_go_percent = 1;
+  }
+
+  // Route key => migration options that apply to it.
+  // Route keys are "/prpc/<service>/<method>".
+  map<string, RouteOptions> routes = 1;
 }
