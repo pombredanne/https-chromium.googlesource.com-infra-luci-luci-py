@@ -1,0 +1,65 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0b3dbb5_61e009a8",
+        "filename": "appengine/swarming/proto/config/config.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-06-06T00:56:10Z",
+      "side": 1,
+      "message": "Actually, how about \n\n``` \nmessage Route {\n    // A portion of requests (in percents) to route to the Go version.\n    int32 route_to_go_percent \u003d 1;\n  }\n\nmap\u003cstring, Route\u003e routes \u003d 1;\n```",
+      "range": {
+        "startLine": 186,
+        "startChar": 2,
+        "endLine": 196,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "840ad618_a5080c4e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "appengine/swarming/proto/config/config.proto",
+              "range": {
+                "startLine": 187,
+                "startChar": 0,
+                "endLine": 191,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "appengine/swarming/proto/config/config.proto",
+              "range": {
+                "startLine": 192,
+                "startChar": 0,
+                "endLine": 193,
+                "endChar": 0
+              },
+              "replacement": "    int32 route_to_go_percent \u003d 1;\n"
+            },
+            {
+              "path": "appengine/swarming/proto/config/config.proto",
+              "range": {
+                "startLine": 196,
+                "startChar": 0,
+                "endLine": 197,
+                "endChar": 0
+              },
+              "replacement": "  // Route keys are \"/prpc/\u003cservice\u003e/\u003cmethod\u003e\".\n  map\u003cstring, Route\u003e routes \u003d 1;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d3ce3b5df131142871066a6c7ed608667cdf6b75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
