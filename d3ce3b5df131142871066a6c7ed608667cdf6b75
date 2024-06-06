@@ -60,6 +60,30 @@
       ],
       "revId": "d3ce3b5df131142871066a6c7ed608667cdf6b75",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "558487c7_a60a32cf",
+        "filename": "appengine/swarming/proto/config/config.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-06-06T01:30:21Z",
+      "side": 1,
+      "message": "This was my first variant that I decided to change. I don\u0027t like that it will look more verbose in *.cfg form and the route name will be indicated by just generic `key`.\n\n```\ntraffic_migration {\n  routes {\n    name: \"/prpc/swarming.v2.Bots/GetBot\"\n    route_to_go_percent: 50\n  }\n  routes {\n    name: \"/prpc/swarming.v2.Bots/DeleteBot\"\n    route_to_go_percent: 50\n  }\n}\n```\n\nvs\n\n```\ntraffic_migration {\n  routes {\n    key: \"/prpc/swarming.v2.Bots/GetBot\"\n    value {\n      route_to_go_percent: 50\n    }\n  }\n  routes {\n    key: \"/prpc/swarming.v2.Bots/DeleteBot\"\n    value {\n      route_to_go_percent: 50\n    }\n  }\n}\n```\n\nIt is not hard to convert a list into a map in the config loader.",
+      "parentUuid": "e0b3dbb5_61e009a8",
+      "range": {
+        "startLine": 186,
+        "startChar": 2,
+        "endLine": 196,
+        "endChar": 28
+      },
+      "revId": "d3ce3b5df131142871066a6c7ed608667cdf6b75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
