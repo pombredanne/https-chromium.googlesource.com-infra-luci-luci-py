@@ -5,7 +5,7 @@ import collections
 from abc import abstractmethod
 
 
-class DefaultMapping(collections.MutableMapping):
+class DefaultMapping(collections.abc.MutableMapping):
 
     __slots__ = ()
 
