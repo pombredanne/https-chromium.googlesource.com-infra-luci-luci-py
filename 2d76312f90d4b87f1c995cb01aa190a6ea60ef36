@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c8a298c_b219545a",
+        "filename": "appengine/swarming/handlers_prpc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-06-07T19:50:53Z",
+      "side": 1,
+      "message": "this is called by the Go portion when it handles PubSub event from RBE",
+      "range": {
+        "startLine": 437,
+        "startChar": 6,
+        "endLine": 437,
+        "endChar": 17
+      },
+      "revId": "2d76312f90d4b87f1c995cb01aa190a6ea60ef36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "190a1d41_640fe1d6",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2383,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-06-07T19:50:53Z",
+      "side": 1,
+      "message": "this is eventually called by the cron job that scans the datastore",
+      "range": {
+        "startLine": 2383,
+        "startChar": 4,
+        "endLine": 2383,
+        "endChar": 21
+      },
+      "revId": "2d76312f90d4b87f1c995cb01aa190a6ea60ef36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
