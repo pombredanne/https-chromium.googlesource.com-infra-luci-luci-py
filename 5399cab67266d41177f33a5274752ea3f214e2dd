@@ -1,0 +1,75 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab6203a2_62e78340",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-06-09T03:31:32Z",
+      "side": 1,
+      "message": "\u003e \"depreacted\" is a possible misspelling of \"deprecated\".\n\nPlease fix.",
+      "parentUuid": "a2cd7364_5b655206",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 14
+      },
+      "revId": "5399cab67266d41177f33a5274752ea3f214e2dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2488c93_f46a139b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-06-09T03:31:32Z",
+      "side": 1,
+      "message": "\u003e \"udpate\" is a possible misspelling of \"update\".\n\nPlease fix.",
+      "parentUuid": "b9aae4d7_13c33b76",
+      "range": {
+        "startLine": 9,
+        "startChar": 56,
+        "endLine": 9,
+        "endChar": 62
+      },
+      "revId": "5399cab67266d41177f33a5274752ea3f214e2dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3ae32d8_a3be421c",
+        "filename": "client/third_party/cachetools/abc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-06-09T03:31:32Z",
+      "side": 1,
+      "message": "Do we still need to support python 2.7? If so, this could cause import error in py 2.7. May be try something like the following?\n```\nif sys.version_info[:2] \u003e\u003d (3, 3):\n    from collections.abc import MutableMapping\nelse:\n    from collections import MutableMapping\n```\n\nAs the change is made in [python 3.3](https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableMapping)",
+      "range": {
+        "startLine": 8,
+        "startChar": 21,
+        "endLine": 8,
+        "endChar": 51
+      },
+      "revId": "5399cab67266d41177f33a5274752ea3f214e2dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
