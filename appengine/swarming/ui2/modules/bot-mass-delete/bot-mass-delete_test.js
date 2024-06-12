@@ -114,7 +114,7 @@ describe("bot-mass-delete", function () {
               { key: "pool", value: "Chrome" },
             ]) &&
             req.limit === 200 &&
-            req.is_dead === "TRUE"
+            req.isDead === "TRUE"
           );
         }
       );
@@ -123,9 +123,9 @@ describe("bot-mass-delete", function () {
         fetchMock,
         "swarming.v2.Bots",
         "DeleteBot",
-        { deleted: true },
+        {},
         (req) => {
-          return ["bot-1", "bot-2", "bot-3"].includes(req.bot_id);
+          return ["bot-1", "bot-2", "bot-3"].includes(req.botId);
         }
       );
 
@@ -177,7 +177,7 @@ describe("bot-mass-delete", function () {
               { key: "pool", value: "Chrome" },
             ]) &&
             req.limit === 200 &&
-            req.is_dead === "TRUE"
+            req.isDead === "TRUE"
           );
         }
       );
@@ -186,9 +186,9 @@ describe("bot-mass-delete", function () {
         fetchMock,
         "swarming.v2.Bots",
         "DeleteBot",
-        { deleted: true },
+        {},
         (req) => {
-          return ["bot-1", "bot-2", "bot-3"].includes(req.bot_id);
+          return ["bot-1", "bot-2", "bot-3"].includes(req.botId);
         }
       );
 

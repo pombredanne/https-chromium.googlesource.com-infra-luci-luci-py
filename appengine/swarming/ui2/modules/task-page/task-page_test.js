@@ -146,14 +146,14 @@ describe("task-page", function () {
       "swarming.v2.Tasks",
       "GetRequest",
       request,
-      (body) => body.task_id === TEST_TASK_ID
+      (body) => body.taskId === TEST_TASK_ID
     );
     mockPrpc(
       fetchMock,
       "swarming.v2.Tasks",
       "GetResult",
       result,
-      (body) => body.task_id === TEST_TASK_ID && body.include_performance_stats
+      (body) => body.taskId === TEST_TASK_ID && body.includePerformanceStats
     );
     if (idx === 0) {
       // The index 0 data has multiple tries that it requests data for (no perf stats),
@@ -164,7 +164,7 @@ describe("task-page", function () {
         "GetResult",
         taskResults[1],
         (body) =>
-          body.task_id === TEST_TASK_ID && body.include_performance_stats
+          body.taskId === TEST_TASK_ID && body.includePerformanceStats
       );
     }
     if (!nostdout) {
@@ -1040,7 +1040,7 @@ describe("task-page", function () {
           const call = calls[0];
           const options = call[1];
           expect(options.body).toEqual(
-            '{"task_id":"test0b3c0fac7810","kill_running":false}'
+            '{"taskId":"test0b3c0fac7810","killRunning":false}'
           );
 
           expectNoUnmatchedCalls(fetchMock);
@@ -1084,7 +1084,7 @@ describe("task-page", function () {
           const call = calls[0];
           const options = call[1];
           expect(options.body).toEqual(
-            '{"task_id":"test0b3c0fac7810","kill_running":true}'
+            '{"taskId":"test0b3c0fac7810","killRunning":true}'
           );
 
           expectNoUnmatchedCalls(fetchMock);
