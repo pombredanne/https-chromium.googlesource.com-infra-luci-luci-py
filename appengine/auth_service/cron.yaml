@@ -38,11 +38,15 @@ cron:
   url: /internal/cron/update-config
   schedule: every 1 minutes
 
+# NOTE: the v2 update-realms cron is in dry run mode (see
+# https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/main/auth_service/services/backend/service-backendv2.yaml#18).
 - description: Update permissions and realms configs from luci-config in Auth Service v2.
   target: backendv2
   url: /internal/cron/update-realms
   schedule: every 1 minutes
 
+# NOTE: the v2 revoke-stale-authorization cron is in dry run mode (see
+# https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/main/auth_service/services/backend/service-backendv2.yaml#19).
 - description: Revoke all stale authorization for PubSub and Google Storage access.
   target: backendv2
   url: /internal/cron/revoke-stale-authorization
