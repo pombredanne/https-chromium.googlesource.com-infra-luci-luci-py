@@ -25,6 +25,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab186149_5bb9d7e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2024-06-12T21:22:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab6203a2_62e78340",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 14
+      },
+      "revId": "5399cab67266d41177f33a5274752ea3f214e2dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2488c93_f46a139b",
@@ -39,6 +63,30 @@
       "side": 1,
       "message": "\u003e \"udpate\" is a possible misspelling of \"update\".\n\nPlease fix.",
       "parentUuid": "b9aae4d7_13c33b76",
+      "range": {
+        "startLine": 9,
+        "startChar": 56,
+        "endLine": 9,
+        "endChar": 62
+      },
+      "revId": "5399cab67266d41177f33a5274752ea3f214e2dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8510cc75_f398f2f9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2024-06-12T21:22:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2488c93_f46a139b",
       "range": {
         "startLine": 9,
         "startChar": 56,
@@ -86,6 +134,30 @@
       "side": 1,
       "message": "Swarming appengine code is still py2.7 but I\u0027m not sure if this particular module is imported there. If tests pass, it probably isn\u0027t.\n\nPlease update https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/client/third_party/cachetools/README.swarming noting you made an edit.",
       "parentUuid": "b3ae32d8_a3be421c",
+      "range": {
+        "startLine": 8,
+        "startChar": 21,
+        "endLine": 8,
+        "endChar": 51
+      },
+      "revId": "5399cab67266d41177f33a5274752ea3f214e2dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68a40114_0c1e76ef",
+        "filename": "client/third_party/cachetools/abc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1204579
+      },
+      "writtenOn": "2024-06-12T21:22:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e37c6d26_e57dadf9",
       "range": {
         "startLine": 8,
         "startChar": 21,
