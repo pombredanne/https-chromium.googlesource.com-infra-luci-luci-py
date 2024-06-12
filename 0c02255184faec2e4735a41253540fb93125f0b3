@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d07e2bbc_0c62e567",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-06-12T23:17:30Z",
+      "side": 1,
+      "message": "I don\u0027t seem to see this fix? I think the change in `appengine/swarming/ui2/modules/task-list/task-list.js` is relevant, but that\u0027s only a change of comment?",
+      "revId": "0c02255184faec2e4735a41253540fb93125f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "479069ac_03c9a6fd",
+        "filename": "appengine/swarming/ui2/modules/services/bots.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-06-12T23:17:30Z",
+      "side": 1,
+      "message": "I\u0027m a bit confused... Will \"ALL\" work here?",
+      "range": {
+        "startLine": 37,
+        "startChar": 14,
+        "endLine": 37,
+        "endChar": 23
+      },
+      "revId": "0c02255184faec2e4735a41253540fb93125f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "336728a7_fd0e77e0",
+        "filename": "appengine/swarming/ui2/modules/services/tasks.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-06-12T23:17:30Z",
+      "side": 1,
+      "message": "same here/below, will \"ALL\" work?",
+      "range": {
+        "startLine": 93,
+        "startChar": 38,
+        "endLine": 93,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "17d2ab0b_f955294e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "appengine/swarming/ui2/modules/services/tasks.js",
+              "range": {
+                "startLine": 93,
+                "startChar": 0,
+                "endLine": 94,
+                "endChar": 0
+              },
+              "replacement": "      filters \u003d { ...filters, state: \"QUERY_ALL\" }; // QUERY_ALL is the default state\n"
+            },
+            {
+              "path": "appengine/swarming/ui2/modules/services/tasks.js",
+              "range": {
+                "startLine": 108,
+                "startChar": 0,
+                "endLine": 109,
+                "endChar": 0
+              },
+              "replacement": "      filters \u003d { ...filters, state: \"QUERY_ALL\" }; // QUERY_ALL is the default state\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0c02255184faec2e4735a41253540fb93125f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
