@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c4b9186_97204b34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1544922
+      },
+      "writtenOn": "2024-06-12T06:17:01Z",
+      "side": 1,
+      "message": "This CL is actually just to trigger a run of the [luci-py-gae-tarballs-continuous](https://ci.chromium.org/ui/p/infra-internal/builders/prod/luci-py-gae-tarballs-continuous) builder, which failed earlier today due to a bad depot_tools version.",
+      "revId": "6043af934f8eb646942bf02a06458f3990a21358",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
