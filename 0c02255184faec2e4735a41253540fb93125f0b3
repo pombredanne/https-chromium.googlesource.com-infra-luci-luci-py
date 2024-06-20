@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8d83421_04ec9fea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-06-20T20:15:51Z",
+      "side": 1,
+      "message": "It is in tasks.js:\n\n```\nif (!filters.state) {\n      filters \u003d { ...filters, state: \"QUERY_ALL\" };\n}\n```\n\nWhen fetching \"Total\", `state` is not filled in. Swarming defaults to QUERY_PENDING in this case (Swarming API is bad).",
+      "parentUuid": "d07e2bbc_0c62e567",
+      "revId": "0c02255184faec2e4735a41253540fb93125f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "479069ac_03c9a6fd",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-06-12T23:17:30Z",
       "side": 1,
       "message": "I\u0027m a bit confused... Will \"ALL\" work here?",
+      "range": {
+        "startLine": 37,
+        "startChar": 14,
+        "endLine": 37,
+        "endChar": 23
+      },
+      "revId": "0c02255184faec2e4735a41253540fb93125f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dcc53b0_4faa200c",
+        "filename": "appengine/swarming/ui2/modules/services/bots.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-06-20T20:15:51Z",
+      "side": 1,
+      "message": "No, it needs to match the enum name in proto (which is QUERY_ALL).\n\nBut \"state:QUERY_ALL\" looks super weird in the UI. So UI adds/strips QUERY_ when necessary. I think before the proto API, Cloud Endpoints API just had \"ALL\" and it was looking OK in the UI.",
+      "parentUuid": "479069ac_03c9a6fd",
       "range": {
         "startLine": 37,
         "startChar": 14,
@@ -88,6 +130,30 @@
           ]
         }
       ],
+      "revId": "0c02255184faec2e4735a41253540fb93125f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "252cdfe0_a7d3b6b8",
+        "filename": "appengine/swarming/ui2/modules/services/tasks.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-06-20T20:15:51Z",
+      "side": 1,
+      "message": "Same answer.",
+      "parentUuid": "336728a7_fd0e77e0",
+      "range": {
+        "startLine": 93,
+        "startChar": 38,
+        "endLine": 93,
+        "endChar": 47
+      },
       "revId": "0c02255184faec2e4735a41253540fb93125f0b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
