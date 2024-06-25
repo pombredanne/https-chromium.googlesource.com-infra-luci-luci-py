@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2e24412_0dc44c4e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-06-25T00:57:48Z",
+      "side": 1,
+      "message": "Is this something to fix?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "5cbf81de20d476d388b59361f6c4313a28c6f901",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3d4318e_5352876d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-06-25T00:57:48Z",
+      "side": 1,
+      "message": "I assume in this case Swarming should return an error message saying it doesn\u0027t know this bot, which should result a SIGTERM on the bot side. But it\u0027s fine by me to not do it in this CL",
+      "range": {
+        "startLine": 29,
+        "startChar": 31,
+        "endLine": 31,
+        "endChar": 11
+      },
+      "revId": "5cbf81de20d476d388b59361f6c4313a28c6f901",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8eebbd39_c27deabd",
