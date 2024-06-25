@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c5d55659_8386bc15",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-06-25T01:41:07Z",
+      "side": 1,
+      "message": "Yes, but it is not trivial and something that would be done when porting this to Go.",
+      "parentUuid": "c2e24412_0dc44c4e",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "5cbf81de20d476d388b59361f6c4313a28c6f901",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b3d4318e_5352876d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
