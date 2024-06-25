@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31c98e3d_d5030a84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-06-25T21:20:28Z",
+      "side": 1,
+      "message": "PTAL.\n\nWe store BotEvent for 4 weeks. So I think I\u0027ll just land this and forget about it for a month. After that all existing BotEvent entities should have this field populated and we can enable the TTL policy and disable the deleting cron job (except I\u0027m worried about the TTL deletion not clearing memcache, so likely will also need to disable memcache for these entities).",
+      "revId": "4a85638bad7e356450d63c020ad3e82317d4241d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
