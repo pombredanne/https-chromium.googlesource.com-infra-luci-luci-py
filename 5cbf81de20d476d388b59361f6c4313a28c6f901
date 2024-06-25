@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eebbd39_c27deabd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-06-25T00:29:53Z",
+      "side": 1,
+      "message": "PTAL. This is all pretty horrifying and I hope I\u0027ll be able to improve it when porting this to Go.",
+      "revId": "5cbf81de20d476d388b59361f6c4313a28c6f901",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
