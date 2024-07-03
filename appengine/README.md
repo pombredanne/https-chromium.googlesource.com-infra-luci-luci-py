@@ -1,5 +1,8 @@
 # appengine/
 
+
+TEST: DO NOT SUBMIT
+
 This directory contains the AppEngine services needed for a LUCI infrastructure.
 
 Every single microservice below is _optional_. Please mix and match based on
