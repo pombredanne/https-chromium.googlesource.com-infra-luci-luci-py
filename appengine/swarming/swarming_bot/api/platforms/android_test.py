@@ -6,6 +6,7 @@
 import logging
 import sys
 import unittest
+from unittest import mock
 
 import test_env_platforms
 test_env_platforms.setup_test_env()
@@ -317,6 +318,116 @@ class TestGetDimensions(unittest.TestCase):
             'device_type': ['universal7420', 'zerofltetmo'],
             'os': ['Android'],
         }, android.get_dimensions([self.get_mock_galaxyS6()]))
+
+
+class TestGetState(unittest.TestCase):
+
+  def _create_mock_device(self):
+    device = mock.Mock()
+    device.is_valid = True
+    device.failure = False
+    device.serial = 'serial'
+    device.cache.build_props = {'ro.build.version.sdk': 30}
+    device.GetPackages.return_value = []
+    device.IsFullyBooted.return_value = (True, None)
+    return device
+
+  def test_temperature_fallback_unused_if_default_path_works(self):
+    """Ensures the fallback is only used when necessary."""
+    device = self._create_mock_device()
+    device.GetTemperatures.return_value = {'cpu': 20.0}
+    with mock.patch.object(android,
+                           '_get_fallback_temperature_data',
+                           side_effect=RuntimeError('Fallback called')):
+      state = android.get_state([device])
+    individual_state = state['devices']['serial']
+    self.assertIn('temp', individual_state)
+    self.assertEqual(individual_state['temp'], {'cpu': 20.0})
+
+  def test_temperature_fallback_sdk_level_below_minimum(self):
+    """Ensures that the fallback exits early below Android 10."""
+    device = self._create_mock_device()
+    device.GetTemperatures.return_value = {}
+    device.cache.build_props['ro.build.version.sdk'] = 28
+    device.Dumpsys.side_effect = RuntimeError('dumpsys unexpectedly called')
+    state = android.get_state([device])
+    individual_state = state['devices']['serial']
+    self.assertIn('temp', individual_state)
+    self.assertEqual(individual_state['temp'], {})
+
+  def test_temperature_fallback_dumpsys_failure(self):
+    """Ensures dumpsys failures are handled gracefully."""
+    device = self._create_mock_device()
+    device.GetTemperatures.return_value = {}
+    device.Dumpsys.return_value = None
+    with self.assertLogs(level='WARNING') as log_manager:
+      state = android.get_state([device])
+      self.assertIn(
+          'WARNING:root:Failed to run "dumpsys thermalservice" during '
+          'fallback temperature collection', log_manager.output)
+    individual_state = state['devices']['serial']
+    self.assertIn('temp', individual_state)
+    self.assertEqual(individual_state['temp'], {})
+
+  def test_temperature_fallback_happy_path(self):
+    """Ensures the happy path works as expected."""
+    device = self._create_mock_device()
+    device.GetTemperatures.return_value = {}
+    # Real "dumpsys thermalservice" output from a Samsung S24 but with a
+    # malformed temperature line manually added.
+    # pylint: disable=line-too-long
+    device.Dumpsys.return_value = """
+IsStatusOverride: false
+ThermalEventListeners:
+    callbacks: 1
+    killed: false
+    broadcasts count: -1
+ThermalStatusListeners:
+    callbacks: 4
+    killed: false
+    broadcasts count: -1
+Thermal Status: 0
+Cached temperatures:
+    Temperature{mValue=0.0, mType=2, mName=SUBBAT, mStatus=0}
+    Temperature{mValue=26.7, mType=0, mName=AP, mStatus=0}
+    Temperature{mValue=21.7, mType=12, mName=CP, mStatus=0}
+    Temperature{mValue=20.8, mType=5, mName=PA, mStatus=0}
+    Temperature{mValue=18.8, mType=2, mName=BAT, mStatus=0}
+    Temperature{mValue=19.7, mType=4, mName=USB, mStatus=0}
+    Temperature{mValue=23.3, mType=3, mName=SKIN, mStatus=0}
+HAL Ready: true
+HAL connection:
+    ThermalHAL AIDL 1  connected: yes
+Current temperatures from HAL:
+    Temperature{mValue=19.1, mType=0, mName=AP, mStatus=0}
+    Temperature{mValue=18.6, mType=2, mName=BAT, mStatus=0}
+    Temperature{mValue=19.0, mType=12, mName=CP, mStatus=0}
+    Temperature{malformed
+    Temperature{mValue=19.1, mType=5, mName=PA, mStatus=0}
+    Temperature{mValue=21.7, mType=3, mName=SKIN, mStatus=0}
+    Temperature{mValue=0.0, mType=2, mName=SUBBAT, mStatus=0}
+    Temperature{mValue=19.4, mType=4, mName=USB, mStatus=0}
+Current cooling devices from HAL:
+Temperature static thresholds from HAL:
+    TemperatureThreshold{mType=2, mName=BAT, mHotThrottlingThresholds=[NaN, NaN, NaN, NaN, NaN, 55.0, 85.0], mColdThrottlingThresholds=[NaN, NaN, NaN, NaN, NaN, NaN, NaN]}
+    TemperatureThreshold{mType=3, mName=SKIN, mHotThrottlingThresholds=[36.0, 38.0, 40.0, 42.0, 45.0, NaN, NaN], mColdThrottlingThresholds=[NaN, NaN, NaN, NaN, NaN, NaN, NaN]}"""
+    # pylint: enable=line-too-long
+    with self.assertLogs(level='WARNING') as log_manager:
+      state = android.get_state([device])
+      self.assertIn(
+          'WARNING:root:Unable to find expected temperature data in line '
+          '"Temperature{malformed"', log_manager.output)
+    individual_state = state['devices']['serial']
+    self.assertIn('temp', individual_state)
+    self.assertEqual(
+        individual_state['temp'], {
+            'AP': 19.1,
+            'BAT': 18.6,
+            'CP': 19.0,
+            'PA': 19.1,
+            'SKIN': 21.7,
+            'USB': 19.4,
+        })
 
 
 if __name__ == '__main__':
