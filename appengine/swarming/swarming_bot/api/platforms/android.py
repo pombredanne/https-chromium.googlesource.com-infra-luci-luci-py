@@ -99,6 +99,10 @@ KNOWN_APPS = frozenset([
     'org.simalliance.openmobileapi.service',
 ])
 
+# Grabs the key/value pair list from lines such as:
+# Temperature{mValue=25.6, mType=0, mName=AP, mStatus=0}
+THERMALSERVICE_TEMPERATURE_REGEX = re.compile(r'^Temperature\{(.*)\}$')
+
 
 def get_unknown_apps(device):
   return [
@@ -269,12 +273,16 @@ def get_state(devices):
     if not properties:
       return {'state': 'unavailable'}
     no_sd_card = properties.get('ro.product.model', '') in ['Chromecast']
+    temperature_data = device.GetTemperatures()
+    if not temperature_data:
+      temperature_data = _get_fallback_temperature_data(device)
     return {
         'battery':
         device.GetBattery(),
-        'build':
-        {key: properties.get('ro.' + key, '<missing>')
-         for key in keys},
+        'build': {
+            key: properties.get('ro.' + key, '<missing>')
+            for key in keys
+        },
         'cpu':
         device.GetCPUScale(),
         'disk':
@@ -296,7 +304,7 @@ def get_state(devices):
         'state':
         ('available' if no_sd_card or device.IsFullyBooted()[0] else 'booting'),
         'temp':
-        device.GetTemperatures(),
+        temperature_data,
         'uptime':
         device.GetUptime(),
     }
@@ -312,3 +320,85 @@ def get_state(devices):
       'get_state() (device part) took %gs' %
       round(time.time() - start, 1))
   return state
+
+
+def _get_fallback_temperature_data(device):
+  """Returns fallback temperature data if the default path does not work.
+
+  Args:
+    device: The device to get temperature data from.
+
+  Returns:
+    A dict mapping temperature sensor names to temperatures in Celsius. May be
+    empty if data is not available.
+  """
+  temperature_data = {}
+  # dumpsys thermalservice is only expected to work on Android 10 and above.
+  if int(device.cache.build_props.get('ro.build.version.sdk', 0)) < 29:
+    return temperature_data
+
+  dumpsys_output = device.Dumpsys('thermalservice')
+  if not dumpsys_output:
+    logging.warning(
+        'Failed to run "dumpsys thermalservice" during fallback temperature '
+        'collection')
+    return temperature_data
+
+  temperature_data = _parse_thermalservice_output(dumpsys_output)
+
+  return temperature_data
+
+
+def _parse_thermalservice_output(output):
+  temperature_data = {}
+
+  # Parse the temperature data from the block of lines such as:
+  # Current temperatures from HAL:
+  #      Temperature{mValue=25.6, mType=0, mName=AP, mStatus=0}
+  #      Temperature{mValue=23.8, mType=2, mName=BAT, mStatus=0}
+  #      ...
+  in_temperature_block = False
+  for line in output.splitlines():
+    line = line.strip()
+    # Ignore any blank lines.
+    if not line:
+      continue
+    if line.startswith('Current temperatures'):
+      in_temperature_block = True
+      continue
+    if not in_temperature_block:
+      continue
+
+    if not line.startswith('Temperature{'):
+      break
+
+    match = THERMALSERVICE_TEMPERATURE_REGEX.match(line)
+    if not match:
+      logging.warning('Unable to find expected temperature data in line %r',
+                      line)
+      continue
+    key_value_list = match.group(1)
+    sensor_name = None
+    sensor_value = None
+    for key_value_pair in key_value_list.split(','):
+      key_value_pair = key_value_pair.strip()
+      key, value = key_value_pair.split('=', maxsplit=1)
+      if key == 'mValue':
+        try:
+          sensor_value = float(value)
+        except ValueError:
+          logging.warning('Unable to parse float from %r', value)
+          break
+      elif key == 'mName':
+        sensor_name = value
+
+    # This will also drop the data if the sensor value is 0, which is what we
+    # want since that's indicative of the sensor not providing useful data. This
+    # can happen during normal operation.
+    if sensor_name and sensor_value:
+      temperature_data[sensor_name] = sensor_value
+
+  if not temperature_data:
+    logging.warning('Did not find any data using fallback temperature path')
+
+  return temperature_data
