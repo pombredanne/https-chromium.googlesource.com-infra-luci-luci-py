@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c518f6c_18735d6c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-07-11T22:06:28Z",
+      "side": 1,
+      "message": "I considered that initially, but opted to put it in the swarming code since `python-adb` seems to be very rarely touched. I can move it there if you prefer, though.",
+      "parentUuid": "3b6abbc8_397c52eb",
+      "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06e6a2d6_4a92e97c",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-07-11T20:50:32Z",
       "side": 1,
       "message": "nit: I would suggest factoring out the parsing into a separate pure function - then it can be tested directly without mocks",
+      "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af589cea_e416d415",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-07-11T22:06:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06e6a2d6_4a92e97c",
       "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -69,6 +105,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccb6de22_1cb69e14",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-07-11T22:06:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1256f568_d933c356",
+      "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2dac580_febf6e41",
@@ -86,6 +140,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c9d34e5_9d162379",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-07-11T22:06:28Z",
+      "side": 1,
+      "message": "Probably not, added a catch for that.",
+      "parentUuid": "e2dac580_febf6e41",
+      "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25040eea_abad2463",
@@ -99,6 +171,24 @@
       "writtenOn": "2024-07-11T20:50:32Z",
       "side": 1,
       "message": "log if all lines were skipped?",
+      "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c102d8a8_caf305c3",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-07-11T22:06:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25040eea_abad2463",
       "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
