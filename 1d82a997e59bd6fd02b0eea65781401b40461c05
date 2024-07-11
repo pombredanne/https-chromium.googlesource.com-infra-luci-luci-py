@@ -16,6 +16,74 @@
       "message": "Vadim is a much better reviewer for this, but I\u0027ll do a skim too",
       "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06e6a2d6_4a92e97c",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2024-07-11T20:50:32Z",
+      "side": 1,
+      "message": "nit: I would suggest factoring out the parsing into a separate pure function - then it can be tested directly without mocks",
+      "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1256f568_d933c356",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2024-07-11T20:50:32Z",
+      "side": 1,
+      "message": "consider %r instead of \"%s\" to quote any weirdness",
+      "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2dac580_febf6e41",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2024-07-11T20:50:32Z",
+      "side": 1,
+      "message": "are we OK with this raising ValueError if it fails to parse?",
+      "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25040eea_abad2463",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/android.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2024-07-11T20:50:32Z",
+      "side": 1,
+      "message": "log if all lines were skipped?",
+      "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
