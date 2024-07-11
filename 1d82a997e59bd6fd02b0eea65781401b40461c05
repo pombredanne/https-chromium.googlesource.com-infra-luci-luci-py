@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aadd36f0_153b1e1d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2024-07-11T20:46:20Z",
+      "side": 1,
+      "message": "Vadim is a much better reviewer for this, but I\u0027ll do a skim too",
+      "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
