@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b6abbc8_397c52eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-07-11T21:50:55Z",
+      "side": 1,
+      "message": "Perhaps this should be a part of device.GetTemperatures implementation here: https://chromium.googlesource.com/infra/luci/python-adb/+/refs/heads/main/adb/contrib/high.py#628 ? Might be easier to test in isolation.",
+      "revId": "1d82a997e59bd6fd02b0eea65781401b40461c05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06e6a2d6_4a92e97c",
