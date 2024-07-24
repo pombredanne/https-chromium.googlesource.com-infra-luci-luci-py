@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c98f7356_f25f37f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-07-24T00:21:52Z",
+      "side": 1,
+      "message": "lgtm w/ a small comment",
+      "revId": "bb5d82026df13260780fd6572d39b2b83c6a230a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9597dec1_2188db1f",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-07-24T00:21:52Z",
+      "side": 1,
+      "message": "I assume we could just reserve the `swarming.` namespace?",
+      "range": {
+        "startLine": 172,
+        "startChar": 5,
+        "endLine": 172,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2599b7ee_aecd17f1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "appengine/swarming/server/task_request.py",
+              "range": {
+                "startLine": 172,
+                "startChar": 0,
+                "endLine": 173,
+                "endChar": 0
+              },
+              "replacement": "    \u0027swarming.\u0027,  # used to identify tasks created by TerminateBot RPC\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bb5d82026df13260780fd6572d39b2b83c6a230a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
