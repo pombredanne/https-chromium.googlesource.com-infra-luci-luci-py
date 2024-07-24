@@ -57,6 +57,30 @@
       ],
       "revId": "bb5d82026df13260780fd6572d39b2b83c6a230a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97bae599_467263bc",
+        "filename": "appengine/swarming/server/task_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-07-24T00:26:06Z",
+      "side": 1,
+      "message": "It is complicated :-/ There\u0027s already various stuff there. And it gets copy-pasted by the UI into new request when clicking \"Debug\" and \"Retry\" buttons. These buttons will stop working. I don\u0027t want to deal with this now. Terminate tasks are fine, because no one \"debugs\" or retries them.",
+      "parentUuid": "9597dec1_2188db1f",
+      "range": {
+        "startLine": 172,
+        "startChar": 5,
+        "endLine": 172,
+        "endChar": 13
+      },
+      "revId": "bb5d82026df13260780fd6572d39b2b83c6a230a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
