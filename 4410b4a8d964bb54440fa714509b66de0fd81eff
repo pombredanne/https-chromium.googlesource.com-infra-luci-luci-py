@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d833f61_32857f09",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1568167
+      },
+      "writtenOn": "2024-08-09T15:13:13Z",
+      "side": 1,
+      "message": "I\u0027m unfortunately not as familiar with that `git cl upload` CLI, but maybe try the `--edit-description` flag?\n\nVadim may know this better; I upload to Gerrit via `git codereview mail` ([ref](https://pkg.go.dev/golang.org/x/review/git-codereview#hdr-Mail)) in the Go project and via the lower-level `git push origin HEAD:refs/for/main` ([ref](https://gerrit-review.googlesource.com/Documentation/user-upload.html#push_create)) in others.",
+      "parentUuid": "8644bb72_8ed536b4",
+      "revId": "4410b4a8d964bb54440fa714509b66de0fd81eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2f1ec182_e080196e",
