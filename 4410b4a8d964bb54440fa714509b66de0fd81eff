@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f1ec182_e080196e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3246085
+      },
+      "writtenOn": "2024-08-09T14:39:42Z",
+      "side": 1,
+      "message": "I think this should resolve the issue found in golang/go#67299 while setting up the aix builder.",
+      "revId": "4410b4a8d964bb54440fa714509b66de0fd81eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
