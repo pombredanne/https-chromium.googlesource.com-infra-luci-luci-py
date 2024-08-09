@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f877c04_b43f2cec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1568167
+      },
+      "writtenOn": "2024-08-09T14:43:35Z",
+      "side": 1,
+      "message": "(nit) I\u0027m not sure how much it matters, but other similar CLs tend to have a \"[swarming] \" prefix.",
+      "revId": "4410b4a8d964bb54440fa714509b66de0fd81eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2f1ec182_e080196e",
@@ -14,6 +31,23 @@
       "writtenOn": "2024-08-09T14:39:42Z",
       "side": 1,
       "message": "I think this should resolve the issue found in golang/go#67299 while setting up the aix builder.",
+      "revId": "4410b4a8d964bb54440fa714509b66de0fd81eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21e55187_64e23499",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1568167
+      },
+      "writtenOn": "2024-08-09T14:43:35Z",
+      "side": 1,
+      "message": "Thanks.",
       "revId": "4410b4a8d964bb54440fa714509b66de0fd81eff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
