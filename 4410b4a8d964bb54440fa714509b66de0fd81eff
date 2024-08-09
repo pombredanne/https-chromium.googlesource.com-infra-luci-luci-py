@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8644bb72_8ed536b4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 3246085
+      },
+      "writtenOn": "2024-08-09T14:57:28Z",
+      "side": 1,
+      "message": "Hrm, I have that in my local git commit title. After running `git cl upload -s` per the instructions, it\u0027s gone.",
+      "parentUuid": "2f877c04_b43f2cec",
+      "revId": "4410b4a8d964bb54440fa714509b66de0fd81eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2f1ec182_e080196e",
