@@ -16,6 +16,24 @@
       "message": "This change has been released.",
       "revId": "616956a11c3770ecbffec4bbd5486aa718a54345",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8688e381_51e8f870",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1568167
+      },
+      "writtenOn": "2024-08-13T00:41:01Z",
+      "side": 1,
+      "message": "Thanks very much. The cipd_platform dimension at https://chromium-swarm.appspot.com/bot?id\u003daix-ppc64-power8 now has the expected `aix-ppc64` value. We\u0027ll continue the work on this builder in [go.dev/issue/67299](https://go.dev/issue/67299).",
+      "parentUuid": "3a363996_7af797f7",
+      "revId": "616956a11c3770ecbffec4bbd5486aa718a54345",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
