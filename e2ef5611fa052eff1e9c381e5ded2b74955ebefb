@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fad448d_d5ac4db4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2024-08-16T21:29:03Z",
+      "side": 1,
+      "message": "More context can be found in https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/5794156/comments/2ee2dca7_17032e1f",
+      "revId": "e2ef5611fa052eff1e9c381e5ded2b74955ebefb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
