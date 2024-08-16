@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aba3d0f_d33fb181",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2024-08-16T21:11:23Z",
+      "side": 1,
+      "message": "This seems... potentially super dangerous? It is weird tho that OSError is getting swallowed up so deep below",
+      "revId": "b10cdc3a02430f47aeb5646a35a66951220ca42a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
