@@ -16,6 +16,23 @@
       "message": "This seems... potentially super dangerous? It is weird tho that OSError is getting swallowed up so deep below",
       "revId": "b10cdc3a02430f47aeb5646a35a66951220ca42a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ee2dca7_17032e1f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-08-16T21:21:14Z",
+      "side": 1,
+      "message": "I think we should just revert https://chromium-review.googlesource.com/c/infra/luci/luci-py/+/1890478 instead\n\nIt is super weird, violating sane code layering. If anything, it should have been added to Skylab hooks. If something in Skylab is still relying on catching this OSError, it is a deeply broken situation.",
+      "revId": "b10cdc3a02430f47aeb5646a35a66951220ca42a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
