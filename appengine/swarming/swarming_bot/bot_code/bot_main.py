@@ -293,6 +293,7 @@ def _call_hook(chained, botobj, name, *args, **kwargs):
 
         except OSError:
           _log_process_info()
+          raise
 
       hook = getattr(_get_bot_config(), name, None)
       if hook:
