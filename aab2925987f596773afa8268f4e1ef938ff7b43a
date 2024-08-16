@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf4d4c78_3328f1b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3246085
+      },
+      "writtenOn": "2024-08-16T15:10:35Z",
+      "side": 1,
+      "message": "Another change to better support aix on luci.\n\nNote, the current AIX builder is actually a POWER9, but has been compiling for POWER8. There were issues switching to GOPPC64\u003dpower9 on the AIX CI previously, it is unlikely those were fixed.",
+      "revId": "aab2925987f596773afa8268f4e1ef938ff7b43a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
