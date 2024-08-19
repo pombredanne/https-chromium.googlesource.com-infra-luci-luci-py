@@ -50,6 +50,23 @@
       "message": "acknowledged",
       "revId": "e2ef5611fa052eff1e9c381e5ded2b74955ebefb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "595b4915_c09aee81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-08-19T17:30:06Z",
+      "side": 1,
+      "message": "Something in this CL breaks CQ. The service is not picking it up :-/ Maybe it needs to be rebased.",
+      "revId": "e2ef5611fa052eff1e9c381e5ded2b74955ebefb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
