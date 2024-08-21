@@ -39,6 +39,30 @@
       },
       "revId": "be324a80c509a773db9b8b1977974704448ba0aa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f3d4f4a_296426df",
+        "filename": "appengine/swarming/swarming_bot/bot_code/bot_main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-08-21T19:08:57Z",
+      "side": 1,
+      "message": "Yeah, this comes from hooks. They can do weird stuff (like modify the dict later after returning it). I decided to keep this copy as a precation.",
+      "parentUuid": "a32e6da9_a36015e8",
+      "range": {
+        "startLine": 340,
+        "startChar": 11,
+        "endLine": 340,
+        "endChar": 21
+      },
+      "revId": "be324a80c509a773db9b8b1977974704448ba0aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
