@@ -19,7 +19,7 @@ def make_bot(remote=None):
   return bot.Bot(remote, {'dimensions': {
       'id': ['bot1'],
       'pool': ['private']
-  }}, 'https://localhost:1', '1234-1a2b3c4-tainted-joe', 'base_dir', None)
+  }}, 'https://localhost:1', 'base_dir', None)
 
 
 class TestBot(unittest.TestCase):
@@ -75,7 +75,6 @@ class TestBot(unittest.TestCase):
     self.assertEqual({'id': ['bot1'], 'pool': ['private']}, obj.dimensions)
     self.assertEqual(
         os.path.join(obj.base_dir, 'swarming_bot.zip'), obj.swarming_bot_zip)
-    self.assertEqual('1234-1a2b3c4-tainted-joe', obj.server_version)
     self.assertEqual('base_dir', obj.base_dir)
 
   def test_attribute_updates(self):
