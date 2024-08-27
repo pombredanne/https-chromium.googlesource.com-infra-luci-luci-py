@@ -874,12 +874,11 @@ class TestTaskRunner(TestTaskRunnerBase):
 
   def test_main(self):
 
-    def _load_and_run(manifest, swarming_server, default_swarming_server,
-                      cost_usd_hour, start, json_file, run_isolated_flags,
-                      bot_file, auth_params_file, rbe_session_state):
+    def _load_and_run(manifest, swarming_server, cost_usd_hour, start,
+                      json_file, run_isolated_flags, bot_file, auth_params_file,
+                      rbe_session_state):
       self.assertEqual('foo', manifest)
       self.assertEqual(self.server.url, swarming_server)
-      self.assertEqual(self.server.url, default_swarming_server)
       self.assertEqual(3600., cost_usd_hour)
       self.assertGreaterEqual(time.time(), start)
       self.assertEqual('task_summary.json', json_file)
@@ -891,8 +890,6 @@ class TestTaskRunner(TestTaskRunnerBase):
     self.mock(task_runner, 'load_and_run', _load_and_run)
     cmd = [
         '--swarming-server',
-        self.server.url,
-        '--default-swarming-server',
         self.server.url,
         '--in-file',
         'foo',
