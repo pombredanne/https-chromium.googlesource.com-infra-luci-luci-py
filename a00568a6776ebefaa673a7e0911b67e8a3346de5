@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3307c25b_1cc0c07f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-08-27T22:29:57Z",
+      "side": 1,
+      "message": "It was used in [child task cancellation](https://source.chromium.org/chromium/infra/infra_superproject/+/main:infra/luci/appengine/swarming/server/task_scheduler.py;l\u003d2453;drc\u003d811bed7cf0d01a00cededa71571c37b3c8a1377a). And I plan to stop using it in go rewrite (but should probably still update it).\n\nThen it\u0027ll be information only.",
+      "parentUuid": "36fddb88_50959815",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "a00568a6776ebefaa673a7e0911b67e8a3346de5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "14366421_f44bbb48",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
