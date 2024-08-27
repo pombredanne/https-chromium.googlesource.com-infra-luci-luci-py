@@ -1954,8 +1954,6 @@ class TestBotMain(TestBotBase):
             'task_runner',
             '--swarming-server',
             url,
-            '--default-swarming-server',
-            'https://localhost:1',
             '--in-file',
             os.path.join(self.root_dir, 'w', 'task_runner_in.json'),
             '--out-file',
