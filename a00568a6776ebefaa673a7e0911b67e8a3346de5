@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "36fddb88_50959815",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-08-27T22:15:49Z",
+      "side": 1,
+      "message": "ServerVersions in task results is mostly harmless. It is just FYI information about version of the backend code that participated in the processing of the task. I\u0027m not even sure anyone reads it.\n\nI was planning just to put Go backend version there (available via https://pkg.go.dev/go.chromium.org/luci/server#Options.ImageVersion in `main`).",
+      "parentUuid": "3b818ff0_4e4d93d4",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "a00568a6776ebefaa673a7e0911b67e8a3346de5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "14366421_f44bbb48",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
