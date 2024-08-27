@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b818ff0_4e4d93d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-08-27T21:38:42Z",
+      "side": 1,
+      "message": "I think this will apply to server side as well, right? E.g. we should stop using [ServerVersions](https://source.chromium.org/chromium/infra/infra_superproject/+/main:infra/go/src/go.chromium.org/luci/swarming/server/model/taskresult.go;l\u003d83;drc\u003d67503954b72e98f26fca65a3c176d3c18d4c08ff) in task results?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "a00568a6776ebefaa673a7e0911b67e8a3346de5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14366421_f44bbb48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-08-27T21:38:42Z",
+      "side": 1,
+      "message": "lgtm w/ fixing tests",
+      "revId": "a00568a6776ebefaa673a7e0911b67e8a3346de5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
