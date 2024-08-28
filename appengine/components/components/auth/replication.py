@@ -18,6 +18,7 @@ from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
 
 from components import utils
+from components.auth import api
 
 from . import b64
 from . import model
@@ -265,6 +266,18 @@ def push_auth_db(revision, auth_db):
   # Zero revision in AuthReplicationState is special, it means "waiting for the
   # first AuthDB push". The Primary must never try to send it.
   assert revision.auth_db_rev > 0
+
+  # Check the new AuthDB is not malformed before storing it.
+  try:
+    api.AuthDB.from_proto(
+        replication_state=model.AuthReplicationState(),
+        auth_db=auth_db,
+        additional_client_ids=[],
+    )
+  except ValueError as e:
+    logging.error('bad AuthDB from %s at rev %d: %s', revision.primary_id,
+                  revision.auth_db_rev, e)
+    return False, state
 
   # Store AuthDB message as is first by deflating it and splitting it up into
   # multiple AuthDBSnapshotShard messages. If it fails midway, no big deal. It
