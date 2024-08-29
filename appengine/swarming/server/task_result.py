@@ -1228,7 +1228,7 @@ class TaskResultSummary(_TaskResultCommon):
     if self.state in State.STATES_RUNNING:
       return
     # Don't use process cache to retrieve the original object
-    orig = self.key.get(use_cache=False)
+    orig = self.key.get(use_cache=False, use_memcache=False)
     if not orig:
       return
     self._prev_state = orig.state
