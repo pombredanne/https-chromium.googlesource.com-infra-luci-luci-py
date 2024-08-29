@@ -68,6 +68,24 @@
       "message": "Please add `api/platforms/aix.py` to https://chromium.googlesource.com/infra/luci/luci-py/+/refs/heads/main/appengine/swarming/server/bot_archive.py#25 (this is a list of files that end up inside the bot archive)",
       "revId": "aab2925987f596773afa8268f4e1ef938ff7b43a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "feae6c14_b4e99afb",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/aix.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3246085
+      },
+      "writtenOn": "2024-08-29T15:57:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a32f7744_70f4f9a6",
+      "revId": "aab2925987f596773afa8268f4e1ef938ff7b43a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
