@@ -16,6 +16,52 @@
       "message": "PTAL",
       "revId": "35841236b57d67d0321acf3b6247fc1fa4457142",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d608577_768c9486",
+        "filename": "appengine/swarming/server/task_result.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1620,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-08-29T22:11:16Z",
+      "side": 1,
+      "message": "here too",
+      "range": {
+        "startLine": 1620,
+        "startChar": 29,
+        "endLine": 1620,
+        "endChar": 34
+      },
+      "revId": "35841236b57d67d0321acf3b6247fc1fa4457142",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5fc4b0c_6f1bbacb",
+        "filename": "appengine/swarming/server/task_scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 702,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-08-29T22:11:16Z",
+      "side": 1,
+      "message": "here too, we\u0027ll likely need to update `update_id` from Go side when canceling tasks",
+      "range": {
+        "startLine": 702,
+        "startChar": 68,
+        "endLine": 702,
+        "endChar": 71
+      },
+      "revId": "35841236b57d67d0321acf3b6247fc1fa4457142",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
