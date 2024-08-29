@@ -33,6 +33,24 @@
       "message": "I\u0027m mostly worried about code in task_scheduler.py. I assume it will be in Part 2.",
       "revId": "dd4ae14293c2cfdac05257de8d356240dde84750",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4f89457_b762a0f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-08-29T00:21:04Z",
+      "side": 1,
+      "message": "Yes that\u0027s the plan. I\u0027m also worried about task_scheduler.py, so I separate it out in a different CL.",
+      "parentUuid": "afbdfea0_e5c9fd05",
+      "revId": "dd4ae14293c2cfdac05257de8d356240dde84750",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
