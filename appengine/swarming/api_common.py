@@ -771,7 +771,7 @@ def get_server_details():
   server_version = utils.get_app_version()
 
   return ServerDetails(
-      bot_version=bot_code.get_bot_version(host)[0],
+      bot_version=bot_code.get_bot_version(bot_code.STABLE_BOT)[0],
       server_version=server_version,
       display_server_url_template=cfg.display_server_url_template,
       luci_config=config.config.config_service_hostname(),
