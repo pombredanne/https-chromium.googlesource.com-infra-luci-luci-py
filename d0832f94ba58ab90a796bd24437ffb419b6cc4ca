@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56921399_4c3b0fd1",
+        "filename": "appengine/swarming/handlers_bot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-09-05T18:54:51Z",
+      "side": 1,
+      "message": "Nit: to me putting this under the if block below is easier to read.",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 228,
+        "endChar": 63
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "605a509c_102bcb6f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "appengine/swarming/handlers_bot.py",
+              "range": {
+                "startLine": 227,
+                "startChar": 0,
+                "endLine": 229,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "appengine/swarming/handlers_bot.py",
+              "range": {
+                "startLine": 230,
+                "startChar": 0,
+                "endLine": 230,
+                "endChar": 0
+              },
+              "replacement": "      if version:\n        logging.warning(\u0027Requesting unknown version %s\u0027, version)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d0832f94ba58ab90a796bd24437ffb419b6cc4ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e82a987_37784865",
+        "filename": "appengine/swarming/handlers_bot_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1979,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-09-05T18:54:51Z",
+      "side": 1,
+      "message": "Maybe also add a test for version but not known?",
+      "fixSuggestions": [
+        {
+          "fixId": "8dfad9de_fa7e1550",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "appengine/swarming/handlers_bot_test.py",
+              "range": {
+                "startLine": 1979,
+                "startChar": 0,
+                "endLine": 1980,
+                "endChar": 0
+              },
+              "replacement": "  def test_bot_code_known_a(self):\n    resp \u003d self.app.get(\u0027/swarming/api/v1/bot/bot_code/\u0027 +\n                        self.stable_bot_digest)\n    self.assertEqual(resp.status_int, 200)\n    self.assertEqual(resp.body, \u0027stable-1234+stable-5678\u0027)\n    resp \u003d self.app.get(\u0027/swarming/api/v1/bot/bot_code/\u0027 +\n                        self.canary_bot_digest)\n    self.assertEqual(resp.status_int, 200)\n    self.assertEqual(resp.body, \u0027canary-1234+canary-5678\u0027)\n\n  def test_bot_code_known_b(self):\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d0832f94ba58ab90a796bd24437ffb419b6cc4ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
