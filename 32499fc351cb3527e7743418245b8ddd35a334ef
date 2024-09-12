@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb321ecf_3a9c6414",
+        "filename": "appengine/swarming/server/acl.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-09-12T21:38:01Z",
+      "side": 1,
+      "message": "There\u0027s a ton of hits for this in chromium-swarm from many IPs :-/ Looks like we\u0027ll need to implement this check in Go too (it isn\u0027t hard).",
+      "range": {
+        "startLine": 97,
+        "startChar": 21,
+        "endLine": 97,
+        "endChar": 46
+      },
+      "revId": "32499fc351cb3527e7743418245b8ddd35a334ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
