@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8d21ee8_444fe8b6",
+        "filename": "appengine/swarming/handlers_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2024-09-24T00:18:23Z",
+      "side": 0,
+      "message": "Do you plan to delete this function later?",
+      "fixSuggestions": [
+        {
+          "fixId": "4b2cf47b_ac9f07b5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "appengine/swarming/handlers_backend.py",
+              "range": {
+                "startLine": 96,
+                "startChar": 0,
+                "endLine": 97,
+                "endChar": 0
+              },
+              "replacement": "    # Do nothing. This is now implemented in Go. TODO(maruel): Delete.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "56557e3b443819faebe7136bbaeddac7ef1049ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
