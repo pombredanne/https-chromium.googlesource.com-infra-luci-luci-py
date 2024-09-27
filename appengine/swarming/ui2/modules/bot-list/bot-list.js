@@ -696,14 +696,26 @@ window.customElements.define(
       if (label === "busy" || label === "idle") {
         filterStr = "task:" + label;
       }
+      if (this._filters.indexOf(filterStr) != -1) {
+        // The filter is already on the list.
+        return undefined;
+      }
+      // Make a copy of the filters.
+      const withNewState = [...this._filters];
+      withNewState.push(filterStr);
       const currentURL = new URL(window.location.href);
       if (preserveOthers) {
-        if (currentURL.searchParams.getAll("f").indexOf(filterStr) !== -1) {
-          // The filter is already on the list.
-          return undefined;
-        }
-        currentURL.searchParams.append("f", filterStr);
-        return currentURL.href;
+        const queryParams = query.fromObject({
+          // provide empty values
+          c: this._cols,
+          d: this._dir,
+          f: withNewState,
+          k: this._primaryKey,
+          s: this._sort,
+          at: this._allStates,
+          v: this._verbose,
+        });
+        return currentURL.pathname + "?" + queryParams;
       }
 
       const params = {
