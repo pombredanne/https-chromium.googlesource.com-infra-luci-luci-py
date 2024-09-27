@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc85fe9a_a4bc7bf7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-09-27T19:31:36Z",
+      "side": 1,
+      "message": "I don\u0027t understand where this is fixed exactly 🙈",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 80
+      },
+      "revId": "755d001da9166da50e88184e52464117c872b12b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c8fd968_2228cc85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-09-27T19:31:36Z",
+      "side": 1,
+      "message": "lgtm if it works",
+      "revId": "755d001da9166da50e88184e52464117c872b12b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41a6351b_da3847be",
+        "filename": "appengine/swarming/ui2/modules/bot-list/bot-list.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-09-27T19:31:36Z",
+      "side": 1,
+      "message": "lol",
+      "range": {
+        "startLine": 726,
+        "startChar": 39,
+        "endLine": 726,
+        "endChar": 70
+      },
+      "revId": "755d001da9166da50e88184e52464117c872b12b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
