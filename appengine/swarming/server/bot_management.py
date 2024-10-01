@@ -222,6 +222,11 @@ class BotInfo(_BotCommon):
   This entity is a cache of the last BotEvent and is additionally updated on
   poll, which does not create a BotEvent.
   """
+  # Disable in-process per-request cache and memcache, since Go service will
+  # perform some writes and cannot update the same caches.
+  _use_cache = False
+  _use_memcache = False
+
   # One of:
   NOT_IN_MAINTENANCE = 1 << 9  # 512
   IN_MAINTENANCE = 1 << 8  # 256
