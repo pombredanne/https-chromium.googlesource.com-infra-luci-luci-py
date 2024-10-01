@@ -240,8 +240,10 @@ class BotDimensionsMatches(ndb.Model):
   expected to stop consuming tasks (e.g. it is deleted, quarantined, detected as
   dead, etc.) in cleanup_after_bot(...) .
   """
-  # Disable useless in-process per-request cache to save some RAM.
+  # Disable in-process per-request cache and memcache, since Go service will
+  # perform some writes and cannot update the same caches.
   _use_cache = False
+  _use_memcache = False
 
   # Bot dimensions as a sorted list of dedupped 'key:value' strings.
   #
