@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0945a8fd_2de78789",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-10-09T20:11:11Z",
+      "side": 1,
+      "message": "This will require rolling out new bot version before it becomes available in bot_config.py. I can do that once it lands.",
+      "revId": "b95f264823e793c2126a727598b36194e7700cb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b2ad7f8_0d9101d9",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-10-09T20:11:11Z",
+      "side": 1,
+      "message": "Does it need a manual drop to avoid leaks? Or it is dropped when the python object is GCed?",
+      "range": {
+        "startLine": 832,
+        "startChar": 43,
+        "endLine": 832,
+        "endChar": 57
+      },
+      "revId": "b95f264823e793c2126a727598b36194e7700cb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "427838ee_af0be09e",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-10-09T20:11:11Z",
+      "side": 1,
+      "message": "Is this Swarming bot process itself? Is thermal state shared across all processes? Weird api...",
+      "range": {
+        "startLine": 832,
+        "startChar": 29,
+        "endLine": 832,
+        "endChar": 42
+      },
+      "revId": "b95f264823e793c2126a727598b36194e7700cb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
