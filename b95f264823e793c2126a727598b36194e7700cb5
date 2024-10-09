@@ -158,6 +158,30 @@
       },
       "revId": "b95f264823e793c2126a727598b36194e7700cb5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbfb851c_8a8c5aa5",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-10-09T20:49:16Z",
+      "side": 1,
+      "message": "Done. I\u0027m having trouble verifying that this does actually give us the expected information instead of always returning 0, though. I\u0027ve been running `sudo thermal watch` to get thermal state from an OS-provided utility while hitting both the CPU and GPU fully with all of the intake vents blocked off and it\u0027s not reporting anything above \"nominal\".",
+      "parentUuid": "37b0803d_28f0f0f2",
+      "range": {
+        "startLine": 832,
+        "startChar": 43,
+        "endLine": 832,
+        "endChar": 57
+      },
+      "revId": "b95f264823e793c2126a727598b36194e7700cb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
