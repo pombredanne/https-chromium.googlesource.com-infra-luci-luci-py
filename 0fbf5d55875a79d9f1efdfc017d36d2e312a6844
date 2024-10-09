@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "beda0acd_19b5ab3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-10-09T19:51:48Z",
+      "side": 1,
+      "message": "PTAL\n\nI don\u0027t remember if this needs manual work to be available for use in Chromium\u0027s Swarming configs or not.",
+      "revId": "0fbf5d55875a79d9f1efdfc017d36d2e312a6844",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
