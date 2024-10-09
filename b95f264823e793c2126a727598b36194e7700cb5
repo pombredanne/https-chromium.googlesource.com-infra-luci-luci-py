@@ -182,6 +182,30 @@
       },
       "revId": "b95f264823e793c2126a727598b36194e7700cb5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e39079a_57841cff",
+        "filename": "appengine/swarming/swarming_bot/api/platforms/osx.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2024-10-09T20:57:36Z",
+      "side": 1,
+      "message": "I tested this by calling some other method, which seems to work:\n\n```\n\u003e\u003e\u003e Foundation.NSProcessInfo.processInfo().processName()\n\u0027python3\u0027\n```",
+      "parentUuid": "fbfb851c_8a8c5aa5",
+      "range": {
+        "startLine": 832,
+        "startChar": 43,
+        "endLine": 832,
+        "endChar": 57
+      },
+      "revId": "b95f264823e793c2126a727598b36194e7700cb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
