@@ -16,6 +16,24 @@
       "message": "Oh, this should be available on chromium-swarm-dev within 10 min or so, so you can start writing a change for https://chrome-internal.googlesource.com/infradata/config/+/refs/heads/main/configs/chromium-swarm-dev/scripts/bot_config.py to test it there whenever.\n\nI\u0027ll CC you on CLs to deploy this to prod instances of Swarming.",
       "revId": "8d95b80cf21f8ba1c925b6c9b732138f4b96d33f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "555781ac_704bf8cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2024-10-09T21:09:34Z",
+      "side": 1,
+      "message": "Already done https://chrome-internal-review.googlesource.com/c/infradata/config/+/7740413\n\nWe just want to surface it to begin with. We can see about quarantining after we both know it works and it won\u0027t quarantine large amounts of devices.",
+      "parentUuid": "b0a927e4_e0abe050",
+      "revId": "8d95b80cf21f8ba1c925b6c9b732138f4b96d33f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
