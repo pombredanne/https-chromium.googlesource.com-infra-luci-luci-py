@@ -16,6 +16,23 @@
       "message": "rs-lgtm",
       "revId": "f3bdada8f395f29f951bbbc101faf638064e1632",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e30e9d6_dffae098",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3686488
+      },
+      "writtenOn": "2024-10-19T21:54:17Z",
+      "side": 1,
+      "message": "irc://irc.linuxfoundation.org:6667",
+      "revId": "f3bdada8f395f29f951bbbc101faf638064e1632",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
